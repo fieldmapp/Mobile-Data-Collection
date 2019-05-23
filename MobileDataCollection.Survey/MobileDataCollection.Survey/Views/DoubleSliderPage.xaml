@@ -36,6 +36,7 @@
                     MinimumTrackColor="{StaticResource Selection}"
                     MaximumTrackColor="{StaticResource Selection}"
                     ThumbColor="{StaticResource Selection}"
+                    ValueChanged="OnSliderAValueChanged"
                     Value="0" Maximum="100" Minimum="0"/>
             <Label x:Name="sliderALabel"
                    HorizontalOptions="Center" Grid.Row="3" 
@@ -44,6 +45,7 @@
                     MinimumTrackColor="{StaticResource Selection}"
                     MaximumTrackColor="{StaticResource Selection}"
                     ThumbColor="{StaticResource Selection}"
+                    ValueChanged="OnSliderBValueChanged"
                     Value="0" Maximum="100" Minimum="0"/>
             <Label x:Name="sliderBLabel"
                    HorizontalOptions="Center" Grid.Row="5" 
