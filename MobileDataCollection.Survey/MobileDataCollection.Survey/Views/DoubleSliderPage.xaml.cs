@@ -16,5 +16,21 @@ namespace MobileDataCollection.Survey.Views
 		{
 			InitializeComponent();
 		}
+		 void OnSliderAValueChanged(object sender, ValueChangedEventArgs args)
+        {
+            double value = args.NewValue;
+            sliderALabel.Text = String.Format("(A): {0}%", value);
+        }
+        void OnSliderBValueChanged(object sender, ValueChangedEventArgs args)
+        {
+            double value = args.NewValue;
+            sliderBLabel.Text = String.Format("(B): {0}%", value);
+        }
+        void OnWeiterButtonClicked(object sender, EventArgs e)
+        {
+        }
+        void OnAbbrechenButtonClicked(object sender, EventArgs e)
+        {
+        }
 	}
 }
