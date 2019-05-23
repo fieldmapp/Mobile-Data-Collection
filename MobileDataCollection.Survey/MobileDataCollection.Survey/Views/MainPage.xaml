@@ -11,7 +11,7 @@
     </ContentPage.Resources>
     
     <StackLayout>
-        <ListView x:Name="MenuList" ItemSelected="MenuList_ItemSelected">
+        <ListView x:Name="MenuList" ItemTapped="MenuList_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -30,24 +30,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <!--<TableRoot>
-                <TableSection Title="Abschnitte">
-                    <TableSection.
-                    <ViewCell>
-                        <StackLayout BackgroundColor="#eee"
-                        Orientation="Vertical">
-                            <StackLayout Orientation="Horizontal" 
-                                         Margin="8,2,8,1">
-                                <Label Text="Demo" 
-                                       TextColor="#f35e20" />
-                                <Label Text="0/2"
-                                       HorizontalOptions="EndAndExpand"
-                                       TextColor="#503026" />
-                            </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
-                </TableSection>
-            </TableRoot>-->
     </StackLayout>
 
 </ContentPage>
