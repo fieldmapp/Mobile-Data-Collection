@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileDataCollection.Survey.Views.DoubleSliderPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Button">White</Color>
+            <Color x:Key="Selection">DarkSeaGreen</Color>
+            <Color x:Key="TextColor">Black</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="20">
+        <Grid Margin="20,0,10,10" VerticalOptions="CenterAndExpand" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="Frage X/Y" FontSize="Medium" HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="1" Text="Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B). ein" FontSize="Medium" />
+            <Label Text="{Binding Item.Text}" FontSize="Small"/>
+        </Grid>
+
+        <Grid Margin="20,10,10,10" RowSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <!--<Image Source="C:\Users\PC\source\repos\LayoutSlider\LayoutSlider\LayoutSlider\Bilder\bedeckung1.PNG"/>-->
+            <Slider Grid.Row="2"  Margin="0, 0, 0, 0"
+                    MinimumTrackColor="{StaticResource Selection}"
+                    MaximumTrackColor="{StaticResource Selection}"
+                    ThumbColor="{StaticResource Selection}"
+                    Value="0" Maximum="100" Minimum="0"/>
+            <Label x:Name="sliderALabel"
+                   HorizontalOptions="Center" Grid.Row="3" 
+                   Text="(A): 0%" FontSize="Medium" />
+            <Slider Grid.Row="4"  Margin="0, 0, 0, 0"
+                    MinimumTrackColor="{StaticResource Selection}"
+                    MaximumTrackColor="{StaticResource Selection}"
+                    ThumbColor="{StaticResource Selection}"
+                    Value="0" Maximum="100" Minimum="0"/>
+            <Label x:Name="sliderBLabel"
+                   HorizontalOptions="Center" Grid.Row="5" 
+                   Text="(B): 0%" FontSize="Medium"/>
+        </Grid>
+
+
+        <Grid VerticalOptions="EndAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Text="Abbrechen"
+                    BackgroundColor="{StaticResource Button}"
+                    TextColor="{StaticResource TextColor}"
+                    FontSize="Large"/>
+            <Button Grid.Column="1"
+                    Text="Weiter"
+                    BackgroundColor="{StaticResource Button}"
+                    TextColor="{StaticResource TextColor}"
+                    FontSize="Large"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>

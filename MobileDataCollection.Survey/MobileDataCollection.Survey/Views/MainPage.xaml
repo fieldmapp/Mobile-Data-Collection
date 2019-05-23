@@ -7,11 +7,11 @@
 
     <ContentPage.Resources>
         <converters:BoolToColorConverter x:Key="BoolToColorConverter" />
-        <x:String x:Key="BoolToColorConverterArgs">1,1,1,.7,.7,.7</x:String>
+        <x:String x:Key="BoolToColorConverterArgs">1,1,1,0.7,0.7,0.7</x:String>
     </ContentPage.Resources>
     
     <StackLayout>
-        <ListView x:Name="MenuList">
+        <ListView x:Name="MenuList" ItemSelected="MenuList_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

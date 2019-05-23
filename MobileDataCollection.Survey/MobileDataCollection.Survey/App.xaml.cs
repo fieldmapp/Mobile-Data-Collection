@@ -8,11 +8,12 @@ namespace MobileDataCollection.Survey
 {
     public partial class App : Application
     {
+        public NavigationPage Navigation;
+
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            MainPage = Navigation = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
