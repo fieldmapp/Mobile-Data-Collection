@@ -12,14 +12,13 @@
     </ContentPage.Resources>
 
     <StackLayout Padding="20">
-        <Grid Margin="20,0,10,10" VerticalOptions="CenterAndExpand" RowSpacing="0">
+        <Grid x:Name="Header" Margin="20,0,10,10" VerticalOptions="CenterAndExpand" RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Label Text="Frage X/Y" FontSize="Medium" HorizontalTextAlignment="Center"/>
-            <Label Grid.Row="1" Text="Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B). ein" FontSize="Medium" />
-            <Label Text="{Binding Item.Text}" FontSize="Small"/>
+            <Label Grid.Row="1" Text="{Binding Item.Text}" FontSize="Medium" />
         </Grid>
 
         <Grid Margin="20,10,10,10" RowSpacing="5">
@@ -31,7 +30,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <!--<Image Source="C:\Users\PC\source\repos\LayoutSlider\LayoutSlider\LayoutSlider\Bilder\bedeckung1.PNG"/>-->
+            <Image Source="{Binding Item.PictureAdresses[0]}"/>
             <Slider Grid.Row="2"  Margin="0, 0, 0, 0"
                     MinimumTrackColor="{StaticResource Selection}"
                     MaximumTrackColor="{StaticResource Selection}"
