@@ -10,37 +10,38 @@ using Xamarin.Forms.Xaml;
 
 namespace MobileDataCollection.Survey.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ImageCheckerPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ImageCheckerPage : ContentPage
+    {
 
         Color selectedColor = Color.Green;
         Color nonSelectedColor = Color.White;
-        
+
         int anzahlAntworten;
         int anzahlRichtigerAntworten;
-        Boolean[] vorgegebeneAntworten;
-        Boolean[] gegebeneAntworten;
-        Boolean[] richtigeAntworten;
+        bool[] vorgegebeneAntworten;
+        bool[] gegebeneAntworten;
+        bool[] richtigeAntworten;
         Stopwatch stopwatch;
 
 
-        public ImageCheckerPage ()
-		{
+        public ImageCheckerPage()
+        {
             //getFragebogen();
 
             InitializeComponent();
 
-            setPictureASource("Q1_G1_F1_B1_klein.png");
+            PictureASource = "Q1_G1_F1_B1_klein.png";
+            //TODO
             setPictureBSource("Q1_G1_F1_B2_klein.png");
             setPictureCSource("Q1_G1_F1_B3_klein.png");
             setPictureDSource("Q1_G1_F1_B4_klein.png");
 
             anzahlAntworten = 4;
             anzahlRichtigerAntworten = 0;
-            vorgegebeneAntworten = new Boolean[anzahlAntworten];
-            gegebeneAntworten = new Boolean[anzahlAntworten];
-            richtigeAntworten = new Boolean[anzahlAntworten];
+            vorgegebeneAntworten = new bool[anzahlAntworten];
+            gegebeneAntworten = new bool[anzahlAntworten];
+            richtigeAntworten = new bool[anzahlAntworten];
             for (int i = 0; i < anzahlAntworten; i++)
             {
                 vorgegebeneAntworten[i] = true;
@@ -52,15 +53,7 @@ namespace MobileDataCollection.Survey.Views
         }
         private void MarkPicture(ImageButton imageButton)
         {
-            if(imageButton.BorderColor == nonSelectedColor)
-            {
-                imageButton.BorderColor = selectedColor;
-            }
-            else
-            {
-                imageButton.BorderColor = nonSelectedColor;
-            }
-            
+            imageButton.BorderColor = imageButton.BorderColor == nonSelectedColor ? selectedColor : nonSelectedColor;
         }
         private void PressPicture(object sender, EventArgs e)
         {
@@ -86,9 +79,9 @@ namespace MobileDataCollection.Survey.Views
             anzahlRichtigerAntworten = 0;
             speichereErgebnisse();
 
-            for(int i = 0;i < anzahlAntworten;i++)
+            for (int i = 0; i < anzahlAntworten; i++)
             {
-                if(vorgegebeneAntworten[i] == gegebeneAntworten[i])
+                if (vorgegebeneAntworten[i] == gegebeneAntworten[i])
                 {
                     richtigeAntworten[i] = true;
                     anzahlRichtigerAntworten++;
@@ -106,14 +99,8 @@ namespace MobileDataCollection.Survey.Views
         }
         void speichereErgebnisse()
         {
-            if (PictureA.BorderColor == selectedColor)
-            {
-                gegebeneAntworten[0] = true;
-            }
-            else
-            {
-                gegebeneAntworten[0] = false;
-            }
+            gegebeneAntworten[0] = PictureA.BorderColor == selectedColor;
+            //TODO: Ausdrücke vereinfachen 
             if (PictureB.BorderColor == selectedColor)
             {
                 gegebeneAntworten[1] = true;
@@ -139,14 +126,8 @@ namespace MobileDataCollection.Survey.Views
                 gegebeneAntworten[3] = false;
             }
         }
-        private void setNummerFrageText(String text)
-        {
-            NummerFrage.Text = text;
-        }
-        private String getNummerFrageText()
-        {
-            return NummerFrage.Text;
-        }
+        private string NummerFrageText { get => NummerFrage.Text; set => NummerFrage.Text = value; }
+        //TODO: get und set Methoden mit Properties ersetzen
         private void setFrageText(String text)
         {
             Frage.Text = text;
@@ -155,11 +136,12 @@ namespace MobileDataCollection.Survey.Views
         {
             return Frage.Text;
         }
+        private string PictureASource { get => PictureA.Source.ToString(); set => PictureA.Source = value; }
         private void setPictureASource(String source)
         {
             PictureA.Source = source;
         }
-        private String getPictureASource()
+        private string getPictureASource()
         {
             return PictureA.Source.ToString();
         }
