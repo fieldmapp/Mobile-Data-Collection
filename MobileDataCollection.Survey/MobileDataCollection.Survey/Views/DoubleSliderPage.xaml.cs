@@ -12,6 +12,10 @@ namespace MobileDataCollection.Survey.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DoubleSliderPage : ContentPage
 	{
+        //DEMO
+        //DEMO
+        //DEMO
+
 		public DoubleSliderPage ()
 		{
 			InitializeComponent();
