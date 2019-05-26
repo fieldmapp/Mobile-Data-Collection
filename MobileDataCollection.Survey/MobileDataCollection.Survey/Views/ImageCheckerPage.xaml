@@ -4,14 +4,12 @@
              x:Class="MobileDataCollection.Survey.Views.ImageCheckerPage">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="Button">Gray</Color>
-            <Color x:Key="Selection">Green</Color>
-            <Color x:Key="LightTextColor">#999999</Color>
-            <Color x:Key="NonSelection">White</Color>
+            <Color x:Key="Button">White</Color>
+            <Color x:Key="TextColor">Black</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout Margin="5,35,5,5"
+    <StackLayout Margin="0"
                  Padding="10">
         <Label x:Name="NummerFrage"
                Text="Frage X"
@@ -26,16 +24,16 @@
         <Label Text="{Binding Item.Description}"
                FontSize="Small"/>
         <Grid ColumnSpacing="10"
-              RowSpacing="0"
+              RowSpacing="10"
               VerticalOptions="CenterAndExpand" 
               HorizontalOptions="CenterAndExpand">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="160" />
-                <ColumnDefinition Width="160" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="170"/>
-                <RowDefinition Height="170" />
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <ImageButton x:Name="PictureA"
                          Source=""
@@ -94,13 +92,13 @@
             <Button x:Name="SpeichernButton"
                     Text="Speichern"
                     BackgroundColor="{StaticResource Button}"
-                    TextColor="White"
+                    TextColor="{StaticResource TextColor}"
                     Clicked="OnSpeicherButtonClicked" />
             <Button x:Name="WeiterButton"
                     Grid.Column="1"
                     Text="Weiter"
                     BackgroundColor="{StaticResource Button}"
-                    TextColor="White"
+                    TextColor="{StaticResource TextColor}"
                     Clicked="OnWeiterButtonClicked"/>
         </Grid>
     </StackLayout>
