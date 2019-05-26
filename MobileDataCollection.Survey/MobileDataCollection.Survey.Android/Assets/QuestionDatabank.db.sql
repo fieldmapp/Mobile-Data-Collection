@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 CREATE TABLE IF NOT EXISTS "QuestionsStadium" (
-	"QuestionId"	INTEGER,
+	"QuestionId"	INTEGER NOT NULL,
 	"Difficulty"	INTEGER,
 	"Skill"	TEXT,
 	"Text"	TEXT,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS "QuestionsStadium" (
 	PRIMARY KEY("QuestionId")
 );
 CREATE TABLE IF NOT EXISTS "QuestionsDoubleSlider" (
-	"QuestionId"	INTEGER,
+	"QuestionId"	INTEGER NOT NULL,
 	"Difficulty"	INTEGER,
 	"Skill"	TEXT,
 	"Text"	TEXT,
@@ -22,13 +22,13 @@ CREATE TABLE IF NOT EXISTS "QuestionsDoubleSlider" (
 	PRIMARY KEY("QuestionId")
 );
 CREATE TABLE IF NOT EXISTS "QuestionsIntrospection" (
-	"QuestionId"	INTEGER,
+	"QuestionId"	INTEGER NOT NULL,
 	"Skill"	TEXT,
 	"Text"	TEXT,
 	PRIMARY KEY("QuestionId")
 );
 CREATE TABLE IF NOT EXISTS "QuestionsImageChecker" (
-	"QuestionId"	INTEGER,
+	"QuestionId"	INTEGER NOT NULL,
 	"Difficulty"	INTEGER,
 	"Skill"	TEXT,
 	"Text"	TEXT,
@@ -47,16 +47,16 @@ CREATE TABLE IF NOT EXISTS "QuestionsImageChecker" (
 	PRIMARY KEY("QuestionId")
 );
 CREATE TABLE IF NOT EXISTS "AllQuestion" (
-	"QuestionId"	INTEGER,
+	"QuestionId"	INTEGER NOT NULL,
 	"QuestionType"	TEXT,
 	PRIMARY KEY("QuestionId")
 );
-INSERT INTO "QuestionsImageChecker" VALUES (1,1,'Crop','Wo sehen Sie die Feldfruchtsorte Weizen abgebildet?','Q1_G1_F1_B1_klein','Q1_G1_F1_B1','Q1_G1_F1_B2_klein','Q1_G1_F1_B2','Q1_G1_F1_B3_klein','Q1_G1_F1_B3','Q1_G1_F1_B4_klein','Q1_G1_F1_B4',NULL,NULL,NULL,NULL);
-INSERT INTO "QuestionsImageChecker" VALUES (2,1,'Crop','Wo sehen Sie die Feldfruchtsorte Raps abgebildet?','Q1_G1_F2_B1_klein','Q1_G1_F2_B1','Q1_G1_F2_B2_klein','Q1_G1_F2_B2','Q1_G1_F2_B3_klein','Q1_G1_F2_B3','Q1_G1_F2_B4_klein','Q1_G1_F2_B4',NULL,NULL,NULL,NULL);
-INSERT INTO "QuestionsImageChecker" VALUES (3,2,'Crop','Wo sehen Sie die Feldfruchtsorte Raps abgebildet?','Q1_G2_F1_B1_klein','Q1_G2_F1_B1','Q1_G2_F1_B2_klein','Q1_G2_F1_B2','Q1_G2_F1_B3_klein','Q1_G2_F1_B3','Q1_G2_F1_B4_klein','Q1_G2_F1_B4',NULL,NULL,NULL,NULL);
-INSERT INTO "QuestionsImageChecker" VALUES (4,2,'Crop','Wo sehen Sie die Feldfruchtsorte Weizen abgebildet?','Q1_G2_F2_B1_klein','Q1_G2_F2_B1','Q1_G2_F2_B2_klein','Q1_G2_F2_B2','Q1_G2_F2_B3_klein','Q1_G2_F2_B3','Q1_G2_F2_B4_klein','Q1_G2_F2_B4',NULL,NULL,NULL,NULL);
-INSERT INTO "QuestionsImageChecker" VALUES (5,3,'Crop','Wo sehen Sie die Feldfruchtsorte Kartoffel abgebildet?','Q1_G3_F1_B1_klein','Q1_G3_F1_B1','Q1_G3_F1_B2_klein','Q1_G3_F1_B2','Q1_G3_F1_B3_klein','Q1_G3_F1_B3','Q1_G3_F1_B4_klein','Q1_G3_F1_B4',NULL,NULL,NULL,NULL);
-INSERT INTO "QuestionsImageChecker" VALUES (6,3,'Crop','Wo sehen Sie die Feldfruchtsorte Gerste abgebildet?','Q1_G3_F2_B1_klein','Q1_G3_F2_B1','Q1_G3_F2_B2_klein','Q1_G3_F2_B2','Q1_G3_F2_B3_klein','Q1_G3_F2_B3','Q1_G3_F2_B4_klein','Q1_G3_F2_B4',NULL,NULL,NULL,NULL);
+INSERT INTO "QuestionsImageChecker" VALUES (1,1,'Crop','Wo sehen Sie die Feldfruchtsorte Weizen abgebildet?','Q1_G1_F1_B1_klein.png','Q1_G1_F1_B1.png','Q1_G1_F1_B2_klein.png','Q1_G1_F1_B2.png','Q1_G1_F1_B3_klein.png','Q1_G1_F1_B3.png','Q1_G1_F1_B4_klein.png','Q1_G1_F1_B4.png',0,1,0,0);
+INSERT INTO "QuestionsImageChecker" VALUES (2,1,'Crop','Wo sehen Sie die Feldfruchtsorte Raps abgebildet?','Q1_G1_F2_B1_klein.png','Q1_G1_F2_B1.png','Q1_G1_F2_B2_klein.png','Q1_G1_F2_B2.png','Q1_G1_F2_B3_klein.png','Q1_G1_F2_B3.png','Q1_G1_F2_B4_klein.png','Q1_G1_F2_B4.png',0,1,1,0);
+INSERT INTO "QuestionsImageChecker" VALUES (3,2,'Crop','Wo sehen Sie die Feldfruchtsorte Raps abgebildet?','Q1_G2_F1_B1_klein.png','Q1_G2_F1_B1.png','Q1_G2_F1_B2_klein.png','Q1_G2_F1_B2.png','Q1_G2_F1_B3_klein.png','Q1_G2_F1_B3.png','Q1_G2_F1_B4_klein.png','Q1_G2_F1_B4.png',1,1,1,0);
+INSERT INTO "QuestionsImageChecker" VALUES (4,2,'Crop','Wo sehen Sie die Feldfruchtsorte Weizen abgebildet?','Q1_G2_F2_B1_klein.png','Q1_G2_F2_B1.png','Q1_G2_F2_B2_klein.png','Q1_G2_F2_B2.png','Q1_G2_F2_B3_klein.png','Q1_G2_F2_B3.png','Q1_G2_F2_B4_klein.png','Q1_G2_F2_B4.png',0,0,1,0);
+INSERT INTO "QuestionsImageChecker" VALUES (5,3,'Crop','Wo sehen Sie die Feldfruchtsorte Kartoffel abgebildet?','Q1_G3_F1_B1_klein.png','Q1_G3_F1_B1.png','Q1_G3_F1_B2_klein.png','Q1_G3_F1_B2.png','Q1_G3_F1_B3_klein.png','Q1_G3_F1_B3.png','Q1_G3_F1_B4_klein.png','Q1_G3_F1_B4.png',1,0,1,0);
+INSERT INTO "QuestionsImageChecker" VALUES (6,3,'Crop','Wo sehen Sie die Feldfruchtsorte Gerste abgebildet?','Q1_G3_F2_B1_klein.png','Q1_G3_F2_B1.png','Q1_G3_F2_B2_klein.png','Q1_G3_F2_B2.png','Q1_G3_F2_B3_klein.png','Q1_G3_F2_B3.png','Q1_G3_F2_B4_klein.png','Q1_G3_F2_B4.png',0,0,1,0);
 INSERT INTO "AllQuestion" VALUES (1,'ImageCheckerPage');
 INSERT INTO "AllQuestion" VALUES (2,'ImageCheckerPage');
 INSERT INTO "AllQuestion" VALUES (3,'ImageCheckerPage');

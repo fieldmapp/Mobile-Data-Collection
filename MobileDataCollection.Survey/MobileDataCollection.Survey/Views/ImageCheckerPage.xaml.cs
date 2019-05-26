@@ -54,6 +54,15 @@ namespace MobileDataCollection.Survey.Views
         {
             imageButton.BorderColor = imageButton.BorderColor == nonSelectedColor ? selectedColor : nonSelectedColor;
         }
+        private void OpenBigPicture(ImageButton imageButton)
+        {
+            string source = imageButton.Source.ToString();
+            source = source.Substring(6);
+            source = source.Substring(0, source.Length - 10);
+            source = source + ".png";
+            Frage.Text = source;
+            ImageDetailPage image = new ImageDetailPage(source);
+        }
         private void PressPicture(object sender, EventArgs e)
         {
             stopwatch.Reset();
@@ -66,7 +75,7 @@ namespace MobileDataCollection.Survey.Views
             ImageButton imageButton = (ImageButton)sender;
             if (stopwatch.ElapsedMilliseconds > 1000)
             {
-                WeiterButton.Text = imageButton.Source.ToString();
+                OpenBigPicture(imageButton);
             }
             else
             {
