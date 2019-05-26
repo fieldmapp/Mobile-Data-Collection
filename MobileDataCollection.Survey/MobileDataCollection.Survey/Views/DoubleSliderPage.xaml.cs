@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MobileDataCollection.Survey.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,13 @@ namespace MobileDataCollection.Survey.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DoubleSliderPage : ContentPage
 	{
+        QuestionDoubleSliderPage Item = new QuestionDoubleSliderPage()
+        {
+            Text = "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B). ein",
+            PictureAdresses = new[] { @"C:\Users\PC\source\repos\LayoutSlider\LayoutSlider\LayoutSlider\Bilder\bedeckung1.PNG" },
+            RightAnswers = new[] { 1 }
+        };
+        
 		public DoubleSliderPage ()
 		{
 			InitializeComponent();
