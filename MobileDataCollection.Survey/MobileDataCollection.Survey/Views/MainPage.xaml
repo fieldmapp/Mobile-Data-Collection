@@ -14,8 +14,8 @@
                                          Orientation="Vertical">
                                 <StackLayout Orientation="Horizontal" 
                                              Margin="8,2,8,1">
-                                    <Label Text="{Binding ChapterName}"/>
-                                    <Label Text="{Binding ProgressString}"
+                                    <Label Text="{Binding ChapterName}" FontSize="Medium"/>
+                                    <Label Text="{Binding ProgressString}"  FontSize="Medium"
                                            HorizontalOptions="EndAndExpand"/>
                                 </StackLayout>
                             </StackLayout>
