@@ -3,6 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileDataCollection.Survey.Views.IntrospectionPage"
              xmlns:ctrls="clr-namespace:MobileDataCollection.Survey.Controls">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Button">White</Color>
+            <Color x:Key="Selection">DarkSeaGreen</Color>
+            <Color x:Key="TextColor">Gray</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <StackLayout Padding="20">
             <Grid>
@@ -39,10 +48,16 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Text="Speichern" FontSize="Large" BackgroundColor="White"/>
-                <Button Grid.Column="1" Text="Weiter" FontSize="Large" BackgroundColor="White"/>
+                <Button Text="Abbrechen" FontSize="Medium"
+                    BackgroundColor="{StaticResource Button}"
+                    TextColor="{StaticResource TextColor}"
+                    />
+                <Button Grid.Column="1"
+                    Text="Weiter" FontSize="Medium"
+                    BackgroundColor="{StaticResource Button}"
+                    TextColor="{StaticResource TextColor}"
+                    />
             </Grid>
-
 
         </StackLayout>
     </ContentPage.Content>
