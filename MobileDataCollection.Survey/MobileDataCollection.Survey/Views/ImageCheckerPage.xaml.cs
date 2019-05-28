@@ -14,7 +14,7 @@ namespace MobileDataCollection.Survey.Views
     public partial class ImageCheckerPage : ContentPage
     {
 
-        Color selectedColor = Color.Green;
+        Color selectedColor = Color.DarkSeaGreen;
         Color nonSelectedColor = Color.White;
 
         int anzahlAntworten;
