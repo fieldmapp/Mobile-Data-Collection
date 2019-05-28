@@ -89,14 +89,12 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button x:Name="SpeichernButton"
-                    Text="Speichern"
+            <Button Text="Abbrechen" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
                     TextColor="{StaticResource TextColor}"
-                    Clicked="OnSpeicherButtonClicked" />
-            <Button x:Name="WeiterButton"
-                    Grid.Column="1"
-                    Text="Weiter"
+                    Clicked="OnAbbrechenButtonClicked"/>
+            <Button Grid.Column="1"
+                    Text="Weiter" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
                     TextColor="{StaticResource TextColor}"
                     Clicked="OnWeiterButtonClicked"/>
