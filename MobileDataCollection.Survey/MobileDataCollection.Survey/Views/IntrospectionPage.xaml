@@ -1,12 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MobileDataCollection.Survey.Views.IntrospectionPage">
+             x:Class="MobileDataCollection.Survey.Views.IntrospectionPage"
+             xmlns:ctrls="clr-namespace:MobileDataCollection.Survey">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="TBD"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Text="Frage 1/5" FontSize="Medium" HorizontalTextAlignment="Center"/>
+            </Grid>
+            
+            <Grid Margin="10,20,10,10" VerticalOptions="CenterAndExpand" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Text="{Binding Item.QuestionText}" x:Name="QuestionLabel" FontSize="Medium"/>
+            </Grid>
+
+            <Grid Margin="15,0,10,10" RowSpacing="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ctrls:RadioButton x:Name="Button1" Grid.Row="0" Title="trifft zu" Tapped="Button_Tapped" FontSize="Medium"/>
+                <ctrls:RadioButton x:Name="Button2" Grid.Row="1" Title="trifft eher zu" Tapped="Button_Tapped" FontSize="Large"/> <!--FontSize gibt es noch nicht-->
+                <ctrls:RadioButton x:Name="Button3" Grid.Row="2" Title="trifft teilweise zu" Tapped="Button_Tapped"/>
+                <ctrls:RadioButton x:Name="Button4" Grid.Row="3" Title="trifft eher nicht zu" Tapped="Button_Tapped"/>
+                <ctrls:RadioButton x:Name="Button5" Grid.Row="4" Title="trifft nicht zu" Tapped="Button_Tapped"/>
+            </Grid>
+
+            <Grid VerticalOptions="EndAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Text="Speichern" FontSize="Large" BackgroundColor="White"/>
+                <Button Grid.Column="1" Text="Weiter" FontSize="Large" BackgroundColor="White"/>
+            </Grid>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
