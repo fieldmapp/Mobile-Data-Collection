@@ -13,7 +13,11 @@ namespace MobileDataCollection.Survey
         public App()
         {
             InitializeComponent();
-            MainPage = Navigation = new NavigationPage(new MainPage());
+            MainPage = Navigation = new NavigationPage(new MainPage())
+            {
+                BarBackgroundColor = Color.DarkSeaGreen,
+                BarTextColor = Color.White,
+            }; 
         }
 
         protected override void OnStart()
