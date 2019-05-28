@@ -1,4 +1,5 @@
-﻿using MobileDataCollection.Survey.Models;
+﻿using MobileDataCollection.Survey.Controls;
+using MobileDataCollection.Survey.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

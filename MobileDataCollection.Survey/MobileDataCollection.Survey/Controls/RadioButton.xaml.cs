@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MobileDataCollection.Survey
+namespace MobileDataCollection.Survey.Controls
 {
     /// <summary>  
     /// Custom RadioButton control  
