@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace MobileDataCollection.Survey.Models
 {
@@ -24,5 +25,7 @@ namespace MobileDataCollection.Survey.Models
         public bool Unlocked { get; set; }
 
         public string ProgressString => $"{AnswersGiven}/{AnswersNeeded}";
+
+        public Color BackgroundColor => Unlocked ? Color.White : Color.DarkGray;
     }
 }

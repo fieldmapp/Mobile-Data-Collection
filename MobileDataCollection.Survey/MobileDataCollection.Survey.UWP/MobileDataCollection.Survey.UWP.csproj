@@ -130,7 +130,10 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="bestockung.png" />
+    <Content Include="blattentwicklung.png" />
     <Content Include="Properties\Default.rd.xml" />
+    <Content Include="schossen.png" />
     <Content Include="radiocheckedbg.png" />
     <Content Include="radiocheckmark.png" />
     <Content Include="radioborder.png" />

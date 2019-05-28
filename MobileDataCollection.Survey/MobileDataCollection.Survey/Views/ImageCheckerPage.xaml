@@ -1,66 +1,103 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileDataCollection.Survey.Views.ImageCheckerPage">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="Button">Gray</Color>
-            <Color x:Key="Selection">Green</Color>
-            <Color x:Key="LightTextColor">#999999</Color>
+            <Color x:Key="Button">White</Color>
+            <Color x:Key="TextColor">Black</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout Margin="5,35,5,5"
+    <StackLayout Margin="0"
                  Padding="10">
-        <Label Text="Frage X" FontSize="Large" HorizontalTextAlignment="Center"/>
-        <Label Text="{Binding Item.Text}" FontSize="Small"/>
-        <Label HorizontalTextAlignment="Center" Text="Wo sehen Sie die Feldfruchtsorte Weizen abgebildet?" FontSize="Large" />
-        <Label Text="{Binding Item.Description}" FontSize="Small"/>
+        <Label x:Name="NummerFrage"
+               Text="Frage X"
+               FontSize="Large"
+               HorizontalTextAlignment="Center"/>
+        <Label Text="{Binding Item.Text}"
+               FontSize="Small"/>
+        <Label x:Name="Frage"
+               HorizontalTextAlignment="Center"
+               Text="Wo sehen Sie die Feldfruchtsorte Weizen abgebildet?"
+               FontSize="Large" />
+        <Label Text="{Binding Item.Description}"
+               FontSize="Small"/>
         <Grid ColumnSpacing="10"
-              RowSpacing="0"
+              RowSpacing="10"
               VerticalOptions="CenterAndExpand" 
               HorizontalOptions="CenterAndExpand">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="170" />
-                <ColumnDefinition Width="170" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="170"/>
-                <RowDefinition Height="170" />
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Button HeightRequest="160" WidthRequest="160" HorizontalOptions="Center"
-                    VerticalOptions="CenterAndExpand" />
-            <!--<ImageButton Source="C:\Users\PC\source\repos\Design\Design\Design\Bilder\getreide1.PNG"
-                    HeightRequest="160" WidthRequest="160" HorizontalOptions="Center"
-                    VerticalOptions="CenterAndExpand" />-->
-            <BoxView Grid.Column="1" 
-                     HeightRequest="170" WidthRequest="170" 
-                     Color="DarkSeaGreen"/>
-            <Button Grid.Column="1"
-                    HeightRequest="160" WidthRequest="160" HorizontalOptions="Center"
-                    VerticalOptions="CenterAndExpand"/>
-            <!--Image="C:\Users\PC\source\repos\Design\Design\Design\Bilder\getreide2.PNG"-->
-            <Button Grid.Row="1" 
-                   HeightRequest="160" WidthRequest="160" HorizontalOptions="Center"
-                   VerticalOptions="CenterAndExpand" />
-            <!--Source="C:\Users\PC\source\repos\Design\Design\Design\Bilder\getreide3.PNG"-->
-            <Button Grid.Row="1" Grid.Column="1" 
-                   HeightRequest="160" WidthRequest="160" HorizontalOptions="Center"
-                   VerticalOptions="CenterAndExpand" />
-            <!--Source="C:\Users\PC\source\repos\Design\Design\Design\Bilder\getreide4.PNG"-->
+            <ImageButton x:Name="PictureA"
+                         Source=""
+                         HeightRequest="160"
+                         WidthRequest="160"
+                         HorizontalOptions="Center"
+                         VerticalOptions="CenterAndExpand"
+                         IsEnabled="true"
+                         Pressed="PressPicture"
+                         Released="ReleasePicture"
+                         BorderColor="White"
+                         BorderWidth="5"/>
+            <ImageButton x:Name="PictureB"
+                         Source=""
+                         Grid.Column="1"
+                         HeightRequest="160"
+                         WidthRequest="160"
+                         HorizontalOptions="Center"
+                         VerticalOptions="CenterAndExpand"
+                         IsEnabled="true"
+                         Pressed="PressPicture"
+                         Released="ReleasePicture"
+                         BorderColor="White"
+                         BorderWidth="5"/>
+            <ImageButton x:Name="PictureC"
+                         Source=""
+                         Grid.Row="1" 
+                         HeightRequest="160"
+                         WidthRequest="160"
+                         HorizontalOptions="Center"
+                         VerticalOptions="CenterAndExpand"
+                         IsEnabled="true"
+                         Pressed="PressPicture"
+                         Released="ReleasePicture"
+                         BorderColor="White"
+                         BorderWidth="5"/>
+            <ImageButton x:Name="PictureD"
+                         Source=""
+                         Grid.Row="1"
+                         Grid.Column="1"
+                         HeightRequest="160"
+                         WidthRequest="160"
+                         HorizontalOptions="Center"
+                         VerticalOptions="CenterAndExpand"
+                         IsEnabled="true"
+                         Pressed="PressPicture"
+                         Released="ReleasePicture"
+                         BorderColor="White"
+                         BorderWidth="5"/>
         </Grid>
         <Grid VerticalOptions="EndAndExpand">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Text="Abbrechen"
+            <Button Text="Abbrechen" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
-                    TextColor="White"/>
+                    TextColor="{StaticResource TextColor}"
+                    Clicked="OnAbbrechenButtonClicked"/>
             <Button Grid.Column="1"
-                    Text="Weiter"
+                    Text="Weiter" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
-                    TextColor="White" />
+                    TextColor="{StaticResource TextColor}"
+                    Clicked="OnWeiterButtonClicked"/>
         </Grid>
     </StackLayout>
 </ContentPage>
