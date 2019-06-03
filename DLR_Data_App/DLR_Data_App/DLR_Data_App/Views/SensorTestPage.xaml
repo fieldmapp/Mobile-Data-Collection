@@ -1,0 +1,487 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DLR_Data_App.Views.SensorTestPage"
+             xmlns:local="clr-namespace:DLR_Data_App"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             xmlns:vm="clr-namespace:DLR_Data_App.ViewModels"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:SensorTestViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Reset" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout x:Name="LoginEntries" VerticalOptions="StartAndExpand">
+                <StackLayout.Padding>
+                    <OnIdiom x:TypeArguments="Thickness">
+                        <OnIdiom.Phone>
+                            40,0,40,0
+                        </OnIdiom.Phone>
+                        <OnIdiom.Tablet>
+                            140,150,140,0
+                        </OnIdiom.Tablet>
+                    </OnIdiom>
+                </StackLayout.Padding>
+                <Grid x:Name="GridAccelerometer">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{res:TranslateExtention accelerometer}"
+                           FontSize="Medium"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Start"
+                           Grid.ColumnSpan="3"
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+
+                    <Label Text="{res:TranslateExtention current}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="1"
+                           Grid.Column="1" />
+
+                    <Label Text="{res:TranslateExtention max}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           Grid.Row="1"
+                           Grid.Column="2"/>
+
+                    <Label Text="X:"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="2"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="lbl_x_accelerometer_current"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="2"
+                           Grid.Column="1"/>
+
+                    <Label x:Name="lbl_x_accelerometer_max"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="2"
+                           Grid.Column="2"/>
+
+                    <Label Text="Y:"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           Grid.Row="3"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="lbl_y_accelerometer_current"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="3"
+                           Grid.Column="1"/>
+
+                    <Label x:Name="lbl_y_accelerometer_max"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           FontSize="Large" 
+                           Grid.Row="3"
+                           Grid.Column="2"/>
+
+                    <Label Text="Z:"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           Grid.Row="4"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="lbl_z_accelerometer_current"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="4"
+                           Grid.Column="1"/>
+
+                    <Label x:Name="lbl_z_accelerometer_max"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="4"
+                           Grid.Column="2"/>
+                </Grid>
+                <Grid x:Name="GridBarometer">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                        <Label Text="{res:TranslateExtention barometer}"
+                           FontSize="Medium"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Start"
+                           Grid.ColumnSpan="3"
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+
+                    <Label Text="{res:TranslateExtention current}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="1"
+                           Grid.Column="1" />
+
+                    <Label Text="{res:TranslateExtention max}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           Grid.Row="1"
+                           Grid.Column="2"/>
+
+                    <Label Text="{res:TranslateExtention pressure}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="2"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="lbl_pressure_barometer_current"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="2"
+                           Grid.Column="1"/>
+
+                    <Label x:Name="lbl_pressure_barometer_max"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="2"
+                           Grid.Column="2"/>
+                </Grid>
+                <Grid x:Name="GridCompass">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{res:TranslateExtention compass}"
+                           FontSize="Medium"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Start"
+                           Grid.ColumnSpan="3"
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+
+                    <Label Text="{res:TranslateExtention degrees}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="1"
+                           Grid.Column="1" />
+
+                    <Label Text="{res:TranslateExtention direction}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="1"
+                           Grid.Column="2" />
+
+                    <Label x:Name="lbl_compass_degrees"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           FontSize="Large"
+                           Grid.Row="2"
+                           Grid.Column="1"/>
+
+                    <Label x:Name="lbl_compass_direction"
+                           Text="N"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="2"
+                           Grid.Column="2"/>
+                </Grid>
+                <Grid x:Name="GridGps">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{res:TranslateExtention gps}"
+                           FontSize="Medium"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Start"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+
+                    <Label Text="{res:TranslateExtention latitude}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="1"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="lbl_lat"
+                           Text="0.000"
+                           FontSize="Large"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="1"
+                           Grid.Column="2"/>
+
+                    <Label Text="{res:TranslateExtention longitude}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="2"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="lbl_lon"
+                           FontSize="Large"
+                           Text="0.000"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="2"
+                           Grid.Column="2"/>
+
+                    <Label Text="{res:TranslateExtention altitude}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="3"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="lbl_alt"
+                           FontSize="Large"
+                           Text="0.000"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="3"
+                           Grid.Column="2"/>
+
+                    <Label Text="{res:TranslateExtention status}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="4"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="lbl_status"
+                           Text="No Satellites"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="4"
+                           Grid.Column="2"/>
+                </Grid>
+                <Grid x:Name="GridGyroscope">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{res:TranslateExtention gyroscope}"
+                           FontSize="Medium"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Start"
+                           Grid.ColumnSpan="3"
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+
+                    <Label Text="{res:TranslateExtention current}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="1"
+                           Grid.Column="1" />
+
+                    <Label Text="{res:TranslateExtention max}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           Grid.Row="1"
+                           Grid.Column="2"/>
+
+                    <Label Text="X:"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="2"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="lbl_x_gyroscope_current"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="2"
+                           Grid.Column="1"/>
+
+                    <Label x:Name="lbl_x_gyroscope_max"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="2"
+                           Grid.Column="2"/>
+
+                    <Label Text="Y:"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           Grid.Row="3"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="lbl_y_gyroscope_current"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="3"
+                           Grid.Column="1"/>
+
+                    <Label x:Name="lbl_y_gyroscope_max"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           FontSize="Large" 
+                           Grid.Row="3"
+                           Grid.Column="2"/>
+
+                    <Label Text="Z:"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           Grid.Row="4"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="lbl_z_gyroscope_current"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="4"
+                           Grid.Column="1"/>
+
+                    <Label x:Name="lbl_z_gyroscope_max"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="4"
+                           Grid.Column="2"/>
+                </Grid>
+                <Grid x:Name="GridMagnetometer">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{res:TranslateExtention magnetometer}"
+                           FontSize="Medium"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Start"
+                           Grid.ColumnSpan="3"
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+
+                    <Label Text="{res:TranslateExtention current}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="1"
+                           Grid.Column="1" />
+
+                    <Label Text="{res:TranslateExtention max}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           Grid.Row="1"
+                           Grid.Column="2"/>
+
+                    <Label Text="X:"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="2"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="lbl_x_magnetometer_current"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="2"
+                           Grid.Column="1"/>
+
+                    <Label x:Name="lbl_x_magnetometer_max"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="2"
+                           Grid.Column="2"/>
+
+                    <Label Text="Y:"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           Grid.Row="3"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="lbl_y_magnetometer_current"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="3"
+                           Grid.Column="1"/>
+
+                    <Label x:Name="lbl_y_magnetometer_max"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           FontSize="Large" 
+                           Grid.Row="3"
+                           Grid.Column="2"/>
+
+                    <Label Text="Z:"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           Grid.Row="4"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="lbl_z_magnetometer_current"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="4"
+                           Grid.Column="1"/>
+
+                    <Label x:Name="lbl_z_magnetometer_max"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="4"
+                           Grid.Column="2"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

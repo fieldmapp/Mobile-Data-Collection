@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DLR_Data_App.Views.SettingsPage"
+             xmlns:local="clr-namespace:DLR_Data_App"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             xmlns:vm="clr-namespace:DLR_Data_App.ViewModels"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:SettingsViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout.Padding>
+                    <OnIdiom x:TypeArguments="Thickness">
+                        <OnIdiom.Phone>
+                            40,0,40,0
+                        </OnIdiom.Phone>
+                        <OnIdiom.Tablet>
+                            140,150,140,0
+                        </OnIdiom.Tablet>
+                    </OnIdiom>
+                </StackLayout.Padding>
+
+                <Label Text="{res:TranslateExtention profile}"
+                   FontSize="Medium"/>
+                <Label Text="{res:TranslateExtention name}"/>
+                <Entry x:Name="entry_name"
+                       Placeholder="{res:TranslateExtention name}" />
+                <Label Text="{res:TranslateExtention password}"/>
+                <Entry x:Name="entry_password"
+                       Placeholder="******"
+                       IsPassword="true" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{res:TranslateExtention autologin}"
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+                    <Switch x:Name="switch_autologin"
+                           Toggled="Switch_autologin_Toggled"
+                           IsToggled="True"
+                           Grid.Row="0"
+                           Grid.Column="1" />
+
+                    <Label Text="{res:TranslateExtention privacypolicy}"
+                           Grid.Row="1"
+                           Grid.Column="0"/>
+                    <Switch x:Name="switch_privacy_policy"
+                           Toggled="Switch_privacy_policy_Toggled"
+                           IsToggled="True"
+                           Grid.Row="1"
+                           Grid.Column="1" />
+
+                </Grid>
+
+                <Label Text="{res:TranslateExtention sensors}"
+                   FontSize="Medium"/>
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{res:TranslateExtention accelerometer}"
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+                    <Switch x:Name="switch_accelerometer" 
+                           Toggled="Switch_accelerometer_Toggled"
+                           Grid.Row="0"
+                           Grid.Column="1" />
+                    <Label Text="{res:TranslateExtention barometer}"
+                           Grid.Row="1"
+                           Grid.Column="0"/>
+                    <Switch x:Name="switch_barometer" 
+                           Toggled="Switch_barometer_Toggled"
+                           Grid.Row="1"
+                           Grid.Column="1" />
+                    <Label Text="{res:TranslateExtention compass}"
+                           Grid.Row="2"
+                           Grid.Column="0"/>
+                    <Switch x:Name="switch_compass" 
+                           Toggled="Switch_compass_Toggled"
+                           Grid.Row="2"
+                           Grid.Column="1" />
+                    <Label Text="{res:TranslateExtention gps}"
+                           Grid.Row="3"
+                           Grid.Column="0"/>
+                    <Switch x:Name="switch_gps" 
+                           Toggled="Switch_gps_Toggled"
+                           Grid.Row="3"
+                           Grid.Column="1" />
+                    <Label Text="{res:TranslateExtention gyroscope}"
+                           Grid.Row="4"
+                           Grid.Column="0"/>
+                    <Switch x:Name="switch_gyroscope" 
+                           Toggled="Switch_gyroscope_Toggled"
+                           Grid.Row="4"
+                           Grid.Column="1" />
+                    <Label Text="{res:TranslateExtention magnetometer}"
+                           Grid.Row="5"
+                           Grid.Column="0"/>
+                    <Switch x:Name="switch_magnetometer" 
+                           Toggled="Switch_magnetometer_Toggled"
+                           Grid.Row="5"
+                           Grid.Column="1" />
+                </Grid>
+
+                <Button x:Name="btn_remove_account"
+                        Text="{res:TranslateExtention removeaccount}"
+                        Clicked="Btn_remove_account_Clicked"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
