@@ -13,10 +13,10 @@ namespace MobileDataCollection.Survey.Views
     {
         public ObservableCollection<SurveyMenuItem> Items = new ObservableCollection<SurveyMenuItem>()
         {
-            new SurveyMenuItem(){AnswersGiven=2, AnswersNeeded=2, ChapterName="DoubleSlider", Id= SurveyMenuItemType.DoubleSlider, Unlocked=true},
-            new SurveyMenuItem(){AnswersGiven=3, AnswersNeeded=2, ChapterName="ImageChecker", Id= SurveyMenuItemType.ImageChecker, Unlocked=true},
-            new SurveyMenuItem(){AnswersGiven=1, AnswersNeeded=2, ChapterName="Introspection", Id= SurveyMenuItemType.Introspection, Unlocked=true},
-            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=2, ChapterName="Stadium", Id= SurveyMenuItemType.Stadium, Unlocked=false}
+            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=4, ChapterName="DoubleSlider", Id= SurveyMenuItemType.DoubleSlider, Unlocked=true},
+            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=8, ChapterName="ImageChecker", Id= SurveyMenuItemType.ImageChecker, Unlocked=true},
+            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=5, ChapterName="Introspection", Id= SurveyMenuItemType.Introspection, Unlocked=true},
+            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=2, ChapterName="Stadium", Id= SurveyMenuItemType.Stadium, Unlocked=true}
         };
         Dictionary<SurveyMenuItemType, Func<ContentPage>> PageConstructorDictionary = new Dictionary<SurveyMenuItemType, Func<ContentPage>>()
         {
