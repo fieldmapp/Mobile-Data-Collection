@@ -134,6 +134,9 @@
     <Content Include="blattentwicklung.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="schossen.png" />
+    <Content Include="radiocheckedbg.png" />
+    <Content Include="radiocheckmark.png" />
+    <Content Include="radioborder.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

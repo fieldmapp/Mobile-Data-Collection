@@ -5,7 +5,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Button">White</Color>
-            <Color x:Key="TextColor">Black</Color>
+            <Color x:Key="TextColor">Gray</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -13,14 +13,14 @@
                  Padding="10">
         <Label x:Name="NummerFrage"
                Text="Frage X"
-               FontSize="Large"
+               FontSize="Medium"
                HorizontalTextAlignment="Center"/>
         <Label Text="{Binding Item.Text}"
                FontSize="Small"/>
         <Label x:Name="Frage"
                HorizontalTextAlignment="Center"
                Text="Wo sehen Sie die Feldfruchtsorte Weizen abgebildet?"
-               FontSize="Large" />
+               FontSize="Medium" />
         <Label Text="{Binding Item.Description}"
                FontSize="Small"/>
         <Grid ColumnSpacing="10"
@@ -89,14 +89,12 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button x:Name="SpeichernButton"
-                    Text="Speichern"
+            <Button Text="Abbrechen" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
                     TextColor="{StaticResource TextColor}"
-                    Clicked="OnSpeicherButtonClicked" />
-            <Button x:Name="WeiterButton"
-                    Grid.Column="1"
-                    Text="Weiter"
+                    Clicked="OnAbbrechenButtonClicked"/>
+            <Button Grid.Column="1"
+                    Text="Weiter" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
                     TextColor="{StaticResource TextColor}"
                     Clicked="OnWeiterButtonClicked"/>

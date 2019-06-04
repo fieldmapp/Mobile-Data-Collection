@@ -14,7 +14,7 @@ namespace MobileDataCollection.Survey.Views
     public partial class ImageCheckerPage : ContentPage
     {
 
-        Color selectedColor = Color.Green;
+        Color selectedColor = Color.DarkSeaGreen;
         Color nonSelectedColor = Color.White;
 
         int anzahlAntworten;
@@ -24,12 +24,19 @@ namespace MobileDataCollection.Survey.Views
         bool[] richtigeAntworten;
         Stopwatch stopwatch;
 
+        public int AnswersGiven { get; set; } //von Maya für Frageheader
+        public int AnswersNeeded { get; set; } = 8; //von Maya für Frageheader
+        public String Header { get; set; }  //von Maya für Frageheader
 
         public ImageCheckerPage()
         {
             //getFragebogen();
 
             InitializeComponent();
+
+            this.AnswersGiven = 1; //von Maya für Frageheader
+            this.Header = String.Format("Frage: {0}/{1}", this.AnswersGiven, this.AnswersNeeded);  //von Maya für Frageheader
+            NummerFrage.Text = this.Header; //von Maya für Frageheader
 
             PictureASource = "Q1_G1_F1_B1_klein.png";
             PictureBSource = "Q1_G1_F1_B2_klein.png";
@@ -100,8 +107,11 @@ namespace MobileDataCollection.Survey.Views
                 }
             }
 
+            if (this.AnswersGiven < this.AnswersNeeded) this.AnswersGiven++; //von Maya für Frageheader
+            this.Header = String.Format("Frage: {0}/{1}", this.AnswersGiven, this.AnswersNeeded);  //von Maya für Frageheader
+            NummerFrage.Text = this.Header; //von Maya für Frageheader
         }
-        void OnSpeicherButtonClicked(object sender, EventArgs e)
+        void OnAbbrechenButtonClicked(object sender, EventArgs e)
         {
             speichereErgebnisse();
         }
