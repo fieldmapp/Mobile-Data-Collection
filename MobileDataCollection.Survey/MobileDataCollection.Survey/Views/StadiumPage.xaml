@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileDataCollection.Survey.Views.StadiumPage"
-             xmlns:controls="clr-namespace:MobileDataCollection.Survey.Controls">
+             xmlns:controls="clr-namespace:MobileDataCollection.Survey.Controls"
+             xmlns:controls1="clr-namespace:MobileDataCollection.Survey.Models">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Button">Gray</Color>
@@ -18,7 +19,25 @@
             <Image Source="Q1_G1_F1_B1_klein.png" Aspect="AspectFit"/>
             <Grid>
                 <StackLayout Grid.Column="0" VerticalOptions="Center">
-                    <controls:ContentButton x:Name="BlattentwicklungButton">
+                    <!--<Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="0" Grid.Column="0" Padding="2" BackgroundColor="Gray"
+                              HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <BoxView x:Name="bvColorPicker"></BoxView>
+                        </Grid>
+                        <Image x:Name="imgColorPicker" HorizontalOptions="FillAndExpand"
+                               VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="1"/>
+                        <Picker x:Name"pickerColorPicker" IsVisible="False" Grid.ColumnSPan="2"
+                                SelectedIndexChanged="pcikerColorPicker_SelectedndexChanged"/>
+                    </Grid>-->
+
+                    <!--<controls:ContentButton x:Name="BlattentwicklungButton">
                         <Frame VerticalOptions="Center" Padding="5" Margin="0" BorderColor="LightGray" CornerRadius="0" >
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -77,11 +96,11 @@
                                 <Image Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Source="schossen.png" WidthRequest="25"/>
                             </Grid>
                         </Frame>
-                    </controls:ContentButton>
+                    </controls:ContentButton> -->
                 </StackLayout>
 
                 <StackLayout Grid.Column="1" VerticalOptions="Center">
-                    <controls:ContentButton x:Name="asda">
+                   <!-- <controls:ContentButton x:Name="asda">
                         <Frame BorderColor="LightGray" CornerRadius="0" Padding="5">
                             <Label>Kartoffel</Label>
                         </Frame>
@@ -100,8 +119,8 @@
                         <Frame BorderColor="LightGray" CornerRadius="0" Padding="5">
                             <Label>Zuckerrübe</Label>
                         </Frame>
-                    </controls:ContentButton>
-                </StackLayout>
+                    </controls:ContentButton> -->
+                </StackLayout> 
             </Grid>
 
 
