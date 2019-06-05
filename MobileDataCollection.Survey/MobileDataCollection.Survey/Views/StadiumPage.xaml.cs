@@ -21,10 +21,18 @@ namespace MobileDataCollection.Survey.Views
             new StadiumSubItem(){ImageSource = ImageSource.FromResource("bestockung.png"), StadiumName="Bestockung"},
             new StadiumSubItem(){ImageSource = ImageSource.FromResource("blattentwicklung.png"), StadiumName="Blattentwicklung"}
         };
-		public StadiumPage()
+        ObservableCollection<Plant> TestCollection2 = new ObservableCollection<Plant>()
+        {
+            new Plant(){Name="Kartoffel"},
+            new Plant(){Name="Mais" },
+            new Plant(){Name="Weizen" },
+            new Plant(){Name="Zuckerrübe" }
+        };
+        public StadiumPage()
 		{
 			InitializeComponent();
             DemoInlinePicker.ItemSource = TestCollection;
+            DemoInlinePicker2.ItemSource = TestCollection2;
         }
     }
 }

@@ -103,24 +103,48 @@
                     </controls:ContentButton>
                 </StackLayout>
             </Grid>-->
-            <Frame Padding="3" BorderColor="Black" CornerRadius="0">
-                <controls:InlinePicker x:Name="DemoInlinePicker">
-                    <controls:InlinePicker.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding StadiumName}" />
-                                    <Image Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Source="{Binding ImageSource}" WidthRequest="25"/>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </controls:InlinePicker.ItemTemplate>
-                </controls:InlinePicker>
-            </Frame>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Frame HeightRequest="150" Padding="3" BorderColor="Black" CornerRadius="0">
+                    <controls:InlinePicker x:Name="DemoInlinePicker">
+                        <controls:InlinePicker.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Text="{Binding StadiumName}" />
+                                        <Image Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="End" Source="{Binding ImageSource}" HeightRequest="20"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </controls:InlinePicker.ItemTemplate>
+                    </controls:InlinePicker>
+                </Frame>
+                <Frame Grid.Column="1" HeightRequest="100" Padding="3" BorderColor="Black" CornerRadius="0">
+                    <controls:InlinePicker x:Name="DemoInlinePicker2">
+                        <controls:InlinePicker.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Name}" />
+                                        
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </controls:InlinePicker.ItemTemplate>
+                    </controls:InlinePicker>
+                </Frame>
+            </Grid>
+           
 
             <Grid Grid.Row="2" VerticalOptions="EndAndExpand">
                 <Grid.ColumnDefinitions>
