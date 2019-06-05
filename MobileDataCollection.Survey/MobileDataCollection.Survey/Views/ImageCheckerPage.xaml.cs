@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MobileDataCollection.Survey.ModelForDatabank;
+using MobileDataCollection.Survey.Models;
+using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,15 +16,15 @@ namespace MobileDataCollection.Survey.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ImageCheckerPage : ContentPage
     {
+        private SQLiteConnection conn;
+        private QuestionImageCheckerPage QICPOriginal;
 
         Color selectedColor = Color.DarkSeaGreen;
         Color nonSelectedColor = Color.White;
 
         int anzahlAntworten;
-        int anzahlRichtigerAntworten;
-        bool[] vorgegebeneAntworten;
-        bool[] gegebeneAntworten;
-        bool[] richtigeAntworten;
+        int[] vorgegebeneAntworten;
+        int[] gegebeneAntworten;
         Stopwatch stopwatch;
 
         public int AnswersGiven { get; set; } //von Maya für Frageheader
@@ -34,26 +37,30 @@ namespace MobileDataCollection.Survey.Views
 
             InitializeComponent();
 
+            createConnectionToDb();
+            createTable();
+            loadQuestion();
+
             this.AnswersGiven = 1; //von Maya für Frageheader
             this.Header = String.Format("Frage: {0}/{1}", this.AnswersGiven, this.AnswersNeeded);  //von Maya für Frageheader
             NummerFrage.Text = this.Header; //von Maya für Frageheader
 
-            PictureASource = "Q1_G1_F1_B1_klein.png";
-            PictureBSource = "Q1_G1_F1_B2_klein.png";
-            PictureCSource = "Q1_G1_F1_B3_klein.png";
-            PictureDSource = "Q1_G1_F1_B4_klein.png";
+            Frage.Text = QICPOriginal.QuestionText;
 
-            anzahlAntworten = 4;
-            anzahlRichtigerAntworten = 0;
-            vorgegebeneAntworten = new bool[anzahlAntworten];
-            gegebeneAntworten = new bool[anzahlAntworten];
-            richtigeAntworten = new bool[anzahlAntworten];
-            for (int i = 0; i < anzahlAntworten; i++)
-            {
-                vorgegebeneAntworten[i] = true;
-                gegebeneAntworten[i] = false;
-                richtigeAntworten[i] = false;
-            }
+            PictureASource = QICPOriginal.Image1Source;
+            PictureBSource = QICPOriginal.Image2Source;
+            PictureCSource = QICPOriginal.Image3Source;
+            PictureDSource = QICPOriginal.Image4Source;
+
+            anzahlAntworten = QICPOriginal.NumberOfPossibleAnswers;
+            vorgegebeneAntworten = new int[anzahlAntworten];
+            gegebeneAntworten = new int[anzahlAntworten];
+
+            vorgegebeneAntworten[0] = QICPOriginal.Image1Correct;
+            vorgegebeneAntworten[1] = QICPOriginal.Image2Correct;
+            vorgegebeneAntworten[2] = QICPOriginal.Image3Correct;
+            vorgegebeneAntworten[3] = QICPOriginal.Image4Correct;
+
 
             stopwatch = new Stopwatch();
         }
@@ -64,10 +71,14 @@ namespace MobileDataCollection.Survey.Views
         private void OpenBigPicture(ImageButton imageButton)
         {
             string source = imageButton.Source.ToString();
-            source = source.Substring(6);
-            source = source.Substring(0, source.Length - 10);
-            source = source + ".png";
-            Frage.Text = source;
+            if (Frage.Text == "1")
+            {
+                Frage.Text = QICPOriginal.NumberOfPossibleAnswers.ToString() + " " + QICPOriginal.Image1Source;
+            }
+            else
+            {
+                Frage.Text = QICPOriginal.Image3Correct.ToString();
+            }
             ImageDetailPage image = new ImageDetailPage(source);
         }
         private void PressPicture(object sender, EventArgs e)
@@ -91,21 +102,9 @@ namespace MobileDataCollection.Survey.Views
         }
         void OnWeiterButtonClicked(object sender, EventArgs e)
         {
-            anzahlRichtigerAntworten = 0;
             speichereErgebnisse();
 
-            for (int i = 0; i < anzahlAntworten; i++)
-            {
-                if (vorgegebeneAntworten[i] == gegebeneAntworten[i])
-                {
-                    richtigeAntworten[i] = true;
-                    anzahlRichtigerAntworten++;
-                }
-                else
-                {
-                    richtigeAntworten[i] = false;
-                }
-            }
+            createAnswer();
 
             if (this.AnswersGiven < this.AnswersNeeded) this.AnswersGiven++; //von Maya für Frageheader
             this.Header = String.Format("Frage: {0}/{1}", this.AnswersGiven, this.AnswersNeeded);  //von Maya für Frageheader
@@ -117,10 +116,65 @@ namespace MobileDataCollection.Survey.Views
         }
         void speichereErgebnisse()
         {
-            gegebeneAntworten[0] = PictureA.BorderColor == selectedColor;
-            gegebeneAntworten[1] = PictureB.BorderColor == selectedColor;
-            gegebeneAntworten[2] = PictureC.BorderColor == selectedColor;
-            gegebeneAntworten[3] = PictureD.BorderColor == selectedColor;
+            gegebeneAntworten[0] = 0;
+            gegebeneAntworten[1] = 0;
+            gegebeneAntworten[2] = 0;
+            gegebeneAntworten[3] = 0;
+            gegebeneAntworten[0] = PictureA.BorderColor == selectedColor ? 1 : 0;
+            gegebeneAntworten[1] = PictureB.BorderColor == selectedColor ? 1 : 0;
+            gegebeneAntworten[2] = PictureC.BorderColor == selectedColor ? 1 : 0;
+            gegebeneAntworten[3] = PictureD.BorderColor == selectedColor ? 1 : 0;
+        }
+
+        public void createConnectionToDb()
+        {
+            conn = DependencyService.Get<ISQLite>().GetConnection();
+        }
+        private void createTable()
+        {
+            System.Console.WriteLine("Hello");
+
+            conn.DropTable<QuestionImageCheckerPage>();
+            conn.DropTable<AnswerImageCheckerPage>();
+
+            conn.CreateTable<QuestionImageCheckerPage>();
+            conn.CreateTable<AnswerImageCheckerPage>();
+
+            if (conn.Table<QuestionImageCheckerPage>().Count() == 0)
+            { 
+                createQuestions();
+            }
+        }
+        public void createQuestions()
+        {
+            QuestionImageCheckerPage QICP = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 0, 0, 1, 0, "Q1_G1_F1_B1_klein.png", "Q1_G1_F1_B2_klein.png", "Q1_G1_F1_B3_klein.png", "Q1_G1_F1_B4_klein.png");
+            conn.Insert(QICP);
+            QICP = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 0, 1, 1, 0, "Q1_G1_F2_B1_klein.png", "Q1_G1_F2_B2_klein.png", "Q1_G1_F2_B3_klein.png", "Q1_G1_F2_B4_klein.png");
+            conn.Insert(QICP);
+        }
+        int i = 0;
+        public void loadQuestion()
+        {
+            QICPOriginal = (from q in conn.Table<QuestionImageCheckerPage>() select q).ElementAt(i);
+        }
+        public void createAnswer()
+        {
+            AnswerImageCheckerPage AICP = new AnswerImageCheckerPage(QICPOriginal.internId, gegebeneAntworten[0], gegebeneAntworten[1], gegebeneAntworten[2], gegebeneAntworten[3]);
+            conn.Insert(AICP);
+            AICP = (from q in conn.Table<AnswerImageCheckerPage>() select q).ElementAt(i);
+            i++;
+            if (i > 1)
+            {
+                i = 0;
+            }
+            System.Console.WriteLine("Element :" + i);
+            System.Console.WriteLine(AICP.Image1Selected + " " + gegebeneAntworten[0]);
+            System.Console.WriteLine(AICP.Image2Selected + " " + gegebeneAntworten[1]);
+            System.Console.WriteLine(AICP.Image3Selected + " " + gegebeneAntworten[2]);
+            System.Console.WriteLine(AICP.Image4Selected + " " + gegebeneAntworten[3]);
+            System.Console.WriteLine(AICP.internId);
+
+            loadQuestion();
         }
         private string NummerFrageText { get => NummerFrage.Text; set => NummerFrage.Text = value; }
         private string FrageText { get => Frage.Text; set => Frage.Text = value; }

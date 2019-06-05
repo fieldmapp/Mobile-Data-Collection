@@ -19,7 +19,7 @@
                FontSize="Small"/>
         <Label x:Name="Frage"
                HorizontalTextAlignment="Center"
-               Text="Wo sehen Sie die Feldfruchtsorte Weizen abgebildet?"
+               Text=""
                FontSize="Medium" />
         <Label Text="{Binding Item.Description}"
                FontSize="Small"/>
