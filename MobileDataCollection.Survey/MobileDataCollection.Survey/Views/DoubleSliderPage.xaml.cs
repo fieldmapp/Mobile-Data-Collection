@@ -83,13 +83,14 @@ namespace MobileDataCollection.Survey.Views
             int answerA = (int)(sliderA.Value);
             int answerB = (int)(sliderB.Value);
             //Analyse of the given Answer referring to the right answer
-            int diffAnsA =100-Math.Abs(answerA - this.Question.RightAnswerA);
-            int diffAnsB =100-Math.Abs(answerB - this.Question.RightAnswerB);
+            int diffAnsA =100-Math.Abs(answerA - this.Question.CorrectAnswerA);
+            int diffAnsB =100-Math.Abs(answerB - this.Question.CorrectAnswerB);
+            //TODO: Use AnswerDoubleSliderPage here
             //Save submitted question as answered with result
-            this.Question.Answered = true;
+            /*this.Question.Answered = true;
             this.Question.Result = (diffAnsA + diffAnsB) / 2;
             this.CurrentResult = this.CurrentResult + this.Question.Result;
-            DisplayAlert("Hinweis", String.Format("Aktuelles Ergebnis ist {0}%, Gesamtergebnis {1}%.", this.Question.Result, this.CurrentResult/this.AnswersGiven), "OK");
+            DisplayAlert("Hinweis", String.Format("Aktuelles Ergebnis ist {0}%, Gesamtergebnis {1}%.", this.Question.Result, this.CurrentResult/this.AnswersGiven), "OK");*/
             //Count number of already submitted Question 
             if (this.AnswersGiven < this.AnswersNeeded) this.AnswersGiven++;
             //Set new Question

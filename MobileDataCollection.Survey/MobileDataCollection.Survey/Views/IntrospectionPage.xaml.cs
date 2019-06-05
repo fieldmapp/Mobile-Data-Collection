@@ -15,11 +15,11 @@ namespace MobileDataCollection.Survey.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class IntrospectionPage : ContentPage
 	{
-        public static readonly BindableProperty ItemProperty = BindableProperty.Create(nameof(Item), typeof(QuestionIntrospectionItem), typeof(IntrospectionPage), new QuestionIntrospectionItem() { QuestionText = "tada" }, BindingMode.OneWay);
+        public static readonly BindableProperty ItemProperty = BindableProperty.Create(nameof(Item), typeof(QuestionIntrospectionPage), typeof(IntrospectionPage), new QuestionIntrospectionPage("demo"), BindingMode.OneWay);
 
-        public QuestionIntrospectionItem Item
+        public QuestionIntrospectionPage Item
         {
-            get { return (QuestionIntrospectionItem)GetValue(ItemProperty); }
+            get { return (QuestionIntrospectionPage)GetValue(ItemProperty); }
             set { SetValue(ItemProperty, value); }
         }
 
@@ -27,7 +27,7 @@ namespace MobileDataCollection.Survey.Views
 		{
             InitializeComponent();
             QuestionLabel.BindingContext = this;
-            Item = new QuestionIntrospectionItem() { QuestionText = "Ich kann eine Sorte von Feldfrüchten zuverlässig erkennen." };
+            Item = new QuestionIntrospectionPage("Ich kann eine Sorte von Feldfrüchten zuverlässig erkennen.");
         }
 
         private void Button_Tapped(object sender, EventArgs e)

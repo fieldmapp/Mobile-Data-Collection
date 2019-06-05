@@ -22,19 +22,19 @@ namespace MobileDataCollection.Survey.Models
         public string Text { get; set; }
 
         /// <summary>
-        /// Picture URI
+        /// Represents the picture URI
         /// </summary>
         public string PictureAddress { get; set; }
 
         /// <summary>
         /// Correct answer for SliderA (Bodenbedeckung)
         /// </summary>
-        public int RightAnswerA { get; set; }
+        public int CorrectAnswerA { get; set; }
         
         /// <summary>
         /// Correct answer for SliderB (Grüne Pflanzenanteile)
         /// </summary>
-        public int RightAnswerB { get; set; }
+        public int CorrectAnswerB { get; set; }
 
         /// <summary>
         /// Level of the question. Must be in range 1 to <see cref="HighestQuestionDifficulty"/> (inclusive)
@@ -53,25 +53,14 @@ namespace MobileDataCollection.Survey.Models
         }
 
         private int _level;
-
-        /// <summary>
-        /// Reflects if the user has allready submitted an answer to the question
-        /// </summary>
-        public bool Answered { get; set; }
-
-        /// <summary>
-        /// Answer given by the user. Check <see cref="Answered"/> to see if user has submitted the answer first.
-        /// </summary>
-        public int Result { get; set; }
         
         public QuestionDoubleSliderPage(string pictureAddress, int answerA, int answerB, int level)
         {
             Text = "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.";
             PictureAddress = pictureAddress;
-            RightAnswerA = answerA;
-            RightAnswerB = answerB;
+            CorrectAnswerA = answerA;
+            CorrectAnswerB = answerB;
             Level = level;
-            Answered = false;
         }
 
     }
