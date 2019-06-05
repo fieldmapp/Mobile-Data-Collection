@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileDataCollection.Survey.Views.StadiumPage"
-             xmlns:controls="clr-namespace:MobileDataCollection.Survey.Controls"
-             xmlns:controls1="clr-namespace:MobileDataCollection.Survey.Models">
+             xmlns:controls="clr-namespace:MobileDataCollection.Survey.Controls">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Button">Gray</Color>
@@ -17,27 +16,9 @@
             <Label Text="Frage X" FontSize="Medium" HorizontalTextAlignment="Center"/>
             <Label Text="Ordnen Sie dem Bild eine Feldfruchtsorte und das Stadium/die Stadien der Entwicklung zu." FontSize="Default" />
             <Image Source="Q1_G1_F1_B1_klein.png" Aspect="AspectFit"/>
-            <Grid>
+            <!--<Grid>
                 <StackLayout Grid.Column="0" VerticalOptions="Center">
-                    <!--<Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50"></ColumnDefinition>
-                            <ColumnDefinition Width="50"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Row="0" Grid.Column="0" Padding="2" BackgroundColor="Gray"
-                              HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                            <BoxView x:Name="bvColorPicker"></BoxView>
-                        </Grid>
-                        <Image x:Name="imgColorPicker" HorizontalOptions="FillAndExpand"
-                               VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="1"/>
-                        <Picker x:Name"pickerColorPicker" IsVisible="False" Grid.ColumnSPan="2"
-                                SelectedIndexChanged="pcikerColorPicker_SelectedndexChanged"/>
-                    </Grid>-->
-
-                    <!--<controls:ContentButton x:Name="BlattentwicklungButton">
+                    <controls:ContentButton x:Name="BlattentwicklungButton">
                         <Frame VerticalOptions="Center" Padding="5" Margin="0" BorderColor="LightGray" CornerRadius="0" >
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -96,11 +77,11 @@
                                 <Image Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Source="schossen.png" WidthRequest="25"/>
                             </Grid>
                         </Frame>
-                    </controls:ContentButton> -->
+                    </controls:ContentButton>
                 </StackLayout>
 
                 <StackLayout Grid.Column="1" VerticalOptions="Center">
-                   <!-- <controls:ContentButton x:Name="asda">
+                    <controls:ContentButton x:Name="asda">
                         <Frame BorderColor="LightGray" CornerRadius="0" Padding="5">
                             <Label>Kartoffel</Label>
                         </Frame>
@@ -119,81 +100,27 @@
                         <Frame BorderColor="LightGray" CornerRadius="0" Padding="5">
                             <Label>Zuckerrübe</Label>
                         </Frame>
-                    </controls:ContentButton> -->
-                </StackLayout> 
-            </Grid>
-
-
-            <!--
-            
-            <Grid RowSpacing="30" HorizontalOptions="CenterAndExpand">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="340"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="200"/>
-                    <RowDefinition Height="145"/>
-                </Grid.RowDefinitions>
-
-            <Grid HorizontalOptions="Center" Grid.Row="1" ColumnSpacing="30">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="170"/>
-                    <ColumnDefinition Width="170"/>
-                </Grid.ColumnDefinitions>
-                <Grid RowSpacing="15"
-                      VerticalOptions="StartAndExpand" 
-                      HorizontalOptions="StartAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="110" />
-                        <ColumnDefinition Width="50" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="35"/>
-                        <RowDefinition Height="35" />
-                        <RowDefinition Height="35"/>
-                    </Grid.RowDefinitions>
-                    <Label VerticalOptions="Center" Text="1" />
-                    <Label Grid.Column="1" VerticalOptions="Center" Text="Blattentwicklung"/>
-                    <Image Grid.Column="2" VerticalOptions="Center" Source="blattentwicklung.png"/>
-                    <Label Grid.Row="1" VerticalOptions="Center" Text="2" />
-                    <Label Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="Bestockung"/>
-                    <Image Grid.Row="1" Grid.Column="2" Source="bestockung.png"/>
-                    <Label Grid.Row="2" VerticalOptions="Center" Text="3" />
-                    <Label Grid.Row="2" Grid.Column="1" VerticalOptions="Center" Text="Längenwachstum/Schossen"/>
-                    <Image Grid.Row="2" Grid.Column="2" Source="schossen.png"/>
-                </Grid>
-                <Grid Grid.Column="1" RowSpacing="5"
-                      VerticalOptions="Center" 
-                      HorizontalOptions="StartAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="170" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                    </Grid.RowDefinitions>
-                    <Button Text="A  Kartoffel" 
-                                HorizontalOptions="Start" WidthRequest="150"
-                                BorderColor="LightGray" BorderWidth="3"
-                                BackgroundColor="Transparent"  />
-                    <Button Grid.Row="1" Text="B  Mais" 
-                                HorizontalOptions="Start" WidthRequest="150"
-                                BorderColor="LightGray" BorderWidth="3"
-                                BackgroundColor="Transparent"  />
-                    <Button Grid.Row="2" Text="C  Weizen" 
-                                HorizontalOptions="Start" WidthRequest="150"
-                                BorderColor="DarkSeaGreen" BorderWidth="3"
-                                BackgroundColor="Transparent"  />
-                    <Button Grid.Row="3" Text="D  Zuckerrübe" 
-                                HorizontalOptions="Start" WidthRequest="150"
-                                BorderColor="LightGray" BorderWidth="3"
-                                BackgroundColor="Transparent"  />
-                </Grid>
-            </Grid>
-            </Grid> -->
+                    </controls:ContentButton>
+                </StackLayout>
+            </Grid>-->
+            <Frame Padding="3" BorderColor="Black" CornerRadius="0">
+                <controls:InlinePicker x:Name="DemoInlinePicker">
+                    <controls:InlinePicker.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding StadiumName}" />
+                                    <Image Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Source="{Binding ImageSource}" WidthRequest="25"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:InlinePicker.ItemTemplate>
+                </controls:InlinePicker>
+            </Frame>
 
             <Grid Grid.Row="2" VerticalOptions="EndAndExpand">
                 <Grid.ColumnDefinitions>

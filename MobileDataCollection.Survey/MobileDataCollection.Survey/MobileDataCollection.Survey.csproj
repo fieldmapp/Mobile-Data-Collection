@@ -18,6 +18,9 @@
     <EmbeddedResource Update="Controls\RadioButton.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Controls\InlinePicker.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Seite 3_1.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
