@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MobileDataCollection.Survey.Views.DoubleSliderPage">
+             x:Class="MobileDataCollection.Survey.Views.DoubleSliderPage"
+             xmlns:controls="clr-namespace:MobileDataCollection.Survey.Controls">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Button">White</Color>
@@ -30,7 +31,7 @@
             <Label Grid.Row="1" Margin="0,7,0,0" x:Name="QuestionText" 
                    BindingContext="DoubleSliderPage" Text="{Binding Text}" 
                    FontSize="Medium" TextColor="{StaticResource TextColor}"/>
-            <Image Grid.Row="2" x:Name="Picture" Margin="0,0,0,15" Source="Q3G1B1_klein.PNG"/>
+            <controls:DetailImage Grid.Row="2" x:Name="Picture" Margin="0,0,0,15" Source="Q3G1B1_klein.PNG"/>
             <Slider Grid.Row="3" x:Name="sliderA" Margin="5, 0, 5, 0"
                     MinimumTrackColor="{StaticResource Selection}"
                     MaximumTrackColor="{StaticResource Selection}"

@@ -6,31 +6,61 @@ namespace MobileDataCollection.Survey.Models
 {
 	public class QuestionDoubleSliderPage
     {
-        //Attributes of a Double-Slider Question
-        public int AnswersNeeded { get; set; } = 4; //Number of available Questions (Remove?)
-        //Question text
-        public string Text { get; set; }
-        //Location address of the picture
-        public string PictureAddress { get; set; }
-        //Correct answer for SliderA (Bodenbedeckung)
-        public int RightAnswerA { get; set; }
-        //Correct answer for SliderB (Grüne Pflanzenanteile)
-        public int RightAnswerB { get; set; }
-        //Shows wether the question has already been submitted
-        public Boolean Answered { get; set; }
-        //Level of the Question (1-3)
-        public int Level { get; set; }
-        //Result of the given Answers (Percentage/Diff/... to the right answers)
-        public int Result { get; set; }
+        /// <summary>
+        /// Defines the maximum valid value of <see cref="Level"/>
+        /// </summary>
+        const int HighestQuestionDifficulty = 3;
+
+        /// <summary>
+        /// Number of available questions (Remove?)
+        /// </summary>
+        public int AnswersNeeded { get; set; } = 4;
         
-        public QuestionDoubleSliderPage(string PictureAddress, int AnswerA, int AnswerB, int level)
+        /// <summary>
+        /// Question text
+        /// </summary>
+        public string Text { get; set; }
+
+        /// <summary>
+        /// Represents the picture URI
+        /// </summary>
+        public string PictureAddress { get; set; }
+
+        /// <summary>
+        /// Correct answer for SliderA (Bodenbedeckung)
+        /// </summary>
+        public int CorrectAnswerA { get; set; }
+        
+        /// <summary>
+        /// Correct answer for SliderB (Grüne Pflanzenanteile)
+        /// </summary>
+        public int CorrectAnswerB { get; set; }
+
+        /// <summary>
+        /// Level of the question. Must be in range 1 to <see cref="HighestQuestionDifficulty"/> (inclusive)
+        /// </summary>
+        public int Level
         {
-            this.Text = "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.";
-            this.PictureAddress = PictureAddress;
-            this.RightAnswerA = AnswerA;
-            this.RightAnswerB = AnswerB;
-            this.Level = level;
-            this.Answered = false;
+            get => _level;
+            set
+            {
+                if (value > HighestQuestionDifficulty)
+                    throw new NotImplementedException($"{nameof(value)} must be at most {nameof(HighestQuestionDifficulty)}={HighestQuestionDifficulty}");
+                if (value < 1)
+                    throw new NotImplementedException($"{nameof(value)} must be at least 1");
+                _level = value;
+            }
+        }
+
+        private int _level;
+        
+        public QuestionDoubleSliderPage(string pictureAddress, int answerA, int answerB, int level)
+        {
+            Text = "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.";
+            PictureAddress = pictureAddress;
+            CorrectAnswerA = answerA;
+            CorrectAnswerB = answerB;
+            Level = level;
         }
 
     }
