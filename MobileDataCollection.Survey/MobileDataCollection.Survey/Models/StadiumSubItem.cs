@@ -8,6 +8,6 @@ namespace MobileDataCollection.Survey.Models
     class StadiumSubItem
     {
         public string StadiumName { get; set; }
-        public ImageSource ImageSource { get; set; }
+        public string ImageSource { get; set; }
     }
 }

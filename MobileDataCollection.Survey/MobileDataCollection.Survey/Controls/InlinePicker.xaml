@@ -6,8 +6,8 @@
              mc:Ignorable="d"
              x:Class="MobileDataCollection.Survey.Controls.InlinePicker">
   <ContentView.Content>
-        <ScrollView HeightRequest="30" VerticalScrollBarVisibility="Never">
-            <ListView HeightRequest="50" x:Name="ListView"/>
-        </ScrollView>
+        <ListView RowHeight="50" x:Name="ListView" BackgroundColor="Transparent" SelectionMode="Single">
+            
+        </ListView>
   </ContentView.Content>
 </ContentView>

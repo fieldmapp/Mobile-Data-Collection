@@ -20,5 +20,6 @@ namespace MobileDataCollection.Survey.Controls
         {
             InitializeComponent();
         }
+
     }
 }

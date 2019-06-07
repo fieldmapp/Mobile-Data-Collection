@@ -12,7 +12,7 @@ using MobileDataCollection.Survey.Models;
 [assembly:Dependency(typeof(DatabankCommunicator))]
 namespace MobileDataCollection.Survey.Models
 {
-    public class DatabankCommunicator : ISQLite
+    public class DatabankCommunicator //: ISQLite
     {
         public SQLiteConnection GetConnection()
         {

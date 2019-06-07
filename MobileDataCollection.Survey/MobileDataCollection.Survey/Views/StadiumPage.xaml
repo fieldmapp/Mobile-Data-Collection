@@ -16,99 +16,13 @@
             <Label Text="Frage X" FontSize="Medium" HorizontalTextAlignment="Center"/>
             <Label Text="Ordnen Sie dem Bild eine Feldfruchtsorte und das Stadium/die Stadien der Entwicklung zu." FontSize="Default" />
             <Image Source="Q1_G1_F1_B1_klein.png" Aspect="AspectFit"/>
-            <!--<Grid>
-                <StackLayout Grid.Column="0" VerticalOptions="Center">
-                    <controls:ContentButton x:Name="BlattentwicklungButton">
-                        <Frame VerticalOptions="Center" Padding="5" Margin="0" BorderColor="LightGray" CornerRadius="0" >
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start">Blattentwicklung</Label>
-                                <Image Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Source="blattentwicklung.png" WidthRequest="25"/>
-                            </Grid>
-                        </Frame>
-                    </controls:ContentButton>
-                    <controls:ContentButton x:Name="BestockungButton">
-                        <Frame BorderColor="LightGray" CornerRadius="0" Padding="5" >
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start">Schossen/Haupttrieb</Label>
-                                <Image Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Source="bestockung.png" WidthRequest="25"/>
-                            </Grid>
-                        </Frame>
-                    </controls:ContentButton>
-                    <controls:ContentButton x:Name="SchossenButton">
-                        <Frame BorderColor="LightGray" CornerRadius="0" Padding="5" >
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start">Ähren-/Rispenschwellen</Label>
-                                <Image Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Source="schossen.png" WidthRequest="25"/>
-                            </Grid>
-                        </Frame>
-                    </controls:ContentButton>
-                    <controls:ContentButton x:Name="SchossenButtons">
-                        <Frame BorderColor="LightGray" CornerRadius="0" Padding="5" >
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start">Entwicklung der Blütenanlage</Label>
-                                <Image Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Source="schossen.png" WidthRequest="25"/>
-                            </Grid>
-                        </Frame>
-                    </controls:ContentButton>
-                    <controls:ContentButton x:Name="SchossenButtonas">
-                        <Frame BorderColor="LightGray" CornerRadius="0" Padding="5" >
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start">Blüte</Label>
-                                <Image Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Source="schossen.png" WidthRequest="25"/>
-                            </Grid>
-                        </Frame>
-                    </controls:ContentButton>
-                </StackLayout>
-
-                <StackLayout Grid.Column="1" VerticalOptions="Center">
-                    <controls:ContentButton x:Name="asda">
-                        <Frame BorderColor="LightGray" CornerRadius="0" Padding="5">
-                            <Label>Kartoffel</Label>
-                        </Frame>
-                    </controls:ContentButton>
-                    <controls:ContentButton x:Name="abda">
-                        <Frame BorderColor="LightGray" CornerRadius="0" Padding="5">
-                            <Label>Mais</Label>
-                        </Frame>
-                    </controls:ContentButton>
-                    <controls:ContentButton x:Name="asgas">
-                        <Frame BorderColor="LightGray" CornerRadius="0" Padding="5">
-                            <Label>Weizen</Label>
-                        </Frame>
-                    </controls:ContentButton>
-                    <controls:ContentButton x:Name="asgasa">
-                        <Frame BorderColor="LightGray" CornerRadius="0" Padding="5">
-                            <Label>Zuckerrübe</Label>
-                        </Frame>
-                    </controls:ContentButton>
-                </StackLayout>
-            </Grid>-->
+            
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Frame HeightRequest="150" Padding="3" BorderColor="Black" CornerRadius="0">
+                <Frame Grid.Column="0" HeightRequest="170" Padding="3" BorderColor="LightGray" CornerRadius="0">
                     <controls:InlinePicker x:Name="DemoInlinePicker">
                         <controls:InlinePicker.ItemTemplate>
                             <DataTemplate>
@@ -116,17 +30,18 @@
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <Label Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Text="{Binding StadiumName}" />
-                                        <Image Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="End" Source="{Binding ImageSource}" HeightRequest="20"/>
+                                        <Label Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Text="{Binding StadiumName}" />
+                                        <Image Grid.Column="1" Source="{Binding ImageSource}" HorizontalOptions="EndAndExpand"  HeightRequest="30">
+                                        </Image>
                                     </Grid>
                                 </ViewCell>
                             </DataTemplate>
                         </controls:InlinePicker.ItemTemplate>
                     </controls:InlinePicker>
                 </Frame>
-                <Frame Grid.Column="1" HeightRequest="100" Padding="3" BorderColor="Black" CornerRadius="0">
+                <Frame Grid.Column="1" HeightRequest="100" Padding="3" BorderColor="LightGray" CornerRadius="0">
                     <controls:InlinePicker x:Name="DemoInlinePicker2">
                         <controls:InlinePicker.ItemTemplate>
                             <DataTemplate>

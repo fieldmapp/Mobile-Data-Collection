@@ -17,9 +17,9 @@ namespace MobileDataCollection.Survey.Views
 	{
         ObservableCollection<StadiumSubItem> TestCollection = new ObservableCollection<StadiumSubItem>()
         {
-            new StadiumSubItem(){ImageSource = ImageSource.FromResource("schossen.png"), StadiumName="Schossen"},
-            new StadiumSubItem(){ImageSource = ImageSource.FromResource("bestockung.png"), StadiumName="Bestockung"},
-            new StadiumSubItem(){ImageSource = ImageSource.FromResource("blattentwicklung.png"), StadiumName="Blattentwicklung"}
+            new StadiumSubItem(){ImageSource = "schossen.png", StadiumName="Schossen"},
+            new StadiumSubItem(){ImageSource = "bestockung.png", StadiumName="Bestockung"},
+            new StadiumSubItem(){ImageSource = "blattentwicklung.png", StadiumName="Blattentwicklung"}
         };
         ObservableCollection<Plant> TestCollection2 = new ObservableCollection<Plant>()
         {
