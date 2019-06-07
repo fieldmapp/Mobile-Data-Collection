@@ -11,7 +11,7 @@ namespace MobileDataCollection.Survey.Models
         /// Intern Id for Answers of this Type, corrosponds to same number as in QuestionImageCheckerPage
         /// </summary>
         [PrimaryKey]
-        public int internId { get; set; }
+        public int InternId { get; set; }
         /// <summary>
         /// Reflects whether Image 1 is selected
         /// </summary>
@@ -38,7 +38,7 @@ namespace MobileDataCollection.Survey.Models
 
         public AnswerImageCheckerPage(int Id,int selected1, int selected2, int selected3, int selected4)
         {
-            internId = Id;
+            InternId = Id;
             Image1Selected = selected1;
             Image2Selected = selected2;
             Image3Selected = selected3;

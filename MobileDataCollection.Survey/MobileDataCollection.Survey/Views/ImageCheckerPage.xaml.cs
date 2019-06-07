@@ -1,12 +1,9 @@
-﻿using MobileDataCollection.Survey.ModelForDatabank;
-using MobileDataCollection.Survey.Models;
+﻿using MobileDataCollection.Survey.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,10 +14,12 @@ namespace MobileDataCollection.Survey.Views
     public partial class ImageCheckerPage : ContentPage
     {
         private SQLiteConnection conn;
-        private QuestionImageCheckerPage QICPOriginal;
+        private QuestionImageCheckerPage QICP;
 
         Color selectedColor = Color.DarkSeaGreen;
         Color nonSelectedColor = Color.White;
+
+        int zaehler = 0;
 
         int anzahlAntworten;
         int[] vorgegebeneAntworten;
@@ -33,36 +32,64 @@ namespace MobileDataCollection.Survey.Views
 
         public ImageCheckerPage()
         {
-            //getFragebogen();
-
             InitializeComponent();
-
-            createConnectionToDb();
-            createTable();
-            loadQuestion();
+            CreateDatabank();
+            QICP = LoadQuestion(1,zaehler);
 
             this.AnswersGiven = 1; //von Maya für Frageheader
             this.Header = String.Format("Frage: {0}/{1}", this.AnswersGiven, this.AnswersNeeded);  //von Maya für Frageheader
             NummerFrage.Text = this.Header; //von Maya für Frageheader
 
-            Frage.Text = QICPOriginal.QuestionText;
-
-            PictureASource = QICPOriginal.Image1Source;
-            PictureBSource = QICPOriginal.Image2Source;
-            PictureCSource = QICPOriginal.Image3Source;
-            PictureDSource = QICPOriginal.Image4Source;
-
-            anzahlAntworten = QICPOriginal.NumberOfPossibleAnswers;
-            vorgegebeneAntworten = new int[anzahlAntworten];
-            gegebeneAntworten = new int[anzahlAntworten];
-
-            vorgegebeneAntworten[0] = QICPOriginal.Image1Correct;
-            vorgegebeneAntworten[1] = QICPOriginal.Image2Correct;
-            vorgegebeneAntworten[2] = QICPOriginal.Image3Correct;
-            vorgegebeneAntworten[3] = QICPOriginal.Image4Correct;
-
+            UpdatePage(QICP);
 
             stopwatch = new Stopwatch();
+        }
+
+        public ImageCheckerPage(QuestionImageCheckerPage QIPC)
+        {
+            InitializeComponent();
+            CreateDatabank();
+            QICP = LoadQuestion(1, zaehler);
+
+            this.AnswersGiven = 1; //von Maya für Frageheader
+            this.Header = String.Format("Frage: {0}/{1}", this.AnswersGiven, this.AnswersNeeded);  //von Maya für Frageheader
+            NummerFrage.Text = this.Header; //von Maya für Frageheader
+
+            UpdatePage(QICP);
+
+            stopwatch = new Stopwatch();
+        }
+
+        public void UpdatePage(QuestionImageCheckerPage QICP)
+        {
+            UpdateQuestion(QICP.QuestionText);
+            UpdatePictures(QICP.Image1Source, QICP.Image2Source, QICP.Image3Source, QICP.Image4Source);
+            UpdateAnswersForQuestion(QICP.NumberOfPossibleAnswers, QICP.Image1Correct, QICP.Image2Correct, QICP.Image3Correct, QICP.Image4Correct);
+        }
+
+        public void UpdateAnswersForQuestion(int numberOfQuestions, int answer1, int answer2, int answer3, int answer4)
+        {
+            anzahlAntworten = numberOfQuestions;
+            vorgegebeneAntworten = new int[numberOfQuestions];
+            vorgegebeneAntworten[0] = answer1;
+            vorgegebeneAntworten[1] = answer2;
+            vorgegebeneAntworten[2] = answer3;
+            vorgegebeneAntworten[3] = answer4;
+            vorgegebeneAntworten = new int[numberOfQuestions];
+            gegebeneAntworten = new int[numberOfQuestions];
+        }
+
+        public void UpdateQuestion(string question)
+        {
+            Frage.Text = question;
+        }
+
+        public void UpdatePictures(string img1, string img2, string img3, string img4)
+        {
+            PictureA.Source = img1;
+            PictureB.Source = img2;
+            PictureC.Source = img3;
+            PictureD.Source = img4;
         }
         private void MarkPicture(ImageButton imageButton)
         {
@@ -73,11 +100,11 @@ namespace MobileDataCollection.Survey.Views
             string source = imageButton.Source.ToString();
             if (Frage.Text == "1")
             {
-                Frage.Text = QICPOriginal.NumberOfPossibleAnswers.ToString() + " " + QICPOriginal.Image1Source;
+                Frage.Text = QICP.NumberOfPossibleAnswers.ToString() + " " + QICP.Image1Source;
             }
             else
             {
-                Frage.Text = QICPOriginal.Image3Correct.ToString();
+                Frage.Text = QICP.Image3Correct.ToString();
             }
             ImageDetailPage image = new ImageDetailPage(source);
         }
@@ -104,11 +131,15 @@ namespace MobileDataCollection.Survey.Views
         {
             speichereErgebnisse();
 
-            createAnswer();
+            //CreateAnswer();
 
             if (this.AnswersGiven < this.AnswersNeeded) this.AnswersGiven++; //von Maya für Frageheader
             this.Header = String.Format("Frage: {0}/{1}", this.AnswersGiven, this.AnswersNeeded);  //von Maya für Frageheader
             NummerFrage.Text = this.Header; //von Maya für Frageheader
+
+            QICP = LoadQuestion(1,zaehler);
+            UpdatePage(QICP);
+
         }
         void OnAbbrechenButtonClicked(object sender, EventArgs e)
         {
@@ -116,71 +147,65 @@ namespace MobileDataCollection.Survey.Views
         }
         void speichereErgebnisse()
         {
-            gegebeneAntworten[0] = 0;
-            gegebeneAntworten[1] = 0;
-            gegebeneAntworten[2] = 0;
-            gegebeneAntworten[3] = 0;
+    
             gegebeneAntworten[0] = PictureA.BorderColor == selectedColor ? 1 : 0;
             gegebeneAntworten[1] = PictureB.BorderColor == selectedColor ? 1 : 0;
             gegebeneAntworten[2] = PictureC.BorderColor == selectedColor ? 1 : 0;
             gegebeneAntworten[3] = PictureD.BorderColor == selectedColor ? 1 : 0;
         }
+        public void CreateDatabank()
+        {
+            CreateConnectionToDb();
+            CreateTable();
+            CreateQuestions();
+        }
 
-        public void createConnectionToDb()
+        public void CreateConnectionToDb()
         {
             conn = DependencyService.Get<ISQLite>().GetConnection();
         }
-        private void createTable()
+        private void CreateTable()
         {
-            System.Console.WriteLine("Hello");
-
             conn.DropTable<QuestionImageCheckerPage>();
             conn.DropTable<AnswerImageCheckerPage>();
 
             conn.CreateTable<QuestionImageCheckerPage>();
             conn.CreateTable<AnswerImageCheckerPage>();
+        }
+        public void CreateQuestions()
+        {
+            QuestionImageCheckerPage question = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 0, 1, 0, "Q1_G1_F1_B1_klein.png", "Q1_G1_F1_B2_klein.png", "Q1_G1_F1_B3_klein.png", "Q1_G1_F1_B4_klein.png");
+            conn.Insert(question);
+            question = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 1, 0, 1, 1, 0, "Q1_G1_F2_B1_klein.png", "Q1_G1_F2_B2_klein.png", "Q1_G1_F2_B3_klein.png", "Q1_G1_F2_B4_klein.png");
+            conn.Insert(question);
+        }
+        public QuestionImageCheckerPage LoadQuestion(int difficulty,int zaehler)
+        {
+            string query = String.Format("SELECT * FROM QuestionImageCheckerPage LEFT OUTER JOIN AnswerImageCheckerPage ON QuestionImageCheckerPage.InternId = AnswerImageCheckerPage.InternId WHERE Difficulty = {0}", difficulty);
+            IEnumerable<QuestionImageCheckerPage> foo = conn.Query<QuestionImageCheckerPage>(query);
+            List<QuestionImageCheckerPage> listOfResults = foo.ToList<QuestionImageCheckerPage>();
 
-            if (conn.Table<QuestionImageCheckerPage>().Count() == 0)
-            { 
-                createQuestions();
-            }
-        }
-        public void createQuestions()
-        {
-            QuestionImageCheckerPage QICP = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 0, 0, 1, 0, "Q1_G1_F1_B1_klein.png", "Q1_G1_F1_B2_klein.png", "Q1_G1_F1_B3_klein.png", "Q1_G1_F1_B4_klein.png");
-            conn.Insert(QICP);
-            QICP = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 0, 1, 1, 0, "Q1_G1_F2_B1_klein.png", "Q1_G1_F2_B2_klein.png", "Q1_G1_F2_B3_klein.png", "Q1_G1_F2_B4_klein.png");
-            conn.Insert(QICP);
-        }
-        int i = 0;
-        public void loadQuestion()
-        {
-            QICPOriginal = (from q in conn.Table<QuestionImageCheckerPage>() select q).ElementAt(i);
-        }
-        public void createAnswer()
-        {
-            AnswerImageCheckerPage AICP = new AnswerImageCheckerPage(QICPOriginal.internId, gegebeneAntworten[0], gegebeneAntworten[1], gegebeneAntworten[2], gegebeneAntworten[3]);
-            conn.Insert(AICP);
-            AICP = (from q in conn.Table<AnswerImageCheckerPage>() select q).ElementAt(i);
-            i++;
-            if (i > 1)
+            System.Console.WriteLine("Hello {0}", zaehler);
+            QuestionImageCheckerPage temp = listOfResults.ElementAt(zaehler);
+            if(zaehler == 1)
             {
-                i = 0;
+                this.zaehler = 0;
             }
-            System.Console.WriteLine("Element :" + i);
-            System.Console.WriteLine(AICP.Image1Selected + " " + gegebeneAntworten[0]);
-            System.Console.WriteLine(AICP.Image2Selected + " " + gegebeneAntworten[1]);
-            System.Console.WriteLine(AICP.Image3Selected + " " + gegebeneAntworten[2]);
-            System.Console.WriteLine(AICP.Image4Selected + " " + gegebeneAntworten[3]);
-            System.Console.WriteLine(AICP.internId);
-
-            loadQuestion();
+            else
+            {
+                this.zaehler++;
+            }
+            return temp;
         }
-        private string NummerFrageText { get => NummerFrage.Text; set => NummerFrage.Text = value; }
-        private string FrageText { get => Frage.Text; set => Frage.Text = value; }
-        private string PictureASource { get => PictureA.Source.ToString(); set => PictureA.Source = value; }
-        private string PictureBSource { get => PictureB.Source.ToString(); set => PictureB.Source = value; }
-        private string PictureCSource { get => PictureC.Source.ToString(); set => PictureC.Source = value; }
-        private string PictureDSource { get => PictureD.Source.ToString(); set => PictureD.Source = value; }
+        public void CreateAnswer()
+        {
+            AnswerImageCheckerPage AICP = new AnswerImageCheckerPage(QICP.internId, gegebeneAntworten[0], gegebeneAntworten[1], gegebeneAntworten[2], gegebeneAntworten[3]);
+            conn.Insert(AICP);
+            string query = String.Format("SELECT * FROM AnswerImageCheckerPage WHERE InternID = {0}", QICP.internId);
+            IEnumerable<AnswerImageCheckerPage> foo = conn.Query<AnswerImageCheckerPage>(query);
+            List<AnswerImageCheckerPage> liste = foo.ToList<AnswerImageCheckerPage>();
+            AICP = liste.First();
+            //AICP = (from q in conn.Table<AnswerImageCheckerPage>() select q).Where(AICP.internId = QICP.internId);
+        }
     }
 }

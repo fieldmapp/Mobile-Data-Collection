@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MobileDataCollection.Survey.Models
 {
-    class QuestionImageCheckerPage
+    public class QuestionImageCheckerPage
     {
         /// <summary>
         /// Intern Id only for this Type Of Question
@@ -16,6 +16,11 @@ namespace MobileDataCollection.Survey.Models
         /// Maximum count of selected answers allowed
         /// </summary>
         public int NumberOfPossibleAnswers { get; set; } = 4;
+
+        /// <summary>
+        /// The difficulty of the Question
+        /// </summary>
+        public int Difficulty { get; set; }
 
         /// <summary>
         /// Question which will be shown to the user
@@ -62,10 +67,11 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public string Image4Source { get; set; }
 
-        public QuestionImageCheckerPage(string question,int im1Correct, int im2Correct, int im3Correct, int im4Corect, 
+        public QuestionImageCheckerPage(string question, int difficulty,int im1Correct, int im2Correct, int im3Correct, int im4Corect, 
             string im1Source, string im2Source, string im3Source, string im4Source)
         {
             QuestionText = question;
+            Difficulty = difficulty;
             Image1Correct = im1Correct;
             Image2Correct = im2Correct;
             Image3Correct = im3Correct;
