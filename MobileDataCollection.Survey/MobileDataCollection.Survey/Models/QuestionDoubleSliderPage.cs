@@ -92,7 +92,8 @@ namespace MobileDataCollection.Survey.Models
             }
         }
         
-        public QuestionDoubleSliderPage(string pictureAddress, ImageSource pictureSource, int answerA, int answerB, int level)
+        //public QuestionDoubleSliderPage(string pictureAddress, ImageSource pictureSource, int answerA, int answerB, int level)
+        public QuestionDoubleSliderPage(string pictureAddress, int answerA, int answerB, int level)
         {
             Text = "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.";
             PictureAddress = pictureAddress;

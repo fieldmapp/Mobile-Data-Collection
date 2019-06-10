@@ -25,13 +25,14 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Label x:Name="QuestionNumber" HorizontalTextAlignment="Center"
-                   Text="Frage 1/4" 
+                   Text="{Binding Header}" 
                    FontSize="Medium" 
                    TextColor="{StaticResource TextColor}"/>
             <Label Grid.Row="1" Margin="0,7,0,0" x:Name="QuestionText" 
-                   Text="{Binding QuestionItem.Text}"
+                   Text="{Binding Question.Text}"
                    FontSize="Medium" TextColor="{StaticResource TextColor}"/>
-            <controls:DetailImage Aspect="AspectFit" Grid.Row="2" x:Name="Picture" Margin="0,0,0,15" Source="{Binding QuestionItem.PictureSource}"/>
+            <controls:DetailImage Aspect="AspectFit" Grid.Row="2" x:Name="Picture" BackgroundColor="Transparent"
+                                  Margin="0,0,0,15" Source="{Binding Question.PictureSource}"/>
             <Slider Grid.Row="3" x:Name="sliderA" Margin="5, 0, 5, 0"
                     MinimumTrackColor="{StaticResource Selection}"
                     MaximumTrackColor="{StaticResource Selection}"

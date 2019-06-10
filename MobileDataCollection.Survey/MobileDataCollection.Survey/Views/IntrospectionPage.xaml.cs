@@ -51,10 +51,12 @@ namespace MobileDataCollection.Survey.Views
         {
             InitializeComponent();
             QuestionLabel.BindingContext = this;
+            //Ans Ende jeder Survey müssen Introspectionfrage(n), d.h. für jeden Survey-Typ müssen 1-n Introspection fragen hinterlegbar 
             if (survey.Id == SurveyMenuItemType.ImageChecker) Items = new ObservableCollection<QuestionIntrospectionPage>() {
                 new QuestionIntrospectionPage("Ich kann eine Sorte von Feldfrüchten zuverlässig erkennen.")}; 
             else if (survey.Id == SurveyMenuItemType.DoubleSlider) {
                 Items = new ObservableCollection<QuestionIntrospectionPage>(){
+                    //Für DoubleSliderPage werden zwei Introspection-Fragen gebraucht
                     new QuestionIntrospectionPage("Ich kann den Bedeckungsgrad des Bodens durch Pflanzen zuverlässig schätzen."),
                     new QuestionIntrospectionPage("Ich kann den Anteil grüner Pflanzenbestandteile am gesamten Pflanzenmaterial zuverlässig schätzen.")
                 };
@@ -62,7 +64,7 @@ namespace MobileDataCollection.Survey.Views
             else if (survey.Id == SurveyMenuItemType.Stadium){ Items = new ObservableCollection<QuestionIntrospectionPage>() {
                 new QuestionIntrospectionPage("Ich kann phänologische Entwicklungsstadien von Feldfrüchten zuverlässig erkennen.")};
             }
-            this.Item = Items[0];
+            this.QuestionItem = Items[0];
         }
 
         private void Button_Tapped(object sender, EventArgs e)
