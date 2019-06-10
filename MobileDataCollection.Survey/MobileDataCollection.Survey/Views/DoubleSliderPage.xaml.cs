@@ -14,6 +14,12 @@ namespace MobileDataCollection.Survey.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DoubleSliderPage : ContentPage
     {
+        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), typeof(QuestionDoubleSliderPage), typeof(DoubleSliderPage), new QuestionDoubleSliderPage("Q1_G1_F1_B2_klein", ImageSource.FromResource("Q1_G1_F1_B2_klein"), 0, 0, 1), BindingMode.OneWay);
+        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerDoubleSliderPage), typeof(DoubleSliderPage), new AnswerDoubleSliderPage(null, 0, 0), BindingMode.OneWay);
+        
+        
+        //Item of the given Question
+        public QuestionDoubleSliderPage QuestionItem
         //Attributes of the DoubleSlider Layouts
         //Given Answers
         public SurveyMenuItem survey {get ; set; }
@@ -32,9 +38,11 @@ namespace MobileDataCollection.Survey.Views
         //Currently displayed question
         public QuestionDoubleSliderPage Question
         {
-            get { return (QuestionDoubleSliderPage)GetValue(ItemProperty); }
-            set { SetValue(ItemProperty, value); }
+            get { return (QuestionDoubleSliderPage)GetValue(QuestionItemProperty); }
+            set { SetValue(QuestionItemProperty, value); }
         }
+        //Item of the Answer
+        public AnswerDoubleSliderPage AnswerItem
         //IntrospectionPage set at the end of answering the category
         public QuestionIntrospectionPage IntroQuestion
         {
@@ -43,19 +51,20 @@ namespace MobileDataCollection.Survey.Views
         //Header
         public String Header
         {
-            get { return (String)GetValue(HeaderProperty); }
-            set { SetValue(HeaderProperty, value); }
+            get { return (AnswerDoubleSliderPage)GetValue(AnswerItemProperty); }
+            set { SetValue(AnswerItemProperty, value); }
         }
-        /*public QuestionDoubleSliderPage Question { get; set; }*/
+        
+        //Zurzeit nicht verwendet
         //Definition of all the available Questions (Muss ggf woanders hinkommen -> Zugriff auf DB)
-        public ObservableCollection<QuestionDoubleSliderPage> Items = new ObservableCollection<QuestionDoubleSliderPage>()
+        /*public ObservableCollection<QuestionDoubleSliderPage> Items = new ObservableCollection<QuestionDoubleSliderPage>()
         {
             new QuestionDoubleSliderPage("Q3G1B1_klein.png", 7, 4, 1),
             new QuestionDoubleSliderPage("Q3G1B2_klein.png", 49, 91, 1),
             new QuestionDoubleSliderPage("Q3G1B3_klein.png", 12,3, 1),
             new QuestionDoubleSliderPage("Q3G1B4_klein.png", 64, 94, 1)
-        };
-
+        };*/
+        
         public DoubleSliderPage ()
 		{
             this.survey = new SurveyMenuItem();
@@ -63,12 +72,13 @@ namespace MobileDataCollection.Survey.Views
             this.AnswersNeeded = 4;
             this.AnswersGiven = 1;
             InitializeComponent();
-            QuestionNumber.BindingContext = this;
+            Picture.BindingContext = this;
             QuestionText.BindingContext = this;
             Picture.BindingContext = this;
             this.Question = Items[this.AnswersGiven - 1];
             this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded+1}";
         }
+        
         //Resets the Sliders
         void ResetSlider()
         {
@@ -76,7 +86,7 @@ namespace MobileDataCollection.Survey.Views
             sliderB.Value = 0;
         }
         //Displays the selected Percentage of SliderA in LabelA
-		 void OnSliderAValueChanged(object sender, ValueChangedEventArgs args)
+		void OnSliderAValueChanged(object sender, ValueChangedEventArgs args)
         {
             int value = (int)(args.NewValue);
             sliderALabel.Text = String.Format("(A): {0}%", value);
@@ -94,10 +104,13 @@ namespace MobileDataCollection.Survey.Views
             int answerA = (int)(sliderA.Value);
             int answerB = (int)(sliderB.Value);
             //Analyse of the given Answer referring to the right answer
-            int diffAnsA =100-Math.Abs(answerA - this.Question.CorrectAnswerA);
-            int diffAnsB =100-Math.Abs(answerB - this.Question.CorrectAnswerB);
+            int diffAnsA =100-Math.Abs(answerA - QuestionItem.CorrectAnswerA);
+            int diffAnsB =100-Math.Abs(answerB - QuestionItem.CorrectAnswerB);
             //TODO: Use AnswerDoubleSliderPage here
             //Save submitted question as answered with result
+            AnswerItem.Question = QuestionItem;
+            AnswerItem.ResultQuestionA = diffAnsA;
+            AnswerItem.ResultQuestionB = diffAnsB;
             /*this.Question.Answered = true;
             this.Question.Result = (diffAnsA + diffAnsB) / 2;
             this.CurrentResult = this.CurrentResult + this.Question.Result;
