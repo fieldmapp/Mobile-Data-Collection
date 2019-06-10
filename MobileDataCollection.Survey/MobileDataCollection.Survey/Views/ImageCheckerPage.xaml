@@ -15,14 +15,12 @@
                Text="Frage X"
                FontSize="Medium"
                HorizontalTextAlignment="Center"/>
-        <Label Text="{Binding Item.Text}"
-               FontSize="Small"/>
+        <Label FontSize="Small"/>
         <Label x:Name="Frage"
                HorizontalTextAlignment="Center"
-               Text=""
+               Text="{Binding QuestionItem.QuestionText}"
                FontSize="Medium" />
-        <Label Text="{Binding Item.Description}"
-               FontSize="Small"/>
+        <Label FontSize="Small"/>
         <Grid ColumnSpacing="10"
               RowSpacing="10"
               VerticalOptions="CenterAndExpand" 
@@ -36,7 +34,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <ImageButton x:Name="PictureA"
-                         Source=""
+                         Source="{Binding QuestionItem.Image1Source}"
                          HeightRequest="160"
                          WidthRequest="160"
                          HorizontalOptions="Center"
@@ -47,7 +45,7 @@
                          BorderColor="White"
                          BorderWidth="5"/>
             <ImageButton x:Name="PictureB"
-                         Source=""
+                         Source="{Binding QuestionItem.Image2Source}"
                          Grid.Column="1"
                          HeightRequest="160"
                          WidthRequest="160"
@@ -59,7 +57,7 @@
                          BorderColor="White"
                          BorderWidth="5"/>
             <ImageButton x:Name="PictureC"
-                         Source=""
+                         Source="{Binding QuestionItem.Image3Source}"
                          Grid.Row="1" 
                          HeightRequest="160"
                          WidthRequest="160"
@@ -71,7 +69,7 @@
                          BorderColor="White"
                          BorderWidth="5"/>
             <ImageButton x:Name="PictureD"
-                         Source=""
+                         Source="{Binding QuestionItem.Image4Source}"
                          Grid.Row="1"
                          Grid.Column="1"
                          HeightRequest="160"

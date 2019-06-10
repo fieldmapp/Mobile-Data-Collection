@@ -14,50 +14,44 @@ namespace MobileDataCollection.Survey.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DoubleSliderPage : ContentPage
     {
-        //Attributes of the DoubleSlider Layouts
-        //Given Answers
-        public int AnswersGiven { get; set; }
-        //Current result
-        public int CurrentResult { get; set; }
-        //Header
-        public String Header { get; set; }
-        //Question-Text
-        public String Text { get; set; }
-        //Source of the displayed picture
-        public String PictureSource { get; set; }
-        //Answers needed to complete Question Category (Muss definiert werden: entweder alle verfügbaren Fragen oder feste Zahl)
-        public int AnswersNeeded { get; set; }
-        //Currently displayed question
-        public QuestionDoubleSliderPage Question { get; set; }
+        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), typeof(QuestionDoubleSliderPage), typeof(DoubleSliderPage), new QuestionDoubleSliderPage("Q1_G1_F1_B2_klein", ImageSource.FromResource("Q1_G1_F1_B2_klein"), 0, 0, 1), BindingMode.OneWay);
+        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerDoubleSliderPage), typeof(DoubleSliderPage), new AnswerDoubleSliderPage(null, 0, 0), BindingMode.OneWay);
+        
+        
+        //Item of the given Question
+        public QuestionDoubleSliderPage QuestionItem
+        {
+            get { return (QuestionDoubleSliderPage)GetValue(QuestionItemProperty); }
+            set { SetValue(QuestionItemProperty, value); }
+        }
+        //Item of the Answer
+        public AnswerDoubleSliderPage AnswerItem
+        {
+            get { return (AnswerDoubleSliderPage)GetValue(AnswerItemProperty); }
+            set { SetValue(AnswerItemProperty, value); }
+        }
+        
+        //Zurzeit nicht verwendet
         //Definition of all the available Questions (Muss ggf woanders hinkommen -> Zugriff auf DB)
-        public ObservableCollection<QuestionDoubleSliderPage> Items = new ObservableCollection<QuestionDoubleSliderPage>()
+        /*public ObservableCollection<QuestionDoubleSliderPage> Items = new ObservableCollection<QuestionDoubleSliderPage>()
         {
             new QuestionDoubleSliderPage("Q3G1B1_klein.png", 7, 4, 1),
             new QuestionDoubleSliderPage("Q3G1B2_klein.png", 49, 91, 1),
             new QuestionDoubleSliderPage("Q3G1B3_klein.png", 12,3, 1),
             new QuestionDoubleSliderPage("Q3G1B4_klein.png", 64, 94, 1)
-        };
+        };*/
         
         public DoubleSliderPage ()
 		{
-            this.AnswersNeeded = Items.Count;
-            this.AnswersGiven = 1;
+            QuestionItem.AnswersNeeded = 4;
+            //this.AnswersGiven = 1;
             InitializeComponent();
-            this.SetQuestion();
+            Picture.BindingContext = this;
+            QuestionText.BindingContext = this;
+            QuestionItem = new QuestionDoubleSliderPage("Q3G1B1_klein.png", ImageSource.FromResource("Q3G1B1_klein.png"), 7, 4, 1);
+            //Picture.Source = ImageSource.FromFile("Q3G1B1_klein.png");
         }
-        //Sets the a new Question
-        void SetQuestion()
-        {
-            this.Question = Items[this.AnswersGiven - 1];
-
-            this.Header = String.Format("Frage: {0}/{1}", this.AnswersGiven, this.AnswersNeeded); 
-            this.PictureSource = Question.PictureAddress;
-            this.Text = Question.Text;
-
-            QuestionNumber.Text = this.Header;
-            QuestionText.Text = this.Text;
-            Picture.Source = this.PictureSource;
-        }
+        
         //Resets the Sliders
         void ResetSlider()
         {
@@ -65,7 +59,7 @@ namespace MobileDataCollection.Survey.Views
             sliderB.Value = 0;
         }
         //Displays the selected Percentage of SliderA in LabelA
-		 void OnSliderAValueChanged(object sender, ValueChangedEventArgs args)
+		void OnSliderAValueChanged(object sender, ValueChangedEventArgs args)
         {
             int value = (int)(args.NewValue);
             sliderALabel.Text = String.Format("(A): {0}%", value);
@@ -83,18 +77,21 @@ namespace MobileDataCollection.Survey.Views
             int answerA = (int)(sliderA.Value);
             int answerB = (int)(sliderB.Value);
             //Analyse of the given Answer referring to the right answer
-            int diffAnsA =100-Math.Abs(answerA - this.Question.CorrectAnswerA);
-            int diffAnsB =100-Math.Abs(answerB - this.Question.CorrectAnswerB);
+            int diffAnsA =100-Math.Abs(answerA - QuestionItem.CorrectAnswerA);
+            int diffAnsB =100-Math.Abs(answerB - QuestionItem.CorrectAnswerB);
             //TODO: Use AnswerDoubleSliderPage here
             //Save submitted question as answered with result
+            AnswerItem.Question = QuestionItem;
+            AnswerItem.ResultQuestionA = diffAnsA;
+            AnswerItem.ResultQuestionB = diffAnsB;
             /*this.Question.Answered = true;
             this.Question.Result = (diffAnsA + diffAnsB) / 2;
             this.CurrentResult = this.CurrentResult + this.Question.Result;
             DisplayAlert("Hinweis", String.Format("Aktuelles Ergebnis ist {0}%, Gesamtergebnis {1}%.", this.Question.Result, this.CurrentResult/this.AnswersGiven), "OK");*/
             //Count number of already submitted Question 
-            if (this.AnswersGiven < this.AnswersNeeded) this.AnswersGiven++;
-            //Set new Question
-            this.SetQuestion();
+            //QuestionItem = new QuestionDoubleSliderPage("Q3G1B2_klein.png", 49, 91, 1);
+            QuestionItem = new QuestionDoubleSliderPage("Q3G1B2_klein.png", ImageSource.FromResource("Q3G1B1_klein.png"), 49, 91, 1);
+            //fehlt noch einfügen neuer Frage (hier nur 1 mal)
             this.ResetSlider();
         }
         void OnAbbrechenButtonClicked(object sender, EventArgs e)

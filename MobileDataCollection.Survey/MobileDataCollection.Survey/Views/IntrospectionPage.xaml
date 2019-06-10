@@ -25,7 +25,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Text="{Binding Item.QuestionText}" x:Name="QuestionLabel" FontSize="Medium"/>
+                <Label Grid.Row="0" Text="{Binding QuestionItem.QuestionText}" x:Name="QuestionLabel" FontSize="Medium"/>
             </Grid>
 
             <Grid Margin="15,0,10,10" RowSpacing="30">
@@ -51,12 +51,12 @@
                 <Button Text="Abbrechen" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
                     TextColor="{StaticResource TextColor}"
-                    />
+                    Clicked="OnAbbrechenButtonClicked"/>
                 <Button Grid.Column="1"
                     Text="Weiter" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
                     TextColor="{StaticResource TextColor}"
-                    />
+                    Clicked="OnWeiterButtonClicked"/>
             </Grid>
 
         </StackLayout>
