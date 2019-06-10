@@ -29,7 +29,7 @@ namespace MobileDataCollection.Survey.Controls
             ImageButton imageButton = (ImageButton)sender;
             if (Stopwatch.ElapsedMilliseconds > 1000)
             {
-                Navigation.PushAsync(new ImageDetailPage(Source));
+                (Application.Current as App).Navigation.PushAsync(new ImageDetailPage(Source));
             }
         }
     }
