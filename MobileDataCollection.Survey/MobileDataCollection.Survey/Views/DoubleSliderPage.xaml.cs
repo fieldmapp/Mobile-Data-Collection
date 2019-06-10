@@ -16,14 +16,12 @@ namespace MobileDataCollection.Survey.Views
     {
         //Attributes of the DoubleSlider Layouts
         //Given Answers
+        public SurveyMenuItem survey {get ; set; }
         public int AnswersGiven { get; set; }
-        //Current result
-        public int CurrentResult { get; set; }
-        
-        //Question-Text
         //Answers needed to complete Question Category (Muss definiert werden: entweder alle verfügbaren Fragen oder feste Zahl)
         public int AnswersNeeded { get; set; }
-        
+        //Current result
+        public int CurrentResult { get; set; }
         //Binding für Fragen
         public static readonly BindableProperty ItemProperty = BindableProperty.Create(nameof(Question), 
             typeof(QuestionDoubleSliderPage), typeof(DoubleSliderPage), 
@@ -36,6 +34,11 @@ namespace MobileDataCollection.Survey.Views
         {
             get { return (QuestionDoubleSliderPage)GetValue(ItemProperty); }
             set { SetValue(ItemProperty, value); }
+        }
+        //IntrospectionPage set at the end of answering the category
+        public QuestionIntrospectionPage IntroQuestion
+        {
+            get; set;
         }
         //Header
         public String Header
@@ -55,6 +58,8 @@ namespace MobileDataCollection.Survey.Views
 
         public DoubleSliderPage ()
 		{
+            this.survey = new SurveyMenuItem();
+            this.survey.Id=SurveyMenuItemType.DoubleSlider;
             this.AnswersNeeded = 4;
             this.AnswersGiven = 1;
             InitializeComponent();
@@ -62,7 +67,7 @@ namespace MobileDataCollection.Survey.Views
             QuestionText.BindingContext = this;
             Picture.BindingContext = this;
             this.Question = Items[this.AnswersGiven - 1];
-            this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded}";
+            this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded+1}";
         }
         //Resets the Sliders
         void ResetSlider()
@@ -98,11 +103,20 @@ namespace MobileDataCollection.Survey.Views
             this.CurrentResult = this.CurrentResult + this.Question.Result;
             DisplayAlert("Hinweis", String.Format("Aktuelles Ergebnis ist {0}%, Gesamtergebnis {1}%.", this.Question.Result, this.CurrentResult/this.AnswersGiven), "OK");*/
             //Count number of already submitted Question 
-            if (this.AnswersGiven < this.AnswersNeeded) this.AnswersGiven++;
-            //Set new Question
-            this.Question = Items[this.AnswersGiven - 1];
-            this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded}";
-            this.ResetSlider();
+            if (this.AnswersGiven < this.AnswersNeeded)
+            {
+                this.AnswersGiven++;
+                // Set new Question
+                this.Question = Items[this.AnswersGiven - 1];
+                this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded+1}";
+                this.ResetSlider();
+            }
+            else if (this.AnswersGiven == this.AnswersNeeded)
+            {
+                //TBD: Setze Header der IntrospectionPage auf 5/5 etc. und übergebe Parameter WELCHE IntrospectionPage --> braucht eigenschaft
+                Navigation.PushAsync(new IntrospectionPage(this.survey));
+            }
+            
         }
         void OnAbbrechenButtonClicked(object sender, EventArgs e)
         {

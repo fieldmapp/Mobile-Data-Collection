@@ -2,6 +2,7 @@
 using MobileDataCollection.Survey.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -25,11 +26,30 @@ namespace MobileDataCollection.Survey.Views
             set { SetValue(ItemProperty, value); }
         }
 
+        public ObservableCollection<QuestionIntrospectionPage> Items
+        { get; set; }
         public IntrospectionPage()
-		{
+        {
             InitializeComponent();
             QuestionLabel.BindingContext = this;
             Item = new QuestionIntrospectionPage("Ich kann eine Sorte von Feldfrüchten zuverlässig erkennen.");
+        }
+            public IntrospectionPage(SurveyMenuItem survey)
+        {
+            InitializeComponent();
+            QuestionLabel.BindingContext = this;
+            if (survey.Id == SurveyMenuItemType.ImageChecker) Items = new ObservableCollection<QuestionIntrospectionPage>() {
+                new QuestionIntrospectionPage("Ich kann eine Sorte von Feldfrüchten zuverlässig erkennen.")}; 
+            else if (survey.Id == SurveyMenuItemType.DoubleSlider) {
+                Items = new ObservableCollection<QuestionIntrospectionPage>(){
+                    new QuestionIntrospectionPage("Ich kann den Bedeckungsgrad des Bodens durch Pflanzen zuverlässig schätzen."),
+                    new QuestionIntrospectionPage("Ich kann den Anteil grüner Pflanzenbestandteile am gesamten Pflanzenmaterial zuverlässig schätzen.")
+                };
+            }
+            else if (survey.Id == SurveyMenuItemType.Stadium){ Items = new ObservableCollection<QuestionIntrospectionPage>() {
+                new QuestionIntrospectionPage("Ich kann phänologische Entwicklungsstadien von Feldfrüchten zuverlässig erkennen.")};
+            }
+            this.Item = Items[0];
         }
 
         private void Button_Tapped(object sender, EventArgs e)
