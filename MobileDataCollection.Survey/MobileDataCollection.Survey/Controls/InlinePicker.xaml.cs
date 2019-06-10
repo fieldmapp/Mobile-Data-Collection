@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MobileDataCollection.Survey.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace MobileDataCollection.Survey.Controls
     {
         public DataTemplate ItemTemplate { get => ListView.ItemTemplate; set => ListView.ItemTemplate = value; }
         public IEnumerable ItemSource { get => ListView.ItemsSource; set => ListView.ItemsSource = value; }
+        static readonly Color SelectedColor = Color.Gray;
 
         public InlinePicker()
         {
@@ -24,10 +26,14 @@ namespace MobileDataCollection.Survey.Controls
         public void Scroll(object sender, EventArgs e)
         {
         }
-        public void Tapped(object sender, SelectedItemChangedEventArgs e)
+        public void ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            ContentButton selected =(ContentButton)e.SelectedItem;
-            selected.BackgroundColor = Color.LightGray;
+            foreach (var item in ItemSource.Cast<IInlinePickerElement>())
+            {
+                item.BackgroundColor = Color.Transparent;
+            }
+            var selected = (IInlinePickerElement)e.SelectedItem;
+            selected.BackgroundColor = SelectedColor;
         }
 
     }
