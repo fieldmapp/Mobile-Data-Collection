@@ -13,8 +13,26 @@ namespace MobileDataCollection.Survey.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ImageCheckerPage : ContentPage
     {
-        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), typeof(QuestionImageCheckerPage), typeof(ImageCheckerPage), new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 0, 1, 0, "Q1_G1_F1_B1_klein.png", "Q1_G1_F1_B2_klein.png", "Q1_G1_F1_B3_klein.png", "Q1_G1_F1_B4_klein.png"), BindingMode.OneWay);
-        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerImageCheckerPage), typeof(ImageCheckerPage), new AnswerImageCheckerPage(0, 0, 0, 0, 0), BindingMode.OneWay);
+        public int AnswersGiven { get; set; }
+        //Answers needed to complete Question Category (Muss definiert werden: entweder alle verfügbaren Fragen oder feste Zahl)
+        public int AnswersNeeded { get; set; }
+        //Binding für Question
+        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), 
+            typeof(QuestionImageCheckerPage), typeof(ImageCheckerPage), 
+            new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 0, 1, 0, "Q1_G1_F1_B1_klein.png", "Q1_G1_F1_B2_klein.png", "Q1_G1_F1_B3_klein.png", "Q1_G1_F1_B4_klein.png"), BindingMode.OneWay);
+        //Binding für Answer
+        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), 
+            typeof(AnswerImageCheckerPage), typeof(ImageCheckerPage), new AnswerImageCheckerPage(0, 0, 0, 0, 0), 
+            BindingMode.OneWay);
+        //Binding für Header
+        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header),
+            typeof(String), typeof(DoubleSliderPage), "demo", BindingMode.OneWay);
+        //Header
+        public String Header
+        {
+            get { return (String)GetValue(HeaderProperty); }
+            set { SetValue(HeaderProperty, value); }
+        }
 
         /// <summary>
         /// Item of the given Question
@@ -52,6 +70,8 @@ namespace MobileDataCollection.Survey.Views
 
         public ImageCheckerPage()
         {
+            this.AnswersNeeded = 2;
+            this.AnswersGiven = 1;
             InitializeComponent();
             //CreateDatabank();
             //QICP = LoadQuestion(1,zaehler);
@@ -61,12 +81,13 @@ namespace MobileDataCollection.Survey.Views
             NummerFrage.Text = this.Header; //von Maya für Frageheader*/
 
             //UpdatePage(QICP);
-
+            NummerFrage.BindingContext = this;
             PictureA.BindingContext = this;
             PictureB.BindingContext = this;
             PictureC.BindingContext = this;
             PictureD.BindingContext = this;
             Frage.BindingContext = this;
+            this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded + 1}";
             QuestionItem = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 0, 1, 0, "Q1_G1_F1_B1_klein.png", "Q1_G1_F1_B2_klein.png", "Q1_G1_F1_B3_klein.png", "Q1_G1_F1_B4_klein.png");
             stopwatch = new Stopwatch();
         }
@@ -161,6 +182,13 @@ namespace MobileDataCollection.Survey.Views
 
             QICP = LoadQuestion(1,zaehler);
             UpdatePage(QICP);*/
+            if (this.AnswersGiven < this.AnswersNeeded)
+            {
+                this.AnswersGiven++;
+                // Set new Question
+               
+                this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded + 1}";
+            }
 
             AnswerItem.Image1Selected = PictureA.BorderColor == selectedColor ? 1 : 0; //in QuestionItem ist ImageCorrectAnswer, wie verwenden
             AnswerItem.Image2Selected = PictureB.BorderColor == selectedColor ? 1 : 0;
