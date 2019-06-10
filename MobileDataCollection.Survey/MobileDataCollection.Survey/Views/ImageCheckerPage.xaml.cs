@@ -121,7 +121,7 @@ namespace MobileDataCollection.Survey.Views
         {
             imageButton.BorderColor = imageButton.BorderColor == nonSelectedColor ? selectedColor : nonSelectedColor;
         }
-        private void OpenBigPicture(ImageButton imageButton)
+        /*private void OpenBigPicture(ImageButton imageButton)
         {
             string source = imageButton.Source.ToString();
             if (Frage.Text == "1")
@@ -133,7 +133,7 @@ namespace MobileDataCollection.Survey.Views
                 Frage.Text = QICP.Image3Correct.ToString();
             }
             ImageDetailPage image = new ImageDetailPage(source);
-        }
+        }*/
         private void PressPicture(object sender, EventArgs e)
         {
             stopwatch.Reset();
@@ -144,11 +144,7 @@ namespace MobileDataCollection.Survey.Views
         {
             stopwatch.Stop();
             ImageButton imageButton = (ImageButton)sender;
-            if (stopwatch.ElapsedMilliseconds > 1000)
-            {
-                OpenBigPicture(imageButton);
-            }
-            else
+            if (stopwatch.ElapsedMilliseconds < 1000)
             {
                 MarkPicture(imageButton);
             }

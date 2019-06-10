@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MobileDataCollection.Survey.Views.ImageCheckerPage">
+             x:Class="MobileDataCollection.Survey.Views.ImageCheckerPage"
+             xmlns:controls="clr-namespace:MobileDataCollection.Survey.Controls">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Button">White</Color>
@@ -33,7 +34,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <ImageButton x:Name="PictureA"
+            <controls:DetailImage x:Name="PictureA"
                          Source="{Binding QuestionItem.Image1Source}"
                          HeightRequest="160"
                          WidthRequest="160"
@@ -44,7 +45,7 @@
                          Released="ReleasePicture"
                          BorderColor="White"
                          BorderWidth="5"/>
-            <ImageButton x:Name="PictureB"
+            <controls:DetailImage x:Name="PictureB"
                          Source="{Binding QuestionItem.Image2Source}"
                          Grid.Column="1"
                          HeightRequest="160"
@@ -56,7 +57,7 @@
                          Released="ReleasePicture"
                          BorderColor="White"
                          BorderWidth="5"/>
-            <ImageButton x:Name="PictureC"
+            <controls:DetailImage x:Name="PictureC"
                          Source="{Binding QuestionItem.Image3Source}"
                          Grid.Row="1" 
                          HeightRequest="160"
@@ -68,7 +69,7 @@
                          Released="ReleasePicture"
                          BorderColor="White"
                          BorderWidth="5"/>
-            <ImageButton x:Name="PictureD"
+            <controls:DetailImage x:Name="PictureD"
                          Source="{Binding QuestionItem.Image4Source}"
                          Grid.Row="1"
                          Grid.Column="1"
