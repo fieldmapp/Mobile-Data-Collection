@@ -19,16 +19,31 @@ namespace MobileDataCollection.Survey.Views
         public int AnswersGiven { get; set; }
         //Current result
         public int CurrentResult { get; set; }
-        //Header
-        public String Header { get; set; }
+        
         //Question-Text
-        public String Text { get; set; }
-        //Source of the displayed picture
-        public String PictureSource { get; set; }
         //Answers needed to complete Question Category (Muss definiert werden: entweder alle verfügbaren Fragen oder feste Zahl)
         public int AnswersNeeded { get; set; }
+        
+        //Binding für Fragen
+        public static readonly BindableProperty ItemProperty = BindableProperty.Create(nameof(Question), 
+            typeof(QuestionDoubleSliderPage), typeof(DoubleSliderPage), 
+            new QuestionDoubleSliderPage("demo",1,1,1), BindingMode.OneWay);
+        //Binding für Header
+        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header),
+            typeof(String), typeof(DoubleSliderPage), "demo", BindingMode.OneWay);
         //Currently displayed question
-        public QuestionDoubleSliderPage Question { get; set; }
+        public QuestionDoubleSliderPage Question
+        {
+            get { return (QuestionDoubleSliderPage)GetValue(ItemProperty); }
+            set { SetValue(ItemProperty, value); }
+        }
+        //Header
+        public String Header
+        {
+            get { return (String)GetValue(HeaderProperty); }
+            set { SetValue(HeaderProperty, value); }
+        }
+        /*public QuestionDoubleSliderPage Question { get; set; }*/
         //Definition of all the available Questions (Muss ggf woanders hinkommen -> Zugriff auf DB)
         public ObservableCollection<QuestionDoubleSliderPage> Items = new ObservableCollection<QuestionDoubleSliderPage>()
         {
@@ -37,26 +52,17 @@ namespace MobileDataCollection.Survey.Views
             new QuestionDoubleSliderPage("Q3G1B3_klein.png", 12,3, 1),
             new QuestionDoubleSliderPage("Q3G1B4_klein.png", 64, 94, 1)
         };
-        
+
         public DoubleSliderPage ()
 		{
-            this.AnswersNeeded = Items.Count;
+            this.AnswersNeeded = 4;
             this.AnswersGiven = 1;
             InitializeComponent();
-            this.SetQuestion();
-        }
-        //Sets the a new Question
-        void SetQuestion()
-        {
+            QuestionNumber.BindingContext = this;
+            QuestionText.BindingContext = this;
+            Picture.BindingContext = this;
             this.Question = Items[this.AnswersGiven - 1];
-
-            this.Header = String.Format("Frage: {0}/{1}", this.AnswersGiven, this.AnswersNeeded); 
-            this.PictureSource = Question.PictureAddress;
-            this.Text = Question.Text;
-
-            QuestionNumber.Text = this.Header;
-            QuestionText.Text = this.Text;
-            Picture.Source = this.PictureSource;
+            this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded}";
         }
         //Resets the Sliders
         void ResetSlider()
@@ -94,7 +100,8 @@ namespace MobileDataCollection.Survey.Views
             //Count number of already submitted Question 
             if (this.AnswersGiven < this.AnswersNeeded) this.AnswersGiven++;
             //Set new Question
-            this.SetQuestion();
+            this.Question = Items[this.AnswersGiven - 1];
+            this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded}";
             this.ResetSlider();
         }
         void OnAbbrechenButtonClicked(object sender, EventArgs e)

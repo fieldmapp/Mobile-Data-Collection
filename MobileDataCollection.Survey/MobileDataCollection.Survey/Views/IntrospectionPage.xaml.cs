@@ -15,7 +15,9 @@ namespace MobileDataCollection.Survey.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class IntrospectionPage : ContentPage
 	{
-        public static readonly BindableProperty ItemProperty = BindableProperty.Create(nameof(Item), typeof(QuestionIntrospectionPage), typeof(IntrospectionPage), new QuestionIntrospectionPage("demo"), BindingMode.OneWay);
+        public static readonly BindableProperty ItemProperty = BindableProperty.Create(nameof(Item), 
+            typeof(QuestionIntrospectionPage), typeof(IntrospectionPage), new QuestionIntrospectionPage("demo"), 
+            BindingMode.OneWay);
 
         public QuestionIntrospectionPage Item
         {

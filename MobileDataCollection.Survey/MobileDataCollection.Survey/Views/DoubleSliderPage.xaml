@@ -29,9 +29,10 @@
                    Text="{Binding Header}" FontSize="Medium" 
                    TextColor="{StaticResource TextColor}"/>
             <Label Grid.Row="1" Margin="0,7,0,0" x:Name="QuestionText" 
-                   BindingContext="DoubleSliderPage" Text="{Binding Text}" 
+                   BindingContext="DoubleSliderPage" Text="{Binding Question.Text}" 
                    FontSize="Medium" TextColor="{StaticResource TextColor}"/>
-            <controls:DetailImage Aspect="AspectFit" BackgroundColor="{StaticResource Button}" Grid.Row="2" x:Name="Picture" Margin="0,0,0,15" Source="Q3G1B1_klein.PNG"/>
+            <controls:DetailImage Grid.Row="2" Aspect="AspectFit" BackgroundColor="{StaticResource Button}" 
+                                  x:Name="Picture" Margin="0,0,0,15" Source="{Binding Question.PictureAddress}"/>
             <Slider Grid.Row="3" x:Name="sliderA" Margin="5, 0, 5, 0"
                     MinimumTrackColor="{StaticResource Selection}"
                     MaximumTrackColor="{StaticResource Selection}"

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
+using Xamarin.Forms;
 
 namespace MobileDataCollection.Survey.Models
 {
-	public class QuestionDoubleSliderPage
+	public class QuestionDoubleSliderPage : BindableObject
     {
         /// <summary>
         /// Defines the maximum valid value of <see cref="Level"/>
@@ -15,16 +17,29 @@ namespace MobileDataCollection.Survey.Models
         /// Number of available questions (Remove?)
         /// </summary>
         public int AnswersNeeded { get; set; } = 4;
-        
+
         /// <summary>
         /// Question text
         /// </summary>
-        public string Text { get; set; }
+        /// 
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), 
+            typeof(string), typeof(QuestionDoubleSliderPage), string.Empty, BindingMode.OneWay);
 
+        public string Text { 
+                get => (string)GetValue(TextProperty);
+                set => SetValue(TextProperty, value);
+            }
         /// <summary>
         /// Represents the picture URI
         /// </summary>
-        public string PictureAddress { get; set; }
+        public static readonly BindableProperty PictureAddressProperty = BindableProperty.Create(nameof(PictureAddress),
+            typeof(string), typeof(QuestionDoubleSliderPage), string.Empty, BindingMode.OneWay);
+
+        public string PictureAddress
+        {
+            get => (string)GetValue(PictureAddressProperty);
+            set => SetValue(PictureAddressProperty, value);
+        }
 
         /// <summary>
         /// Correct answer for SliderA (Bodenbedeckung)
