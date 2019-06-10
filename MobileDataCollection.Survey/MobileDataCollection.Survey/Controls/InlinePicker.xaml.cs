@@ -26,15 +26,5 @@ namespace MobileDataCollection.Survey.Controls
         public void Scroll(object sender, EventArgs e)
         {
         }
-        public void ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            foreach (var item in ItemSource.Cast<IInlinePickerElement>())
-            {
-                item.BackgroundColor = Color.Transparent;
-            }
-            var selected = (IInlinePickerElement)e.SelectedItem;
-            selected.BackgroundColor = SelectedColor;
-        }
-
     }
 }

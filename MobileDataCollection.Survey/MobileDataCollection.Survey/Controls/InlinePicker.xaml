@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="MobileDataCollection.Survey.Controls.InlinePicker">
     <ContentView.Content>
-        <ListView ItemAppearing="Scroll" ItemSelected="ItemSelected" RowHeight="40" x:Name="ListView" BackgroundColor="Transparent" SelectionMode="Single">
+        <ListView ItemAppearing="Scroll" RowHeight="40" x:Name="ListView" BackgroundColor="Transparent" SelectionMode="Single">
             
         </ListView>
   </ContentView.Content>
