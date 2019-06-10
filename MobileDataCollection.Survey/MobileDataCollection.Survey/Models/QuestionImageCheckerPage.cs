@@ -39,7 +39,7 @@ namespace MobileDataCollection.Survey.Models
         {
             get => (int)GetValue(NumberOfPossibleAnswersProperty);
             set => SetValue(NumberOfPossibleAnswersProperty, value);
-        } = 4;
+        }
 
         /// <summary>
         /// The difficulty of the Question
@@ -144,6 +144,7 @@ namespace MobileDataCollection.Survey.Models
             Image2Source = im2Source;
             Image3Source = im3Source;
             Image4Source = im4Source;
+            NumberOfPossibleAnswers = 4;
         }
     }
 }
