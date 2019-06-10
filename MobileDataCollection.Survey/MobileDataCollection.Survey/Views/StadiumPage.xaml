@@ -5,24 +5,37 @@
              xmlns:controls="clr-namespace:MobileDataCollection.Survey.Controls">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="Button">Gray</Color>
-            <Color x:Key="Selection">ForestGreen</Color>
-            <Color x:Key="Selection2">Lime</Color>
+            <Color x:Key="Button">Transparent</Color>
+            <Color x:Key="Selection">DarkSeaGreen</Color>
+            <Color x:Key="TextColor">Gray</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ScrollView>
-        <StackLayout Margin="10">
-            <Label Text="Frage X" FontSize="Medium" HorizontalTextAlignment="Center"/>
-            <Label Text="Ordnen Sie dem Bild eine Feldfruchtsorte und das Stadium/die Stadien der Entwicklung zu." FontSize="Default" />
-            <Image Source="Q1_G1_F1_B1_klein.png" Aspect="AspectFit"/>
-            
-            <Grid>
+        <StackLayout Padding="10">
+        <Grid Margin="7,0,0,0" VerticalOptions="StartAndExpand" RowSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label x:Name="QuestionNumber" HorizontalTextAlignment="Center"
+                   TextColor="{StaticResource TextColor}" Text="Frage X" FontSize="Medium"/>
+            <Label Grid.Row="1" Margin="0,7,0,0" x:Name="QuestionText" 
+                   Text="Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu." 
+                   FontSize="Medium" TextColor="{StaticResource TextColor}"/>
+            <controls:DetailImage BackgroundColor="{StaticResource Button}" Grid.Row="2" x:Name="Picture" Margin="0,0,0,15" Source="Q1_G1_F1_B1_klein.png"/>
+            <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Frame Grid.Column="0" HeightRequest="170" Padding="3" BorderColor="LightGray" CornerRadius="0">
+                <Frame Grid.Column="0" Padding="3" BorderColor="LightGray" CornerRadius="0">
                     <controls:InlinePicker x:Name="DemoInlinePicker">
                         <controls:InlinePicker.ItemTemplate>
                             <DataTemplate>
@@ -33,8 +46,7 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <Label Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Text="{Binding StadiumName}" />
-                                        <Image Grid.Column="1" Source="{Binding ImageSource}" HorizontalOptions="EndAndExpand"  HeightRequest="30">
-                                        </Image>
+                                        <controls:DetailImage Grid.Column="1" BackgroundColor="{StaticResource Button}" Source="{Binding ImageSource}" HorizontalOptions="EndAndExpand"  HeightRequest="25"/>
                                     </Grid>
                                 </ViewCell>
                             </DataTemplate>
@@ -51,7 +63,7 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Name}" />
-                                        
+
                                     </Grid>
                                 </ViewCell>
                             </DataTemplate>
@@ -59,21 +71,21 @@
                     </controls:InlinePicker>
                 </Frame>
             </Grid>
-           
-
-            <Grid Grid.Row="2" VerticalOptions="EndAndExpand">
+        </Grid>
+        <Grid VerticalOptions="EndAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Text="Abbrechen"
-                        BackgroundColor="{StaticResource Button}"
-                        TextColor="White"/>
+                <Button Text="Abbrechen" FontSize="Medium"
+                    BackgroundColor="{StaticResource Button}"
+                    TextColor="{StaticResource TextColor}"
+                    Clicked="OnAbbrechenButtonClicked"/>
                 <Button Grid.Column="1"
-                        Text="Weiter"
-                        BackgroundColor="{StaticResource Button}"
-                        TextColor="White" />
+                    Text="Weiter" FontSize="Medium"
+                    BackgroundColor="{StaticResource Button}"
+                    TextColor="{StaticResource TextColor}"
+                    Clicked="OnWeiterButtonClicked"/>
             </Grid>
         </StackLayout>
-    </ScrollView>
 </ContentPage>

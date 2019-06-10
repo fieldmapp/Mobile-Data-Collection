@@ -9,12 +9,12 @@ namespace MobileDataCollection.Survey.Controls
 {
     public class ContentButton : ContentView
     {
-        private readonly TapGestureRecognizer _tapGestureRecognizer;
+        private readonly TapGestureRecognizer elementClicked;
 
         public ContentButton()
         {
-            _tapGestureRecognizer = new TapGestureRecognizer();
-            GestureRecognizers.Add(_tapGestureRecognizer);
+            elementClicked = new TapGestureRecognizer();
+            GestureRecognizers.Add(elementClicked);
         }
 
         protected override void OnChildAdded(Element child)
@@ -22,7 +22,10 @@ namespace MobileDataCollection.Survey.Controls
             base.OnChildAdded(child);
             if (child is View childview)
             {
-                childview.GestureRecognizers.Add(_tapGestureRecognizer);
+                childview.GestureRecognizers.Add(elementClicked);
+                childview.GestureRecognizers.Add(new TapGestureRecognizer() {
+                    Command = new Command(() => {childview.BackgroundColor = Color.LightGray; })
+                });
             }
         }
 
@@ -33,7 +36,7 @@ namespace MobileDataCollection.Survey.Controls
         {
             if (newValue is ICommand command && bindable is ContentButton contentButton)
             {
-                contentButton._tapGestureRecognizer.Command = command;
+                contentButton.elementClicked.Command = command;
             }
         }
 

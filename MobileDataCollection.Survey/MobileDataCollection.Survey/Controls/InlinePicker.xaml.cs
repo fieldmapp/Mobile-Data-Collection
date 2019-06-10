@@ -21,5 +21,14 @@ namespace MobileDataCollection.Survey.Controls
             InitializeComponent();
         }
 
+        public void Scroll(object sender, EventArgs e)
+        {
+        }
+        public void Tapped(object sender, SelectedItemChangedEventArgs e)
+        {
+            ContentButton selected =(ContentButton)e.SelectedItem;
+            selected.BackgroundColor = Color.LightGray;
+        }
+
     }
 }

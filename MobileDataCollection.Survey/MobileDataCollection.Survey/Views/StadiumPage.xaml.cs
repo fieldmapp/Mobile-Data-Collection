@@ -34,5 +34,17 @@ namespace MobileDataCollection.Survey.Views
             DemoInlinePicker.ItemSource = TestCollection;
             DemoInlinePicker2.ItemSource = TestCollection2;
         }
+        void OnWeiterButtonClicked(object sender, EventArgs e)
+        {
+            //TBD:
+            //Warning (?)
+            //Return to Homescreen
+        }
+        void OnAbbrechenButtonClicked(object sender, EventArgs e)
+        {
+            //TBD:
+            //Warning (?)
+            //Return to Homescreen
+        }
     }
 }

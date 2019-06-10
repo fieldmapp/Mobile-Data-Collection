@@ -5,8 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="MobileDataCollection.Survey.Controls.InlinePicker">
-  <ContentView.Content>
-        <ListView RowHeight="50" x:Name="ListView" BackgroundColor="Transparent" SelectionMode="Single">
+    <ContentView.Content>
+        <ListView ItemAppearing="Scroll" ItemTapped="Tapped" RowHeight="40" x:Name="ListView" BackgroundColor="Transparent" SelectionMode="Single">
             
         </ListView>
   </ContentView.Content>
