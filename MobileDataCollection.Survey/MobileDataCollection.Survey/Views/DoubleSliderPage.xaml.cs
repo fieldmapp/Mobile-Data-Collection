@@ -130,7 +130,8 @@ namespace MobileDataCollection.Survey.Views
             else if (this.AnswersGiven == this.AnswersNeeded)
             {
                 //TBD: Setze Header der IntrospectionPage auf 5/5 etc. und übergebe Parameter WELCHE IntrospectionPage --> braucht eigenschaft
-                Navigation.PushAsync(new IntrospectionPage(this.survey));
+                //Navigation.PushAsync(new IntrospectionPage(this.survey));
+                Navigation.PushAsync(new EvaluationPage((this.AnswerItem.ResultQuestionA+this.AnswerItem.ResultQuestionB)/2));
             }
             
         }

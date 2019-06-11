@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MobileDataCollection.Survey.Views.EvaluationPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Button">Transparent</Color>
+            <Color x:Key="Selection">DarkSeaGreen</Color>
+            <Color x:Key="TextColor">Gray</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Grid VerticalOptions="CenterAndExpand" RowSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label FontSize="Medium" Margin="0,0,0,50" Text="Sie haben in dieser Kategorie" HorizontalOptions="CenterAndExpand"/>
+                <ProgressBar Grid.Row="1" x:Name="PercentBar" ScaleY="2" ProgressColor="{Binding ProgressColor}"  
+                             BackgroundColor="{Binding BarColor}" Progress="{Binding PercentBarValue}"
+                             />
+                <Label  Margin="0,10,0,0" Grid.Row="2" x:Name="PercentLabel" Text="{Binding PercentLabelText}"
+                HorizontalOptions="CenterAndExpand" FontSize="Large"/>
+                <Label FontSize="Medium" Margin="0,50,0,0" Grid.Row="3" Text="erreicht" HorizontalOptions="CenterAndExpand"/>
+            </Grid>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
