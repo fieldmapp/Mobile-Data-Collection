@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MobileDataCollection.Survey.Models
 {
-    class AnswerStadiumPage
+    class AnswerStadiumPage : IUserAnswer
     {
         /// <summary>
         /// Selected fruit type

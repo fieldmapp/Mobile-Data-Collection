@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MobileDataCollection.Survey.Models
 {
-    class QuestionStadiumPage
+    class QuestionStadiumPage : IQuestionContent
     {
         //TODO: Add List with new class (eg FruitTypeSubItem)
         //TODO: Think of a way to store correct answer

@@ -32,12 +32,12 @@ namespace MobileDataCollection.Survey.Views
             MenuList.ItemsSource = Items;
         }
 
-        private void MenuList_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void MenuList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (!(e.Item is SurveyMenuItem selectedItem))
                 throw new NotImplementedException();
             if (PageConstructorDictionary.TryGetValue(selectedItem.Id, out var pageConstructor))
-                Navigation.PushAsync(pageConstructor());
+                await Navigation.PushAsync(pageConstructor());
         }
     }
 }

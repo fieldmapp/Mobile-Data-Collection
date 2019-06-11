@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace MobileDataCollection.Survey.Models
 {
-    public class AnswerIntrospetionPage : BindableObject
+    public class AnswerIntrospetionPage : BindableObject, IUserAnswer
     {
         public static readonly BindableProperty SelectedAnswerProperty = BindableProperty.Create(nameof(SelectedAnswer), typeof(int), typeof(AnswerIntrospetionPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty QuestionProperty = BindableProperty.Create(nameof(Question), typeof(QuestionIntrospectionPage), typeof(AnswerIntrospetionPage), null, BindingMode.OneWay);
