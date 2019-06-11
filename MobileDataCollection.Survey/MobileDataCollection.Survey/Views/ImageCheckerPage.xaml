@@ -13,7 +13,7 @@
     <StackLayout Margin="0"
                  Padding="10">
         <Label x:Name="NummerFrage"
-               Text="Frage X"
+               Text="{Binding Header}"
                FontSize="Medium"
                HorizontalTextAlignment="Center"/>
         <Label FontSize="Small"/>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Collections.ObjectModel;
 
 namespace MobileDataCollection.Survey.Models
 {
@@ -13,5 +14,6 @@ namespace MobileDataCollection.Survey.Models
         /// Contains all possible stadiums
         /// </summary>
         List<StadiumSubItem> StadiumSubItems { get; set; } = new List<StadiumSubItem>();
+        ObservableCollection<Plant> TestCollection2 = new ObservableCollection<Plant>();
     }
 }

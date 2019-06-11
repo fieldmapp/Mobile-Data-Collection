@@ -25,7 +25,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Label x:Name="QuestionNumber" HorizontalTextAlignment="Center"
-                   TextColor="{StaticResource TextColor}" Text="Frage X" FontSize="Medium"/>
+                   TextColor="{StaticResource TextColor}" Text="{Binding Header}" FontSize="Medium"/>
             <Label Grid.Row="1" Margin="0,7,0,0" x:Name="QuestionText" 
                    Text="Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu." 
                    FontSize="Medium" TextColor="{StaticResource TextColor}"/>
