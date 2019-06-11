@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace MobileDataCollection.Survey.Models
 {
-	public class QuestionDoubleSliderPage : BindableObject
+	public class QuestionDoubleSliderPage : BindableObject, IQuestionContent
     {
         public static readonly BindableProperty AnswersNeededProperty = BindableProperty.Create(nameof(AnswersNeeded), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(QuestionDoubleSliderPage), string.Empty, BindingMode.OneWay);
