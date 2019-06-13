@@ -8,9 +8,17 @@ using Login;
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace DLR_Data_App
 {
+  /*
+   * Main class for cross plattform app
+   */
   public partial class App : Application
   {
+    public static string DatabaseLocation = string.Empty;
+    public static string FolderLocation = string.Empty;
 
+    /*
+     * Constructor without database support
+     */
     public App()
     {
       InitializeComponent();
@@ -23,9 +31,29 @@ namespace DLR_Data_App
       {
         MainPage = new LoginPage();
       }
+    }
+
+    /*
+     * Constructor with database support
+     * @param folderPath Path to the location of stored files in the filesystem
+     * @param databaseLocation Path to the local database
+     */
+    public App(string folderPath, string databaseLocation)
+    {
+      InitializeComponent();
+
+      FolderLocation = folderPath;
+      DatabaseLocation = databaseLocation;
       
-      //MainPage = new NavigationPage(new LoginPage());
-      //MainPage = new MainPage();
+      if (Preferences.Get("autologin", true))
+      {
+        MainPage = new MainPage();
+      }
+      else
+      {
+        MainPage = new LoginPage();
+      }
+
     }
 
     protected override void OnStart()

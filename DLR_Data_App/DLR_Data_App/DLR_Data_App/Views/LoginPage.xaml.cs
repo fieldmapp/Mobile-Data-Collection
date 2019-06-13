@@ -1,4 +1,5 @@
 ﻿using DLR_Data_App.Localizations;
+using DLR_Data_App.Models;
 using DLR_Data_App.Services;
 using DLR_Data_App.Views;
 using Login.Models;
@@ -15,13 +16,12 @@ using Xamarin.Forms.Xaml;
 /**
  * Login page class 
  */
-namespace Login
+namespace DLR_Data_App.Views
 {
   [XamlCompilation(XamlCompilationOptions.Compile)]
   public partial class LoginPage : ContentPage
   {
-    private User user;
-
+ 
     public LoginPage()
     {
       InitializeComponent();
@@ -46,11 +46,10 @@ namespace Login
     }
 
     /**
-     * Method checks user login
+     * Get login data, check them and on success navigate to project list
      */
     async void Btn_signin_Clicked(object sender, EventArgs e)
     {
-      this.user = new User(entry_Username.Text, entry_Password.Text);
       if (Check_Information())
       {
         bool answer = await DisplayAlert(AppResources.privacypolicy, AppResources.privacytext1, AppResources.accept, AppResources.decline);
@@ -75,6 +74,9 @@ namespace Login
       }
     }
 
+    /**
+     * Open form for creating a new user
+     */
     async void Btn_newaccount_Clicked(object sender, EventArgs e)
     {
       bool answer = await DisplayAlert(AppResources.newaccount, AppResources.newaccountwarning, AppResources.accept, AppResources.decline);
@@ -92,25 +94,34 @@ namespace Login
       }
     }
 
-    /*
+    /**
      * Checks login with stored data
      */
     private bool Check_Information()
     {
-      string username = Preferences.Get("username", "");
-      string password = Preferences.Get("password", "");
+      //string username = Preferences.Get("username", "");
+      //string password = Preferences.Get("password", "");
 
+      // Get all users from database
+      List<User> userList = Database.ReadUser();
+
+      // Get input from user
       string check_username = entry_Username.Text;
       string check_password = Helpers.Encrypt_password(entry_Password.Text);
 
-      if (username == "" || password == "")
+      // Check if input empty
+      if (check_username == "" || check_password == "")
       {
         return false;
       }
 
-      if (username == check_username && password == check_password)
+      // Check if entry match with user in database
+      foreach(User user in userList)
       {
-        return true;
+        if(user.Username == check_username && user.Password == check_password)
+        {
+          return true;
+        }
       }
 
       return false;

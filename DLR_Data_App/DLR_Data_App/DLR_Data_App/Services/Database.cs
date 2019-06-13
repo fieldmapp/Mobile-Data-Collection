@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using DLR_Data_App.Models;
 using SQLite;
 
 namespace DLR_Data_App.Services
@@ -13,54 +14,143 @@ namespace DLR_Data_App.Services
    */
   class Database
   {
-    string dbName;
-    string dbPath;
-
     /*
      * Constructor
      */
     public Database()
-    {
-      this.dbName = "dlrdata.sqlite";
-      this.dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), this.dbName);
-
-      // If database doesn't exist create a new database
-      CreateDatabase()
+    {     
     }
 
     /*
-     * Create a new database file
+     * Insert data into the database
+     * @param data The contents that will pushed into the database
+     * @return Status of inserting data
      */
-    public bool CreateDatabase()
+    public static bool Insert<T>(ref T data)
     {
-      var db = new SQLiteConnection(this.dbPath);
-      return false;
+      int resultInsert = 0;
+
+      // database will be closed after leaving the using statement
+      using (SQLiteConnection conn = new SQLite.SQLiteConnection(App.DatabaseLocation))
+      {
+        // if table doesn't exist create a new one
+        conn.CreateTable<T>();
+
+        // Insert data into table
+        resultInsert = conn.Insert(data);
+      }
+
+      // check if data was successfully inserted
+      if (resultInsert > 0)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
     }
 
     /*
-     * Create a new table schema
-     * @param tablename Name of the table
-     * @param header 2D-Array to define the fields inside of the new table
+     * Update data in database
+     * @param data The contents that will updated in the database
+     * @return Status of updating data
      */
-    public bool CreateTable(string tablename, string[][] header)
+    public static bool Update<T>(ref T data)
     {
-      return false;
+      int resultUpdate = 0;
+
+      // database will be closed after leaving the using statement
+      using (SQLiteConnection conn = new SQLite.SQLiteConnection(App.DatabaseLocation))
+      {
+        // if table doesn't exist create a new one
+        conn.CreateTable<T>();
+
+        // Update data into table
+        resultUpdate = conn.Update(data);
+      }
+
+      // check if data was successfully inserted
+      if (resultUpdate > 0)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
     }
 
     /*
-     * Edit an existing table schema
+     * Delete data from database
+     * @param data The contents that will deleted from the database
+     * @return Status of deleting data
      */
-    public bool EditTable()
+    public static bool Delete<T>(ref T data)
     {
-      return false;
+      int resultDelete = 0;
+
+      // database will be closed after leaving the using statement
+      using (SQLiteConnection conn = new SQLite.SQLiteConnection(App.DatabaseLocation))
+      {
+        // Update data into table
+        resultDelete = conn.Delete(data);
+      }
+
+      // check if data was successfully deleted
+      if (resultDelete > 0)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
     }
 
     /*
-     * Delete an existing table
+     * Return all users
+     * @return List of all users in database
      */
-    public bool DeleteTable()
+    public static List<User> ReadUser()
     {
-      return false;
+      List<User> result;
+
+      // database will be closed after leaving the using statement
+      using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+      {
+        // if table doesn't exist create a new one
+        conn.CreateTable<User>();
+
+        // get content of table
+        result = conn.Table<User>().ToList();
+      }
+
+      return result;
     }
+
+    /*
+     * Return all projects
+     * @return List of all projects in database
+     */
+    public static List<Project> ReadProjects()
+    {
+      List<Project> result;
+
+      // database will be closed after leaving the using statement
+      using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+      {
+        // if table doesn't exist create a new one
+        conn.CreateTable<Project>();
+
+        // get content of table
+        result = conn.Table<Project>().ToList();
+      }
+
+      return result;
+    }
+
+    
+
   }
 }

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DLR_Data_App"
              xmlns:res="clr-namespace:DLR_Data_App.Localizations"
-             x:Class="Login.LoginPage"
+             x:Class="DLR_Data_App.Views.LoginPage"
              BackgroundImage="Background_Login.png">
     <ContentPage.Content>
         <StackLayout x:Name="MasterLayout">

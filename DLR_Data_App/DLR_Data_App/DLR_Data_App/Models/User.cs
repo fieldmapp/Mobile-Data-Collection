@@ -5,25 +5,35 @@ using System.Text;
 using Xamarin.Essentials;
 using SQLite;
 
-/**
- * User Class
- */
-namespace Login.Models
+namespace DLR_Data_App.Models
 {
+  /**
+   * Model for users
+   */
   public class User
   {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
+
+    // Name of the user
     public string Username { get; set; }
+
+    // Password stored in SHA512
     public string Password { get; set; }
+
+    // Autologin enabled check
     public bool Autologin { get; set; }
 
-    public User() { }
-    public User(string Username, string Password)
+    public User()
     {
-      this.Username = Username;
-      this.Password = Password;
-      this.Autologin = false;
+      Autologin = false;
+    }
+
+    public User(string username, string password)
+    {
+      Username = username;
+      Password = password;
+      Autologin = false;
     }
   }
 }

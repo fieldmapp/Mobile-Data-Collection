@@ -1,4 +1,5 @@
-﻿using DLR_Data_App.Services;
+﻿using DLR_Data_App.Models;
+using DLR_Data_App.Services;
 using Login;
 using Login.Models;
 using System;
@@ -16,6 +17,8 @@ namespace DLR_Data_App.Views
   [XamlCompilation(XamlCompilationOptions.Compile)]
   public partial class NewProfilePage : ContentPage
   {
+    private User user;
+
     public NewProfilePage()
     {
       InitializeComponent();
@@ -28,8 +31,15 @@ namespace DLR_Data_App.Views
     
     async void Btn_accept_Clicked(object sender, EventArgs e)
     {
-      Preferences.Set("username", entry_username.Text);
-      Preferences.Set("password", Helpers.Encrypt_password(entry_password.Text));
+      //Preferences.Set("username", entry_username.Text);
+      //Preferences.Set("password", Helpers.Encrypt_password(entry_password.Text));
+
+      user = new User();
+      user.Username = entry_username.Text;
+      user.Password = Helpers.Encrypt_password(entry_password.Text);
+      user.Autologin = false;
+
+      Database.Insert(ref user);
 
       if (Device.RuntimePlatform == Device.Android)
       {
