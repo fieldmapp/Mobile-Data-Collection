@@ -14,6 +14,8 @@ namespace MobileDataCollection.Survey.Models
 {
     public class DatabankCommunicator //: ISQLite
     {
+        private SQLiteConnection conn;
+
         public SQLiteConnection GetConnection()
         {
             var dbName = "QuestionDatabank.sqlite";
@@ -23,7 +25,9 @@ namespace MobileDataCollection.Survey.Models
             return conn;
         }
 
-
-
+        public void connectionToDb()
+        {
+            conn = DependencyService.Get<ISQLite>().GetConnection();
+        }
     }
 }

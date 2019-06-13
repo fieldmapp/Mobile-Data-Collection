@@ -42,6 +42,7 @@ namespace MobileDataCollection.Survey.Views
             get { return (QuestionImageCheckerPage)GetValue(QuestionItemProperty); }
             set { SetValue(QuestionItemProperty, value); }
         }
+
         /// <summary>
         /// Item of the Answer
         /// </summary>
@@ -188,15 +189,18 @@ namespace MobileDataCollection.Survey.Views
                 // Set new Question
                
                 this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded + 1}";
+
+                AnswerItem.Image1Selected = PictureA.BorderColor == selectedColor ? 1 : 0; //in QuestionItem ist ImageCorrectAnswer, wie verwenden
+                AnswerItem.Image2Selected = PictureB.BorderColor == selectedColor ? 1 : 0;
+                AnswerItem.Image3Selected = PictureC.BorderColor == selectedColor ? 1 : 0;
+                AnswerItem.Image4Selected = PictureD.BorderColor == selectedColor ? 1 : 0;
+                PictureA.BorderColor = nonSelectedColor;
+                PictureB.BorderColor = nonSelectedColor;
+                PictureC.BorderColor = nonSelectedColor;
+                PictureD.BorderColor = nonSelectedColor;
+
+                QuestionItem = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 1, 0, 1, 1, 0, "Q1_G1_F2_B1_klein.png", "Q1_G1_F2_B2_klein.png", "Q1_G1_F2_B3_klein.png", "Q1_G1_F2_B4_klein.png");
             }
-
-            AnswerItem.Image1Selected = PictureA.BorderColor == selectedColor ? 1 : 0; //in QuestionItem ist ImageCorrectAnswer, wie verwenden
-            AnswerItem.Image2Selected = PictureB.BorderColor == selectedColor ? 1 : 0;
-            AnswerItem.Image3Selected = PictureC.BorderColor == selectedColor ? 1 : 0;
-            AnswerItem.Image4Selected = PictureD.BorderColor == selectedColor ? 1 : 0;
-            //noch einbauen, das Rahmen zurückgesetzt werden
-
-            QuestionItem = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 1, 0, 1, 1, 0, "Q1_G1_F2_B1_klein.png", "Q1_G1_F2_B2_klein.png", "Q1_G1_F2_B3_klein.png", "Q1_G1_F2_B4_klein.png");
 
         }
         void OnAbbrechenButtonClicked(object sender, EventArgs e)
@@ -230,13 +234,21 @@ namespace MobileDataCollection.Survey.Views
             conn.CreateTable<QuestionImageCheckerPage>();
             conn.CreateTable<AnswerImageCheckerPage>();
         }*/
-        /*public void CreateQuestions()
+        public void CreateQuestions()
         {
             QuestionImageCheckerPage question = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 0, 1, 0, "Q1_G1_F1_B1_klein.png", "Q1_G1_F1_B2_klein.png", "Q1_G1_F1_B3_klein.png", "Q1_G1_F1_B4_klein.png");
             conn.Insert(question);
             question = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 1, 0, 1, 1, 0, "Q1_G1_F2_B1_klein.png", "Q1_G1_F2_B2_klein.png", "Q1_G1_F2_B3_klein.png", "Q1_G1_F2_B4_klein.png");
             conn.Insert(question);
-        }*/
+            question = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 2, 1, 1, 1, 0, "Q1_G2_F1_B1_klein.png", "Q1_G2_F1_B2_klein.png", "Q1_G2_F1_B3_klein.png", "Q1_G2_F1_B4_klein.png");
+            conn.Insert(question);
+            question = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 2, 0, 0, 1, 0, "Q1_G2_F2_B1_klein.png", "Q1_G2_F2_B2_klein.png", "Q1_G2_F2_B3_klein.png", "Q1_G2_F2_B4_klein.png");
+            conn.Insert(question);
+            question = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Kartoffel abgebildet?", 3, 1, 0, 1, 0, "Q1_G3_F1_B1_klein.png", "Q1_G3_F1_B2_klein.png", "Q1_G3_F1_B3_klein.png", "Q1_G3_F1_B4_klein.png");
+            conn.Insert(question);
+            question = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Gerste abgebildet?", 3, 0, 0, 1, 0, "Q1_G3_F2_B1_klein.png", "Q1_G3_F2_B2_klein.png", "Q1_G3_F2_B3_klein.png", "Q1_G3_F2_B4_klein.png");
+            conn.Insert(question);
+        }
         /*public QuestionImageCheckerPage LoadQuestion(int difficulty,int zaehler)
         {
             string query = String.Format("SELECT * FROM QuestionImageCheckerPage LEFT OUTER JOIN AnswerImageCheckerPage ON QuestionImageCheckerPage.InternId = AnswerImageCheckerPage.InternId WHERE Difficulty = {0}", difficulty);
