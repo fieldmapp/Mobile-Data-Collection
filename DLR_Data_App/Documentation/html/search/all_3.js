@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['database',['Database',['../class_d_l_r___data___app_1_1_services_1_1_database.html',1,'DLR_Data_App::Services']]],
   ['dlr_5fdata_5fapp',['DLR_Data_App',['../namespace_d_l_r___data___app.html',1,'']]],
   ['dlr_20data_20app',['DLR Data App',['../index.html',1,'']]],
   ['localizations',['Localizations',['../namespace_d_l_r___data___app_1_1_localizations.html',1,'DLR_Data_App']]],

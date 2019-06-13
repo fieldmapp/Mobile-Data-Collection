@@ -11,14 +11,15 @@ var hierarchy =
       [ "DLR_Data_App.Views.AboutPage", "class_d_l_r___data___app_1_1_views_1_1_about_page.html", null ],
       [ "DLR_Data_App.Views.ItemDetailPage", "class_d_l_r___data___app_1_1_views_1_1_item_detail_page.html", null ],
       [ "DLR_Data_App.Views.ItemsPage", "class_d_l_r___data___app_1_1_views_1_1_items_page.html", null ],
+      [ "DLR_Data_App.Views.LoginPage", "class_d_l_r___data___app_1_1_views_1_1_login_page.html", null ],
       [ "DLR_Data_App.Views.MenuPage", "class_d_l_r___data___app_1_1_views_1_1_menu_page.html", null ],
       [ "DLR_Data_App.Views.NewItemPage", "class_d_l_r___data___app_1_1_views_1_1_new_item_page.html", null ],
       [ "DLR_Data_App.Views.NewProfilePage", "class_d_l_r___data___app_1_1_views_1_1_new_profile_page.html", null ],
       [ "DLR_Data_App.Views.ProjectPage", "class_d_l_r___data___app_1_1_views_1_1_project_page.html", null ],
       [ "DLR_Data_App.Views.SensorTestPage", "class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html", null ],
-      [ "DLR_Data_App.Views.SettingsPage", "class_d_l_r___data___app_1_1_views_1_1_settings_page.html", null ],
-      [ "Login.LoginPage", "class_login_1_1_login_page.html", null ]
+      [ "DLR_Data_App.Views.SettingsPage", "class_d_l_r___data___app_1_1_views_1_1_settings_page.html", null ]
     ] ],
+    [ "DLR_Data_App.Services.Database", "class_d_l_r___data___app_1_1_services_1_1_database.html", null ],
     [ "DLR_Data_App.Services.Sensors.GPS", "class_d_l_r___data___app_1_1_services_1_1_sensors_1_1_g_p_s.html", null ],
     [ "DLR_Data_App.Services.Sensors.Gyroscope", "class_d_l_r___data___app_1_1_services_1_1_sensors_1_1_gyroscope.html", null ],
     [ "DLR_Data_App.Services.Helpers", "class_d_l_r___data___app_1_1_services_1_1_helpers.html", null ],
@@ -46,5 +47,12 @@ var hierarchy =
     [ "MasterDetailPage", null, [
       [ "DLR_Data_App.Views.MainPage", "class_d_l_r___data___app_1_1_views_1_1_main_page.html", null ]
     ] ],
-    [ "Login.Models.User", "class_login_1_1_models_1_1_user.html", null ]
+    [ "DLR_Data_App.Services.Parser", "class_d_l_r___data___app_1_1_services_1_1_parser.html", null ],
+    [ "DLR_Data_App.Models.Project", "class_d_l_r___data___app_1_1_models_1_1_project.html", null ],
+    [ "DLR_Data_App.Models.ProjectForm", "class_d_l_r___data___app_1_1_models_1_1_project_form.html", null ],
+    [ "DLR_Data_App.Models.ProjectFormControls", "class_d_l_r___data___app_1_1_models_1_1_project_form_controls.html", null ],
+    [ "DLR_Data_App.Models.ProjectFormElements", "class_d_l_r___data___app_1_1_models_1_1_project_form_elements.html", null ],
+    [ "DLR_Data_App.Models.ProjectFormMetadata", "class_d_l_r___data___app_1_1_models_1_1_project_form_metadata.html", null ],
+    [ "DLR_Data_App.Services.ProjectGenerator", "class_d_l_r___data___app_1_1_services_1_1_project_generator.html", null ],
+    [ "DLR_Data_App.Models.User", "class_d_l_r___data___app_1_1_models_1_1_user.html", null ]
 ];
