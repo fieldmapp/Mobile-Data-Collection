@@ -20,5 +20,10 @@ namespace MobileDataCollection.Survey.Models
         {
             QuestionText = text;
         }
+
+        public QuestionIntrospectionPage()
+        {
+
+        }
     }
 }

@@ -12,9 +12,8 @@ using MobileDataCollection.Survey.Models;
 [assembly:Dependency(typeof(DatabankCommunicator))]
 namespace MobileDataCollection.Survey.Models
 {
-    public class DatabankCommunicator //: ISQLite
+    public class DatabankCommunicator : ISQLite
     {
-        private SQLiteConnection conn;
 
         public SQLiteConnection GetConnection()
         {
@@ -23,11 +22,6 @@ namespace MobileDataCollection.Survey.Models
             var path = Path.Combine(dbPath, dbName);
             var conn = new SQLiteConnection(path);
             return conn;
-        }
-
-        public void connectionToDb()
-        {
-            conn = DependencyService.Get<ISQLite>().GetConnection();
         }
     }
 }

@@ -73,5 +73,11 @@ namespace MobileDataCollection.Survey.Models
             Image3Selected = selected3;
             Image4Selected = selected4;
         }
+
+        // Constructor is needed for the database
+        public AnswerImageCheckerPage()
+        {
+
+        }
     }
 }

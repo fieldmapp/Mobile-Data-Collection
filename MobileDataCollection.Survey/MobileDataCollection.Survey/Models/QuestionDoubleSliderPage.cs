@@ -102,5 +102,11 @@ namespace MobileDataCollection.Survey.Models
             Level = level;
         }
 
+        // Constructor is needed for the database
+        public QuestionDoubleSliderPage()
+        {
+
+        }
+
     }
 }

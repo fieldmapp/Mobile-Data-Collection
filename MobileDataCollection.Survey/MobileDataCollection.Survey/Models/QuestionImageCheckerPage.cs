@@ -8,6 +8,7 @@ namespace MobileDataCollection.Survey.Models
 {
     public class QuestionImageCheckerPage : BindableObject, IQuestionContent
     {
+        
         public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(InternId), typeof(int), typeof(QuestionImageCheckerPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty NumberOfPossibleAnswersProperty = BindableProperty.Create(nameof(NumberOfPossibleAnswers), typeof(int), typeof(QuestionImageCheckerPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty DifficultyProperty = BindableProperty.Create(nameof(Difficulty), typeof(int), typeof(QuestionImageCheckerPage), 0, BindingMode.OneWay);
@@ -20,7 +21,7 @@ namespace MobileDataCollection.Survey.Models
         public static readonly BindableProperty Image2SourceProperty = BindableProperty.Create(nameof(Image2Source), typeof(string), typeof(QuestionImageCheckerPage), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty Image3SourceProperty = BindableProperty.Create(nameof(Image3Source), typeof(string), typeof(QuestionImageCheckerPage), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty Image4SourceProperty = BindableProperty.Create(nameof(Image4Source), typeof(string), typeof(QuestionImageCheckerPage), string.Empty, BindingMode.OneWay);
-
+        
 
         /// <summary>
         /// Intern Id only for this Type Of Question
@@ -28,8 +29,10 @@ namespace MobileDataCollection.Survey.Models
         [PrimaryKey,AutoIncrement]
         public int InternId
         {
+            
             get => (int)GetValue(InternIdProperty);
             set => SetValue(InternIdProperty, value);
+            
         }
 
         /// <summary>
@@ -146,5 +149,12 @@ namespace MobileDataCollection.Survey.Models
             Image4Source = im4Source;
             NumberOfPossibleAnswers = 4;
         }
+
+        // Constructor is needed for the database
+        public QuestionImageCheckerPage()
+        {
+
+        }
+        
     }
 }

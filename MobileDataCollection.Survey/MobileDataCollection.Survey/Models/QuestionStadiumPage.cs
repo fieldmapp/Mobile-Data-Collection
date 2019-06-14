@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace MobileDataCollection.Survey.Models
 {
-    class QuestionStadiumPage : IQuestionContent
+    public class QuestionStadiumPage : IQuestionContent
     {
         //TODO: Add List with new class (eg FruitTypeSubItem)
         //TODO: Think of a way to store correct answer
@@ -15,5 +15,10 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         List<StadiumSubItem> StadiumSubItems { get; set; } = new List<StadiumSubItem>();
         ObservableCollection<Plant> TestCollection2 = new ObservableCollection<Plant>();
+
+        public QuestionStadiumPage()
+        {
+
+        }
     }
 }
