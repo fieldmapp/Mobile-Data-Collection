@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace MobileDataCollection.Survey.Models
 {
-    public class Test
+    public class Test : IQuestionContent
     {
         public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(ID), typeof(int), typeof(AnswerImageCheckerPage), 0, BindingMode.OneWay);
 

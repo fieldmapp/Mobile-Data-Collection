@@ -1,0 +1,117 @@
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+  <h:head>
+    <h:title>QuestionImageCheckerPage</h:title>
+    <model>
+      <instance>
+        <data id="build_QuestionImageCheckerPage_1560683201">
+          <meta>
+            <instanceID/>
+          </meta>
+          <InternId/>
+          <NumberOfPossibleAnswers/>
+          <Difficulty/>
+          <QuestionText/>
+          <Image1Correct/>
+          <Image2Correct/>
+          <Image3Correct/>
+          <Image4Correct/>
+          <Image1Source/>
+          <Image2Source/>
+          <Image3Source/>
+          <Image4Source/>
+        </data>
+      </instance>
+      <itext>
+        <translation lang="English">
+          <text id="/data/InternId:label">
+            <value>InternId</value>
+          </text>
+          <text id="/data/NumberOfPossibleAnswers:label">
+            <value>NumberOfPossibleAnswers</value>
+          </text>
+          <text id="/data/Difficulty:label">
+            <value>Difficulty</value>
+          </text>
+          <text id="/data/QuestionText:label">
+            <value>QuestionText</value>
+          </text>
+          <text id="/data/Image1Correct:label">
+            <value>Image1Correct</value>
+          </text>
+          <text id="/data/Image2Correct:label">
+            <value>Image2Correct</value>
+          </text>
+          <text id="/data/Image3Correct:label">
+            <value>Image3Correct</value>
+          </text>
+          <text id="/data/Image4Correct:label">
+            <value>Image4Correct</value>
+          </text>
+          <text id="/data/Image1Source:label">
+            <value>Image1Source</value>
+          </text>
+          <text id="/data/Image2Source:label">
+            <value>Image2Source</value>
+          </text>
+          <text id="/data/Image3Source:label">
+            <value>Image1Source</value>
+          </text>
+          <text id="/data/Image4Source:label">
+            <value>Image4Source</value>
+          </text>
+        </translation>
+      </itext>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/data/InternId" type="int" readonly="true()" required="true()" calculate="Athor"/>
+      <bind nodeset="/data/NumberOfPossibleAnswers" type="int" readonly="true()" required="true()"/>
+      <bind nodeset="/data/Difficulty" type="int" readonly="true()" required="true()"/>
+      <bind nodeset="/data/QuestionText" type="string" readonly="true()" required="true()"/>
+      <bind nodeset="/data/Image1Correct" type="int" readonly="true()" required="true()" constraint="(. &gt; '0') and (. &lt; '1')" jr:constraintMsg="Value must be between 0 and 1"/>
+      <bind nodeset="/data/Image2Correct" type="int" readonly="true()" required="true()" constraint="(. &gt; '0') and (. &lt; '1')" jr:constraintMsg="Value must be between 0 and 1"/>
+      <bind nodeset="/data/Image3Correct" type="int" readonly="true()" required="true()" constraint="(. &gt; '0')" jr:constraintMsg="Value must be between 0 and anything"/>
+      <bind nodeset="/data/Image4Correct" type="int" readonly="true()" required="true()" constraint="(. &gt; '0') and (. &lt; '1')" jr:constraintMsg="Value must be between 0 and 1"/>
+      <bind nodeset="/data/Image1Source" type="string" readonly="true()" required="true()"/>
+      <bind nodeset="/data/Image2Source" type="string" readonly="true()" required="true()"/>
+      <bind nodeset="/data/Image3Source" type="string" readonly="true()" required="true()"/>
+      <bind nodeset="/data/Image4Source" type="string" readonly="true()" required="true()"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/data/InternId">
+      <label ref="jr:itext('/data/InternId:label')"/>
+    </input>
+    <input ref="/data/NumberOfPossibleAnswers">
+      <label ref="jr:itext('/data/NumberOfPossibleAnswers:label')"/>
+    </input>
+    <input ref="/data/Difficulty">
+      <label ref="jr:itext('/data/Difficulty:label')"/>
+    </input>
+    <input ref="/data/QuestionText">
+      <label ref="jr:itext('/data/QuestionText:label')"/>
+    </input>
+    <input ref="/data/Image1Correct">
+      <label ref="jr:itext('/data/Image1Correct:label')"/>
+    </input>
+    <input ref="/data/Image2Correct">
+      <label ref="jr:itext('/data/Image2Correct:label')"/>
+    </input>
+    <input ref="/data/Image3Correct">
+      <label ref="jr:itext('/data/Image3Correct:label')"/>
+    </input>
+    <input ref="/data/Image4Correct">
+      <label ref="jr:itext('/data/Image4Correct:label')"/>
+    </input>
+    <input ref="/data/Image1Source">
+      <label ref="jr:itext('/data/Image1Source:label')"/>
+    </input>
+    <input ref="/data/Image2Source">
+      <label ref="jr:itext('/data/Image2Source:label')"/>
+    </input>
+    <input ref="/data/Image3Source">
+      <label ref="jr:itext('/data/Image3Source:label')"/>
+    </input>
+    <input ref="/data/Image4Source">
+      <label ref="jr:itext('/data/Image4Source:label')"/>
+    </input>
+  </h:body>
+</h:html>

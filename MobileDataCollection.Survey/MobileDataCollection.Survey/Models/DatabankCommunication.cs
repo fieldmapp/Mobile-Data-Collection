@@ -37,7 +37,7 @@ namespace MobileDataCollection.Survey.Models
             conn.DropTable<AnswerImageCheckerPage>();
 
             conn.CreateTable<Test>();
-            conn.CreateTable<QuestionImageCheckerPage>();
+            //conn.CreateTable<QuestionImageCheckerPage>();
         }
         public void CreateQuestionsForImageChecker()
         {
