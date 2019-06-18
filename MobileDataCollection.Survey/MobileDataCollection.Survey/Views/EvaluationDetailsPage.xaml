@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MobileDataCollection.Survey.Views.EvaluationDetailsPage">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Margin="0,0,0,10" FontSize="Large" Text="Details" HorizontalOptions="CenterAndExpand"/>
+            <Label FontSize="Small" Text="Hier sehen Sie Ihre Ergebnisse in den verschiedenen Schwierigkeitskategorien der Fragen." HorizontalOptions="StartAndExpand"/>
+            <Grid Margin="0,20,0,0" VerticalOptions="StartAndExpand" RowSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="170"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="1" FontSize="Medium" Text="Leicht:"  VerticalOptions="CenterAndExpand"/>
+                <Label Grid.Column="1" Grid.Row="1" x:Name="PercentEasyLabel" Text="{Binding PercentEasyLabelText}"
+                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large"/>
+                <ProgressBar Grid.Column="2" Grid.Row="1" x:Name="PercentEasyBar" ProgressColor="{Binding ProgressEasyColor}"  
+                             BackgroundColor="{Binding BarEasyColor}" Progress="{Binding PercentEasyBarValue}"
+                             />
+                <Label Grid.Row="2" FontSize="Medium" Text="Mittel:"  VerticalOptions="CenterAndExpand"/>
+                <Label Grid.Column="1" Grid.Row="2" x:Name="PercentMediumLabel" Text="{Binding PercentMediumLabelText}"
+                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large"/>
+                <ProgressBar Grid.Column="2" Grid.Row="2" x:Name="PercentMediumBar" ProgressColor="{Binding ProgressMediumColor}"  
+                             BackgroundColor="{Binding BarMediumColor}" Progress="{Binding PercentMediumBarValue}"
+                             />
+                <Label Grid.Row="3" FontSize="Medium" Text="Schwer:"  VerticalOptions="CenterAndExpand"/>
+                <Label Grid.Column="1" Grid.Row="3" x:Name="PercentHardLabel" Text="{Binding PercentHardLabelText}"
+                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large"/>
+                <ProgressBar Grid.Column="2" Grid.Row="3" x:Name="PercentHardBar" ProgressColor="{Binding ProgressHardColor}"  
+                             BackgroundColor="{Binding BarHardColor}" Progress="{Binding PercentHardBarValue}"
+                             />
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

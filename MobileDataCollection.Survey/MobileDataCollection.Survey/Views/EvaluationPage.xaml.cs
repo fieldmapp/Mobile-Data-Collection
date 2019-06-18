@@ -65,5 +65,9 @@ namespace MobileDataCollection.Survey.Views
             PercentLabel.BindingContext = this;
             PercentLabelText = $"{Result}%";
         }
+        void DetailsClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new EvaluationDetailsPage(80,47,15));
+        }
     }
 }
