@@ -5,7 +5,7 @@
              x:Class="MobileDataCollection.Survey.Views.MainPage">
 
     <StackLayout>
-        <ListView x:Name="MenuList" ItemTapped="MenuList_ItemTapped">
+        <ListView Margin="0,5,0,0" x:Name="MenuList" ItemTapped="MenuList_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
