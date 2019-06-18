@@ -208,4 +208,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Q1_G3_F1_B4_klein.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pfeil.png" />
+  </ItemGroup>
 </Project>

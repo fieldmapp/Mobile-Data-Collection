@@ -26,6 +26,6 @@ namespace MobileDataCollection.Survey.Models
 
         public string ProgressString => $"{AnswersGiven}/{AnswersNeeded}";
 
-        public Color BackgroundColor => Unlocked ? Color.White : Color.DarkGray;
+        public Color BackgroundColor { get; set; }
     }
 }

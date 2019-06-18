@@ -13,10 +13,10 @@ namespace MobileDataCollection.Survey.Views
     {
         public ObservableCollection<SurveyMenuItem> Items = new ObservableCollection<SurveyMenuItem>()
         {
-            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=4, ChapterName="DoubleSlider", Id= SurveyMenuItemType.DoubleSlider, Unlocked=true},
-            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=8, ChapterName="ImageChecker", Id= SurveyMenuItemType.ImageChecker, Unlocked=true},
-            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=5, ChapterName="Introspection", Id= SurveyMenuItemType.Introspection, Unlocked=true},
-            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=2, ChapterName="Stadium", Id= SurveyMenuItemType.Stadium, Unlocked=true}
+            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=4, ChapterName="Bedeckungsgrade", Id= SurveyMenuItemType.DoubleSlider, Unlocked=true},
+            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=8, ChapterName="Sortenerkennung", Id= SurveyMenuItemType.ImageChecker, Unlocked=true},
+            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=5, ChapterName="Selbsteinschätzung", Id= SurveyMenuItemType.Introspection, Unlocked=true},
+            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=2, ChapterName="Wuchsstadien", Id= SurveyMenuItemType.Stadium, Unlocked=true}
         };
         Dictionary<SurveyMenuItemType, Func<ContentPage>> PageConstructorDictionary = new Dictionary<SurveyMenuItemType, Func<ContentPage>>()
         {
@@ -36,8 +36,12 @@ namespace MobileDataCollection.Survey.Views
         {
             if (!(e.Item is SurveyMenuItem selectedItem))
                 throw new NotImplementedException();
+            SurveyMenuItem tapped = (SurveyMenuItem)e.Item;
             if (PageConstructorDictionary.TryGetValue(selectedItem.Id, out var pageConstructor))
+            {
                 await Navigation.PushAsync(pageConstructor());
+            }
+                
         }
     }
 }

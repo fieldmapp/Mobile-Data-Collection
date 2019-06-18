@@ -9,14 +9,21 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <ViewCell.View>
-                            <StackLayout BackgroundColor="{Binding BackgroundColor}"
-                                         Orientation="Vertical">
+                        <ViewCell.View Height="15" BackgroundColor="{Binding BackgroundColor}">
+                            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                 <StackLayout Orientation="Horizontal" 
                                              Margin="8,2,8,1">
-                                    <Label Text="{Binding ChapterName}" FontSize="Medium"/>
-                                    <Label Text="{Binding ProgressString}"  FontSize="Medium"
+                                    <Label Text="{Binding ChapterName}" FontSize="Medium" VerticalOptions="CenterAndExpand"/>
+                                    <Grid HorizontalOptions="EndAndExpand" ColumnSpacing="20">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Text="{Binding ProgressString}"  FontSize="Medium"
                                            HorizontalOptions="EndAndExpand"/>
+                                        <Image Grid.Column="1"  VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Source="pfeil.png" HeightRequest="15"/>
+                                    </Grid>
+                                    
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell.View>
