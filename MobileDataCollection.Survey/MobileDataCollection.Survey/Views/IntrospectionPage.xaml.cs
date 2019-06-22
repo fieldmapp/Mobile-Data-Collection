@@ -17,7 +17,7 @@ namespace MobileDataCollection.Survey.Views
     public partial class IntrospectionPage : ContentPage
     {
         public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), typeof(QuestionIntrospectionPage), typeof(IntrospectionPage), new QuestionIntrospectionPage("demo"), BindingMode.OneWay);
-        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerIntrospetionPage), typeof(IntrospectionPage), new AnswerIntrospetionPage(new QuestionIntrospectionPage("demo"), 1), BindingMode.OneWay);
+        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerIntrospectionPage), typeof(IntrospectionPage), new AnswerIntrospectionPage(new QuestionIntrospectionPage("demo"), 1), BindingMode.OneWay);
 
         public QuestionIntrospectionPage QuestionItem
         {
@@ -25,9 +25,9 @@ namespace MobileDataCollection.Survey.Views
             set { SetValue(QuestionItemProperty, value); }
         }
 
-        public AnswerIntrospetionPage AnswerItem
+        public AnswerIntrospectionPage AnswerItem
         {
-            get { return (AnswerIntrospetionPage)GetValue(AnswerItemProperty); }
+            get { return (AnswerIntrospectionPage)GetValue(AnswerItemProperty); }
             set { SetValue(AnswerItemProperty, value); }
         }
 
@@ -85,7 +85,7 @@ namespace MobileDataCollection.Survey.Views
             var button = (sender as RadioButton);
             if (button != null && RadioButtonIndex.TryGetValue(button, out int index))
             {
-                AnswerItem = new AnswerIntrospetionPage(QuestionItem, index);
+                AnswerItem = new AnswerIntrospectionPage(QuestionItem, index);
             }
             else
                 throw new NotSupportedException("sender is either not a RadioButton or not yet supported");

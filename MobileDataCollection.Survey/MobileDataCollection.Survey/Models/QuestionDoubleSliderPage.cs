@@ -15,6 +15,7 @@ namespace MobileDataCollection.Survey.Models
         public static readonly BindableProperty CorrectAnswerBProperty = BindableProperty.Create(nameof(CorrectAnswerB), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty PictureSourceProperty = BindableProperty.Create(nameof(PictureSource), typeof(ImageSource), typeof(QuestionDoubleSliderPage), null, BindingMode.OneWay);
         public static readonly BindableProperty LevelProperty = BindableProperty.Create(nameof(Level), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
+        // property: Beantwortet
 
         /// <summary>
         /// Defines the maximum valid value of <see cref="Level"/>

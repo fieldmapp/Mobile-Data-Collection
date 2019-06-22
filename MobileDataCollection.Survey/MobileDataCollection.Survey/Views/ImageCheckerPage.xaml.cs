@@ -19,7 +19,7 @@ namespace MobileDataCollection.Survey.Views
         //Binding für Question
         public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), 
             typeof(QuestionImageCheckerPage), typeof(ImageCheckerPage), 
-            new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 0, 1, 0, "Q1_G1_F1_B1_klein.png", "Q1_G1_F1_B2_klein.png", "Q1_G1_F1_B3_klein.png", "Q1_G1_F1_B4_klein.png"), BindingMode.OneWay);
+            new QuestionImageCheckerPage(1, "Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 0, 1, 0, "Q1_G1_F1_B1_klein.png", "Q1_G1_F1_B2_klein.png", "Q1_G1_F1_B3_klein.png", "Q1_G1_F1_B4_klein.png"), BindingMode.OneWay);
         //Binding für Answer
         public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), 
             typeof(AnswerImageCheckerPage), typeof(ImageCheckerPage), new AnswerImageCheckerPage(0, 0, 0, 0, 0), 
@@ -66,7 +66,7 @@ namespace MobileDataCollection.Survey.Views
 
         public ImageCheckerPage()
         {
-            this.AnswersNeeded = 2;
+            this.AnswersNeeded = 10;
             this.AnswersGiven = 1;
             InitializeComponent();
 
@@ -81,7 +81,7 @@ namespace MobileDataCollection.Survey.Views
             PictureD.BindingContext = this;
             Frage.BindingContext = this;
             this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded + 1}";
-            QuestionItem = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 0, 1, 0, "Q1_G1_F1_B1_klein.png", "Q1_G1_F1_B2_klein.png", "Q1_G1_F1_B3_klein.png", "Q1_G1_F1_B4_klein.png");
+            QuestionItem = DBCom.LoadQuestionImageChecker(3);
             stopwatch = new Stopwatch();
         }
 
@@ -137,6 +137,8 @@ namespace MobileDataCollection.Survey.Views
                
                 this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded + 1}";
 
+                int a = QuestionItem.InternId;
+                AnswerItem.InternId = QuestionItem.InternId;
                 AnswerItem.Image1Selected = PictureA.BorderColor == selectedColor ? 1 : 0; //in QuestionItem ist ImageCorrectAnswer, wie verwenden
                 AnswerItem.Image2Selected = PictureB.BorderColor == selectedColor ? 1 : 0;
                 AnswerItem.Image3Selected = PictureC.BorderColor == selectedColor ? 1 : 0;
@@ -146,8 +148,10 @@ namespace MobileDataCollection.Survey.Views
                 PictureC.BorderColor = nonSelectedColor;
                 PictureD.BorderColor = nonSelectedColor;
 
-                QuestionItem = DBCom.LoadQuestionImageCkecker(AnswersGiven-1);
-                //QuestionItem = new QuestionImageCheckerPage("Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 1, 0, 1, 1, 0, "Q1_G1_F2_B1_klein.png", "Q1_G1_F2_B2_klein.png", "Q1_G1_F2_B3_klein.png", "Q1_G1_F2_B4_klein.png");
+                DBCom.AddListAnswerImageCheckerPage(AnswerItem);
+
+                QuestionItem = DBCom.LoadQuestionImageChecker(3);
+                //QuestionItem = new QuestionImageCheckerPage(2,"Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 1, 0, 1, 1, 0, "Q1_G1_F2_B1_klein.png", "Q1_G1_F2_B2_klein.png", "Q1_G1_F2_B3_klein.png", "Q1_G1_F2_B4_klein.png");
             }
 
         }

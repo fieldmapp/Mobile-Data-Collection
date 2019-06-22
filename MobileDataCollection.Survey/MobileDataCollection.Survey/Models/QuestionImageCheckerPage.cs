@@ -134,9 +134,10 @@ namespace MobileDataCollection.Survey.Models
             set => SetValue(Image4SourceProperty, value);
         }
 
-        public QuestionImageCheckerPage(string question, int difficulty, int im1Correct, int im2Correct, int im3Correct, int im4Corect, 
+        public QuestionImageCheckerPage(int id, string question, int difficulty, int im1Correct, int im2Correct, int im3Correct, int im4Corect, 
             string im1Source, string im2Source, string im3Source, string im4Source)
         {
+            InternId = id;
             QuestionText = question;
             Difficulty = difficulty;
             Image1Correct = im1Correct;

@@ -5,10 +5,10 @@ using Xamarin.Forms;
 
 namespace MobileDataCollection.Survey.Models
 {
-    public class AnswerIntrospetionPage : BindableObject, IUserAnswer
+    public class AnswerIntrospectionPage : BindableObject, IUserAnswer
     {
-        public static readonly BindableProperty SelectedAnswerProperty = BindableProperty.Create(nameof(SelectedAnswer), typeof(int), typeof(AnswerIntrospetionPage), 0, BindingMode.OneWay);
-        public static readonly BindableProperty QuestionProperty = BindableProperty.Create(nameof(Question), typeof(QuestionIntrospectionPage), typeof(AnswerIntrospetionPage), null, BindingMode.OneWay);
+        public static readonly BindableProperty SelectedAnswerProperty = BindableProperty.Create(nameof(SelectedAnswer), typeof(int), typeof(AnswerIntrospectionPage), 0, BindingMode.OneWay);
+        public static readonly BindableProperty QuestionProperty = BindableProperty.Create(nameof(Question), typeof(QuestionIntrospectionPage), typeof(AnswerIntrospectionPage), null, BindingMode.OneWay);
 
         /// <summary>
         /// Represents the index of the selected Answer (in inclusive range 1 - 5)
@@ -28,7 +28,7 @@ namespace MobileDataCollection.Survey.Models
             set => SetValue(QuestionProperty, value);
         }
 
-        public AnswerIntrospetionPage(QuestionIntrospectionPage question, int selectedanswer)
+        public AnswerIntrospectionPage(QuestionIntrospectionPage question, int selectedanswer)
         {
             Question = question;
             SelectedAnswer = selectedanswer;
