@@ -82,13 +82,10 @@ namespace MobileDataCollection.Survey.Views
 
         void OnWeiterButtonClicked(object sender, EventArgs e)
         {
-            var button = (sender as RadioButton);
-            if (button != null && RadioButtonIndex.TryGetValue(button, out int index))
-            {
-                AnswerItem = new AnswerIntrospectionPage(QuestionItem, index);
-            }
-            else
-                throw new NotSupportedException("sender is either not a RadioButton or not yet supported");
+            var selectedRadioButton = RadioButtonIndex.Keys.FirstOrDefault(r => r.IsChecked);
+            if (selectedRadioButton == null)
+                return;
+            AnswerItem = new AnswerIntrospetionPage(QuestionItem, RadioButtonIndex[selectedRadioButton]);
 
             QuestionItem = new QuestionIntrospectionPage("Ich kann ... zuverlässig erkennen.");
 
