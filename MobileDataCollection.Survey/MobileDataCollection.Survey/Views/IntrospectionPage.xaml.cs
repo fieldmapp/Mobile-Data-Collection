@@ -85,7 +85,7 @@ namespace MobileDataCollection.Survey.Views
             var selectedRadioButton = RadioButtonIndex.Keys.FirstOrDefault(r => r.IsChecked);
             if (selectedRadioButton == null)
                 return;
-            AnswerItem = new AnswerIntrospetionPage(QuestionItem, RadioButtonIndex[selectedRadioButton]);
+            AnswerItem = new AnswerIntrospectionPage(QuestionItem, RadioButtonIndex[selectedRadioButton]);
 
             QuestionItem = new QuestionIntrospectionPage("Ich kann ... zuverlässig erkennen.");
 

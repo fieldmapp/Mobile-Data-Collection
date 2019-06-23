@@ -137,6 +137,7 @@ namespace MobileDataCollection.Survey.Views
                
                 this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded + 1}";
 
+
                 int a = QuestionItem.InternId;
                 AnswerItem.InternId = QuestionItem.InternId;
                 AnswerItem.Image1Selected = PictureA.BorderColor == selectedColor ? 1 : 0; //in QuestionItem ist ImageCorrectAnswer, wie verwenden
@@ -148,7 +149,9 @@ namespace MobileDataCollection.Survey.Views
                 PictureC.BorderColor = nonSelectedColor;
                 PictureD.BorderColor = nonSelectedColor;
 
-                DBCom.AddListAnswerImageCheckerPage(AnswerItem);
+                AnswerImageCheckerPage Answer = new AnswerImageCheckerPage(AnswerItem.InternId,AnswerItem.Image1Selected, AnswerItem.Image2Selected, AnswerItem.Image3Selected, AnswerItem.Image4Selected);
+
+                DBCom.AddListAnswerImageCheckerPage(Answer);
 
                 QuestionItem = DBCom.LoadQuestionImageChecker(3);
                 //QuestionItem = new QuestionImageCheckerPage(2,"Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 1, 0, 1, 1, 0, "Q1_G1_F2_B1_klein.png", "Q1_G1_F2_B2_klein.png", "Q1_G1_F2_B3_klein.png", "Q1_G1_F2_B4_klein.png");

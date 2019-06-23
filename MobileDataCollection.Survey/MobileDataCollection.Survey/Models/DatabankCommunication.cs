@@ -89,7 +89,7 @@ namespace MobileDataCollection.Survey.Models
             }
             if (difficulty == 1)
             {
-                return new QuestionImageCheckerPage(0,"", 1, 0, 0, 1, 0, "", "", "", "");
+                return new QuestionImageCheckerPage(0,"", 0, 0, 0, 0, 0, "", "", "", "");
             }
             else
             {
@@ -101,6 +101,7 @@ namespace MobileDataCollection.Survey.Models
         {
             for(int i = 0;i < ListAnswerImageCheckerPage.Count;i++)
             {
+                List<AnswerImageCheckerPage> a = ListAnswerImageCheckerPage;
                 AnswerImageCheckerPage answer = ListAnswerImageCheckerPage.ElementAt<AnswerImageCheckerPage>(i);
                 if (answer.InternId == Id)
                 {
