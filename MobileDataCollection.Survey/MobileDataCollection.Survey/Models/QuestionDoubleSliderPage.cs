@@ -13,7 +13,6 @@ namespace MobileDataCollection.Survey.Models
         public static readonly BindableProperty PictureAdressProperty = BindableProperty.Create(nameof(PictureAddress), typeof(string), typeof(QuestionDoubleSliderPage), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty CorrectAnswerAProperty = BindableProperty.Create(nameof(CorrectAnswerA), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty CorrectAnswerBProperty = BindableProperty.Create(nameof(CorrectAnswerB), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
-        public static readonly BindableProperty PictureSourceProperty = BindableProperty.Create(nameof(PictureSource), typeof(ImageSource), typeof(QuestionDoubleSliderPage), null, BindingMode.OneWay);
         public static readonly BindableProperty LevelProperty = BindableProperty.Create(nameof(Level), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
 
         /// <summary>
@@ -39,12 +38,6 @@ namespace MobileDataCollection.Survey.Models
             set => SetValue(TextProperty, value);
         }
 
-        public ImageSource PictureSource
-        {
-            get => (ImageSource)GetValue(PictureSourceProperty);
-            private set => SetValue(PictureSourceProperty, value);
-        }
-
         /// <summary>
         /// Represents the picture URI
         /// </summary>
@@ -54,7 +47,6 @@ namespace MobileDataCollection.Survey.Models
             set
             {
                 SetValue(PictureAdressProperty, value);
-                PictureSource = ImageSource.FromFile(value);
             }
         }
 
