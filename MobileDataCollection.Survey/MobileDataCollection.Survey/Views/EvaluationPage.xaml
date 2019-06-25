@@ -23,17 +23,20 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label FontSize="Medium" Margin="0,0,0,50" Text="Sie haben in dieser Kategorie" HorizontalOptions="CenterAndExpand"/>
-                <ProgressBar Grid.Row="1" x:Name="PercentBar" ScaleY="2" ProgressColor="{Binding ProgressColor}"  
-                             BackgroundColor="{Binding BarColor}" Progress="{Binding PercentBarValue}">
-                    <ProgressBar.GestureRecognizers>
+                <Label FontSize="Medium" Margin="0,0,0,40" Text="Sie haben in dieser Kategorie" HorizontalOptions="CenterAndExpand"/>
+                <!--<ProgressBar Grid.Row="1" x:Name="PercentBar" ScaleY="2" ProgressColor="{Binding ProgressColor}"  
+                             BackgroundColor="{Binding BarColor}" Progress="{Binding PercentBarValue}">-->
+                <ProgressBar Grid.Row="1" x:Name="PercentBar" ScaleY="3" ProgressColor="{Binding ProgressColor}"  
+                             Progress="{Binding PercentBarValue}">
+                        <ProgressBar.GestureRecognizers>
                         <TapGestureRecognizer
                             Tapped="DetailsClicked"
                             NumberOfTapsRequired="1" />
                     </ProgressBar.GestureRecognizers>
                 </ProgressBar>
-                <Label  Margin="0,10,0,0" Grid.Row="2" x:Name="PercentLabel" Text="{Binding PercentLabelText}"
+                <Label  Margin="0,5,0,0" Grid.Row="2" x:Name="PercentLabel" Text="{Binding PercentLabelText}"
                 HorizontalOptions="CenterAndExpand" FontSize="Large">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer
@@ -41,7 +44,15 @@
                             NumberOfTapsRequired="1" />
                     </Label.GestureRecognizers>
                 </Label>
-                <Label FontSize="Medium" Margin="0,50,0,0" Grid.Row="3" Text="erreicht" HorizontalOptions="CenterAndExpand"/>
+                <Grid Margin="0,5,0,0" Grid.Row="3" HorizontalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="infoIcon.png" HeightRequest="15"/>
+                    <Label Grid.Column="1" FontSize="Small" Text="Klicken Sie für mehr Informationen"/>
+                </Grid>
+                <Label FontSize="Medium" Margin="0,50,0,0" Grid.Row="4" Text="erreicht" HorizontalOptions="CenterAndExpand"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

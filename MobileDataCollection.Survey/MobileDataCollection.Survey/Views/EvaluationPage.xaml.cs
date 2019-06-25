@@ -28,13 +28,13 @@ namespace MobileDataCollection.Survey.Views
             set { SetValue(PercentProperty, value); }
         }
 
-        public static readonly BindableProperty BarColorProperty = BindableProperty.Create(nameof(BarColor),
+        /* public static readonly BindableProperty BarColorProperty = BindableProperty.Create(nameof(BarColor),
             typeof(Color), typeof(EvaluationPage), Color.DarkSeaGreen, BindingMode.OneWay);
-        public Color BarColor
+       public Color BarColor
         {
             get { return (Color)GetValue(BarColorProperty); }
             set { SetValue(BarColorProperty, value); }
-        }
+        }*/
         public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create(nameof(ProgressColor),
             typeof(Color), typeof(EvaluationPage), Color.DarkOliveGreen, BindingMode.OneWay);
         public Color ProgressColor
@@ -50,17 +50,17 @@ namespace MobileDataCollection.Survey.Views
             PercentBar.BindingContext = this;
             if (Result <= 33)
             {
-                BarColor = Color.PeachPuff;
+                //BarColor = Color.PeachPuff;
                 ProgressColor = Color.LightSalmon;
             }
             else if (Result<=66){
-                BarColor = Color.Khaki;
+                //BarColor = Color.Khaki;
                 ProgressColor = Color.Gold;
             }
             else
             {
-                BarColor = Color.DarkSeaGreen;
-                ProgressColor = Color.DarkOliveGreen;
+               // BarColor = Color.DarkSeaGreen;
+                ProgressColor = Color.DarkSeaGreen;
             }
             PercentLabel.BindingContext = this;
             PercentLabelText = $"{Result}%";

@@ -8,7 +8,14 @@
     <ContentPage.Content>
         <StackLayout Padding="20">
             <Label Margin="0,0,0,10" FontSize="Large" Text="Details" HorizontalOptions="CenterAndExpand"/>
-            <Label FontSize="Small" Text="Hier sehen Sie Ihre Ergebnisse in den verschiedenen Schwierigkeitskategorien der Fragen." HorizontalOptions="StartAndExpand"/>
+            <Grid Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="infoIcon.png" HeightRequest="15" Margin="0,0,5,0"/>
+                <Label Grid.Column="2" FontSize="Small" Text="Hier sehen Sie Ihre Ergebnisse in den verschiedenen Schwierigkeitskategorien der Fragen."/>
+            </Grid>
             <Grid Margin="0,20,0,0" VerticalOptions="StartAndExpand" RowSpacing="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -25,20 +32,29 @@
                 <Label Grid.Row="1" FontSize="Medium" Text="Leicht:"  VerticalOptions="CenterAndExpand"/>
                 <Label Grid.Column="1" Grid.Row="1" x:Name="PercentEasyLabel" Text="{Binding PercentEasyLabelText}"
                 HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large"/>
-                <ProgressBar Grid.Column="2" Grid.Row="1" x:Name="PercentEasyBar" ProgressColor="{Binding ProgressEasyColor}"  
+                <!--<ProgressBar Grid.Column="2" Grid.Row="1" x:Name="PercentEasyBar" ProgressColor="{Binding ProgressEasyColor}"  
                              BackgroundColor="{Binding BarEasyColor}" Progress="{Binding PercentEasyBarValue}"
+                             />-->
+                <ProgressBar Grid.Column="2" Grid.Row="1" x:Name="PercentEasyBar" ProgressColor="{Binding ProgressEasyColor}"  
+                            ScaleY="2" Progress="{Binding PercentEasyBarValue}"
                              />
                 <Label Grid.Row="2" FontSize="Medium" Text="Mittel:"  VerticalOptions="CenterAndExpand"/>
                 <Label Grid.Column="1" Grid.Row="2" x:Name="PercentMediumLabel" Text="{Binding PercentMediumLabelText}"
                 HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large"/>
-                <ProgressBar Grid.Column="2" Grid.Row="2" x:Name="PercentMediumBar" ProgressColor="{Binding ProgressMediumColor}"  
+                <!--<ProgressBar Grid.Column="2" Grid.Row="2" x:Name="PercentMediumBar" ProgressColor="{Binding ProgressMediumColor}"  
                              BackgroundColor="{Binding BarMediumColor}" Progress="{Binding PercentMediumBarValue}"
+                             />-->
+                <ProgressBar Grid.Column="2" Grid.Row="2" x:Name="PercentMediumBar" ProgressColor="{Binding ProgressMediumColor}"  
+                             ScaleY="2" Progress="{Binding PercentMediumBarValue}"
                              />
                 <Label Grid.Row="3" FontSize="Medium" Text="Schwer:"  VerticalOptions="CenterAndExpand"/>
                 <Label Grid.Column="1" Grid.Row="3" x:Name="PercentHardLabel" Text="{Binding PercentHardLabelText}"
                 HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large"/>
-                <ProgressBar Grid.Column="2" Grid.Row="3" x:Name="PercentHardBar" ProgressColor="{Binding ProgressHardColor}"  
+                <!--<ProgressBar Grid.Column="2" Grid.Row="3" x:Name="PercentHardBar" ProgressColor="{Binding ProgressHardColor}"  
                              BackgroundColor="{Binding BarHardColor}" Progress="{Binding PercentHardBarValue}"
+                             />-->
+                <ProgressBar Grid.Column="2" Grid.Row="3" x:Name="PercentHardBar" ProgressColor="{Binding ProgressHardColor}"  
+                             ScaleY="2" Progress="{Binding PercentHardBarValue}"
                              />
             </Grid>
 

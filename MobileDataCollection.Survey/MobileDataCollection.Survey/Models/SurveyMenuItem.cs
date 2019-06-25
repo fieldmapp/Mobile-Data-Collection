@@ -19,12 +19,13 @@ namespace MobileDataCollection.Survey.Models
         public string ChapterName { get; set; }
 
         public int AnswersNeeded { get; set; }
+        public int MaximumQuestionNumber { get; set; }
 
         public int AnswersGiven { get; set; }
 
         public bool Unlocked { get; set; }
 
-        public string ProgressString => $"{AnswersGiven}/{AnswersNeeded}";
+        public string ProgressString => $"{AnswersGiven}/{AnswersNeeded} ({MaximumQuestionNumber})";
 
         public Color BackgroundColor { get; set; }
     }

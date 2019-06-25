@@ -223,4 +223,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Q1_G3_F2_B4_klein.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\infoIcon.png" />
+  </ItemGroup>
 </Project>

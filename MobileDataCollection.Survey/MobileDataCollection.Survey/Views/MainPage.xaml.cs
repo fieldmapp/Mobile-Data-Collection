@@ -13,10 +13,10 @@ namespace MobileDataCollection.Survey.Views
     {
         public ObservableCollection<SurveyMenuItem> Items = new ObservableCollection<SurveyMenuItem>()
         {
-            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=4, ChapterName="Bedeckungsgrade", Id= SurveyMenuItemType.DoubleSlider, Unlocked=true},
-            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=8, ChapterName="Sortenerkennung", Id= SurveyMenuItemType.ImageChecker, Unlocked=true},
-            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=5, ChapterName="Selbsteinschätzung", Id= SurveyMenuItemType.Introspection, Unlocked=true},
-            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=2, ChapterName="Wuchsstadien", Id= SurveyMenuItemType.Stadium, Unlocked=true}
+            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=4, MaximumQuestionNumber=18, ChapterName="Bedeckungsgrade", Id= SurveyMenuItemType.DoubleSlider, Unlocked=true},
+            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=8, MaximumQuestionNumber=25, ChapterName="Sortenerkennung", Id= SurveyMenuItemType.ImageChecker, Unlocked=true},
+            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=5, MaximumQuestionNumber=16, ChapterName="Selbsteinschätzung", Id= SurveyMenuItemType.Introspection, Unlocked=true},
+            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=2, MaximumQuestionNumber=12, ChapterName="Wuchsstadien", Id= SurveyMenuItemType.Stadium, Unlocked=true}
         };
         Dictionary<SurveyMenuItemType, Func<ContentPage>> PageConstructorDictionary = new Dictionary<SurveyMenuItemType, Func<ContentPage>>()
         {

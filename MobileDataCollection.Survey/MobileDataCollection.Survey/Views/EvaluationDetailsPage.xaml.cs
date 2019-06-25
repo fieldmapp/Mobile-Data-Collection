@@ -44,23 +44,23 @@ namespace MobileDataCollection.Survey.Views
             get { return (double)GetValue(PercentHardProperty); }
             set { SetValue(PercentHardProperty, value); }   }
 
-        public static readonly BindableProperty BarEasyColorProperty = BindableProperty.Create(nameof(BarEasyColor),
+        /*public static readonly BindableProperty BarEasyColorProperty = BindableProperty.Create(nameof(BarEasyColor),
             typeof(Color), typeof(EvaluationPage), Color.DarkSeaGreen, BindingMode.OneWay);
         public Color BarEasyColor
         {   get { return (Color)GetValue(BarEasyColorProperty); }
-            set { SetValue(BarEasyColorProperty, value); }  }
+            set { SetValue(BarEasyColorProperty, value); }  }*/
         public static readonly BindableProperty ProgressEasyColorProperty = BindableProperty.Create(nameof(ProgressEasyColor),
             typeof(Color), typeof(EvaluationPage), Color.DarkOliveGreen, BindingMode.OneWay);
         public Color ProgressEasyColor
         {   get { return (Color)GetValue(ProgressEasyColorProperty); }
             set { SetValue(ProgressEasyColorProperty, value); } }
-        public static readonly BindableProperty BarMediumColorProperty = BindableProperty.Create(nameof(BarMediumColor),
+        /*public static readonly BindableProperty BarMediumColorProperty = BindableProperty.Create(nameof(BarMediumColor),
             typeof(Color), typeof(EvaluationPage), Color.DarkSeaGreen, BindingMode.OneWay);
         public Color BarMediumColor
         {
             get { return (Color)GetValue(BarMediumColorProperty); }
             set { SetValue(BarMediumColorProperty, value); }
-        }
+        }*/
         public static readonly BindableProperty ProgressMediumColorProperty = BindableProperty.Create(nameof(ProgressMediumColor),
             typeof(Color), typeof(EvaluationPage), Color.DarkOliveGreen, BindingMode.OneWay);
         public Color ProgressMediumColor
@@ -68,13 +68,13 @@ namespace MobileDataCollection.Survey.Views
             get { return (Color)GetValue(ProgressMediumColorProperty); }
             set { SetValue(ProgressMediumColorProperty, value); }
         }
-        public static readonly BindableProperty BarHardColorProperty = BindableProperty.Create(nameof(BarHardColor),
+       /* public static readonly BindableProperty BarHardColorProperty = BindableProperty.Create(nameof(BarHardColor),
             typeof(Color), typeof(EvaluationPage), Color.DarkSeaGreen, BindingMode.OneWay);
         public Color BarHardColor
         {
             get { return (Color)GetValue(BarHardColorProperty); }
             set { SetValue(BarHardColorProperty, value); }
-        }
+        }*/
         public static readonly BindableProperty ProgressHardColorProperty = BindableProperty.Create(nameof(ProgressHardColor),
             typeof(Color), typeof(EvaluationPage), Color.DarkOliveGreen, BindingMode.OneWay);
         public Color ProgressHardColor
@@ -88,48 +88,48 @@ namespace MobileDataCollection.Survey.Views
             InitializeComponent();
             if (ResultEasy <= 33)
             {
-                BarEasyColor = Color.PeachPuff;
+                //BarEasyColor = Color.PeachPuff;
                 ProgressEasyColor = Color.LightSalmon;
             }
             else if (ResultEasy <= 66)
             {
-                BarEasyColor = Color.Khaki;
+                //BarEasyColor = Color.Khaki;
                 ProgressEasyColor = Color.Gold;
             }
             else
             {
-                BarEasyColor = Color.DarkSeaGreen;
-                ProgressEasyColor = Color.DarkOliveGreen;
+                //BarEasyColor = Color.DarkSeaGreen;
+                ProgressEasyColor = Color.DarkSeaGreen;
             }
             if (ResultMedium <= 33)
             {
-                BarMediumColor = Color.PeachPuff;
+                //BarMediumColor = Color.PeachPuff;
                 ProgressMediumColor = Color.LightSalmon;
             }
             else if (ResultMedium <= 66)
             {
-                BarMediumColor = Color.Khaki;
+                //BarMediumColor = Color.Khaki;
                 ProgressMediumColor = Color.Gold;
             }
             else
             {
-                BarMediumColor = Color.DarkSeaGreen;
-                ProgressMediumColor = Color.DarkOliveGreen;
+                //BarMediumColor = Color.DarkSeaGreen;
+                ProgressMediumColor = Color.DarkSeaGreen;
             }
             if (ResultHard <= 33)
             {
-                BarHardColor = Color.PeachPuff;
+                //BarHardColor = Color.PeachPuff;
                 ProgressHardColor = Color.LightSalmon;
             }
             else if (ResultHard <= 66)
             {
-                BarHardColor = Color.Khaki;
+                //BarHardColor = Color.Khaki;
                 ProgressHardColor = Color.Gold;
             }
             else
             {
-                BarHardColor = Color.DarkSeaGreen;
-                ProgressHardColor = Color.DarkOliveGreen;
+                //BarHardColor = Color.DarkSeaGreen;
+                ProgressHardColor = Color.DarkSeaGreen;
             }
             this.PercentEasyBarValue = (double)ResultEasy / 100;
             PercentEasyBar.BindingContext = this;
