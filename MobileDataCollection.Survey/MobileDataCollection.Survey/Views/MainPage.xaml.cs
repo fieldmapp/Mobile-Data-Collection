@@ -43,5 +43,11 @@ namespace MobileDataCollection.Survey.Views
             }
                 
         }
+        private async void EvaluationClicked(object sender, ItemTappedEventArgs e)
+        {
+            await Navigation.PushAsync(new EvaluationMainPage());     
+        }
+
     }
 }
+
