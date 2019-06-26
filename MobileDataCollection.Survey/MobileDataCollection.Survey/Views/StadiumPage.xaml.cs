@@ -19,25 +19,25 @@ namespace MobileDataCollection.Survey.Views
         //Answers needed to complete Question Category (Muss definiert werden: entweder alle verfügbaren Fragen oder feste Zahl)
         public int AnswersNeeded { get; set; }
 
-        //Binding für Fragen
-        /*public static readonly BindableProperty ItemProperty = BindableProperty.Create(nameof(Question),
-            typeof(QuestionStadiumPage), typeof(DoubleSliderPage),
-            new QuestionStadiumPage(), BindingMode.OneWay);
-        public QuestionStadiumPage Question
-        {
-            get { return (QuestionStadiumPage)GetValue(ItemProperty); }
-            set { SetValue(ItemProperty, value); }
-        }*/
-        //Binding für Antwort
-        /*public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem),
-            typeof(AnswerDoubleSliderPage), typeof(DoubleSliderPage), new AnswerDoubleSliderPage(null, 0, 0), BindingMode.OneWay);
+        //Binding for Question
+        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem),typeof(QuestionStadiumPage), typeof(StadiumPage), new QuestionStadiumPage(null, null, string.Empty, string.Empty, 1), BindingMode.OneWay);
 
-        //Item of the Answer
+        //Item of Question
+        public QuestionStadiumPage QuestionItem
+        {
+            get { return (QuestionStadiumPage)GetValue(QuestionItemProperty); }
+            set { SetValue(QuestionItemProperty, value); }
+        }
+
+        //Binding for Answer
+        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem),typeof(AnswerStadiumPage), typeof(StadiumPage), new AnswerStadiumPage(string.Empty, string.Empty, null), BindingMode.OneWay);
+
+        //Item of Answer
         public AnswerStadiumPage AnswerItem
         {
             get { return (AnswerStadiumPage)GetValue(AnswerItemProperty); }
             set { SetValue(AnswerItemProperty, value); }
-        }*/
+        }
 
         //Binding für Header
         public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header),

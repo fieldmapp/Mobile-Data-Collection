@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace MobileDataCollection.Survey.Models
 {
-    class Plant
+    public class Plant
     {
         public string Name { get; set; }
     }
