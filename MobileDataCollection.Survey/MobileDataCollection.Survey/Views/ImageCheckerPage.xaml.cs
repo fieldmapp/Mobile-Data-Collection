@@ -52,7 +52,7 @@ namespace MobileDataCollection.Survey.Views
             set { SetValue(AnswerItemProperty, value); }
         }
 
-        //private QuestionImageCheckerPage QICP;
+        private QuestionImageCheckerPage QuestionItemTest;
         private DatabankCommunication DBCom = new DatabankCommunication();
 
         Color selectedColor = Color.DarkSeaGreen;
@@ -81,7 +81,16 @@ namespace MobileDataCollection.Survey.Views
             PictureD.BindingContext = this;
             Frage.BindingContext = this;
             this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded + 1}";
-            QuestionItem = DBCom.LoadQuestionImageChecker(3);
+
+            QuestionItemTest = DBCom.LoadQuestionImageChecker(1);
+            if (QuestionItemTest.InternId != 0)
+            {
+                QuestionItem = QuestionItemTest;
+            }
+            else
+            {
+                // TODO: What do we do if no more Questions are available
+            }
             stopwatch = new Stopwatch();
         }
 
@@ -90,19 +99,7 @@ namespace MobileDataCollection.Survey.Views
         {
             imageButton.BorderColor = imageButton.BorderColor == nonSelectedColor ? selectedColor : nonSelectedColor;
         }
-        /*private void OpenBigPicture(ImageButton imageButton)
-        {
-            string source = imageButton.Source.ToString();
-            if (Frage.Text == "1")
-            {
-                Frage.Text = QICP.NumberOfPossibleAnswers.ToString() + " " + QICP.Image1Source;
-            }
-            else
-            {
-                Frage.Text = QICP.Image3Correct.ToString();
-            }
-            ImageDetailPage image = new ImageDetailPage(source);
-        }*/
+
         private void PressPicture(object sender, EventArgs e)
         {
             stopwatch.Reset();
@@ -120,16 +117,6 @@ namespace MobileDataCollection.Survey.Views
         }
         void OnWeiterButtonClicked(object sender, EventArgs e)
         {
-            /*speichereErgebnisse();
-
-            //CreateAnswer();
-
-            if (this.AnswersGiven < this.AnswersNeeded) this.AnswersGiven++; //von Maya für Frageheader
-            this.Header = String.Format("Frage: {0}/{1}", this.AnswersGiven, this.AnswersNeeded);  //von Maya für Frageheader
-            NummerFrage.Text = this.Header; //von Maya für Frageheader
-
-            QICP = LoadQuestion(1,zaehler);
-            UpdatePage(QICP);*/
             if (this.AnswersGiven < this.AnswersNeeded)
             {
                 this.AnswersGiven++;
@@ -138,7 +125,6 @@ namespace MobileDataCollection.Survey.Views
                 this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded + 1}";
 
 
-                int a = QuestionItem.InternId;
                 AnswerItem.InternId = QuestionItem.InternId;
                 AnswerItem.Image1Selected = PictureA.BorderColor == selectedColor ? 1 : 0; //in QuestionItem ist ImageCorrectAnswer, wie verwenden
                 AnswerItem.Image2Selected = PictureB.BorderColor == selectedColor ? 1 : 0;
@@ -153,8 +139,17 @@ namespace MobileDataCollection.Survey.Views
 
                 DBCom.AddListAnswerImageCheckerPage(Answer);
 
-                QuestionItem = DBCom.LoadQuestionImageChecker(3);
-                //QuestionItem = new QuestionImageCheckerPage(2,"Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 1, 0, 1, 1, 0, "Q1_G1_F2_B1_klein.png", "Q1_G1_F2_B2_klein.png", "Q1_G1_F2_B3_klein.png", "Q1_G1_F2_B4_klein.png");
+                int difficulty = 3; // TODO: implement Method which checks if Question answered right/wrong
+
+                QuestionItemTest = DBCom.LoadQuestionImageChecker(difficulty);
+                if(QuestionItemTest.InternId != 0)
+                {
+                    QuestionItem = QuestionItemTest;
+                }
+                else
+                {
+                    // TODO: What do we do if no more Questions are available
+                }
             }
 
         }
@@ -162,13 +157,6 @@ namespace MobileDataCollection.Survey.Views
         {
             //speichereErgebnisse();
         }
-        /*void speichereErgebnisse()
-        {
-    
-            gegebeneAntworten[0] = PictureA.BorderColor == selectedColor ? 1 : 0;
-            gegebeneAntworten[1] = PictureB.BorderColor == selectedColor ? 1 : 0;
-            gegebeneAntworten[2] = PictureC.BorderColor == selectedColor ? 1 : 0;
-            gegebeneAntworten[3] = PictureD.BorderColor == selectedColor ? 1 : 0;
-        }*/
+       
     }
 }
