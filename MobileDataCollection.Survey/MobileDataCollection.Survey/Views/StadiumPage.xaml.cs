@@ -20,7 +20,7 @@ namespace MobileDataCollection.Survey.Views
         public int AnswersNeeded { get; set; }
 
         //Binding for Question
-        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem),typeof(QuestionStadiumPage), typeof(StadiumPage), new QuestionStadiumPage(null, null, string.Empty, string.Empty, 1), BindingMode.OneWay);
+        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem),typeof(QuestionStadiumPage), typeof(StadiumPage), new QuestionStadiumPage(0, 0, null, null, string.Empty, string.Empty), BindingMode.OneWay);
 
         //Item of Question
         public QuestionStadiumPage QuestionItem
@@ -30,7 +30,7 @@ namespace MobileDataCollection.Survey.Views
         }
 
         //Binding for Answer
-        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem),typeof(AnswerStadiumPage), typeof(StadiumPage), new AnswerStadiumPage(string.Empty, string.Empty, null), BindingMode.OneWay);
+        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem),typeof(AnswerStadiumPage), typeof(StadiumPage), new AnswerStadiumPage(0, string.Empty, string.Empty), BindingMode.OneWay);
 
         //Item of Answer
         public AnswerStadiumPage AnswerItem

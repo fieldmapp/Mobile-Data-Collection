@@ -22,17 +22,10 @@ namespace MobileDataCollection.Survey.Views
             new QuestionImageCheckerPage(1, "Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 0, 1, 0, "Q1_G1_F1_B1_klein.png", "Q1_G1_F1_B2_klein.png", "Q1_G1_F1_B3_klein.png", "Q1_G1_F1_B4_klein.png"), BindingMode.OneWay);
         //Binding für Answer
         public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), 
-            typeof(AnswerImageCheckerPage), typeof(ImageCheckerPage), new AnswerImageCheckerPage(0, 0, 0, 0, 0), 
-            BindingMode.OneWay);
+            typeof(AnswerImageCheckerPage), typeof(ImageCheckerPage), new AnswerImageCheckerPage(0, 0, 0, 0, 0), BindingMode.OneWay);
         //Binding für Header
         public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header),
-            typeof(String), typeof(DoubleSliderPage), "demo", BindingMode.OneWay);
-        //Header
-        public String Header
-        {
-            get { return (String)GetValue(HeaderProperty); }
-            set { SetValue(HeaderProperty, value); }
-        }
+            typeof(String), typeof(ImageCheckerPage), "demo", BindingMode.OneWay);
 
         /// <summary>
         /// Item of the given Question
@@ -50,6 +43,13 @@ namespace MobileDataCollection.Survey.Views
         {
             get { return (AnswerImageCheckerPage)GetValue(AnswerItemProperty); }
             set { SetValue(AnswerItemProperty, value); }
+        }
+
+        //Header
+        public String Header
+        {
+            get { return (String)GetValue(HeaderProperty); }
+            set { SetValue(HeaderProperty, value); }
         }
 
         private QuestionImageCheckerPage QuestionItemTest;
@@ -82,7 +82,7 @@ namespace MobileDataCollection.Survey.Views
             Frage.BindingContext = this;
             this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded + 1}";
 
-            QuestionItemTest = DBCom.LoadQuestionImageChecker(1);
+            QuestionItemTest = DBCom.LoadQuestionImageCheckerPage(1);
             if (QuestionItemTest.InternId != 0)
             {
                 QuestionItem = QuestionItemTest;
@@ -119,9 +119,7 @@ namespace MobileDataCollection.Survey.Views
         {
             if (this.AnswersGiven < this.AnswersNeeded)
             {
-                this.AnswersGiven++;
-                // Set new Question
-               
+                this.AnswersGiven++;               
                 this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded + 1}";
 
 
@@ -136,12 +134,11 @@ namespace MobileDataCollection.Survey.Views
                 PictureD.BorderColor = nonSelectedColor;
 
                 AnswerImageCheckerPage Answer = new AnswerImageCheckerPage(AnswerItem.InternId,AnswerItem.Image1Selected, AnswerItem.Image2Selected, AnswerItem.Image3Selected, AnswerItem.Image4Selected);
-
                 DBCom.AddListAnswerImageCheckerPage(Answer);
 
-                int difficulty = 3; // TODO: implement Method which checks if Question answered right/wrong
+                int difficulty = 3; // TODO: implement Method which checks if Question is answered right/wrong
 
-                QuestionItemTest = DBCom.LoadQuestionImageChecker(difficulty);
+                QuestionItemTest = DBCom.LoadQuestionImageCheckerPage(difficulty);
                 if(QuestionItemTest.InternId != 0)
                 {
                     QuestionItem = QuestionItemTest;

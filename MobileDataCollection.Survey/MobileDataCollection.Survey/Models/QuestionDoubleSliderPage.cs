@@ -8,26 +8,29 @@ namespace MobileDataCollection.Survey.Models
 {
 	public class QuestionDoubleSliderPage : BindableObject, IQuestionContent
     {
-        public static readonly BindableProperty AnswersNeededProperty = BindableProperty.Create(nameof(AnswersNeeded), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
+        public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(InternId), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
+        public static readonly BindableProperty DifficultyProperty = BindableProperty.Create(nameof(Difficulty), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(QuestionDoubleSliderPage), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty PictureAdressProperty = BindableProperty.Create(nameof(PictureAddress), typeof(string), typeof(QuestionDoubleSliderPage), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty CorrectAnswerAProperty = BindableProperty.Create(nameof(CorrectAnswerA), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty CorrectAnswerBProperty = BindableProperty.Create(nameof(CorrectAnswerB), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
-        public static readonly BindableProperty LevelProperty = BindableProperty.Create(nameof(Level), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
         // property: Beantwortet
 
-        /// <summary>
-        /// Defines the maximum valid value of <see cref="Level"/>
-        /// </summary>
-        const int HighestQuestionDifficulty = 3;
 
         /// <summary>
-        /// Number of available questions (Remove?)
+        /// Defines the maximum valid value of <see /cref="Level"/>
         /// </summary>
-        public int AnswersNeeded
+        //const int HighestQuestionDifficulty = 3;
+
+        /// <summary>
+        /// Intern Id only for this Type Of Question
+        /// </summary>
+        public int InternId
         {
-            get => (int)GetValue(AnswersNeededProperty);
-            set => SetValue(AnswersNeededProperty, value);
+
+            get => (int)GetValue(InternIdProperty);
+            set => SetValue(InternIdProperty, value);
+
         }
 
         /// <summary>
@@ -70,36 +73,31 @@ namespace MobileDataCollection.Survey.Models
         }
 
         /// <summary>
-        /// Level of the question. Must be in range 1 to <see cref="HighestQuestionDifficulty"/> (inclusive)
+        /// Difficulty of the question. Must be in range 1 to <see /cref="HighestQuestionDifficulty"/> (inclusive)
         /// </summary>
-        public int Level
+        public int Difficulty
         {
-            get => (int)GetValue(LevelProperty);
-            set
+            get => (int)GetValue(DifficultyProperty);
+            set => SetValue(DifficultyProperty, value);
+            /*
             {
                 if (value > HighestQuestionDifficulty)
                     throw new NotImplementedException($"{nameof(value)} must be at most {nameof(HighestQuestionDifficulty)}={HighestQuestionDifficulty}");
                 if (value < 1)
                     throw new NotImplementedException($"{nameof(value)} must be at least 1");
-                SetValue(LevelProperty, value);
+                SetValue(DifficultyProperty, value);
             }
+            */
         }
-        
-        //public QuestionDoubleSliderPage(string pictureAddress, ImageSource pictureSource, int answerA, int answerB, int level)
-        public QuestionDoubleSliderPage(string pictureAddress, int answerA, int answerB, int level)
+     
+        public QuestionDoubleSliderPage(int internId, int difficulty, string pictureAddress, int answerA, int answerB)
         {
+            InternId = internId;
             Text = "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.";
             PictureAddress = pictureAddress;
             CorrectAnswerA = answerA;
             CorrectAnswerB = answerB;
-            Level = level;
+            Difficulty = difficulty;
         }
-
-        // Constructor is needed for the database
-        public QuestionDoubleSliderPage()
-        {
-
-        }
-
     }
 }

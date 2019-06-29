@@ -7,9 +7,18 @@ namespace MobileDataCollection.Survey.Models
 {
     public class AnswerStadiumPage : BindableObject, IUserAnswer
     {
+        public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(InternId), typeof(int), typeof(AnswerStadiumPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty AnswerFruitTypeProperty = BindableProperty.Create(nameof(AnswerFruitType), typeof(string), typeof(AnswerStadiumPage), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty AnswerStadiumProperty = BindableProperty.Create(nameof(AnswerStadium), typeof(string), typeof(AnswerStadiumPage), string.Empty, BindingMode.OneWay);
-        public static readonly BindableProperty QuestionProperty = BindableProperty.Create(nameof(Question), typeof(QuestionIntrospectionPage), typeof(AnswerStadiumPage), null, BindingMode.OneWay);
+
+        /// <summary>
+        /// Intern Id for Answers of this Type, corrosponds to same number as in QuestionImageCheckerPage
+        /// </summary>
+        public int InternId
+        {
+            get => (int)GetValue(InternIdProperty);
+            set => SetValue(InternIdProperty, value);
+        }
 
         /// <summary>
         /// Selected fruit type
@@ -32,17 +41,12 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Is a reference to the belonging Question
         /// </summary>
-        QuestionStadiumPage Question
-        {
-            get => (QuestionStadiumPage)GetValue(QuestionProperty);
-            set => SetValue(QuestionProperty, value);
-        }
 
-        public AnswerStadiumPage(string answerFruitType, string answerStadium, QuestionStadiumPage question)
+        public AnswerStadiumPage(int internId, string answerFruitType, string answerStadium)
         {
+            InternId = internId;
             AnswerFruitType = answerFruitType;
             AnswerStadium = answerStadium;
-            Question = question;
         }
     }
 }
