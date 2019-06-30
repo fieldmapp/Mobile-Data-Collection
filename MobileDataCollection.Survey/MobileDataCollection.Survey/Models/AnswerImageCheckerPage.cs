@@ -1,5 +1,4 @@
-﻿using SQLite;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -18,7 +17,6 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Intern Id for Answers of this Type, corrosponds to same number as in QuestionImageCheckerPage
         /// </summary>
-        [PrimaryKey]
         public int InternId
         {
             get => (int)GetValue(InternIdProperty);
@@ -72,12 +70,6 @@ namespace MobileDataCollection.Survey.Models
             Image2Selected = selected2;
             Image3Selected = selected3;
             Image4Selected = selected4;
-        }
-
-        // Constructor is needed for the database
-        public AnswerImageCheckerPage()
-        {
-
         }
     }
 }

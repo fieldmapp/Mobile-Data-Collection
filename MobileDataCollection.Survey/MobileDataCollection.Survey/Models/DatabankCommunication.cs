@@ -14,12 +14,12 @@ namespace MobileDataCollection.Survey.Models
         Random RandomNumber = new Random();
 
         private List<QuestionImageCheckerPage> ListQuestionImageCheckerPage = new List<QuestionImageCheckerPage>();
-        private List<QuestionDoubleSliderPage> ListQuestionDoubleSliders = new List<QuestionDoubleSliderPage>();
+        private List<QuestionDoubleSliderPage> ListQuestionDoubleSliderPage = new List<QuestionDoubleSliderPage>();
         private List<QuestionStadiumPage> ListQuestionStadiumPage = new List<QuestionStadiumPage>();
         private List<QuestionIntrospectionPage> ListQuestionIntrospectionPage = new List<QuestionIntrospectionPage>();
 
         private List<AnswerImageCheckerPage> ListAnswerImageCheckerPage = new List<AnswerImageCheckerPage>();
-        private List<AnswerDoubleSliderPage> ListAnswerDoubleSliders = new List<AnswerDoubleSliderPage>();
+        private List<AnswerDoubleSliderPage> ListAnswerDoubleSliderPage = new List<AnswerDoubleSliderPage>();
         private List<AnswerStadiumPage> ListAnswerStadiumPage = new List<AnswerStadiumPage>();
         private List<AnswerIntrospectionPage> ListAnswerIntrospectionPage = new List<AnswerIntrospectionPage>();
 
@@ -28,12 +28,20 @@ namespace MobileDataCollection.Survey.Models
             CreateQuestions();
         }
 
+        /// <summary>
+        /// Creates all Questions
+        /// </summary>
         public void CreateQuestions()
         {
             CreateQuestionsForImageChecker();
             CreateQuestionsForDoubleSlider();
+            CreateQuestionsForStadium();
             CreateQuestionForIntrospection();
         }
+
+        /// <summary>
+        /// Creates all questions for the ImageCheckerType
+        /// </summary>
         public void CreateQuestionsForImageChecker()
         {
             QuestionImageCheckerPage question = new QuestionImageCheckerPage(1,"Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 0, 1, 0, "Q1_G1_F1_B1_klein.png", "Q1_G1_F1_B2_klein.png", "Q1_G1_F1_B3_klein.png", "Q1_G1_F1_B4_klein.png");
@@ -50,32 +58,51 @@ namespace MobileDataCollection.Survey.Models
             ListQuestionImageCheckerPage.Add(question);
         }
 
+        /// <summary>
+        /// Creates all questions for the DoubleSlider Type
+        /// </summary>
         public void CreateQuestionsForDoubleSlider()
         {
-            QuestionDoubleSliderPage question = new QuestionDoubleSliderPage("Q3G1B1_klein.png", 7, 4, 1);
-            ListQuestionDoubleSliders.Add(question);
-            question = new QuestionDoubleSliderPage("Q3G1B2_klein.png", 49, 91, 1);
-            ListQuestionDoubleSliders.Add(question);
-            question = new QuestionDoubleSliderPage("Q3G1B3_klein.png", 12, 3, 1);
-            ListQuestionDoubleSliders.Add(question);
-            question = new QuestionDoubleSliderPage("Q3G1B4_klein.png", 64, 94, 1);
-            ListQuestionDoubleSliders.Add(question);
+            QuestionDoubleSliderPage question = new QuestionDoubleSliderPage(1,1,"Q3G1B1_klein.png", 7, 4);
+            ListQuestionDoubleSliderPage.Add(question);
+            question = new QuestionDoubleSliderPage(2,1,"Q3G1B2_klein.png", 49, 91);
+            ListQuestionDoubleSliderPage.Add(question);
+            question = new QuestionDoubleSliderPage(3,1,"Q3G1B3_klein.png", 12, 3);
+            ListQuestionDoubleSliderPage.Add(question);
+            question = new QuestionDoubleSliderPage(4,1,"Q3G1B4_klein.png", 64, 94);
+            ListQuestionDoubleSliderPage.Add(question);
         }
 
+        /// <summary>
+        /// Creates all questions for the StadiumType
+        /// </summary>
+        public void CreateQuestionsForStadium()
+        {
+
+        }
+
+        /// <summary>
+        /// Creates all questions for the IntrospectionType
+        /// </summary>
         public void CreateQuestionForIntrospection()
         {
-            QuestionIntrospectionPage question = new QuestionIntrospectionPage("Ich kann die Sorte von Feldfrüchten zuverlässig erkennen");
+            QuestionIntrospectionPage question = new QuestionIntrospectionPage(1,"Ich kann die Sorte von Feldfrüchten zuverlässig erkennen");
             ListQuestionIntrospectionPage.Add(question);
-            question = new QuestionIntrospectionPage("Ich kann phänologische Entwicklungsstadien von Feldfrüchten zuverlässig erkennen");
+            question = new QuestionIntrospectionPage(2,"Ich kann phänologische Entwicklungsstadien von Feldfrüchten zuverlässig erkennen");
             ListQuestionIntrospectionPage.Add(question);
-            question = new QuestionIntrospectionPage("Ich kann den Bedeckungsgrad des Bodens durch Pflanzen zuverlässig schätzen");
+            question = new QuestionIntrospectionPage(3,"Ich kann den Bedeckungsgrad des Bodens durch Pflanzen zuverlässig schätzen");
             ListQuestionIntrospectionPage.Add(question);
-            question = new QuestionIntrospectionPage("Ich kann den Anteil grüner Pflanzenbestandteile am gesamten Pflanzenmaterial zuverlässig schätzen");
+            question = new QuestionIntrospectionPage(4,"Ich kann den Anteil grüner Pflanzenbestandteile am gesamten Pflanzenmaterial zuverlässig schätzen");
             ListQuestionIntrospectionPage.Add(question);
         }
-        
-        public QuestionImageCheckerPage LoadQuestionImageChecker(int difficulty)
+
+        /// <summary>
+        /// Loads a QUestionImageCheckerPage-Object with the set difficulty, or a lower difficulty if no question with a matching difficulty exsist.
+        /// If no question can be loaded it will return an Object, with the ID 0
+        /// </summary>
+        public QuestionImageCheckerPage LoadQuestionImageCheckerPage(int difficulty)
         {
+            List<QuestionImageCheckerPage> ListQuestion = new List<QuestionImageCheckerPage>();
             for(int i = 0; i < ListQuestionImageCheckerPage.Count; i++)
             {
                 QuestionImageCheckerPage question = ListQuestionImageCheckerPage.ElementAt<QuestionImageCheckerPage>(i);
@@ -83,9 +110,13 @@ namespace MobileDataCollection.Survey.Models
                 {
                     if(!(SearchListAnswerImageCheckerPage(question.InternId)))
                     {
-                        return question;
+                        ListQuestion.Add(question);
                     }
                 }
+            }
+            if(ListQuestion.Count > 0)
+            {
+                return ListQuestion.ElementAt<QuestionImageCheckerPage>(RandomNumber.Next(ListQuestion.Count));
             }
             if (difficulty == 1)
             {
@@ -93,15 +124,17 @@ namespace MobileDataCollection.Survey.Models
             }
             else
             {
-                return LoadQuestionImageChecker(difficulty - 1);
+                return LoadQuestionImageCheckerPage(difficulty - 1);
             }
         }
 
+        /// <summary>
+        /// Searches an AnswerImageCheckerPage-Object with the corrosponding Id
+        /// </summary>
         public Boolean SearchListAnswerImageCheckerPage(int Id)
         {
             for(int i = 0;i < ListAnswerImageCheckerPage.Count;i++)
             {
-                List<AnswerImageCheckerPage> a = ListAnswerImageCheckerPage;
                 AnswerImageCheckerPage answer = ListAnswerImageCheckerPage.ElementAt<AnswerImageCheckerPage>(i);
                 if (answer.InternId == Id)
                 {
@@ -111,9 +144,165 @@ namespace MobileDataCollection.Survey.Models
             return false;
         }
 
+        /// <summary>
+        /// Adds an AnswerImageCheckerPage Object to the List ListAnswerImageCheckerPage
+        /// </summary>
         public void AddListAnswerImageCheckerPage(AnswerImageCheckerPage answer)
         {
             ListAnswerImageCheckerPage.Add(answer);
+        }
+
+        /// <summary>
+        /// Loads a QUestionDoubleSliderPage-Object with the set difficulty, or a lower difficulty if no question with a matching difficulty exsist.
+        /// If no question can be loaded it will return an Object, with the ID 0
+        /// </summary>
+        public QuestionDoubleSliderPage LoadQuestionDoubleSliderPage(int difficulty)
+        {
+            List<QuestionDoubleSliderPage> ListQuestion = new List<QuestionDoubleSliderPage>();
+            for (int i = 0; i < ListQuestionDoubleSliderPage.Count; i++)
+            {
+                QuestionDoubleSliderPage question = ListQuestionDoubleSliderPage.ElementAt<QuestionDoubleSliderPage>(i);
+                if (question.Difficulty == difficulty)
+                {
+                    if (!(SearchListAnswerDoubleSliderPage(question.InternId)))
+                    {
+                        ListQuestion.Add(question);
+                    }
+                }
+            }
+            if (ListQuestion.Count > 0)
+            {
+                return ListQuestion.ElementAt<QuestionDoubleSliderPage>(RandomNumber.Next(ListQuestion.Count));
+            }
+            if (difficulty == 1)
+            {
+                return new QuestionDoubleSliderPage(0, 0,"", 0, 0);
+            }
+            else
+            {
+                return LoadQuestionDoubleSliderPage(difficulty - 1);
+            }
+        }
+
+        /// <summary>
+        /// Searches an AnswerDoubleSliderPage-Object with the corrosponding Id
+        /// </summary>
+        public Boolean SearchListAnswerDoubleSliderPage(int Id)
+        {
+            for (int i = 0; i < ListAnswerDoubleSliderPage.Count; i++)
+            {
+                AnswerDoubleSliderPage answer = ListAnswerDoubleSliderPage.ElementAt<AnswerDoubleSliderPage>(i);
+                if (answer.InternId == Id)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Adds an AnswerDoubleSliderPage-Object to the List ListAnswerDoubleSliderPage
+        /// </summary>
+        public void AddListAnswerDoubleSliderPage(AnswerDoubleSliderPage answer)
+        {
+            ListAnswerDoubleSliderPage.Add(answer);
+        }
+
+        /// <summary>
+        /// Loads a QUestionStadiumPage-Object with the set difficulty, or a lower difficulty if no question with a matching difficulty exsist.
+        /// If no question can be loaded it will return an Object, with the ID 0
+        /// </summary>
+        public QuestionStadiumPage LoadQuestionStadiumPage(int difficulty)
+        {
+            List<QuestionStadiumPage> ListQuestion = new List<QuestionStadiumPage>();
+            for (int i = 0; i < ListQuestionStadiumPage.Count; i++)
+            {
+                QuestionStadiumPage question = ListQuestionStadiumPage.ElementAt<QuestionStadiumPage>(i);
+                if (question.Difficulty == difficulty)
+                {
+                    if (!(SearchListAnswerDoubleSliderPage(question.InternId)))
+                    {
+                        ListQuestion.Add(question);
+                    }
+                }
+            }
+            if (ListQuestion.Count > 0)
+            {
+                return ListQuestion.ElementAt<QuestionStadiumPage>(RandomNumber.Next(ListQuestion.Count));
+            }
+            if (difficulty == 1)
+            {
+                return new QuestionStadiumPage(0, 0, null,null,"","");
+            }
+            else
+            {
+                return LoadQuestionStadiumPage(difficulty - 1);
+            }
+        }
+
+        /// <summary>
+        /// Searches an AnswerStadiumPage-Object with the corrosponding Id
+        /// </summary>
+        public Boolean SearchListAnswerStadiumPage(int Id)
+        {
+            for (int i = 0; i < ListAnswerStadiumPage.Count; i++)
+            {
+                AnswerStadiumPage answer = ListAnswerStadiumPage.ElementAt<AnswerStadiumPage>(i);
+                if (answer.InternId == Id)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Adds an AnswerStadiumPage-Object to the List ListAnswerDoubleSliderPage
+        /// </summary>
+        public void AddListAnswerStadiumPage(AnswerStadiumPage answer)
+        {
+            ListAnswerStadiumPage.Add(answer);
+        }
+
+        /// <summary>
+        /// Loads a QUestionIntrospectionPage-Object with the set Id
+        /// </summary>
+        public QuestionIntrospectionPage LoadQuestionIntrospectionPage(int id)
+        {
+            for (int i = 0; i < ListQuestionIntrospectionPage.Count; i++)
+            {
+                QuestionIntrospectionPage question = ListQuestionIntrospectionPage.ElementAt<QuestionIntrospectionPage>(i);
+                if (question.InternId == id)
+                {
+                    return question;
+                }
+            }
+            return new QuestionIntrospectionPage(0, "");
+
+        }
+
+        /// <summary>
+        /// Searches an AnswerStadiumPage-Object with the corrosponding Id
+        /// </summary>
+        public Boolean SearchListAnswerIntrospectionPage(int Id)
+        {
+            for (int i = 0; i < ListAnswerIntrospectionPage.Count; i++)
+            {
+                AnswerIntrospectionPage answer = ListAnswerIntrospectionPage.ElementAt<AnswerIntrospectionPage>(i);
+                if (answer.InternId == Id)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Adds an AnswerStadiumPage-Object to the List ListAnswerDoubleSliderPage
+        /// </summary>
+        public void AddListAnswerIntrospectionPage(AnswerIntrospectionPage answer)
+        {
+            ListAnswerIntrospectionPage.Add(answer);
         }
         /*
         public QuestionDoubleSliderPage LoadQuestionDoubleSlider(int difficulty)

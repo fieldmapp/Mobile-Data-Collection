@@ -1,5 +1,4 @@
-﻿using SQLite;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -10,7 +9,7 @@ namespace MobileDataCollection.Survey.Models
     {
         
         public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(InternId), typeof(int), typeof(QuestionImageCheckerPage), 0, BindingMode.OneWay);
-        public static readonly BindableProperty NumberOfPossibleAnswersProperty = BindableProperty.Create(nameof(NumberOfPossibleAnswers), typeof(int), typeof(QuestionImageCheckerPage), 0, BindingMode.OneWay);
+        //public static readonly BindableProperty NumberOfPossibleAnswersProperty = BindableProperty.Create(nameof(NumberOfPossibleAnswers), typeof(int), typeof(QuestionImageCheckerPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty DifficultyProperty = BindableProperty.Create(nameof(Difficulty), typeof(int), typeof(QuestionImageCheckerPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty QuestionTextProperty = BindableProperty.Create(nameof(QuestionText), typeof(string), typeof(QuestionImageCheckerPage), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty Image1CorrectProperty = BindableProperty.Create(nameof(Image1Correct), typeof(int), typeof(QuestionImageCheckerPage), 0, BindingMode.OneWay);
@@ -26,7 +25,6 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Intern Id only for this Type Of Question
         /// </summary>
-        [PrimaryKey,AutoIncrement]
         public int InternId
         {
             
@@ -38,11 +36,13 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Maximum count of selected answers allowed
         /// </summary>
+        /*
         public int NumberOfPossibleAnswers //war auf 4 gesetzt
         {
             get => (int)GetValue(NumberOfPossibleAnswersProperty);
             set => SetValue(NumberOfPossibleAnswersProperty, value);
         }
+        */
 
         /// <summary>
         /// The difficulty of the Question
@@ -148,14 +148,7 @@ namespace MobileDataCollection.Survey.Models
             Image2Source = im2Source;
             Image3Source = im3Source;
             Image4Source = im4Source;
-            NumberOfPossibleAnswers = 4;
+            //NumberOfPossibleAnswers = 4;
         }
-
-        // Constructor is needed for the database
-        public QuestionImageCheckerPage()
-        {
-
-        }
-        
     }
 }

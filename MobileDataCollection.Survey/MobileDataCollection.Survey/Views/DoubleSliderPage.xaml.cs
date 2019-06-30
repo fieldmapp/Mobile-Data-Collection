@@ -16,28 +16,28 @@ namespace MobileDataCollection.Survey.Views
     {
         //Attributes of the DoubleSlider Layouts
         //Given Answers
-        public SurveyMenuItem survey {get ; set; }
+        //public SurveyMenuItem survey {get ; set; }
         public int AnswersGiven { get; set; }
         //Answers needed to complete Question Category (Muss definiert werden: entweder alle verfügbaren Fragen oder feste Zahl)
         public int AnswersNeeded { get; set; }
         //Current result
         public int CurrentResult { get; set; }
         //Binding für Fragen
-        public static readonly BindableProperty ItemProperty = BindableProperty.Create(nameof(Question), 
+        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), 
             typeof(QuestionDoubleSliderPage), typeof(DoubleSliderPage), 
-            new QuestionDoubleSliderPage("demo",1,1,1), BindingMode.OneWay);
+            new QuestionDoubleSliderPage(1, 1, "Q3G1B1_klein.png", 7, 4), BindingMode.OneWay);
+        //Binding für Antwort
+        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), 
+            typeof(AnswerDoubleSliderPage), typeof(DoubleSliderPage), new AnswerDoubleSliderPage(0, 0, 0), BindingMode.OneWay);
         //Binding für Header
         public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header),
             typeof(String), typeof(DoubleSliderPage), "demo", BindingMode.OneWay);
-        //Binding für Antwort
-        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), 
-            typeof(AnswerDoubleSliderPage), typeof(DoubleSliderPage), new AnswerDoubleSliderPage(null, 0, 0), BindingMode.OneWay);
 
         //Currently displayed question
-        public QuestionDoubleSliderPage Question
+        public QuestionDoubleSliderPage QuestionItem
         {
-            get { return (QuestionDoubleSliderPage)GetValue(ItemProperty); }
-            set { SetValue(ItemProperty, value); }
+            get { return (QuestionDoubleSliderPage)GetValue(QuestionItemProperty); }
+            set { SetValue(QuestionItemProperty, value); }
         }
         //Item of the Answer
         public AnswerDoubleSliderPage AnswerItem
@@ -46,40 +46,46 @@ namespace MobileDataCollection.Survey.Views
             set { SetValue(AnswerItemProperty, value); }
         }
 
-    //IntrospectionPage set at the end of answering the category
-    public QuestionIntrospectionPage IntroQuestion
+        //IntrospectionPage set at the end of answering the category
+        /*
+        public QuestionIntrospectionPage IntroQuestion
         {
             get; set;
         }
+        */
         //Header
         public String Header
         {
             get { return (String)GetValue(HeaderProperty); }
             set { SetValue(HeaderProperty, value); }
         }
-        
-        //Zurzeit nicht verwendet
-        //Definition of all the available Questions (Muss ggf woanders hinkommen -> Zugriff auf DB)
-        public ObservableCollection<QuestionDoubleSliderPage> Items = new ObservableCollection<QuestionDoubleSliderPage>()
-        {
-            new QuestionDoubleSliderPage("Q3G1B1_klein.png", 7, 4, 1),
-            new QuestionDoubleSliderPage("Q3G1B2_klein.png", 49, 91, 1),
-            new QuestionDoubleSliderPage("Q3G1B3_klein.png", 12,3, 1),
-            new QuestionDoubleSliderPage("Q3G1B4_klein.png", 64, 94, 1)
-        };
-        
+
+        private QuestionDoubleSliderPage QuestionItemTest;
+        private DatabankCommunication DBCom = new DatabankCommunication();
+
         public DoubleSliderPage ()
 		{
-            this.survey = new SurveyMenuItem();
-            this.survey.Id=SurveyMenuItemType.DoubleSlider;
             this.AnswersNeeded = 4;
             this.AnswersGiven = 1;
             InitializeComponent();
+
+
+            //this.survey = new SurveyMenuItem();
+            //this.survey.Id=SurveyMenuItemType.DoubleSlider;
             Picture.BindingContext = this;
             QuestionText.BindingContext = this;
             QuestionNumber.BindingContext = this;
-            this.Question = Items[this.AnswersGiven - 1];
-            this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded+1}";
+            this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded + 1}";
+
+            QuestionItemTest = DBCom.LoadQuestionDoubleSliderPage(1);
+            if (QuestionItemTest.InternId != 0)
+            {
+                QuestionItem = QuestionItemTest;
+            }
+            else
+            {
+                // TODO: What do we do if no more Questions are available
+            }
         }
         
         //Resets the Sliders
@@ -107,13 +113,12 @@ namespace MobileDataCollection.Survey.Views
             int answerA = (int)(sliderA.Value);
             int answerB = (int)(sliderB.Value);
             //Analyse of the given Answer referring to the right answer
-            int diffAnsA =100-Math.Abs(answerA - Question.CorrectAnswerA);
-            int diffAnsB =100-Math.Abs(answerB - Question.CorrectAnswerB);
+            int diffAnsA =100-Math.Abs(answerA - QuestionItem.CorrectAnswerA);
+            int diffAnsB =100-Math.Abs(answerB - QuestionItem.CorrectAnswerB);
             //TODO: Use AnswerDoubleSliderPage here
             //Save submitted question as answered with result
-            AnswerItem.Question = Question;
-            AnswerItem.ResultQuestionA = diffAnsA;
-            AnswerItem.ResultQuestionB = diffAnsB;
+            AnswerItem.ResultQuestionA = answerA;
+            AnswerItem.ResultQuestionB = answerB;
             /*this.Question.Answered = true;
             this.Question.Result = (diffAnsA + diffAnsB) / 2;
             this.CurrentResult = this.CurrentResult + this.Question.Result;
@@ -122,10 +127,24 @@ namespace MobileDataCollection.Survey.Views
             if (this.AnswersGiven < this.AnswersNeeded)
             {
                 this.AnswersGiven++;
-                // Set new Question
-                this.Question = Items[this.AnswersGiven - 1];
-                this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded+1}";
+                this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded + 1}";
                 this.ResetSlider();
+                // Set new Question
+
+                AnswerDoubleSliderPage Answer = new AnswerDoubleSliderPage(AnswerItem.InternId, AnswerItem.ResultQuestionA, AnswerItem.ResultQuestionB);
+                DBCom.AddListAnswerDoubleSliderPage(Answer);
+
+                int difficulty = 3; // TODO: implement Method which checks if Question is answered right/wrong
+
+                QuestionItemTest = DBCom.LoadQuestionDoubleSliderPage(difficulty);
+                if (QuestionItemTest.InternId != 0)
+                {
+                    QuestionItem = QuestionItemTest;
+                }
+                else
+                {
+                    // TODO: What do we do if no more Questions are available
+                }
             }
             else if (this.AnswersGiven == this.AnswersNeeded)
             {
