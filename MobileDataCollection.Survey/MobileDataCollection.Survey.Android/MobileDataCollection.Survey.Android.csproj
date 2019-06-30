@@ -103,92 +103,54 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\QuestionDatabank.sqlite" />
+    <AndroidResource Include="Resources\drawable\Q1_G1_F1_B1_klein.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bestockung.png" />
+    <AndroidResource Include="Resources\drawable\Q1_G1_F1_B2_klein.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Q1_G1_F1_B3_klein.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Q1_G1_F1_B4_klein.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\blattentwicklung.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_one_question1_picture1.png" />
+    <AndroidResource Include="Resources\drawable\bestockung.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_one_question1_picture2.png" />
+    <AndroidResource Include="Resources\drawable\schossen.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_one_question1_picture3.png" />
+    <None Include="Assets\QuestionDatabank.sqlite" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_one_question1_picture4.png" />
+    <AndroidResource Include="Resources\drawable\Q3G1B1.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_one_question2_picture1.png" />
+    <AndroidResource Include="Resources\drawable\Q3G1B1_klein.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_one_question2_picture2.png" />
+    <AndroidResource Include="Resources\drawable\Q3G1B4_klein.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_one_question2_picture3.png" />
+    <AndroidResource Include="Resources\drawable\Q3G1B2.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_one_question2_picture4.png" />
+    <AndroidResource Include="Resources\drawable\Q3G1B3.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_three_question5_picture1.png" />
+    <AndroidResource Include="Resources\drawable\Q3G1B4.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_three_question5_picture2.png" />
+    <AndroidResource Include="Resources\drawable\Q3G1B3_klein.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_three_question5_picture3.png" />
+    <AndroidResource Include="Resources\drawable\Q3G1B2_klein.png" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_three_question5_picture4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_three_question6_picture1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_three_question6_picture2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_three_question6_picture3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_three_question6_picture4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_two_question3_picture1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_two_question3_picture2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_two_question3_picture3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_two_question3_picture4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_two_question4_picture1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_two_question4_picture2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_two_question4_picture3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ImageChecker_two_question4_picture4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\infoIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\pfeil.png" />
-  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\radioborder.png" />
   </ItemGroup>
@@ -199,31 +161,69 @@
     <AndroidResource Include="Resources\drawable\radiocheckmark.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\schossen.png" />
+    <AndroidResource Include="Resources\drawable\Q1_G1_F2_B1_klein.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\DoubleSlider_one_question4.png" />
+    <AndroidResource Include="Resources\drawable\Q1_G1_F2_B2_klein.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\DoubleSlider_one_question1.png" />
+    <AndroidResource Include="Resources\drawable\Q1_G1_F2_B3_klein.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\DoubleSlider_one_question2.png" />
+    <AndroidResource Include="Resources\drawable\Q1_G1_F2_B4_klein.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\DoubleSlider_one_question3.png" />
+    <AndroidResource Include="Resources\drawable\Q1_G2_F1_B1_klein.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\DoubleSlider_two_question4.png" />
+    <AndroidResource Include="Resources\drawable\Q1_G2_F1_B2_klein.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\DoubleSlider_two_question1.png" />
+    <AndroidResource Include="Resources\drawable\Q1_G2_F1_B3_klein.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\DoubleSlider_two_question2.png" />
+    <AndroidResource Include="Resources\drawable\Q1_G2_F1_B4_klein.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\DoubleSlider_two_question3.png" />
+    <AndroidResource Include="Resources\drawable\Q1_G2_F2_B1_klein.png" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Q1_G2_F2_B2_klein.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Q1_G2_F2_B3_klein.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Q1_G2_F2_B4_klein.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Q1_G3_F1_B1_klein.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Q1_G3_F1_B2_klein.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Q1_G3_F1_B3_klein.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Q1_G3_F1_B4_klein.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pfeil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Q1_G3_F2_B1_klein.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Q1_G3_F2_B2_klein.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Q1_G3_F2_B3_klein.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Q1_G3_F2_B4_klein.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\infoIcon.png" />
+  </ItemGroup>
 </Project>
