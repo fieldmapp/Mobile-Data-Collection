@@ -36,30 +36,39 @@ namespace MobileDataCollection.Survey.Models
         }
         public void CreateQuestionsForImageChecker()
         {
-            QuestionImageCheckerPage question = new QuestionImageCheckerPage(1,"Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 0, 1, 0, "Q1_G1_F1_B1_klein.png", "Q1_G1_F1_B2_klein.png", "Q1_G1_F1_B3_klein.png", "Q1_G1_F1_B4_klein.png");
+            QuestionImageCheckerPage question = new QuestionImageCheckerPage(1,"Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 0, 1, 0, "ImageChecker_one_question1_picture1.png", "ImageChecker_one_question1_picture2.png", "ImageChecker_one_question1_picture3.png", "ImageChecker_one_question1_picture4.png");
             ListQuestionImageCheckerPage.Add(question);
-            question = new QuestionImageCheckerPage(2,"Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 1, 0, 1, 1, 0, "Q1_G1_F2_B1_klein.png", "Q1_G1_F2_B2_klein.png", "Q1_G1_F2_B3_klein.png", "Q1_G1_F2_B4_klein.png");
+            question = new QuestionImageCheckerPage(2,"Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 1, 0, 1, 1, 0, "ImageChecker_one_question2_picture1.png", "ImageChecker_one_question2_picture2.png", "ImageChecker_one_question2_picture3.png", "ImageChecker_one_question2_picture4.png");
             ListQuestionImageCheckerPage.Add(question);
-            question = new QuestionImageCheckerPage(3,"Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 2, 1, 1, 1, 0, "Q1_G2_F1_B1_klein.png", "Q1_G2_F1_B2_klein.png", "Q1_G2_F1_B3_klein.png", "Q1_G2_F1_B4_klein.png");
+            question = new QuestionImageCheckerPage(3,"Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 2, 1, 1, 1, 0, "ImageChecker_two_question3_picture1.png", "ImageChecker_two_question3_picture2.png", "ImageChecker_two_question3_picture3.png", "ImageChecker_two_question3_picture4.png");
             ListQuestionImageCheckerPage.Add(question);
-            question = new QuestionImageCheckerPage(4,"Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 2, 0, 0, 1, 0, "Q1_G2_F2_B1_klein.png", "Q1_G2_F2_B2_klein.png", "Q1_G2_F2_B3_klein.png", "Q1_G2_F2_B4_klein.png");
+            question = new QuestionImageCheckerPage(4,"Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 2, 0, 0, 1, 0, "ImageChecker_two_question4_picture1.png", "ImageChecker_two_question4_picture2.png", "ImageChecker_two_question4_picture3.png", "ImageChecker_two_question4_picture4.png");
             ListQuestionImageCheckerPage.Add(question);
-            question = new QuestionImageCheckerPage(5,"Wo sehen sie die Feldfruchtsorte Kartoffel abgebildet?", 3, 1, 0, 1, 0, "Q1_G3_F1_B1_klein.png", "Q1_G3_F1_B2_klein.png", "Q1_G3_F1_B3_klein.png", "Q1_G3_F1_B4_klein.png");
+            question = new QuestionImageCheckerPage(5,"Wo sehen sie die Feldfruchtsorte Kartoffel abgebildet?", 3, 1, 0, 1, 0, "ImageChecker_three_question5_picture1.png", "ImageChecker_three_question5_picture2.png", "ImageChecker_three_question5_picture3.png", "ImageChecker_three_question5_picture4.png");
             ListQuestionImageCheckerPage.Add(question);
-            question = new QuestionImageCheckerPage(6,"Wo sehen sie die Feldfruchtsorte Gerste abgebildet?", 3, 0, 0, 1, 0, "Q1_G3_F2_B1_klein.png", "Q1_G3_F2_B2_klein.png", "Q1_G3_F2_B3_klein.png", "Q1_G3_F2_B4_klein.png");
+            question = new QuestionImageCheckerPage(6,"Wo sehen sie die Feldfruchtsorte Gerste abgebildet?", 3, 0, 0, 1, 0, "ImageChecker_three_question6_picture1.png", "ImageChecker_three_question6_picture2.png", "ImageChecker_three_question6_picture3.png", "ImageChecker_three_question6_picture4.png");
             ListQuestionImageCheckerPage.Add(question);
         }
 
         public void CreateQuestionsForDoubleSlider()
         {
-            QuestionDoubleSliderPage question = new QuestionDoubleSliderPage("Q3G1B1_klein.png", 7, 4, 1);
+            QuestionDoubleSliderPage question = new QuestionDoubleSliderPage("DoubleSlider_one_question1.png", 7, 4, 1);
             ListQuestionDoubleSliders.Add(question);
-            question = new QuestionDoubleSliderPage("Q3G1B2_klein.png", 49, 91, 1);
+            question = new QuestionDoubleSliderPage("DoubleSlider_one_question2.png", 49, 91, 1);
             ListQuestionDoubleSliders.Add(question);
-            question = new QuestionDoubleSliderPage("Q3G1B3_klein.png", 12, 3, 1);
+            question = new QuestionDoubleSliderPage("DoubleSlider_one_question3.png", 12, 3, 1);
             ListQuestionDoubleSliders.Add(question);
-            question = new QuestionDoubleSliderPage("Q3G1B4_klein.png", 64, 94, 1);
+            question = new QuestionDoubleSliderPage("DoubleSlider_one_question4.png", 64, 94, 1);
             ListQuestionDoubleSliders.Add(question);
+            question = new QuestionDoubleSliderPage("DoubleSlider_two_question1.png", 49, 91, 1);
+            ListQuestionDoubleSliders.Add(question);
+            question = new QuestionDoubleSliderPage("DoubleSlider_two_question2.png", 12, 3, 1);
+            ListQuestionDoubleSliders.Add(question);
+            question = new QuestionDoubleSliderPage("DoubleSlider_two_question3.png", 64, 94, 1);
+            ListQuestionDoubleSliders.Add(question);
+            question = new QuestionDoubleSliderPage("DoubleSlider_two_question4.png", 64, 94, 1);
+            ListQuestionDoubleSliders.Add(question);
+
         }
 
         public void CreateQuestionForIntrospection()
