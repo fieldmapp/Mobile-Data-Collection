@@ -25,7 +25,7 @@ namespace MobileDataCollection.Survey.Views
         //Binding für Fragen
         public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), 
             typeof(QuestionDoubleSliderPage), typeof(DoubleSliderPage), 
-            new QuestionDoubleSliderPage(1, 1, "Q3G1B1_klein.png", 7, 4), BindingMode.OneWay);
+            new QuestionDoubleSliderPage(1, 1, "DoubleSlider_one_question1.png", 7, 4), BindingMode.OneWay);
         //Binding für Antwort
         public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), 
             typeof(AnswerDoubleSliderPage), typeof(DoubleSliderPage), new AnswerDoubleSliderPage(0, 0, 0), BindingMode.OneWay);

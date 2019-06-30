@@ -154,7 +154,7 @@ namespace MobileDataCollection.Survey.Views
                 AnswerImageCheckerPage Answer = new AnswerImageCheckerPage(AnswerItem.InternId,AnswerItem.Image1Selected, AnswerItem.Image2Selected, AnswerItem.Image3Selected, AnswerItem.Image4Selected);
                 DBCom.AddListAnswerImageCheckerPage(Answer);
 
-                int difficulty = determineNewDifficulty(QuestionItem.Difficulty, QuestionItem.Image1Correct, AnswerItem.Image1Selected, QuestionItem.Image2Correct, AnswerItem.Image2Selected, QuestionItem.Image3Correct, AnswerItem.Image3Selected, QuestionItem.Image4Correct, AnswerItem.Image4Selected);
+                int difficulty = 3;//determineNewDifficulty(QuestionItem.Difficulty, QuestionItem.Image1Correct, AnswerItem.Image1Selected, QuestionItem.Image2Correct, AnswerItem.Image2Selected, QuestionItem.Image3Correct, AnswerItem.Image3Selected, QuestionItem.Image4Correct, AnswerItem.Image4Selected);
 
                 QuestionItemTest = DBCom.LoadQuestionImageCheckerPage(difficulty);
                 if(QuestionItemTest.InternId != 0)
