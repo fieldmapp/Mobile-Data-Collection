@@ -52,16 +52,16 @@ namespace MobileDataCollection.Survey.Views
 
         ObservableCollection<StadiumSubItem> TestCollection = new ObservableCollection<StadiumSubItem>()
         {
-            new StadiumSubItem(){ImageSource = "schossen.png", StadiumName="Schossen"},
-            new StadiumSubItem(){ImageSource = "bestockung.png", StadiumName="Bestockung"},
-            new StadiumSubItem(){ImageSource = "blattentwicklung.png", StadiumName="Blattentwicklung"}
+            new StadiumSubItem("Schossen", "schossen.png"), // hab das angepasst, da ich StadiumSubItem Bindable gemacht haben
+            new StadiumSubItem("Bestockung", "bestockung.png"),
+            new StadiumSubItem("Blattentwicklung", "blattentwicklung.png")
         };
         ObservableCollection<Plant> TestCollection2 = new ObservableCollection<Plant>()
         {
-            new Plant(){Name="Kartoffel"},
-            new Plant(){Name="Mais" },
-            new Plant(){Name="Weizen" },
-            new Plant(){Name="Zuckerrübe" }
+            new Plant("Kartoffel"), // hab das angepasst, da ich Plant Bindable gemacht haben, sollte ja passen
+            new Plant("Mais"),
+            new Plant("Weizen"),
+            new Plant("Zuckerrübe")
         };
         public StadiumPage()
 		{

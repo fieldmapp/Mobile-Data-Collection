@@ -16,8 +16,8 @@ namespace MobileDataCollection.Survey.Models
         public static readonly BindableProperty CorrectAnswerFruitTypeProperty = BindableProperty.Create(nameof(CorrectAnswerFruitType), typeof(string), typeof(QuestionStadiumPage), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty CorrectAnswerStadiumProperty = BindableProperty.Create(nameof(CorrectAnswerStadium), typeof(string), typeof(QuestionStadiumPage), string.Empty, BindingMode.OneWay);
 
-        //TODO: Add List with new class (eg FruitTypeSubItem)
-        //TODO: Think of a way to store correct answer
+        //TODO: Add List with new class (eg FruitTypeSubItem) - noch aktuell?
+        //TODO: Think of a way to store correct answer - noch aktuell?
 
         /// <summary>
         /// Intern Id only for this Type Of Question
