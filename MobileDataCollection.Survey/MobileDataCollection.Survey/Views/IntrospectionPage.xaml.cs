@@ -31,6 +31,16 @@ namespace MobileDataCollection.Survey.Views
             set { SetValue(AnswerItemProperty, value); }
         }
 
+        /* sinnvoll hier?
+        //Binding für Header
+        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(String), typeof(IntrospectionPage), "demo", BindingMode.OneWay);
+        //Header
+        public String Header
+        {
+            get { return (String)GetValue(HeaderProperty); }
+            set { SetValue(HeaderProperty, value); }
+        }*/
+
         public ObservableCollection<QuestionIntrospectionPage> Items
         { get; set; }
 

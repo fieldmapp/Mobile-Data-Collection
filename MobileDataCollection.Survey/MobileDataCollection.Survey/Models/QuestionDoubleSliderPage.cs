@@ -86,7 +86,7 @@ namespace MobileDataCollection.Survey.Models
                     throw new NotImplementedException($"{nameof(value)} must be at most {nameof(HighestQuestionDifficulty)}={HighestQuestionDifficulty}");
                 if (value < 1)
                     throw new NotImplementedException($"{nameof(value)} must be at least 1");
-                SetValue(DifficultyProperty, value);
+                SetValue(DifficultyProperty, value);    
             }
             */
         }

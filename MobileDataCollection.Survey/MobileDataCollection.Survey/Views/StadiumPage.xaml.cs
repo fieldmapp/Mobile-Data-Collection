@@ -40,8 +40,7 @@ namespace MobileDataCollection.Survey.Views
         }
 
         //Binding für Header
-        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header),
-            typeof(String), typeof(DoubleSliderPage), "demo", BindingMode.OneWay);
+        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(String), typeof(StadiumPage), "demo", BindingMode.OneWay);
         //Header
         public String Header
         {
