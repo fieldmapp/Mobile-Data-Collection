@@ -13,10 +13,10 @@ namespace MobileDataCollection.Survey.Views
     {
         public ObservableCollection<SurveyMenuItem> Items = new ObservableCollection<SurveyMenuItem>()
         {
-            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=4, MaximumQuestionNumber=18, ChapterName="Bedeckungsgrade", Id= SurveyMenuItemType.DoubleSlider, Unlocked=true},
-            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=8, MaximumQuestionNumber=25, ChapterName="Sortenerkennung", Id= SurveyMenuItemType.ImageChecker, Unlocked=true},
-            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=5, MaximumQuestionNumber=16, ChapterName="Selbsteinschätzung", Id= SurveyMenuItemType.Introspection, Unlocked=true},
-            new SurveyMenuItem(){AnswersGiven=0, AnswersNeeded=2, MaximumQuestionNumber=12, ChapterName="Wuchsstadien", Id= SurveyMenuItemType.Stadium, Unlocked=true}
+            new SurveyMenuItem(SurveyMenuItemType.DoubleSlider, "Bedeckungsgrade", 4, 18, 0, true, Color.White), //Hintergrundfarbe hab ich Weiß gemacht
+            new SurveyMenuItem(SurveyMenuItemType.ImageChecker, "Sortenerkennung", 8, 25, 0, true, Color.White),
+            new SurveyMenuItem(SurveyMenuItemType.Introspection, "Selbsteinschätzung", 5, 16, 0, true, Color.White),
+            new SurveyMenuItem(SurveyMenuItemType.Stadium, "Wuchsstadien", 2, 12, 0, true, Color.White)
         };
         Dictionary<SurveyMenuItemType, Func<ContentPage>> PageConstructorDictionary = new Dictionary<SurveyMenuItemType, Func<ContentPage>>()
         {

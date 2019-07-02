@@ -7,12 +7,21 @@ namespace MobileDataCollection.Survey.Models
 {
     public class AnswerDoubleSliderPage : BindableObject, IUserAnswer
     {
+        public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(InternId), typeof(int), typeof(AnswerDoubleSliderPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty ResultQuestionAProperty = BindableProperty.Create(nameof(ResultQuestionA), typeof(int), typeof(AnswerDoubleSliderPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty ResultQuestionBProperty = BindableProperty.Create(nameof(ResultQuestionB), typeof(int), typeof(AnswerDoubleSliderPage), 0, BindingMode.OneWay);
-        public static readonly BindableProperty QuestionProperty = BindableProperty.Create(nameof(Question), typeof(QuestionDoubleSliderPage), typeof(AnswerDoubleSliderPage), null, BindingMode.OneWay);
 
         /// <summary>
-        /// Answer for Question A given by the user. Check <see cref="Answered"/> to see if user has submitted the answer first.
+        /// Intern Id for Answers of this Type, corrosponds to same number as in QuestionImageCheckerPage
+        /// </summary>
+        public int InternId
+        {
+            get => (int)GetValue(InternIdProperty);
+            set => SetValue(InternIdProperty, value);
+        }
+
+        /// <summary>
+        /// Answer for Question A given by the user. Check <see /cref="Answered"/> to see if user has submitted the answer first.
         /// </summary>
         public int ResultQuestionA
         {
@@ -21,7 +30,7 @@ namespace MobileDataCollection.Survey.Models
         }
 
         /// <summary>
-        /// Answer for Question B given by the user. Check <see cref="Answered"/> to see if user has submitted the answer first.
+        /// Answer for Question B given by the user. Check <see /cref="Answered"/> to see if user has submitted the answer first.
         /// </summary>
         public int ResultQuestionB
         {
@@ -32,15 +41,9 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Is a reference to the belonging Question
         /// </summary>
-        public QuestionDoubleSliderPage Question
+        public AnswerDoubleSliderPage(int internId, int resultA, int resultB)
         {
-            get => (QuestionDoubleSliderPage)GetValue(QuestionProperty);
-            set => SetValue(QuestionProperty, value);
-        }
-
-        public AnswerDoubleSliderPage(QuestionDoubleSliderPage question, int resultA, int resultB)
-        {
-            Question = question;
+            InternId = internId;
             ResultQuestionA = resultA;
             ResultQuestionB = resultB;
         }

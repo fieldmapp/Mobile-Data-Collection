@@ -7,8 +7,17 @@ namespace MobileDataCollection.Survey.Models
 {
     public class AnswerIntrospectionPage : BindableObject, IUserAnswer
     {
+        public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(InternId), typeof(int), typeof(AnswerIntrospectionPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty SelectedAnswerProperty = BindableProperty.Create(nameof(SelectedAnswer), typeof(int), typeof(AnswerIntrospectionPage), 0, BindingMode.OneWay);
-        public static readonly BindableProperty QuestionProperty = BindableProperty.Create(nameof(Question), typeof(QuestionIntrospectionPage), typeof(AnswerIntrospectionPage), null, BindingMode.OneWay);
+
+        /// <summary>
+        /// Intern Id for Answers of this Type, corrosponds to same number as in QuestionImageCheckerPage
+        /// </summary>
+        public int InternId
+        {
+            get => (int)GetValue(InternIdProperty);
+            set => SetValue(InternIdProperty, value);
+        }
 
         /// <summary>
         /// Represents the index of the selected Answer (in inclusive range 1 - 5)
@@ -22,15 +31,10 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Is a reference to the belonging Question
         /// </summary>
-        public QuestionIntrospectionPage Question
-        {
-            get => (QuestionIntrospectionPage)GetValue(QuestionProperty);
-            set => SetValue(QuestionProperty, value);
-        }
 
-        public AnswerIntrospectionPage(QuestionIntrospectionPage question, int selectedanswer)
+        public AnswerIntrospectionPage(int internId, int selectedanswer)
         {
-            Question = question;
+            InternId = internId;
             SelectedAnswer = selectedanswer;
         }
     }
