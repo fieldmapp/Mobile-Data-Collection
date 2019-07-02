@@ -50,17 +50,14 @@
             </ListView.ItemTemplate>
         </ListView>
         <StackLayout Grid.Row="2">
+            <Grid Margin="0,5,0,0" Grid.Row="3" HorizontalOptions="CenterAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="infoIcon.png" HeightRequest="15"/>
+                <Label Grid.Column="1" FontSize="Small" Text="Klicken Sie für mehr Informationen"/>
+            </Grid>
         </StackLayout>
     </Grid>
-    <!-- <Grid Margin="0,5,0,0" Grid.Row="3" HorizontalOptions="CenterAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="infoIcon.png" HeightRequest="15"/>
-                    <Label Grid.Column="1" FontSize="Small" Text="Klicken Sie für mehr Informationen"/>
-                </Grid>
-                
-        </StackLayout>-->
-    <!--</ContentPage.Content>-->
 </ContentPage>
