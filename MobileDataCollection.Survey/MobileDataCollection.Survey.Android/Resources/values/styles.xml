@@ -23,9 +23,9 @@
 
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
 
-    <item name="android:colorActivatedHighlight">@color/darkSeaGreen</item>
+    <item name="android:colorActivatedHighlight">@color/transparent</item>
   </style>
-
+  <color name="transparent">#00000000 </color>
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
     <item name="colorAccent">#FF4081</item>
   </style>

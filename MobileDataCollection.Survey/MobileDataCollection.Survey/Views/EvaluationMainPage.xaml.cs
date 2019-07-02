@@ -25,9 +25,13 @@ namespace MobileDataCollection.Survey.Views
             InitializeComponent();
             CatList.ItemsSource = EvaluationItems;
         }
-        void DetailsClicked(object sender, EventArgs e)
+        
+        private async void DetailsClicked(object sender, ItemTappedEventArgs e)
         {
-            Navigation.PushAsync(new EvaluationDetailsPage(80, 47, 15));
+            if (!(e.Item is EvaluationItem selectedItem))
+                throw new NotImplementedException();
+            EvaluationItem tapped = (EvaluationItem)e.Item;
+            await Navigation.PushAsync(new EvaluationDetailsPage(tapped.PercentEasy, tapped.PercentMedium, tapped.PercentHard));
         }
     }
 }
