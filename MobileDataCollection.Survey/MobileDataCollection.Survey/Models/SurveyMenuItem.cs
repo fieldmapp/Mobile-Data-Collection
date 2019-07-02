@@ -20,7 +20,6 @@ namespace MobileDataCollection.Survey.Models
         public static readonly BindableProperty MaximumQuestionNumberProperty = BindableProperty.Create(nameof(MaximumQuestionNumber), typeof(int), typeof(SurveyMenuItem), 0, BindingMode.OneWay);
         public static readonly BindableProperty AnswersGivenProperty = BindableProperty.Create(nameof(AnswersGiven), typeof(int), typeof(SurveyMenuItem), 0, BindingMode.OneWay);
         public static readonly BindableProperty UnlockedProperty = BindableProperty.Create(nameof(Unlocked), typeof(bool), typeof(SurveyMenuItem), false, BindingMode.OneWay);
-        public static readonly BindableProperty ProgressStringProperty = BindableProperty.Create(nameof(ProgressString), typeof(string), typeof(SurveyMenuItem), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(SurveyMenuItem), Color.White, BindingMode.OneWay);
 
         public SurveyMenuItemType Id //machen alle Variablen noch Sinn, Namen ändern?, fällt was raus?
@@ -59,19 +58,16 @@ namespace MobileDataCollection.Survey.Models
             set => SetValue(UnlockedProperty, value);
         }
 
-        public string ProgressString //=> $"{AnswersGiven}/{AnswersNeeded} ({MaximumQuestionNumber})"; hab das auf MainPage eingefügt ohne $
-        {
-            get => (string)GetValue(ProgressStringProperty);
-            set => SetValue(ProgressStringProperty, value);
-        }
-
+        public string ProgressString => $"{AnswersGiven}/{AnswersNeeded} ({MaximumQuestionNumber})";
+        // hab das nicht bindable gemacht, da es ja so bleiben sollte oder?
+        
         public Color BackgroundColor
         {
             get => (Color)GetValue(BackgroundColorProperty);
             set => SetValue(BackgroundColorProperty, value);
         }
 
-        public SurveyMenuItem(SurveyMenuItemType id, string chapterName, int answersNeeded, int maximumQuestionNumber, int answersGiven, bool unlocked, string progressString, Color backgroundColor)
+        public SurveyMenuItem(SurveyMenuItemType id, string chapterName, int answersNeeded, int maximumQuestionNumber, int answersGiven, bool unlocked, Color backgroundColor)
         {
             Id = id;
             ChapterName = chapterName;
@@ -79,7 +75,6 @@ namespace MobileDataCollection.Survey.Models
             MaximumQuestionNumber = maximumQuestionNumber;
             AnswersGiven = answersGiven;
             Unlocked = unlocked;
-            ProgressString = progressString;
             BackgroundColor = backgroundColor;
         }
     }
