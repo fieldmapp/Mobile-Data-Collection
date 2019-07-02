@@ -5,9 +5,27 @@ using Xamarin.Forms;
 
 namespace MobileDataCollection.Survey.Models
 {
-    class StadiumSubItem
+    public class StadiumSubItem : BindableObject
     {
-        public string StadiumName { get; set; }
-        public string ImageSource { get; set; }
+        public static readonly BindableProperty StadiumNameProperty = BindableProperty.Create(nameof(StadiumName), typeof(string), typeof(StadiumSubItem), string.Empty, BindingMode.OneWay);
+        public static readonly BindableProperty ImageSourceProperty = BindableProperty.Create(nameof(ImageSource), typeof(string), typeof(StadiumSubItem), string.Empty, BindingMode.OneWay);
+
+        public string StadiumName
+        {
+            get => (string)GetValue(StadiumNameProperty);
+            set => SetValue(StadiumNameProperty, value);
+        }
+
+        public string ImageSource
+        {
+            get => (string)GetValue(StadiumNameProperty);
+            set => SetValue(StadiumNameProperty, value);
+        }
+
+        public StadiumSubItem(string stadiumName, string imageSource)
+        {
+            StadiumName = stadiumName;
+            ImageSource = imageSource;
+        }
     }
 }

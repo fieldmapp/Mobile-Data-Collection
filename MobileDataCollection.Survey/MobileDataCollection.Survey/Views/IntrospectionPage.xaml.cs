@@ -16,8 +16,8 @@ namespace MobileDataCollection.Survey.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class IntrospectionPage : ContentPage
     {
-        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), typeof(QuestionIntrospectionPage), typeof(IntrospectionPage), new QuestionIntrospectionPage("demo"), BindingMode.OneWay);
-        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerIntrospectionPage), typeof(IntrospectionPage), new AnswerIntrospectionPage(new QuestionIntrospectionPage("demo"), 1), BindingMode.OneWay);
+        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), typeof(QuestionIntrospectionPage), typeof(IntrospectionPage), new QuestionIntrospectionPage(1,"demo"), BindingMode.OneWay);
+        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerIntrospectionPage), typeof(IntrospectionPage), new AnswerIntrospectionPage(1, 1), BindingMode.OneWay);
 
         public QuestionIntrospectionPage QuestionItem
         {
@@ -31,13 +31,27 @@ namespace MobileDataCollection.Survey.Views
             set { SetValue(AnswerItemProperty, value); }
         }
 
+        /* sinnvoll hier?
+        //Binding für Header
+        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(String), typeof(IntrospectionPage), "demo", BindingMode.OneWay);
+        //Header
+        public String Header
+        {
+            get { return (String)GetValue(HeaderProperty); }
+            set { SetValue(HeaderProperty, value); }
+        }*/
+
         public ObservableCollection<QuestionIntrospectionPage> Items
         { get; set; }
+
+        private DatabankCommunication DBcom = new DatabankCommunication();
+        private int i = 1;
+
         public IntrospectionPage()
         {
             InitializeComponent();
             QuestionLabel.BindingContext = this;
-            QuestionItem = new QuestionIntrospectionPage("Ich kann eine Sorte von Feldfrüchten zuverlässig erkennen.");
+            QuestionItem = new QuestionIntrospectionPage(1,"Ich kann eine Sorte von Feldfrüchten zuverlässig erkennen.");
             RadioButtonIndex = new Dictionary<RadioButton, int>()
             {
                 {Button1, 1},
@@ -53,16 +67,16 @@ namespace MobileDataCollection.Survey.Views
             QuestionLabel.BindingContext = this;
             //Ans Ende jeder Survey müssen Introspectionfrage(n), d.h. für jeden Survey-Typ müssen 1-n Introspection fragen hinterlegbar 
             if (survey.Id == SurveyMenuItemType.ImageChecker) Items = new ObservableCollection<QuestionIntrospectionPage>() {
-                new QuestionIntrospectionPage("Ich kann eine Sorte von Feldfrüchten zuverlässig erkennen.")}; 
+                new QuestionIntrospectionPage(1,"Ich kann eine Sorte von Feldfrüchten zuverlässig erkennen.")}; 
             else if (survey.Id == SurveyMenuItemType.DoubleSlider) {
                 Items = new ObservableCollection<QuestionIntrospectionPage>(){
                     //Für DoubleSliderPage werden zwei Introspection-Fragen gebraucht
-                    new QuestionIntrospectionPage("Ich kann den Bedeckungsgrad des Bodens durch Pflanzen zuverlässig schätzen."),
-                    new QuestionIntrospectionPage("Ich kann den Anteil grüner Pflanzenbestandteile am gesamten Pflanzenmaterial zuverlässig schätzen.")
+                    new QuestionIntrospectionPage(3,"Ich kann den Bedeckungsgrad des Bodens durch Pflanzen zuverlässig schätzen."),
+                    new QuestionIntrospectionPage(4,"Ich kann den Anteil grüner Pflanzenbestandteile am gesamten Pflanzenmaterial zuverlässig schätzen.")
                 };
             }
             else if (survey.Id == SurveyMenuItemType.Stadium){ Items = new ObservableCollection<QuestionIntrospectionPage>() {
-                new QuestionIntrospectionPage("Ich kann phänologische Entwicklungsstadien von Feldfrüchten zuverlässig erkennen.")};
+                new QuestionIntrospectionPage(2,"Ich kann phänologische Entwicklungsstadien von Feldfrüchten zuverlässig erkennen.")};
             }
             this.QuestionItem = Items[0];
         }
@@ -83,17 +97,27 @@ namespace MobileDataCollection.Survey.Views
         void OnWeiterButtonClicked(object sender, EventArgs e)
         {
             var selectedRadioButton = RadioButtonIndex.Keys.FirstOrDefault(r => r.IsChecked);
-            if (selectedRadioButton == null)
-                return;
-            AnswerItem = new AnswerIntrospectionPage(QuestionItem, RadioButtonIndex[selectedRadioButton]);
 
-            QuestionItem = new QuestionIntrospectionPage("Ich kann ... zuverlässig erkennen.");
+            AnswerItem.InternId = QuestionItem.InternId; // = new AnswerIntrospectionPage(QuestionItem, RadioButtonIndex[selectedRadioButton]);
+            AnswerItem.SelectedAnswer = RadioButtonIndex[selectedRadioButton];
 
             Button1.IsChecked = false;
             Button2.IsChecked = false;
             Button3.IsChecked = false;
             Button4.IsChecked = false;
             Button5.IsChecked = false;
+
+            AnswerIntrospectionPage Answer = new AnswerIntrospectionPage(AnswerItem.InternId, AnswerItem.SelectedAnswer);
+            DBcom.AddListAnswerIntrospectionPage(Answer);
+
+            QuestionItem = DBcom.LoadQuestionIntrospectionPage(i);
+            i++;
+            if(i>5)
+            {
+                i = 1;
+            }
+
+
         }
 
         void OnAbbrechenButtonClicked(object sender, EventArgs e)

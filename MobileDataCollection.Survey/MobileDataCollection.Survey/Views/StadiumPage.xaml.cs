@@ -19,29 +19,28 @@ namespace MobileDataCollection.Survey.Views
         //Answers needed to complete Question Category (Muss definiert werden: entweder alle verfügbaren Fragen oder feste Zahl)
         public int AnswersNeeded { get; set; }
 
-        //Binding für Fragen
-        /*public static readonly BindableProperty ItemProperty = BindableProperty.Create(nameof(Question),
-            typeof(QuestionStadiumPage), typeof(DoubleSliderPage),
-            new QuestionStadiumPage(), BindingMode.OneWay);
-        public QuestionStadiumPage Question
-        {
-            get { return (QuestionStadiumPage)GetValue(ItemProperty); }
-            set { SetValue(ItemProperty, value); }
-        }*/
-        //Binding für Antwort
-        /*public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem),
-            typeof(AnswerDoubleSliderPage), typeof(DoubleSliderPage), new AnswerDoubleSliderPage(null, 0, 0), BindingMode.OneWay);
+        //Binding for Question
+        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem),typeof(QuestionStadiumPage), typeof(StadiumPage), new QuestionStadiumPage(0, 0, null, null, string.Empty, string.Empty), BindingMode.OneWay);
 
-        //Item of the Answer
+        //Item of Question
+        public QuestionStadiumPage QuestionItem
+        {
+            get { return (QuestionStadiumPage)GetValue(QuestionItemProperty); }
+            set { SetValue(QuestionItemProperty, value); }
+        }
+
+        //Binding for Answer
+        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem),typeof(AnswerStadiumPage), typeof(StadiumPage), new AnswerStadiumPage(0, string.Empty, string.Empty), BindingMode.OneWay);
+
+        //Item of Answer
         public AnswerStadiumPage AnswerItem
         {
             get { return (AnswerStadiumPage)GetValue(AnswerItemProperty); }
             set { SetValue(AnswerItemProperty, value); }
-        }*/
+        }
 
         //Binding für Header
-        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header),
-            typeof(String), typeof(DoubleSliderPage), "demo", BindingMode.OneWay);
+        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(String), typeof(StadiumPage), "demo", BindingMode.OneWay);
         //Header
         public String Header
         {
@@ -52,16 +51,16 @@ namespace MobileDataCollection.Survey.Views
 
         ObservableCollection<StadiumSubItem> TestCollection = new ObservableCollection<StadiumSubItem>()
         {
-            new StadiumSubItem(){ImageSource = "schossen.png", StadiumName="Schossen"},
-            new StadiumSubItem(){ImageSource = "bestockung.png", StadiumName="Bestockung"},
-            new StadiumSubItem(){ImageSource = "blattentwicklung.png", StadiumName="Blattentwicklung"}
+            new StadiumSubItem("Schossen", "schossen.png"), // hab das angepasst, da ich StadiumSubItem Bindable gemacht haben
+            new StadiumSubItem("Bestockung", "bestockung.png"),
+            new StadiumSubItem("Blattentwicklung", "blattentwicklung.png")
         };
         ObservableCollection<Plant> TestCollection2 = new ObservableCollection<Plant>()
         {
-            new Plant(){Name="Kartoffel"},
-            new Plant(){Name="Mais" },
-            new Plant(){Name="Weizen" },
-            new Plant(){Name="Zuckerrübe" }
+            new Plant("Kartoffel"), // hab das angepasst, da ich Plant Bindable gemacht haben, sollte ja passen
+            new Plant("Mais"),
+            new Plant("Weizen"),
+            new Plant("Zuckerrübe")
         };
         public StadiumPage()
 		{

@@ -13,11 +13,11 @@ namespace MobileDataCollection.Survey.Models
     {
         public SurveyManager()
         {
-            var demoDoubleSlider = new QuestionDoubleSliderPage("Q3G1B1_klein.png", 7, 4, 1);
+            var demoDoubleSlider = new QuestionDoubleSliderPage(1,1,"Q3G1B1_klein.png", 7, 4);
 
             Questions = new List<Question>()
             {
-                new Question<QuestionDoubleSliderPage, AnswerDoubleSliderPage>(demoDoubleSlider, new AnswerDoubleSliderPage(demoDoubleSlider, 10, 20))
+                new Question<QuestionDoubleSliderPage, AnswerDoubleSliderPage>(demoDoubleSlider, new AnswerDoubleSliderPage(demoDoubleSlider.InternId, 10, 20))
             };
         }
 
