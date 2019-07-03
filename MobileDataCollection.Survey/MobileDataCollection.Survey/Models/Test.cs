@@ -19,5 +19,7 @@ namespace MobileDataCollection.Survey.Models
 
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
+
+        public int Difficulty => throw new NotImplementedException();
     }
 }

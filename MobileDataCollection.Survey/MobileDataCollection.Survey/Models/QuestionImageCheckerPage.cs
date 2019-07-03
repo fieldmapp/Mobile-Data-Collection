@@ -134,8 +134,7 @@ namespace MobileDataCollection.Survey.Models
             set => SetValue(Image4SourceProperty, value);
         }
 
-        public QuestionImageCheckerPage(int id, string question, int difficulty, int im1Correct, int im2Correct, int im3Correct, int im4Corect, 
-            string im1Source, string im2Source, string im3Source, string im4Source)
+        public QuestionImageCheckerPage(int id, string question, int difficulty, int im1Correct, int im2Correct, int im3Correct, int im4Corect, string im1Source, string im2Source, string im3Source, string im4Source)
         {
             InternId = id;
             QuestionText = question;
@@ -148,7 +147,6 @@ namespace MobileDataCollection.Survey.Models
             Image2Source = im2Source;
             Image3Source = im3Source;
             Image4Source = im4Source;
-            //NumberOfPossibleAnswers = 4;
         }
     }
 }

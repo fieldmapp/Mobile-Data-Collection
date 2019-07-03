@@ -27,6 +27,8 @@ namespace MobileDataCollection.Survey.Models
             set => SetValue(QuestionTextProperty, value);
         }
 
+        public int Difficulty => -1;
+
         public QuestionIntrospectionPage(int internId, string text)
         {
             InternId = internId;

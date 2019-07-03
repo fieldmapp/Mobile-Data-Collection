@@ -6,5 +6,6 @@ namespace MobileDataCollection.Survey.Models
 {
     public interface IQuestionContent
     {
+        int Difficulty { get; }
     }
 }
