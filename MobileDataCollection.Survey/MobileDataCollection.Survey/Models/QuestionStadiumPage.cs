@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using System.Text;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace MobileDataCollection.Survey.Models
 {
     public class QuestionStadiumPage : BindableObject, IQuestionContent
     {
         public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(InternId), typeof(int), typeof(QuestionStadiumPage), 0, BindingMode.OneWay);
-        //public static readonly BindableProperty NumberOfPossibleAnswersProperty = BindableProperty.Create(nameof(NumberOfPossibleAnswers), typeof(int), typeof(QuestionStadiumPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty DifficultyProperty = BindableProperty.Create(nameof(Difficulty), typeof(int), typeof(QuestionStadiumPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty StadiumSubItemsProperty = BindableProperty.Create(nameof(Stadiums), typeof(List<StadiumSubItem>), typeof(QuestionStadiumPage), null, BindingMode.OneWay);
-        public static readonly BindableProperty TestCollection2Property = BindableProperty.Create(nameof(Plants), typeof(ObservableCollection<Plant>), typeof(QuestionStadiumPage), null, BindingMode.OneWay);
+        public static readonly BindableProperty TestCollection2Property = BindableProperty.Create(nameof(Plants), typeof(List<Plant>), typeof(QuestionStadiumPage), null, BindingMode.OneWay);
         public static readonly BindableProperty CorrectAnswerFruitTypeProperty = BindableProperty.Create(nameof(CorrectAnswerFruitType), typeof(string), typeof(QuestionStadiumPage), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty CorrectAnswerStadiumProperty = BindableProperty.Create(nameof(CorrectAnswerStadium), typeof(string), typeof(QuestionStadiumPage), string.Empty, BindingMode.OneWay);
-
-        //TODO: Add List with new class (eg FruitTypeSubItem) - noch aktuell?
-        //TODO: Think of a way to store correct answer - noch aktuell?
-
+        public static readonly BindableProperty ImageProperty = BindableProperty.Create(nameof(Image), typeof(string), typeof(QuestionStadiumPage), string.Empty, BindingMode.OneWay);
+            
         /// <summary>
         /// Intern Id only for this Type Of Question
         /// </summary>
@@ -27,7 +25,12 @@ namespace MobileDataCollection.Survey.Models
 
             get => (int)GetValue(InternIdProperty);
             set => SetValue(InternIdProperty, value);
+        }
 
+        public string Image
+        {
+            get => (string)GetValue(ImageProperty);
+            set => SetValue(ImageProperty, value);
         }
 
         /// <summary>
@@ -42,9 +45,9 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Contains all possible fruit types?
         /// </summary>
-        public ObservableCollection<Plant> Plants
+        public List<Plant> Plants
         {
-            get => (ObservableCollection<Plant>)GetValue(TestCollection2Property);
+            get => (List<Plant>)GetValue(TestCollection2Property);
             set => SetValue(TestCollection2Property, value);
         }
 
@@ -68,12 +71,18 @@ namespace MobileDataCollection.Survey.Models
 
 
 
-        public QuestionStadiumPage(int internId, int difficulty, List<StadiumSubItem> stadiumSubItems, ObservableCollection<Plant> testCollection2, string correctAnswerFruitType, string correctAnswerStadium)
+        public QuestionStadiumPage(int internId, int difficulty, string image, List<StadiumSubItem> stadiums, List<Plant> plants, string correctAnswerStadium, string correctAnswerFruitType)
         {
+            if (!stadiums.Any(s => s.StadiumName == correctAnswerStadium))
+                throw new ArgumentException("Argument needs to be contained in "+nameof(stadiums), nameof(correctAnswerStadium));
+            if (!plants.Any(p => p.Name == correctAnswerFruitType))
+                throw new ArgumentException("Argument needs to be contained in " + nameof(plants), nameof(correctAnswerStadium));
+
             InternId = internId;
+            Image = image;
             Difficulty = difficulty;
-            Stadiums = stadiumSubItems;
-            Plants = testCollection2;
+            Stadiums = stadiums;
+            Plants = plants;
             CorrectAnswerFruitType = correctAnswerFruitType;
             CorrectAnswerStadium = correctAnswerStadium;
         }

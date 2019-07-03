@@ -16,7 +16,7 @@ namespace MobileDataCollection.Survey.Views
 	public partial class StadiumPage : ContentPage, ISurveyPage
 	{
         //Binding for Question
-        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem),typeof(QuestionStadiumPage), typeof(StadiumPage), new QuestionStadiumPage(0, 0, null, null, string.Empty, string.Empty), BindingMode.OneWay);
+        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem),typeof(QuestionStadiumPage), typeof(StadiumPage), null, BindingMode.OneWay);
 
         //Item of Question
         public QuestionStadiumPage QuestionItem
@@ -60,7 +60,8 @@ namespace MobileDataCollection.Survey.Views
             QuestionItem = question;
             StadiumCollection = new ObservableCollection<StadiumSubItem>(question.Stadiums);
             PlantCollection = new ObservableCollection<Plant>(question.Plants);
-            PlantInlinePicker.ItemSource = StadiumCollection;
+            Picture.BindingContext = this;
+            StadiumInlinePicker.ItemSource = StadiumCollection;
             PlantInlinePicker.ItemSource = PlantCollection;
             Header = $"Frage {answersGiven}/{answersNeeded + 1}";
             HeaderText.BindingContext = this;

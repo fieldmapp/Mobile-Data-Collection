@@ -18,8 +18,8 @@ namespace MobileDataCollection.Survey.Models
 
         public string ImageSource
         {
-            get => (string)GetValue(StadiumNameProperty);
-            set => SetValue(StadiumNameProperty, value);
+            get => (string)GetValue(ImageSourceProperty);
+            set => SetValue(ImageSourceProperty, value);
         }
 
         public StadiumSubItem(string stadiumName, string imageSource)

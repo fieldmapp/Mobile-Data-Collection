@@ -101,9 +101,70 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public void CreateQuestionsForStadium()
         {
+            var stadiums1 = new List<StadiumSubItem>
+            {
+                new StadiumSubItem("Blattentwicklung", "stadium_blattentwicklung.png"),
+                new StadiumSubItem("Bestockung", "stadium_bestockung.png"),
+                new StadiumSubItem("Längenwachstum/Schossen", "stadium_laengenwachstumschossen.png")
+            };
+            var plants1 = new List<Plant>
+            {
+                new Plant("Kartoffel"),
+                new Plant("Mais"),
+                new Plant("Weizen"),
+                new Plant("Zuckerrübe")
+            };
+            var stadiums2 = new List<StadiumSubItem>
+            {
+                new StadiumSubItem("Blattentwicklung", "stadium_blattentwicklung.png"),
+                new StadiumSubItem("Schossen/Haupttrieb", "stadium_laengenwachstumschossen.png"),
+                new StadiumSubItem("Ähren/-Rispenschwellen", "stadium_ahrenrispenschwellen.png"),
+                new StadiumSubItem("Entwicklung der Blütenanlage", "stadium_entwicklungbluetenanlage.png"),
+                new StadiumSubItem("Blüte", "bluete.png")
+            };
+            var plants2 = new List<Plant>
+            {
+                new Plant("Gerste"),
+                new Plant("Kartoffel"),
+                new Plant("Raps"),
+                new Plant("Weizen")
+            };
+            var stadiums3 = new List<StadiumSubItem>
+            {
+                new StadiumSubItem("Längenwachstum/Schossen", "stadium_laengenwachstumschossen.png"),
+                new StadiumSubItem("Entwicklung vegetativer Pflanzenteile/Rübenkörper", "stadium_entwicklungvegpflanzruebenk.png"),
+                new StadiumSubItem("Entwicklung der Blütenanlage", "stadium_entwicklungbluetenanlage.png"),
+                new StadiumSubItem("Fruchtentwicklung", "bluete.png")
+            };
+            var plants3 = new List<Plant>
+            {
+                new Plant("Kartoffel"),
+                new Plant("Mais"),
+                new Plant("Raps"),
+                new Plant("Weizen"),
+                new Plant("Zuckerrübe")
+            };
             ListQuestionStadiumPage = new List<QuestionStadiumPage>
             {
-
+                new QuestionStadiumPage(1, 1, "Stadium_one_question1.png", stadiums1.ToList(), plants1.ToList(), "Blattentwicklung", "Kartoffel"),
+                new QuestionStadiumPage(2, 1, "Stadium_one_question2.png", stadiums1.ToList(), plants1.ToList(), "Blattentwicklung", "Zuckerrübe"),
+                //TODO: Add Support for multiple correkt answers (as seen in original survey 1 stadium answer 3)
+                new QuestionStadiumPage(3, 1, "Stadium_one_question3.png", stadiums1.ToList(), plants1.ToList(), "Blattentwicklung", "Mais"),
+                new QuestionStadiumPage(4, 1, "Stadium_one_question4.png", stadiums1.ToList(), plants1.ToList(), "Blattentwicklung", "Kartoffel"),
+                new QuestionStadiumPage(5, 1, "Stadium_one_question5.png", stadiums1.ToList(), plants1.ToList(), "Längenwachstum/Schossen", "Weizen"),
+                new QuestionStadiumPage(6, 1, "Stadium_one_question6.png", stadiums1.ToList(), plants1.ToList(), "Bestockung", "Weizen"),
+                new QuestionStadiumPage(7, 2, "Stadium_two_question1.png", stadiums2.ToList(), plants2.ToList(), "Blüte", "Kartoffel"),
+                new QuestionStadiumPage(8, 2, "Stadium_two_question2.png", stadiums2.ToList(), plants2.ToList(), "Entwicklung der Blütenanlage", "Raps"),
+                new QuestionStadiumPage(9, 2, "Stadium_two_question3.png", stadiums2.ToList(), plants2.ToList(), "Blüte", "Raps"),
+                new QuestionStadiumPage(10, 2, "Stadium_two_question4.png", stadiums2.ToList(), plants2.ToList(), "Blattentwicklung", "Kartoffel"),
+                new QuestionStadiumPage(11, 2, "Stadium_two_question5.png", stadiums2.ToList(), plants2.ToList(), "Schossen/Haupttrieb", "Raps"),
+                new QuestionStadiumPage(12, 2, "Stadium_two_question6.png", stadiums2.ToList(), plants2.ToList(), "Ähren/-Rispenschwellen", "Gerste"),
+                new QuestionStadiumPage(13, 3, "Stadium_three_question1.png", stadiums3.ToList(), plants3.ToList(), "Entwicklung vegetativer Pflanzenteile/Rübenkörper", "Zuckerrübe"),
+                new QuestionStadiumPage(14, 3, "Stadium_three_question2.png", stadiums3.ToList(), plants3.ToList(), "Fruchtentwicklung", "Weizen"),
+                new QuestionStadiumPage(15, 3, "Stadium_three_question3.png", stadiums3.ToList(), plants3.ToList(), "Entwicklung der Blütenanlage", "Mais"),
+                new QuestionStadiumPage(16, 3, "Stadium_three_question4.png", stadiums3.ToList(), plants3.ToList(), "Entwicklung der Blütenanlage", "Kartoffel"),
+                new QuestionStadiumPage(17, 3, "Stadium_three_question5.png", stadiums3.ToList(), plants3.ToList(), "Fruchtentwicklung", "Raps"),
+                new QuestionStadiumPage(18, 3, "Stadium_three_question6.png", stadiums3.ToList(), plants3.ToList(), "Längenwachstum/Schossen", "Weizen")
             };
         }
 
@@ -236,7 +297,7 @@ namespace MobileDataCollection.Survey.Models
 
         /// <summary>
         /// Loads a QUestionStadiumPage-Object with the set difficulty, or a lower difficulty if no question with a matching difficulty exsist.
-        /// If no question can be loaded it will return an Object, with the ID 0
+        /// If no question can be loaded it will return object with id 0
         /// </summary>
         public QuestionStadiumPage LoadQuestionStadiumPage(int difficulty)
         {
@@ -246,7 +307,7 @@ namespace MobileDataCollection.Survey.Models
                 QuestionStadiumPage question = ListQuestionStadiumPage.ElementAt<QuestionStadiumPage>(i);
                 if (question.Difficulty == difficulty)
                 {
-                    if (!(SearchListAnswerDoubleSliderPage(question.InternId)))
+                    if (!SearchListAnswerDoubleSliderPage(question.InternId))
                     {
                         ListQuestion.Add(question);
                     }
@@ -258,7 +319,7 @@ namespace MobileDataCollection.Survey.Models
             }
             if (difficulty == 1)
             {
-                return new QuestionStadiumPage(0, 0, null,null,"","");
+                return new QuestionStadiumPage(0, 0, null, null, null, "", correctAnswerFruitType: "");
             }
             else
             {

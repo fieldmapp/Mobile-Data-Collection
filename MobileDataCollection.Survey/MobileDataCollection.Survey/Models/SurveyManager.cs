@@ -67,6 +67,7 @@ namespace MobileDataCollection.Survey.Models
         private void NewPage_PageFinished(object sender, EventArgs e)
         {
             Navigation.PopAsync();
+            CurrentSurvey = null;
         }
     }
 }

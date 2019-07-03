@@ -17,19 +17,16 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Label x:Name="HeaderText" HorizontalTextAlignment="Center"
+            <Label Grid.Row="0" x:Name="HeaderText" HorizontalTextAlignment="Center"
                    TextColor="{StaticResource TextColor}" Text="{Binding Header}" FontSize="Medium"/>
             <Label Grid.Row="1" Margin="0,7,0,0" x:Name="QuestionText" 
                    Text="Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu." 
                    FontSize="Medium" TextColor="{StaticResource TextColor}"/>
-            <controls:DetailImage BackgroundColor="{StaticResource Button}" Grid.Row="2" x:Name="Picture" Margin="0,0,0,15" Source="Q1_G1_F1_B1_klein.png"/>
+            <controls:DetailImage BackgroundColor="{StaticResource Button}" Grid.Row="2" x:Name="Picture" Margin="0,0,0,15" Source="{Binding QuestionItem.Image}"/>
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -71,8 +68,7 @@
                     </controls:InlinePicker>
                 </Frame>
             </Grid>
-        </Grid>
-        <Grid VerticalOptions="EndAndExpand">
+            <Grid Grid.Row="4" VerticalOptions="EndAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -87,5 +83,6 @@
                     TextColor="{StaticResource TextColor}"
                     Clicked="OnWeiterButtonClicked"/>
             </Grid>
-        </StackLayout>
+        </Grid>
+    </StackLayout>
 </ContentPage>

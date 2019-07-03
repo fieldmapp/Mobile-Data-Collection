@@ -101,15 +101,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\blattentwicklung.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bestockung.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\schossen.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Assets\QuestionDatabank.sqlite" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
@@ -487,5 +478,26 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\stadium6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\stadium_bestockung.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\stadium_blattentwicklung.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\stadium_bluete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\stadium_entwicklungbluetenanlage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\stadium_entwicklungvegpflanzruebenk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\stadium_laengenwachstumschossen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\stadium_stadium_ahrenrispenschwellen.png" />
   </ItemGroup>
 </Project>
