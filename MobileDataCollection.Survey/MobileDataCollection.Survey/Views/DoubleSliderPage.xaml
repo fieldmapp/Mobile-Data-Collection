@@ -17,7 +17,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -32,7 +32,7 @@
                    Text="{Binding Question.Text}"
                    FontSize="Medium" TextColor="{StaticResource TextColor}"/>
             <controls:DetailImage Aspect="AspectFit" Grid.Row="2" x:Name="Picture" BackgroundColor="Transparent"
-                                  Margin="0,0,0,15" Source="{Binding Question.PictureAddress}"/>
+                                  Margin="0,0,0,15" Source="{Binding QuestionItem.PictureAddress}"/>
             <Slider Grid.Row="3" x:Name="sliderA" Margin="5, 0, 5, 0"
                     MinimumTrackColor="{StaticResource Selection}"
                     MaximumTrackColor="{StaticResource Selection}"
@@ -51,23 +51,21 @@
             <Label Grid.Row="6" x:Name="sliderBLabel"
                    HorizontalOptions="Center" 
                    Text="(B): 0%" FontSize="Medium" TextColor="{StaticResource TextColor}"/>
-        </Grid>
-
-
-        <Grid VerticalOptions="EndAndExpand">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Button Text="Abbrechen" FontSize="Medium"
+            <Grid Grid.Row="7" VerticalOptions="EndAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Text="Abbrechen" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
                     TextColor="{StaticResource TextColor}"
                     Clicked="OnAbbrechenButtonClicked"/>
-            <Button Grid.Column="1"
+                <Button Grid.Column="1"
                     Text="Weiter" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
                     TextColor="{StaticResource TextColor}"
                     Clicked="OnWeiterButtonClicked"/>
+            </Grid>
         </Grid>
     </StackLayout>
 </ContentPage>
