@@ -24,7 +24,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Label x:Name="QuestionNumber" HorizontalTextAlignment="Center"
+            <Label x:Name="HeaderText" HorizontalTextAlignment="Center"
                    TextColor="{StaticResource TextColor}" Text="{Binding Header}" FontSize="Medium"/>
             <Label Grid.Row="1" Margin="0,7,0,0" x:Name="QuestionText" 
                    Text="Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu." 
@@ -36,7 +36,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Frame Grid.Column="0" Padding="3" BorderColor="LightGray" CornerRadius="0">
-                    <controls:InlinePicker x:Name="DemoInlinePicker">
+                    <controls:InlinePicker x:Name="StadiumInlinePicker">
                         <controls:InlinePicker.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -54,7 +54,7 @@
                     </controls:InlinePicker>
                 </Frame>
                 <Frame Grid.Column="1" HeightRequest="100" Padding="3" BorderColor="LightGray" CornerRadius="0">
-                    <controls:InlinePicker x:Name="DemoInlinePicker2">
+                    <controls:InlinePicker x:Name="PlantInlinePicker">
                         <controls:InlinePicker.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>

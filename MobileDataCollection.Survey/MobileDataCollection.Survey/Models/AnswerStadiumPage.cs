@@ -48,5 +48,10 @@ namespace MobileDataCollection.Survey.Models
             AnswerFruitType = answerFruitType;
             AnswerStadium = answerStadium;
         }
+
+        public int EvaluateScore()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

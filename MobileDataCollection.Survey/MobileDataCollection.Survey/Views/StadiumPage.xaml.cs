@@ -13,12 +13,8 @@ using Xamarin.Forms.Xaml;
 namespace MobileDataCollection.Survey.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class StadiumPage : ContentPage
+	public partial class StadiumPage : ContentPage, ISurveyPage
 	{
-        public int AnswersGiven { get; set; }
-        //Answers needed to complete Question Category (Muss definiert werden: entweder alle verfügbaren Fragen oder feste Zahl)
-        public int AnswersNeeded { get; set; }
-
         //Binding for Question
         public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem),typeof(QuestionStadiumPage), typeof(StadiumPage), new QuestionStadiumPage(0, 0, null, null, string.Empty, string.Empty), BindingMode.OneWay);
 
@@ -40,54 +36,54 @@ namespace MobileDataCollection.Survey.Views
         }
 
         //Binding für Header
-        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(String), typeof(StadiumPage), "demo", BindingMode.OneWay);
+        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(string), typeof(StadiumPage), "demo", BindingMode.OneWay);
         //Header
-        public String Header
+        public string Header
         {
-            get { return (String)GetValue(HeaderProperty); }
+            get { return (string)GetValue(HeaderProperty); }
             set { SetValue(HeaderProperty, value); }
         }
 
+        IQuestionContent ISurveyPage.QuestionItem => QuestionItem;
 
-        ObservableCollection<StadiumSubItem> TestCollection = new ObservableCollection<StadiumSubItem>()
-        {
-            new StadiumSubItem("Schossen", "schossen.png"), // hab das angepasst, da ich StadiumSubItem Bindable gemacht haben
-            new StadiumSubItem("Bestockung", "bestockung.png"),
-            new StadiumSubItem("Blattentwicklung", "blattentwicklung.png")
-        };
-        ObservableCollection<Plant> TestCollection2 = new ObservableCollection<Plant>()
-        {
-            new Plant("Kartoffel"), // hab das angepasst, da ich Plant Bindable gemacht haben, sollte ja passen
-            new Plant("Mais"),
-            new Plant("Weizen"),
-            new Plant("Zuckerrübe")
-        };
-        public StadiumPage()
+        IUserAnswer ISurveyPage.AnswerItem => AnswerItem;
+
+        ObservableCollection<StadiumSubItem> StadiumCollection;
+
+        ObservableCollection<Plant> PlantCollection;
+
+        public event EventHandler PageFinished;
+
+        public StadiumPage(QuestionStadiumPage question, int answersGiven, int answersNeeded)
 		{
-            this.AnswersGiven = 1;
             InitializeComponent();
-            DemoInlinePicker.ItemSource = TestCollection;
-            DemoInlinePicker2.ItemSource = TestCollection2;
-            QuestionNumber.BindingContext = this;
-            this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded + 1}";
+            QuestionItem = question;
+            StadiumCollection = new ObservableCollection<StadiumSubItem>(question.Stadiums);
+            PlantCollection = new ObservableCollection<Plant>(question.Plants);
+            PlantInlinePicker.ItemSource = StadiumCollection;
+            PlantInlinePicker.ItemSource = PlantCollection;
+            Header = $"Frage {answersGiven}/{answersNeeded + 1}";
+            HeaderText.BindingContext = this;
         }
         void OnWeiterButtonClicked(object sender, EventArgs e)
         {
-            //TBD:
-            //Warning (?)
-            //Return to Homescreen
-            if (this.AnswersGiven < this.AnswersNeeded)
-            {
-                this.AnswersGiven++;
-                // Set new Question
-                this.Header = $"Frage {this.AnswersGiven}/{this.AnswersNeeded + 1}";
-            }
+            var selectedStadium = (StadiumInlinePicker.SelectedItem as StadiumSubItem)?.StadiumName;
+            var selectedPlant = (PlantInlinePicker.SelectedItem as Plant)?.Name;
+            if (selectedPlant == null || selectedStadium == null)
+                return;
+
+            AnswerItem = new AnswerStadiumPage(QuestionItem.InternId, selectedPlant, selectedStadium);
+            PageFinished?.Invoke(this, null);
         }
         void OnAbbrechenButtonClicked(object sender, EventArgs e)
         {
-            //TBD:
-            //Warning (?)
-            //Return to Homescreen
+            PageFinished?.Invoke(this, null);
+        }
+        
+        protected override bool OnBackButtonPressed()
+        {
+            PageFinished?.Invoke(this, null);
+            return true;
         }
     }
 }

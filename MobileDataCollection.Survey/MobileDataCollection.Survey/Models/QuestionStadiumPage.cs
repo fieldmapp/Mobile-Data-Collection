@@ -11,8 +11,8 @@ namespace MobileDataCollection.Survey.Models
         public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(InternId), typeof(int), typeof(QuestionStadiumPage), 0, BindingMode.OneWay);
         //public static readonly BindableProperty NumberOfPossibleAnswersProperty = BindableProperty.Create(nameof(NumberOfPossibleAnswers), typeof(int), typeof(QuestionStadiumPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty DifficultyProperty = BindableProperty.Create(nameof(Difficulty), typeof(int), typeof(QuestionStadiumPage), 0, BindingMode.OneWay);
-        public static readonly BindableProperty StadiumSubItemsProperty = BindableProperty.Create(nameof(StadiumSubItems), typeof(List<StadiumSubItem>), typeof(QuestionStadiumPage), null, BindingMode.OneWay);
-        public static readonly BindableProperty TestCollection2Property = BindableProperty.Create(nameof(TestCollection2), typeof(ObservableCollection<Plant>), typeof(QuestionStadiumPage), null, BindingMode.OneWay);
+        public static readonly BindableProperty StadiumSubItemsProperty = BindableProperty.Create(nameof(Stadiums), typeof(List<StadiumSubItem>), typeof(QuestionStadiumPage), null, BindingMode.OneWay);
+        public static readonly BindableProperty TestCollection2Property = BindableProperty.Create(nameof(Plants), typeof(ObservableCollection<Plant>), typeof(QuestionStadiumPage), null, BindingMode.OneWay);
         public static readonly BindableProperty CorrectAnswerFruitTypeProperty = BindableProperty.Create(nameof(CorrectAnswerFruitType), typeof(string), typeof(QuestionStadiumPage), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty CorrectAnswerStadiumProperty = BindableProperty.Create(nameof(CorrectAnswerStadium), typeof(string), typeof(QuestionStadiumPage), string.Empty, BindingMode.OneWay);
 
@@ -33,7 +33,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Contains all possible stadiums
         /// </summary>
-        public List<StadiumSubItem> StadiumSubItems
+        public List<StadiumSubItem> Stadiums
         {
             get => (List<StadiumSubItem>)GetValue(StadiumSubItemsProperty);
             set => SetValue(StadiumSubItemsProperty, value);
@@ -42,7 +42,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Contains all possible fruit types?
         /// </summary>
-        public ObservableCollection<Plant> TestCollection2
+        public ObservableCollection<Plant> Plants
         {
             get => (ObservableCollection<Plant>)GetValue(TestCollection2Property);
             set => SetValue(TestCollection2Property, value);
@@ -72,8 +72,8 @@ namespace MobileDataCollection.Survey.Models
         {
             InternId = internId;
             Difficulty = difficulty;
-            StadiumSubItems = stadiumSubItems;
-            TestCollection2 = testCollection2;
+            Stadiums = stadiumSubItems;
+            Plants = testCollection2;
             CorrectAnswerFruitType = correctAnswerFruitType;
             CorrectAnswerStadium = correctAnswerStadium;
         }

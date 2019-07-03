@@ -24,7 +24,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Label x:Name="QuestionNumber" HorizontalTextAlignment="Center"
+            <Label x:Name="HeaderText" HorizontalTextAlignment="Center"
                    Text="{Binding Header}" 
                    FontSize="Medium" 
                    TextColor="{StaticResource TextColor}"/>

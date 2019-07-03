@@ -71,5 +71,10 @@ namespace MobileDataCollection.Survey.Models
             Image3Selected = selected3;
             Image4Selected = selected4;
         }
+
+        public int EvaluateScore()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

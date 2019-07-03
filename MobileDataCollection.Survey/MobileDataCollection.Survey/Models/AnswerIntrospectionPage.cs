@@ -37,5 +37,10 @@ namespace MobileDataCollection.Survey.Models
             InternId = internId;
             SelectedAnswer = selectedanswer;
         }
+
+        public int EvaluateScore()
+        {
+            throw new NotSupportedException();
+        }
     }
 }

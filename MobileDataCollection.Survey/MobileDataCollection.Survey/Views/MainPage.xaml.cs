@@ -18,34 +18,26 @@ namespace MobileDataCollection.Survey.Views
             new SurveyMenuItem(SurveyMenuItemType.Introspection, "Selbsteinschätzung", 5, 16, 0, true, Color.White),
             new SurveyMenuItem(SurveyMenuItemType.Stadium, "Wuchsstadien", 2, 12, 0, true, Color.White)
         };
-        Dictionary<SurveyMenuItemType, Func<ContentPage>> PageConstructorDictionary = new Dictionary<SurveyMenuItemType, Func<ContentPage>>()
-        {
-            { SurveyMenuItemType.DoubleSlider, () => new DoubleSliderPage() },
-            { SurveyMenuItemType.Stadium, () => new StadiumPage() },
-            { SurveyMenuItemType.ImageChecker, () => new ImageCheckerPage() },
-            { SurveyMenuItemType.Introspection, () => new IntrospectionPage() }
-        };
-        
+        SurveyManager SurveyManager;
+
         public MainPage()
         {
             InitializeComponent();
             MenuList.ItemsSource = Items;
+            SurveyManager = new SurveyManager(Navigation);
         }
 
-        private async void MenuList_ItemTapped(object sender, ItemTappedEventArgs e)
+        private void MenuList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (!(e.Item is SurveyMenuItem selectedItem))
                 throw new NotImplementedException();
             SurveyMenuItem tapped = (SurveyMenuItem)e.Item;
-            if (PageConstructorDictionary.TryGetValue(selectedItem.Id, out var pageConstructor))
-            {
-                await Navigation.PushAsync(pageConstructor());
-            }
-                
+            SurveyManager.StartSurvey(tapped);
         }
+
         private async void EvaluationClicked(object sender, ItemTappedEventArgs e)
         {
-            await Navigation.PushAsync(new EvaluationMainPage());     
+            await Navigation.PushAsync(new EvaluationMainPage());
         }
 
     }

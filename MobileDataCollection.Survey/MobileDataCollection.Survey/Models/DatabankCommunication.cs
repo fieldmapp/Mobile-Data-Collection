@@ -9,7 +9,7 @@ using MobileDataCollection.Survey.Models;
 
 namespace MobileDataCollection.Survey.Models
 {
-    public class DatabankCommunication : ContentView
+    public class DatabankCommunication
     {
         Random RandomNumber = new Random();
 
@@ -37,6 +37,13 @@ namespace MobileDataCollection.Survey.Models
             CreateQuestionsForDoubleSlider();
             CreateQuestionsForStadium();
             CreateQuestionForIntrospection();
+        }
+
+        public List<IQuestionContent> GetAllQuestions()
+        {
+            return ListQuestionDoubleSliderPage.Cast<IQuestionContent>()
+                .Concat(ListQuestionImageCheckerPage.Cast<IQuestionContent>())
+                .Concat(ListQuestionStadiumPage.Cast<IQuestionContent>()).ToList();
         }
 
         /// <summary>
@@ -94,7 +101,10 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public void CreateQuestionsForStadium()
         {
+            ListQuestionStadiumPage = new List<QuestionStadiumPage>
+            {
 
+            };
         }
 
         /// <summary>

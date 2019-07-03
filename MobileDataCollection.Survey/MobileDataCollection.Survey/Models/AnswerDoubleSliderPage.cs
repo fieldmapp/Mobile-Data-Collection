@@ -47,5 +47,10 @@ namespace MobileDataCollection.Survey.Models
             ResultQuestionA = resultA;
             ResultQuestionB = resultB;
         }
+
+        public int EvaluateScore()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace MobileDataCollection.Survey.Controls
     {
         public DataTemplate ItemTemplate { get => ListView.ItemTemplate; set => ListView.ItemTemplate = value; }
         public IEnumerable ItemSource { get => ListView.ItemsSource; set => ListView.ItemsSource = value; }
+        public object SelectedItem => ListView.SelectedItem;
         static readonly Color SelectedColor = Color.DarkSeaGreen;
 
         public InlinePicker()

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MobileDataCollection.Survey.Models
 {
-    interface IQuestionContent
+    public interface IQuestionContent
     {
     }
 }
