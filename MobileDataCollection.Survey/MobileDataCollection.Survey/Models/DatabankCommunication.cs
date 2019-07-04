@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 using Xamarin.Forms;
 using MobileDataCollection.Survey.Models;
+//using MobileDataCollection.Survey.Sonstiges;
 
 namespace MobileDataCollection.Survey.Models
 {
@@ -32,7 +34,8 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public void CreateQuestions()
         {
-            CreateQuestionsForImageChecker();
+            //CreateQuestionsForImageChecker();
+            LoadQuestionsForImageCheckerFromTXT();
             CreateQuestionsForDoubleSlider();
             CreateQuestionsForStadium();
             CreateQuestionForIntrospection();
@@ -43,6 +46,38 @@ namespace MobileDataCollection.Survey.Models
             return ListQuestionDoubleSliderPage.Cast<IQuestionContent>()
                 .Concat(ListQuestionImageCheckerPage.Cast<IQuestionContent>())
                 .Concat(ListQuestionStadiumPage.Cast<IQuestionContent>()).ToList();
+        }
+
+        public void LoadQuestionsForImageCheckerFromTXT()
+        {
+            String Filename = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "test.txt");
+            File.WriteAllText(Filename, "abc");
+            String Text = File.ReadAllText(Filename);
+            StringReader stringReader = new StringReader(Text);
+            String Line = stringReader.ReadLine();
+            char[] splitCharacters = new char[';'];
+
+            while(!(Line.Equals("END_Questions")))
+            {
+                String[] attributes = Line.Split(splitCharacters);
+
+                int id = Convert.ToInt32(attributes[0]);
+                string questionText = attributes[1];
+                int difficulty = Convert.ToInt32(attributes[2]);
+                int img1Corr = Convert.ToInt32(attributes[3]);
+                int img2Corr = Convert.ToInt32(attributes[4]);
+                int img3Corr = Convert.ToInt32(attributes[5]);
+                int img4Corr = Convert.ToInt32(attributes[6]);
+                string img1Sour = attributes[7];
+                string img2Sour = attributes[8];
+                string img3Sour = attributes[9];
+                string img4Sour = attributes[10];
+
+                QuestionImageCheckerPage question = new QuestionImageCheckerPage(id, questionText, difficulty, img1Corr, img2Corr, img3Corr, img4Corr, img1Sour, img2Sour, img3Sour, img4Sour);
+                ListQuestionImageCheckerPage.Add(question);
+
+                Line = stringReader.ReadLine();
+            }
         }
 
         /// <summary>
