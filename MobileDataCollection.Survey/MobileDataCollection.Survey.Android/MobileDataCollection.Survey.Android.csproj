@@ -497,4 +497,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\stadium_stadium_ahrenrispenschwellen.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\ImageCheckerQuestions.txt" />
+  </ItemGroup>
 </Project>
