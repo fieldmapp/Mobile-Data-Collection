@@ -50,10 +50,28 @@ namespace MobileDataCollection.Survey.Models
 
         public void LoadQuestionsForImageCheckerFromTXT()
         {
+            String Text = "";
+            /*
             String Filename = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "test.txt");
             File.WriteAllText(Filename, "abc");
-            String Text = File.ReadAllText(Filename);
+
+            AssetManager assets = getAssets();
+            using (StreamReader sr = new StreamReader(assets.Open("ImageCheckerQuestions.txt")))
+            {
+                Text = sr.ReadToEnd();
+            }
+
+            var assembly = typeof(Object).GetTypeInfo().Assembly;
+            Stream stream = assembly.GetManifestResourceStream("AboutResources.txt");
+            */
+
+            Stream stream = this.GetType().Assembly.GetManifestResourceStream("Assets.ImageCheckerQuestions.txt");
+            Text = stream.ToString();
+
             StringReader stringReader = new StringReader(Text);
+
+
+
             String Line = stringReader.ReadLine();
             char[] splitCharacters = new char[';'];
 
