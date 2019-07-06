@@ -34,8 +34,8 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public void CreateQuestions()
         {
-            //CreateQuestionsForImageChecker();
-            LoadQuestionsForImageCheckerFromTXT();
+            CreateQuestionsForImageChecker();
+            //LoadQuestionsForImageCheckerFromTXT();
             CreateQuestionsForDoubleSlider();
             CreateQuestionsForStadium();
             CreateQuestionForIntrospection();
