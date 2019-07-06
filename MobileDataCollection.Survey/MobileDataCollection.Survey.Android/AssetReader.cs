@@ -15,9 +15,9 @@ using Xamarin.Forms;
 
 namespace MobileDataCollection.Survey.Droid
 {
-    public class AssetReader
+    public interface AssetReader
     {
-        public void method1()
+        public void Method1()
         {
             AssetManager assetManager = Forms.Context.Assets;
             string content;

@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.IO;
-
-using Xamarin.Forms;
-using MobileDataCollection.Survey.Models;
-//using MobileDataCollection.Survey.Sonstiges;
+using MobileDataCollection.Survey.Droid.AssetReader;
 
 namespace MobileDataCollection.Survey.Models
 {
@@ -51,6 +47,8 @@ namespace MobileDataCollection.Survey.Models
         public void LoadQuestionsForImageCheckerFromTXT()
         {
             String Text = "";
+
+            AssetReader assetReader = new AssetReader();
             /*
             String Filename = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "test.txt");
             File.WriteAllText(Filename, "abc");
