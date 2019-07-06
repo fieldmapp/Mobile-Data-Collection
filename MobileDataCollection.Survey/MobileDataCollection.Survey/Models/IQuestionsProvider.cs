@@ -6,6 +6,6 @@ namespace MobileDataCollection.Survey.Models
 {
     public interface IQuestionsProvider
     {
-        String LoadQuestionsForImageCheckerFromTXT();
+        String LoadQuestionsFromTXT(String sourceTxt);
     }
 }

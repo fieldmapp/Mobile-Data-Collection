@@ -19,11 +19,11 @@ namespace MobileDataCollection.Survey.Droid
 {
     class AndroidQuestionProvider : IQuestionsProvider
     {
-        public String LoadQuestionsForImageCheckerFromTXT()
+        public String LoadQuestionsFromTXT(String sourceTxt)
         {
             AssetManager assetManager = Forms.Context.Assets;
             string content;
-            using (StreamReader sr = new StreamReader(assetManager.Open("AboutAssets.txt")))
+            using (StreamReader sr = new StreamReader(assetManager.Open(sourceTxt)))
             {
                 content = sr.ReadToEnd();
             }

@@ -50,7 +50,7 @@ namespace MobileDataCollection.Survey.Models
         {
             IQuestionsProvider questionsProvider;
             String Text = "";
-            Text = questionsProvider.LoadQuestionsForImageCheckerFromTXT();
+            Text = questionsProvider.LoadQuestionsFromTXT("ImageCheckerQuestions.txt");
 
             /*
             String Filename = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "test.txt");
