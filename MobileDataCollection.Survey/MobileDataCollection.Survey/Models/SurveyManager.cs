@@ -22,8 +22,7 @@ namespace MobileDataCollection.Survey.Models
         {
             Navigation = navigation;
             var demoDoubleSlider = new QuestionDoubleSliderPage(1,1,"Q3G1B1_klein.png", 7, 4);
-            var dbCon = new DatabankCommunication();
-            Questions = dbCon.GetAllQuestions();
+            Questions = DatabankCommunication.GetAllQuestions();
         }
 
         Dictionary<SurveyMenuItemType, Func<IQuestionContent, int, int, ISurveyPage>> SurveyPageConstructor = new Dictionary<SurveyMenuItemType, Func<IQuestionContent, int, int, ISurveyPage>>

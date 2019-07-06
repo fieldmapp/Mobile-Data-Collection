@@ -43,8 +43,7 @@ namespace MobileDataCollection.Survey.Views
 
         public ObservableCollection<QuestionIntrospectionPage> Items
         { get; set; }
-
-        private DatabankCommunication DBcom = new DatabankCommunication();
+        
         private int i = 1;
 
         public IntrospectionPage()
@@ -108,9 +107,9 @@ namespace MobileDataCollection.Survey.Views
             Button5.IsChecked = false;
 
             AnswerIntrospectionPage Answer = new AnswerIntrospectionPage(AnswerItem.InternId, AnswerItem.SelectedAnswer);
-            DBcom.AddListAnswerIntrospectionPage(Answer);
+            DatabankCommunication.AddListAnswerIntrospectionPage(Answer);
 
-            QuestionItem = DBcom.LoadQuestionIntrospectionPage(i);
+            QuestionItem = DatabankCommunication.LoadQuestionIntrospectionPage(i);
             i++;
             if(i>5)
             {
