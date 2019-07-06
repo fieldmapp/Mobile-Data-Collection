@@ -371,11 +371,41 @@ namespace MobileDataCollection.Survey.Models
         }
 
         /// <summary>
-        /// Loads a QUestionIntrospectionPage-Object with the set Id
+        /// Loads a QuestionIntrospectionPage-Object with the set Id
         /// </summary>
         public static QuestionIntrospectionPage LoadQuestionIntrospectionPage(int id)
         {
             return ListQuestionIntrospectionPage.FirstOrDefault(q => q.InternId == id) ?? new QuestionIntrospectionPage(0, "");
+        }
+
+        /// <summary>
+        /// Loads a QuestionDoubleSliderPage with the set id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>QustionDoubleSliderPage with wanted id if existent. Otherwise null</returns>
+        public static QuestionDoubleSliderPage LoadQuestionDoubleSliderPageById(int id)
+        {
+            return ListQuestionDoubleSliderPage.FirstOrDefault(q => q.InternId == id);
+        }
+
+        /// <summary>
+        /// Loads a QuestionImageCheckerPage with the set id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>QuestionImageCheckerPage with wanted id if existent. Otherwise null</returns>
+        public static QuestionImageCheckerPage LoadQuestionImageCheckerPageById(int id)
+        {
+            return ListQuestionImageCheckerPage.FirstOrDefault(q => q.InternId == id);
+        }
+
+        /// <summary>
+        /// Loads a QuestionStadiumPage with the set id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>QuestionStadiumPage with wanted id if existent. Otherwise null</returns>
+        public static QuestionStadiumPage LoadQuestionStadiumPageById(int id)
+        {
+            return ListQuestionStadiumPage.FirstOrDefault(q => q.InternId == id);
         }
 
         /// <summary>
