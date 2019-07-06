@@ -13,11 +13,13 @@ using Android.Views;
 using Android.Widget;
 using Xamarin.Forms;
 
+using MobileDataCollection.Survey.Models;
+
 namespace MobileDataCollection.Survey.Droid
 {
-    public interface AssetReader
+    class AndroidQuestionProvider : IQuestionsProvider
     {
-        public void Method1()
+        public String LoadQuestionsForImageCheckerFromTXT()
         {
             AssetManager assetManager = Forms.Context.Assets;
             string content;
@@ -25,7 +27,7 @@ namespace MobileDataCollection.Survey.Droid
             {
                 content = sr.ReadToEnd();
             }
-            content = content + "a";
+            return content;
         }
     }
 }

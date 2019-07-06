@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using MobileDataCollection.Survey.Droid.AssetReader;
 
 namespace MobileDataCollection.Survey.Models
 {
@@ -44,11 +43,15 @@ namespace MobileDataCollection.Survey.Models
                 .Concat(ListQuestionStadiumPage.Cast<IQuestionContent>()).ToList();
         }
 
+        /// <summary>
+        /// Loads all questions for the ImageCheckerType from ImageCheckerQuestions.txt
+        /// </summary>
         public static void LoadQuestionsForImageCheckerFromTXT()
         {
+            IQuestionsProvider questionsProvider;
             String Text = "";
+            Text = questionsProvider.LoadQuestionsForImageCheckerFromTXT();
 
-            AssetReader assetReader = new AssetReader();
             /*
             String Filename = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "test.txt");
             File.WriteAllText(Filename, "abc");
