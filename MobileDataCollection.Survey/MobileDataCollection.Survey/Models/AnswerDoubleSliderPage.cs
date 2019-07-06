@@ -48,9 +48,18 @@ namespace MobileDataCollection.Survey.Models
             ResultQuestionB = resultB;
         }
 
-        public int EvaluateScore()
+        public float EvaluateScore()
         {
-            throw new NotImplementedException();
+            float evalSingleSlider(int correctAnswer, int givenAnswer)
+            {
+                int diff = Math.Abs(correctAnswer - givenAnswer);
+                int maxDiff = Math.Max(correctAnswer, 100 - correctAnswer);
+                float adjustedDiff = diff * 100f / maxDiff;
+                return 1 - adjustedDiff / 100;
+            }
+            var question = DatabankCommunication.LoadQuestionDoubleSliderPageById(InternId);
+            return evalSingleSlider(question.CorrectAnswerA, ResultQuestionA) * .5f
+                + evalSingleSlider(question.CorrectAnswerB, ResultQuestionB) * .5f;
         }
     }
 }

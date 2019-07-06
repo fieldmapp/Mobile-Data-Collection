@@ -72,9 +72,19 @@ namespace MobileDataCollection.Survey.Models
             Image4Selected = selected4;
         }
 
-        public int EvaluateScore()
+        public float EvaluateScore()
         {
-            throw new NotImplementedException();
+            var question = DatabankCommunication.LoadQuestionImageCheckerPageById(InternId);
+            float score = 0;
+            if (question.Image1Correct == Image1Selected)
+                score += .25f;
+            if (question.Image2Correct == Image2Selected)
+                score += .25f;
+            if (question.Image3Correct == Image3Selected)
+                score += .25f;
+            if (question.Image4Correct == Image4Selected)
+                score += .25f;
+            return score;
         }
     }
 }
