@@ -38,7 +38,7 @@ namespace MobileDataCollection.Survey.Models
             SelectedAnswer = selectedanswer;
         }
 
-        public int EvaluateScore()
+        public float EvaluateScore()
         {
             throw new NotSupportedException();
         }

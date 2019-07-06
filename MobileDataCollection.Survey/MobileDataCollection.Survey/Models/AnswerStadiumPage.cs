@@ -49,9 +49,15 @@ namespace MobileDataCollection.Survey.Models
             AnswerStadium = answerStadium;
         }
 
-        public int EvaluateScore()
+        public float EvaluateScore()
         {
-            throw new NotImplementedException();
+            var question = DatabankCommunication.LoadQuestionStadiumPageById(InternId);
+            float score = 0;
+            if (question.CorrectAnswerFruitType == AnswerFruitType)
+                score += .5f;
+            if (question.CorrectAnswerStadium == AnswerStadium)
+                score += .5f;
+            return score;
         }
     }
 }
