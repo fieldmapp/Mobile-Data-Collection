@@ -17,8 +17,8 @@ namespace MobileDataCollection.Survey.Views
         public ObservableCollection<EvaluationItem> EvaluationItems = new ObservableCollection<EvaluationItem>()
         {
             new EvaluationItem("Bedeckungsgrade", 90, 100, 89, 81),
-            new EvaluationItem("Sortenerkennung", 35, 50, 30,21),
-            new EvaluationItem("Wuchsstadien", 70, 80,51,23) 
+            new EvaluationItem("Sortenerkennung", 35, 50, 0,-1),
+            new EvaluationItem("Wuchsstadien", -1, -1,-1,-1) 
         };
         public EvaluationMainPage()
         {
