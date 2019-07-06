@@ -328,4 +328,13 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-mdpi\Stadium_two_question6.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\DoubleSliderQuestions.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\StadiumQuestion.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\IntrospectionQuestions.txt" />
+  </ItemGroup>
 </Project>

@@ -19,9 +19,15 @@ namespace MobileDataCollection.Survey.Droid
 {
     class AndroidQuestionProvider : IQuestionsProvider
     {
+        Context Context;
+        public AndroidQuestionProvider(Context context)
+        {
+            Context = context;
+        }
+
         public String LoadQuestionsFromTXT(String sourceTxt)
         {
-            AssetManager assetManager = Forms.Context.Assets;
+            AssetManager assetManager = Context.Assets;
             string content;
             using (StreamReader sr = new StreamReader(assetManager.Open(sourceTxt)))
             {

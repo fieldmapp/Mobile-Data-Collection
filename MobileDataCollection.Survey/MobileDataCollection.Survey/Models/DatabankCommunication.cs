@@ -5,7 +5,7 @@ using System.IO;
 
 namespace MobileDataCollection.Survey.Models
 {
-    public static class DatabankCommunication
+    public class DatabankCommunication
     {
         static Random RandomNumber = new Random();
 
@@ -19,23 +19,46 @@ namespace MobileDataCollection.Survey.Models
         private static List<AnswerStadiumPage> ListAnswerStadiumPage = new List<AnswerStadiumPage>();
         private static List<AnswerIntrospectionPage> ListAnswerIntrospectionPage = new List<AnswerIntrospectionPage>();
 
-        static DatabankCommunication()
+        private IQuestionsProvider questionsProvider;
+
+        /// <summary>
+        /// Creates an DatabankCommunication with a QuestionProvider
+        /// </summary>
+        public DatabankCommunication(IQuestionsProvider provider)
         {
+            questionsProvider = provider;
+
             CreateQuestions();
+            //CreateQuestionsFromTXT();
         }
+
+
 
         /// <summary>
         /// Creates all Questions
         /// </summary>
-        public static void CreateQuestions()
+        public void CreateQuestions()
         {
             CreateQuestionsForImageChecker();
-            //LoadQuestionsForImageCheckerFromTXT();
             CreateQuestionsForDoubleSlider();
             CreateQuestionsForStadium();
             CreateQuestionForIntrospection();
         }
 
+        /// <summary>
+        /// Creates all Questions, buts loads these from the txt files
+        /// </summary>
+        public void CreateQuestionsFromTXT()
+        {
+            LoadQuestionsForImageCheckerFromTXT();
+            LoadQuestionsForDoubleSliderFromTXT();
+            LoadQuestionsForStadiumFromTXT();
+            LoadQuestionsForIntrospectionFromTXT();
+        }
+
+        /// <summary>
+        /// Return a List containing all available Questions
+        /// </summary>
         public static List<IQuestionContent> GetAllQuestions()
         {
             return ListQuestionDoubleSliderPage.Cast<IQuestionContent>()
@@ -46,37 +69,180 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Loads all questions for the ImageCheckerType from ImageCheckerQuestions.txt
         /// </summary>
-        public static void LoadQuestionsForImageCheckerFromTXT()
+        public void LoadQuestionsForImageCheckerFromTXT()
         {
-            IQuestionsProvider questionsProvider;
-            String Text = "";
-            Text = questionsProvider.LoadQuestionsFromTXT("ImageCheckerQuestions.txt");
+            String Text = questionsProvider.LoadQuestionsFromTXT("ImageCheckerQuestions.txt");
 
             /*
             String Filename = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "test.txt");
             File.WriteAllText(Filename, "abc");
-
-            AssetManager assets = getAssets();
-            using (StreamReader sr = new StreamReader(assets.Open("ImageCheckerQuestions.txt")))
-            {
-                Text = sr.ReadToEnd();
-            }
-
             var assembly = typeof(Object).GetTypeInfo().Assembly;
             Stream stream = assembly.GetManifestResourceStream("AboutResources.txt");
-            */
-
             Stream stream = typeof(DatabankCommunication).Assembly.GetManifestResourceStream("Assets.ImageCheckerQuestions.txt");
             Text = stream.ToString();
+            */
+
 
             StringReader stringReader = new StringReader(Text);
-
-
-
             String Line = stringReader.ReadLine();
             char[] splitCharacters = new char[';'];
 
             while(!(Line.Equals("END_Questions")))
+            {
+                String[] attributes = Line.Split(splitCharacters);
+
+                int id = Convert.ToInt32(attributes[0]);
+                string questionText = attributes[1];
+                int difficulty = Convert.ToInt32(attributes[2]);
+                int img1Corr = Convert.ToInt32(attributes[3]);
+                int img2Corr = Convert.ToInt32(attributes[4]);
+                int img3Corr = Convert.ToInt32(attributes[5]);
+                int img4Corr = Convert.ToInt32(attributes[6]);
+                string img1Sour = attributes[7];
+                string img2Sour = attributes[8];
+                string img3Sour = attributes[9];
+                string img4Sour = attributes[10];
+
+                QuestionImageCheckerPage question = new QuestionImageCheckerPage(id, questionText, difficulty, img1Corr, img2Corr, img3Corr, img4Corr, img1Sour, img2Sour, img3Sour, img4Sour);
+                ListQuestionImageCheckerPage.Add(question);
+
+                Line = stringReader.ReadLine();
+            }
+        }
+
+        /// <summary>
+        /// Loads all questions for the DoubleSliderType from DoubleSliderQuestions.txt
+        /// </summary>
+        public static void LoadQuestionsForDoubleSliderFromTXT()
+        {
+            String Text = "";
+            StringReader stringReader = new StringReader(Text);
+            String Line = stringReader.ReadLine();
+            char[] splitCharacters = new char[';'];
+
+            while (!(Line.Equals("END_QUESTIONS")))
+            {
+                String[] attributes = Line.Split(splitCharacters);
+
+                int id = Convert.ToInt32(attributes[0]);
+                int difficulty = Convert.ToInt32(attributes[1]);
+                string imgSour = attributes[2];
+                int ans1 = Convert.ToInt32(attributes[3]);
+                int ans2 = Convert.ToInt32(attributes[4]);
+
+
+                QuestionDoubleSliderPage question = new QuestionDoubleSliderPage(id, difficulty, imgSour, ans1, ans2);
+                ListQuestionDoubleSliderPage.Add(question);
+
+                Line = stringReader.ReadLine();
+            }
+        }
+
+        /// <summary>
+        /// Loads all questions for the StadiumType from StadiumQuestions.txt
+        /// </summary>
+        public static void LoadQuestionsForStadiumFromTXT()
+        {
+            String Text = "";
+            StringReader stringReader = new StringReader(Text);
+            String Line = stringReader.ReadLine();
+            char[] splitCharacters = new char[';'];
+
+            var stadiums1 = new List<StadiumSubItem>
+            {
+                new StadiumSubItem("Blattentwicklung", "stadium_blattentwicklung.png"),
+                new StadiumSubItem("Bestockung", "stadium_bestockung.png"),
+                new StadiumSubItem("Längenwachstum/Schossen", "stadium_laengenwachstumschossen.png")
+            };
+            var plants1 = new List<Plant>
+            {
+                new Plant("Kartoffel"),
+                new Plant("Mais"),
+                new Plant("Weizen"),
+                new Plant("Zuckerrübe")
+            };
+            var stadiums2 = new List<StadiumSubItem>
+            {
+                new StadiumSubItem("Blattentwicklung", "stadium_blattentwicklung.png"),
+                new StadiumSubItem("Schossen/Haupttrieb", "stadium_laengenwachstumschossen.png"),
+                new StadiumSubItem("Ähren/-Rispenschwellen", "stadium_ahrenrispenschwellen.png"),
+                new StadiumSubItem("Entwicklung der Blütenanlage", "stadium_entwicklungbluetenanlage.png"),
+                new StadiumSubItem("Blüte", "bluete.png")
+            };
+            var plants2 = new List<Plant>
+            {
+                new Plant("Gerste"),
+                new Plant("Kartoffel"),
+                new Plant("Raps"),
+                new Plant("Weizen")
+            };
+            var stadiums3 = new List<StadiumSubItem>
+            {
+                new StadiumSubItem("Längenwachstum/Schossen", "stadium_laengenwachstumschossen.png"),
+                new StadiumSubItem("Entwicklung vegetativer Pflanzenteile/Rübenkörper", "stadium_entwicklungvegpflanzruebenk.png"),
+                new StadiumSubItem("Entwicklung der Blütenanlage", "stadium_entwicklungbluetenanlage.png"),
+                new StadiumSubItem("Fruchtentwicklung", "bluete.png")
+            };
+            var plants3 = new List<Plant>
+            {
+                new Plant("Kartoffel"),
+                new Plant("Mais"),
+                new Plant("Raps"),
+                new Plant("Weizen"),
+                new Plant("Zuckerrübe")
+            };
+
+            while (!(Line.Equals("END_Questions")))
+            {
+                String[] attributes = Line.Split(splitCharacters);
+
+                int id = Convert.ToInt32(attributes[0]);
+                int difficulty = Convert.ToInt32(attributes[1]);
+                string imgSour = attributes[2];
+                string stadiumList = attributes[3];
+                string plantList = attributes[4];
+                string stadiumCorr = attributes[5];
+                string plantCorr = attributes[6];
+
+                var stadium = stadiums1;
+                var plant = plants1;
+
+                if(stadiumList.Equals("stadiums2"))
+                {
+                    stadium = stadiums2;
+                }
+                if (stadiumList.Equals("stadiums3"))
+                {
+                    stadium = stadiums3;
+                }
+                if (plantList.Equals("plants2"))
+                {
+                    plant = plants2;
+                }
+                if (plantList.Equals("plants3"))
+                {
+                    plant = plants3;
+                }
+
+                QuestionStadiumPage question = new QuestionStadiumPage(id, difficulty, imgSour, stadium, plant, stadiumCorr, plantCorr);
+                ListQuestionStadiumPage.Add(question);
+
+                Line = stringReader.ReadLine();
+            }
+        }
+
+        /// <summary>
+        /// Loads all questions for the IntrospectionType from IntrospectionQuestions.txt
+        /// </summary>
+        public static void LoadQuestionsForIntrospectionFromTXT()
+        {
+            //TODO: change this method to work with right Questions, work on txt
+            String Text = "";
+            StringReader stringReader = new StringReader(Text);
+            String Line = stringReader.ReadLine();
+            char[] splitCharacters = new char[';'];
+
+            while (!(Line.Equals("END_Questions")))
             {
                 String[] attributes = Line.Split(splitCharacters);
 

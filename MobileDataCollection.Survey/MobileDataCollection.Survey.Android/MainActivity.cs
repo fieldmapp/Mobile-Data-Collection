@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using MobileDataCollection.Survey.Models;
 
 namespace MobileDataCollection.Survey.Droid
 {
@@ -14,6 +15,9 @@ namespace MobileDataCollection.Survey.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            AndroidQuestionProvider androidQuestionProvider = new AndroidQuestionProvider(this);
+            DatabankCommunication databankCommunication = new DatabankCommunication(androidQuestionProvider);
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
