@@ -13,9 +13,8 @@ namespace MobileDataCollection.Survey.Views
     {
         public ObservableCollection<SurveyMenuItem> Items = new ObservableCollection<SurveyMenuItem>()
         {
-            new SurveyMenuItem(SurveyMenuItemType.DoubleSlider, "Bedeckungsgrade", 4, 18, 0, true, Color.White), //Hintergrundfarbe hab ich Weiß gemacht
+            new SurveyMenuItem(SurveyMenuItemType.DoubleSlider, "Bedeckungsgrade", 4, 18, 0, true, Color.White),
             new SurveyMenuItem(SurveyMenuItemType.ImageChecker, "Sortenerkennung", 8, 25, 0, true, Color.White),
-            new SurveyMenuItem(SurveyMenuItemType.Introspection, "Selbsteinschätzung", 5, 16, 0, true, Color.White),
             new SurveyMenuItem(SurveyMenuItemType.Stadium, "Wuchsstadien", 2, 12, 0, true, Color.White)
         };
         SurveyManager SurveyManager;

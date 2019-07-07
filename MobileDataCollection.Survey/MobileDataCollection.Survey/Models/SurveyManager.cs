@@ -16,32 +16,16 @@ namespace MobileDataCollection.Survey.Models
     {
         List<IQuestionContent> Questions;
         INavigation Navigation;
-        SurveyMenuItemType? CurrentSurvey;
+        SurveyMenuItem CurrentSurvey;
 
         public SurveyManager(INavigation navigation)
         {
             Navigation = navigation;
-            var demoDoubleSlider = new QuestionDoubleSliderPage(1,1,"Q3G1B1_klein.png", 7, 4);
-            Questions = DatabankCommunication.GetAllQuestions();
         }
 
-        Dictionary<SurveyMenuItemType, Func<IQuestionContent, int, int, ISurveyPage>> SurveyPageConstructor = new Dictionary<SurveyMenuItemType, Func<IQuestionContent, int, int, ISurveyPage>>
+        public IQuestionContent GetFirstQuestion(SurveyMenuItem surveyType)
         {
-            { SurveyMenuItemType.DoubleSlider, (question, answered, needed) => new DoubleSliderPage((QuestionDoubleSliderPage)question, answered, needed)},
-            { SurveyMenuItemType.ImageChecker, (question, answered, needed) => new ImageCheckerPage((QuestionImageCheckerPage)question, answered, needed)},
-            { SurveyMenuItemType.Stadium, (question, answered, needed) => new StadiumPage((QuestionStadiumPage)question, answered, needed)}
-        };
-
-        Dictionary<SurveyMenuItemType, Type> SurveyMenuItemTypeToQuestionType = new Dictionary<SurveyMenuItemType, Type>
-        {
-            { SurveyMenuItemType.DoubleSlider, typeof(QuestionDoubleSliderPage) },
-            { SurveyMenuItemType.ImageChecker, typeof(QuestionImageCheckerPage) },
-            { SurveyMenuItemType.Stadium, typeof(QuestionStadiumPage) }
-        };
-
-        public IQuestionContent GetFirstQuestion(SurveyMenuItemType type)
-        {
-            var neededType = SurveyMenuItemTypeToQuestionType[type];
+            var neededType = surveyType.QuestionType;
             var value = Questions.FirstOrDefault(q => neededType == q.GetType());
             if (value == null)
                 return null;
@@ -54,19 +38,43 @@ namespace MobileDataCollection.Survey.Models
             {
                 if (!selectedSurvey.Unlocked || CurrentSurvey != null)
                     return;
-                CurrentSurvey = selectedSurvey.Id;
+                CurrentSurvey = selectedSurvey;
             }
+            if (CurrentSurvey.AnswersGiven >= CurrentSurvey.AnswersNeeded)
+            {
+                //Display Summary
+                //var scoreSum = CurrentSurvey
+            }
+            ShowNewSurveyPage();
+        }
 
-            var question = GetFirstQuestion(selectedSurvey.Id);
-            var newPage = SurveyPageConstructor[selectedSurvey.Id](question, selectedSurvey.AnswersGiven, selectedSurvey.AnswersNeeded);
+        private void ShowNewSurveyPage()
+        {
+            var question = GetFirstQuestion(CurrentSurvey);
+            //TODO: Check for existence of correct constructor
+            var newPage = (ISurveyPage)Activator.CreateInstance(CurrentSurvey.SurveyPageType, new object[] { question, CurrentSurvey.AnswersGiven, CurrentSurvey.AnswersNeeded });
             newPage.PageFinished += NewPage_PageFinished;
             Navigation.PushAsync(newPage as ContentPage);
         }
 
         private void NewPage_PageFinished(object sender, EventArgs e)
         {
+            var surveyPage = sender as ISurveyPage;
+            surveyPage.PageFinished -= NewPage_PageFinished;
+            bool aborted = surveyPage.AnswerItem == null;
+            if (aborted)
+                return;
+            CurrentSurvey.AnswersGiven++;
+            if (CurrentSurvey.AnswersGiven >= CurrentSurvey.AnswersNeeded)
+                SurveyTypeFinished();
+            var score = surveyPage.AnswerItem.EvaluateScore();
             Navigation.PopAsync();
             CurrentSurvey = null;
+        }
+
+        private void SurveyTypeFinished()
+        {
+            throw new NotImplementedException();
         }
     }
 }

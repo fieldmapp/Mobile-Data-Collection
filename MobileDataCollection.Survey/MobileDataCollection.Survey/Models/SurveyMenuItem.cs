@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace MobileDataCollection.Survey.Models
 {
     public enum SurveyMenuItemType
     {
-        Introspection,
         ImageChecker,
         DoubleSlider,
         Stadium
@@ -84,6 +84,12 @@ namespace MobileDataCollection.Survey.Models
             set => SetValue(BackgroundColorProperty, value);
         }
 
+        public Type QuestionType { get; }
+
+        public Type AnswerType { get; }
+
+        public Type SurveyPageType { get; }
+
         public SurveyMenuItem(SurveyMenuItemType id, string chapterName, int answersNeeded, int maximumQuestionNumber, int answersGiven, bool unlocked, Color backgroundColor)
         {
             Id = id;
@@ -93,6 +99,17 @@ namespace MobileDataCollection.Survey.Models
             AnswersGiven = answersGiven;
             Unlocked = unlocked;
             BackgroundColor = backgroundColor;
+
+            var nspace = typeof(App).Namespace;
+            SurveyPageType = Type.GetType($"{nspace}.Views.{id.ToString()}Page");
+            if (SurveyPageType == null || SurveyPageType.IsAssignableFrom(typeof(ISurveyPage)))
+                throw new ArgumentException($"You need to provide an ISurveyPage matching the id given (for given id it needs to be called {id.ToString()}Page and must be located in {nspace}.Views");
+            QuestionType = Type.GetType($"{nspace}.Models.Question{id.ToString()}Page");
+            if (QuestionType == null || QuestionType.IsAssignableFrom(typeof(IQuestionContent)))
+                throw new ArgumentException($"You need to provide a IQuestionContent matching the id given (for given id it needs to be called Question{id.ToString()}Page and must be located in {nspace}.Models"); ;
+            AnswerType = Type.GetType($"{nspace}.Models.Question{id.ToString()}Page");
+            if (AnswerType == null || AnswerType.IsAssignableFrom(typeof(IUserAnswer)))
+                throw new ArgumentException($"You need to provide a SurveyPage matching the id given (for given id it needs to be called Answer{id.ToString()}Page and must be located in {nspace}.Models"); ;
         }
     }
 }
