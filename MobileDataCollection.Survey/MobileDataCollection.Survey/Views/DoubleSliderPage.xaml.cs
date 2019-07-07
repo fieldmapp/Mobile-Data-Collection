@@ -14,29 +14,36 @@ namespace MobileDataCollection.Survey.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DoubleSliderPage : ContentPage, ISurveyPage
     {
-        //Binding für Fragen
+        /// <summary>
+        /// Bindings of QuestionItem, AnswerItem and Header
+        /// </summary>
         public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), typeof(QuestionDoubleSliderPage), typeof(DoubleSliderPage), new QuestionDoubleSliderPage(1, 1, "DoubleSlider_one_question1.png", 7, 4), BindingMode.OneWay);
-        //Binding für Antwort
         public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem),  typeof(AnswerDoubleSliderPage), typeof(DoubleSliderPage), new AnswerDoubleSliderPage(0, 0, 0), BindingMode.OneWay);
-        //Binding für Header
         public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(string), typeof(DoubleSliderPage), "demo", BindingMode.OneWay);
 
         public event EventHandler PageFinished;
 
-        //Currently displayed question
+        /// <summary>
+        /// Item of the given Question
+        /// </summary>
         public QuestionDoubleSliderPage QuestionItem
         {
             get { return (QuestionDoubleSliderPage)GetValue(QuestionItemProperty); }
             set { SetValue(QuestionItemProperty, value); }
         }
-        //Item of the Answer
+        
+        /// <summary>
+        /// Item of the corresponding answer of the question
+        /// </summary>
         public AnswerDoubleSliderPage AnswerItem
         {
             get { return (AnswerDoubleSliderPage)GetValue(AnswerItemProperty); }
             set { SetValue(AnswerItemProperty, value); }
         }
-        
-        //Header
+
+        /// <summary>
+        /// Item of the Header (given answers and number of answers that are missing)
+        /// </summary>
         public string Header
         {
             get { return (string)GetValue(HeaderProperty); }

@@ -15,29 +15,34 @@ namespace MobileDataCollection.Survey.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class StadiumPage : ContentPage, ISurveyPage
 	{
-        //Binding for Question
+        /// <summary>
+        /// Bindings of QuestionItem, AnswerItem and Header
+        /// </summary>
         public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem),typeof(QuestionStadiumPage), typeof(StadiumPage), null, BindingMode.OneWay);
+        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerStadiumPage), typeof(StadiumPage), new AnswerStadiumPage(0, string.Empty, string.Empty), BindingMode.OneWay);
+        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(string), typeof(StadiumPage), "demo", BindingMode.OneWay);
 
-        //Item of Question
+        /// <summary>
+        /// Item of the given Question
+        /// </summary>
         public QuestionStadiumPage QuestionItem
         {
             get { return (QuestionStadiumPage)GetValue(QuestionItemProperty); }
             set { SetValue(QuestionItemProperty, value); }
         }
 
-        //Binding for Answer
-        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem),typeof(AnswerStadiumPage), typeof(StadiumPage), new AnswerStadiumPage(0, string.Empty, string.Empty), BindingMode.OneWay);
-
-        //Item of Answer
+        /// <summary>
+        /// Item of the corresponding answer of the question
+        /// </summary>
         public AnswerStadiumPage AnswerItem
         {
             get { return (AnswerStadiumPage)GetValue(AnswerItemProperty); }
             set { SetValue(AnswerItemProperty, value); }
         }
 
-        //Binding für Header
-        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(string), typeof(StadiumPage), "demo", BindingMode.OneWay);
-        //Header
+        /// <summary>
+        /// Item of the Header (given answers and number of answers that are missing)
+        /// </summary>
         public string Header
         {
             get { return (string)GetValue(HeaderProperty); }
