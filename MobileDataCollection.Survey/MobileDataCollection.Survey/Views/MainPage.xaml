@@ -3,27 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MobileDataCollection.Survey"
              x:Class="MobileDataCollection.Survey.Views.MainPage">
-
+<!--This is the Frontend representation of the Main Page. It consists of an ListView containing all question 
+    categories with name and the answered questions and a button to navigate to the evaluation main page-->
     <StackLayout>
+        <!--ListView consisting of the question categories-->
         <ListView Margin="0,5,0,0" x:Name="MenuList" ItemTapped="MenuList_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
+                    <!--Layout for an element of the question category-->
                     <ViewCell>
                         <ViewCell.View Height="15" BackgroundColor="{Binding BackgroundColor}">
                             <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                 <StackLayout Orientation="Horizontal" 
                                              Margin="8,2,8,1">
+                                    <!--Name of the question category-->
                                     <Label Text="{Binding ChapterName}" FontSize="Medium" VerticalOptions="CenterAndExpand"/>
+                                    <!--Grid with the ProgressString and the Icon-->
                                     <Grid HorizontalOptions="EndAndExpand" ColumnSpacing="20">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
+                                        <!--ProgressString shows how many question are already answered, how many are
+                                        still to be answered and how many can be answered in this category-->
                                         <Label Grid.Column="0" Text="{Binding ProgressString}"  FontSize="Medium"
                                            HorizontalOptions="EndAndExpand"/>
+                                        <!--Icon showing its possible to navigate "into" each category-->
                                         <Image Grid.Column="1"  VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Source="pfeil.png" HeightRequest="15"/>
                                     </Grid>
-                                    
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell.View>
@@ -31,6 +38,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <!--Button to navigate to the evaluation main page-->
         <Button Text="Auswertung" Clicked="EvaluationClicked"/>
     </StackLayout>
 

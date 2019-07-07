@@ -99,9 +99,6 @@
       <Name>MobileDataCollection.Survey</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\QuestionDatabank.sqlite" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ItemGroup>
     <AndroidAsset Include="Assets\ImageCheckerQuestions.txt" />
@@ -332,7 +329,7 @@
     <AndroidAsset Include="Assets\DoubleSliderQuestions.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\StadiumQuestion.txt" />
+    <AndroidAsset Include="Assets\StadiumQuestions.txt" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\IntrospectionQuestions.txt" />

@@ -7,12 +7,15 @@ namespace MobileDataCollection.Survey.Models
 {
     public class AnswerDoubleSliderPage : BindableObject, IUserAnswer
     {
+        /// <summary>
+        /// Binding of parameters in AnswerItem of DoubleSliderPage
+        /// </summary>
         public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(InternId), typeof(int), typeof(AnswerDoubleSliderPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty ResultQuestionAProperty = BindableProperty.Create(nameof(ResultQuestionA), typeof(int), typeof(AnswerDoubleSliderPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty ResultQuestionBProperty = BindableProperty.Create(nameof(ResultQuestionB), typeof(int), typeof(AnswerDoubleSliderPage), 0, BindingMode.OneWay);
 
         /// <summary>
-        /// Intern Id for Answers of this Type, corrosponds to same number as in QuestionImageCheckerPage
+        /// Intern Id for Answers of this Type, corrosponds to same number as in QuestionDoubleSliderPage
         /// </summary>
         public int InternId
         {
@@ -39,7 +42,7 @@ namespace MobileDataCollection.Survey.Models
         }
 
         /// <summary>
-        /// Is a reference to the belonging Question
+        /// The constructor of AnswerItem in DoubleSliderPage
         /// </summary>
         public AnswerDoubleSliderPage(int internId, int resultA, int resultB)
         {

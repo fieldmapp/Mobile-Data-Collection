@@ -7,9 +7,10 @@ namespace MobileDataCollection.Survey.Models
 {
     public class QuestionImageCheckerPage : BindableObject, IQuestionContent
     {
-        
+        /// <summary>
+        /// Binding of parameters in QuestionItem of ImageCheckerPage
+        /// </summary>
         public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(InternId), typeof(int), typeof(QuestionImageCheckerPage), 0, BindingMode.OneWay);
-        //public static readonly BindableProperty NumberOfPossibleAnswersProperty = BindableProperty.Create(nameof(NumberOfPossibleAnswers), typeof(int), typeof(QuestionImageCheckerPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty DifficultyProperty = BindableProperty.Create(nameof(Difficulty), typeof(int), typeof(QuestionImageCheckerPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty QuestionTextProperty = BindableProperty.Create(nameof(QuestionText), typeof(string), typeof(QuestionImageCheckerPage), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty Image1CorrectProperty = BindableProperty.Create(nameof(Image1Correct), typeof(int), typeof(QuestionImageCheckerPage), 0, BindingMode.OneWay);
@@ -23,7 +24,7 @@ namespace MobileDataCollection.Survey.Models
         
 
         /// <summary>
-        /// Intern Id only for this Type Of Question
+        /// Intern Id only for this type Of question(ImageCheckerPage)
         /// </summary>
         public int InternId
         {
@@ -34,18 +35,7 @@ namespace MobileDataCollection.Survey.Models
         }
 
         /// <summary>
-        /// Maximum count of selected answers allowed
-        /// </summary>
-        /*
-        public int NumberOfPossibleAnswers //war auf 4 gesetzt
-        {
-            get => (int)GetValue(NumberOfPossibleAnswersProperty);
-            set => SetValue(NumberOfPossibleAnswersProperty, value);
-        }
-        */
-
-        /// <summary>
-        /// The difficulty of the Question
+        /// Difficulty of the question. Must be in range 1 to <see /cref="HighestQuestionDifficulty"/> (inclusive)
         /// </summary>
         public int Difficulty
         {
@@ -134,6 +124,20 @@ namespace MobileDataCollection.Survey.Models
             set => SetValue(Image4SourceProperty, value);
         }
 
+        /// <summary>
+        /// The constructor of QuestionItem in ImageCheckerPage
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="question"></param>
+        /// <param name="difficulty"></param>
+        /// <param name="im1Correct"></param>
+        /// <param name="im2Correct"></param>
+        /// <param name="im3Correct"></param>
+        /// <param name="im4Corect"></param>
+        /// <param name="im1Source"></param>
+        /// <param name="im2Source"></param>
+        /// <param name="im3Source"></param>
+        /// <param name="im4Source"></param>
         public QuestionImageCheckerPage(int id, string question, int difficulty, int im1Correct, int im2Correct, int im3Correct, int im4Corect, string im1Source, string im2Source, string im3Source, string im4Source)
         {
             InternId = id;

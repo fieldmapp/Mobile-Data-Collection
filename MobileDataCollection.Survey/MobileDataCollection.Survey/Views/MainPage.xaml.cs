@@ -11,6 +11,10 @@ namespace MobileDataCollection.Survey.Views
 {
     public partial class MainPage : ContentPage
     {
+        /// <summary>
+        /// This is the csharp representation of the main page. It has the property Items, which is an collection of all 
+        /// question categories and a SurveyManager handling the navigation
+        /// </summary>
         public ObservableCollection<SurveyMenuItem> Items = new ObservableCollection<SurveyMenuItem>()
         {
             new SurveyMenuItem(SurveyMenuItemType.DoubleSlider, "Bedeckungsgrade", 4, 18, 0, true, Color.White),
@@ -18,19 +22,23 @@ namespace MobileDataCollection.Survey.Views
             new SurveyMenuItem(SurveyMenuItemType.Stadium, "Wuchsstadien", 2, 12, 0, true, Color.White)
         };
         SurveyManager SurveyManager;
-
+        /// Constructor for the MainPage
         public MainPage()
         {
+            ///Initialize components
             InitializeComponent();
+            ///Settings the ItemsSource for the ListView containing the question categories
             MenuList.ItemsSource = Items;
+            ///Setting the SurveyManager
             SurveyManager = new SurveyManager(Navigation);
         }
-
+        /// Defining the Event for the click on an element in the ListView
         private void MenuList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (!(e.Item is SurveyMenuItem selectedItem))
                 throw new NotImplementedException();
             SurveyMenuItem tapped = (SurveyMenuItem)e.Item;
+            ///Navigate to the clicked element in the list
             SurveyManager.StartSurvey(tapped);
         }
 
