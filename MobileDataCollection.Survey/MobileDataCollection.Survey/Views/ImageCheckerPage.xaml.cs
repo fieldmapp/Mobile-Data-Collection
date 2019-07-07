@@ -12,11 +12,11 @@ namespace MobileDataCollection.Survey.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ImageCheckerPage : ContentPage, ISurveyPage
     {
-        //Binding für Question
+        /// <summary>
+        /// Bindings of QuestionItem, AnswerItem and Header
+        /// </summary>
         public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), typeof(QuestionImageCheckerPage), typeof(ImageCheckerPage), new QuestionImageCheckerPage(1, "Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 0, 1, 0, "Q1_G1_F1_B1_klein.png", "Q1_G1_F1_B2_klein.png", "Q1_G1_F1_B3_klein.png", "Q1_G1_F1_B4_klein.png"), BindingMode.OneWay);
-        //Binding für Answer
         public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerImageCheckerPage), typeof(ImageCheckerPage), new AnswerImageCheckerPage(0, 0, 0, 0, 0), BindingMode.OneWay);
-        //Binding für Header
         public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(string), typeof(ImageCheckerPage), "demo", BindingMode.OneWay);
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace MobileDataCollection.Survey.Views
         }
 
         /// <summary>
-        /// Item of the Answer
+        /// Item of the corresponding answer of the question
         /// </summary>
         public AnswerImageCheckerPage AnswerItem
         {
@@ -38,7 +38,7 @@ namespace MobileDataCollection.Survey.Views
         }
 
         /// <summary>
-        /// Item of the Header
+        /// Item of the Header (given answers and number of answers that are missing)
         /// </summary>
         public string Header
         {

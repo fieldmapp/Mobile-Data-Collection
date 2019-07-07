@@ -7,11 +7,14 @@ namespace MobileDataCollection.Survey.Models
 {
     public class AnswerIntrospectionPage : BindableObject, IUserAnswer
     {
+        /// <summary>
+        /// Binding of parameters in AnswerItem of IntrospectionPage
+        /// </summary>
         public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(InternId), typeof(int), typeof(AnswerIntrospectionPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty SelectedAnswerProperty = BindableProperty.Create(nameof(SelectedAnswer), typeof(int), typeof(AnswerIntrospectionPage), 0, BindingMode.OneWay);
 
         /// <summary>
-        /// Intern Id for Answers of this Type, corrosponds to same number as in QuestionImageCheckerPage
+        /// Intern Id for Answers of this Type, corrosponds to same number as in QuestionIntrospectionPage
         /// </summary>
         public int InternId
         {
@@ -29,7 +32,7 @@ namespace MobileDataCollection.Survey.Models
         }
 
         /// <summary>
-        /// Is a reference to the belonging Question
+        /// The constructor of AnswerItem in ImageCheckerPage
         /// </summary>
 
         public AnswerIntrospectionPage(int internId, int selectedanswer)

@@ -16,30 +16,29 @@ namespace MobileDataCollection.Survey.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class IntrospectionPage : ContentPage
     {
+        /// <summary>
+        /// Bindings of QuestionItem and AnswerItem
+        /// </summary>
         public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), typeof(QuestionIntrospectionPage), typeof(IntrospectionPage), new QuestionIntrospectionPage(1,"demo"), BindingMode.OneWay);
         public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerIntrospectionPage), typeof(IntrospectionPage), new AnswerIntrospectionPage(1, 1), BindingMode.OneWay);
 
+        /// <summary>
+        /// Item of the given Question
+        /// </summary>
         public QuestionIntrospectionPage QuestionItem
         {
             get { return (QuestionIntrospectionPage)GetValue(QuestionItemProperty); }
             set { SetValue(QuestionItemProperty, value); }
         }
 
+        /// <summary>
+        /// Item of the corresponding Answer of the Question
+        /// </summary>
         public AnswerIntrospectionPage AnswerItem
         {
             get { return (AnswerIntrospectionPage)GetValue(AnswerItemProperty); }
             set { SetValue(AnswerItemProperty, value); }
         }
-
-        /* sinnvoll hier?
-        //Binding für Header
-        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(String), typeof(IntrospectionPage), "demo", BindingMode.OneWay);
-        //Header
-        public String Header
-        {
-            get { return (String)GetValue(HeaderProperty); }
-            set { SetValue(HeaderProperty, value); }
-        }*/
 
         public ObservableCollection<QuestionIntrospectionPage> Items
         { get; set; }

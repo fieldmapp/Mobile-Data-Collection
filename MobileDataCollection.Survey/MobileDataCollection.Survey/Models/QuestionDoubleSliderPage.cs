@@ -8,8 +8,10 @@ namespace MobileDataCollection.Survey.Models
 {
 	public class QuestionDoubleSliderPage : BindableObject, IQuestionContent
     {
+        /// <summary>
+        /// Binding of parameters in QuestionItem of DoubleSliderPage
+        /// </summary>
         public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(InternId), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
-        //public static readonly BindableProperty NumberOfPossibleAnswersProperty = BindableProperty.Create(nameof(NumberOfPossibleAnswers), typeof(int), typeof(QuestionStadiumPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty DifficultyProperty = BindableProperty.Create(nameof(Difficulty), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(QuestionDoubleSliderPage), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty PictureAdressProperty = BindableProperty.Create(nameof(PictureAddress), typeof(string), typeof(QuestionDoubleSliderPage), string.Empty, BindingMode.OneWay);
@@ -24,7 +26,7 @@ namespace MobileDataCollection.Survey.Models
         //const int HighestQuestionDifficulty = 3;
 
         /// <summary>
-        /// Intern Id only for this Type Of Question
+        /// Intern Id only for this type Of question
         /// </summary>
         public int InternId
         {
@@ -35,7 +37,7 @@ namespace MobileDataCollection.Survey.Models
         }
 
         /// <summary>
-        /// Question text
+        /// Question which will be shown to the user
         /// </summary>
         public string Text
         {
@@ -80,17 +82,16 @@ namespace MobileDataCollection.Survey.Models
         {
             get => (int)GetValue(DifficultyProperty);
             set => SetValue(DifficultyProperty, value);
-            /*
-            {
-                if (value > HighestQuestionDifficulty)
-                    throw new NotImplementedException($"{nameof(value)} must be at most {nameof(HighestQuestionDifficulty)}={HighestQuestionDifficulty}");
-                if (value < 1)
-                    throw new NotImplementedException($"{nameof(value)} must be at least 1");
-                SetValue(DifficultyProperty, value);    
-            }
-            */
         }
-     
+
+        /// <summary>
+        /// The constructor of QuestionItem in DoubleSliderPage
+        /// </summary>
+        /// <param name="internId"></param>
+        /// <param name="difficulty"></param>
+        /// <param name="pictureAddress"></param>
+        /// <param name="answerA"></param>
+        /// <param name="answerB"></param>
         public QuestionDoubleSliderPage(int internId, int difficulty, string pictureAddress, int answerA, int answerB)
         {
             InternId = internId;

@@ -7,21 +7,35 @@ namespace MobileDataCollection.Survey.Models
 {
     public class StadiumSubItem : BindableObject
     {
+        /// <summary>
+        /// Binding of the plant names in DatabankCommunication
+        /// </summary>
         public static readonly BindableProperty StadiumNameProperty = BindableProperty.Create(nameof(StadiumName), typeof(string), typeof(StadiumSubItem), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty ImageSourceProperty = BindableProperty.Create(nameof(ImageSource), typeof(string), typeof(StadiumSubItem), string.Empty, BindingMode.OneWay);
 
+        /// <summary>
+        /// Name of the different stadiums
+        /// </summary>
         public string StadiumName
         {
             get => (string)GetValue(StadiumNameProperty);
             set => SetValue(StadiumNameProperty, value);
         }
 
+        /// <summary>
+        /// Contains the Images of the stadiums
+        /// </summary>
         public string ImageSource
         {
             get => (string)GetValue(ImageSourceProperty);
             set => SetValue(ImageSourceProperty, value);
         }
 
+        /// <summary>
+        /// The Constructor of the plant names in DatabankCommunication
+        /// </summary>
+        /// <param name="stadiumName"></param>
+        /// <param name="imageSource"></param>
         public StadiumSubItem(string stadiumName, string imageSource)
         {
             StadiumName = stadiumName;

@@ -7,6 +7,9 @@ namespace MobileDataCollection.Survey.Models
 {
     public class AnswerImageCheckerPage : BindableObject, IUserAnswer
     {
+        /// <summary>
+        /// Binding of parameters in AnswerItem of DoubleSliderPage
+        /// </summary>
         public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(InternId), typeof(int), typeof(AnswerImageCheckerPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty Image1SelectedProperty = BindableProperty.Create(nameof(Image1Selected), typeof(int), typeof(AnswerImageCheckerPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty Image2SelectedProperty = BindableProperty.Create(nameof(Image2Selected), typeof(int), typeof(AnswerImageCheckerPage), 0, BindingMode.OneWay);
@@ -60,7 +63,7 @@ namespace MobileDataCollection.Survey.Models
         }
 
         /// <summary>
-        /// Is a reference to the belonging Question
+        /// The constructor of AnswerItem in ImageCheckerPage
         /// </summary>
 
         public AnswerImageCheckerPage(int Id,int selected1, int selected2, int selected3, int selected4)
