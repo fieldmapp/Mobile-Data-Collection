@@ -23,7 +23,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Selected fruit type
         /// </summary>
-        string AnswerFruitType
+        public string AnswerFruitType
         {
             get => (string)GetValue(AnswerFruitTypeProperty);
             set => SetValue(AnswerFruitTypeProperty, value);
@@ -32,7 +32,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Selected stadium
         /// </summary>
-        string AnswerStadium
+        public string AnswerStadium
         {
             get => (string)GetValue(AnswerStadiumProperty);
             set => SetValue(AnswerStadiumProperty, value);

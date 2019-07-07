@@ -1,1 +1,11 @@
-﻿
+﻿1;Ich kann die Sorte von Feldfrüchten zuverlässig erkennen
+2;Ich kann phänologische Entwicklungsstadien von Feldfrüchten zuverlässig erkennen
+3;Ich kann den Bedeckungsgrad des Bodens durch Pflanzen zuverlässig schätzen
+4;Ich kann den Anteil grüner Pflanzenbestandteile am gesamten Pflanzenmaterial zuverlässig schätzen
+END_QUESTIONS
+here you can write documentation
+Questions are saved like this
+
+int id;string question;int difficulty;int im1Correct;int im2Correct;int im3Correct;int im4Corect;string im1Source;string im2Source;string im3Source;string im4Source
+
+don't write a ";" in the attributes, the ";" is reserved as a seperating character
