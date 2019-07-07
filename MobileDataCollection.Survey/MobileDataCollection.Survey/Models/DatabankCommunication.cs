@@ -10,15 +10,9 @@ namespace MobileDataCollection.Survey.Models
     {
         static Random RandomNumber = new Random();
 
-        private static List<QuestionImageCheckerPage> ListQuestionImageCheckerPage = new List<QuestionImageCheckerPage>();
-        private static List<QuestionDoubleSliderPage> ListQuestionDoubleSliderPage = new List<QuestionDoubleSliderPage>();
-        private static List<QuestionStadiumPage> ListQuestionStadiumPage = new List<QuestionStadiumPage>();
-        private static List<QuestionIntrospectionPage> ListQuestionIntrospectionPage = new List<QuestionIntrospectionPage>();
+        private static Dictionary<string, List<IQuestionContent>> Questions = new Dictionary<string, List<IQuestionContent>>();
 
-        private static List<AnswerImageCheckerPage> ListAnswerImageCheckerPage = new List<AnswerImageCheckerPage>();
-        private static List<AnswerDoubleSliderPage> ListAnswerDoubleSliderPage = new List<AnswerDoubleSliderPage>();
-        private static List<AnswerStadiumPage> ListAnswerStadiumPage = new List<AnswerStadiumPage>();
-        private static List<AnswerIntrospectionPage> ListAnswerIntrospectionPage = new List<AnswerIntrospectionPage>();
+        private static Dictionary<string, List<IUserAnswer>> Answers = new Dictionary<string, List<IUserAnswer>>();
 
         private IQuestionsProvider questionsProvider;
 
@@ -41,10 +35,10 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public void CreateQuestions()
         {
-            CreateQuestionsForImageChecker();
-            CreateQuestionsForDoubleSlider();
-            CreateQuestionsForStadium();
-            CreateQuestionForIntrospection();
+            Questions["ImageChecker"] = CreateQuestionsForImageChecker();
+            Questions["DoubleSlider"] = CreateQuestionsForDoubleSlider();
+            Questions["Stadium"] = CreateQuestionsForStadium();
+            Questions["Introspection"] = CreateQuestionForIntrospection();
         }
 
         /// <summary>
@@ -52,20 +46,20 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public void CreateQuestionsFromTXT()
         {
-            LoadQuestionsForImageCheckerFromTXT();
-            LoadQuestionsForDoubleSliderFromTXT();
-            LoadQuestionsForStadiumFromTXT();
-            LoadQuestionsForIntrospectionFromTXT();
+            Questions["ImageChecker"] = LoadQuestionsForImageCheckerFromTXT();
+            Questions["DoubleSlider"] = LoadQuestionsForDoubleSliderFromTXT();
+            Questions["Stadium"] = LoadQuestionsForStadiumFromTXT();
+            Questions["Introspection"] = LoadQuestionsForIntrospectionFromTXT();
         }
         /// <summary>
         /// Loads all Answers from the txt files
         /// </summary>
         public void LoadAllAnswersFromTxt()
         {
-            ListAnswerImageCheckerPage = LoadAnswersForImageCheckerPage();
-            ListAnswerDoubleSliderPage = LoadAnswersForDoubleSliderPage();
-            ListAnswerStadiumPage = LoadAnswersForStadiumPage();
-            ListAnswerIntrospectionPage = LoadAnswersForIntrospectionPage();
+            Answers["ImageChecker"] = LoadAnswersForImageCheckerPage();
+            Answers["DoubleSlider"] = LoadAnswersForDoubleSliderPage();
+            Answers["Stadium"] = LoadAnswersForStadiumPage();
+            Answers["Introspection"] = LoadAnswersForIntrospectionPage();
         }
 
         public void SaveAllAnswersInTxt()
@@ -77,21 +71,11 @@ namespace MobileDataCollection.Survey.Models
         }
 
         /// <summary>
-        /// Return a List containing all available Questions
-        /// </summary>
-        public static List<IQuestionContent> GetAllQuestions()
-        {
-            return ListQuestionDoubleSliderPage.Cast<IQuestionContent>()
-                .Concat(ListQuestionImageCheckerPage.Cast<IQuestionContent>())
-                .Concat(ListQuestionStadiumPage.Cast<IQuestionContent>()).ToList();
-        }
-
-        /// <summary>
         /// Creates all questions for the ImageCheckerType
         /// </summary>
-        public static void CreateQuestionsForImageChecker()
+        public static List<IQuestionContent> CreateQuestionsForImageChecker()
         {
-            ListQuestionImageCheckerPage = new List<QuestionImageCheckerPage>
+            return new List<IQuestionContent>
             {
                 new QuestionImageCheckerPage(1, "Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 0, 1, 0, "ImageChecker_one_question1_picture1.png", "ImageChecker_one_question1_picture2.png", "ImageChecker_one_question1_picture3.png", "ImageChecker_one_question1_picture4.png"),
                 new QuestionImageCheckerPage(2, "Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 1, 0, 1, 1, 0, "ImageChecker_one_question2_picture1.png", "ImageChecker_one_question2_picture2.png", "ImageChecker_one_question2_picture3.png", "ImageChecker_one_question2_picture4.png"),
@@ -105,9 +89,9 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Creates all questions for the DoubleSlider Type
         /// </summary>
-        public static void CreateQuestionsForDoubleSlider()
+        public static List<IQuestionContent> CreateQuestionsForDoubleSlider()
         {
-            ListQuestionDoubleSliderPage = new List<QuestionDoubleSliderPage>
+            return new List<IQuestionContent>
             {
                 new QuestionDoubleSliderPage(1, 1, "DoubleSlider_one_question1.png", 7, 4),
                 new QuestionDoubleSliderPage(2, 1, "DoubleSlider_one_question2.png", 49, 91),
@@ -127,7 +111,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Creates all questions for the StadiumType
         /// </summary>
-        public static void CreateQuestionsForStadium()
+        public static List<IQuestionContent> CreateQuestionsForStadium()
         {
             var stadiums1 = new List<StadiumSubItem>
             {
@@ -172,7 +156,7 @@ namespace MobileDataCollection.Survey.Models
                 new Plant("Weizen"),
                 new Plant("Zuckerrübe")
             };
-            ListQuestionStadiumPage = new List<QuestionStadiumPage>
+            return new List<IQuestionContent>
             {
                 //TODO: Add Support for multiple correkt answers (as seen in original survey 1 stadium answer 3)
                 new QuestionStadiumPage(1, 1, "Stadium_one_question1.png", stadiums1.ToList(), plants1.ToList(), "Blattentwicklung", "Kartoffel"),
@@ -199,9 +183,9 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Creates all questions for the IntrospectionType
         /// </summary>
-        public static void CreateQuestionForIntrospection()
+        public static List<IQuestionContent> CreateQuestionForIntrospection()
         {
-            ListQuestionIntrospectionPage = new List<QuestionIntrospectionPage>
+            return new List<IQuestionContent>
             {
                 new QuestionIntrospectionPage(1,"Ich kann die Sorte von Feldfrüchten zuverlässig erkennen"),
                 new QuestionIntrospectionPage(2, "Ich kann phänologische Entwicklungsstadien von Feldfrüchten zuverlässig erkennen"),
@@ -212,213 +196,74 @@ namespace MobileDataCollection.Survey.Models
 
         /// <summary>
         /// Loads a QUestionImageCheckerPage-Object with the set difficulty, or a lower difficulty if no question with a matching difficulty exsist.
-        /// If no question can be loaded it will return an Object, with the ID 0
+        /// If no question can be loaded it will return null
         /// </summary>
-        public static QuestionImageCheckerPage LoadQuestionImageCheckerPage(int difficulty)
+        public static IQuestionContent LoadQuestion(string surveyId, int difficulty)
         {
+            var listQuestions = Questions[surveyId];
             List<QuestionImageCheckerPage> ListQuestion = new List<QuestionImageCheckerPage>();
-            for(int i = 0; i < ListQuestionImageCheckerPage.Count; i++)
+            for(int i = 0; i < listQuestions.Count; i++)
             {
-                QuestionImageCheckerPage question = ListQuestionImageCheckerPage.ElementAt<QuestionImageCheckerPage>(i);
+                QuestionImageCheckerPage question = (QuestionImageCheckerPage)listQuestions[i];
                 if(question.Difficulty == difficulty)
                 {
-                    if(!(SearchListAnswerImageCheckerPage(question.InternId)))
+                    if(!SearchAnswers(surveyId, question.InternId))
                     {
                         ListQuestion.Add(question);
                     }
                 }
             }
-            if(ListQuestion.Count > 0)
+            if (ListQuestion.Count > 0)
             {
-                return ListQuestion.ElementAt<QuestionImageCheckerPage>(RandomNumber.Next(ListQuestion.Count));
+                return ListQuestion[RandomNumber.Next(ListQuestion.Count)];
             }
             if (difficulty == 1)
             {
-                return new QuestionImageCheckerPage(0,"", 0, 0, 0, 0, 0, "", "", "", "");
+                return null;
             }
             else
             {
-                return LoadQuestionImageCheckerPage(difficulty - 1);
+                return LoadQuestion(surveyId, difficulty - 1);
             }
         }
 
         /// <summary>
         /// Searches an AnswerImageCheckerPage-Object with the corrosponding Id
         /// </summary>
-        public static bool SearchListAnswerImageCheckerPage(int Id) => ListAnswerImageCheckerPage.Any(a => a.InternId == Id);
+        public static bool SearchAnswers(string surveyId, int Id) => Answers[surveyId].Any(a => a.InternId == Id);
 
         /// <summary>
         /// Adds an AnswerImageCheckerPage Object to the List ListAnswerImageCheckerPage
         /// </summary>
-        public static void AddListAnswerImageCheckerPage(AnswerImageCheckerPage answer)
+        public static void AddAnswer(string surveyId, IUserAnswer answer)
         {
-            ListAnswerImageCheckerPage.Add(answer);
+            (Answers[surveyId] ?? (Answers[surveyId] = new List<IUserAnswer>())).Add(answer);
         }
 
-        /// <summary>
-        /// Loads a QUestionDoubleSliderPage-Object with the set difficulty, or a lower difficulty if no question with a matching difficulty exsist.
-        /// If no question can be loaded it will return an Object, with the ID 0
-        /// </summary>
-        public static QuestionDoubleSliderPage LoadQuestionDoubleSliderPage(int difficulty)
-        {
-            List<QuestionDoubleSliderPage> ListQuestion = new List<QuestionDoubleSliderPage>();
-            for (int i = 0; i < ListQuestionDoubleSliderPage.Count; i++)
-            {
-                QuestionDoubleSliderPage question = ListQuestionDoubleSliderPage.ElementAt<QuestionDoubleSliderPage>(i);
-                if (question.Difficulty == difficulty)
-                {
-                    if (!(SearchListAnswerDoubleSliderPage(question.InternId)))
-                    {
-                        ListQuestion.Add(question);
-                    }
-                }
-            }
-            if (ListQuestion.Count > 0)
-            {
-                return ListQuestion.ElementAt<QuestionDoubleSliderPage>(RandomNumber.Next(ListQuestion.Count));
-            }
-            if (difficulty == 1)
-            {
-                return new QuestionDoubleSliderPage(0, 0,"", 0, 0);
-            }
-            else
-            {
-                return LoadQuestionDoubleSliderPage(difficulty - 1);
-            }
-        }
-
-        /// <summary>
-        /// Searches an AnswerDoubleSliderPage-Object with the corrosponding Id
-        /// </summary>
-        public static bool SearchListAnswerDoubleSliderPage(int Id) => ListAnswerDoubleSliderPage.Any(a => a.InternId == Id);
-
-        /// <summary>
-        /// Adds an AnswerDoubleSliderPage-Object to the List ListAnswerDoubleSliderPage
-        /// </summary>
-        public static void AddListAnswerDoubleSliderPage(AnswerDoubleSliderPage answer)
-        {
-            ListAnswerDoubleSliderPage.Add(answer);
-        }
-
-        /// <summary>
-        /// Loads a QUestionStadiumPage-Object with the set difficulty, or a lower difficulty if no question with a matching difficulty exsist.
-        /// If no question can be loaded it will return object with id 0
-        /// </summary>
-        public static QuestionStadiumPage LoadQuestionStadiumPage(int difficulty)
-        {
-            List<QuestionStadiumPage> ListQuestion = new List<QuestionStadiumPage>();
-            for (int i = 0; i < ListQuestionStadiumPage.Count; i++)
-            {
-                QuestionStadiumPage question = ListQuestionStadiumPage.ElementAt<QuestionStadiumPage>(i);
-                if (question.Difficulty == difficulty)
-                {
-                    if (!SearchListAnswerDoubleSliderPage(question.InternId))
-                    {
-                        ListQuestion.Add(question);
-                    }
-                }
-            }
-            if (ListQuestion.Count > 0)
-            {
-                return ListQuestion.ElementAt<QuestionStadiumPage>(RandomNumber.Next(ListQuestion.Count));
-            }
-            if (difficulty == 1)
-            {
-                return new QuestionStadiumPage(0, 0, null, null, null, "", correctAnswerFruitType: "");
-            }
-            else
-            {
-                return LoadQuestionStadiumPage(difficulty - 1);
-            }
-        }
-
-        /// <summary>
-        /// Searches an AnswerStadiumPage-Object with the corrosponding Id
-        /// </summary>
-        public static bool SearchListAnswerStadiumPage(int Id) => ListAnswerStadiumPage.Any(a => a.InternId == Id);
-
-        /// <summary>
-        /// Adds an AnswerStadiumPage-Object to the List ListAnswerDoubleSliderPage
-        /// </summary>
-        public static void AddListAnswerStadiumPage(AnswerStadiumPage answer)
-        {
-            ListAnswerStadiumPage.Add(answer);
-        }
-
-        /// <summary>
-        /// Loads a QuestionIntrospectionPage-Object with the set Id
-        /// </summary>
-        public static QuestionIntrospectionPage LoadQuestionIntrospectionPage(int id)
-        {
-            return ListQuestionIntrospectionPage.FirstOrDefault(q => q.InternId == id) ?? new QuestionIntrospectionPage(0, "");
-        }
-
-        /// <summary>
-        /// Loads a QuestionDoubleSliderPage with the set id.
-        /// <param name="id"></param>
-        /// <returns>QustionDoubleSliderPage with wanted id if existent. Otherwise null</returns>
-        /// </summary>
-        public static QuestionDoubleSliderPage LoadQuestionDoubleSliderPageById(int id)
-        {
-            return ListQuestionDoubleSliderPage.FirstOrDefault(q => q.InternId == id);
-        }
-
-        /// <summary>
-        /// Loads a QuestionImageCheckerPage with the set id.
-        /// <param name="id"></param>
-        /// <returns>QuestionImageCheckerPage with wanted id if existent. Otherwise null</returns>
-        /// /// </summary>
-        public static QuestionImageCheckerPage LoadQuestionImageCheckerPageById(int id)
-        {
-            return ListQuestionImageCheckerPage.FirstOrDefault(q => q.InternId == id);
-        }
-
-        /// <summary>
-        /// Loads a QuestionStadiumPage with the set id.
-        /// <param name="id"></param>
-        /// <returns>QuestionStadiumPage with wanted id if existent. Otherwise null</returns>
-        /// </summary>
-        public static QuestionStadiumPage LoadQuestionStadiumPageById(int id)
-        {
-            return ListQuestionStadiumPage.FirstOrDefault(q => q.InternId == id);
-        }
-
-        /// <summary>
-        /// Searches an AnswerStadiumPage-Object with the corrosponding Id
-        /// </summary>
-        public static bool SearchListAnswerIntrospectionPage(int Id) => ListAnswerIntrospectionPage.Any(q => q.InternId == Id);
-
-        /// <summary>
-        /// Adds an AnswerStadiumPage-Object to the List ListAnswerDoubleSliderPage
-        /// </summary>
-        public static void AddListAnswerIntrospectionPage(AnswerIntrospectionPage answer)
-        {
-            ListAnswerIntrospectionPage.Add(answer);
-        }
         /// <summary>
         /// Creates exampleAnswers for each Type
         /// </summary>
         public void ExampleAnswers()
         {
-            ListAnswerImageCheckerPage = new List<AnswerImageCheckerPage>
+            Answers["ImageChecker"] = new List<IUserAnswer>
             {
                 new AnswerImageCheckerPage(1,1,1,0,0),
                 new AnswerImageCheckerPage(2,0,1,0,1),
                 new AnswerImageCheckerPage(3,0,1,0,1)
             };
-            ListAnswerDoubleSliderPage = new List<AnswerDoubleSliderPage>
+            Answers["DoubleSlider"] = new List<IUserAnswer>
             {
                 new AnswerDoubleSliderPage(1,10,20),
                 new AnswerDoubleSliderPage(2,40,30),
                 new AnswerDoubleSliderPage(3,60,10),
                 new AnswerDoubleSliderPage(4,34,34)
             };
-            ListAnswerIntrospectionPage = new List<AnswerIntrospectionPage>
+            Answers["Introspection"] = new List<IUserAnswer>
             {
                 new AnswerIntrospectionPage(1,3),
                 new AnswerIntrospectionPage(1,4)
             };
-            ListAnswerStadiumPage = new List<AnswerStadiumPage>
+            Answers["Stadium"] = new List<IUserAnswer>
             {
                 new AnswerStadiumPage(1,"Blattentwicklung","Kartoffel"),
                 new AnswerStadiumPage(2,"Blattentwicklung","Zuckerrübe")
@@ -428,9 +273,9 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Loads all questions for the ImageCheckerType from ImageCheckerQuestions.txt
         /// </summary>
-        public List<QuestionImageCheckerPage> LoadQuestionsForImageCheckerFromTXT()
+        public List<IQuestionContent> LoadQuestionsForImageCheckerFromTXT()
         {
-            List<QuestionImageCheckerPage> tempList = new List<QuestionImageCheckerPage>();
+            List<IQuestionContent> tempList = new List<IQuestionContent>();
 
             String Text = questionsProvider.LoadQuestionsFromTXT("ImageCheckerQuestions.txt");
             StringReader stringReader = new StringReader(Text);
@@ -468,7 +313,7 @@ namespace MobileDataCollection.Survey.Models
         public void SaveAnswersForImageCheckerPage()
         {
             string text = "";
-            foreach(AnswerImageCheckerPage answer in ListAnswerImageCheckerPage)
+            foreach(AnswerImageCheckerPage answer in Answers["ImageCheckerPage"])
             {
                 text += answer.InternId.ToString() + ";";
                 text += answer.Image1Selected.ToString() + ";";
@@ -489,9 +334,9 @@ namespace MobileDataCollection.Survey.Models
         /// Loads all Answers for the AnswerImageCheckerPage from ImageCheckerAnswer.txt
         /// </summary>
         /// <returns>List with all Answers</returns>
-        public List<AnswerImageCheckerPage> LoadAnswersForImageCheckerPage()
+        public List<IUserAnswer> LoadAnswersForImageCheckerPage()
         {
-            List<AnswerImageCheckerPage> tempList = new List<AnswerImageCheckerPage>();
+            List<IUserAnswer> tempList = new List<IUserAnswer>();
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string filename = Path.Combine(path, "ImageCheckerAnswers.txt");
@@ -517,14 +362,13 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Loads all questions for the DoubleSliderType from DoubleSliderQuestions.txt
         /// </summary>
-        public List<QuestionDoubleSliderPage> LoadQuestionsForDoubleSliderFromTXT()
+        public List<IQuestionContent> LoadQuestionsForDoubleSliderFromTXT()
         {
-            List<QuestionDoubleSliderPage> tempList = new List<QuestionDoubleSliderPage>();
+            List<IQuestionContent> tempList = new List<IQuestionContent>();
 
             String Text = questionsProvider.LoadQuestionsFromTXT("DoubleSliderQuestions.txt");
             StringReader stringReader = new StringReader(Text);
             String Line = stringReader.ReadLine();
-
             while (!(Line.Equals("END_QUESTIONS")))
             {
                 String[] attributes = Line.Split(';');
@@ -550,7 +394,7 @@ namespace MobileDataCollection.Survey.Models
         public void SaveAnswersForDoubleSliderPage()
         {
             string text = "";
-            foreach (AnswerDoubleSliderPage answer in ListAnswerDoubleSliderPage)
+            foreach (AnswerDoubleSliderPage answer in Answers["DoubleSlider"])
             {
                 text += answer.InternId.ToString() + ";";
                 text += answer.ResultQuestionA.ToString() + ";";
@@ -569,9 +413,9 @@ namespace MobileDataCollection.Survey.Models
         /// Loads all Answers for the AnswerDoubleSliderPage from DoubleSliderAnswer.txt
         /// </summary>
         /// <returns>List with all Answers</returns>
-        public List<AnswerDoubleSliderPage> LoadAnswersForDoubleSliderPage()
+        public List<IUserAnswer> LoadAnswersForDoubleSliderPage()
         {
-            List<AnswerDoubleSliderPage> tempList = new List<AnswerDoubleSliderPage>();
+            List<IUserAnswer> tempList = new List<IUserAnswer>();
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string filename = Path.Combine(path, "DoubleSliderAnswers.txt");
@@ -594,7 +438,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Loads all questions for the StadiumType from StadiumQuestions.txt
         /// </summary>
-        public void LoadQuestionsForStadiumFromTXT()
+        public List<IQuestionContent> LoadQuestionsForStadiumFromTXT()
         {
             String Text = questionsProvider.LoadQuestionsFromTXT("StadiumQuestions.txt");
             StringReader stringReader = new StringReader(Text);
@@ -643,7 +487,7 @@ namespace MobileDataCollection.Survey.Models
                 new Plant("Weizen"),
                 new Plant("Zuckerrübe")
             };
-
+            var tempList = new List<IQuestionContent>();
             while (!(Line.Equals("END_QUESTIONS")))
             {
                 String[] attributes = Line.Split(';');
@@ -677,9 +521,11 @@ namespace MobileDataCollection.Survey.Models
                 }
 
                 QuestionStadiumPage question = new QuestionStadiumPage(id, difficulty, imgSour, stadium, plant, stadiumCorr, plantCorr);
-                ListQuestionStadiumPage.Add(question);
+
+                tempList.Add(question);
                 Line = stringReader.ReadLine();
             }
+            return tempList;
         }
 
         /// <summary>
@@ -690,7 +536,7 @@ namespace MobileDataCollection.Survey.Models
         public void SaveAnswersForStadiumPage()
         {
             string text = "";
-            foreach (AnswerStadiumPage answer in ListAnswerStadiumPage)
+            foreach (AnswerStadiumPage answer in Answers["Stadium"])
             {
                 text += answer.InternId.ToString() + ";";
                 text += answer.AnswerFruitType + ";";
@@ -709,9 +555,9 @@ namespace MobileDataCollection.Survey.Models
         /// Loads all Answers for the AnswerStadiumPage from StadiumAnswer.txt
         /// </summary>
         /// <returns>List with all Answers</returns>
-        public List<AnswerStadiumPage> LoadAnswersForStadiumPage()
+        public List<IUserAnswer> LoadAnswersForStadiumPage()
         {
-            List<AnswerStadiumPage> tempList = new List<AnswerStadiumPage>();
+            List<IUserAnswer> tempList = new List<IUserAnswer>();
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string filename = Path.Combine(path, "StadiumAnswers.txt");
@@ -734,12 +580,12 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Loads all questions for the IntrospectionType from IntrospectionQuestions.txt
         /// </summary>
-        public void LoadQuestionsForIntrospectionFromTXT()
+        public List<IQuestionContent> LoadQuestionsForIntrospectionFromTXT()
         {
             String Text = questionsProvider.LoadQuestionsFromTXT("IntrospectionQuestions.txt");
             StringReader stringReader = new StringReader(Text);
             String Line = stringReader.ReadLine();
-
+            var tempList = new List<IQuestionContent>();
             while (!(Line.Equals("END_QUESTIONS")))
             {
                 String[] attributes = Line.Split(';');
@@ -748,10 +594,11 @@ namespace MobileDataCollection.Survey.Models
                 string questionText = attributes[1];
 
                 QuestionIntrospectionPage question = new QuestionIntrospectionPage(id, questionText);
-                ListQuestionIntrospectionPage.Add(question);
+                tempList.Add(question);
 
                 Line = stringReader.ReadLine();
             }
+            return tempList;
         }
 
         /// <summary>
@@ -762,7 +609,7 @@ namespace MobileDataCollection.Survey.Models
         public void SaveAnswersForIntrospectionPage()
         {
             string text = "";
-            foreach (AnswerIntrospectionPage answer in ListAnswerIntrospectionPage)
+            foreach (AnswerIntrospectionPage answer in Answers["Introspection"])
             {
                 text += answer.InternId.ToString() + ";";
                 text += answer.SelectedAnswer.ToString() + "\n";
@@ -780,9 +627,9 @@ namespace MobileDataCollection.Survey.Models
         /// Loads all Answers for the AnswerIntrospectionPage from IntrospectionAnswer.txt
         /// </summary>
         /// <returns>List with all Answers</returns>
-        public List<AnswerIntrospectionPage> LoadAnswersForIntrospectionPage()
+        public List<IUserAnswer> LoadAnswersForIntrospectionPage()
         {
-            List<AnswerIntrospectionPage> tempList = new List<AnswerIntrospectionPage>();
+            List<IUserAnswer> tempList = new List<IUserAnswer>();
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string filename = Path.Combine(path, "IntrospectionAnswers.txt");

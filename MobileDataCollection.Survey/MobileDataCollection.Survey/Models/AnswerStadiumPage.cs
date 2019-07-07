@@ -54,7 +54,7 @@ namespace MobileDataCollection.Survey.Models
 
         public float EvaluateScore()
         {
-            var question = DatabankCommunication.LoadQuestionStadiumPageById(InternId);
+            var question = (QuestionStadiumPage)DatabankCommunication.LoadQuestion("Stadium", InternId);
             float score = 0;
             if (question.CorrectAnswerFruitType == AnswerFruitType)
                 score += .5f;

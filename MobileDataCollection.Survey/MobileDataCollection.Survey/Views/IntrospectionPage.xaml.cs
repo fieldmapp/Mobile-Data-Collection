@@ -106,9 +106,7 @@ namespace MobileDataCollection.Survey.Views
             Button5.IsChecked = false;
 
             AnswerIntrospectionPage Answer = new AnswerIntrospectionPage(AnswerItem.InternId, AnswerItem.SelectedAnswer);
-            DatabankCommunication.AddListAnswerIntrospectionPage(Answer);
-
-            QuestionItem = DatabankCommunication.LoadQuestionIntrospectionPage(i);
+            
             i++;
             if(i>5)
             {

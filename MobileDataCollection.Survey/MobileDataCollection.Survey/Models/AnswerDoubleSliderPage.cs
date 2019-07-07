@@ -60,7 +60,7 @@ namespace MobileDataCollection.Survey.Models
                 float adjustedDiff = diff * 100f / maxDiff;
                 return 1 - adjustedDiff / 100;
             }
-            var question = DatabankCommunication.LoadQuestionDoubleSliderPageById(InternId);
+            var question = (QuestionDoubleSliderPage)DatabankCommunication.LoadQuestion("DoubleSlider", InternId);
             return evalSingleSlider(question.CorrectAnswerA, ResultQuestionA) * .5f
                 + evalSingleSlider(question.CorrectAnswerB, ResultQuestionB) * .5f;
         }

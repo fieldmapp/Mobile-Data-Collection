@@ -77,7 +77,7 @@ namespace MobileDataCollection.Survey.Models
 
         public float EvaluateScore()
         {
-            var question = DatabankCommunication.LoadQuestionImageCheckerPageById(InternId);
+            var question = (QuestionImageCheckerPage)DatabankCommunication.LoadQuestion("ImageChecker", InternId);
             float score = 0;
             if (question.Image1Correct == Image1Selected)
                 score += .25f;
