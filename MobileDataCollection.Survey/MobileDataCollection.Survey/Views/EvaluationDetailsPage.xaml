@@ -35,9 +35,9 @@
                 <Label Grid.Row="1" FontSize="Medium" Text="Leicht:"  VerticalOptions="CenterAndExpand"/>
                 <Label Grid.Column="1" Grid.Row="1" x:Name="PercentEasyLabel" Text="{Binding PercentEasyLabelText}"
                 HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large"/>
-                <!-- Second Row: Result for medium questions-->
                 <ProgressBar Grid.Column="2" Grid.Row="1" x:Name="PercentEasyBar" ProgressColor="{Binding ProgressEasyColor}"  
                             ScaleY="2" Progress="{Binding PercentEasyBarValue}"/>
+                <!-- Second Row: Result for medium questions-->
                 <Label Grid.Row="2" FontSize="Medium" Text="Mittel:"  VerticalOptions="CenterAndExpand"/>
                 <Label Grid.Column="1" Grid.Row="2" x:Name="PercentMediumLabel" Text="{Binding PercentMediumLabelText}"
                 HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large"/>
