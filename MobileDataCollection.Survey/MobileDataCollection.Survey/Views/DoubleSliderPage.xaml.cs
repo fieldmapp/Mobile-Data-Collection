@@ -62,7 +62,7 @@ namespace MobileDataCollection.Survey.Views
             Picture.BindingContext = this;
             QuestionText.BindingContext = this;
             HeaderText.BindingContext = this;
-            Header = $"Frage {answersGiven}/{answersNeeded + 1}";
+            Header = $"Frage {answersGiven + 1}/{answersNeeded}";
         }
         
         //Resets the Sliders

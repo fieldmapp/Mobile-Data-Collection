@@ -68,7 +68,7 @@ namespace MobileDataCollection.Survey.Views
             Picture.BindingContext = this;
             StadiumInlinePicker.ItemSource = StadiumCollection;
             PlantInlinePicker.ItemSource = PlantCollection;
-            Header = $"Frage {answersGiven}/{answersNeeded + 1}";
+            Header = $"Frage {answersGiven + 1}/{answersNeeded}";
             HeaderText.BindingContext = this;
         }
         void OnWeiterButtonClicked(object sender, EventArgs e)

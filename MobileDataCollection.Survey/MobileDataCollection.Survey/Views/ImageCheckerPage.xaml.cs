@@ -78,7 +78,7 @@ namespace MobileDataCollection.Survey.Views
             PictureD.BindingContext = this;
             Frage.BindingContext = this;
 
-            Header = $"Frage {answersGiven}/{answersNeeded + 1}";
+            Header = $"Frage {answersGiven + 1}/{answersNeeded}";
             QuestionItem = question;
         }
 
