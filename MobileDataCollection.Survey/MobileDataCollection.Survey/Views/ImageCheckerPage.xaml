@@ -15,18 +15,18 @@
         <Label x:Name="HeaderText"
                Text="{Binding Header}"
                FontSize="Medium"
-               HorizontalTextAlignment="Center"/>
-        <Label FontSize="Small"/>
+               HorizontalTextAlignment="Center"
+               Margin="0,0,0,10"/>
         <Label x:Name="Frage"
                HorizontalTextAlignment="Center"
                Text="{Binding QuestionItem.QuestionText}"
-               FontSize="Medium" />
-        <Label FontSize="Small"/>
+               FontSize="Medium"
+               Margin="0,0,0,10"/>
         <Grid ColumnSpacing="10"
               RowSpacing="10"
-              VerticalOptions="CenterAndExpand" 
+              VerticalOptions="StartAndExpand" 
               HorizontalOptions="CenterAndExpand">
-            <Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
@@ -82,6 +82,15 @@
                          Released="ReleasePicture"
                          BorderColor="White"
                          BorderWidth="5"/>
+        </Grid>
+        <Grid HorizontalOptions="CenterAndExpand" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" HorizontalOptions="EndAndExpand" Source="lupe.png" HeightRequest="10"/>
+            <Label Grid.Column="1" HorizontalOptions="StartAndExpand" 
+                       Text="Gedrückt halten" FontSize="Micro"/>
         </Grid>
         <Grid VerticalOptions="EndAndExpand">
             <Grid.ColumnDefinitions>
