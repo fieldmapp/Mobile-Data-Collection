@@ -17,15 +17,27 @@ using MobileDataCollection.Survey.Models;
 
 namespace MobileDataCollection.Survey.Droid
 {
+    /// <summary>
+    /// Class that can use an AssetManager to read the txt files present in the folder "Assetes"
+    /// </summary>
     class AndroidQuestionProvider : IQuestionsProvider
     {
         Context Context;
+
+        /// <summary>
+        /// Constructor needs a Context, so the AssetManager knows which Assets to use
+        /// </summary>
         public AndroidQuestionProvider(Context context)
         {
             Context = context;
         }
 
-        public String LoadQuestionsFromTXT(String sourceTxt)
+        /// <summary>
+        /// Reads a txt file with the given source. File should be in the "Assets" folder and sourceTxt must be <name>.txt
+        /// </summary>
+        /// <param name="sourceTxt"></param>
+        /// <returns>returns all of the text from the txt file</returns>
+        public String LoadTextFromTXT(String sourceTxt)
         {
             AssetManager assetManager = Context.Assets;
             string content;
