@@ -12,6 +12,7 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public static readonly BindableProperty StadiumNameProperty = BindableProperty.Create(nameof(StadiumName), typeof(string), typeof(StadiumSubItem), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty ImageSourceProperty = BindableProperty.Create(nameof(ImageSource), typeof(string), typeof(StadiumSubItem), string.Empty, BindingMode.OneWay);
+        public static readonly BindableProperty InternNumberProperty = BindableProperty.Create(nameof(InternNumber), typeof(int), typeof(StadiumSubItem), 0, BindingMode.OneWay);
 
         /// <summary>
         /// Name of the different stadiums
@@ -32,14 +33,25 @@ namespace MobileDataCollection.Survey.Models
         }
 
         /// <summary>
+        /// Internally used Number to save and recognize the object
+        /// </summary>
+        public int InternNumber
+        {
+            get => (int)GetValue(InternNumberProperty);
+            set => SetValue(InternNumberProperty, value);
+        }
+
+        /// <summary>
         /// The Constructor of the plant names in DatabankCommunication
         /// </summary>
         /// <param name="stadiumName"></param>
         /// <param name="imageSource"></param>
-        public StadiumSubItem(string stadiumName, string imageSource)
+        /// <param name="internNumber"></param>
+        public StadiumSubItem(string stadiumName, string imageSource, int internNumber)
         {
             StadiumName = stadiumName;
             ImageSource = imageSource;
+            InternNumber = internNumber;
         }
     }
 }

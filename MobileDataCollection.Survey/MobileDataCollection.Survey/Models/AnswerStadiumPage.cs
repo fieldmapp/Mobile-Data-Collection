@@ -12,7 +12,7 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(InternId), typeof(int), typeof(AnswerStadiumPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty AnswerFruitTypeProperty = BindableProperty.Create(nameof(AnswerFruitType), typeof(string), typeof(AnswerStadiumPage), string.Empty, BindingMode.OneWay);
-        public static readonly BindableProperty AnswerStadiumProperty = BindableProperty.Create(nameof(AnswerStadium), typeof(string), typeof(AnswerStadiumPage), string.Empty, BindingMode.OneWay);
+        public static readonly BindableProperty AnswerStadiumProperty = BindableProperty.Create(nameof(AnswerStadium), typeof(int), typeof(AnswerStadiumPage), 0, BindingMode.OneWay);
 
         /// <summary>
         /// Intern Id for Answers of this Type, corrosponds to same number as in QuestionStadiumPage
@@ -35,9 +35,9 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Selected stadium
         /// </summary>
-        public string AnswerStadium
+        public int AnswerStadium
         {
-            get => (string)GetValue(AnswerStadiumProperty);
+            get => (int)GetValue(AnswerStadiumProperty);
             set => SetValue(AnswerStadiumProperty, value);
         }
 
@@ -45,7 +45,7 @@ namespace MobileDataCollection.Survey.Models
         /// The constructor of AnswerItem in StadiumPage
         /// </summary>
 
-        public AnswerStadiumPage(int internId, string answerFruitType, string answerStadium)
+        public AnswerStadiumPage(int internId, string answerFruitType, int answerStadium)
         {
             InternId = internId;
             AnswerFruitType = answerFruitType;

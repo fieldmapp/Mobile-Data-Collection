@@ -1,22 +1,25 @@
-﻿1;1;Stadium_one_question1.png;stadiums1;plants1;Blattentwicklung;Kartoffel
-2;1;Stadium_one_question2.png;stadiums1;plants1;Blattentwicklung;Zuckerrübe
-3;1;Stadium_one_question3.png;stadiums1;plants1;Blattentwicklung;Mais
-4;1;Stadium_one_question4.png;stadiums1;plants1;Blattentwicklung;Kartoffel
-5;1;Stadium_one_question5.png;stadiums1;plants1;Längenwachstum/Schossen;Weizen
-6;1;Stadium_one_question6.png;stadiums1;plants1;Bestockung;Weizen
-7;2;Stadium_two_question1.png;stadiums2;plants2;Blüte;Kartoffel
-8;2;Stadium_two_question2.png;stadiums2;plants2;Entwicklung der Blütenanlage;Raps
-9;2;Stadium_two_question3.png;stadiums2;plants2;Blüte;Raps
-10;2;Stadium_two_question4.png;stadiums2;plants2;Blattentwicklung;Kartoffel
-11;2;Stadium_two_question5.png;stadiums2;plants2;Schossen/Haupttrieb;Raps
-12;2;Stadium_two_question6.png;stadiums2;plants2;Ähren/-Rispenschwellen;Gerste
-13;3;Stadium_three_question1.png;stadiums3;plants3;Entwicklung vegetativer Pflanzenteile/Rübenkörper;Zuckerrübe
-14;3;Stadium_three_question2.png;stadiums3;plants3;Fruchtentwicklung;Weizen
-15;3;Stadium_three_question3.png;stadiums3;plants3;Entwicklung der Blütenanlage;Mais
-16;3;Stadium_three_question4.png;stadiums3;plants3;Entwicklung der Blütenanlage;Kartoffel
-17;3;Stadium_three_question5.png;stadiums3;plants3;Fruchtentwicklung;Raps
-18;3;Stadium_three_question6.png;stadiums3;plants3;Längenwachstum/Schossen;Weizen
+﻿1;1;Stadium_one_question1.png;stadiums1;plants1;1;A
+2;1;Stadium_one_question2.png;stadiums1;plants1;1;D
+3;1;Stadium_one_question3.png;stadiums1;plants1;1;B
+4;1;Stadium_one_question4.png;stadiums1;plants1;1;A
+5;1;Stadium_one_question5.png;stadiums1;plants1;3;C
+6;1;Stadium_one_question6.png;stadiums1;plants1;2;C
+7;2;Stadium_two_question1.png;stadiums2;plants2;5;B
+8;2;Stadium_two_question2.png;stadiums2;plants2;4;C
+9;2;Stadium_two_question3.png;stadiums2;plants2;5;C
+10;2;Stadium_two_question4.png;stadiums2;plants2;1;B
+11;2;Stadium_two_question5.png;stadiums2;plants2;2;C
+12;2;Stadium_two_question6.png;stadiums2;plants2;3;A
+13;3;Stadium_three_question1.png;stadiums3;plants3;2;E
+14;3;Stadium_three_question2.png;stadiums3;plants3;4;D
+15;3;Stadium_three_question3.png;stadiums3;plants3;3;B
+16;3;Stadium_three_question4.png;stadiums3;plants3;3;A
+17;3;Stadium_three_question5.png;stadiums3;plants3;4;C
+18;3;Stadium_three_question6.png;stadiums3;plants3;1;D
 END_QUESTIONS
 here you can write documentation
-Questions are saved like this, don't write a ";" in the attributes, the ";" is reserved as a seperating character
-int id;string question;int difficulty;int im1Correct;int im2Correct;int im3Correct;int im4Corect;string im1Source;string im2Source;string im3Source;string im4Source
+Questions are saved like this
+
+int internId;int difficulty;string image;List<StadiumSubItem> stadiums;List<Plant> plants;int correctAnswerStadium;string correctAnswerFruitType
+
+don't write a ";" in the attributes, the ";" is reserved as a seperating character

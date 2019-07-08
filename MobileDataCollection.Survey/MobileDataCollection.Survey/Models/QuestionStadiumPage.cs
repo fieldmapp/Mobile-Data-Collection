@@ -17,7 +17,7 @@ namespace MobileDataCollection.Survey.Models
         public static readonly BindableProperty StadiumSubItemsProperty = BindableProperty.Create(nameof(Stadiums), typeof(List<StadiumSubItem>), typeof(QuestionStadiumPage), null, BindingMode.OneWay);
         public static readonly BindableProperty TestCollection2Property = BindableProperty.Create(nameof(Plants), typeof(List<Plant>), typeof(QuestionStadiumPage), null, BindingMode.OneWay);
         public static readonly BindableProperty CorrectAnswerFruitTypeProperty = BindableProperty.Create(nameof(CorrectAnswerFruitType), typeof(string), typeof(QuestionStadiumPage), string.Empty, BindingMode.OneWay);
-        public static readonly BindableProperty CorrectAnswerStadiumProperty = BindableProperty.Create(nameof(CorrectAnswerStadium), typeof(string), typeof(QuestionStadiumPage), string.Empty, BindingMode.OneWay);
+        public static readonly BindableProperty CorrectAnswerStadiumProperty = BindableProperty.Create(nameof(CorrectAnswerStadium), typeof(int), typeof(QuestionStadiumPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty ImageProperty = BindableProperty.Create(nameof(Image), typeof(string), typeof(QuestionStadiumPage), string.Empty, BindingMode.OneWay);
             
         /// <summary>
@@ -69,9 +69,9 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Contains the correct stadium
         /// </summary>
-        public string CorrectAnswerStadium
+        public int CorrectAnswerStadium
         {
-            get => (string)GetValue(CorrectAnswerStadiumProperty);
+            get => (int)GetValue(CorrectAnswerStadiumProperty);
             set => SetValue(CorrectAnswerStadiumProperty, value);
         }
 
@@ -94,12 +94,12 @@ namespace MobileDataCollection.Survey.Models
         /// <param name="plants"></param>
         /// <param name="correctAnswerStadium"></param>
         /// <param name="correctAnswerFruitType"></param>
-        public QuestionStadiumPage(int internId, int difficulty, string image, List<StadiumSubItem> stadiums, List<Plant> plants, string correctAnswerStadium, string correctAnswerFruitType)
+        public QuestionStadiumPage(int internId, int difficulty, string image, List<StadiumSubItem> stadiums, List<Plant> plants, int correctAnswerStadium, string correctAnswerFruitType)
         {
-            if (!stadiums.Any(s => s.StadiumName == correctAnswerStadium))
+            if (!stadiums.Any(s => s.InternNumber == correctAnswerStadium))
                 throw new ArgumentException("Argument needs to be contained in "+nameof(stadiums), nameof(correctAnswerStadium));
-            if (!plants.Any(p => p.Name == correctAnswerFruitType))
-                throw new ArgumentException("Argument needs to be contained in " + nameof(plants), nameof(correctAnswerStadium));
+            if (!plants.Any(p => p.InternLetter == correctAnswerFruitType))
+                throw new ArgumentException("Argument needs to be contained in " + nameof(plants), nameof(correctAnswerFruitType));
 
             InternId = internId;
             Image = image;

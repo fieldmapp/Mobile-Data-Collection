@@ -19,7 +19,7 @@ namespace MobileDataCollection.Survey.Views
         /// Bindings of QuestionItem, AnswerItem and Header
         /// </summary>
         public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem),typeof(QuestionStadiumPage), typeof(StadiumPage), null, BindingMode.OneWay);
-        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerStadiumPage), typeof(StadiumPage), new AnswerStadiumPage(0, string.Empty, string.Empty), BindingMode.OneWay);
+        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerStadiumPage), typeof(StadiumPage), new AnswerStadiumPage(0, string.Empty, 0), BindingMode.OneWay);
         public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(string), typeof(StadiumPage), "demo", BindingMode.OneWay);
 
         /// <summary>
@@ -73,9 +73,9 @@ namespace MobileDataCollection.Survey.Views
         }
         void OnWeiterButtonClicked(object sender, EventArgs e)
         {
-            var selectedStadium = (StadiumInlinePicker.SelectedItem as StadiumSubItem)?.StadiumName;
-            var selectedPlant = (PlantInlinePicker.SelectedItem as Plant)?.Name;
-            if (selectedPlant == null || selectedStadium == null)
+            int selectedStadium = (StadiumInlinePicker.SelectedItem as StadiumSubItem).InternNumber;
+            var selectedPlant = (PlantInlinePicker.SelectedItem as Plant)?.InternLetter;
+            if (selectedPlant == null || selectedStadium == 0)
                 return;
 
             AnswerItem = new AnswerStadiumPage(QuestionItem.InternId, selectedPlant, selectedStadium);
