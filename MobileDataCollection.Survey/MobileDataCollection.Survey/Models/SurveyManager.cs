@@ -130,14 +130,15 @@ namespace MobileDataCollection.Survey.Models
 
         private void ShowEvaluationPage()
         {
-            var evalItem = GenerateEvaluationItem(CurrentSurvey.Id.ToString());
+            var evalItem = GenerateEvaluationItem(CurrentSurvey);
             var evaluationPage = new EvaluationPage(evalItem);
             Navigation.PushAsync(evaluationPage);
             CurrentSurvey = null;
         }
 
-        public EvaluationItem GenerateEvaluationItem(string surveyId)
+        public EvaluationItem GenerateEvaluationItem(SurveyMenuItem survey)
         {
+            var surveyId = survey.Id.ToString();
             var answeredQuestions = DatabankCommunication.GetAllQuestions(surveyId)
                 .Where(q => DatabankCommunication.SearchAnswers(surveyId, q.InternId));
             var answers = answeredQuestions.Select(q => DatabankCommunication.LoadAnswerById(surveyId, q.InternId));
@@ -153,7 +154,7 @@ namespace MobileDataCollection.Survey.Models
             var mediumAverage = mediumAnswers.Any() ? (int)mediumAnswers.Average(a => a.EvaluateScore() * 100) : -1;
             var hardAverage = hardAnswers.Any() ? (int)hardAnswers.Average(a => a.EvaluateScore() * 100) : -1;
 
-            return new EvaluationItem(CurrentSurvey.ChapterName, average, easyAverage, mediumAverage, hardAverage);
+            return new EvaluationItem(survey.ChapterName, average, easyAverage, mediumAverage, hardAverage);
         }
     }
 }

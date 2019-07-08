@@ -44,7 +44,8 @@ namespace MobileDataCollection.Survey.Views
 
         private async void EvaluationClicked(object sender, ItemTappedEventArgs e)
         {
-            await Navigation.PushAsync(new EvaluationMainPage());
+            var evalItems = Items.Select(i => SurveyManager.GenerateEvaluationItem(i)).ToList();
+            await Navigation.PushAsync(new EvaluationMainPage(evalItems));
         }
 
     }

@@ -41,7 +41,7 @@
                                 <ColumnDefinition Width="40*"/>
                             </Grid.ColumnDefinitions>
                             <!--First column: Name of the question category-->
-                            <Label Grid.Column="0" FontSize="Medium" Text="{Binding CatName}" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand"/>
+                            <Label Grid.Column="0" FontSize="Medium" Text="{Binding CategoryName}" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand"/>
                             <!--Second column: Achived percent in the question category-->
                             <Label Grid.Column="1" x:Name="PercentLabel" Text="{Binding PercentLabelText}" 
                                    VerticalOptions="CenterAndExpand" FontSize="Medium"  HorizontalOptions="EndAndExpand"/>

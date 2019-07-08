@@ -20,17 +20,13 @@ namespace MobileDataCollection.Survey.Views
         /// result (percentage) and three results for each difficulty level (percentages)
         /// </summary>
         /// Definition of the  ObservableCollection of EvaluationItems (Here with dummy data)
-        public ObservableCollection<EvaluationItem> EvaluationItems = new ObservableCollection<EvaluationItem>()
-        {
-            new EvaluationItem("Bedeckungsgrade", 90, 100, 89, 81),
-            new EvaluationItem("Sortenerkennung", 35, 50, 0,-1),
-            new EvaluationItem("Wuchsstadien", -1, -1,-1,-1) 
-        };
+        public ObservableCollection<EvaluationItem> EvaluationItems;
         /// Constructor of the MainPage
-        public EvaluationMainPage()
+        public EvaluationMainPage(List<EvaluationItem> evalItems)
         {
             ///Initialize the Components
             InitializeComponent();
+            EvaluationItems = new ObservableCollection<EvaluationItem>(evalItems);
             ///Set the ItemSource for the ListView which displays the list of results for the different question categories
             CatList.ItemsSource = EvaluationItems;
         }

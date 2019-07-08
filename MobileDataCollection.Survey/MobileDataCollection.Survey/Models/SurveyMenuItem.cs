@@ -111,6 +111,7 @@ namespace MobileDataCollection.Survey.Models
             Unlocked = unlocked;
             BackgroundColor = backgroundColor;
             IntrospectionQuestion = introspectionQuestions;
+            CurrentDifficulty = 1;
 
             var nspace = typeof(App).Namespace;
             SurveyPageType = Type.GetType($"{nspace}.Views.{id.ToString()}Page");
