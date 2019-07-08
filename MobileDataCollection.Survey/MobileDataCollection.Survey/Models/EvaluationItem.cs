@@ -13,14 +13,14 @@ namespace MobileDataCollection.Survey.Models
     /// </summary>
     public class EvaluationItem : BindableObject
     {
-        public static readonly BindableProperty PercentProperty = BindableProperty.Create(nameof(Percent), typeof(EvaluationItem), typeof(int), 0);
-        public static readonly BindableProperty PercentEasyProperty = BindableProperty.Create(nameof(PercentEasy), typeof(EvaluationItem), typeof(int), 0);
-        public static readonly BindableProperty PercentMediumProperty = BindableProperty.Create(nameof(PercentMedium), typeof(EvaluationItem), typeof(int), 0);
-        public static readonly BindableProperty PercentHardProperty = BindableProperty.Create(nameof(PercentHard), typeof(EvaluationItem), typeof(int), 0);
-        public static readonly BindableProperty CategoryNameProperty = BindableProperty.Create(nameof(CategoryName), typeof(EvaluationItem), typeof(string), string.Empty);
-        public static readonly BindableProperty BarColorProperty = BindableProperty.Create(nameof(BarColor), typeof(EvaluationItem), typeof(Color), Color.Black);
-        public static readonly BindableProperty PercentBarValueProperty = BindableProperty.Create(nameof(PercentBarValue), typeof(EvaluationItem), typeof(double), 0d);
-        public static readonly BindableProperty PercentLabelTextProperty = BindableProperty.Create(nameof(PercentLabelText), typeof(EvaluationItem), typeof(string), string.Empty);
+        public static readonly BindableProperty PercentProperty = BindableProperty.Create(nameof(Percent), typeof(int), typeof(EvaluationItem), 0);
+        public static readonly BindableProperty PercentEasyProperty = BindableProperty.Create(nameof(PercentEasy), typeof(int), typeof(EvaluationItem), 0);
+        public static readonly BindableProperty PercentMediumProperty = BindableProperty.Create(nameof(PercentMedium), typeof(int), typeof(EvaluationItem), 0);
+        public static readonly BindableProperty PercentHardProperty = BindableProperty.Create(nameof(PercentHard), typeof(int), typeof(EvaluationItem), 0);
+        public static readonly BindableProperty CategoryNameProperty = BindableProperty.Create(nameof(CategoryName), typeof(string), typeof(EvaluationItem), string.Empty);
+        public static readonly BindableProperty BarColorProperty = BindableProperty.Create(nameof(BarColor), typeof(Color), typeof(EvaluationItem), Color.Black);
+        public static readonly BindableProperty PercentBarValueProperty = BindableProperty.Create(nameof(PercentBarValue), typeof(double), typeof(EvaluationItem), 0d);
+        public static readonly BindableProperty PercentLabelTextProperty = BindableProperty.Create(nameof(PercentLabelText), typeof(string), typeof(EvaluationItem), string.Empty);
 
 
         /// Overall result for the question category as percentage
