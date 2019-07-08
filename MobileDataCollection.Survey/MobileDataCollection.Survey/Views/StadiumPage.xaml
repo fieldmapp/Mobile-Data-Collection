@@ -26,7 +26,25 @@
             <Label Grid.Row="1" Margin="0,7,0,0" x:Name="QuestionText" 
                    Text="Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu." 
                    FontSize="Medium" TextColor="{StaticResource TextColor}"/>
-            <controls:DetailImage BackgroundColor="{StaticResource Button}" Grid.Row="2" x:Name="Picture" Margin="0,0,0,15" Source="{Binding QuestionItem.Image}"/>
+
+            <Grid Grid.Row="2" Margin="0,0,0,15" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <controls:DetailImage BackgroundColor="{StaticResource Button}" Grid.Row="0" x:Name="Picture" 
+                                      Source="{Binding QuestionItem.Image}"/>
+                <Grid Grid.Row="1" HorizontalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" HorizontalOptions="EndAndExpand" Source="lupe.png" HeightRequest="10"/>
+                    <Label Grid.Column="1" HorizontalOptions="StartAndExpand" 
+                       Text="Gedrückt halten" FontSize="Micro"/>
+                </Grid>
+            </Grid>
+            
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

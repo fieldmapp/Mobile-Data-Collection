@@ -334,4 +334,7 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\IntrospectionQuestions.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\lupe.png" />
+  </ItemGroup>
 </Project>
