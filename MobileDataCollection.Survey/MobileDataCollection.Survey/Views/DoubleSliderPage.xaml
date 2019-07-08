@@ -22,14 +22,13 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Label x:Name="HeaderText" HorizontalTextAlignment="Center"
                    Text="{Binding Header}" 
                    FontSize="Medium" 
                    TextColor="{StaticResource TextColor}"/>
             <Label Grid.Row="1" Margin="0,7,0,0" x:Name="QuestionText" 
-                   Text="{Binding Question.Text}"
+                   Text="{Binding QuestionItem.Text}"
                    FontSize="Medium" TextColor="{StaticResource TextColor}"/>
             <controls:DetailImage Aspect="AspectFit" Grid.Row="2" x:Name="Picture" BackgroundColor="Transparent"
                                   Margin="0,0,0,15" Source="{Binding QuestionItem.PictureAddress}"/>
@@ -51,21 +50,22 @@
             <Label Grid.Row="6" x:Name="sliderBLabel"
                    HorizontalOptions="Center" 
                    Text="(B): 0%" FontSize="Medium" TextColor="{StaticResource TextColor}"/>
-            <Grid Grid.Row="7" VerticalOptions="EndAndExpand">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button Text="Abbrechen" FontSize="Medium"
+        </Grid>
+        
+        <Grid VerticalOptions="EndAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Text="Abbrechen" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
                     TextColor="{StaticResource TextColor}"
                     Clicked="OnAbbrechenButtonClicked"/>
-                <Button Grid.Column="1"
+            <Button Grid.Column="1"
                     Text="Weiter" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
                     TextColor="{StaticResource TextColor}"
                     Clicked="OnWeiterButtonClicked"/>
-            </Grid>
         </Grid>
     </StackLayout>
 </ContentPage>
