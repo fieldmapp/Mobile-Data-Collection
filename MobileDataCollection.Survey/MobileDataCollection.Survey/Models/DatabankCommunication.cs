@@ -331,7 +331,7 @@ namespace MobileDataCollection.Survey.Models
         /// Loads a QUestionImageCheckerPage-Object with the set difficulty, or a lower difficulty if no question with a matching difficulty exsist.
         /// If no question can be loaded it will return null
         /// </summary>
-        public static IQuestionContent LoadQuestion(string surveyId, int difficulty)
+        public static IQuestionContent LoadQuestion(string surveyId, int difficulty, bool lowerDifficultyOk = true)
         {
             var listQuestions = Questions[surveyId];
             List<IQuestionContent> listQuestion = new List<IQuestionContent>();
@@ -350,7 +350,7 @@ namespace MobileDataCollection.Survey.Models
             {
                 return listQuestion[RandomNumber.Next(listQuestion.Count)]; // return random question
             }
-            if (difficulty == 1)
+            if (difficulty == 1 || !lowerDifficultyOk)
             {
                 return null; // no more question available
             }

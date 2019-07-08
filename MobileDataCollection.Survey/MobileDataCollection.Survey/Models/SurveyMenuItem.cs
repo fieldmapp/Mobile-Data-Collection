@@ -91,6 +91,10 @@ namespace MobileDataCollection.Survey.Models
             set => SetValue(BackgroundColorProperty, value);
         }
 
+        public int Streak { get; set; }
+
+        public int CurrentDifficulty { get; set; }
+
         public Type QuestionType { get; }
 
         public Type AnswerType { get; }

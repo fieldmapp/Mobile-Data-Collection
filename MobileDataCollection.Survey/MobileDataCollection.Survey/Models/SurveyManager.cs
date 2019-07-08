@@ -14,7 +14,6 @@ namespace MobileDataCollection.Survey.Models
     /// </summary>
     class SurveyManager
     {
-        List<IQuestionContent> Questions;
         INavigation Navigation;
         SurveyMenuItem CurrentSurvey;
 
@@ -25,9 +24,8 @@ namespace MobileDataCollection.Survey.Models
 
         public IQuestionContent GetNextQuestion(SurveyMenuItem surveyType)
         {
-            //TODO: Switch difficulty
             var neededType = surveyType.QuestionType;
-            var value = DatabankCommunication.LoadQuestion(surveyType.Id.ToString(), 1);
+            var value = DatabankCommunication.LoadQuestion(surveyType.Id.ToString(), CurrentSurvey.CurrentDifficulty, false);
             if (value == null)
                 return null;
             return value;
@@ -43,8 +41,8 @@ namespace MobileDataCollection.Survey.Models
             }
             if (CurrentSurvey.AnswersGiven >= CurrentSurvey.AnswersNeeded)
             {
-                //Display Summary
-                //var scoreSum = CurrentSurvey
+                ShowEvaluationPage();
+                return;
             }
             ShowNewSurveyPage();
         }
@@ -77,7 +75,25 @@ namespace MobileDataCollection.Survey.Models
                 return;
             }
             CurrentSurvey.AnswersGiven++;
-            DatabankCommunication.AddAnswer(CurrentSurvey.Id.ToString(), surveyPage.AnswerItem);
+
+            bool answerRight = surveyPage.AnswerItem.EvaluateScore() > .75f;
+            if (answerRight)
+                CurrentSurvey.Streak = CurrentSurvey.Streak <= 0 ? 1 : CurrentSurvey.Streak + 1;
+            else
+                CurrentSurvey.Streak = CurrentSurvey.Streak >= 0 ? -1 : CurrentSurvey.Streak - 1;
+            if (CurrentSurvey.Streak < -2)
+            {
+                CurrentSurvey.CurrentDifficulty = Math.Max(1, CurrentSurvey.CurrentDifficulty - 1);
+                CurrentSurvey.Streak = 0;
+            }
+            else if (CurrentSurvey.Streak > 2)
+            {
+                CurrentSurvey.CurrentDifficulty = Math.Min(3, CurrentSurvey.CurrentDifficulty + 1);
+                CurrentSurvey.Streak = 0;
+            }
+
+            else if (CurrentSurvey.Streak > 0 && answerRight)
+                DatabankCommunication.AddAnswer(CurrentSurvey.Id.ToString(), surveyPage.AnswerItem);
             ShowNewSurveyPage();
         }
 
@@ -118,7 +134,6 @@ namespace MobileDataCollection.Survey.Models
             var evaluationPage = new EvaluationPage(evalItem);
             Navigation.PushAsync(evaluationPage);
             CurrentSurvey = null;
-            //TODO: Unlock and advance next question
         }
 
         public EvaluationItem GenerateEvaluationItem(string surveyId)
