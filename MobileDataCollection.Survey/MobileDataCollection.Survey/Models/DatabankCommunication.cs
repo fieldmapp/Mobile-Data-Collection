@@ -29,7 +29,10 @@ namespace MobileDataCollection.Survey.Models
             questionsProvider = provider;
             CreateQuestionsFromTxt();
             CreateAllNotExistingAnswerTxt();
+            //ExampleAnswers();
             LoadAllAnswersFromTxt();
+            SaveAllAnswersInTxt();
+            CreateCSV();
         }
 
         /// <summary>
@@ -77,6 +80,9 @@ namespace MobileDataCollection.Survey.Models
             SaveAnswersForStadiumPage();
         }
 
+        /// <summary>
+        /// Creates all txt files to save the answers
+        /// </summary>
         public void CreateAllNotExistingAnswerTxt()
         {
             CreateNotExistingAnswerTxt("ImageCheckerAnswers.txt");
@@ -98,23 +104,102 @@ namespace MobileDataCollection.Survey.Models
             }
         }
 
+        public void ResetAllAnswersTxt()
+        {
+            ResetAnswerTxt("ImageCheckerAnswers.txt");
+            ResetAnswerTxt("DoubleSliderAnswers.txt");
+            ResetAnswerTxt("StadiumAnswers.txt");
+            ResetAnswerTxt("IntrospectionAnswers.txt");
+        }
+
+        /// <summary>
+        /// Writes only "END_ANSWERS" in source
+        /// </summary>
+        /// <param name="source"></param>
+        public void ResetAnswerTxt(string source)
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string filename = Path.Combine(path, source);
+            File.WriteAllText(filename, "END_ANSWERS");
+        }
+
+
+        /// <summary>
+        /// Creates Answers.csv with all Answers in one line 
+        /// </summary>
         public void CreateCSV()
         {
-            string text = "";
+            string explination = "UserCode,Date"; /// contains the explination for the data
+            string data = "," + DateTime.Now.ToString("yyyy MM dd"); /// contains the data
             /// sort the lists after InternId
             Questions["ImageChecker"] = Questions["ImageChecker"].OrderBy(o => o.InternId).ToList();
             Questions["DoubleSlider"] = Questions["DoubleSlider"].OrderBy(o => o.InternId).ToList();
             Questions["Stadium"] = Questions["Stadium"].OrderBy(o => o.InternId).ToList();
             Questions["Introspection"] = Questions["Introspection"].OrderBy(o => o.InternId).ToList();
 
+            /// write all Introspection Answers in one line
+            foreach (QuestionIntrospectionPage question in Questions["Introspection"])
+            {
+                explination += ",SelectedAnswer" + question.InternId;
+                if (SearchAnswers("Introspection", question.InternId))
+                {
+                    AnswerIntrospectionPage answer = (AnswerIntrospectionPage)LoadAnswerById("Introspection", question.InternId);
+                    data += "," + answer.SelectedAnswer;
+                }
+                else
+                {
+                    data += ",";
+                }
+            }
+            /// write all ImageChecker Answers in one line
             foreach (QuestionImageCheckerPage question in Questions["ImageChecker"])
             {
+                explination += ",Difficulty " + question.InternId + ",Img1Sel,Img2Sel,Img3Sel,Img4Sel";
                 if (SearchAnswers("ImageChecker", question.InternId))
                 {
                     AnswerImageCheckerPage answer = (AnswerImageCheckerPage) LoadAnswerById("ImageChecker", question.InternId);
-                    text += "," + answer.InternId + "," + answer.Image1Selected + "," + answer.Image2Selected + "," + answer.Image3Selected + "," + answer.Image4Selected;
+                    data += "," + question.Difficulty + "," + answer.Image1Selected + "," + answer.Image2Selected + "," + answer.Image3Selected + "," + answer.Image4Selected;
+                }
+                else
+                {
+                    data += "," + question.Difficulty + ",,,,";
                 }
             }
+            /// write all Stadium Answers in one line
+            foreach (QuestionStadiumPage question in Questions["Stadium"])
+            {
+                explination += ",Difficulty " + question.InternId + ",Stadium,FruitType";
+                if (SearchAnswers("Stadium", question.InternId))
+                {
+                    AnswerStadiumPage answer = (AnswerStadiumPage)LoadAnswerById("Stadium", question.InternId);
+                    data += "," + question.Difficulty + "," + answer.AnswerStadium + "," + answer.AnswerFruitType;
+                }
+                else
+                {
+                    data += "," + question.Difficulty + ",,";
+                }
+            }
+            /// write all DoubleSlider Answers in one line
+            foreach (QuestionDoubleSliderPage question in Questions["DoubleSlider"])
+            {
+                explination += ",Difficulty " + question.InternId + ",ResA,ResB";
+                if (SearchAnswers("DoubleSlider", question.InternId))
+                {
+                    AnswerDoubleSliderPage answer = (AnswerDoubleSliderPage)LoadAnswerById("DoubleSlider", question.InternId);
+                    data += "," + question.Difficulty + "," + answer.ResultQuestionA + "," + answer.ResultQuestionB;
+                }
+                else
+                {
+                    data += "," + question.Difficulty + ",,";
+                }
+            }
+
+            /// get filepath
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string filename = Path.Combine(path, "Answers.csv");
+
+            ///write text in file
+            File.WriteAllText(filename, explination + "\n" + data);
         }
 
         /// <summary>
@@ -163,68 +248,68 @@ namespace MobileDataCollection.Survey.Models
             // create needed lists for the questions
             var stadiums1 = new List<StadiumSubItem>
             {
-                new StadiumSubItem("Blattentwicklung", "stadium_blattentwicklung.png"),
-                new StadiumSubItem("Bestockung", "stadium_bestockung.png"),
-                new StadiumSubItem("Längenwachstum/Schossen", "stadium_laengenwachstumschossen.png")
+                new StadiumSubItem("Blattentwicklung", "stadium_blattentwicklung.png", 1),
+                new StadiumSubItem("Bestockung", "stadium_bestockung.png", 2),
+                new StadiumSubItem("Längenwachstum/Schossen", "stadium_laengenwachstumschossen.png", 3)
             };
             var plants1 = new List<Plant>
             {
-                new Plant("Kartoffel"),
-                new Plant("Mais"),
-                new Plant("Weizen"),
-                new Plant("Zuckerrübe")
+                new Plant("Kartoffel", "A"),
+                new Plant("Mais", "B"),
+                new Plant("Weizen", "C"),
+                new Plant("Zuckerrübe", "D")
             };
             var stadiums2 = new List<StadiumSubItem>
             {
-                new StadiumSubItem("Blattentwicklung", "stadium_blattentwicklung.png"),
-                new StadiumSubItem("Schossen/Haupttrieb", "stadium_laengenwachstumschossen.png"),
-                new StadiumSubItem("Ähren/-Rispenschwellen", "stadium_ahrenrispenschwellen.png"),
-                new StadiumSubItem("Entwicklung der Blütenanlage", "stadium_entwicklungbluetenanlage.png"),
-                new StadiumSubItem("Blüte", "bluete.png")
+                new StadiumSubItem("Blattentwicklung", "stadium_blattentwicklung.png",1),
+                new StadiumSubItem("Schossen/Haupttrieb", "stadium_laengenwachstumschossen.png",2),
+                new StadiumSubItem("Ähren/-Rispenschwellen", "stadium_ahrenrispenschwellen.png",3),
+                new StadiumSubItem("Entwicklung der Blütenanlage", "stadium_entwicklungbluetenanlage.png",4),
+                new StadiumSubItem("Blüte", "bluete.png",5)
             };
             var plants2 = new List<Plant>
             {
-                new Plant("Gerste"),
-                new Plant("Kartoffel"),
-                new Plant("Raps"),
-                new Plant("Weizen")
+                new Plant("Gerste", "A"),
+                new Plant("Kartoffel", "B"),
+                new Plant("Raps", "C"),
+                new Plant("Weizen", "D")
             };
             var stadiums3 = new List<StadiumSubItem>
             {
-                new StadiumSubItem("Längenwachstum/Schossen", "stadium_laengenwachstumschossen.png"),
-                new StadiumSubItem("Entwicklung vegetativer Pflanzenteile/Rübenkörper", "stadium_entwicklungvegpflanzruebenk.png"),
-                new StadiumSubItem("Entwicklung der Blütenanlage", "stadium_entwicklungbluetenanlage.png"),
-                new StadiumSubItem("Fruchtentwicklung", "bluete.png")
+                new StadiumSubItem("Längenwachstum/Schossen", "stadium_laengenwachstumschossen.png", 1),
+                new StadiumSubItem("Entwicklung vegetativer Pflanzenteile/Rübenkörper", "stadium_entwicklungvegpflanzruebenk.png", 2),
+                new StadiumSubItem("Entwicklung der Blütenanlage", "stadium_entwicklungbluetenanlage.png", 3),
+                new StadiumSubItem("Fruchtentwicklung", "bluete.png", 4)
             };
             var plants3 = new List<Plant>
             {
-                new Plant("Kartoffel"),
-                new Plant("Mais"),
-                new Plant("Raps"),
-                new Plant("Weizen"),
-                new Plant("Zuckerrübe")
+                new Plant("Kartoffel", "A"),
+                new Plant("Mais", "B"),
+                new Plant("Raps", "C"),
+                new Plant("Weizen", "D"),
+                new Plant("Zuckerrübe", "E")
             };
             return new List<IQuestionContent>
             {
                 //TODO: Add Support for multiple correkt answers (as seen in original survey 1 stadium answer 3)
-                new QuestionStadiumPage(1, 1, "Stadium_one_question1.png", stadiums1.ToList(), plants1.ToList(), "Blattentwicklung", "Kartoffel"),
-                new QuestionStadiumPage(2, 1, "Stadium_one_question2.png", stadiums1.ToList(), plants1.ToList(), "Blattentwicklung", "Zuckerrübe"),
-                new QuestionStadiumPage(3, 1, "Stadium_one_question3.png", stadiums1.ToList(), plants1.ToList(), "Blattentwicklung", "Mais"),
-                new QuestionStadiumPage(4, 1, "Stadium_one_question4.png", stadiums1.ToList(), plants1.ToList(), "Blattentwicklung", "Kartoffel"),
-                new QuestionStadiumPage(5, 1, "Stadium_one_question5.png", stadiums1.ToList(), plants1.ToList(), "Längenwachstum/Schossen", "Weizen"),
-                new QuestionStadiumPage(6, 1, "Stadium_one_question6.png", stadiums1.ToList(), plants1.ToList(), "Bestockung", "Weizen"),
-                new QuestionStadiumPage(7, 2, "Stadium_two_question1.png", stadiums2.ToList(), plants2.ToList(), "Blüte", "Kartoffel"),
-                new QuestionStadiumPage(8, 2, "Stadium_two_question2.png", stadiums2.ToList(), plants2.ToList(), "Entwicklung der Blütenanlage", "Raps"),
-                new QuestionStadiumPage(9, 2, "Stadium_two_question3.png", stadiums2.ToList(), plants2.ToList(), "Blüte", "Raps"),
-                new QuestionStadiumPage(10, 2, "Stadium_two_question4.png", stadiums2.ToList(), plants2.ToList(), "Blattentwicklung", "Kartoffel"),
-                new QuestionStadiumPage(11, 2, "Stadium_two_question5.png", stadiums2.ToList(), plants2.ToList(), "Schossen/Haupttrieb", "Raps"),
-                new QuestionStadiumPage(12, 2, "Stadium_two_question6.png", stadiums2.ToList(), plants2.ToList(), "Ähren/-Rispenschwellen", "Gerste"),
-                new QuestionStadiumPage(13, 3, "Stadium_three_question1.png", stadiums3.ToList(), plants3.ToList(), "Entwicklung vegetativer Pflanzenteile/Rübenkörper", "Zuckerrübe"),
-                new QuestionStadiumPage(14, 3, "Stadium_three_question2.png", stadiums3.ToList(), plants3.ToList(), "Fruchtentwicklung", "Weizen"),
-                new QuestionStadiumPage(15, 3, "Stadium_three_question3.png", stadiums3.ToList(), plants3.ToList(), "Entwicklung der Blütenanlage", "Mais"),
-                new QuestionStadiumPage(16, 3, "Stadium_three_question4.png", stadiums3.ToList(), plants3.ToList(), "Entwicklung der Blütenanlage", "Kartoffel"),
-                new QuestionStadiumPage(17, 3, "Stadium_three_question5.png", stadiums3.ToList(), plants3.ToList(), "Fruchtentwicklung", "Raps"),
-                new QuestionStadiumPage(18, 3, "Stadium_three_question6.png", stadiums3.ToList(), plants3.ToList(), "Längenwachstum/Schossen", "Weizen")
+                new QuestionStadiumPage(1, 1, "Stadium_one_question1.png", stadiums1.ToList(), plants1.ToList(), 1, "A"),
+                new QuestionStadiumPage(2, 1, "Stadium_one_question2.png", stadiums1.ToList(), plants1.ToList(), 1, "D"),
+                new QuestionStadiumPage(3, 1, "Stadium_one_question3.png", stadiums1.ToList(), plants1.ToList(), 1, "B"),
+                new QuestionStadiumPage(4, 1, "Stadium_one_question4.png", stadiums1.ToList(), plants1.ToList(), 1, "A"),
+                new QuestionStadiumPage(5, 1, "Stadium_one_question5.png", stadiums1.ToList(), plants1.ToList(), 3, "C"),
+                new QuestionStadiumPage(6, 1, "Stadium_one_question6.png", stadiums1.ToList(), plants1.ToList(), 2, "C"),
+                new QuestionStadiumPage(7, 2, "Stadium_two_question1.png", stadiums2.ToList(), plants2.ToList(), 5, "B"),
+                new QuestionStadiumPage(8, 2, "Stadium_two_question2.png", stadiums2.ToList(), plants2.ToList(), 4, "C"),
+                new QuestionStadiumPage(9, 2, "Stadium_two_question3.png", stadiums2.ToList(), plants2.ToList(), 5, "C"),
+                new QuestionStadiumPage(10, 2, "Stadium_two_question4.png", stadiums2.ToList(), plants2.ToList(), 1, "B"),
+                new QuestionStadiumPage(11, 2, "Stadium_two_question5.png", stadiums2.ToList(), plants2.ToList(), 2, "C"),
+                new QuestionStadiumPage(12, 2, "Stadium_two_question6.png", stadiums2.ToList(), plants2.ToList(), 3, "A"),
+                new QuestionStadiumPage(13, 3, "Stadium_three_question1.png", stadiums3.ToList(), plants3.ToList(), 2, "E"),
+                new QuestionStadiumPage(14, 3, "Stadium_three_question2.png", stadiums3.ToList(), plants3.ToList(), 4, "D"),
+                new QuestionStadiumPage(15, 3, "Stadium_three_question3.png", stadiums3.ToList(), plants3.ToList(), 3, "B"),
+                new QuestionStadiumPage(16, 3, "Stadium_three_question4.png", stadiums3.ToList(), plants3.ToList(), 3, "A"),
+                new QuestionStadiumPage(17, 3, "Stadium_three_question5.png", stadiums3.ToList(), plants3.ToList(), 4, "C"),
+                new QuestionStadiumPage(18, 3, "Stadium_three_question6.png", stadiums3.ToList(), plants3.ToList(), 1, "D")
             };
         }
 
@@ -341,8 +426,8 @@ namespace MobileDataCollection.Survey.Models
             };
             Answers["Stadium"] = new List<IUserAnswer>
             {
-                new AnswerStadiumPage(1,"Blattentwicklung","Kartoffel"),
-                new AnswerStadiumPage(2,"Blattentwicklung","Zuckerrübe")
+                new AnswerStadiumPage(1,"A",1),
+                new AnswerStadiumPage(2,"A",2)
             };
         }
 
@@ -555,46 +640,46 @@ namespace MobileDataCollection.Survey.Models
             // create needed lists for the questions
             var stadiums1 = new List<StadiumSubItem>
             {
-                new StadiumSubItem("Blattentwicklung", "stadium_blattentwicklung.png"),
-                new StadiumSubItem("Bestockung", "stadium_bestockung.png"),
-                new StadiumSubItem("Längenwachstum/Schossen", "stadium_laengenwachstumschossen.png")
+                new StadiumSubItem("Blattentwicklung", "stadium_blattentwicklung.png", 1),
+                new StadiumSubItem("Bestockung", "stadium_bestockung.png", 2),
+                new StadiumSubItem("Längenwachstum/Schossen", "stadium_laengenwachstumschossen.png", 3)
             };
             var plants1 = new List<Plant>
             {
-                new Plant("Kartoffel"),
-                new Plant("Mais"),
-                new Plant("Weizen"),
-                new Plant("Zuckerrübe")
+                new Plant("Kartoffel", "A"),
+                new Plant("Mais", "B"),
+                new Plant("Weizen", "C"),
+                new Plant("Zuckerrübe", "D")
             };
             var stadiums2 = new List<StadiumSubItem>
             {
-                new StadiumSubItem("Blattentwicklung", "stadium_blattentwicklung.png"),
-                new StadiumSubItem("Schossen/Haupttrieb", "stadium_laengenwachstumschossen.png"),
-                new StadiumSubItem("Ähren/-Rispenschwellen", "stadium_ahrenrispenschwellen.png"),
-                new StadiumSubItem("Entwicklung der Blütenanlage", "stadium_entwicklungbluetenanlage.png"),
-                new StadiumSubItem("Blüte", "bluete.png")
+                new StadiumSubItem("Blattentwicklung", "stadium_blattentwicklung.png",1),
+                new StadiumSubItem("Schossen/Haupttrieb", "stadium_laengenwachstumschossen.png",2),
+                new StadiumSubItem("Ähren/-Rispenschwellen", "stadium_ahrenrispenschwellen.png",3),
+                new StadiumSubItem("Entwicklung der Blütenanlage", "stadium_entwicklungbluetenanlage.png",4),
+                new StadiumSubItem("Blüte", "bluete.png",5)
             };
             var plants2 = new List<Plant>
             {
-                new Plant("Gerste"),
-                new Plant("Kartoffel"),
-                new Plant("Raps"),
-                new Plant("Weizen")
+                new Plant("Gerste", "A"),
+                new Plant("Kartoffel", "B"),
+                new Plant("Raps", "C"),
+                new Plant("Weizen", "D")
             };
             var stadiums3 = new List<StadiumSubItem>
             {
-                new StadiumSubItem("Längenwachstum/Schossen", "stadium_laengenwachstumschossen.png"),
-                new StadiumSubItem("Entwicklung vegetativer Pflanzenteile/Rübenkörper", "stadium_entwicklungvegpflanzruebenk.png"),
-                new StadiumSubItem("Entwicklung der Blütenanlage", "stadium_entwicklungbluetenanlage.png"),
-                new StadiumSubItem("Fruchtentwicklung", "bluete.png")
+                new StadiumSubItem("Längenwachstum/Schossen", "stadium_laengenwachstumschossen.png", 1),
+                new StadiumSubItem("Entwicklung vegetativer Pflanzenteile/Rübenkörper", "stadium_entwicklungvegpflanzruebenk.png", 2),
+                new StadiumSubItem("Entwicklung der Blütenanlage", "stadium_entwicklungbluetenanlage.png", 3),
+                new StadiumSubItem("Fruchtentwicklung", "bluete.png", 4)
             };
             var plants3 = new List<Plant>
             {
-                new Plant("Kartoffel"),
-                new Plant("Mais"),
-                new Plant("Raps"),
-                new Plant("Weizen"),
-                new Plant("Zuckerrübe")
+                new Plant("Kartoffel", "A"),
+                new Plant("Mais", "B"),
+                new Plant("Raps", "C"),
+                new Plant("Weizen", "D"),
+                new Plant("Zuckerrübe", "E")
             };
             var tempList = new List<IQuestionContent>();
             while (!(Line.Equals("END_QUESTIONS")))
@@ -607,7 +692,7 @@ namespace MobileDataCollection.Survey.Models
                 string imgSour = attributes[2];
                 string stadiumList = attributes[3];
                 string plantList = attributes[4];
-                string stadiumCorr = attributes[5];
+                int stadiumCorr = Convert.ToInt32(attributes[5]);
                 string plantCorr = attributes[6];
 
                 var stadium = stadiums1;
@@ -687,7 +772,7 @@ namespace MobileDataCollection.Survey.Models
                 String[] attributes = line.Split(';');
                 int id = Convert.ToInt32(attributes[0]);
                 String answerFruitType = attributes[1];
-                String anserStadium = attributes[2];
+                int anserStadium = Convert.ToInt32(attributes[2]);
 
                 // create new Object and add it to the list
                 AnswerStadiumPage answer = new AnswerStadiumPage(id, answerFruitType, anserStadium);

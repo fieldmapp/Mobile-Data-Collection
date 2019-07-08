@@ -6,6 +6,6 @@ END_QUESTIONS
 here you can write documentation
 Questions are saved like this
 
-int id;string question;int difficulty;int im1Correct;int im2Correct;int im3Correct;int im4Corect;string im1Source;string im2Source;string im3Source;string im4Source
+int internId;string text
 
 don't write a ";" in the attributes, the ";" is reserved as a seperating character

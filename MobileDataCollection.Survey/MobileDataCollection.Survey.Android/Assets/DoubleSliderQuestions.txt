@@ -12,5 +12,8 @@
 12;3;DoubleSlider_three_question4.png;76;99
 END_QUESTIONS
 here you can write documentation
-Questions are saved like this, don't write a ";" in the attributes, the ";" is reserved as a seperating character
-int id;string question;int difficulty;int im1Correct;int im2Correct;int im3Correct;int im4Corect;string im1Source;string im2Source;string im3Source;string im4Source
+Questions are saved like this
+
+int internId,;int difficulty;string pictureAddress;int answerA;int answerB
+
+don't write a ";" in the attributes, the ";" is reserved as a seperate character
