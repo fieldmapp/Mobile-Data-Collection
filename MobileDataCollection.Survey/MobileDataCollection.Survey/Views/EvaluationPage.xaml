@@ -50,7 +50,13 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Image Source="infoIcon.png" HeightRequest="15"/>
-                    <Label Grid.Column="1" FontSize="Small" Text="Klicken Sie für mehr Informationen"/>
+                    <Label Grid.Column="1" FontSize="Small" Text="Klicken Sie für mehr Informationen">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                            Tapped="DetailsClicked"
+                            NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
                 </Grid>
                 <Label FontSize="Medium" Margin="0,50,0,0" Grid.Row="4" Text="erreicht" HorizontalOptions="CenterAndExpand"/>
             </Grid>

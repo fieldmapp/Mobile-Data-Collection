@@ -64,7 +64,7 @@
                 <!--First column: Icon-->
                 <Image Source="infoIcon.png" HeightRequest="15"/>
                 <!--Second column: Text-->
-                <Label Grid.Column="1" FontSize="Small" Text="Klicken Sie für mehr Informationen"/>
+                <Label Grid.Column="1" FontSize="Small" Text="Klicken Sie auf einen Balken für mehr Informationen"/>
             </Grid>
         </StackLayout>
     </Grid>
