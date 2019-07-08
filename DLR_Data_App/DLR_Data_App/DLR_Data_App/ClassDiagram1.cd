@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DLR_Data_App.Models.User">
+    <Position X="4.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DLR_Data_App.Models.ProjectModel.Project">
+    <Position X="8.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAACAAgAEAAAAAAAAAAAABAAAgAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\ProjectModel\Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DLR_Data_App.Models.ProjectModel.ProjectForm">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAAAAEAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Models\ProjectModel\ProjectForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DLR_Data_App.Models.ProjectModel.ProjectFormElements">
+    <Position X="1.75" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAAiAAAAEAMAAAAAAAAgIAQQACBAAAAAASAIACAEAAA=</HashCode>
+      <FileName>Models\ProjectModel\ProjectFormElements.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DLR_Data_App.Models.ProjectModel.ProjectFormMetadata">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KAACAAAACAAAAAAAAAAAAAQAAAAQAAgAAAAAAAAEAAA=</HashCode>
+      <FileName>Models\ProjectModel\ProjectFormMetadata.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DLR_Data_App.Models.ProjectModel.DatabaseConnectors.ProjectFormElementList">
+    <Position X="11.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAABCAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ProjectModel\DatabaseConnectors\ProjectFormElementList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

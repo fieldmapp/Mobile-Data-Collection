@@ -1,0 +1,64 @@
+{
+	"title": "Feldbezeichnung",
+	"controls": [{
+			"name": "fieldname",
+			"label": {
+				"0": "Feldname"
+			},
+			"hint": {
+				"0": "Name des Feldes"
+			},
+			"defaultValue": "",
+			"readOnly": false,
+			"required": false,
+			"requiredText": {},
+			"relevance": "",
+			"constraint": "",
+			"invalidText": {
+				"0": "Name inkorrekt"
+			},
+			"calculate": "",
+			"length": false,
+			"metadata": {},
+			"type": "inputText"
+		}, {
+			"name": "fieldnumber",
+			"label": {
+				"0": "Feldnummer"
+			},
+			"hint": {},
+			"defaultValue": "0",
+			"readOnly": false,
+			"required": false,
+			"requiredText": {},
+			"relevance": "",
+			"constraint": "",
+			"invalidText": {},
+			"calculate": "",
+			"range": false,
+			"appearance": "Textbox",
+			"kind": "Integer",
+			"selectRange": {
+				"min": "1",
+				"max": "10"
+			},
+			"selectStep": "1",
+			"sliderTicks": true,
+			"metadata": {},
+			"type": "inputNumeric"
+		}
+	],
+	"metadata": {
+		"version": 2,
+		"activeLanguages": {
+			"0": "English",
+			"_counter": 0,
+			"_display": "0"
+		},
+		"optionsPresets": [],
+		"htitle": null,
+		"instance_name": "",
+		"public_key": "",
+		"submission_url": ""
+	}
+}

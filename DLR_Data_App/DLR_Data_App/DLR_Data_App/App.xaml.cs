@@ -2,8 +2,8 @@
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using DLR_Data_App.Views;
-using Login;
+using DLR_Data_App.Views.Login;
+using DLR_Data_App.Models;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace DLR_Data_App
@@ -15,6 +15,7 @@ namespace DLR_Data_App
   {
     public static string DatabaseLocation = string.Empty;
     public static string FolderLocation = string.Empty;
+    public static User CurrentUser;
 
     /*
      * Constructor without database support
@@ -23,14 +24,7 @@ namespace DLR_Data_App
     {
       InitializeComponent();
 
-      if (Preferences.Get("autologin", true))
-      {
-        MainPage = new MainPage();
-      }
-      else
-      {
-        MainPage = new LoginPage();
-      }
+      MainPage = new LoginPage();
     }
 
     /*
@@ -45,15 +39,7 @@ namespace DLR_Data_App
       FolderLocation = folderPath;
       DatabaseLocation = databaseLocation;
       
-      if (Preferences.Get("autologin", true))
-      {
-        MainPage = new MainPage();
-      }
-      else
-      {
-        MainPage = new LoginPage();
-      }
-
+      MainPage = new LoginPage();
     }
 
     protected override void OnStart()

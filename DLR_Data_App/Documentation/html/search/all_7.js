@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['login',['Login',['../namespace_login.html',1,'']]],
-  ['loginpage',['LoginPage',['../class_d_l_r___data___app_1_1_views_1_1_login_page.html',1,'DLR_Data_App::Views']]],
-  ['models',['Models',['../namespace_login_1_1_models.html',1,'Login']]]
+  ['languagejson',['LanguageJSON',['../class_d_l_r___data___app_1_1_services_1_1_parser.html#a78d204114f8e85e6c9caa7080a2ecd6d',1,'DLR_Data_App::Services::Parser']]],
+  ['loginpage',['LoginPage',['../class_d_l_r___data___app_1_1_views_1_1_login_1_1_login_page.html',1,'DLR_Data_App::Views::Login']]]
 ];

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DLR_Data_App.Views.Settings.SettingsPage"
+             xmlns:local="clr-namespace:DLR_Data_App.Views.Settings"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             xmlns:vm="clr-namespace:DLR_Data_App.ViewModels.Settings"
+            Title="{Binding Title}">
+
+    <TabbedPage.BindingContext>
+        <vm:SettingsViewModel />
+    </TabbedPage.BindingContext>
+
+    <local:AppSettings Title="{res:TranslateExtention general}"/>
+    <local:ProfilelistPage Title="{res:TranslateExtention profile}"/>
+    <local:SensorListPage Title="{res:TranslateExtention sensors}"/>
+        
+</TabbedPage>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DLR_Data_App.Views.Settings.AppSettings"
+             xmlns:local="clr-namespace:DLR_Data_App.Views"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             xmlns:vm="clr-namespace:DLR_Data_App.ViewModels.Settings"
+            Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:AppSettingsViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <ListView x:Name="AppSettingsList"
+                  ItemTapped="AppSettingsList_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

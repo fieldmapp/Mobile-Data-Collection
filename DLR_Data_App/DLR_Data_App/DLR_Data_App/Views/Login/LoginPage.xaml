@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DLR_Data_App"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             x:Class="DLR_Data_App.Views.Login.LoginPage"
+             BackgroundImage="Background_Login.png">
+    
+    <ContentPage.Content>
+        <StackLayout x:Name="MasterLayout">
+            <StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand">
+                <Image x:Name="LoginIcon" 
+                       Source="LoginIconWhite.png" 
+                       Margin="0,80,0,0"/>
+            </StackLayout>
+        
+            <StackLayout x:Name="LoginEntries" 
+                         VerticalOptions="StartAndExpand"
+                         Padding="40,0,40,0">
+
+                <Label Text="{res:TranslateExtention login}"
+                       FontSize="Large"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="{res:TranslateExtention name}"
+                       TextColor="White"/>
+                <Entry x:Name="entry_Username"
+                    Placeholder="{res:TranslateExtention name}"
+                    PlaceholderColor="WhiteSmoke"
+                    Text=""
+                    TextColor="White"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="FillAndExpand" />
+                <Label Text="{res:TranslateExtention password}"
+                       TextColor="White"/>
+                <Entry x:Name="entry_Password"
+                    Placeholder="******"
+                    PlaceholderColor="WhiteSmoke"
+                    IsPassword="True"
+                    Text=""
+                    TextColor="White"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="FillAndExpand" />
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    
+                    <Button x:Name="btn_newaccount"
+                        Text="{res:TranslateExtention newaccount}"
+                        Clicked="Btn_newaccount_Clicked"
+                        Grid.Row="0"
+                        Grid.Column="0" />
+                    
+                    <Button x:Name="btn_signin"
+                        Text="{res:TranslateExtention signin}" 
+                        Clicked="Btn_signin_Clicked"
+                        Grid.Row="0"
+                        Grid.Column="1"/>
+                </Grid>
+                
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

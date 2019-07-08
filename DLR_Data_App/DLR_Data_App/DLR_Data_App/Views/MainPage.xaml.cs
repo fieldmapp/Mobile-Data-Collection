@@ -1,5 +1,7 @@
 ﻿using DLR_Data_App.Models;
-using Login;
+using DLR_Data_App.Views.Login;
+using DLR_Data_App.Views.Projectlist;
+using DLR_Data_App.Views.Settings;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

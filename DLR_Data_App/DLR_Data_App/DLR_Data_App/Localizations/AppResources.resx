@@ -141,8 +141,14 @@
   <data name="accept" xml:space="preserve">
     <value>Accept</value>
   </data>
+  <data name="add" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="altitude" xml:space="preserve">
     <value>Altitude</value>
+  </data>
+  <data name="authors" xml:space="preserve">
+    <value>Authors</value>
   </data>
   <data name="autologin" xml:space="preserve">
     <value>Autologin</value>
@@ -171,11 +177,23 @@
   <data name="degrees" xml:space="preserve">
     <value>Degrees</value>
   </data>
+  <data name="description" xml:space="preserve">
+    <value>Description</value>
+  </data>
   <data name="direction" xml:space="preserve">
     <value>Direction</value>
   </data>
   <data name="failed" xml:space="preserve">
     <value>Failed</value>
+  </data>
+  <data name="filepicker" xml:space="preserve">
+    <value>Select File</value>
+  </data>
+  <data name="filetypeerror" xml:space="preserve">
+    <value>File is no Zip Archive</value>
+  </data>
+  <data name="general" xml:space="preserve">
+    <value>General</value>
   </data>
   <data name="gps" xml:space="preserve">
     <value>GPS</value>
@@ -212,6 +230,12 @@
   </data>
   <data name="newaccountwarning" xml:space="preserve">
     <value>Creating a new profile results in removing the existing profile</value>
+  </data>
+  <data name="newproject" xml:space="preserve">
+    <value>New Project</value>
+  </data>
+  <data name="okay" xml:space="preserve">
+    <value>Okay</value>
   </data>
   <data name="password" xml:space="preserve">
     <value>Password</value>
@@ -301,23 +325,53 @@ Consent of the data subject means any freely given, specific, informed and unamb
   <data name="profile" xml:space="preserve">
     <value>Account</value>
   </data>
+  <data name="profiles" xml:space="preserve">
+    <value>Profiles</value>
+  </data>
+  <data name="projectdetails" xml:space="preserve">
+    <value>Project Details</value>
+  </data>
   <data name="projects" xml:space="preserve">
     <value>Projects</value>
   </data>
   <data name="rememberlogin" xml:space="preserve">
     <value>Remember login</value>
   </data>
+  <data name="remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
   <data name="removeaccount" xml:space="preserve">
     <value>Remove Account</value>
   </data>
+  <data name="removeaccountfailure" xml:space="preserve">
+    <value>Removing profile from database failed. You will return to the login page.</value>
+  </data>
   <data name="removeaccountwarning" xml:space="preserve">
     <value>Do you want to remove your profile and collected data?</value>
+  </data>
+  <data name="removedatabase" xml:space="preserve">
+    <value>Remove Database</value>
+  </data>
+  <data name="removedatabasewarning" xml:space="preserve">
+    <value>Do you want to remove the database?</value>
+  </data>
+  <data name="removeproject" xml:space="preserve">
+    <value>Remove project</value>
+  </data>
+  <data name="reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="sensors" xml:space="preserve">
     <value>Sensors</value>
   </data>
   <data name="sensortest" xml:space="preserve">
     <value>Sensor Test</value>
+  </data>
+  <data name="setascurrentproject" xml:space="preserve">
+    <value>Set as current project</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>Settings</value>
@@ -330,5 +384,14 @@ Consent of the data subject means any freely given, specific, informed and unamb
   </data>
   <data name="successful" xml:space="preserve">
     <value>Successful</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="updateaccountfailure" xml:space="preserve">
+    <value>Unable to save changes on profile.</value>
+  </data>
+  <data name="zippicker" xml:space="preserve">
+    <value>Choose Zip Archive</value>
   </data>
 </root>

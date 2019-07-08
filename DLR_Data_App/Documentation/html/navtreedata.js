@@ -26,6 +26,7 @@ var NAVTREE =
   [ "DLR Data App", "index.html", [
     [ "Introduction", "index.html#intro_sec", null ],
     [ "Preferences", "pref_page.html", null ],
+    [ "Special Commands", "specialcommand_page.html", null ],
     [ "Packages", "namespaces.html", [
       [ "Packages", "namespaces.html", "namespaces_dup" ]
     ] ],
@@ -43,7 +44,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"annotated.html",
+"namespace_d_l_r___data___app_1_1_views_1_1_login.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

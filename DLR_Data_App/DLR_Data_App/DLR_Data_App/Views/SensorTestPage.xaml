@@ -17,17 +17,7 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout x:Name="LoginEntries" VerticalOptions="StartAndExpand">
-                <StackLayout.Padding>
-                    <OnIdiom x:TypeArguments="Thickness">
-                        <OnIdiom.Phone>
-                            40,0,40,0
-                        </OnIdiom.Phone>
-                        <OnIdiom.Tablet>
-                            140,150,140,0
-                        </OnIdiom.Tablet>
-                    </OnIdiom>
-                </StackLayout.Padding>
+            <StackLayout x:Name="LoginEntries" VerticalOptions="StartAndExpand" Padding="40,0,40,0">
                 <Grid x:Name="GridAccelerometer">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />

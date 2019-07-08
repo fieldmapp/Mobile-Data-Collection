@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             x:Class="DLR_Data_App.Views.Projectlist.ItemDetailPage"
+             Title="{res:TranslateExtention projectdetails}">
+    
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="{res:TranslateExtention title}" FontSize="Medium" />
+        <Label Text="{Binding Title}" FontSize="Small"/>
+
+        <Label Text="{res:TranslateExtention description}" FontSize="Medium" />
+        <Label Text="{Binding Description}" FontSize="Small"/>
+
+        <Label Text="{res:TranslateExtention authors}" FontSize="Medium" />
+        <Label Text="{Binding Authors}" FontSize="Small"/>
+
+        <Button x:Name="btn_current_project"
+                Text="{res:TranslateExtention setascurrentproject}"
+                Clicked="Btn_current_project_Clicked"/>
+
+        <Button x:Name="btn_remove_project"
+                Text="{res:TranslateExtention removeproject}"
+                Clicked="Btn_remove_project_Clicked"/>
+    </StackLayout>
+</ContentPage>

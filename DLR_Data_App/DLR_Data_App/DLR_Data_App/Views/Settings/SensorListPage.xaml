@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DLR_Data_App.Views.Settings.SensorListPage"
+             xmlns:local="clr-namespace:DLR_Data_App.Views"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             xmlns:vm="clr-namespace:DLR_Data_App.ViewModels.Settings">
+
+    <ContentPage.BindingContext>
+        <vm:SensorListViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Padding="25">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Label Text="{res:TranslateExtention accelerometer}"
+                       Grid.Row="0"
+                       Grid.Column="0"/>
+                <Switch x:Name="switch_accelerometer" 
+                        IsToggled="True"
+                        Toggled="Switch_accelerometer_Toggled"
+                        Grid.Row="0"
+                        Grid.Column="1" />
+                <Label Text="{res:TranslateExtention barometer}"
+                       Grid.Row="1"
+                       Grid.Column="0"/>
+                <Switch x:Name="switch_barometer"  
+                        IsToggled="True"
+                        Toggled="Switch_barometer_Toggled"
+                        Grid.Row="1"
+                        Grid.Column="1" />
+                <Label Text="{res:TranslateExtention compass}"
+                       Grid.Row="2"
+                       Grid.Column="0"/>
+                <Switch x:Name="switch_compass" 
+                        IsToggled="True" 
+                        Toggled="Switch_compass_Toggled"
+                        Grid.Row="2"
+                        Grid.Column="1" />
+                <Label Text="{res:TranslateExtention gps}"
+                       Grid.Row="3"
+                       Grid.Column="0"/>
+                <Switch x:Name="switch_gps"  
+                        IsToggled="True"
+                        Toggled="Switch_gps_Toggled"
+                        Grid.Row="3"
+                        Grid.Column="1" />
+                <Label Text="{res:TranslateExtention gyroscope}"
+                       Grid.Row="4"
+                       Grid.Column="0"/>
+                <Switch x:Name="switch_gyroscope"  
+                        IsToggled="True"
+                        Toggled="Switch_gyroscope_Toggled"
+                        Grid.Row="4"
+                        Grid.Column="1" />
+                <Label Text="{res:TranslateExtention magnetometer}"
+                       Grid.Row="5"
+                       Grid.Column="0"/>
+                <Switch x:Name="switch_magnetometer" 
+                        IsToggled="True" 
+                        Toggled="Switch_magnetometer_Toggled"
+                        Grid.Row="5"
+                        Grid.Column="1" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

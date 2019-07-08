@@ -20,20 +20,10 @@ namespace DLR_Data_App.Models
 
     // Password stored in SHA512
     public string Password { get; set; }
-
-    // Autologin enabled check
-    public bool Autologin { get; set; }
-
+   
+    // Constructor
     public User()
     {
-      Autologin = false;
-    }
-
-    public User(string username, string password)
-    {
-      Username = username;
-      Password = password;
-      Autologin = false;
     }
   }
 }

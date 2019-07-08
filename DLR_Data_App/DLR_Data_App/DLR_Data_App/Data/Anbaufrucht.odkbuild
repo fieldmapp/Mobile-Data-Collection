@@ -1,0 +1,321 @@
+{
+	"title": "Anbaufrucht",
+	"controls": [{
+			"name": "cultivatedFruit",
+			"label": {
+				"0": "Anbaufrucht"
+			},
+			"hint": {},
+			"defaultValue": "",
+			"readOnly": false,
+			"required": false,
+			"requiredText": {},
+			"relevance": "",
+			"constraint": "",
+			"invalidText": {},
+			"calculate": "",
+			"options": [{
+					"text": {
+						"0": "Brache"
+					},
+					"cascade": [],
+					"val": "1"
+				}, {
+					"text": {
+						"0": "Monokultur"
+					},
+					"cascade": [],
+					"val": "2"
+				}, {
+					"text": {
+						"0": "Polykultur"
+					},
+					"cascade": [],
+					"val": "3"
+				}, {
+					"text": {
+						"0": "Unbekannt"
+					},
+					"cascade": [],
+					"val": "0"
+				}
+			],
+			"cascading": false,
+			"other": false,
+			"appearance": "Default",
+			"metadata": {},
+			"type": "inputSelectOne"
+		}, {
+			"name": "cultivatedFruitCultivation",
+			"label": {
+				"0": "Anbaufrucht Anbau"
+			},
+			"hint": {},
+			"defaultValue": "",
+			"readOnly": false,
+			"required": false,
+			"requiredText": {},
+			"relevance": "",
+			"constraint": "",
+			"invalidText": {},
+			"calculate": "",
+			"options": [{
+					"text": {
+						"0": "Sommeranbau"
+					},
+					"cascade": [],
+					"val": "1"
+				}, {
+					"text": {
+						"0": "Winteranbau"
+					},
+					"cascade": [],
+					"val": "2"
+				}, {
+					"text": {
+						"0": "Sonstiges"
+					},
+					"cascade": [],
+					"val": "0"
+				}
+			],
+			"cascading": false,
+			"other": false,
+			"appearance": "Default",
+			"metadata": {},
+			"type": "inputSelectOne"
+		}, {
+			"name": "cultivatedFruitDetailFruit",
+			"label": {
+				"0": "Anbaufrucht Detail"
+			},
+			"hint": {},
+			"defaultValue": "",
+			"readOnly": false,
+			"required": false,
+			"requiredText": {},
+			"relevance": "",
+			"constraint": "",
+			"invalidText": {},
+			"calculate": "",
+			"options": [{
+					"text": {
+						"0": "Getreide"
+					},
+					"cascade": [],
+					"val": "1"
+				}, {
+					"text": {
+						"0": "Hülsenfrüchte"
+					},
+					"cascade": [],
+					"val": "2"
+				}, {
+					"text": {
+						"0": "Hackfrüchte"
+					},
+					"cascade": [],
+					"val": "3"
+				}, {
+					"text": {
+						"0": "Ölfrüchte"
+					},
+					"cascade": [],
+					"val": "4"
+				}, {
+					"text": {
+						"0": "Sonstige"
+					},
+					"cascade": [],
+					"val": "5"
+				}, {
+					"text": {
+						"0": "Amarant"
+					},
+					"cascade": [],
+					"val": "6"
+				}, {
+					"text": {
+						"0": "Dinkel"
+					},
+					"cascade": [],
+					"val": "7"
+				}, {
+					"text": {
+						"0": "Durum/Hartweizen"
+					},
+					"cascade": [],
+					"val": "8"
+				}, {
+					"text": {
+						"0": "Gerste"
+					},
+					"cascade": [],
+					"val": "9"
+				}, {
+					"text": {
+						"0": "Grünkern"
+					},
+					"cascade": [],
+					"val": "10"
+				}, {
+					"text": {
+						"0": "Hafer"
+					},
+					"cascade": [],
+					"val": "11"
+				}, {
+					"text": {
+						"0": "Hirse"
+					},
+					"cascade": [],
+					"val": "12"
+				}, {
+					"text": {
+						"0": "Mais"
+					},
+					"cascade": [],
+					"val": "13"
+				}, {
+					"text": {
+						"0": "Reis"
+					},
+					"cascade": [],
+					"val": "14"
+				}, {
+					"text": {
+						"0": "Roggen"
+					},
+					"cascade": [],
+					"val": "15"
+				}, {
+					"text": {
+						"0": "Triticale"
+					},
+					"cascade": [],
+					"val": "16"
+				}, {
+					"text": {
+						"0": "Weizen"
+					},
+					"cascade": [],
+					"val": "17"
+				}, {
+					"text": {
+						"0": "Bohne"
+					},
+					"cascade": [],
+					"val": "18"
+				}, {
+					"text": {
+						"0": "Erbsen"
+					},
+					"cascade": [],
+					"val": "19"
+				}, {
+					"text": {
+						"0": "Erdnuss"
+					},
+					"cascade": [],
+					"val": "20"
+				}, {
+					"text": {
+						"0": "Kichererbsen"
+					},
+					"cascade": [],
+					"val": "21"
+				}, {
+					"text": {
+						"0": "Linsen"
+					},
+					"cascade": [],
+					"val": "22"
+				}, {
+					"text": {
+						"0": "Sojasprossen"
+					},
+					"cascade": [],
+					"val": "23"
+				}, {
+					"text": {
+						"0": "Kartoffel"
+					},
+					"cascade": [],
+					"val": "24"
+				}, {
+					"text": {
+						"0": "Kohl"
+					},
+					"cascade": [],
+					"val": "25"
+				}, {
+					"text": {
+						"0": "Karotten"
+					},
+					"cascade": [],
+					"val": "26"
+				}, {
+					"text": {
+						"0": "Zuckerrübe"
+					},
+					"cascade": [],
+					"val": "27"
+				}, {
+					"text": {
+						"0": "Öllein"
+					},
+					"cascade": [],
+					"val": "28"
+				}, {
+					"text": {
+						"0": "Raps"
+					},
+					"cascade": [],
+					"val": "29"
+				}, {
+					"text": {
+						"0": "Rübsen"
+					},
+					"cascade": [],
+					"val": "30"
+				}, {
+					"text": {
+						"0": "Senf"
+					},
+					"cascade": [],
+					"val": "31"
+				}, {
+					"text": {
+						"0": "Sonnenblumen"
+					},
+					"cascade": [],
+					"val": "32"
+				}, {
+					"text": {
+						"0": "Unbekannt"
+					},
+					"cascade": [],
+					"val": "0"
+				}
+			],
+			"cascading": false,
+			"other": false,
+			"appearance": "Default",
+			"metadata": {},
+			"type": "inputSelectOne"
+		}
+	],
+	"metadata": {
+		"version": 2,
+		"activeLanguages": {
+			"0": "German",
+			"_counter": 0,
+			"_display": "0"
+		},
+		"optionsPresets": [],
+		"htitle": null,
+		"instance_name": "",
+		"public_key": "",
+		"submission_url": ""
+	}
+}

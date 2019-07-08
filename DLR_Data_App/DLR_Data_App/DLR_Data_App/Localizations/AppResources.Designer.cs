@@ -133,11 +133,29 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add ähnelt.
+        /// </summary>
+        internal static string add {
+            get {
+                return ResourceManager.GetString("add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Altitude ähnelt.
         /// </summary>
         internal static string altitude {
             get {
                 return ResourceManager.GetString("altitude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Authors ähnelt.
+        /// </summary>
+        internal static string authors {
+            get {
+                return ResourceManager.GetString("authors", resourceCulture);
             }
         }
         
@@ -223,6 +241,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Description ähnelt.
+        /// </summary>
+        internal static string description {
+            get {
+                return ResourceManager.GetString("description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Direction ähnelt.
         /// </summary>
         internal static string direction {
@@ -237,6 +264,33 @@ namespace DLR_Data_App.Localizations {
         internal static string failed {
             get {
                 return ResourceManager.GetString("failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select File ähnelt.
+        /// </summary>
+        internal static string filepicker {
+            get {
+                return ResourceManager.GetString("filepicker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File is no Zip Archive ähnelt.
+        /// </summary>
+        internal static string filetypeerror {
+            get {
+                return ResourceManager.GetString("filetypeerror", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die General ähnelt.
+        /// </summary>
+        internal static string general {
+            get {
+                return ResourceManager.GetString("general", resourceCulture);
             }
         }
         
@@ -349,6 +403,24 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New Project ähnelt.
+        /// </summary>
+        internal static string newproject {
+            get {
+                return ResourceManager.GetString("newproject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Okay ähnelt.
+        /// </summary>
+        internal static string okay {
+            get {
+                return ResourceManager.GetString("okay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Password ähnelt.
         /// </summary>
         internal static string password {
@@ -394,6 +466,24 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Profiles ähnelt.
+        /// </summary>
+        internal static string profiles {
+            get {
+                return ResourceManager.GetString("profiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Project Details ähnelt.
+        /// </summary>
+        internal static string projectdetails {
+            get {
+                return ResourceManager.GetString("projectdetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Projects ähnelt.
         /// </summary>
         internal static string projects {
@@ -412,6 +502,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remove ähnelt.
+        /// </summary>
+        internal static string remove {
+            get {
+                return ResourceManager.GetString("remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Remove Account ähnelt.
         /// </summary>
         internal static string removeaccount {
@@ -421,11 +520,65 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Removing profile from database failed. You will return to the login page. ähnelt.
+        /// </summary>
+        internal static string removeaccountfailure {
+            get {
+                return ResourceManager.GetString("removeaccountfailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Do you want to remove your profile and collected data? ähnelt.
         /// </summary>
         internal static string removeaccountwarning {
             get {
                 return ResourceManager.GetString("removeaccountwarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remove Database ähnelt.
+        /// </summary>
+        internal static string removedatabase {
+            get {
+                return ResourceManager.GetString("removedatabase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Do you want to remove the database? ähnelt.
+        /// </summary>
+        internal static string removedatabasewarning {
+            get {
+                return ResourceManager.GetString("removedatabasewarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remove project ähnelt.
+        /// </summary>
+        internal static string removeproject {
+            get {
+                return ResourceManager.GetString("removeproject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reset ähnelt.
+        /// </summary>
+        internal static string reset {
+            get {
+                return ResourceManager.GetString("reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
+        /// </summary>
+        internal static string save {
+            get {
+                return ResourceManager.GetString("save", resourceCulture);
             }
         }
         
@@ -444,6 +597,15 @@ namespace DLR_Data_App.Localizations {
         internal static string sensortest {
             get {
                 return ResourceManager.GetString("sensortest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Set as current project ähnelt.
+        /// </summary>
+        internal static string setascurrentproject {
+            get {
+                return ResourceManager.GetString("setascurrentproject", resourceCulture);
             }
         }
         
@@ -480,6 +642,33 @@ namespace DLR_Data_App.Localizations {
         internal static string successful {
             get {
                 return ResourceManager.GetString("successful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Title ähnelt.
+        /// </summary>
+        internal static string title {
+            get {
+                return ResourceManager.GetString("title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unable to save changes on profile. ähnelt.
+        /// </summary>
+        internal static string updateaccountfailure {
+            get {
+                return ResourceManager.GetString("updateaccountfailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Choose Zip Archive ähnelt.
+        /// </summary>
+        internal static string zippicker {
+            get {
+                return ResourceManager.GetString("zippicker", resourceCulture);
             }
         }
     }

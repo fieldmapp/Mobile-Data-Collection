@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             x:Class="DLR_Data_App.Views.Projectlist.NewItemPage"
+             Title="{res:TranslateExtention newproject}">
+    
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="{res:TranslateExtention zippicker}" FontSize="Medium" />
+            <Button Text="{res:TranslateExtention filepicker}"
+                    Clicked="btn_filepicker_Clicked"/>
+            <Label x:Name="lbl_zip_path" FontSize="Medium" />
+            
+            <Grid>
+                <Button x:Name="btn_save"
+                        Text="{res:TranslateExtention save}"
+                        Clicked="Btn_save_Clicked"
+                        Grid.Column="0"
+                        Grid.Row="0"/>
+                <Button x:Name="btn_cancel"
+                        Text="{res:TranslateExtention cancel}"
+                        Clicked="Btn_cancel_Clicked"
+                        Grid.Column="1"
+                        Grid.Row="0"/>
+            </Grid>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

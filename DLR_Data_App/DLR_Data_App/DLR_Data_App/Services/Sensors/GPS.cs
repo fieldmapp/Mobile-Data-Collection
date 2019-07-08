@@ -47,22 +47,22 @@ namespace DLR_Data_App.Services.Sensors
           Message = "Unable to get location";
         }
       }
-      catch (FeatureNotSupportedException fnsEx)
+      catch (FeatureNotSupportedException)
       {
         // Handle not supported on device exception
         Message = "Function not supported";
       }
-      catch (FeatureNotEnabledException fneEx)
+      catch (FeatureNotEnabledException)
       {
         // Handle not enabled on device exception
         Message = "Function not enabled";
       }
-      catch (PermissionException pEx)
+      catch (PermissionException)
       {
         // Handle permission exception
         Message = "Permission error";
       }
-      catch (Exception ex)
+      catch (Exception)
       {
         // Unable to get location
         Message = "Unknown error";

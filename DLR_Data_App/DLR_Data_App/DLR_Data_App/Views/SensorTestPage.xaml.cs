@@ -106,6 +106,9 @@ namespace DLR_Data_App.Views
       }
     }
 
+    /**
+     * 
+     */
     public SensorTestPage ()
 		{
       accelerometer = new Services.Sensors.Accelerometer();

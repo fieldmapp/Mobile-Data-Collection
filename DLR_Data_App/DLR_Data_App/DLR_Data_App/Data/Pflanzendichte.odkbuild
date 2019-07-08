@@ -1,0 +1,82 @@
+{
+	"title": "Pflanzendichte",
+	"controls": [{
+			"name": "propRuler",
+			"label": {
+				"0": "Ruler"
+			},
+			"hint": {},
+			"defaultValue": "",
+			"readOnly": false,
+			"required": false,
+			"requiredText": {},
+			"relevance": "",
+			"constraint": "",
+			"calculate": "",
+			"length": false,
+			"invalidText": {},
+			"metadata": {},
+			"type": "inputText"
+		}, {
+			"name": "plantDensity",
+			"label": {
+				"0": "Pflanzendichte in cm"
+			},
+			"hint": {},
+			"defaultValue": "0",
+			"readOnly": false,
+			"required": false,
+			"requiredText": {},
+			"relevance": "",
+			"constraint": "",
+			"calculate": "",
+			"range": {
+				"min": "0",
+				"max": "200",
+				"minInclusive": true,
+				"maxInclusive": true
+			},
+			"invalidText": {},
+			"appearance": "Textbox",
+			"kind": "Decimal",
+			"selectRange": {
+				"min": "1",
+				"max": "10"
+			},
+			"selectStep": "1",
+			"sliderTicks": true,
+			"metadata": {},
+			"type": "inputNumeric"
+		}, {
+			"name": "propCheckUnknown",
+			"label": {
+				"0": "CheckUnknown"
+			},
+			"hint": {},
+			"defaultValue": "",
+			"readOnly": false,
+			"required": false,
+			"requiredText": {},
+			"relevance": "",
+			"constraint": "",
+			"calculate": "",
+			"length": false,
+			"invalidText": {},
+			"metadata": {},
+			"type": "inputText"
+		}
+	],
+	"metadata": {
+		"version": 2,
+		"activeLanguages": {
+			"0": "German",
+			"_counter": 0,
+			"_display": "0"
+		},
+		"optionsPresets": [],
+		"htitle": null,
+		"instance_name": "",
+		"public_key": "",
+		"submission_url": ""
+	}
+}
