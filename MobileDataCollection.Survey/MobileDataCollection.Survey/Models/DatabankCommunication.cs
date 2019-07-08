@@ -16,6 +16,11 @@ namespace MobileDataCollection.Survey.Models
 
         private IQuestionsProvider questionsProvider;
 
+
+        public DatabankCommunication()
+        {
+            CreateQuestions();
+        }
         /// <summary>
         /// Creates an DatabankCommunication with a QuestionProvider
         /// </summary>
@@ -23,6 +28,7 @@ namespace MobileDataCollection.Survey.Models
         {
             questionsProvider = provider;
             CreateQuestionsFromTxt();
+            CreateAllNotExistingAnswerTxt();
             LoadAllAnswersFromTxt();
         }
 
@@ -69,6 +75,46 @@ namespace MobileDataCollection.Survey.Models
             SaveAnswersForDoubleSliderPage();
             SaveAnswersForIntrospectionPage();
             SaveAnswersForStadiumPage();
+        }
+
+        public void CreateAllNotExistingAnswerTxt()
+        {
+            CreateNotExistingAnswerTxt("ImageCheckerAnswers.txt");
+            CreateNotExistingAnswerTxt("DoubleSliderAnswers.txt");
+            CreateNotExistingAnswerTxt("StadiumAnswers.txt");
+            CreateNotExistingAnswerTxt("IntrospectionAnswers.txt");
+        }
+
+        /// <summary>
+        /// Creates a txt with the name of source, if it doesnt already exist
+        /// </summary>
+        public void CreateNotExistingAnswerTxt(string source)
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string filename = Path.Combine(path, source);
+            if(!File.Exists(filename))
+            {
+                File.WriteAllText(filename,"END_ANSWERS");
+            }
+        }
+
+        public void CreateCSV()
+        {
+            string text = "";
+            /// sort the lists after InternId
+            Questions["ImageChecker"] = Questions["ImageChecker"].OrderBy(o => o.InternId).ToList();
+            Questions["DoubleSlider"] = Questions["DoubleSlider"].OrderBy(o => o.InternId).ToList();
+            Questions["Stadium"] = Questions["Stadium"].OrderBy(o => o.InternId).ToList();
+            Questions["Introspection"] = Questions["Introspection"].OrderBy(o => o.InternId).ToList();
+
+            foreach (QuestionImageCheckerPage question in Questions["ImageChecker"])
+            {
+                if (SearchAnswers("ImageChecker", question.InternId))
+                {
+                    AnswerImageCheckerPage answer = (AnswerImageCheckerPage) LoadAnswerById("ImageChecker", question.InternId);
+                    text += "," + answer.InternId + "," + answer.Image1Selected + "," + answer.Image2Selected + "," + answer.Image3Selected + "," + answer.Image4Selected;
+                }
+            }
         }
 
         /// <summary>
