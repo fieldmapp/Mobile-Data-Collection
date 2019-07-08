@@ -15,6 +15,7 @@ namespace MobileDataCollection.Survey.Controls
         {
             Released += ReleasePicture;
             Pressed += PressPicture;
+            
         }
 
         private void PressPicture(object sender, EventArgs e)
