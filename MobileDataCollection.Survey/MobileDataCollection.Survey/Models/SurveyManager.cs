@@ -69,6 +69,7 @@ namespace MobileDataCollection.Survey.Models
         {
             var surveyPage = sender as ISurveyPage;
             surveyPage.PageFinished -= NewPage_PageFinished;
+            Navigation.PopAsync();
             bool aborted = surveyPage.AnswerItem == null;
             if (aborted)
             {
@@ -77,7 +78,6 @@ namespace MobileDataCollection.Survey.Models
             }
             CurrentSurvey.AnswersGiven++;
             DatabankCommunication.AddAnswer(CurrentSurvey.Id.ToString(), surveyPage.AnswerItem);
-            Navigation.PopAsync();
             ShowNewSurveyPage();
         }
 
@@ -101,6 +101,7 @@ namespace MobileDataCollection.Survey.Models
         {
             var introspectionPage = sender as IntrospectionPage;
             introspectionPage.PageFinished -= IntrospectionPage_PageFinished;
+            Navigation.PopAsync();
             bool aborted = introspectionPage.AnswerItem == null;
             if (aborted)
             {
@@ -108,7 +109,6 @@ namespace MobileDataCollection.Survey.Models
                 return;
             }
             DatabankCommunication.AddAnswer("Introspection", introspectionPage.AnswerItem);
-            Navigation.PopAsync();
             ShowNextIntrospectionPage();
         }
 
@@ -117,10 +117,11 @@ namespace MobileDataCollection.Survey.Models
             var evalItem = GenerateEvaluationItem(CurrentSurvey.Id.ToString());
             var evaluationPage = new EvaluationPage(evalItem);
             Navigation.PushAsync(evaluationPage);
+            CurrentSurvey = null;
             //TODO: Unlock and advance next question
         }
 
-        private EvaluationItem GenerateEvaluationItem(string surveyId)
+        public EvaluationItem GenerateEvaluationItem(string surveyId)
         {
             var answeredQuestions = DatabankCommunication.GetAllQuestions(surveyId)
                 .Where(q => DatabankCommunication.SearchAnswers(surveyId, q.InternId));

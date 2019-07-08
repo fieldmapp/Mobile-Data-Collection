@@ -20,7 +20,7 @@ namespace MobileDataCollection.Survey.Views
         /// Bindings of QuestionItem and AnswerItem
         /// </summary>
         public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), typeof(QuestionIntrospectionPage), typeof(IntrospectionPage), new QuestionIntrospectionPage(1,"demo"), BindingMode.OneWay);
-        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerIntrospectionPage), typeof(IntrospectionPage), new AnswerIntrospectionPage(1, 1), BindingMode.OneWay);
+        public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerIntrospectionPage), typeof(IntrospectionPage), null, BindingMode.OneWay);
 
         /// <summary>
         /// Item of the given Question
