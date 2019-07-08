@@ -11,54 +11,95 @@ namespace MobileDataCollection.Survey.Models
     /// the displayed results. Other properties are for the defining the design: Name of the question category, 
     /// bar color etc.
     /// </summary>
-    public class EvaluationItem
+    public class EvaluationItem : BindableObject
     {
-        ///SurveyMenuItemType Id, defining the assigned question category
-        public SurveyMenuItemType Id { get; set; }
+        public static readonly BindableProperty PercentProperty = BindableProperty.Create(nameof(Percent), typeof(EvaluationItem), typeof(int), 0);
+        public static readonly BindableProperty PercentEasyProperty = BindableProperty.Create(nameof(PercentEasy), typeof(EvaluationItem), typeof(int), 0);
+        public static readonly BindableProperty PercentMediumProperty = BindableProperty.Create(nameof(PercentMedium), typeof(EvaluationItem), typeof(int), 0);
+        public static readonly BindableProperty PercentHardProperty = BindableProperty.Create(nameof(PercentHard), typeof(EvaluationItem), typeof(int), 0);
+        public static readonly BindableProperty CategoryNameProperty = BindableProperty.Create(nameof(CategoryName), typeof(EvaluationItem), typeof(string), string.Empty);
+        public static readonly BindableProperty BarColorProperty = BindableProperty.Create(nameof(BarColor), typeof(EvaluationItem), typeof(Color), Color.Black);
+        public static readonly BindableProperty PercentBarValueProperty = BindableProperty.Create(nameof(PercentBarValue), typeof(EvaluationItem), typeof(double), 0d);
+        public static readonly BindableProperty PercentLabelTextProperty = BindableProperty.Create(nameof(PercentLabelText), typeof(EvaluationItem), typeof(string), string.Empty);
+
+
         /// Overall result for the question category as percentage
-        public int Percent { get; set; }
+        public int Percent
+        {
+            get => (int)GetValue(PercentProperty);
+            set => SetValue(PercentProperty, value);
+        }
         /// Result for the question with difficulty level "easy" as percentage
-        public int PercentEasy { get; set; }
+        public int PercentEasy
+        {
+            get => (int)GetValue(PercentEasyProperty);
+            set => SetValue(PercentEasyProperty, value);
+        }
         /// Result for the question with difficulty level "medium" as percentage
-        public int PercentMedium { get; set; }
+        public int PercentMedium
+        {
+            get => (int)GetValue(PercentMediumProperty);
+            set => SetValue(PercentMediumProperty, value);
+        }
         /// Result for the question with difficulty level "hard" as percentage
-        public int PercentHard { get; set; }
+        public int PercentHard
+        {
+            get => (int)GetValue(PercentHardProperty);
+            set => SetValue(PercentHardProperty, value);
+        }
         /// Name of the question category to display as text 
-        public string CatName { get; set; }
+        public string CategoryName
+        {
+            get => (string)GetValue(CategoryNameProperty);
+            set => SetValue(CategoryNameProperty, value);
+        }
         /// Color of the progress bar, which is the grafical representation of the result, 
         /// will be changed depending on the result
-        public Color BarColor { get; set; }
+        public Color BarColor
+        {
+            get => (Color)GetValue(BarColorProperty);
+            set => SetValue(BarColorProperty, value);
+        }
         ///  Result as value for the progressbar
-        public double PercentBarValue { get; set; }
+        public double PercentBarValue
+        {
+            get => (double)GetValue(PercentBarValueProperty);
+            set => SetValue(PercentBarValueProperty, value);
+        }
         /// Result (percentage) displayed as text
-        public string PercentLabelText { get; set; }
+        public string PercentLabelText
+        {
+            get => (string)GetValue(PercentLabelTextProperty);
+            set => SetValue(PercentLabelTextProperty, value);
+        }
+
         /// <summary>
         /// Constructor for the EvaluationItem
         /// </summary>
         /// <param name="catname">String representing the name of the category</param>
-        /// <param name="Percent">Overall result</param>
-        /// <param name="PercentEasy">Result for questions with difficulty level "easy"</param>
-        /// <param name="PercentMedium">Result for questions with difficulty level "medium"</param>
-        /// <param name="PercentHard">Result for questions with difficulty level "hard"</param>
-        public EvaluationItem(string catname, int Percent, int PercentEasy, int PercentMedium, int PercentHard)
+        /// <param name="percent">Overall result</param>
+        /// <param name="percentEasy">Result for questions with difficulty level "easy"</param>
+        /// <param name="percentMedium">Result for questions with difficulty level "medium"</param>
+        /// <param name="percentHard">Result for questions with difficulty level "hard"</param>
+        public EvaluationItem(string catname, int percent, int percentEasy, int percentMedium, int percentHard)
         {
             ///Defining the properties of the EvaluatioItem
-            this.CatName = catname;
-            this.Percent = Percent;
-            this.PercentEasy = PercentEasy;
-            this.PercentMedium = PercentMedium;
-            this.PercentHard = PercentHard;
+            CategoryName = catname;
+            Percent = percent;
+            PercentEasy = percentEasy;
+            PercentMedium = percentMedium;
+            PercentHard = percentHard;
             ///Setting the grafical elements
-            this.PercentBarValue = (double)Percent / 100;
-            PercentLabelText = $"{Percent}%";
-            if (Percent <= 33) this.BarColor = Color.LightSalmon;
-            else if (Percent <= 66) this.BarColor = Color.Gold;
-            else this.BarColor = Color.DarkSeaGreen;
+            PercentBarValue = (double)percent / 100;
+            PercentLabelText = $"{percent}%";
+            if (percent <= 33) BarColor = Color.LightSalmon;
+            else if (percent <= 66) BarColor = Color.Gold;
+            else BarColor = Color.DarkSeaGreen;
             ///Checking wether there is an result available for this category (if not, the result is negative) and if that
             /// is the case, defining how it shall be displayed
-            if (Percent < 0)
+            if (percent < 0)
             {
-                this.Percent = 0;
+                Percent = 0;
                 PercentLabelText = $"-   ";
             }
         }
