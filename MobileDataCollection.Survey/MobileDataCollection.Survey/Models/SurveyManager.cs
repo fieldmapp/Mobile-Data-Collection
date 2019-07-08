@@ -23,10 +23,11 @@ namespace MobileDataCollection.Survey.Models
             Navigation = navigation;
         }
 
-        public IQuestionContent GetFirstQuestion(SurveyMenuItem surveyType)
+        public IQuestionContent GetNextQuestion(SurveyMenuItem surveyType)
         {
+            //TODO: Switch difficulty
             var neededType = surveyType.QuestionType;
-            var value = Questions.FirstOrDefault(q => neededType == q.GetType());
+            var value = DatabankCommunication.LoadQuestion(surveyType.Id.ToString(), 1);
             if (value == null)
                 return null;
             return value;
@@ -50,7 +51,14 @@ namespace MobileDataCollection.Survey.Models
 
         private void ShowNewSurveyPage()
         {
-            var question = GetFirstQuestion(CurrentSurvey);
+            if (CurrentSurvey == null)
+                return;
+            if (CurrentSurvey.AnswersGiven >= CurrentSurvey.AnswersNeeded)
+            {
+                ShowNextIntrospectionPage();
+                return;
+            }
+            var question = GetNextQuestion(CurrentSurvey);
             //TODO: Check for existence of correct constructor
             var newPage = (ISurveyPage)Activator.CreateInstance(CurrentSurvey.SurveyPageType, new object[] { question, CurrentSurvey.AnswersGiven, CurrentSurvey.AnswersNeeded });
             newPage.PageFinished += NewPage_PageFinished;
@@ -63,18 +71,73 @@ namespace MobileDataCollection.Survey.Models
             surveyPage.PageFinished -= NewPage_PageFinished;
             bool aborted = surveyPage.AnswerItem == null;
             if (aborted)
+            {
+                CurrentSurvey = null;
                 return;
+            }
             CurrentSurvey.AnswersGiven++;
-            if (CurrentSurvey.AnswersGiven >= CurrentSurvey.AnswersNeeded)
-                SurveyTypeFinished();
-            var score = surveyPage.AnswerItem.EvaluateScore();
+            DatabankCommunication.AddAnswer(CurrentSurvey.Id.ToString(), surveyPage.AnswerItem);
             Navigation.PopAsync();
-            CurrentSurvey = null;
+            ShowNewSurveyPage();
         }
 
-        private void SurveyTypeFinished()
+        private void ShowNextIntrospectionPage()
         {
-            throw new NotImplementedException();
+            if (CurrentSurvey == null)
+                return;
+            var newIntrospectionQuestion = (QuestionIntrospectionPage)CurrentSurvey.IntrospectionQuestion.Where(id => !DatabankCommunication.SearchAnswers("Introspection", id))
+                .Select(id => DatabankCommunication.LoadQuestionById("Introspection", id)).FirstOrDefault();
+            if (newIntrospectionQuestion == null)
+            {
+                ShowEvaluationPage();
+                return;
+            }
+            var introspectionPage = new IntrospectionPage(newIntrospectionQuestion);
+            introspectionPage.PageFinished += IntrospectionPage_PageFinished;
+            Navigation.PushAsync(introspectionPage);
+        }
+
+        private void IntrospectionPage_PageFinished(object sender, EventArgs e)
+        {
+            var introspectionPage = sender as IntrospectionPage;
+            introspectionPage.PageFinished -= IntrospectionPage_PageFinished;
+            bool aborted = introspectionPage.AnswerItem == null;
+            if (aborted)
+            {
+                CurrentSurvey = null;
+                return;
+            }
+            DatabankCommunication.AddAnswer("Introspection", introspectionPage.AnswerItem);
+            Navigation.PopAsync();
+            ShowNextIntrospectionPage();
+        }
+
+        private void ShowEvaluationPage()
+        {
+            var evalItem = GenerateEvaluationItem(CurrentSurvey.Id.ToString());
+            var evaluationPage = new EvaluationPage(evalItem);
+            Navigation.PushAsync(evaluationPage);
+            //TODO: Unlock and advance next question
+        }
+
+        private EvaluationItem GenerateEvaluationItem(string surveyId)
+        {
+            var answeredQuestions = DatabankCommunication.GetAllQuestions(surveyId)
+                .Where(q => DatabankCommunication.SearchAnswers(surveyId, q.InternId));
+            var answers = answeredQuestions.Select(q => DatabankCommunication.LoadAnswerById(surveyId, q.InternId));
+            var easyAnsers = answeredQuestions.Where(q => q.Difficulty == 1)
+                .Select(q => DatabankCommunication.LoadAnswerById(surveyId, q.InternId));
+            var mediumAnswers = answeredQuestions.Where(q => q.Difficulty == 2)
+                .Select(q => DatabankCommunication.LoadAnswerById(surveyId, q.InternId));
+            var hardAnswers = answeredQuestions.Where(q => q.Difficulty == 3)
+                .Select(q => DatabankCommunication.LoadAnswerById(surveyId, q.InternId));
+
+            var average = answers.Any() ? (int)answers.Average(a => a.EvaluateScore() * 100) : -1;
+            var easyAverage = easyAnsers.Any() ? (int)easyAnsers.Average(a => a.EvaluateScore() * 100) : -1;
+            var mediumAverage = mediumAnswers.Any() ? (int)mediumAnswers.Average(a => a.EvaluateScore() * 100) : -1;
+            var hardAverage = hardAnswers.Any() ? (int)hardAnswers.Average(a => a.EvaluateScore() * 100) : -1;
+
+            return new EvaluationItem(CurrentSurvey.ChapterName, average, easyAverage, mediumAverage, hardAverage);
         }
     }
 }

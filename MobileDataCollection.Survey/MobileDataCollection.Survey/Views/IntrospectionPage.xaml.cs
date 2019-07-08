@@ -14,7 +14,7 @@ using Xamarin.Forms.Xaml;
 namespace MobileDataCollection.Survey.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class IntrospectionPage : ContentPage
+    public partial class IntrospectionPage : ContentPage, ISurveyPage
     {
         /// <summary>
         /// Bindings of QuestionItem and AnswerItem
@@ -40,16 +40,15 @@ namespace MobileDataCollection.Survey.Views
             set { SetValue(AnswerItemProperty, value); }
         }
 
-        public ObservableCollection<QuestionIntrospectionPage> Items
-        { get; set; }
-        
-        private int i = 1;
+        IQuestionContent ISurveyPage.QuestionItem => QuestionItem;
 
-        public IntrospectionPage()
+        IUserAnswer ISurveyPage.AnswerItem => AnswerItem;
+
+        public IntrospectionPage(QuestionIntrospectionPage question)
         {
             InitializeComponent();
             QuestionLabel.BindingContext = this;
-            QuestionItem = new QuestionIntrospectionPage(1,"Ich kann eine Sorte von Feldfrüchten zuverlässig erkennen.");
+            QuestionItem = question;
             RadioButtonIndex = new Dictionary<RadioButton, int>()
             {
                 {Button1, 1},
@@ -58,25 +57,6 @@ namespace MobileDataCollection.Survey.Views
                 {Button4, 4},
                 {Button5, 5}
             };
-        }
-            public IntrospectionPage(SurveyMenuItem survey)
-        {
-            InitializeComponent();
-            QuestionLabel.BindingContext = this;
-            //Ans Ende jeder Survey müssen Introspectionfrage(n), d.h. für jeden Survey-Typ müssen 1-n Introspection fragen hinterlegbar 
-            if (survey.Id == SurveyMenuItemType.ImageChecker) Items = new ObservableCollection<QuestionIntrospectionPage>() {
-                new QuestionIntrospectionPage(1,"Ich kann eine Sorte von Feldfrüchten zuverlässig erkennen.")}; 
-            else if (survey.Id == SurveyMenuItemType.DoubleSlider) {
-                Items = new ObservableCollection<QuestionIntrospectionPage>(){
-                    //Für DoubleSliderPage werden zwei Introspection-Fragen gebraucht
-                    new QuestionIntrospectionPage(3,"Ich kann den Bedeckungsgrad des Bodens durch Pflanzen zuverlässig schätzen."),
-                    new QuestionIntrospectionPage(4,"Ich kann den Anteil grüner Pflanzenbestandteile am gesamten Pflanzenmaterial zuverlässig schätzen.")
-                };
-            }
-            else if (survey.Id == SurveyMenuItemType.Stadium){ Items = new ObservableCollection<QuestionIntrospectionPage>() {
-                new QuestionIntrospectionPage(2,"Ich kann phänologische Entwicklungsstadien von Feldfrüchten zuverlässig erkennen.")};
-            }
-            this.QuestionItem = Items[0];
         }
 
         private void Button_Tapped(object sender, EventArgs e)
@@ -92,33 +72,26 @@ namespace MobileDataCollection.Survey.Views
 
         Dictionary<RadioButton, int> RadioButtonIndex;
 
+        public event EventHandler PageFinished;
+
         void OnWeiterButtonClicked(object sender, EventArgs e)
         {
             var selectedRadioButton = RadioButtonIndex.Keys.FirstOrDefault(r => r.IsChecked);
-
-            AnswerItem.InternId = QuestionItem.InternId; // = new AnswerIntrospectionPage(QuestionItem, RadioButtonIndex[selectedRadioButton]);
-            AnswerItem.SelectedAnswer = RadioButtonIndex[selectedRadioButton];
-
-            Button1.IsChecked = false;
-            Button2.IsChecked = false;
-            Button3.IsChecked = false;
-            Button4.IsChecked = false;
-            Button5.IsChecked = false;
-
-            AnswerIntrospectionPage Answer = new AnswerIntrospectionPage(AnswerItem.InternId, AnswerItem.SelectedAnswer);
-            
-            i++;
-            if(i>5)
-            {
-                i = 1;
-            }
-
-
+            if (selectedRadioButton == null)
+                return;
+            AnswerItem = new AnswerIntrospectionPage(QuestionItem.InternId, RadioButtonIndex[selectedRadioButton]);
+            PageFinished?.Invoke(this, null);
         }
 
         void OnAbbrechenButtonClicked(object sender, EventArgs e)
         {
+            PageFinished?.Invoke(this, null);
+        }
 
+        protected override bool OnBackButtonPressed()
+        {
+            PageFinished?.Invoke(this, null);
+            return true;
         }
     }
 }

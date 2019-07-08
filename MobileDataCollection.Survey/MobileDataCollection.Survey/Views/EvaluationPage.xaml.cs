@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MobileDataCollection.Survey.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace MobileDataCollection.Survey.Views
     {
         public static readonly BindableProperty PercentLabelProperty = BindableProperty.Create(nameof(PercentLabelText),
             typeof(String), typeof(EvaluationPage), "100%", BindingMode.OneWay);
+
         public String PercentLabelText
         {
             get { return (String)GetValue(PercentLabelProperty); }
@@ -43,31 +45,21 @@ namespace MobileDataCollection.Survey.Views
             set { SetValue(ProgressColorProperty, value); }
         }
 
-        public EvaluationPage(int Result)
+        private EvaluationItem EvaluationItem;
+
+        public EvaluationPage(EvaluationItem evalItem)
         {
             InitializeComponent();
-            this.PercentBarValue = (double)Result/100;
+            EvaluationItem = evalItem;
+            PercentBarValue = (double)evalItem.Percent / 100;
             PercentBar.BindingContext = this;
-            if (Result <= 33)
-            {
-                //BarColor = Color.PeachPuff;
-                ProgressColor = Color.LightSalmon;
-            }
-            else if (Result<=66){
-                //BarColor = Color.Khaki;
-                ProgressColor = Color.Gold;
-            }
-            else
-            {
-               // BarColor = Color.DarkSeaGreen;
-                ProgressColor = Color.DarkSeaGreen;
-            }
+            ProgressColor = evalItem.BarColor;
             PercentLabel.BindingContext = this;
-            PercentLabelText = $"{Result}%";
+            PercentLabelText = $"{evalItem.Percent}%";
         }
         void DetailsClicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new EvaluationDetailsPage(80,47,15));
+            Navigation.PushAsync(new EvaluationDetailsPage(EvaluationItem.PercentEasy,EvaluationItem.PercentMedium,EvaluationItem.PercentHard));
         }
     }
 }

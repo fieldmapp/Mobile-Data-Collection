@@ -19,21 +19,21 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Creates an DatabankCommunication with a QuestionProvider
         /// </summary>
-        public DatabankCommunication(IQuestionsProvider provider)
+        static DatabankCommunication(/*IQuestionsProvider provider*/)
         {
-            questionsProvider = provider;
+            //questionsProvider = provider;
 
-            //CreateQuestions();
-            CreateQuestionsFromTXT();
-            ExampleAnswers();
-            SaveAllAnswersInTxt();
+            CreateQuestions();
+            //CreateQuestionsFromTXT();
+            //ExampleAnswers();
+            //SaveAllAnswersInTxt();
             //LoadAllAnswersFromTxt();
         }
 
         /// <summary>
         /// Creates all Questions
         /// </summary>
-        public void CreateQuestions()
+        public static void CreateQuestions()
         {
             Questions["ImageChecker"] = CreateQuestionsForImageChecker();
             Questions["DoubleSlider"] = CreateQuestionsForDoubleSlider();
@@ -201,21 +201,21 @@ namespace MobileDataCollection.Survey.Models
         public static IQuestionContent LoadQuestion(string surveyId, int difficulty)
         {
             var listQuestions = Questions[surveyId];
-            List<QuestionImageCheckerPage> ListQuestion = new List<QuestionImageCheckerPage>();
-            for(int i = 0; i < listQuestions.Count; i++)
+            List<IQuestionContent> listQuestion = new List<IQuestionContent>();
+            for (int i = 0; i < listQuestions.Count; i++)
             {
-                QuestionImageCheckerPage question = (QuestionImageCheckerPage)listQuestions[i];
-                if(question.Difficulty == difficulty)
+                IQuestionContent question = listQuestions[i];
+                if (question.Difficulty == difficulty)
                 {
-                    if(!SearchAnswers(surveyId, question.InternId))
+                    if (!SearchAnswers(surveyId, question.InternId))
                     {
-                        ListQuestion.Add(question);
+                        listQuestion.Add(question);
                     }
                 }
             }
-            if (ListQuestion.Count > 0)
+            if (listQuestion.Count > 0)
             {
-                return ListQuestion[RandomNumber.Next(ListQuestion.Count)];
+                return listQuestion[RandomNumber.Next(listQuestion.Count)];
             }
             if (difficulty == 1)
             {
@@ -227,17 +227,32 @@ namespace MobileDataCollection.Survey.Models
             }
         }
 
+        public static IQuestionContent LoadQuestionById(string surveyId, int id) => Questions[surveyId].FirstOrDefault(q => q.InternId == id);
+
+        public static IUserAnswer LoadAnswerById(string surveyId, int id) => Answers[surveyId].FirstOrDefault(a => a.InternId == id);
+
+        public static List<IUserAnswer> GetAllAnswers(string surveyId) => Answers[surveyId];
+
+        public static List<IQuestionContent> GetAllQuestions(string surveyId) => Questions[surveyId];
+
         /// <summary>
         /// Searches an AnswerImageCheckerPage-Object with the corrosponding Id
         /// </summary>
-        public static bool SearchAnswers(string surveyId, int Id) => Answers[surveyId].Any(a => a.InternId == Id);
+        public static bool SearchAnswers(string surveyId, int Id)
+        {
+            if (!Answers.TryGetValue(surveyId, out var answers))
+                return false;
+            return answers.Any(a => a.InternId == Id);
+        }
 
         /// <summary>
         /// Adds an AnswerImageCheckerPage Object to the List ListAnswerImageCheckerPage
         /// </summary>
         public static void AddAnswer(string surveyId, IUserAnswer answer)
         {
-            (Answers[surveyId] ?? (Answers[surveyId] = new List<IUserAnswer>())).Add(answer);
+            if (!Answers.ContainsKey(surveyId))
+                Answers.Add(surveyId, new List<IUserAnswer>());
+            Answers[surveyId].Add(answer);
         }
 
         /// <summary>

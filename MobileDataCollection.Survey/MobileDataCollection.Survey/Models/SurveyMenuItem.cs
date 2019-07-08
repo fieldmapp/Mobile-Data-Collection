@@ -22,11 +22,18 @@ namespace MobileDataCollection.Survey.Models
         public static readonly BindableProperty UnlockedProperty = BindableProperty.Create(nameof(Unlocked), typeof(bool), typeof(SurveyMenuItem), false, BindingMode.OneWay);
         public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(SurveyMenuItem), Color.White, BindingMode.OneWay);
         public static readonly BindableProperty ProgressStringProperty = BindableProperty.Create(nameof(ProgressString), typeof(string), typeof(SurveyMenuItem), string.Empty, BindingMode.OneWay);
-
+        public static readonly BindableProperty IntrospectionQuestionProperty = BindableProperty.Create(nameof(IntrospectionQuestion), typeof(List<int>), typeof(SurveyMenuItem), new List<int>());
+        
         public SurveyMenuItemType Id
         {
             get => (SurveyMenuItemType)GetValue(IdProperty);
             set => SetValue(IdProperty, value);
+        }
+
+        public List<int> IntrospectionQuestion
+        {
+            get => (List<int>)GetValue(IntrospectionQuestionProperty);
+            set => SetValue(IntrospectionQuestionProperty, value);
         }
 
         public string ChapterName
@@ -90,15 +97,16 @@ namespace MobileDataCollection.Survey.Models
 
         public Type SurveyPageType { get; }
 
-        public SurveyMenuItem(SurveyMenuItemType id, string chapterName, int answersNeeded, int maximumQuestionNumber, int answersGiven, bool unlocked, Color backgroundColor)
+        public SurveyMenuItem(SurveyMenuItemType id, string chapterName, int answersNeeded, int maximumQuestionNumber, int answersGiven, bool unlocked, Color backgroundColor, List<int> introspectionQuestions)
         {
             Id = id;
             ChapterName = chapterName;
-            AnswersNeeded = AnswersNeeded;
+            AnswersNeeded = answersNeeded;
             MaximumQuestionNumber = maximumQuestionNumber;
             AnswersGiven = answersGiven;
             Unlocked = unlocked;
             BackgroundColor = backgroundColor;
+            IntrospectionQuestion = introspectionQuestions;
 
             var nspace = typeof(App).Namespace;
             SurveyPageType = Type.GetType($"{nspace}.Views.{id.ToString()}Page");
