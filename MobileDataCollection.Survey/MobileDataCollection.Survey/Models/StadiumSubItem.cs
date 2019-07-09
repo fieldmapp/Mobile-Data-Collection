@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace MobileDataCollection.Survey.Models
 {
-    public class StadiumSubItem : BindableObject
+    public class StadiumSubItem : BindableObject, IInlinePickerElement
     {
         /// <summary>
         /// Binding of the plant names in DatabankCommunication
@@ -13,6 +13,7 @@ namespace MobileDataCollection.Survey.Models
         public static readonly BindableProperty StadiumNameProperty = BindableProperty.Create(nameof(StadiumName), typeof(string), typeof(StadiumSubItem), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty ImageSourceProperty = BindableProperty.Create(nameof(ImageSource), typeof(string), typeof(StadiumSubItem), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty InternNumberProperty = BindableProperty.Create(nameof(InternNumber), typeof(int), typeof(StadiumSubItem), 0, BindingMode.OneWay);
+        public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(StadiumSubItem), Color.Default, BindingMode.OneWay);
 
         /// <summary>
         /// Name of the different stadiums
@@ -21,6 +22,12 @@ namespace MobileDataCollection.Survey.Models
         {
             get => (string)GetValue(StadiumNameProperty);
             set => SetValue(StadiumNameProperty, value);
+        }
+
+        public Color BackgroundColor
+        {
+            get => (Color)GetValue(BackgroundColorProperty);
+            set => SetValue(BackgroundColorProperty, value);
         }
 
         /// <summary>

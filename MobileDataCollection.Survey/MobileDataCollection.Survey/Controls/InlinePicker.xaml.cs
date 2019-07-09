@@ -27,5 +27,15 @@ namespace MobileDataCollection.Survey.Controls
         public void Scroll(object sender, EventArgs e)
         {
         }
+
+        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            foreach (var item in ItemSource.OfType<IInlinePickerElement>())
+            {
+                item.BackgroundColor = Color.Transparent;
+            }
+            if (e.SelectedItem is IInlinePickerElement selected)
+                selected.BackgroundColor = SelectedColor;
+        }
     }
 }

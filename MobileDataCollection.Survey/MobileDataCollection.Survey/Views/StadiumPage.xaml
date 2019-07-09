@@ -55,14 +55,18 @@
                         <controls:InlinePicker.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Text="{Binding StadiumName}" />
-                                        <controls:DetailImage Grid.Column="1" BackgroundColor="{StaticResource Button}" Source="{Binding ImageSource}" HorizontalOptions="EndAndExpand"  HeightRequest="25"/>
-                                    </Grid>
+                                    <Frame BorderColor="{Binding BackgroundColor}" Padding="0" CornerRadius="0" BackgroundColor="{Binding BackgroundColor}">
+                                        <Frame BorderColor="{Binding BackgroundColor}" Margin="1" CornerRadius="0" BackgroundColor="White" Padding="0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Text="{Binding StadiumName}" />
+                                                <controls:DetailImage Grid.Column="1" BackgroundColor="{StaticResource Button}" Source="{Binding ImageSource}" HorizontalOptions="EndAndExpand"  HeightRequest="25"/>
+                                            </Grid>
+                                        </Frame>
+                                    </Frame>
                                 </ViewCell>
                             </DataTemplate>
                         </controls:InlinePicker.ItemTemplate>
@@ -73,13 +77,16 @@
                         <controls:InlinePicker.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Name}" />
-
-                                    </Grid>
+                                    <Frame BorderColor="{Binding BackgroundColor}" Padding="0" CornerRadius="0" BackgroundColor="{Binding BackgroundColor}">
+                                        <Frame BorderColor="{Binding BackgroundColor}" Margin="1" CornerRadius="0" BackgroundColor="White" Padding="0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Name}" />
+                                            </Grid>
+                                        </Frame>
+                                    </Frame>
                                 </ViewCell>
                             </DataTemplate>
                         </controls:InlinePicker.ItemTemplate>

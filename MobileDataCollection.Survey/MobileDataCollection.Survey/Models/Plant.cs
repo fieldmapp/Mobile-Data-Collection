@@ -5,13 +5,14 @@ using Xamarin.Forms;
 
 namespace MobileDataCollection.Survey.Models
 {
-    public class Plant : BindableObject
+    public class Plant : BindableObject, IInlinePickerElement
     {
         /// <summary>
         /// Binding of the plant names in DatabankCommunication
         /// </summary>
         public static readonly BindableProperty NameProperty = BindableProperty.Create(nameof(Name), typeof(string), typeof(Plant), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty InternLetterProperty = BindableProperty.Create(nameof(InternLetter), typeof(string), typeof(Plant), string.Empty, BindingMode.OneWay);
+        public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(StadiumSubItem), Color.Default, BindingMode.OneWay);
 
         /// <summary>
         /// Name of the different Plants
@@ -29,6 +30,12 @@ namespace MobileDataCollection.Survey.Models
         {
             get => (string)GetValue(InternLetterProperty);
             set => SetValue(InternLetterProperty, value);
+        }
+        
+        public Color BackgroundColor
+        {
+            get => (Color)GetValue(BackgroundColorProperty);
+            set => SetValue(BackgroundColorProperty, value);
         }
 
         /// <summary>
