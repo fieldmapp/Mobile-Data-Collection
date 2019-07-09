@@ -22,9 +22,8 @@ namespace MobileDataCollection.Survey.Views
             new SurveyMenuItem(SurveyMenuItemType.Stadium, "Wuchsstadien", 6, 12, 0, true, Color.White, new List<int>{1})
         };
         SurveyManager SurveyManager;
-        DatabankCommunication DatabankCommunication;
         /// Constructor for the MainPage
-        public MainPage(DatabankCommunication databankCommunication)
+        public MainPage()
         {
             ///Initialize components
             InitializeComponent();
@@ -32,8 +31,6 @@ namespace MobileDataCollection.Survey.Views
             MenuList.ItemsSource = Items;
             ///Setting the SurveyManager
             SurveyManager = new SurveyManager(Navigation);
-            /// Set the databank communicator
-            DatabankCommunication = databankCommunication;
         }
         /// Defining the Event for the click on an element in the ListView
         private void MenuList_ItemTapped(object sender, ItemTappedEventArgs e)

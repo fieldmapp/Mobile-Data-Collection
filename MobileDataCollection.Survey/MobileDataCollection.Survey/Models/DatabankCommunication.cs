@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MobileDataCollection.Survey.Models
 {
-    public class DatabankCommunication
+    public static class DatabankCommunication
     {
         /// <summary>
         /// Used to create a randum number
@@ -26,20 +26,12 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Used to load questions
         /// </summary>
-        private IQuestionsProvider questionsProvider;
-
-        /// <summary>
-        /// Constructor which creates the questions from code
-        /// </summary>
-        public DatabankCommunication()
-        {
-            CreateQuestions();
-        }
+        private static IQuestionsProvider questionsProvider;
 
         /// <summary>
         /// Creates an DatabankCommunication with a QuestionProvider
         /// </summary>
-        public DatabankCommunication(IQuestionsProvider provider)
+        public static void Initilize(IQuestionsProvider provider)
         {
             questionsProvider = provider;
             CreateQuestionsFromTxt();
@@ -65,7 +57,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Creates all Questions, but loads these from the txt files
         /// </summary>
-        public void CreateQuestionsFromTxt()
+        public static void CreateQuestionsFromTxt()
         {
             Questions["ImageChecker"] = LoadQuestionsForImageCheckerFromTXT();
             Questions["DoubleSlider"] = LoadQuestionsForDoubleSliderFromTXT();
@@ -75,7 +67,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Loads all Answers from the txt files
         /// </summary>
-        public void LoadAllAnswersFromTxt()
+        public static void LoadAllAnswersFromTxt()
         {
             Answers["ImageChecker"] = LoadAnswersForImageCheckerPage();
             Answers["DoubleSlider"] = LoadAnswersForDoubleSliderPage();
@@ -87,7 +79,7 @@ namespace MobileDataCollection.Survey.Models
         /// Saves all Answers in txt files
         /// This will override the old files!
         /// </summary>
-        public void SaveAllAnswersInTxt()
+        public static void SaveAllAnswersInTxt()
         {
             SaveAnswersForImageCheckerPage();
             SaveAnswersForDoubleSliderPage();
@@ -98,7 +90,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Creates all txt files to save the answers
         /// </summary>
-        public void CreateAllNotExistingAnswerTxt()
+        public static void CreateAllNotExistingAnswerTxt()
         {
             CreateNotExistingAnswerTxt("ImageCheckerAnswers.txt");
             CreateNotExistingAnswerTxt("DoubleSliderAnswers.txt");
@@ -109,7 +101,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Creates a txt with the name of source, if it doesnt already exist
         /// </summary>
-        public void CreateNotExistingAnswerTxt(string source)
+        public static void CreateNotExistingAnswerTxt(string source)
         {
             /// get filepath
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -124,7 +116,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Resets all Answer Txt (only writes "END_ANSWERS")
         /// </summary>
-        public void ResetAllAnswersTxt()
+        public static void ResetAllAnswersTxt()
         {
             ResetAnswerTxt("ImageCheckerAnswers.txt");
             ResetAnswerTxt("DoubleSliderAnswers.txt");
@@ -136,7 +128,7 @@ namespace MobileDataCollection.Survey.Models
         /// Writes only "END_ANSWERS" in source
         /// </summary>
         /// <param name="source"></param>
-        public void ResetAnswerTxt(string source)
+        public static void ResetAnswerTxt(string source)
         {
             /// get filepath
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -149,7 +141,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Creates Answers.csv with all Answers in one line 
         /// </summary>
-        public void CreateCSV()
+        public static void CreateCSV()
         {
             string explination = "UserCode,Date"; /// contains the explination for the data
             string data = "," + DateTime.Now.ToString("yyyy MM dd"); /// contains the data
@@ -430,7 +422,7 @@ namespace MobileDataCollection.Survey.Models
         /// Creates a set of example answers for testing purposes
         /// Overrides old answer list
         /// </summary>
-        public void ExampleAnswers()
+        public static void ExampleAnswers()
         {
             Answers["ImageChecker"] = new List<IUserAnswer>
             {
@@ -461,7 +453,7 @@ namespace MobileDataCollection.Survey.Models
         /// Loads all questions for the ImageCheckerType from ImageCheckerQuestions.txt
         /// Returns a List containing these Questions
         /// </summary>
-        public List<IQuestionContent> LoadQuestionsForImageCheckerFromTXT()
+        public static List<IQuestionContent> LoadQuestionsForImageCheckerFromTXT()
         {
             List<IQuestionContent> tempList = new List<IQuestionContent>();
 
@@ -506,7 +498,7 @@ namespace MobileDataCollection.Survey.Models
         /// The answers end with "END_ANSWERS"
         /// This will override the old file!
         /// </summary>
-        public void SaveAnswersForImageCheckerPage()
+        public static void SaveAnswersForImageCheckerPage()
         {
             /// save the answers as seperate lines
             string text = "";
@@ -532,7 +524,7 @@ namespace MobileDataCollection.Survey.Models
         /// Loads all Answers for the AnswerImageCheckerPage from ImageCheckerAnswer.txt
         /// </summary>
         /// <returns>List with all Answers</returns>
-        public List<IUserAnswer> LoadAnswersForImageCheckerPage()
+        public static List<IUserAnswer> LoadAnswersForImageCheckerPage()
         {
             List<IUserAnswer> tempList = new List<IUserAnswer>();
 
@@ -567,7 +559,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Loads all questions for the DoubleSliderType from DoubleSliderQuestions.txt
         /// </summary>
-        public List<IQuestionContent> LoadQuestionsForDoubleSliderFromTXT()
+        public static List<IQuestionContent> LoadQuestionsForDoubleSliderFromTXT()
         {
             List<IQuestionContent> tempList = new List<IQuestionContent>();
 
@@ -602,7 +594,7 @@ namespace MobileDataCollection.Survey.Models
         /// The answers end with "END_ANSWERS"
         /// This will override the old file!
         /// </summary>
-        public void SaveAnswersForDoubleSliderPage()
+        public static void SaveAnswersForDoubleSliderPage()
         {
             /// save each answer as a line
             string text = "";
@@ -626,7 +618,7 @@ namespace MobileDataCollection.Survey.Models
         /// Loads all Answers for the AnswerDoubleSliderPage from DoubleSliderAnswer.txt
         /// </summary>
         /// <returns>List with all Answers</returns>
-        public List<IUserAnswer> LoadAnswersForDoubleSliderPage()
+        public static List<IUserAnswer> LoadAnswersForDoubleSliderPage()
         {
             List<IUserAnswer> tempList = new List<IUserAnswer>();
 
@@ -659,7 +651,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Loads all questions for the StadiumType from StadiumQuestions.txt
         /// </summary>
-        public List<IQuestionContent> LoadQuestionsForStadiumFromTXT()
+        public static List<IQuestionContent> LoadQuestionsForStadiumFromTXT()
         {
             /// read text from txt file
             String Text = questionsProvider.LoadTextFromTXT("StadiumQuestions.txt");
@@ -762,7 +754,7 @@ namespace MobileDataCollection.Survey.Models
         /// The answers end with "END_ANSWERS"
         /// This will override the old file!
         /// </summary>
-        public void SaveAnswersForStadiumPage()
+        public static void SaveAnswersForStadiumPage()
         {
             /// save each answer an an own line
             string text = "";
@@ -786,7 +778,7 @@ namespace MobileDataCollection.Survey.Models
         /// Loads all Answers for the AnswerStadiumPage from StadiumAnswer.txt
         /// </summary>
         /// <returns>List with all Answers</returns>
-        public List<IUserAnswer> LoadAnswersForStadiumPage()
+        public static List<IUserAnswer> LoadAnswersForStadiumPage()
         {
             List<IUserAnswer> tempList = new List<IUserAnswer>();
 
@@ -819,7 +811,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Loads all questions for the IntrospectionType from IntrospectionQuestions.txt
         /// </summary>
-        public List<IQuestionContent> LoadQuestionsForIntrospectionFromTXT()
+        public static List<IQuestionContent> LoadQuestionsForIntrospectionFromTXT()
         {
             /// get text
             String Text = questionsProvider.LoadTextFromTXT("IntrospectionQuestions.txt");
@@ -850,7 +842,7 @@ namespace MobileDataCollection.Survey.Models
         /// The answers end with "END_ANSWERS"
         /// This will override the old file!
         /// </summary>
-        public void SaveAnswersForIntrospectionPage()
+        public static void SaveAnswersForIntrospectionPage()
         {
             /// save each answer as own line
             string text = "";
@@ -873,7 +865,7 @@ namespace MobileDataCollection.Survey.Models
         /// Loads all Answers for the AnswerIntrospectionPage from IntrospectionAnswer.txt
         /// </summary>
         /// <returns>List with all Answers</returns>
-        public List<IUserAnswer> LoadAnswersForIntrospectionPage()
+        public static List<IUserAnswer> LoadAnswersForIntrospectionPage()
         {
             List<IUserAnswer> tempList = new List<IUserAnswer>();
 

@@ -18,14 +18,14 @@ namespace MobileDataCollection.Survey.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             AndroidQuestionProvider androidQuestionProvider = new AndroidQuestionProvider(this);
-            DatabankCommunication databankCommunication = new DatabankCommunication(androidQuestionProvider);
+            DatabankCommunication.Initilize(androidQuestionProvider);
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App(databankCommunication));
+            LoadApplication(new App());
             Android.Support.V7.Widget.Toolbar toolbar = this.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
         }

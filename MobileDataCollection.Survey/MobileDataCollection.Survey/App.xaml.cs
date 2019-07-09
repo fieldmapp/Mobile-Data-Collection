@@ -11,10 +11,10 @@ namespace MobileDataCollection.Survey
     {
         public NavigationPage Navigation;
 
-        public App(DatabankCommunication databankCommunication)
+        public App()
         {
             InitializeComponent();
-            MainPage = Navigation = new NavigationPage(new MainPage(databankCommunication))
+            MainPage = Navigation = new NavigationPage(new MainPage())
             {
                 BarBackgroundColor = Color.DarkSeaGreen,
                 BarTextColor = Color.White,
