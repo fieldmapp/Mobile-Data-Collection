@@ -133,6 +133,7 @@ namespace MobileDataCollection.Survey.Models
             var evaluationPage = new EvaluationPage(evalItem);
             Navigation.PushAsync(evaluationPage);
             CurrentSurvey = null;
+            //DatabankCommunication.SaveAllAnswersInTxt();
         }
 
         public EvaluationItem GenerateEvaluationItem(SurveyMenuItem survey)
