@@ -85,16 +85,17 @@ namespace MobileDataCollection.Survey.Views
 
         void OnWeiterButtonClicked(object sender, EventArgs e)
         {
-            //Gefixed in dem ich selectedStadium default auf 0 setze und nur wenn es ein StadiumInlinePicker.SelectedItem
-            //gibt, wird selectedStadium auf dessen Wert gesetzt
-            int selectedStadium = 0;//neu
-            if (StadiumInlinePicker.SelectedItem != null)//neu
-            {//neu
+            int selectedStadium = 0;
+            if (StadiumInlinePicker.SelectedItem != null)
+            {
                  selectedStadium = (StadiumInlinePicker.SelectedItem as StadiumSubItem).InternNumber;
-            } //neu
+            }
             var selectedPlant = (PlantInlinePicker.SelectedItem as Plant)?.InternLetter;
             if (selectedPlant == null || selectedStadium == 0)
+            {
+                DisplayAlert("Hinweis", "Bitte wähle sie jeweils eine Antwort aus", "OK");
                 return;
+            }
 
             AnswerItem = new AnswerStadiumPage(QuestionItem.InternId, selectedPlant, selectedStadium);
             PageFinished?.Invoke(this, PageResult.Continue);

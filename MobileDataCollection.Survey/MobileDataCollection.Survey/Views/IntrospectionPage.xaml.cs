@@ -78,7 +78,11 @@ namespace MobileDataCollection.Survey.Views
         {
             var selectedRadioButton = RadioButtonIndex.Keys.FirstOrDefault(r => r.IsChecked);
             if (selectedRadioButton == null)
+            {
+                DisplayAlert("Hinweis", "Bitte eine Auswahl treffen", "OK");
                 return;
+            }
+
             AnswerItem = new AnswerIntrospectionPage(QuestionItem.InternId, RadioButtonIndex[selectedRadioButton]);
             PageFinished?.Invoke(this, PageResult.Continue);
         }

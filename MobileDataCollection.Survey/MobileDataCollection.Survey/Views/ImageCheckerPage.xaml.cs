@@ -117,10 +117,18 @@ namespace MobileDataCollection.Survey.Views
         void OnWeiterButtonClicked(object sender, EventArgs e)
         {
             var id = QuestionItem.InternId;
-            var im1Sel = PictureA.BorderColor == selectedColor ? 1 : 0; //in QuestionItem ist ImageCorrectAnswer, wie verwenden
+            var im1Sel = PictureA.BorderColor == selectedColor ? 1 : 0;
             var im2Sel = PictureB.BorderColor == selectedColor ? 1 : 0;
             var im3Sel = PictureC.BorderColor == selectedColor ? 1 : 0;
             var im4Sel = PictureD.BorderColor == selectedColor ? 1 : 0;
+
+            if(PictureA.BorderColor == nonSelectedColor && PictureB.BorderColor == nonSelectedColor 
+                && PictureC.BorderColor == nonSelectedColor && PictureD.BorderColor == nonSelectedColor)
+            {
+                DisplayAlert("Hinweis", "Bitte eine oder mehrere Auswahlen treffen", "OK");
+                return;
+            }
+
             AnswerItem = new AnswerImageCheckerPage(id, im1Sel, im2Sel, im3Sel, im4Sel);
             PageFinished?.Invoke(this, PageResult.Continue);
         }

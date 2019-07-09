@@ -84,10 +84,19 @@ namespace MobileDataCollection.Survey.Views
             sliderBLabel.Text = $"(B): {value}%";
         }
         //Called when the Forward-Button is clicked
+        private Boolean hintNoticed = false;
         void OnWeiterButtonClicked(object sender, EventArgs e)
         {
             int answerA = (int)sliderA.Value;
             int answerB = (int)sliderB.Value;
+
+            if(sliderA.Value == 0 && sliderB.Value == 0 && !hintNoticed)
+            {
+                DisplayAlert("Hinweis", "Ist ihre Auswahl so Inordnung?", "OK");
+                hintNoticed = true;
+                return;
+            }
+
             AnswerItem = new AnswerDoubleSliderPage(QuestionItem.InternId, answerA, answerB);
             PageFinished?.Invoke(this, PageResult.Continue);
         }
