@@ -36,21 +36,13 @@
                 <ctrls:RadioButton x:Name="Button5" Grid.Row="4" Title="trifft nicht zu" Tapped="Button_Tapped"/>
             </Grid>
 
-            <Grid VerticalOptions="EndAndExpand">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button Text="Abbrechen" FontSize="Medium"
-                    BackgroundColor="{StaticResource Button}"
-                    TextColor="{StaticResource TextColor}"
-                    Clicked="OnAbbrechenButtonClicked"/>
-                <Button Grid.Column="1"
+            <Button Grid.Column="1"
                     Text="Weiter" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
                     TextColor="{StaticResource TextColor}"
+                    VerticalOptions="End"
+                    HorizontalOptions="Fill"
                     Clicked="OnWeiterButtonClicked"/>
-            </Grid>
 
         </StackLayout>
     </ContentPage.Content>

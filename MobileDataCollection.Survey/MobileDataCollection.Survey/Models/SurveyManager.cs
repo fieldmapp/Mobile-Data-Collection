@@ -53,29 +53,37 @@ namespace MobileDataCollection.Survey.Models
         {
             if (CurrentSurvey == null)
                 return;
-            if (CurrentSurvey.AnswersGiven >= CurrentSurvey.AnswersNeeded)
+            var question = GetNextQuestion(CurrentSurvey);
+            if (question == null || CurrentSurvey.IntrospectionQuestion.Any(q => DatabankCommunication.SearchAnswers("Introspection", q)))
             {
                 ShowNextIntrospectionPage();
                 return;
             }
-            var question = GetNextQuestion(CurrentSurvey);
             //TODO: Check for existence of correct constructor
             var newPage = (ISurveyPage)Activator.CreateInstance(CurrentSurvey.SurveyPageType, new object[] { question, CurrentSurvey.AnswersGiven, CurrentSurvey.AnswersNeeded });
             newPage.PageFinished += NewPage_PageFinished;
             Navigation.PushAsync(newPage as ContentPage);
         }
 
-        private void NewPage_PageFinished(object sender, EventArgs e)
+        private void NewPage_PageFinished(object sender, PageResult e)
         {
+            if (e == PageResult.Evaluation && CurrentSurvey.AnswersGiven < CurrentSurvey.AnswersNeeded)
+                return;
             var surveyPage = sender as ISurveyPage;
             surveyPage.PageFinished -= NewPage_PageFinished;
             Navigation.PopAsync();
-            bool aborted = surveyPage.AnswerItem == null;
-            if (aborted)
+            if (e == PageResult.Abort)
             {
                 CurrentSurvey = null;
                 return;
             }
+            if (e == PageResult.Evaluation)
+            {
+                ShowNextIntrospectionPage();
+                return;
+            }
+
+            DatabankCommunication.AddAnswer(CurrentSurvey.Id, surveyPage.AnswerItem);
             CurrentSurvey.AnswersGiven++;
 
             bool answerRight = surveyPage.AnswerItem.EvaluateScore() > .75f;
@@ -93,8 +101,6 @@ namespace MobileDataCollection.Survey.Models
                 CurrentSurvey.CurrentDifficulty = Math.Min(3, CurrentSurvey.CurrentDifficulty + 1);
                 CurrentSurvey.Streak = 0;
             }
-
-            DatabankCommunication.AddAnswer(CurrentSurvey.Id, surveyPage.AnswerItem);
             ShowNewSurveyPage();
         }
 
@@ -114,7 +120,7 @@ namespace MobileDataCollection.Survey.Models
             Navigation.PushAsync(introspectionPage);
         }
 
-        private void IntrospectionPage_PageFinished(object sender, EventArgs e)
+        private void IntrospectionPage_PageFinished(object sender, PageResult e)
         {
             var introspectionPage = sender as IntrospectionPage;
             introspectionPage.PageFinished -= IntrospectionPage_PageFinished;

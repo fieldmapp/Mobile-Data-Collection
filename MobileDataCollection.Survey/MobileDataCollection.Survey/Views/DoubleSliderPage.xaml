@@ -74,10 +74,10 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Text="Abbrechen" FontSize="Medium"
+            <Button Text="Auswertung" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
                     TextColor="{StaticResource TextColor}"
-                    Clicked="OnAbbrechenButtonClicked"/>
+                    Clicked="OnAuswertungButtonClicked"/>
             <Button Grid.Column="1"
                     Text="Weiter" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
