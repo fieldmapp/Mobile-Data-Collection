@@ -41,6 +41,7 @@ namespace MobileDataCollection.Survey.Models
                     return;
                 CurrentSurvey = selectedSurvey;
             }
+            Navigation.PushAsync(new LoadingPage(), false);
             if (CurrentSurvey.AnswersGiven >= CurrentSurvey.AnswersNeeded)
             {
                 ShowEvaluationPage();
@@ -75,6 +76,7 @@ namespace MobileDataCollection.Survey.Models
             if (e == PageResult.Abort)
             {
                 CurrentSurvey = null;
+                Navigation.PopAsync();
                 return;
             }
             if (e == PageResult.Evaluation)
@@ -129,6 +131,7 @@ namespace MobileDataCollection.Survey.Models
             if (aborted)
             {
                 CurrentSurvey = null;
+                Navigation.PopAsync();
                 return;
             }
             DatabankCommunication.AddAnswer("Introspection", introspectionPage.AnswerItem);
@@ -139,11 +142,19 @@ namespace MobileDataCollection.Survey.Models
         {
             var evalItem = GenerateEvaluationItem(CurrentSurvey);
             var evaluationPage = new EvaluationPage(evalItem);
+            evaluationPage.PageFinished += EvaluationPage_PageFinished;
             Navigation.PushAsync(evaluationPage);
             CurrentSurvey = null;
             DatabankCommunication.SaveSurveyMenuItemsTxt(MainPage.GetAllSurveyMenuItem());
             DatabankCommunication.SaveAllAnswersInTxt();
             DatabankCommunication.CreateCSV();
+        }
+
+        private void EvaluationPage_PageFinished(object sender, EventArgs e)
+        {
+            (sender as EvaluationPage).PageFinished -= EvaluationPage_PageFinished;
+            Navigation.PopAsync();
+            Navigation.PopAsync();
         }
 
         public EvaluationItem GenerateEvaluationItem(SurveyMenuItem survey)

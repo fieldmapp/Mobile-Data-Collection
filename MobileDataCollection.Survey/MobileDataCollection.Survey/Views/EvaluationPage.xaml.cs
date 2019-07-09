@@ -46,6 +46,7 @@ namespace MobileDataCollection.Survey.Views
         }
 
         private EvaluationItem EvaluationItem;
+        public event EventHandler PageFinished;
 
         public EvaluationPage(EvaluationItem evalItem)
         {
@@ -60,6 +61,12 @@ namespace MobileDataCollection.Survey.Views
         void DetailsClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new EvaluationDetailsPage(EvaluationItem.PercentEasy,EvaluationItem.PercentMedium,EvaluationItem.PercentHard));
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            PageFinished?.Invoke(this, null);
+            return true;
         }
     }
 }
