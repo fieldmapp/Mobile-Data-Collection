@@ -92,8 +92,7 @@ namespace MobileDataCollection.Survey.Models
                 CurrentSurvey.Streak = 0;
             }
 
-            else if (CurrentSurvey.Streak > 0 && answerRight)
-                DatabankCommunication.AddAnswer(CurrentSurvey.Id.ToString(), surveyPage.AnswerItem);
+            DatabankCommunication.AddAnswer(CurrentSurvey.Id.ToString(), surveyPage.AnswerItem);
             ShowNewSurveyPage();
         }
 
