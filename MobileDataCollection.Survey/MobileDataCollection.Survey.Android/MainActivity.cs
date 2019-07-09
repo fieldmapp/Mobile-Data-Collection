@@ -38,7 +38,8 @@ namespace MobileDataCollection.Survey.Droid
             {
                 // retrieve the current xamarin forms page instance
                 var currentpage = (ContentPage)Xamarin.Forms.Application.Current.MainPage.Navigation.NavigationStack.LastOrDefault();
-                currentpage.SendBackButtonPressed();
+                if (!currentpage.SendBackButtonPressed())
+                    return base.OnOptionsItemSelected(item);
                 return false;
             }
             else

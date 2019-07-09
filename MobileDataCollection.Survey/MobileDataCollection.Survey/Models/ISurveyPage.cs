@@ -5,10 +5,16 @@ using Xamarin.Forms;
 
 namespace MobileDataCollection.Survey.Models
 {
+    public enum PageResult
+    {
+        Continue,
+        Abort,
+        Evaluation
+    }
     interface ISurveyPage
     {
         IQuestionContent QuestionItem { get; }
         IUserAnswer AnswerItem { get; }
-        event EventHandler PageFinished;
+        event EventHandler<PageResult> PageFinished;
     }
 }

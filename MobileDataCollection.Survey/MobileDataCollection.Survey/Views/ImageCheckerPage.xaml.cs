@@ -65,7 +65,7 @@ namespace MobileDataCollection.Survey.Views
         /// </summary>
         Stopwatch stopwatch = new Stopwatch();
 
-        public event EventHandler PageFinished;
+        public event EventHandler<PageResult> PageFinished;
 
         public ImageCheckerPage(QuestionImageCheckerPage question, int answersGiven, int answersNeeded)
         {
@@ -117,24 +117,32 @@ namespace MobileDataCollection.Survey.Views
         void OnWeiterButtonClicked(object sender, EventArgs e)
         {
             var id = QuestionItem.InternId;
-            var im1Sel = PictureA.BorderColor == selectedColor ? 1 : 0; //in QuestionItem ist ImageCorrectAnswer, wie verwenden
+            var im1Sel = PictureA.BorderColor == selectedColor ? 1 : 0;
             var im2Sel = PictureB.BorderColor == selectedColor ? 1 : 0;
             var im3Sel = PictureC.BorderColor == selectedColor ? 1 : 0;
             var im4Sel = PictureD.BorderColor == selectedColor ? 1 : 0;
+
+            if(PictureA.BorderColor == nonSelectedColor && PictureB.BorderColor == nonSelectedColor 
+                && PictureC.BorderColor == nonSelectedColor && PictureD.BorderColor == nonSelectedColor)
+            {
+                DisplayAlert("Hinweis", "Bitte eine oder mehrere Auswahlen treffen", "OK");
+                return;
+            }
+
             AnswerItem = new AnswerImageCheckerPage(id, im1Sel, im2Sel, im3Sel, im4Sel);
-            PageFinished?.Invoke(this, null);
+            PageFinished?.Invoke(this, PageResult.Continue);
         }
         /// <summary>
         /// ???
         /// </summary>
-        void OnAbbrechenButtonClicked(object sender, EventArgs e)
+        void OnAuswertungButtonClicked(object sender, EventArgs e)
         {
-            PageFinished?.Invoke(this, null);
+            PageFinished?.Invoke(this, PageResult.Evaluation);
         }
 
         protected override bool OnBackButtonPressed()
         {
-            PageFinished?.Invoke(this, null);
+            PageFinished?.Invoke(this, PageResult.Abort);
             return true;
         }
     }

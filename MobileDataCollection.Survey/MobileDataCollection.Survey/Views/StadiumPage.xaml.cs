@@ -57,7 +57,7 @@ namespace MobileDataCollection.Survey.Views
 
         ObservableCollection<Plant> PlantCollection;
 
-        public event EventHandler PageFinished;
+        public event EventHandler<PageResult> PageFinished;
 
         public StadiumPage(QuestionStadiumPage question, int answersGiven, int answersNeeded)
 		{
@@ -73,38 +73,42 @@ namespace MobileDataCollection.Survey.Views
             PageFinished += StadiumPage_PageFinished;
         }
 
-        private void StadiumPage_PageFinished(object sender, EventArgs e)
+        private void StadiumPage_PageFinished(object sender, PageResult e)
         {
-            PlantInlinePicker.Reset();
-            StadiumInlinePicker.Reset();
+            if (e != PageResult.Evaluation)
+            {
+                PlantInlinePicker.Reset();
+                StadiumInlinePicker.Reset();
+            }
             PageFinished -= StadiumPage_PageFinished;
         }
 
         void OnWeiterButtonClicked(object sender, EventArgs e)
         {
-            //Gefixed in dem ich selectedStadium default auf 0 setze und nur wenn es ein StadiumInlinePicker.SelectedItem
-            //gibt, wird selectedStadium auf dessen Wert gesetzt
-            int selectedStadium = 0;//neu
-            if (StadiumInlinePicker.SelectedItem != null)//neu
-            {//neu
+            int selectedStadium = 0;
+            if (StadiumInlinePicker.SelectedItem != null)
+            {
                  selectedStadium = (StadiumInlinePicker.SelectedItem as StadiumSubItem).InternNumber;
-            } //neu
+            }
             var selectedPlant = (PlantInlinePicker.SelectedItem as Plant)?.InternLetter;
             if (selectedPlant == null || selectedStadium == 0)
+            {
+                DisplayAlert("Hinweis", "Bitte wähle sie jeweils eine Antwort aus", "OK");
                 return;
+            }
 
             AnswerItem = new AnswerStadiumPage(QuestionItem.InternId, selectedPlant, selectedStadium);
-            PageFinished?.Invoke(this, null);
+            PageFinished?.Invoke(this, PageResult.Continue);
         }
 
-        void OnAbbrechenButtonClicked(object sender, EventArgs e)
+        void OnAuswertungButtonClicked(object sender, EventArgs e)
         {
-            PageFinished?.Invoke(this, null);
+            PageFinished?.Invoke(this, PageResult.Evaluation);
         }
         
         protected override bool OnBackButtonPressed()
         {
-            PageFinished?.Invoke(this, null);
+            PageFinished?.Invoke(this, PageResult.Abort);
             return true;
         }
     }
