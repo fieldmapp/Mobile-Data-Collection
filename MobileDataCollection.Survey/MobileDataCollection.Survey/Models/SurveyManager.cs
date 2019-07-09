@@ -25,7 +25,7 @@ namespace MobileDataCollection.Survey.Models
         public IQuestionContent GetNextQuestion(SurveyMenuItem surveyType)
         {
             var neededType = surveyType.QuestionType;
-            var value = DatabankCommunication.LoadQuestion(surveyType.Id.ToString(), CurrentSurvey.CurrentDifficulty, false);
+            var value = DatabankCommunication.LoadQuestion(surveyType.Id, CurrentSurvey.CurrentDifficulty, false);
             if (value == null)
                 return null;
             return value;
@@ -92,7 +92,7 @@ namespace MobileDataCollection.Survey.Models
                 CurrentSurvey.Streak = 0;
             }
 
-            DatabankCommunication.AddAnswer(CurrentSurvey.Id.ToString(), surveyPage.AnswerItem);
+            DatabankCommunication.AddAnswer(CurrentSurvey.Id, surveyPage.AnswerItem);
             ShowNewSurveyPage();
         }
 
@@ -137,7 +137,7 @@ namespace MobileDataCollection.Survey.Models
 
         public EvaluationItem GenerateEvaluationItem(SurveyMenuItem survey)
         {
-            var surveyId = survey.Id.ToString();
+            var surveyId = survey.Id;
             var answeredQuestions = DatabankCommunication.GetAllQuestions(surveyId)
                 .Where(q => DatabankCommunication.SearchAnswers(surveyId, q.InternId));
             var answers = answeredQuestions.Select(q => DatabankCommunication.LoadAnswerById(surveyId, q.InternId));

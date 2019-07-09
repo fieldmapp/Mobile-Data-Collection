@@ -6,15 +6,9 @@ using System.Linq;
 
 namespace MobileDataCollection.Survey.Models
 {
-    public enum SurveyMenuItemType
-    {
-        ImageChecker,
-        DoubleSlider,
-        Stadium
-    }
     public class SurveyMenuItem : BindableObject
     {
-        public static readonly BindableProperty IdProperty = BindableProperty.Create(nameof(Id), typeof(SurveyMenuItemType), typeof(SurveyMenuItem), null, BindingMode.OneWay);
+        public static readonly BindableProperty IdProperty = BindableProperty.Create(nameof(Id), typeof(string), typeof(SurveyMenuItem), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty ChapterNameProperty = BindableProperty.Create(nameof(ChapterName), typeof(string), typeof(SurveyMenuItem), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty AnswersNeededProperty = BindableProperty.Create(nameof(AnswersNeeded), typeof(int), typeof(SurveyMenuItem), 0, BindingMode.OneWay);
         public static readonly BindableProperty MaximumQuestionNumberProperty = BindableProperty.Create(nameof(MaximumQuestionNumber), typeof(int), typeof(SurveyMenuItem), 0, BindingMode.OneWay);
@@ -24,9 +18,9 @@ namespace MobileDataCollection.Survey.Models
         public static readonly BindableProperty ProgressStringProperty = BindableProperty.Create(nameof(ProgressString), typeof(string), typeof(SurveyMenuItem), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty IntrospectionQuestionProperty = BindableProperty.Create(nameof(IntrospectionQuestion), typeof(List<int>), typeof(SurveyMenuItem), new List<int>());
         
-        public SurveyMenuItemType Id
+        public string Id
         {
-            get => (SurveyMenuItemType)GetValue(IdProperty);
+            get => (string)GetValue(IdProperty);
             set => SetValue(IdProperty, value);
         }
 
@@ -101,7 +95,7 @@ namespace MobileDataCollection.Survey.Models
 
         public Type SurveyPageType { get; }
 
-        public SurveyMenuItem(SurveyMenuItemType id, string chapterName, int answersNeeded, int maximumQuestionNumber, int answersGiven, bool unlocked, Color backgroundColor, List<int> introspectionQuestions)
+        public SurveyMenuItem(string id, string chapterName, int answersNeeded, int maximumQuestionNumber, int answersGiven, bool unlocked, Color backgroundColor, List<int> introspectionQuestions)
         {
             Id = id;
             ChapterName = chapterName;
