@@ -16,10 +16,12 @@ namespace MobileDataCollection.Survey.Models
     {
         INavigation Navigation;
         SurveyMenuItem CurrentSurvey;
+        MainPage MainPage;
 
-        public SurveyManager(INavigation navigation)
+        public SurveyManager(INavigation navigation, MainPage mainPage)
         {
             Navigation = navigation;
+            MainPage = mainPage;
         }
 
         public IQuestionContent GetNextQuestion(SurveyMenuItem surveyType)
@@ -133,6 +135,9 @@ namespace MobileDataCollection.Survey.Models
             var evaluationPage = new EvaluationPage(evalItem);
             Navigation.PushAsync(evaluationPage);
             CurrentSurvey = null;
+            DatabankCommunication.SaveSurveyMenuItemsTxt(MainPage.GetAllSurveyMenuItem());
+            DatabankCommunication.SaveAllAnswersInTxt();
+            DatabankCommunication.CreateCSV();
         }
 
         public EvaluationItem GenerateEvaluationItem(SurveyMenuItem survey)

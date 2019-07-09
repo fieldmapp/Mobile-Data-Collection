@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Drawing;
 
 namespace MobileDataCollection.Survey.Models
 {
@@ -36,10 +37,29 @@ namespace MobileDataCollection.Survey.Models
             questionsProvider = provider;
             CreateQuestionsFromTxt();
             CreateAllNotExistingAnswerTxt();
-            //ExampleAnswers();
+            CreateNotExistingSurveyMenuItemsTxt();
+
+            //ResetAnswersAndSurveyMenuItemsTxt();
+
             LoadAllAnswersFromTxt();
-            SaveAllAnswersInTxt();
-            CreateCSV();
+            LoadSurveyMenuItemsFromTxt();
+        }
+
+        public static void ResetAnswersAndSurveyMenuItemsTxt()
+        {
+            ResetAllAnswersTxt();
+            SaveSurveyMenuItemsTxt(getStandardSurveyMenuItems());
+        }
+
+        public static List<SurveyMenuItem> getStandardSurveyMenuItems()
+        {
+            List<SurveyMenuItem> Items = new List<SurveyMenuItem>()
+            {
+                new SurveyMenuItem("DoubleSlider", "Bedeckungsgrade", 4, 18, 0, true, Color.White, new List<int>{3,4}),
+                new SurveyMenuItem("ImageChecker", "Sortenerkennung", 2, 25, 0, true, Color.White, new List<int>{2}),
+                new SurveyMenuItem("Stadium", "Wuchsstadien", 6, 12, 0, true, Color.White, new List<int>{1})
+            };
+            return Items;
         }
 
         /// <summary>
@@ -310,19 +330,21 @@ namespace MobileDataCollection.Survey.Models
             return new List<IQuestionContent>
             {
                 //TODO: Add Support for multiple correkt answers (as seen in original survey 1 stadium answer 3)
-                new QuestionStadiumPage(1, 1, "Stadium_one_question1.png", stadiums1.ToList(), plants1.ToList(), 1, "A"),
+                new QuestionStadiumPage(1, 1, "Stadium_one_question1.png", stadiums1.ToList(), plants1.ToList(), 1, "C"),
                 new QuestionStadiumPage(2, 1, "Stadium_one_question2.png", stadiums1.ToList(), plants1.ToList(), 1, "D"),
-                new QuestionStadiumPage(3, 1, "Stadium_one_question3.png", stadiums1.ToList(), plants1.ToList(), 1, "B"),
+                new QuestionStadiumPage(3, 1, "Stadium_one_question3.png", stadiums1.ToList(), plants1.ToList(), 1, "B"), // wrong picture needs replacement, ask Frau Truckenbrodt
                 new QuestionStadiumPage(4, 1, "Stadium_one_question4.png", stadiums1.ToList(), plants1.ToList(), 1, "A"),
                 new QuestionStadiumPage(5, 1, "Stadium_one_question5.png", stadiums1.ToList(), plants1.ToList(), 3, "C"),
                 new QuestionStadiumPage(6, 1, "Stadium_one_question6.png", stadiums1.ToList(), plants1.ToList(), 2, "C"),
+
                 new QuestionStadiumPage(7, 2, "Stadium_two_question1.png", stadiums2.ToList(), plants2.ToList(), 5, "B"),
                 new QuestionStadiumPage(8, 2, "Stadium_two_question2.png", stadiums2.ToList(), plants2.ToList(), 4, "C"),
                 new QuestionStadiumPage(9, 2, "Stadium_two_question3.png", stadiums2.ToList(), plants2.ToList(), 5, "C"),
                 new QuestionStadiumPage(10, 2, "Stadium_two_question4.png", stadiums2.ToList(), plants2.ToList(), 1, "B"),
                 new QuestionStadiumPage(11, 2, "Stadium_two_question5.png", stadiums2.ToList(), plants2.ToList(), 2, "C"),
                 new QuestionStadiumPage(12, 2, "Stadium_two_question6.png", stadiums2.ToList(), plants2.ToList(), 3, "A"),
-                new QuestionStadiumPage(13, 3, "Stadium_three_question1.png", stadiums3.ToList(), plants3.ToList(), 2, "E"),
+
+                new QuestionStadiumPage(13, 3, "Stadium_three_question1.png", stadiums3.ToList(), plants3.ToList(), 2, "E"), // wrong picture needs replacement, ask Frau Truckenbrodt
                 new QuestionStadiumPage(14, 3, "Stadium_three_question2.png", stadiums3.ToList(), plants3.ToList(), 4, "D"),
                 new QuestionStadiumPage(15, 3, "Stadium_three_question3.png", stadiums3.ToList(), plants3.ToList(), 3, "B"),
                 new QuestionStadiumPage(16, 3, "Stadium_three_question4.png", stadiums3.ToList(), plants3.ToList(), 3, "A"),
@@ -447,6 +469,123 @@ namespace MobileDataCollection.Survey.Models
                 new AnswerStadiumPage(1,"A",1),
                 new AnswerStadiumPage(2,"A",2)
             };
+        }
+        /// <summary>
+        /// Creates a set of example SurveyMenuItems for testing purposes
+        /// Overrides existing SurveyMenuItems 
+        /// </summary>
+        public static void ExampleSurveyMenuItems()
+        {
+            List<SurveyMenuItem> list =  new List<SurveyMenuItem>
+            {
+                new SurveyMenuItem("DoubleSlider", "Bedeckungsgrade", 4, 18, 0, true, Color.White, new List<int>{3,4}),
+                new SurveyMenuItem("ImageChecker", "Sortenerkennung", 2, 25, 0, true, Color.White, new List<int>{2}),
+                new SurveyMenuItem("Stadium", "Wuchsstadien", 6, 12, 0, true, Color.White, new List<int>{1})
+            };
+
+            SaveSurveyMenuItemsTxt(list);
+        }
+
+        /// <summary>
+        /// Creates SurveyMenuItems.txt and writes "END_SURVEYMENUITEMS", if it doesnt already exist
+        /// </summary>
+        public static void CreateNotExistingSurveyMenuItemsTxt()
+        {
+            /// get filepath
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string filename = Path.Combine(path, "SurveyMenuItems.txt");
+
+            if (!File.Exists(filename))
+            {
+                /// If file doesnt exist, then create one
+                SaveSurveyMenuItemsTxt(getStandardSurveyMenuItems());
+            }
+        }
+
+        /// <summary>
+        /// Resets the SurveyMenuItems.txt file
+        /// </summary>
+        public static void ResetSurveyMenuItemsTxt()
+        {
+            /// get filepath
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string filename = Path.Combine(path, "SurveyMenuItems.txt");
+            File.WriteAllText(filename, "END_SURVEYMENUITEMS");
+        }
+        /// <summary>
+        /// Saves each SurveyMenuItem as text in SurveyMenuItems.txt
+        /// </summary>
+        public static void SaveSurveyMenuItemsTxt(List<SurveyMenuItem> ListSurveyMenuItems)
+        {
+            string text = "";
+            foreach(SurveyMenuItem item in ListSurveyMenuItems)
+            {
+                /// write each object in own line
+                text += item.Id + ";";
+                text += item.ChapterName + ";";
+                text += item.AnswersNeeded + ";";
+                text += item.MaximumQuestionNumber + ";";
+                text += item.AnswersGiven + ";";
+                text += item.Unlocked + ";";
+                text += item.BackgroundColor.R + "," + item.BackgroundColor.G + "," + item.BackgroundColor.B + ";";
+                foreach(int id in item.IntrospectionQuestion)
+                {
+                    /// list is one Attribute, the int in the list are seperated with ","
+                    text += id + ",";
+                }
+                text = text.Remove(text.Length-1);
+                text += "\n";
+            }
+            text += "END_SURVEYMENUITEMS";
+
+            /// get filepath
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string filename = Path.Combine(path, "SurveyMenuItems.txt");
+
+            /// write text in file
+            File.WriteAllText(filename, text);
+        }
+
+        /// <summary>
+        /// Loads SurveyMenuItems from SurveyMenuItems.txt
+        /// Returns a List containing all loaded elements
+        /// </summary>
+        /// <returns></returns>
+        public static List<SurveyMenuItem> LoadSurveyMenuItemsFromTxt()
+        {
+            List<SurveyMenuItem> tempList = new List<SurveyMenuItem>();
+
+            /// get filepath
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string filename = Path.Combine(path, "SurveyMenuItems.txt");
+
+            /// read the  file
+            string content = File.ReadAllText(filename);
+            StringReader stringReader = new StringReader(content);
+            string line = stringReader.ReadLine();
+            while (!line.Equals("END_SURVEYMENUITEMS"))
+            {
+                /// decode each line
+                String[] attributes = line.Split(';');
+                string id = attributes[0];
+                string chapterName = attributes[1];
+                int answersNeeded = Convert.ToInt32(attributes[2]);
+                int maximumQuestionNumber = Convert.ToInt32(attributes[3]);
+                int answerGiven = Convert.ToInt32(attributes[4]);
+                bool unlocked = Convert.ToBoolean(attributes[5]);
+                //List<Double> colors = attributes[6].Split(',').Select(Double.Parse).ToList();
+                //Color background = Color.FromArgb(Convert.ToInt32(colors.ElementAt(0)),Convert.ToInt32(colors.ElementAt(1)),Convert.ToInt32(colors.ElementAt(2)));
+                Color background = Color.White;
+                List<int> introspectionQuestion = attributes[7].Split(',').Select(Int32.Parse).ToList();
+
+                /// create new object and add it to the list
+                SurveyMenuItem item = new SurveyMenuItem(id, chapterName, answersNeeded, maximumQuestionNumber, answerGiven, unlocked, background, introspectionQuestion);
+                tempList.Add(item);
+
+                /// read new line
+                line = stringReader.ReadLine();
+            }
+            return tempList;
         }
 
         /// <summary>
