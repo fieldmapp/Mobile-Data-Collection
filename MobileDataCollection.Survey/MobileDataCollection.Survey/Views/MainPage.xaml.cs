@@ -23,7 +23,7 @@ namespace MobileDataCollection.Survey.Views
         };
         SurveyManager SurveyManager;
         /// Constructor for the MainPage
-        public MainPage()
+        public MainPage(DatabankCommunication databankCommunication)
         {
             ///Initialize components
             InitializeComponent();

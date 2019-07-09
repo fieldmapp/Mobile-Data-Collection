@@ -1,4 +1,5 @@
-﻿using MobileDataCollection.Survey.Views;
+﻿using MobileDataCollection.Survey.Models;
+using MobileDataCollection.Survey.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,10 +11,10 @@ namespace MobileDataCollection.Survey
     {
         public NavigationPage Navigation;
 
-        public App()
+        public App(DatabankCommunication databankCommunication)
         {
             InitializeComponent();
-            MainPage = Navigation = new NavigationPage(new MainPage())
+            MainPage = Navigation = new NavigationPage(new MainPage(databankCommunication))
             {
                 BarBackgroundColor = Color.DarkSeaGreen,
                 BarTextColor = Color.White,
