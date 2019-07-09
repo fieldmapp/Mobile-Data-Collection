@@ -37,14 +37,29 @@ namespace MobileDataCollection.Survey.Models
             questionsProvider = provider;
             CreateQuestionsFromTxt();
             CreateAllNotExistingAnswerTxt();
+            CreateNotExistingSurveyMenuItemsTxt();
+
+            //ResetAnswersAndSurveyMenuItemsTxt();
+
+            LoadAllAnswersFromTxt();
+            LoadSurveyMenuItemsFromTxt();
+        }
+
+        public static void ResetAnswersAndSurveyMenuItemsTxt()
+        {
             ResetAllAnswersTxt();
+            SaveSurveyMenuItemsTxt(getStandardSurveyMenuItems());
+        }
 
-            ExampleAnswers();
-            ExampleSurveyMenuItems();
-
-            //LoadAllAnswersFromTxt();
-            //SaveAllAnswersInTxt();
-            //CreateCSV();
+        public static List<SurveyMenuItem> getStandardSurveyMenuItems()
+        {
+            List<SurveyMenuItem> Items = new List<SurveyMenuItem>()
+            {
+                new SurveyMenuItem("DoubleSlider", "Bedeckungsgrade", 4, 18, 0, true, Color.White, new List<int>{3,4}),
+                new SurveyMenuItem("ImageChecker", "Sortenerkennung", 2, 25, 0, true, Color.White, new List<int>{2}),
+                new SurveyMenuItem("Stadium", "Wuchsstadien", 6, 12, 0, true, Color.White, new List<int>{1})
+            };
+            return Items;
         }
 
         /// <summary>
@@ -483,7 +498,7 @@ namespace MobileDataCollection.Survey.Models
             if (!File.Exists(filename))
             {
                 /// If file doesnt exist, then create one
-                File.WriteAllText(filename, "END_SURVEYMENUITEMS");
+                SaveSurveyMenuItemsTxt(getStandardSurveyMenuItems());
             }
         }
 
@@ -548,7 +563,7 @@ namespace MobileDataCollection.Survey.Models
             string content = File.ReadAllText(filename);
             StringReader stringReader = new StringReader(content);
             string line = stringReader.ReadLine();
-            while (!line.Equals("END_SURVEYMENUITEMSS"))
+            while (!line.Equals("END_SURVEYMENUITEMS"))
             {
                 /// decode each line
                 String[] attributes = line.Split(';');
@@ -558,8 +573,9 @@ namespace MobileDataCollection.Survey.Models
                 int maximumQuestionNumber = Convert.ToInt32(attributes[3]);
                 int answerGiven = Convert.ToInt32(attributes[4]);
                 bool unlocked = Convert.ToBoolean(attributes[5]);
-                List<int> colors = attributes[6].Split(',').Select(Int32.Parse).ToList();
-                Color background = Color.FromArgb(colors.ElementAt(0),colors.ElementAt(1),colors.ElementAt(2));
+                //List<Double> colors = attributes[6].Split(',').Select(Double.Parse).ToList();
+                //Color background = Color.FromArgb(Convert.ToInt32(colors.ElementAt(0)),Convert.ToInt32(colors.ElementAt(1)),Convert.ToInt32(colors.ElementAt(2)));
+                Color background = Color.White;
                 List<int> introspectionQuestion = attributes[7].Split(',').Select(Int32.Parse).ToList();
 
                 /// create new object and add it to the list
