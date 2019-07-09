@@ -1,4 +1,5 @@
-﻿using MobileDataCollection.Survey.Views;
+﻿using MobileDataCollection.Survey.Models;
+using MobileDataCollection.Survey.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

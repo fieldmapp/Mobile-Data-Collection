@@ -6,25 +6,32 @@ using System.Text;
 
 namespace MobileDataCollection.Survey.Models
 {
-    public class DatabankCommunication
+    public static class DatabankCommunication
     {
+        /// <summary>
+        /// Used to create a randum number
+        /// </summary>
         static Random RandomNumber = new Random();
 
+        /// <summary>
+        /// Dictionary containng all lists to save the questions
+        /// </summary>
         private static Dictionary<string, List<IQuestionContent>> Questions = new Dictionary<string, List<IQuestionContent>>();
 
+        /// <summary>
+        /// Dictionary containing all lists to save the answers
+        /// </summary>
         private static Dictionary<string, List<IUserAnswer>> Answers = new Dictionary<string, List<IUserAnswer>>();
 
-        private IQuestionsProvider questionsProvider;
+        /// <summary>
+        /// Used to load questions
+        /// </summary>
+        private static IQuestionsProvider questionsProvider;
 
-
-        public DatabankCommunication()
-        {
-            CreateQuestions();
-        }
         /// <summary>
         /// Creates an DatabankCommunication with a QuestionProvider
         /// </summary>
-        public DatabankCommunication(IQuestionsProvider provider)
+        public static void Initilize(IQuestionsProvider provider)
         {
             questionsProvider = provider;
             CreateQuestionsFromTxt();
@@ -50,7 +57,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Creates all Questions, but loads these from the txt files
         /// </summary>
-        public void CreateQuestionsFromTxt()
+        public static void CreateQuestionsFromTxt()
         {
             Questions["ImageChecker"] = LoadQuestionsForImageCheckerFromTXT();
             Questions["DoubleSlider"] = LoadQuestionsForDoubleSliderFromTXT();
@@ -60,7 +67,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Loads all Answers from the txt files
         /// </summary>
-        public void LoadAllAnswersFromTxt()
+        public static void LoadAllAnswersFromTxt()
         {
             Answers["ImageChecker"] = LoadAnswersForImageCheckerPage();
             Answers["DoubleSlider"] = LoadAnswersForDoubleSliderPage();
@@ -72,7 +79,7 @@ namespace MobileDataCollection.Survey.Models
         /// Saves all Answers in txt files
         /// This will override the old files!
         /// </summary>
-        public void SaveAllAnswersInTxt()
+        public static void SaveAllAnswersInTxt()
         {
             SaveAnswersForImageCheckerPage();
             SaveAnswersForDoubleSliderPage();
@@ -83,7 +90,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Creates all txt files to save the answers
         /// </summary>
-        public void CreateAllNotExistingAnswerTxt()
+        public static void CreateAllNotExistingAnswerTxt()
         {
             CreateNotExistingAnswerTxt("ImageCheckerAnswers.txt");
             CreateNotExistingAnswerTxt("DoubleSliderAnswers.txt");
@@ -94,17 +101,22 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Creates a txt with the name of source, if it doesnt already exist
         /// </summary>
-        public void CreateNotExistingAnswerTxt(string source)
+        public static void CreateNotExistingAnswerTxt(string source)
         {
+            /// get filepath
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string filename = Path.Combine(path, source);
+            /// if file doenst exist, write it
             if(!File.Exists(filename))
             {
                 File.WriteAllText(filename,"END_ANSWERS");
             }
         }
 
-        public void ResetAllAnswersTxt()
+        /// <summary>
+        /// Resets all Answer Txt (only writes "END_ANSWERS")
+        /// </summary>
+        public static void ResetAllAnswersTxt()
         {
             ResetAnswerTxt("ImageCheckerAnswers.txt");
             ResetAnswerTxt("DoubleSliderAnswers.txt");
@@ -116,10 +128,12 @@ namespace MobileDataCollection.Survey.Models
         /// Writes only "END_ANSWERS" in source
         /// </summary>
         /// <param name="source"></param>
-        public void ResetAnswerTxt(string source)
+        public static void ResetAnswerTxt(string source)
         {
+            /// get filepath
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string filename = Path.Combine(path, source);
+            /// wirte file
             File.WriteAllText(filename, "END_ANSWERS");
         }
 
@@ -127,7 +141,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Creates Answers.csv with all Answers in one line 
         /// </summary>
-        public void CreateCSV()
+        public static void CreateCSV()
         {
             string explination = "UserCode,Date"; /// contains the explination for the data
             string data = "," + DateTime.Now.ToString("yyyy MM dd"); /// contains the data
@@ -140,7 +154,7 @@ namespace MobileDataCollection.Survey.Models
             /// write all Introspection Answers in one line
             foreach (QuestionIntrospectionPage question in Questions["Introspection"])
             {
-                explination += ",SelectedAnswer" + question.InternId;
+                explination += ",SelectedAnswerQuestion" + question.InternId;
                 if (SearchAnswers("Introspection", question.InternId))
                 {
                     AnswerIntrospectionPage answer = (AnswerIntrospectionPage)LoadAnswerById("Introspection", question.InternId);
@@ -148,13 +162,14 @@ namespace MobileDataCollection.Survey.Models
                 }
                 else
                 {
+                    /// no data is available for the question, therefor nothing is written in the field
                     data += ",";
                 }
             }
             /// write all ImageChecker Answers in one line
             foreach (QuestionImageCheckerPage question in Questions["ImageChecker"])
             {
-                explination += ",Difficulty " + question.InternId + ",Img1Sel,Img2Sel,Img3Sel,Img4Sel";
+                explination += ",DifficultyQuestion" + question.InternId + ",Img1SelQuestion" + question.InternId + ",Img2SelQuestion" + question.InternId + ",Img3SelQuestion" + question.InternId + ",Img4SelQuestion" + question.InternId;
                 if (SearchAnswers("ImageChecker", question.InternId))
                 {
                     AnswerImageCheckerPage answer = (AnswerImageCheckerPage) LoadAnswerById("ImageChecker", question.InternId);
@@ -162,13 +177,14 @@ namespace MobileDataCollection.Survey.Models
                 }
                 else
                 {
+                    /// no data is available for the question, therefor nothing is written in the fields
                     data += "," + question.Difficulty + ",,,,";
                 }
             }
             /// write all Stadium Answers in one line
             foreach (QuestionStadiumPage question in Questions["Stadium"])
             {
-                explination += ",Difficulty " + question.InternId + ",Stadium,FruitType";
+                explination += ",DifficultyQuestion" + question.InternId + ",StadiumQuestion" + question.InternId + ",FruitTypeQuestion" + question.InternId;
                 if (SearchAnswers("Stadium", question.InternId))
                 {
                     AnswerStadiumPage answer = (AnswerStadiumPage)LoadAnswerById("Stadium", question.InternId);
@@ -176,13 +192,14 @@ namespace MobileDataCollection.Survey.Models
                 }
                 else
                 {
+                    /// no data is available for the question, therefor nothig is written in the fields
                     data += "," + question.Difficulty + ",,";
                 }
             }
             /// write all DoubleSlider Answers in one line
             foreach (QuestionDoubleSliderPage question in Questions["DoubleSlider"])
             {
-                explination += ",Difficulty " + question.InternId + ",ResA,ResB";
+                explination += ",DifficultyQuestion" + question.InternId + ",ResAQuestion" + question.InternId + ",ResBQuestion" + question.InternId;
                 if (SearchAnswers("DoubleSlider", question.InternId))
                 {
                     AnswerDoubleSliderPage answer = (AnswerDoubleSliderPage)LoadAnswerById("DoubleSlider", question.InternId);
@@ -190,6 +207,7 @@ namespace MobileDataCollection.Survey.Models
                 }
                 else
                 {
+                    /// no data is avilable for the question, therefor nothing is written in the fields
                     data += "," + question.Difficulty + ",,";
                 }
             }
@@ -245,7 +263,7 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public static List<IQuestionContent> CreateQuestionsForStadium()
         {
-            // create needed lists for the questions
+            /// create needed lists for the questions
             var stadiums1 = new List<StadiumSubItem>
             {
                 new StadiumSubItem("Blattentwicklung", "stadium_blattentwicklung.png", 1),
@@ -333,30 +351,30 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public static IQuestionContent LoadQuestion(string surveyId, int difficulty, bool lowerDifficultyOk = true)
         {
-            var listQuestions = Questions[surveyId];
-            List<IQuestionContent> listQuestion = new List<IQuestionContent>();
-            for (int i = 0; i < listQuestions.Count; i++)
-            {
-                IQuestionContent question = listQuestions[i];
-                if (question.Difficulty == difficulty) // check if right difficulty
+            var listQuestions = Questions[surveyId]; /// list containing all questions
+            List<IQuestionContent> listAvailableQuestion = new List<IQuestionContent>(); /// list containing all available question
+            foreach(IQuestionContent question in listQuestions)
+            { 
+                if (question.Difficulty == difficulty) /// check if right difficulty
                 {
-                    if (!SearchAnswers(surveyId, question.InternId)) // check if not already answered
+                    if (!SearchAnswers(surveyId, question.InternId)) /// check if not already answered
                     {
-                        listQuestion.Add(question);
+                        /// question can be added to the list of available Question
+                        listAvailableQuestion.Add(question);
                     }
                 }
             }
-            if (listQuestion.Count > 0)
+            if (listAvailableQuestion.Count > 0)
             {
-                return listQuestion[RandomNumber.Next(listQuestion.Count)]; // return random question
+                return listAvailableQuestion[RandomNumber.Next(listAvailableQuestion.Count)]; /// return random question
             }
             if (difficulty == 1 || !lowerDifficultyOk)
             {
-                return null; // no more question available
+                return null; /// no more question available
             }
             else
             {
-                return LoadQuestion(surveyId, difficulty - 1); // look for question in lower difficulty
+                return LoadQuestion(surveyId, difficulty - 1); /// look for question in lower difficulty
             }
         }
 
@@ -401,10 +419,10 @@ namespace MobileDataCollection.Survey.Models
         }
 
         /// <summary>
-        /// Creates a set of example Answers for testing purposes
+        /// Creates a set of example answers for testing purposes
         /// Overrides old answer list
         /// </summary>
-        public void ExampleAnswers()
+        public static void ExampleAnswers()
         {
             Answers["ImageChecker"] = new List<IUserAnswer>
             {
@@ -435,23 +453,23 @@ namespace MobileDataCollection.Survey.Models
         /// Loads all questions for the ImageCheckerType from ImageCheckerQuestions.txt
         /// Returns a List containing these Questions
         /// </summary>
-        public List<IQuestionContent> LoadQuestionsForImageCheckerFromTXT()
+        public static List<IQuestionContent> LoadQuestionsForImageCheckerFromTXT()
         {
             List<IQuestionContent> tempList = new List<IQuestionContent>();
 
-            // Read text from the txt file
+            /// Read text from the txt file
             String Text = questionsProvider.LoadTextFromTXT("ImageCheckerQuestions.txt");
             StringReader stringReader = new StringReader(Text);
             String Line = stringReader.ReadLine();
 
             
-            while (!(Line.Equals("END_QUESTIONS"))) // for each line
+            while (!(Line.Equals("END_QUESTIONS"))) /// for each line
             {
-                // split line by ';'
+                /// split line by ';'
                 String[] attributes = Line.Split(';');
 
-                // attributes should now contain all the needed information, but only in Strings
-                // convert information in right data type
+                /// attributes should now contain all the needed information, but only in Strings
+                /// convert information in right data type
                 int id = Convert.ToInt32(attributes[0]);
                 string questionText = attributes[1];
                 int difficulty = Convert.ToInt32(attributes[2]);
@@ -464,10 +482,11 @@ namespace MobileDataCollection.Survey.Models
                 string img3Sour = attributes[9];
                 string img4Sour = attributes[10];
 
-                // create new Qobject and add to the list
+                /// create new Qobject and add to the list
                 QuestionImageCheckerPage question = new QuestionImageCheckerPage(id, questionText, difficulty, img1Corr, img2Corr, img3Corr, img4Corr, img1Sour, img2Sour, img3Sour, img4Sour);
                 tempList.Add(question);
 
+                /// read new line
                 Line = stringReader.ReadLine();
             }
             return tempList;
@@ -477,11 +496,11 @@ namespace MobileDataCollection.Survey.Models
         /// Saves the answers from ListAnswerImageCheckerPage in ImageCheckerAnswers.txt
         /// every answer is saved as an own line in the txt: int id;int img1Selected;int img2Selected;int img3Selected;int img4Selected
         /// The answers end with "END_ANSWERS"
-        /// This will override the old file
+        /// This will override the old file!
         /// </summary>
-        public void SaveAnswersForImageCheckerPage()
+        public static void SaveAnswersForImageCheckerPage()
         {
-            // save the answers as seperate lines
+            /// save the answers as seperate lines
             string text = "";
             foreach(AnswerImageCheckerPage answer in Answers["ImageChecker"])
             {
@@ -493,11 +512,11 @@ namespace MobileDataCollection.Survey.Models
             }
             text += "END_ANSWERS";
 
-            // get filepath
+            /// get filepath
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string filename = Path.Combine(path, "ImageCheckerAnswers.txt");
 
-            // write text in file
+            /// write text in file
             File.WriteAllText(filename, text);
         }
 
@@ -505,31 +524,32 @@ namespace MobileDataCollection.Survey.Models
         /// Loads all Answers for the AnswerImageCheckerPage from ImageCheckerAnswer.txt
         /// </summary>
         /// <returns>List with all Answers</returns>
-        public List<IUserAnswer> LoadAnswersForImageCheckerPage()
+        public static List<IUserAnswer> LoadAnswersForImageCheckerPage()
         {
             List<IUserAnswer> tempList = new List<IUserAnswer>();
 
-            // get filepath
+            /// get filepath
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string filename = Path.Combine(path, "ImageCheckerAnswers.txt");
 
-            // read the  file
+            /// read the  file
             string content = File.ReadAllText(filename);
             StringReader stringReader = new StringReader(content);
             string line = stringReader.ReadLine();
             while (!line.Equals("END_ANSWERS"))
             {
-                // decode each line
+                /// decode each line
                 String[] attributes = line.Split(';');
                 int id = Convert.ToInt32(attributes[0]);
                 int img1Sel = Convert.ToInt32(attributes[1]);
                 int img2Sel = Convert.ToInt32(attributes[2]);
                 int img3Sel = Convert.ToInt32(attributes[3]);
                 int img4Sel = Convert.ToInt32(attributes[4]);
-                // create new object and add it to the list
+                /// create new object and add it to the list
                 AnswerImageCheckerPage answer = new AnswerImageCheckerPage(id, img1Sel, img2Sel, img3Sel, img4Sel);
                 tempList.Add(answer);
 
+                /// read new line
                 line = stringReader.ReadLine();
             }
             return tempList;
@@ -539,17 +559,17 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Loads all questions for the DoubleSliderType from DoubleSliderQuestions.txt
         /// </summary>
-        public List<IQuestionContent> LoadQuestionsForDoubleSliderFromTXT()
+        public static List<IQuestionContent> LoadQuestionsForDoubleSliderFromTXT()
         {
             List<IQuestionContent> tempList = new List<IQuestionContent>();
 
-            // get text from txt file
+            /// get text from txt file
             String Text = questionsProvider.LoadTextFromTXT("DoubleSliderQuestions.txt");
             StringReader stringReader = new StringReader(Text);
             String Line = stringReader.ReadLine();
             while (!(Line.Equals("END_QUESTIONS")))
             {
-                // decode each line
+                /// decode each line
                 String[] attributes = Line.Split(';');
 
                 int id = Convert.ToInt32(attributes[0]);
@@ -558,11 +578,11 @@ namespace MobileDataCollection.Survey.Models
                 int ans1 = Convert.ToInt32(attributes[3]);
                 int ans2 = Convert.ToInt32(attributes[4]);
 
-                // create new object and add it to the list
+                /// create new object and add it to the list
                 QuestionDoubleSliderPage question = new QuestionDoubleSliderPage(id, difficulty, imgSour, ans1, ans2);
                 tempList.Add(question);
 
-                // read new line
+                /// read new line
                 Line = stringReader.ReadLine();
             }
             return tempList;
@@ -572,11 +592,11 @@ namespace MobileDataCollection.Survey.Models
         /// Saves the answers from ListAnswerDoubleSliderPage in DoubleSliderAnswers.txt
         /// every answer is saved as an own line in the txt: int id;int ResultQuestionA;int ResultQuestionB
         /// The answers end with "END_ANSWERS"
-        /// This will override the old file
+        /// This will override the old file!
         /// </summary>
-        public void SaveAnswersForDoubleSliderPage()
+        public static void SaveAnswersForDoubleSliderPage()
         {
-            // save each answer as a line
+            /// save each answer as a line
             string text = "";
             foreach (AnswerDoubleSliderPage answer in Answers["DoubleSlider"])
             {
@@ -586,11 +606,11 @@ namespace MobileDataCollection.Survey.Models
             }
             text += "END_ANSWERS";
 
-            // get filepath
+            /// get filepath
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string filename = Path.Combine(path, "DoubleSliderAnswers.txt");
 
-            // write text in file
+            /// write text in file
             File.WriteAllText(filename, text);
         }
 
@@ -598,30 +618,31 @@ namespace MobileDataCollection.Survey.Models
         /// Loads all Answers for the AnswerDoubleSliderPage from DoubleSliderAnswer.txt
         /// </summary>
         /// <returns>List with all Answers</returns>
-        public List<IUserAnswer> LoadAnswersForDoubleSliderPage()
+        public static List<IUserAnswer> LoadAnswersForDoubleSliderPage()
         {
             List<IUserAnswer> tempList = new List<IUserAnswer>();
 
-            // get filepath
+            /// get filepath
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string filename = Path.Combine(path, "DoubleSliderAnswers.txt");
 
-            // get text
+            /// get text
             string content = File.ReadAllText(filename);
             StringReader stringReader = new StringReader(content);
             string line = stringReader.ReadLine();
             while (!line.Equals("END_ANSWERS"))
             {
-                // decode each line
+                /// decode each line
                 String[] attributes = line.Split(';');
                 int id = Convert.ToInt32(attributes[0]);
                 int resA = Convert.ToInt32(attributes[1]);
                 int resB = Convert.ToInt32(attributes[2]);
 
-                // craete object and add it to the list
+                /// craete object and add it to the list
                 AnswerDoubleSliderPage answer = new AnswerDoubleSliderPage(id, resA, resB);
                 tempList.Add(answer);
 
+                /// read new line
                 line = stringReader.ReadLine();
             }
             return tempList;
@@ -630,14 +651,15 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Loads all questions for the StadiumType from StadiumQuestions.txt
         /// </summary>
-        public List<IQuestionContent> LoadQuestionsForStadiumFromTXT()
+        public static List<IQuestionContent> LoadQuestionsForStadiumFromTXT()
         {
-            // read text from txt file
+            /// read text from txt file
             String Text = questionsProvider.LoadTextFromTXT("StadiumQuestions.txt");
             StringReader stringReader = new StringReader(Text);
             String Line = stringReader.ReadLine();
 
-            // create needed lists for the questions
+            /// create needed lists for the questions
+            // TODO: Create a system to also store and load those 
             var stadiums1 = new List<StadiumSubItem>
             {
                 new StadiumSubItem("Blattentwicklung", "stadium_blattentwicklung.png", 1),
@@ -684,7 +706,7 @@ namespace MobileDataCollection.Survey.Models
             var tempList = new List<IQuestionContent>();
             while (!(Line.Equals("END_QUESTIONS")))
             {
-                // decode each line
+                /// decode each line
                 String[] attributes = Line.Split(';');
 
                 int id = Convert.ToInt32(attributes[0]);
@@ -695,6 +717,7 @@ namespace MobileDataCollection.Survey.Models
                 int stadiumCorr = Convert.ToInt32(attributes[5]);
                 string plantCorr = attributes[6];
 
+                /// give the question the right set of satdium and plant lists
                 var stadium = stadiums1;
                 var plant = plants1;
 
@@ -715,10 +738,11 @@ namespace MobileDataCollection.Survey.Models
                     plant = plants3;
                 }
 
-                // create new object and add it to the list
+                /// create new object and add it to the list
                 QuestionStadiumPage question = new QuestionStadiumPage(id, difficulty, imgSour, stadium, plant, stadiumCorr, plantCorr);
                 tempList.Add(question);
 
+                /// read new line
                 Line = stringReader.ReadLine();
             }
             return tempList;
@@ -728,11 +752,11 @@ namespace MobileDataCollection.Survey.Models
         /// Saves the answers from ListAnswerStadiumPage in StadiumAnswers.txt
         /// every answer is saved as an own line in the txt: int id;String AnswerFruitType;String AnswerStadium
         /// The answers end with "END_ANSWERS"
-        /// This will override the old file
+        /// This will override the old file!
         /// </summary>
-        public void SaveAnswersForStadiumPage()
+        public static void SaveAnswersForStadiumPage()
         {
-            // save each answer an an own line
+            /// save each answer an an own line
             string text = "";
             foreach (AnswerStadiumPage answer in Answers["Stadium"])
             {
@@ -742,11 +766,11 @@ namespace MobileDataCollection.Survey.Models
             }
             text += "END_ANSWERS";
 
-            // get filepath
+            /// get filepath
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string filename = Path.Combine(path, "StadiumAnswers.txt");
 
-            // write text in file
+            /// write text in file
             File.WriteAllText(filename, text);
         }
 
@@ -754,30 +778,31 @@ namespace MobileDataCollection.Survey.Models
         /// Loads all Answers for the AnswerStadiumPage from StadiumAnswer.txt
         /// </summary>
         /// <returns>List with all Answers</returns>
-        public List<IUserAnswer> LoadAnswersForStadiumPage()
+        public static List<IUserAnswer> LoadAnswersForStadiumPage()
         {
             List<IUserAnswer> tempList = new List<IUserAnswer>();
 
-            // get filepath
+            /// get filepath
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string filename = Path.Combine(path, "StadiumAnswers.txt");
 
-            // get text from txt file
+            /// get text from txt file
             string content = File.ReadAllText(filename);
             StringReader stringReader = new StringReader(content);
             string line = stringReader.ReadLine();
             while (!line.Equals("END_ANSWERS"))
             {
-                // decode each line
+                /// decode each line
                 String[] attributes = line.Split(';');
                 int id = Convert.ToInt32(attributes[0]);
                 String answerFruitType = attributes[1];
                 int anserStadium = Convert.ToInt32(attributes[2]);
 
-                // create new Object and add it to the list
+                /// create new Object and add it to the list
                 AnswerStadiumPage answer = new AnswerStadiumPage(id, answerFruitType, anserStadium);
                 tempList.Add(answer);
 
+                /// read new line
                 line = stringReader.ReadLine();
             }
             return tempList;
@@ -786,25 +811,26 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Loads all questions for the IntrospectionType from IntrospectionQuestions.txt
         /// </summary>
-        public List<IQuestionContent> LoadQuestionsForIntrospectionFromTXT()
+        public static List<IQuestionContent> LoadQuestionsForIntrospectionFromTXT()
         {
-            // get text
+            /// get text
             String Text = questionsProvider.LoadTextFromTXT("IntrospectionQuestions.txt");
             StringReader stringReader = new StringReader(Text);
             String Line = stringReader.ReadLine();
             var tempList = new List<IQuestionContent>();
             while (!(Line.Equals("END_QUESTIONS")))
             {
-                // decode each line
+                /// decode each line
                 String[] attributes = Line.Split(';');
 
                 int id = Convert.ToInt32(attributes[0]);
                 string questionText = attributes[1];
 
-                // create new object and add it to the list
+                /// create new object and add it to the list
                 QuestionIntrospectionPage question = new QuestionIntrospectionPage(id, questionText);
                 tempList.Add(question);
 
+                /// read new line
                 Line = stringReader.ReadLine();
             }
             return tempList;
@@ -814,11 +840,11 @@ namespace MobileDataCollection.Survey.Models
         /// Saves the answers from ListAnswerIntrospectionPage in IntrospectionAnswers.txt
         /// every answer is saved as an own line in the txt: int id;int SelectedAnswer
         /// The answers end with "END_ANSWERS"
-        /// This will override the old file
+        /// This will override the old file!
         /// </summary>
-        public void SaveAnswersForIntrospectionPage()
+        public static void SaveAnswersForIntrospectionPage()
         {
-            // save each answer as own line
+            /// save each answer as own line
             string text = "";
             foreach (AnswerIntrospectionPage answer in Answers["Introspection"])
             {
@@ -827,11 +853,11 @@ namespace MobileDataCollection.Survey.Models
             }
             text += "END_ANSWERS";
 
-            // get filepath
+            /// get filepath
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string filename = Path.Combine(path, "IntrospectionAnswers.txt");
 
-            // write text in txt file
+            /// write text in txt file
             File.WriteAllText(filename, text);
         }
 
@@ -839,26 +865,26 @@ namespace MobileDataCollection.Survey.Models
         /// Loads all Answers for the AnswerIntrospectionPage from IntrospectionAnswer.txt
         /// </summary>
         /// <returns>List with all Answers</returns>
-        public List<IUserAnswer> LoadAnswersForIntrospectionPage()
+        public static List<IUserAnswer> LoadAnswersForIntrospectionPage()
         {
             List<IUserAnswer> tempList = new List<IUserAnswer>();
 
-            // get filepath
+            /// get filepath
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string filename = Path.Combine(path, "IntrospectionAnswers.txt");
 
-            // get text from txt
+            /// get text from txt
             string content = File.ReadAllText(filename);
             StringReader stringReader = new StringReader(content);
             string line = stringReader.ReadLine();
             while (!line.Equals("END_ANSWERS"))
             {
-                // decode each line
+                /// decode each line
                 String[] attributes = line.Split(';');
                 int id = Convert.ToInt32(attributes[0]);
                 int selectedAnswer = Convert.ToInt32(attributes[1]);
 
-                // create new object and add it to the List
+                /// create new object and add it to the List
                 AnswerIntrospectionPage answer = new AnswerIntrospectionPage(id, selectedAnswer);
                 tempList.Add(answer);
 

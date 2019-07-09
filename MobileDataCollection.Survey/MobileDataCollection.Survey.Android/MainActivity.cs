@@ -18,7 +18,7 @@ namespace MobileDataCollection.Survey.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             AndroidQuestionProvider androidQuestionProvider = new AndroidQuestionProvider(this);
-            DatabankCommunication databankCommunication = new DatabankCommunication(androidQuestionProvider);
+            DatabankCommunication.Initilize(androidQuestionProvider);
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;

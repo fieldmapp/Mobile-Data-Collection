@@ -73,7 +73,13 @@ namespace MobileDataCollection.Survey.Views
         }
         void OnWeiterButtonClicked(object sender, EventArgs e)
         {
-            int selectedStadium = (StadiumInlinePicker.SelectedItem as StadiumSubItem).InternNumber;
+            //Gefixed in dem ich selectedStadium default auf 0 setze und nur wenn es ein StadiumInlinePicker.SelectedItem
+            //gibt, wird selectedStadium auf dessen Wert gesetzt
+            int selectedStadium = 0;//neu
+            if (StadiumInlinePicker.SelectedItem != null)//neu
+            {//neu
+                 selectedStadium = (StadiumInlinePicker.SelectedItem as StadiumSubItem).InternNumber;
+            } //neu
             var selectedPlant = (PlantInlinePicker.SelectedItem as Plant)?.InternLetter;
             if (selectedPlant == null || selectedStadium == 0)
                 return;
