@@ -30,12 +30,17 @@ namespace MobileDataCollection.Survey.Controls
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            Reset();
+            if (e.SelectedItem is IInlinePickerElement selected)
+                selected.BackgroundColor = SelectedColor;
+        }
+
+        public void Reset()
+        {
             foreach (var item in ItemSource.OfType<IInlinePickerElement>())
             {
                 item.BackgroundColor = Color.Transparent;
             }
-            if (e.SelectedItem is IInlinePickerElement selected)
-                selected.BackgroundColor = SelectedColor;
         }
     }
 }

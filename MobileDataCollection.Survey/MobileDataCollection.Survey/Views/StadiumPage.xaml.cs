@@ -70,7 +70,16 @@ namespace MobileDataCollection.Survey.Views
             PlantInlinePicker.ItemSource = PlantCollection;
             Header = $"Frage {answersGiven + 1}/{answersNeeded}";
             HeaderText.BindingContext = this;
+            PageFinished += StadiumPage_PageFinished;
         }
+
+        private void StadiumPage_PageFinished(object sender, EventArgs e)
+        {
+            PlantInlinePicker.Reset();
+            StadiumInlinePicker.Reset();
+            PageFinished -= StadiumPage_PageFinished;
+        }
+
         void OnWeiterButtonClicked(object sender, EventArgs e)
         {
             //Gefixed in dem ich selectedStadium default auf 0 setze und nur wenn es ein StadiumInlinePicker.SelectedItem
@@ -87,6 +96,7 @@ namespace MobileDataCollection.Survey.Views
             AnswerItem = new AnswerStadiumPage(QuestionItem.InternId, selectedPlant, selectedStadium);
             PageFinished?.Invoke(this, null);
         }
+
         void OnAbbrechenButtonClicked(object sender, EventArgs e)
         {
             PageFinished?.Invoke(this, null);
