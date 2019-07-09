@@ -42,7 +42,7 @@ namespace MobileDataCollection.Survey.Models
                 CurrentSurvey = selectedSurvey;
             }
             Navigation.PushAsync(new LoadingPage(), false);
-            if (CurrentSurvey.AnswersGiven >= CurrentSurvey.AnswersNeeded)
+            if (CurrentSurvey.IntrospectionQuestion.All(q => DatabankCommunication.SearchAnswers("Introspection", q)))
             {
                 ShowEvaluationPage();
                 return;
@@ -127,8 +127,7 @@ namespace MobileDataCollection.Survey.Models
             var introspectionPage = sender as IntrospectionPage;
             introspectionPage.PageFinished -= IntrospectionPage_PageFinished;
             Navigation.PopAsync();
-            bool aborted = introspectionPage.AnswerItem == null;
-            if (aborted)
+            if (e == PageResult.Abort)
             {
                 CurrentSurvey = null;
                 Navigation.PopAsync();
