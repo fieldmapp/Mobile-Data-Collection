@@ -21,7 +21,7 @@ namespace MobileDataCollection.Survey.Views
         public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem),  typeof(AnswerDoubleSliderPage), typeof(DoubleSliderPage), null, BindingMode.OneWay);
         public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(string), typeof(DoubleSliderPage), "demo", BindingMode.OneWay);
 
-        public event EventHandler PageFinished;
+        public event EventHandler<PageResult> PageFinished;
 
         /// <summary>
         /// Item of the given Question
@@ -98,16 +98,16 @@ namespace MobileDataCollection.Survey.Views
             }
 
             AnswerItem = new AnswerDoubleSliderPage(QuestionItem.InternId, answerA, answerB);
-            PageFinished?.Invoke(this, null);
+            PageFinished?.Invoke(this, PageResult.Continue);
         }
-        void OnAbbrechenButtonClicked(object sender, EventArgs e)
+        void OnAuswertungButtonClicked(object sender, EventArgs e)
         {
-            PageFinished?.Invoke(this, null);
+            PageFinished?.Invoke(this, PageResult.Evaluation);
         }
 
         protected override bool OnBackButtonPressed()
         {
-            PageFinished?.Invoke(this, null);
+            PageFinished?.Invoke(this, PageResult.Abort);
             return true;
         }
     }

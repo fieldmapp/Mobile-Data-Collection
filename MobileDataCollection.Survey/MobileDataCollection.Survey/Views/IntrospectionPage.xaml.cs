@@ -72,7 +72,7 @@ namespace MobileDataCollection.Survey.Views
 
         Dictionary<RadioButton, int> RadioButtonIndex;
 
-        public event EventHandler PageFinished;
+        public event EventHandler<PageResult> PageFinished;
 
         void OnWeiterButtonClicked(object sender, EventArgs e)
         {
@@ -84,17 +84,17 @@ namespace MobileDataCollection.Survey.Views
             }
 
             AnswerItem = new AnswerIntrospectionPage(QuestionItem.InternId, RadioButtonIndex[selectedRadioButton]);
-            PageFinished?.Invoke(this, null);
+            PageFinished?.Invoke(this, PageResult.Continue);
         }
 
-        void OnAbbrechenButtonClicked(object sender, EventArgs e)
+        void OnAuswertungButtonClicked(object sender, EventArgs e)
         {
-            PageFinished?.Invoke(this, null);
+            PageFinished?.Invoke(this, PageResult.Evaluation);
         }
 
         protected override bool OnBackButtonPressed()
         {
-            PageFinished?.Invoke(this, null);
+            PageFinished?.Invoke(this, PageResult.Abort);
             return true;
         }
     }

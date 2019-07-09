@@ -57,7 +57,7 @@ namespace MobileDataCollection.Survey.Views
 
         ObservableCollection<Plant> PlantCollection;
 
-        public event EventHandler PageFinished;
+        public event EventHandler<PageResult> PageFinished;
 
         public StadiumPage(QuestionStadiumPage question, int answersGiven, int answersNeeded)
 		{
@@ -73,10 +73,13 @@ namespace MobileDataCollection.Survey.Views
             PageFinished += StadiumPage_PageFinished;
         }
 
-        private void StadiumPage_PageFinished(object sender, EventArgs e)
+        private void StadiumPage_PageFinished(object sender, PageResult e)
         {
-            PlantInlinePicker.Reset();
-            StadiumInlinePicker.Reset();
+            if (e != PageResult.Evaluation)
+            {
+                PlantInlinePicker.Reset();
+                StadiumInlinePicker.Reset();
+            }
             PageFinished -= StadiumPage_PageFinished;
         }
 
@@ -95,17 +98,17 @@ namespace MobileDataCollection.Survey.Views
             }
 
             AnswerItem = new AnswerStadiumPage(QuestionItem.InternId, selectedPlant, selectedStadium);
-            PageFinished?.Invoke(this, null);
+            PageFinished?.Invoke(this, PageResult.Continue);
         }
 
-        void OnAbbrechenButtonClicked(object sender, EventArgs e)
+        void OnAuswertungButtonClicked(object sender, EventArgs e)
         {
-            PageFinished?.Invoke(this, null);
+            PageFinished?.Invoke(this, PageResult.Evaluation);
         }
         
         protected override bool OnBackButtonPressed()
         {
-            PageFinished?.Invoke(this, null);
+            PageFinished?.Invoke(this, PageResult.Abort);
             return true;
         }
     }
