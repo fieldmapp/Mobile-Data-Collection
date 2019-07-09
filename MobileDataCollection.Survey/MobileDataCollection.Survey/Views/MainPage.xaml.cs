@@ -44,7 +44,9 @@ namespace MobileDataCollection.Survey.Views
 
         private async void EvaluationClicked(object sender, ItemTappedEventArgs e)
         {
-            var evalItems = Items.Select(i => SurveyManager.GenerateEvaluationItem(i)).ToList();
+            var evalItems = Items.Select(i => i.IntrospectionQuestion.All(q => DatabankCommunication.SearchAnswers("Introspection", q)) ? 
+            SurveyManager.GenerateEvaluationItem(i) :
+            new EvaluationItem(i.ChapterName, -1, -1, -1, -1)).ToList();
             await Navigation.PushAsync(new EvaluationMainPage(evalItems));
         }
 
