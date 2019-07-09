@@ -17,9 +17,9 @@ namespace MobileDataCollection.Survey.Views
         /// </summary>
         public ObservableCollection<SurveyMenuItem> Items = new ObservableCollection<SurveyMenuItem>()
         {
-            new SurveyMenuItem(SurveyMenuItemType.DoubleSlider, "Bedeckungsgrade", 4, 18, 0, true, Color.White, new List<int>{3,4}),
-            new SurveyMenuItem(SurveyMenuItemType.ImageChecker, "Sortenerkennung", 2, 25, 0, true, Color.White, new List<int>{2}),
-            new SurveyMenuItem(SurveyMenuItemType.Stadium, "Wuchsstadien", 6, 12, 0, true, Color.White, new List<int>{1})
+            new SurveyMenuItem("DoubleSlider", "Bedeckungsgrade", 4, 18, 0, true, Color.White, new List<int>{3,4}),
+            new SurveyMenuItem("ImageChecker", "Sortenerkennung", 2, 25, 0, true, Color.White, new List<int>{2}),
+            new SurveyMenuItem("Stadium", "Wuchsstadien", 6, 12, 0, true, Color.White, new List<int>{1})
         };
         SurveyManager SurveyManager;
         /// Constructor for the MainPage
