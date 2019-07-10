@@ -12,7 +12,7 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Used to create a randum number
         /// </summary>
-        static Random RandomNumber = new Random();
+        private static Random RandomNumber = new Random();
 
         /// <summary>
         /// Dictionary containng all lists to save the questions
@@ -50,14 +50,14 @@ namespace MobileDataCollection.Survey.Models
         public static void ResetAnswersAndSurveyMenuItemsTxt()
         {
             ResetAllAnswersTxt();
-            SaveSurveyMenuItemsTxt(getDefaultSurveyMenuItems());
+            SaveSurveyMenuItemsTxt(GetDefaultSurveyMenuItems());
         }
 
         /// <summary>
         /// Creates a List with the deafult SurveymenuItems and retuns this list
         /// </summary>
         /// <returns></returns>
-        public static List<SurveyMenuItem> getDefaultSurveyMenuItems()
+        public static List<SurveyMenuItem> GetDefaultSurveyMenuItems()
         {
             List<SurveyMenuItem> Items = new List<SurveyMenuItem>()
             {
@@ -503,7 +503,7 @@ namespace MobileDataCollection.Survey.Models
             if (!File.Exists(filename))
             {
                 /// If file doesnt exist, then create one
-                SaveSurveyMenuItemsTxt(getDefaultSurveyMenuItems());
+                SaveSurveyMenuItemsTxt(GetDefaultSurveyMenuItems());
             }
         }
 
@@ -512,7 +512,7 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public static void ResetSurveyMenuItemsTxt()
         {
-            SaveSurveyMenuItemsTxt(getDefaultSurveyMenuItems());
+            SaveSurveyMenuItemsTxt(GetDefaultSurveyMenuItems());
         }
         /// <summary>
         /// Saves each SurveyMenuItem as text in SurveyMenuItems.txt
@@ -801,20 +801,20 @@ namespace MobileDataCollection.Survey.Models
 
             /// create needed lists for the questions
             // TODO: Create a system to also store and load those 
-            var stadiums1 = new List<StadiumSubItem>
+            List<StadiumSubItem> stadiums1 = new List<StadiumSubItem>
             {
                 new StadiumSubItem("Blattentwicklung", "stadium_blattentwicklung.png", 1),
                 new StadiumSubItem("Bestockung", "stadium_bestockung.png", 2),
                 new StadiumSubItem("Längenwachstum/Schossen", "stadium_laengenwachstumschossen.png", 3)
             };
-            var plants1 = new List<Plant>
+            List<Plant> plants1 = new List<Plant>
             {
                 new Plant("Kartoffel", "A"),
                 new Plant("Mais", "B"),
                 new Plant("Weizen", "C"),
                 new Plant("Zuckerrübe", "D")
             };
-            var stadiums2 = new List<StadiumSubItem>
+            List<StadiumSubItem> stadiums2 = new List<StadiumSubItem>
             {
                 new StadiumSubItem("Blattentwicklung", "stadium_blattentwicklung.png",1),
                 new StadiumSubItem("Schossen/Haupttrieb", "stadium_laengenwachstumschossen.png",2),
@@ -822,21 +822,21 @@ namespace MobileDataCollection.Survey.Models
                 new StadiumSubItem("Entwicklung der Blütenanlage", "stadium_entwicklungbluetenanlage.png",4),
                 new StadiumSubItem("Blüte", "bluete.png",5)
             };
-            var plants2 = new List<Plant>
+            List<Plant> plants2 = new List<Plant>
             {
                 new Plant("Gerste", "A"),
                 new Plant("Kartoffel", "B"),
                 new Plant("Raps", "C"),
                 new Plant("Weizen", "D")
             };
-            var stadiums3 = new List<StadiumSubItem>
+            List<StadiumSubItem> stadiums3 = new List<StadiumSubItem>
             {
                 new StadiumSubItem("Längenwachstum/Schossen", "stadium_laengenwachstumschossen.png", 1),
                 new StadiumSubItem("Entwicklung vegetativer Pflanzenteile/Rübenkörper", "stadium_entwicklungvegpflanzruebenk.png", 2),
                 new StadiumSubItem("Entwicklung der Blütenanlage", "stadium_entwicklungbluetenanlage.png", 3),
                 new StadiumSubItem("Fruchtentwicklung", "bluete.png", 4)
             };
-            var plants3 = new List<Plant>
+            List<Plant> plants3 = new List<Plant>
             {
                 new Plant("Kartoffel", "A"),
                 new Plant("Mais", "B"),
@@ -844,7 +844,7 @@ namespace MobileDataCollection.Survey.Models
                 new Plant("Weizen", "D"),
                 new Plant("Zuckerrübe", "E")
             };
-            var tempList = new List<IQuestionContent>();
+            List<IQuestionContent> tempList = new List<IQuestionContent>();
             while (!(Line.Equals("END_QUESTIONS")))
             {
                 /// decode each line
@@ -859,28 +859,55 @@ namespace MobileDataCollection.Survey.Models
                 string plantCorr = attributes[6];
 
                 /// give the question the right set of satdium and plant lists
-                var stadium = stadiums1;
-                var plant = plants1;
+                List<StadiumSubItem> ListStadium = new List<StadiumSubItem>();
+                foreach(StadiumSubItem item in stadiums1)
+                {
+                    ListStadium.Add(new StadiumSubItem(item));
+                }
+                List<Plant> ListPlant = new List<Plant>();
+                foreach(Plant plant in plants1)
+                {
+                    ListPlant.Add(new Plant(plant));
+                }
 
                 if (stadiumList.Equals("stadiums2"))
                 {
-                    stadium = stadiums2;
+                    ListStadium = new List<StadiumSubItem>();
+                    foreach (StadiumSubItem item in stadiums2)
+                    {
+                        ListStadium.Add(new StadiumSubItem(item));
+                    }
                 }
+
                 if (stadiumList.Equals("stadiums3"))
                 {
-                    stadium = stadiums3;
+                    ListStadium = new List<StadiumSubItem>();
+                    foreach (StadiumSubItem item in stadiums3)
+                    {
+                        ListStadium.Add(new StadiumSubItem(item));
+                    }
                 }
+
                 if (plantList.Equals("plants2"))
                 {
-                    plant = plants2;
+                    ListPlant = new List<Plant>();
+                    foreach (Plant plant in plants2)
+                    {
+                        ListPlant.Add(new Plant(plant));
+                    }
                 }
+
                 if (plantList.Equals("plants3"))
                 {
-                    plant = plants3;
+                    ListPlant = new List<Plant>();
+                    foreach (Plant plant in plants3)
+                    {
+                        ListPlant.Add(new Plant(plant));
+                    }
                 }
 
                 /// create new object and add it to the list
-                QuestionStadiumPage question = new QuestionStadiumPage(id, difficulty, imgSour, stadium, plant, stadiumCorr, plantCorr);
+                QuestionStadiumPage question = new QuestionStadiumPage(id, difficulty, imgSour, ListStadium, ListPlant, stadiumCorr, plantCorr);
                 tempList.Add(question);
 
                 /// read new line

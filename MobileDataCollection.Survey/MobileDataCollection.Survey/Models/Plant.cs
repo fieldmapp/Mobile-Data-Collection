@@ -47,5 +47,11 @@ namespace MobileDataCollection.Survey.Models
             Name = name;
             InternLetter = internLetter;
         }
+
+        public Plant(Plant plant)
+        {
+            Name = plant.Name;
+            InternLetter = plant.InternLetter;
+        }
     }
 }

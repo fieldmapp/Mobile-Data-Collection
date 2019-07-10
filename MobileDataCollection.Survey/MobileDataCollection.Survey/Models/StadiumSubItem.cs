@@ -60,5 +60,12 @@ namespace MobileDataCollection.Survey.Models
             ImageSource = imageSource;
             InternNumber = internNumber;
         }
+
+        public StadiumSubItem(StadiumSubItem item)
+        {
+            StadiumName = item.StadiumName;
+            ImageSource = item.ImageSource;
+            InternNumber = item.InternNumber;
+        }
     }
 }
