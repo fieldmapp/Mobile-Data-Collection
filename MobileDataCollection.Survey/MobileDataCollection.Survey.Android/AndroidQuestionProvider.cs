@@ -37,7 +37,7 @@ namespace MobileDataCollection.Survey.Droid
         /// </summary>
         /// <param name="sourceTxt"></param>
         /// <returns>returns all of the text from the txt file</returns>
-        public String LoadTextFromTXT(String sourceTxt)
+        public String LoadTextFromTxt(String sourceTxt)
         {
             AssetManager assetManager = Context.Assets;
             string content;

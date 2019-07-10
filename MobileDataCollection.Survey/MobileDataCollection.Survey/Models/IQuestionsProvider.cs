@@ -9,6 +9,6 @@ namespace MobileDataCollection.Survey.Models
     /// </summary>
     public interface IQuestionsProvider
     {
-        String LoadTextFromTXT(String sourceTxt);
+        String LoadTextFromTxt(String sourceTxt);
     }
 }

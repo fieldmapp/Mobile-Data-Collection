@@ -30,7 +30,7 @@ namespace MobileDataCollection.Survey.Models
         private static IQuestionsProvider questionsProvider;
 
         /// <summary>
-        /// Creates an DatabankCommunication with a QuestionProvider
+        /// Initializes the DatabankCommunication
         /// </summary>
         public static void Initilize(IQuestionsProvider provider)
         {
@@ -39,19 +39,25 @@ namespace MobileDataCollection.Survey.Models
             CreateAllNotExistingAnswerTxt();
             CreateNotExistingSurveyMenuItemsTxt();
 
-            //ResetAnswersAndSurveyMenuItemsTxt();
+            ResetAnswersAndSurveyMenuItemsTxt();
 
             LoadAllAnswersFromTxt();
-            LoadSurveyMenuItemsFromTxt();
         }
 
+        /// <summary>
+        /// Resets the Answer and SurveyMenuItem txt files
+        /// </summary>
         public static void ResetAnswersAndSurveyMenuItemsTxt()
         {
             ResetAllAnswersTxt();
-            SaveSurveyMenuItemsTxt(getStandardSurveyMenuItems());
+            SaveSurveyMenuItemsTxt(getDefaultSurveyMenuItems());
         }
 
-        public static List<SurveyMenuItem> getStandardSurveyMenuItems()
+        /// <summary>
+        /// Creates a List with the deafult SurveymenuItems and retuns this list
+        /// </summary>
+        /// <returns></returns>
+        public static List<SurveyMenuItem> getDefaultSurveyMenuItems()
         {
             List<SurveyMenuItem> Items = new List<SurveyMenuItem>()
             {
@@ -79,10 +85,10 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public static void CreateQuestionsFromTxt()
         {
-            Questions["ImageChecker"] = LoadQuestionsForImageCheckerFromTXT();
-            Questions["DoubleSlider"] = LoadQuestionsForDoubleSliderFromTXT();
-            Questions["Stadium"] = LoadQuestionsForStadiumFromTXT();
-            Questions["Introspection"] = LoadQuestionsForIntrospectionFromTXT();
+            Questions["ImageChecker"] = LoadQuestionsForImageCheckerFromTxt();
+            Questions["DoubleSlider"] = LoadQuestionsForDoubleSliderFromTxt();
+            Questions["Stadium"] = LoadQuestionsForStadiumFromTxt();
+            Questions["Introspection"] = LoadQuestionsForIntrospectionFromTxt();
         }
         /// <summary>
         /// Loads all Answers from the txt files
@@ -156,7 +162,6 @@ namespace MobileDataCollection.Survey.Models
             /// wirte file
             File.WriteAllText(filename, "END_ANSWERS");
         }
-
 
         /// <summary>
         /// Creates Answers.csv with all Answers in one line 
@@ -498,7 +503,7 @@ namespace MobileDataCollection.Survey.Models
             if (!File.Exists(filename))
             {
                 /// If file doesnt exist, then create one
-                SaveSurveyMenuItemsTxt(getStandardSurveyMenuItems());
+                SaveSurveyMenuItemsTxt(getDefaultSurveyMenuItems());
             }
         }
 
@@ -507,10 +512,7 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public static void ResetSurveyMenuItemsTxt()
         {
-            /// get filepath
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string filename = Path.Combine(path, "SurveyMenuItems.txt");
-            File.WriteAllText(filename, "END_SURVEYMENUITEMS");
+            SaveSurveyMenuItemsTxt(getDefaultSurveyMenuItems());
         }
         /// <summary>
         /// Saves each SurveyMenuItem as text in SurveyMenuItems.txt
@@ -592,12 +594,12 @@ namespace MobileDataCollection.Survey.Models
         /// Loads all questions for the ImageCheckerType from ImageCheckerQuestions.txt
         /// Returns a List containing these Questions
         /// </summary>
-        public static List<IQuestionContent> LoadQuestionsForImageCheckerFromTXT()
+        public static List<IQuestionContent> LoadQuestionsForImageCheckerFromTxt()
         {
             List<IQuestionContent> tempList = new List<IQuestionContent>();
 
             /// Read text from the txt file
-            String Text = questionsProvider.LoadTextFromTXT("ImageCheckerQuestions.txt");
+            String Text = questionsProvider.LoadTextFromTxt("ImageCheckerQuestions.txt");
             StringReader stringReader = new StringReader(Text);
             String Line = stringReader.ReadLine();
 
@@ -698,12 +700,12 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Loads all questions for the DoubleSliderType from DoubleSliderQuestions.txt
         /// </summary>
-        public static List<IQuestionContent> LoadQuestionsForDoubleSliderFromTXT()
+        public static List<IQuestionContent> LoadQuestionsForDoubleSliderFromTxt()
         {
             List<IQuestionContent> tempList = new List<IQuestionContent>();
 
             /// get text from txt file
-            String Text = questionsProvider.LoadTextFromTXT("DoubleSliderQuestions.txt");
+            String Text = questionsProvider.LoadTextFromTxt("DoubleSliderQuestions.txt");
             StringReader stringReader = new StringReader(Text);
             String Line = stringReader.ReadLine();
             while (!(Line.Equals("END_QUESTIONS")))
@@ -790,10 +792,10 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Loads all questions for the StadiumType from StadiumQuestions.txt
         /// </summary>
-        public static List<IQuestionContent> LoadQuestionsForStadiumFromTXT()
+        public static List<IQuestionContent> LoadQuestionsForStadiumFromTxt()
         {
             /// read text from txt file
-            String Text = questionsProvider.LoadTextFromTXT("StadiumQuestions.txt");
+            String Text = questionsProvider.LoadTextFromTxt("StadiumQuestions.txt");
             StringReader stringReader = new StringReader(Text);
             String Line = stringReader.ReadLine();
 
@@ -950,10 +952,10 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Loads all questions for the IntrospectionType from IntrospectionQuestions.txt
         /// </summary>
-        public static List<IQuestionContent> LoadQuestionsForIntrospectionFromTXT()
+        public static List<IQuestionContent> LoadQuestionsForIntrospectionFromTxt()
         {
             /// get text
-            String Text = questionsProvider.LoadTextFromTXT("IntrospectionQuestions.txt");
+            String Text = questionsProvider.LoadTextFromTxt("IntrospectionQuestions.txt");
             StringReader stringReader = new StringReader(Text);
             String Line = stringReader.ReadLine();
             var tempList = new List<IQuestionContent>();
