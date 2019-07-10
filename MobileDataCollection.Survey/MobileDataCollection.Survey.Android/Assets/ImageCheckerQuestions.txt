@@ -5,6 +5,7 @@
 5;Wo sehen sie die Feldfruchtsorte Kartoffel abgebildet?;3;1;0;1;0;ImageChecker_three_question5_picture1.png;ImageChecker_three_question5_picture2.png;ImageChecker_three_question5_picture3.png;ImageChecker_three_question5_picture4.png
 6;Wo sehen sie die Feldfruchtsorte Gerste abgebildet?;3;0;0;1;0;ImageChecker_three_question6_picture1.png;ImageChecker_three_question6_picture2.png;ImageChecker_three_question6_picture3.png;ImageChecker_three_question6_picture4.png
 END_QUESTIONS
+Main contributors: Henning Woydt
 here you can write documentation
 Questions are saved like this
 

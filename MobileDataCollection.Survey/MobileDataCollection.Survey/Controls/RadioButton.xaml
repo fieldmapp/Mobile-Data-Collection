@@ -1,4 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--Main contributors: Max Moebius-->
+<!--Altered from http://bsubramanyamraju.blogspot.com/2018/03/how-to-create-radiobutton-in_13.html -->
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="MobileDataCollection.Survey.Controls.RadioButton">

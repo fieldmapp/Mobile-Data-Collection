@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Main contributors: Maya Koehnen, Max Moebius
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;

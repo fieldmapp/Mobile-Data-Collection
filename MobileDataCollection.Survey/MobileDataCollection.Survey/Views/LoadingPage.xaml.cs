@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Main contributors: Maximilian Enderling
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

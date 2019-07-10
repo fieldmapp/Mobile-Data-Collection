@@ -17,6 +17,7 @@
 17;3;Stadium_three_question5.png;stadiums3;plants3;4;C
 18;3;Stadium_three_question6.png;stadiums3;plants3;1;D
 END_QUESTIONS
+Main contributors: Henning Woydt
 here you can write documentation
 Questions are saved like this
 

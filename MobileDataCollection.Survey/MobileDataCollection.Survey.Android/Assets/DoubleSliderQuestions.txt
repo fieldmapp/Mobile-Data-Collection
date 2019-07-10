@@ -11,6 +11,7 @@
 11;3;DoubleSlider_three_question3.png;80;5
 12;3;DoubleSlider_three_question4.png;76;99
 END_QUESTIONS
+Main contributors: Henning Woydt
 here you can write documentation
 Questions are saved like this
 

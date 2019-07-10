@@ -1,4 +1,5 @@
-﻿using MobileDataCollection.Survey.Views;
+﻿//Main contributors: Maximilian Enderling
+using MobileDataCollection.Survey.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

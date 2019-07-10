@@ -1,4 +1,5 @@
-﻿using MobileDataCollection.Survey.Models;
+﻿//Main contributors: Maya Koehnen
+using MobileDataCollection.Survey.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

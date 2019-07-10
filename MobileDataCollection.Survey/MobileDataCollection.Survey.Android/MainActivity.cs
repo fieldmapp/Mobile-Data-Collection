@@ -1,5 +1,5 @@
-﻿using System;
-
+﻿//Auto generated, Main contributors: Maximilian Enderling
+using System;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;

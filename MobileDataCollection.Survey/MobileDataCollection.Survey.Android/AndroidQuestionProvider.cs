@@ -1,9 +1,9 @@
-﻿using System;
+﻿//Main contributors: Henning Woydt
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.Content.Res;
