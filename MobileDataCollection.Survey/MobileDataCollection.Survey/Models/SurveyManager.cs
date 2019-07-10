@@ -88,7 +88,7 @@ namespace MobileDataCollection.Survey.Models
             DatabankCommunication.AddAnswer(CurrentSurvey.Id, surveyPage.AnswerItem);
             CurrentSurvey.AnswersGiven++;
 
-            bool answerRight = surveyPage.AnswerItem.EvaluateScore() > .75f;
+            bool answerRight = surveyPage.AnswerItem.EvaluateScore() > .85f;
             if (answerRight)
                 CurrentSurvey.Streak = CurrentSurvey.Streak <= 0 ? 1 : CurrentSurvey.Streak + 1;
             else
