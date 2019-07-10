@@ -92,7 +92,7 @@ namespace MobileDataCollection.Survey.Views
 
             if(sliderA.Value == 0 && sliderB.Value == 0 && !hintNoticed)
             {
-                DisplayAlert("Hinweis", "Ist ihre Auswahl so Inordnung?", "OK");
+                DisplayAlert("Hinweis", "Ist Ihre Auswahl so in Ordnung?", "OK");
                 hintNoticed = true;
                 return;
             }
