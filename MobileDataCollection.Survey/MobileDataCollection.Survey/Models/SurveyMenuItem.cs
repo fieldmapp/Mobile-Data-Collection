@@ -14,8 +14,6 @@ namespace MobileDataCollection.Survey.Models
         public static readonly BindableProperty AnswersNeededProperty = BindableProperty.Create(nameof(AnswersNeeded), typeof(int), typeof(SurveyMenuItem), 0, BindingMode.OneWay);
         public static readonly BindableProperty MaximumQuestionNumberProperty = BindableProperty.Create(nameof(MaximumQuestionNumber), typeof(int), typeof(SurveyMenuItem), 0, BindingMode.OneWay);
         public static readonly BindableProperty AnswersGivenProperty = BindableProperty.Create(nameof(AnswersGiven), typeof(int), typeof(SurveyMenuItem), 0, BindingMode.OneWay);
-        public static readonly BindableProperty UnlockedProperty = BindableProperty.Create(nameof(Unlocked), typeof(bool), typeof(SurveyMenuItem), false, BindingMode.OneWay);
-        public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(SurveyMenuItem), Color.White, BindingMode.OneWay);
         public static readonly BindableProperty ProgressStringProperty = BindableProperty.Create(nameof(ProgressString), typeof(string), typeof(SurveyMenuItem), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty IntrospectionQuestionProperty = BindableProperty.Create(nameof(IntrospectionQuestion), typeof(List<int>), typeof(SurveyMenuItem), new List<int>());
         
@@ -50,7 +48,7 @@ namespace MobileDataCollection.Survey.Models
         public int MaximumQuestionNumber
         {
             get => (int)GetValue(MaximumQuestionNumberProperty);
-            set
+            private set
             {
                 SetValue(MaximumQuestionNumberProperty, value);
                 UpdateProgressString();
@@ -67,12 +65,6 @@ namespace MobileDataCollection.Survey.Models
             }
         }
 
-        public bool Unlocked
-        {
-            get => (bool)GetValue(UnlockedProperty);
-            set => SetValue(UnlockedProperty, value);
-        }
-
         public string ProgressString
         {
             get => (string)GetValue(ProgressStringProperty);
@@ -80,12 +72,6 @@ namespace MobileDataCollection.Survey.Models
         }
         private string UpdateProgressString() => ProgressString = $"{AnswersGiven}/{AnswersNeeded} ({MaximumQuestionNumber})";
         
-        public Color BackgroundColor
-        {
-            get => (Color)GetValue(BackgroundColorProperty);
-            set => SetValue(BackgroundColorProperty, value);
-        }
-
         public int Streak { get; set; }
 
         public int CurrentDifficulty { get; set; }
@@ -96,17 +82,15 @@ namespace MobileDataCollection.Survey.Models
 
         public Type SurveyPageType { get; }
 
-        public SurveyMenuItem(string id, string chapterName, int answersNeeded, int maximumQuestionNumber, int answersGiven, bool unlocked, Color backgroundColor, List<int> introspectionQuestions)
+        public SurveyMenuItem(string id, string chapterName, int answersNeeded, int answersGiven, List<int> introspectionQuestions, int streak = 0)
         {
             Id = id;
             ChapterName = chapterName;
             AnswersNeeded = answersNeeded;
-            MaximumQuestionNumber = maximumQuestionNumber;
             AnswersGiven = answersGiven;
-            Unlocked = unlocked;
-            BackgroundColor = backgroundColor;
             IntrospectionQuestion = introspectionQuestions;
             CurrentDifficulty = 1;
+            MaximumQuestionNumber = DatabankCommunication.GetAllQuestions(id).Count;
 
             var nspace = typeof(App).Namespace;
             SurveyPageType = Type.GetType($"{nspace}.Views.{id.ToString()}Page");

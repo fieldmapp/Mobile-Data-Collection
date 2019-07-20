@@ -62,9 +62,9 @@ namespace MobileDataCollection.Survey.Models
         {
             List<SurveyMenuItem> Items = new List<SurveyMenuItem>()
             {
-                new SurveyMenuItem("DoubleSlider", "Bedeckungsgrade", 4, 18, 0, true, Color.White, new List<int>{3,4}),
-                new SurveyMenuItem("ImageChecker", "Sortenerkennung", 2, 25, 0, true, Color.White, new List<int>{2}),
-                new SurveyMenuItem("Stadium", "Wuchsstadien", 6, 12, 0, true, Color.White, new List<int>{1})
+                new SurveyMenuItem("DoubleSlider", "Bedeckungsgrade", 4, 0, new List<int>{3,4}),
+                new SurveyMenuItem("ImageChecker", "Sortenerkennung", 2, 0, new List<int>{2}),
+                new SurveyMenuItem("Stadium", "Wuchsstadien", 6,  0, new List<int>{1})
             };
             return Items;
         }
@@ -484,9 +484,9 @@ namespace MobileDataCollection.Survey.Models
         {
             List<SurveyMenuItem> list =  new List<SurveyMenuItem>
             {
-                new SurveyMenuItem("DoubleSlider", "Bedeckungsgrade", 4, 18, 0, true, Color.White, new List<int>{3,4}),
-                new SurveyMenuItem("ImageChecker", "Sortenerkennung", 2, 25, 0, true, Color.White, new List<int>{2}),
-                new SurveyMenuItem("Stadium", "Wuchsstadien", 6, 12, 0, true, Color.White, new List<int>{1})
+                new SurveyMenuItem("DoubleSlider", "Bedeckungsgrade", 4, 0, new List<int>{3,4}),
+                new SurveyMenuItem("ImageChecker", "Sortenerkennung", 2, 0, new List<int>{2}),
+                new SurveyMenuItem("Stadium", "Wuchsstadien", 6, 0, new List<int>{1})
             };
 
             SaveSurveyMenuItemsTxt(list);
@@ -527,16 +527,14 @@ namespace MobileDataCollection.Survey.Models
                 text += item.Id + ";";
                 text += item.ChapterName + ";";
                 text += item.AnswersNeeded + ";";
-                text += item.MaximumQuestionNumber + ";";
                 text += item.AnswersGiven + ";";
-                text += item.Unlocked + ";";
-                text += item.BackgroundColor.R + "," + item.BackgroundColor.G + "," + item.BackgroundColor.B + ";";
                 foreach(int id in item.IntrospectionQuestion)
                 {
                     /// list is one Attribute, the int in the list are seperated with ","
                     text += id + ",";
                 }
-                text = text.Remove(text.Length-1);
+                text = text.Remove(text.Length - 1) + ";";
+                text += item.Streak;
                 text += "\n";
             }
             text += "END_SURVEYMENUITEMS";
@@ -573,16 +571,12 @@ namespace MobileDataCollection.Survey.Models
                 string id = attributes[0];
                 string chapterName = attributes[1];
                 int answersNeeded = Convert.ToInt32(attributes[2]);
-                int maximumQuestionNumber = Convert.ToInt32(attributes[3]);
-                int answerGiven = Convert.ToInt32(attributes[4]);
-                bool unlocked = Convert.ToBoolean(attributes[5]);
-                //List<Double> colors = attributes[6].Split(',').Select(Double.Parse).ToList();
-                //Color background = Color.FromArgb(Convert.ToInt32(colors.ElementAt(0)),Convert.ToInt32(colors.ElementAt(1)),Convert.ToInt32(colors.ElementAt(2)));
-                Color background = Color.White;
-                List<int> introspectionQuestion = attributes[7].Split(',').Select(Int32.Parse).ToList();
+                int answerGiven = Convert.ToInt32(attributes[3]);
+                List<int> introspectionQuestion = attributes[4].Split(',').Select(Int32.Parse).ToList();
+                int streak = Convert.ToInt32(attributes[5]);
 
                 /// create new object and add it to the list
-                SurveyMenuItem item = new SurveyMenuItem(id, chapterName, answersNeeded, maximumQuestionNumber, answerGiven, unlocked, background, introspectionQuestion);
+                SurveyMenuItem item = new SurveyMenuItem(id, chapterName, answersNeeded, answerGiven, introspectionQuestion);
                 tempList.Add(item);
 
                 /// read new line

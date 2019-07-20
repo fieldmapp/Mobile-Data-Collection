@@ -13,7 +13,7 @@
                 <DataTemplate>
                     <!--Layout for an element of the question category-->
                     <ViewCell>
-                        <ViewCell.View Height="15" BackgroundColor="{Binding BackgroundColor}">
+                        <ViewCell.View Height="15">
                             <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                 <StackLayout Orientation="Horizontal" 
                                              Margin="8,2,8,1">

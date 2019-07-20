@@ -38,7 +38,7 @@ namespace MobileDataCollection.Survey.Models
         {
             lock(selectedSurvey)
             {
-                if (!selectedSurvey.Unlocked || CurrentSurvey != null)
+                if (CurrentSurvey != null)
                     return;
                 CurrentSurvey = selectedSurvey;
             }
