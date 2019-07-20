@@ -61,11 +61,6 @@ namespace MobileDataCollection.Survey.Views
         /// </summary>
         Color nonSelectedColor = Color.White;
 
-        /// <summary>
-        /// used to measure if a picture should be enlarged or only marked
-        /// </summary>
-        Stopwatch stopwatch = new Stopwatch();
-
         public event EventHandler<PageResult> PageFinished;
 
         public ImageCheckerPage(QuestionImageCheckerPage question, int answersGiven, int answersNeeded)
@@ -78,9 +73,18 @@ namespace MobileDataCollection.Survey.Views
             PictureC.BindingContext = this;
             PictureD.BindingContext = this;
             Frage.BindingContext = this;
+            PictureA.ShortPress += Picture_ShortPress;
+            PictureB.ShortPress += Picture_ShortPress;
+            PictureC.ShortPress += Picture_ShortPress;
+            PictureD.ShortPress += Picture_ShortPress;
 
             Header = $"Frage {answersGiven + 1}/{answersNeeded}";
             QuestionItem = question;
+        }
+
+        private void Picture_ShortPress(object sender, EventArgs e)
+        {
+            MarkPicture((ImageButton)sender);
         }
 
         /// <summary>
@@ -91,27 +95,6 @@ namespace MobileDataCollection.Survey.Views
             imageButton.BorderColor = imageButton.BorderColor == nonSelectedColor ? selectedColor : nonSelectedColor;
         }
 
-        /// <summary>
-        /// starts a new stopwatch to measure how long the image has been pressed
-        /// </summary>
-        private void PressPicture(object sender, EventArgs e)
-        {
-            stopwatch.Reset();
-            stopwatch.Start();
-        }
-
-        /// <summary>
-        /// stops the timer and accordingly marks the picture or enlarges the picture
-        /// </summary>
-        private void ReleasePicture(object sender, EventArgs e)
-        {
-            ImageButton imageButton = (ImageButton)sender;
-            stopwatch.Stop();
-            if (stopwatch.ElapsedMilliseconds < 1000)
-            {
-                MarkPicture(imageButton);
-            }
-        }
         /// <summary>
         /// saves the answer and loads a new Question, if one is available
         /// </summary>
