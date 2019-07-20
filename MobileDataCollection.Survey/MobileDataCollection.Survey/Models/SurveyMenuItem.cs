@@ -98,10 +98,22 @@ namespace MobileDataCollection.Survey.Models
                 throw new ArgumentException($"You need to provide an ISurveyPage matching the id given (for given id it needs to be called {id.ToString()}Page and must be located in {nspace}.Views");
             QuestionType = Type.GetType($"{nspace}.Models.Question{id.ToString()}Page");
             if (QuestionType == null || QuestionType.IsAssignableFrom(typeof(IQuestionContent)))
-                throw new ArgumentException($"You need to provide a IQuestionContent matching the id given (for given id it needs to be called Question{id.ToString()}Page and must be located in {nspace}.Models"); ;
+                throw new ArgumentException($"You need to provide a IQuestionContent matching the id given (for given id it needs to be called Question{id.ToString()}Page and must be located in {nspace}.Models");
             AnswerType = Type.GetType($"{nspace}.Models.Question{id.ToString()}Page");
             if (AnswerType == null || AnswerType.IsAssignableFrom(typeof(IUserAnswer)))
-                throw new ArgumentException($"You need to provide a SurveyPage matching the id given (for given id it needs to be called Answer{id.ToString()}Page and must be located in {nspace}.Models"); ;
+                throw new ArgumentException($"You need to provide a SurveyPage matching the id given (for given id it needs to be called Answer{id.ToString()}Page and must be located in {nspace}.Models");
+            if (!SurveyPageType.GetConstructors().Any(ci =>
+            {
+                var parms = ci.GetParameters();
+                if (parms[0].ParameterType != QuestionType)
+                    return false;
+                if (parms[1].ParameterType != typeof(int))
+                    return false;
+                if (parms[2].ParameterType != typeof(int))
+                    return false;
+                return true;
+            }))
+                throw new ArgumentException($"The class {nspace}.Views.{id.ToString()}Page needs to have a constructor with parameters: ({nspace}.Models.Question{id.ToString()}Page,int,int)");
         }
     }
 }

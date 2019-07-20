@@ -61,7 +61,6 @@ namespace MobileDataCollection.Survey.Models
                 ShowNextIntrospectionPage();
                 return;
             }
-            //TODO: Check for existence of correct constructor
             var newPage = (ISurveyPage)Activator.CreateInstance(CurrentSurvey.SurveyPageType, new object[] { question, CurrentSurvey.AnswersGiven, CurrentSurvey.AnswersNeeded });
             newPage.PageFinished += NewPage_PageFinished;
             Navigation.PushAsync(newPage as ContentPage);
