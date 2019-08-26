@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Xamarin.Essentials;
+﻿using Xamarin.Essentials;
 
 namespace DLR_Data_App.Services.Sensors
 {
-  class Compass
+  public class Compass
   {
-    public double degrees { get; set; }
-    public String direction { get; set; }
+    public double Degrees { get; set; }
+    public string Direction { get; set; }
 
     public Compass()
     {
-      this.Reset();
+      Reset();
     }
 
     /**
@@ -23,8 +19,8 @@ namespace DLR_Data_App.Services.Sensors
     {
       var data = e.Reading;
 
-      degrees = data.HeadingMagneticNorth;
-      calcDirection();
+      Degrees = data.HeadingMagneticNorth;
+      CalcDirection();
     }
 
     /**
@@ -32,53 +28,53 @@ namespace DLR_Data_App.Services.Sensors
      */
     public void Reset()
     {
-      degrees = 0.0;
-      direction = "N";
+      Degrees = 0.0;
+      Direction = "N";
     }
 
     /** 
      * Generates direction from angle of degrees
      */
-    private void calcDirection()
+    private void CalcDirection()
     {
-      if (degrees > 337.5 || degrees < 22.5)
+      if (Degrees > 337.5 || Degrees < 22.5)
       {
-        direction = "N";
+        Direction = "N";
       }
 
-      if (degrees >= 22.5 && degrees < 67.5)
+      if (Degrees >= 22.5 && Degrees < 67.5)
       {
-        direction = "NE";
+        Direction = "NE";
       }
 
-      if (degrees >= 67.5 && degrees < 112.5)
+      if (Degrees >= 67.5 && Degrees < 112.5)
       {
-        direction = "E";
+        Direction = "E";
       }
 
-      if (degrees >= 112.5 && degrees < 157.5)
+      if (Degrees >= 112.5 && Degrees < 157.5)
       {
-        direction = "SE";
+        Direction = "SE";
       }
 
-      if (degrees >= 157.5 && degrees < 202.5)
+      if (Degrees >= 157.5 && Degrees < 202.5)
       {
-        direction = "S";
+        Direction = "S";
       }
 
-      if (degrees >= 202.5 && degrees < 247.5)
+      if (Degrees >= 202.5 && Degrees < 247.5)
       {
-        direction = "SW";
+        Direction = "SW";
       }
 
-      if (degrees >= 247.5 && degrees < 292.5)
+      if (Degrees >= 247.5 && Degrees < 292.5)
       {
-        direction = "W";
+        Direction = "W";
       }
 
-      if (degrees >= 292.5 && degrees < 337.5)
+      if (Degrees >= 292.5 && Degrees < 337.5)
       {
-        direction = "NW";
+        Direction = "NW";
       }
     }
   }

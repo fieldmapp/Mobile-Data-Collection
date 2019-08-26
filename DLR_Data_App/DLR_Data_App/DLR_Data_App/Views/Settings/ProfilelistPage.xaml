@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DLR_Data_App.Views.Settings.ProfilelistPage"
-             xmlns:local="clr-namespace:DLR_Data_App"
-             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             x:Class="DLR_Data_App.Views.Settings.ProfileListPage"
              xmlns:vm="clr-namespace:DLR_Data_App.ViewModels.Settings"
              Title="{Binding Title}">
 
@@ -14,7 +12,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <ListView x:Name="profileListView"
+                <ListView x:Name="ProfileListView"
                           ItemTapped="ProfileListView_ItemTapped"
                           SelectionMode="None">
                     <ListView.ItemTemplate>

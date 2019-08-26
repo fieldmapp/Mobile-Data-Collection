@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using SQLite;
+﻿using SQLite;
 
 namespace DLR_Data_App.Models.ProjectModel
 {
@@ -25,7 +21,7 @@ namespace DLR_Data_App.Models.ProjectModel
     //public List<string> InvalidText { get; set; }
     public string Calculate { get; set; }
 
-    //public List<List<string>> Options { get; set; }
+    public string Options { get; set; }
     public bool Cascading { get; set; }
     public string Other { get; set; }
     //public List<string> Other { get; set; }

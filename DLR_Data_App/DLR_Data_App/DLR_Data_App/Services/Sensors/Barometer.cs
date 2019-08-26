@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Xamarin.Essentials;
+﻿using Xamarin.Essentials;
 
 namespace DLR_Data_App.Services.Sensors
 {
-  class Barometer
+  public class Barometer
   {
-    public double current_pressure { get; set; }
-    public double max_pressure { get; set; }
+    public double CurrentPressure { get; set; }
+    public double MaxPressure { get; set; }
 
     public Barometer()
     {
-      this.Reset();
+      Reset();
     }
 
     /**
@@ -23,11 +19,11 @@ namespace DLR_Data_App.Services.Sensors
     {
       var data = e.Reading;
 
-      current_pressure = data.PressureInHectopascals;
+      CurrentPressure = data.PressureInHectopascals;
 
-      if(current_pressure > max_pressure)
+      if(CurrentPressure > MaxPressure)
       {
-        max_pressure = current_pressure;
+        MaxPressure = CurrentPressure;
       }
     }
 
@@ -36,8 +32,8 @@ namespace DLR_Data_App.Services.Sensors
      */
     public void Reset()
     {
-      this.current_pressure = 0.0;
-      this.max_pressure = 0.0;
+      CurrentPressure = 0.0;
+      MaxPressure = 0.0;
     }
   }
 }

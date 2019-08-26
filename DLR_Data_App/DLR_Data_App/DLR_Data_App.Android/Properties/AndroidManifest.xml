@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.DLR.DLR_Data_App" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.DLR.Fieldmapp" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="28" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.WRITE_USER_DICTIONARY" />
 	<uses-permission android:name="android.permission.READ_USER_DICTIONARY" />
-	<application android:label="DLR_Data_App.Android" android:icon="@mipmap/icon"></application>
+	<application android:label="Fieldmapp.Android" android:icon="@mipmap/icon"></application>
 </manifest>

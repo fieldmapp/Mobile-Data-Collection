@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>DLR Data App: DLR_Data_App.Services.Helpers Class Reference</title>
+<title>Fieldmapp: DLR_Data_App.Services.Helpers Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,7 +29,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">DLR Data App
+   <div id="projectname">Fieldmapp
    </div>
   </td>
  </tr>
@@ -95,8 +95,7 @@ $(document).ready(function(){initNavTree('class_d_l_r___data___app_1_1_services_
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a4291f2b5e7d5852f32309ea8c9889b70"><td class="memItemLeft" align="right" valign="top"><a id="a4291f2b5e7d5852f32309ea8c9889b70"></a>
-static string&#160;</td><td class="memItemRight" valign="bottom"><b>Encrypt_password</b> (string password)</td></tr>
+<tr class="memitem:a4291f2b5e7d5852f32309ea8c9889b70"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_l_r___data___app_1_1_services_1_1_helpers.html#a4291f2b5e7d5852f32309ea8c9889b70">Encrypt_password</a> (string password)</td></tr>
 <tr class="separator:a4291f2b5e7d5852f32309ea8c9889b70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2624b830172555abaf0055b2a976b2c1"><td class="memItemLeft" align="right" valign="top">static async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_l_r___data___app_1_1_services_1_1_helpers.html#a2624b830172555abaf0055b2a976b2c1">UnzipFileAsync</a> (string zipFilePath, string unzipFolderPath)</td></tr>
 <tr class="separator:a2624b830172555abaf0055b2a976b2c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -104,8 +103,67 @@ static string&#160;</td><td class="memItemRight" valign="bottom"><b>Encrypt_pass
 <tr class="separator:ad8f1b0aae5ed47017698f8470c1728ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bda83b5d58208e76d1d190031ac6ecc"><td class="memItemLeft" align="right" valign="top">static List&lt; <a class="el" href="class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project.html">Project</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_l_r___data___app_1_1_services_1_1_helpers.html#a2bda83b5d58208e76d1d190031ac6ecc">TranslateProjectDetails</a> (List&lt; <a class="el" href="class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project.html">Project</a> &gt; projectList)</td></tr>
 <tr class="separator:a2bda83b5d58208e76d1d190031ac6ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3adc58415da678b166ab5f2cfaa7587c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_l_r___data___app_1_1_services_1_1_helpers.html#a3adc58415da678b166ab5f2cfaa7587c">SetCurrentUser</a> ()</td></tr>
+<tr class="separator:a3adc58415da678b166ab5f2cfaa7587c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class contains static helper functions </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4291f2b5e7d5852f32309ea8c9889b70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4291f2b5e7d5852f32309ea8c9889b70">&#9670;&nbsp;</a></span>Encrypt_password()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string DLR_Data_App.Services.Helpers.Encrypt_password </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>password</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Encrypts passphrases in SHA512 </p><dl class="section see"><dt>See also</dt><dd><a href="https://docs.microsoft.com/de-de/dotnet/api/system.security.cryptography.hashalgorithm.computehash?view=netframework-4.8#System_Security_Cryptography_HashAlgorithm_ComputeHash_System_Byte__">https://docs.microsoft.com/de-de/dotnet/api/system.security.cryptography.hashalgorithm.computehash?view=netframework-4.8#System_Security_Cryptography_HashAlgorithm_ComputeHash_System_Byte__</a> </dd>
+<dd>
+<a href="https://docs.microsoft.com/de-de/dotnet/api/system.security.cryptography.sha512?view=netframework-4.8">https://docs.microsoft.com/de-de/dotnet/api/system.security.cryptography.sha512?view=netframework-4.8</a> </dd></dl>
+
+</div>
+</div>
+<a id="a3adc58415da678b166ab5f2cfaa7587c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3adc58415da678b166ab5f2cfaa7587c">&#9670;&nbsp;</a></span>SetCurrentUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void DLR_Data_App.Services.Helpers.SetCurrentUser </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set current user </p>
+
+</div>
+</div>
 <a id="ad8f1b0aae5ed47017698f8470c1728ab"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad8f1b0aae5ed47017698f8470c1728ab">&#9670;&nbsp;</a></span>TranslateProjectDetails() <span class="overload">[1/2]</span></h2>
 

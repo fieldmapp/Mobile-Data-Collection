@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:DLR_Data_App"
              xmlns:res="clr-namespace:DLR_Data_App.Localizations"
-             x:Class="DLR_Data_App.Views.Login.LoginPage"
-             BackgroundImage="Background_Login.png">
-    
+             x:Class="DLR_Data_App.Views.Login.LoginPage" 
+             BackgroundImageSource="Background_Login.png">
+
     <ContentPage.Content>
-        <StackLayout x:Name="MasterLayout">
+        <StackLayout>
             <StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand">
                 <Image x:Name="LoginIcon" 
                        Source="LoginIconWhite.png" 
@@ -18,24 +17,24 @@
                          VerticalOptions="StartAndExpand"
                          Padding="40,0,40,0">
 
-                <Label Text="{res:TranslateExtention login}"
+                <Label Text="{res:Translate login}"
                        FontSize="Large"
                        TextColor="White"
                        HorizontalTextAlignment="Center"/>
-                <Label Text="{res:TranslateExtention name}"
+                <Label Text="{res:Translate name}"
                        TextColor="White"/>
-                <Entry x:Name="entry_Username"
-                    Placeholder="{res:TranslateExtention name}"
-                    PlaceholderColor="WhiteSmoke"
+                <Entry x:Name="EntryUsername"
+                    Placeholder="{res:Translate name}"
+                    PlaceholderColor="Gray"
                     Text=""
                     TextColor="White"
                     VerticalOptions="Center" 
                     HorizontalOptions="FillAndExpand" />
-                <Label Text="{res:TranslateExtention password}"
+                <Label Text="{res:Translate password}"
                        TextColor="White"/>
-                <Entry x:Name="entry_Password"
+                <Entry x:Name="EntryPassword"
                     Placeholder="******"
-                    PlaceholderColor="WhiteSmoke"
+                    PlaceholderColor="Gray"
                     IsPassword="True"
                     Text=""
                     TextColor="White"
@@ -45,19 +44,20 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     
-                    <Button x:Name="btn_newaccount"
-                        Text="{res:TranslateExtention newaccount}"
+                    <Button x:Name="BtnNewaccount"
+                        Text="{res:Translate newaccount}"
                         Clicked="Btn_newaccount_Clicked"
                         Grid.Row="0"
                         Grid.Column="0" />
                     
-                    <Button x:Name="btn_signin"
-                        Text="{res:TranslateExtention signin}" 
+                    <Button x:Name="BtnSignin"
+                        Text="{res:Translate signin}" 
                         Clicked="Btn_signin_Clicked"
                         Grid.Row="0"
                         Grid.Column="1"/>

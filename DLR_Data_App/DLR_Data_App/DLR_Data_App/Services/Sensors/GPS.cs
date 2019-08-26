@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace DLR_Data_App.Services.Sensors
 {
-  class GPS
+  public class Gps
   {
     public double Altitude { get; set; }
     public double Latitude { get; set; }
     public double Longitude { get; set; }
     public string Message { get; set; }
 
-    public GPS()
+    public Gps()
     {
       Altitude = 0.0;
       Latitude = 0.0;
@@ -21,7 +19,7 @@ namespace DLR_Data_App.Services.Sensors
       Message = "";
     }
 
-    public async Task getLocationAsync()
+    public async Task GetLocationAsync()
     {
       try
       {

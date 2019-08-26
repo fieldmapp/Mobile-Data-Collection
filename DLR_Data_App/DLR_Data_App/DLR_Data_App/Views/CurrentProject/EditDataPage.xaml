@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:localizations="clr-namespace:DLR_Data_App.Localizations;assembly=DLR_Data_App"
+             x:Class="DLR_Data_App.Views.CurrentProject.EditDataPage"
+             Title="{localizations:Translate edit}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{localizations:Translate help}" Clicked="HelpClicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <Grid Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Picker x:Name="FormPicker"
+                    ItemsSource="{Binding FormList}"
+                    ItemDisplayBinding="{Binding Title}"
+                    Title="{localizations:Translate selectform}"
+                    SelectedItem="{Binding SelectedProjectForm}"
+                    SelectedIndexChanged="FormPicker_OnSelectedIndexChanged"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="0" />
+            <Label Text="{localizations:Translate selectdate}"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.Column="0"
+                   Grid.Row="1"/>
+            <DatePicker
+                x:Name="DateSelection"
+                Date="01.01.2019"
+                MinimumDate="01.01.2019"
+                MaximumDate="01.01.2020"
+                HorizontalOptions="CenterAndExpand"
+                DateSelected="DateSelection_OnDateSelected"
+                Grid.Column="1"
+                Grid.Row="1"/>
+            <Label Text="{localizations:Translate selecttime}"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.Column="0"
+                   Grid.Row="2"/>
+            <TimePicker
+                x:Name="TimeSelection"
+                Time="21:00"
+                HorizontalOptions="CenterAndExpand"
+                PropertyChanged="TimeSelection_OnPropertyChanged"
+                Grid.Column="1"
+                Grid.Row="2"/>
+            <ListView x:Name="DataList"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="true"
+                      IsPullToRefreshEnabled="true"
+                      CachingStrategy="RecycleElement"
+                      ItemTapped="DataList_OnItemTapped"
+                      SelectionMode="None"
+                      ItemsSource="{Binding ElementList}"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Grid.Row="2">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding Timestamp}" 
+                                       LineBreakMode="NoWrap" 
+                                       Style="{DynamicResource ListItemTextStyle}" 
+                                       FontSize="16" />
+                                <Label Text="{Binding Id}" 
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemDetailTextStyle}"
+                                       FontSize="13" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

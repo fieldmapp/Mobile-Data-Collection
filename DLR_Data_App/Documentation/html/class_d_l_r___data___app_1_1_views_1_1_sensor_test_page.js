@@ -1,11 +1,11 @@
 var class_d_l_r___data___app_1_1_views_1_1_sensor_test_page =
 [
     [ "SensorTestPage", "class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#ae85a66b67a032f692bd3816d80405e9e", null ],
-    [ "onAccelerometer_Change", "class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#a14b8e417191b28581f5b40b310ba8805", null ],
-    [ "OnAppearing", "class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#ab4f859dcf308b5fce791be801d172830", null ],
-    [ "onBarometer_Change", "class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#adb3ba52d005b975d8acc1396157e3ad7", null ],
-    [ "onCompass_Change", "class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#a22eb02b7b3f72299455d4292439ff69a", null ],
-    [ "onGps_Change", "class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#a929f426d1fa173012bcd5dcb07bff217", null ],
-    [ "onGyroscope_Change", "class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#abba223b0093e25273482f84c08eb411a", null ],
-    [ "onMagnetometer_Change", "class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#a9b0b86418df6a17062058e8555bb5a88", null ]
+    [ "OnAccelerometer_Change", "class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#ac4c8dcd4e07932bae3bca94a47f675e0", null ],
+    [ "OnAppearing", "class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#ad8f91c646f8ce0fa31b0e81b2bbfc1e0", null ],
+    [ "OnBarometer_Change", "class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#aeb67757e82a79e5b7d94e777df2f4716", null ],
+    [ "OnCompass_Change", "class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#ae8147e7a33f6b878d2b6212fb2d8b6de", null ],
+    [ "OnGps_Change", "class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#adc94662e4aadf8d31b11bca42fe1a643", null ],
+    [ "OnGyroscope_Change", "class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#a2159821bf603ac963826d3404d7c6934", null ],
+    [ "OnMagnetometer_Change", "class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#a3e6a42276a3ec7e233a1bc57784e1806", null ]
 ];

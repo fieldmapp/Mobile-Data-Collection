@@ -1,7 +1,4 @@
-﻿using System;
-using Xamarin.Essentials;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms.Xaml;
 using DLR_Data_App.Views.Login;
 using DLR_Data_App.Models;
 
@@ -9,9 +6,9 @@ using DLR_Data_App.Models;
 namespace DLR_Data_App
 {
   /*
-   * Main class for cross plattform app
+   * Main class for cross platform app
    */
-  public partial class App : Application
+  public partial class App
   {
     public static string DatabaseLocation = string.Empty;
     public static string FolderLocation = string.Empty;

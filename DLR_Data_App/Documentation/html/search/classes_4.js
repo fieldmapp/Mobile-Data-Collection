@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['gps',['GPS',['../class_d_l_r___data___app_1_1_services_1_1_sensors_1_1_g_p_s.html',1,'DLR_Data_App::Services::Sensors']]],
-  ['gyroscope',['Gyroscope',['../class_d_l_r___data___app_1_1_services_1_1_sensors_1_1_gyroscope.html',1,'DLR_Data_App::Services::Sensors']]]
+  ['editdatadetailpage',['EditDataDetailPage',['../class_d_l_r___data___app_1_1_views_1_1_current_project_1_1_edit_data_detail_page.html',1,'DLR_Data_App::Views::CurrentProject']]],
+  ['editdatadetailviewmodel',['EditDataDetailViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_current_project_1_1_edit_data_detail_view_model.html',1,'DLR_Data_App::ViewModels::CurrentProject']]],
+  ['editdatapage',['EditDataPage',['../class_d_l_r___data___app_1_1_views_1_1_current_project_1_1_edit_data_page.html',1,'DLR_Data_App::Views::CurrentProject']]],
+  ['editdataviewmodel',['EditDataViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_current_project_1_1_edit_data_view_model.html',1,'DLR_Data_App::ViewModels::CurrentProject']]]
 ];

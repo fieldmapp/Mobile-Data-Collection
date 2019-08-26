@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DLR_Data_App.Views.Settings.ProfilePage"
-             xmlns:local="clr-namespace:DLR_Data_App.Views"
              xmlns:res="clr-namespace:DLR_Data_App.Localizations"
              xmlns:vm="clr-namespace:DLR_Data_App.ViewModels.Settings"
             Title="{Binding Title}">
@@ -13,35 +12,37 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{res:TranslateExtention name}"/>
-            <Entry x:Name="entry_name"
-                       Placeholder="{res:TranslateExtention name}" />
-            <Label Text="{res:TranslateExtention password}"/>
-            <Entry x:Name="entry_password"
+            <Label Text="{res:Translate name}"/>
+            <Entry x:Name="EntryName"
+                       Placeholder="{res:Translate name}" />
+            <Label Text="{res:Translate password}"/>
+            <Entry x:Name="EntryPassword"
                        Placeholder="******"
                        IsPassword="true" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 
-                <Button x:Name="btn_save"
-                        Text="{res:TranslateExtention save}"
+                <Button x:Name="BtnSave"
+                        Text="{res:Translate save}"
                         Grid.Row="0"
                         Grid.Column="0"
                         Clicked="Btn_save_Clicked"/>
 
-                <Button x:Name="btn_cancel"
-                        Text="{res:TranslateExtention cancel}"
+                <Button x:Name="BtnCancel"
+                        Text="{res:Translate cancel}"
                         Grid.Row="0"
                         Grid.Column="1"
                         Clicked="Btn_cancel_Clicked"/>
 
-                <Button x:Name="btn_remove"
-                        Text="{res:TranslateExtention remove}"
+                <Button x:Name="BtnRemove"
+                        Text="{res:Translate remove}"
                         Grid.Row="0"
                         Grid.Column="2"
                         Clicked="Btn_remove_Clicked"/>

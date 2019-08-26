@@ -10,4 +10,4 @@
     app:tabGravity="fill"
     app:tabSelectedTextColor="@color/textColorSecondary"
     app:tabTextColor="@color/textColorPrimary"
-    app:tabMode="fixed" />
+    app:tabMode="scrollable" />

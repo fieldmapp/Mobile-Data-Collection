@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['selectcurrentproject',['SelectCurrentProject',['../class_d_l_r___data___app_1_1_services_1_1_database.html#abce2ee7a9b68bf9801144a83fe6c81a5',1,'DLR_Data_App::Services::Database']]]
+  ['newprofilepage',['NewProfilePage',['../class_d_l_r___data___app_1_1_views_1_1_login_1_1_new_profile_page.html#a707c7d9d98204d1d24b0642be6a4b65b',1,'DLR_Data_App::Views::Login::NewProfilePage']]]
 ];

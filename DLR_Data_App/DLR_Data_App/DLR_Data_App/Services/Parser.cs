@@ -4,51 +4,49 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
+using DLR_Data_App.Models;
 using DLR_Data_App.Models.ProjectModel;
+using Newtonsoft.Json;
 
 namespace DLR_Data_App.Services
 {
   /**
    * Parse form definition files for project
    */
-  class Parser
+  public class Parser
   {
-    private Project workingProject;
+    private Project _workingProject;
     
     /**
      * Constructor
      */
     public Parser(ref Project project)
     {
-      workingProject = project;
+      _workingProject = project;
     }
 
     /**
      * Executes all processes to execute zip archive and add forms to project
      */
-    public async Task<bool> ParseZip(string zipfile, string unzipfolder)
+    public async Task<bool> ParseZip(string zipFile, string unzipFolder)
     {
-      int countProjectForms = workingProject.Formlist.Count;
-      bool status = await Helpers.UnzipFileAsync(zipfile, unzipfolder);
-
+      // Extract zip archive
+      var status = await Helpers.UnzipFileAsync(zipFile, unzipFolder);
       if (!status)
       {
         return false;
       }
-      string[] unzipContent = Directory.GetFiles(unzipfolder);
 
-      foreach (string file in unzipContent)
+      // Get files
+      var unzipContent = Directory.GetFiles(unzipFolder);
+      foreach (var file in unzipContent)
       {
-        workingProject = ParseJson(workingProject, file);
+        // Parse file
+        _workingProject = ParseJson(_workingProject, file);
       }
 
-      // check if new forms are added to formlist and return state
-      if (countProjectForms < workingProject.Formlist.Count)
-      {
-        return true;
-      } else {
-        return false;
-      }
+      // check if new forms are added to form list and return state
+      return _workingProject.FormList.Count > 0;
     }
 
     /**
@@ -59,250 +57,267 @@ namespace DLR_Data_App.Services
     public Project ParseJson(Project project, string filename)
     {
 
-      ProjectForm form = new ProjectForm();
-      var json = System.IO.File.ReadAllText(filename);
+      var form = new ProjectForm
+      {
+        ElementList = new List<ProjectFormElements>()
+      };
+      var json = File.ReadAllText(filename);
 
       var objects = JObject.Parse(json); // parse as object  
 
       // Walk through the root object
-      foreach (KeyValuePair<String, JToken> app in objects)
+      foreach (var app in objects)
       {
         var key = app.Key;
         var value = app.Value;
 
-        // Form odkbuild file
-        if (key == "controls")
+        switch (key)
         {
-          // parsing the elements of a form
-          foreach (JObject controlElement in value)
+          // Form odkbuild file
+          case "controls":
           {
-            ProjectFormElements projectFormElements = new ProjectFormElements();
-            foreach (KeyValuePair<String, JToken> control in controlElement)
+            // parsing the elements of a form
+            foreach (var jToken in value)
             {
-              var controlKey = control.Key;
-              var controlValue = control.Value;
-              var result = false;
-
-              if (controlKey == "name")
+              var controlElement = (JObject) jToken;
+              ProjectFormElements projectFormElements = new ProjectFormElements();
+              foreach (var control in controlElement)
               {
-                projectFormElements.Name = controlValue.ToString();
+                var controlKey = control.Key;
+                var controlValue = control.Value;
+                bool result;
+
+                switch (controlKey)
+                {
+                  case "name":
+                    projectFormElements.Name = controlValue.ToString();
+                    break;
+                  case "label":
+                    projectFormElements.Label = controlValue.ToString();
+                    break;
+                  case "hint":
+                    projectFormElements.Hint = controlValue.ToString();
+                    break;
+                  case "defaultValue":
+                    projectFormElements.DefaultValue = controlValue.ToString();
+                    break;
+                  case "readOnly":
+                    bool.TryParse(controlValue.ToString(), out result);
+                    projectFormElements.ReadOnly = result;
+                    break;
+                  case "required":
+                    bool.TryParse(controlValue.ToString(), out result);
+                    projectFormElements.Required = result;
+                    break;
+                  case "requiredText":
+                    projectFormElements.RequiredText = controlValue.ToString();
+                    break;
+                  case "relevance":
+                    projectFormElements.Relevance = controlValue.ToString();
+                    break;
+                  case "constraint":
+                    projectFormElements.Constraint = controlValue.ToString();
+                    break;
+                  case "invalidText":
+                    projectFormElements.InvalidText = controlValue.ToString();
+                    break;
+                  case "calculate":
+                    projectFormElements.Calculate = controlValue.ToString();
+                    break;
+                  case "options":
+                    projectFormElements.Options = controlValue.ToString();
+                    break;
+                  case "cascading":
+                    bool.TryParse(controlValue.ToString(), out result);
+                    projectFormElements.Cascading = result;
+                    break;
+                  case "other":
+                    projectFormElements.Other = controlValue.ToString();
+                    break;
+                  case "appearance":
+                    projectFormElements.Appearance = controlValue.ToString();
+                    break;
+                  case "metadata":
+                    projectFormElements.Metadata = controlValue.ToString();
+                    break;
+                  case "type":
+                    projectFormElements.Type = controlValue.ToString();
+                    break;
+                }
               }
-
-              if (controlKey == "label")
-              {
-                //projectFormElements.Label = controlValue.ToString();
-              }
-
-              if (controlKey == "hint")
-              {
-                //projectFormElements.Hint = controlValue.ToString();
-              }
-
-              if (controlKey == "defaultValue")
-              {
-                projectFormElements.DefaultValue = controlValue.ToString();
-              }
-
-              if (controlKey == "readOnly")
-              {
-                Boolean.TryParse(controlValue.ToString(), out result);
-                projectFormElements.ReadOnly = result;
-              }
-
-              if (controlKey == "required")
-              {
-                Boolean.TryParse(controlValue.ToString(), out result);
-                projectFormElements.Required = result;
-              }
-
-              if (controlKey == "requiredText")
-              {
-                //projectFormElements.ReadOnly = Boolean.TryParse(controlValue.First;
-              }
-
-              if (controlKey == "relevance")
-              {
-                projectFormElements.Relevance = controlValue.ToString();
-              }
-
-              if (controlKey == "constraint")
-              {
-                projectFormElements.Constraint = controlValue.ToString();
-              }
-
-              if (controlKey == "invalidText")
-              {
-                //projectFormElements.Relevance = controlValue.ToString();
-              }
-
-              if (controlKey == "calculate")
-              {
-                projectFormElements.Calculate = controlValue.ToString();
-              }
-
-              if (controlKey == "options")
-              {
-                //projectFormElements.Relevance = controlValue.ToString();
-              }
-
-              if (controlKey == "cascading")
-              {
-                Boolean.TryParse(controlValue.ToString(), out result);
-                projectFormElements.Cascading = result;
-              }
-
-              if (controlKey == "other")
-              {
-                //projectFormElements.Other = controlValue.First;
-              }
-
-              if (controlKey == "relevance")
-              {
-                projectFormElements.Relevance = controlValue.ToString();
-              }
-
-              if (controlKey == "appearance")
-              {
-                projectFormElements.Appearance = controlValue.ToString();
-              }
-
-              if (controlKey == "metadata")
-              {
-                //projectFormElements.Metadata = controlValue.ToString();
-              }
-
-              if (controlKey == "type")
-              {
-                projectFormElements.Type = controlValue.ToString();
-              }
-            }
-            form.ElementList.Add(projectFormElements);
-          }
-        }
-        else if (key == "metadata")
-        {
-          ProjectFormMetadata projectFormMetadata = new ProjectFormMetadata();
-
-          // parsing the metadata of the form
-          foreach (KeyValuePair<String, JToken> metadata in (JObject)value)
-          {
-            var metadataKey = metadata.Key;
-            var metadataValue = metadata.Value;
-            var result = 0;
-
-            if (metadataKey == "version")
-            {
-              int.TryParse(metadataValue.ToString(), out result);
-              projectFormMetadata.Version = result;
+              form.ElementList.Add(projectFormElements);
             }
 
-            if (metadataKey == "activeLanguages")
-            {
-              //projectFormMetadata.Languages = metadataValue;
-            }
-
-            if (metadataKey == "optionsPresets")
-            {
-              //projectFormMetadata.OptionsPresets = metadataValue;
-            }
-
-            if (metadataKey == "instance_name")
-            {
-              projectFormMetadata.InstanceName = metadataValue.ToString();
-            }
-
-            if (metadataKey == "public_key")
-            {
-              projectFormMetadata.PublicKey = metadataValue.ToString();
-            }
-
-            if (metadataKey == "submission_url")
-            {
-              projectFormMetadata.SubmissionURL = metadataValue.ToString();
-            }
+            break;
           }
 
-          form.Metadata = projectFormMetadata;
-        }
+          // Project json file
+          case "metadata":
+          {
+            ProjectFormMetadata projectFormMetadata = new ProjectFormMetadata();
 
-        // Project json file
-        else if(key == "Project")
-        {
-          project.Title = value.ToString();
-        }
-        else if (key == "Author")
-        {
-          project.Authors = value.ToString();
-        }
-        else if (key == "Description")
-        {
-          project.Description = value.ToString();
-        }
-        else if (key == "Secret")
-        {
-          project.Secret = value.ToString();
-        }
-        else if (key == "Languages")
-        {
-          project.Languages = value.ToString();
-        }
-        else
-        {
-          // get title of form
-          form.Title = value.ToString();
+            // parsing the metadata of the form
+            foreach (KeyValuePair<string, JToken> metadata in (JObject)value)
+            {
+              var metadataKey = metadata.Key;
+              var metadataValue = metadata.Value;
+
+              switch (metadataKey)
+              {
+                case "version":
+                  int.TryParse(metadataValue.ToString(), out var result);
+                  projectFormMetadata.Version = result;
+                  break;
+                case "activeLanguages":
+                  projectFormMetadata.Languages = metadataValue.ToString();
+                  break;
+                case "optionsPresets":
+                  projectFormMetadata.OptionsPresets = metadataValue.ToString();
+                  break;
+                case "instance_name":
+                  projectFormMetadata.InstanceName = metadataValue.ToString();
+                  break;
+                case "htitle":
+                  projectFormMetadata.Htitle = metadataValue.ToString();
+                  break;
+                case "public_key":
+                  projectFormMetadata.PublicKey = metadataValue.ToString();
+                  break;
+                case "submission_url":
+                  projectFormMetadata.SubmissionUrl = metadataValue.ToString();
+                  break;
+              }
+            }
+
+            form.Metadata = projectFormMetadata;
+            break;
+          }
+
+          // Title of form
+          case "title":
+            form.Title = value.ToString();
+            break;
+
+          // Project Information Elements
+          case "Project":
+            project.Title = value.ToString();
+            break;
+          case "Author":
+            project.Authors = value.ToString();
+            break;
+          case "Description":
+            project.Description = value.ToString();
+            break;
+          case "Secret":
+            project.Secret = value.ToString();
+            break;
+          case "Languages":
+            project.Languages = value.ToString();
+            break;
         }
       }
 
       if (filename.EndsWith(".odkbuild"))
       {
-        project.Formlist.Add(form);
+        project.FormList.Add(form);
       }
       
       return project;
     }
 
     /**
-     * Parsing string in the correct language from json string
+     * Return list of options parsed from string
      */
-    public static string LanguageJSON(string jsonList, string languageList)
+    public static List<Options> ParseOptionsFromJson(string inputString)
     {
-      // get current language
-      string currentLanguage = CultureInfo.CurrentUICulture.EnglishName;
-      string result = "Unable to parse language from json";
+      return JsonConvert.DeserializeObject<List<Options>>(inputString);
+    }
+
+    /**
+     * Parsing always the english string, if not available use the first language
+     */
+    public static string LanguageJsonStandard(string jsonList, string languageList)
+    {
+      var currentLanguage = CultureInfo.GetCultureInfo("en-GB").EnglishName;
+      var result = "Unable to parse language from json";
+      var temp = "0";
 
       try
       {
         // check which languages are available
         var objects = JObject.Parse(languageList); // parse as object  
-        foreach (KeyValuePair<String, JToken> app in objects)
+        foreach (var app in objects)
         {
           var key = app.Key;
           var value = app.Value.ToString();
 
           // if local language matches available language store key in result
-          if (currentLanguage.Contains(value)) {
-            result = key;
-            break;
-          }
+          if (!currentLanguage.Contains(value)) continue;
+          temp = key;
+          break;
         }
 
-        // get string from jsonlist in the correct language
+        // get string from json list in the correct language
         objects = JObject.Parse(jsonList); // parse as object  
-        foreach (KeyValuePair<String, JToken> app in objects)
+        foreach (var app in objects)
         {
           var key = app.Key;
           var value = app.Value.ToString();
 
           // if key is found set matching string as result
-          if (key == result)
-          {
-            result = value;
-            break;
-          }
+          if (key != temp) continue;
+          result = value;
+          break;
         }
-      } catch (Exception e)
+      }
+      catch (Exception)
       {
+        result = "Error in JSON file";
+      }
 
+      return result;
+    }
+    
+    /**
+     * Parsing string in the correct language from json string
+     */
+    public static string LanguageJson(string jsonList, string languageList)
+    {
+      // get current language
+      var currentLanguage = CultureInfo.CurrentUICulture.EnglishName;
+      var result = "Unable to parse language from json";
+      var temp = "0";
+
+      try
+      {
+        // check which languages are available
+        var objects = JObject.Parse(languageList); // parse as object  
+        foreach (var app in objects)
+        {
+          var key = app.Key;
+          var value = app.Value.ToString();
+
+          // if local language matches available language store key in result
+          if (!currentLanguage.Contains(value)) continue;
+          temp = key;
+          break;
+        }
+
+        // get string from json list in the correct language
+        objects = JObject.Parse(jsonList); // parse as object  
+        foreach (var app in objects)
+        {
+          var key = app.Key;
+          var value = app.Value.ToString();
+
+          // if key is found set matching string as result
+          if (key != temp) continue;
+          result = value;
+          break;
+        }
+      } catch (Exception)
+      {
+        result = "Error in JSON file";
       }
       
       return result;

@@ -11,8 +11,8 @@
         <vm:SettingsViewModel />
     </TabbedPage.BindingContext>
 
-    <local:AppSettings Title="{res:TranslateExtention general}"/>
-    <local:ProfilelistPage Title="{res:TranslateExtention profile}"/>
-    <local:SensorListPage Title="{res:TranslateExtention sensors}"/>
+    <local:AppSettings Title="{res:Translate general}"/>
+    <local:ProfileListPage Title="{res:Translate profile}"/>
+    <local:SensorListPage Title="{res:Translate sensors}"/>
         
 </TabbedPage>

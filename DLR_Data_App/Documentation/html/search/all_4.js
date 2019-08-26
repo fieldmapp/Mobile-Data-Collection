@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['generateproject',['GenerateProject',['../class_d_l_r___data___app_1_1_services_1_1_project_generator.html#a4b1d4b025f076bc891abfc32efbaf48f',1,'DLR_Data_App::Services::ProjectGenerator']]],
-  ['getcurrentproject',['GetCurrentProject',['../class_d_l_r___data___app_1_1_services_1_1_database.html#ac4321f1e78c9cfe21dc763995e00a647',1,'DLR_Data_App::Services::Database']]],
-  ['gps',['GPS',['../class_d_l_r___data___app_1_1_services_1_1_sensors_1_1_g_p_s.html',1,'DLR_Data_App::Services::Sensors']]],
-  ['gyroscope',['Gyroscope',['../class_d_l_r___data___app_1_1_services_1_1_sensors_1_1_gyroscope.html',1,'DLR_Data_App::Services::Sensors']]]
+  ['editdatadetailpage',['EditDataDetailPage',['../class_d_l_r___data___app_1_1_views_1_1_current_project_1_1_edit_data_detail_page.html',1,'DLR_Data_App::Views::CurrentProject']]],
+  ['editdatadetailviewmodel',['EditDataDetailViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_current_project_1_1_edit_data_detail_view_model.html',1,'DLR_Data_App::ViewModels::CurrentProject']]],
+  ['editdatapage',['EditDataPage',['../class_d_l_r___data___app_1_1_views_1_1_current_project_1_1_edit_data_page.html',1,'DLR_Data_App.Views.CurrentProject.EditDataPage'],['../class_d_l_r___data___app_1_1_views_1_1_current_project_1_1_edit_data_page.html#a3e19950f605ee2918758cb2f33a9761f',1,'DLR_Data_App.Views.CurrentProject.EditDataPage.EditDataPage()']]],
+  ['editdataviewmodel',['EditDataViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_current_project_1_1_edit_data_view_model.html',1,'DLR_Data_App.ViewModels.CurrentProject.EditDataViewModel'],['../class_d_l_r___data___app_1_1_view_models_1_1_current_project_1_1_edit_data_view_model.html#a97374665a8c10013e8b2671166dfc5cd',1,'DLR_Data_App.ViewModels.CurrentProject.EditDataViewModel.EditDataViewModel()']]],
+  ['encrypt_5fpassword',['Encrypt_password',['../class_d_l_r___data___app_1_1_services_1_1_helpers.html#a4291f2b5e7d5852f32309ea8c9889b70',1,'DLR_Data_App::Services::Helpers']]]
 ];

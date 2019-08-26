@@ -183,6 +183,15 @@
   <data name="direction" xml:space="preserve">
     <value>Direction</value>
   </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="editdata" xml:space="preserve">
+    <value>Edit data</value>
+  </data>
+  <data name="edithelp" xml:space="preserve">
+    <value>Please select a date and time to select your dataset you want to edit. In the following list all datasets are listed, while the matching dataset to the time is selected. Tip on the dataset of your choise to edit it.</value>
+  </data>
   <data name="failed" xml:space="preserve">
     <value>Failed</value>
   </data>
@@ -200,6 +209,9 @@
   </data>
   <data name="gyroscope" xml:space="preserve">
     <value>Gyroscope</value>
+  </data>
+  <data name="help" xml:space="preserve">
+    <value>Help</value>
   </data>
   <data name="latitude" xml:space="preserve">
     <value>Latitude</value>
@@ -234,6 +246,9 @@
   <data name="newproject" xml:space="preserve">
     <value>New Project</value>
   </data>
+  <data name="nouserfound" xml:space="preserve">
+    <value>Profile not found</value>
+  </data>
   <data name="okay" xml:space="preserve">
     <value>Okay</value>
   </data>
@@ -248,8 +263,6 @@
   </data>
   <data name="privacytext1" xml:space="preserve">
     <value>DLR takes the protection of personal data very seriously. We want you to know when we store data, which types of data are stored and how it is used. As an incorporated entity under German civil law, we are subject to the provisions of the EU General Data Protection Regulation (GDPR), the Federal Data Protection Act (BDSG) and the Telemedia Act (TMG). We have taken technical and organisational measures to ensure our compliance and the compliance of external service providers with the data protection regulation.
-
-This website uses SSL – that is, TLS encryption – in order to protect the transfer of personal data and other confidential information (for example, orders or enquiries sent to the controller). A connection is encrypted if you see the character sequence 'https://' and the padlock icon in your browser's address bar.
 
 I. Name and address of the controller
 
@@ -358,11 +371,23 @@ Consent of the data subject means any freely given, specific, informed and unamb
   <data name="removeproject" xml:space="preserve">
     <value>Remove project</value>
   </data>
+  <data name="removeprojectwarning" xml:space="preserve">
+    <value>Do you want to remove the project?</value>
+  </data>
   <data name="reset" xml:space="preserve">
     <value>Reset</value>
   </data>
   <data name="save" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="selectdate" xml:space="preserve">
+    <value>Select date</value>
+  </data>
+  <data name="selectform" xml:space="preserve">
+    <value>Select Form</value>
+  </data>
+  <data name="selecttime" xml:space="preserve">
+    <value>Select time</value>
   </data>
   <data name="sensors" xml:space="preserve">
     <value>Sensors</value>
@@ -390,6 +415,12 @@ Consent of the data subject means any freely given, specific, informed and unamb
   </data>
   <data name="updateaccountfailure" xml:space="preserve">
     <value>Unable to save changes on profile.</value>
+  </data>
+  <data name="useralreadyexists" xml:space="preserve">
+    <value>User already exists</value>
+  </data>
+  <data name="wrongentry" xml:space="preserve">
+    <value>Wrong entry</value>
   </data>
   <data name="zippicker" xml:space="preserve">
     <value>Choose Zip Archive</value>

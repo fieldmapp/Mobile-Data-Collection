@@ -1,8 +1,13 @@
 var searchData=
 [
-  ['unzipfileasync',['UnzipFileAsync',['../class_d_l_r___data___app_1_1_services_1_1_helpers.html#a2624b830172555abaf0055b2a976b2c1',1,'DLR_Data_App::Services::Helpers']]],
-  ['update_3c_20t_20_3e',['Update&lt; T &gt;',['../class_d_l_r___data___app_1_1_services_1_1_database.html#a6c35fce6a805766a1723171876ad269a',1,'DLR_Data_App::Services::Database']]],
-  ['updateprojects',['UpdateProjects',['../class_d_l_r___data___app_1_1_view_models_1_1_projectlist_1_1_items_view_model.html#a5f9dd5643b2da9b7e2a02cf0370b870f',1,'DLR_Data_App::ViewModels::Projectlist::ItemsViewModel']]],
-  ['updateview',['UpdateView',['../class_d_l_r___data___app_1_1_view_models_1_1_project_view_model.html#a4a66af0df12b7f27771f535074070aa0',1,'DLR_Data_App::ViewModels::ProjectViewModel']]],
-  ['user',['User',['../class_d_l_r___data___app_1_1_models_1_1_user.html',1,'DLR_Data_App::Models']]]
+  ['selectcurrentproject',['SelectCurrentProject',['../class_d_l_r___data___app_1_1_services_1_1_database.html#abce2ee7a9b68bf9801144a83fe6c81a5',1,'DLR_Data_App::Services::Database']]],
+  ['sensor',['Sensor',['../class_d_l_r___data___app_1_1_services_1_1_sensor.html',1,'DLR_Data_App::Services']]],
+  ['sensorlistpage',['SensorListPage',['../class_d_l_r___data___app_1_1_views_1_1_settings_1_1_sensor_list_page.html',1,'DLR_Data_App::Views::Settings']]],
+  ['sensorlistviewmodel',['SensorListViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_settings_1_1_sensor_list_view_model.html',1,'DLR_Data_App::ViewModels::Settings']]],
+  ['sensortestpage',['SensorTestPage',['../class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html',1,'DLR_Data_App::Views']]],
+  ['sensortestviewmodel',['SensorTestViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_sensor_test_view_model.html',1,'DLR_Data_App::ViewModels']]],
+  ['setcurrentuser',['SetCurrentUser',['../class_d_l_r___data___app_1_1_services_1_1_helpers.html#a3adc58415da678b166ab5f2cfaa7587c',1,'DLR_Data_App::Services::Helpers']]],
+  ['settingspage',['SettingsPage',['../class_d_l_r___data___app_1_1_views_1_1_settings_1_1_settings_page.html',1,'DLR_Data_App::Views::Settings']]],
+  ['settingsviewmodel',['SettingsViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_settings_1_1_settings_view_model.html',1,'DLR_Data_App::ViewModels::Settings']]],
+  ['special_20commands',['Special Commands',['../specialcommand_page.html',1,'']]]
 ];

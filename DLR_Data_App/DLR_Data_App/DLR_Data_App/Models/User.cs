@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Xamarin.Essentials;
-using SQLite;
+﻿using SQLite;
 
 namespace DLR_Data_App.Models
 {
@@ -20,10 +15,5 @@ namespace DLR_Data_App.Models
 
     // Password stored in SHA512
     public string Password { get; set; }
-   
-    // Constructor
-    public User()
-    {
-    }
   }
 }

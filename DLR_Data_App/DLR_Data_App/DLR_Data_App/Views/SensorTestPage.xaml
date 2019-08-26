@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DLR_Data_App.Views.SensorTestPage"
-             xmlns:local="clr-namespace:DLR_Data_App"
              xmlns:res="clr-namespace:DLR_Data_App.Localizations"
              xmlns:vm="clr-namespace:DLR_Data_App.ViewModels"
              Title="{Binding Title}">
@@ -19,6 +18,11 @@
         <ScrollView>
             <StackLayout x:Name="LoginEntries" VerticalOptions="StartAndExpand" Padding="40,0,40,0">
                 <Grid x:Name="GridAccelerometer">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -27,7 +31,7 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Label Text="{res:TranslateExtention accelerometer}"
+                    <Label Text="{res:Translate accelerometer}"
                            FontSize="Medium"
                            VerticalOptions="Center" 
                            HorizontalOptions="Start"
@@ -35,13 +39,13 @@
                            Grid.Row="0"
                            Grid.Column="0"/>
 
-                    <Label Text="{res:TranslateExtention current}"
+                    <Label Text="{res:Translate current}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
                            Grid.Row="1"
                            Grid.Column="1" />
 
-                    <Label Text="{res:TranslateExtention max}"
+                    <Label Text="{res:Translate max}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
                            Grid.Row="1"
@@ -53,7 +57,7 @@
                            Grid.Row="2"
                            Grid.Column="0"/>
 
-                    <Label x:Name="lbl_x_accelerometer_current"
+                    <Label x:Name="LblXAccelerometerCurrent"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -61,7 +65,7 @@
                            Grid.Row="2"
                            Grid.Column="1"/>
 
-                    <Label x:Name="lbl_x_accelerometer_max"
+                    <Label x:Name="LblXAccelerometerMax"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -75,7 +79,7 @@
                            Grid.Row="3"
                            Grid.Column="0"/>
 
-                    <Label x:Name="lbl_y_accelerometer_current"
+                    <Label x:Name="LblYAccelerometerCurrent"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -83,7 +87,7 @@
                            Grid.Row="3"
                            Grid.Column="1"/>
 
-                    <Label x:Name="lbl_y_accelerometer_max"
+                    <Label x:Name="LblYAccelerometerMax"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
@@ -97,7 +101,7 @@
                            Grid.Row="4"
                            Grid.Column="0"/>
 
-                    <Label x:Name="lbl_z_accelerometer_current"
+                    <Label x:Name="LblZAccelerometerCurrent"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -105,7 +109,7 @@
                            Grid.Row="4"
                            Grid.Column="1"/>
 
-                    <Label x:Name="lbl_z_accelerometer_max"
+                    <Label x:Name="LblZAccelerometerMax"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -114,6 +118,11 @@
                            Grid.Column="2"/>
                 </Grid>
                 <Grid x:Name="GridBarometer">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -122,7 +131,7 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                        <Label Text="{res:TranslateExtention barometer}"
+                        <Label Text="{res:Translate barometer}"
                            FontSize="Medium"
                            VerticalOptions="Center" 
                            HorizontalOptions="Start"
@@ -130,25 +139,25 @@
                            Grid.Row="0"
                            Grid.Column="0"/>
 
-                    <Label Text="{res:TranslateExtention current}"
+                    <Label Text="{res:Translate current}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
                            Grid.Row="1"
                            Grid.Column="1" />
 
-                    <Label Text="{res:TranslateExtention max}"
+                    <Label Text="{res:Translate max}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
                            Grid.Row="1"
                            Grid.Column="2"/>
 
-                    <Label Text="{res:TranslateExtention pressure}"
+                    <Label Text="{res:Translate pressure}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
                            Grid.Row="2"
                            Grid.Column="0"/>
 
-                    <Label x:Name="lbl_pressure_barometer_current"
+                    <Label x:Name="LblPressureBarometerCurrent"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -156,7 +165,7 @@
                            Grid.Row="2"
                            Grid.Column="1"/>
 
-                    <Label x:Name="lbl_pressure_barometer_max"
+                    <Label x:Name="LblPressureBarometerMax"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -165,6 +174,11 @@
                            Grid.Column="2"/>
                 </Grid>
                 <Grid x:Name="GridCompass">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -173,7 +187,7 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Label Text="{res:TranslateExtention compass}"
+                    <Label Text="{res:Translate compass}"
                            FontSize="Medium"
                            VerticalOptions="Center" 
                            HorizontalOptions="Start"
@@ -181,19 +195,19 @@
                            Grid.Row="0"
                            Grid.Column="0"/>
 
-                    <Label Text="{res:TranslateExtention degrees}"
+                    <Label Text="{res:Translate degrees}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
                            Grid.Row="1"
                            Grid.Column="1" />
 
-                    <Label Text="{res:TranslateExtention direction}"
+                    <Label Text="{res:Translate direction}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
                            Grid.Row="1"
                            Grid.Column="2" />
 
-                    <Label x:Name="lbl_compass_degrees"
+                    <Label x:Name="LblCompassDegrees"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
@@ -201,7 +215,7 @@
                            Grid.Row="2"
                            Grid.Column="1"/>
 
-                    <Label x:Name="lbl_compass_direction"
+                    <Label x:Name="LblCompassDirection"
                            Text="N"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -210,6 +224,11 @@
                            Grid.Column="2"/>
                 </Grid>
                 <Grid x:Name="GridGps">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -218,7 +237,7 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Label Text="{res:TranslateExtention gps}"
+                    <Label Text="{res:Translate gps}"
                            FontSize="Medium"
                            VerticalOptions="Center" 
                            HorizontalOptions="Start"
@@ -226,13 +245,13 @@
                            Grid.Row="0"
                            Grid.Column="0"/>
 
-                    <Label Text="{res:TranslateExtention latitude}"
+                    <Label Text="{res:Translate latitude}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
                            Grid.Row="1"
                            Grid.Column="0"/>
 
-                    <Label x:Name="lbl_lat"
+                    <Label x:Name="LblLat"
                            Text="0.000"
                            FontSize="Large"
                            VerticalOptions="Center" 
@@ -240,13 +259,13 @@
                            Grid.Row="1"
                            Grid.Column="2"/>
 
-                    <Label Text="{res:TranslateExtention longitude}"
+                    <Label Text="{res:Translate longitude}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
                            Grid.Row="2"
                            Grid.Column="0"/>
 
-                    <Label x:Name="lbl_lon"
+                    <Label x:Name="LblLon"
                            FontSize="Large"
                            Text="0.000"
                            VerticalOptions="Center" 
@@ -254,13 +273,13 @@
                            Grid.Row="2"
                            Grid.Column="2"/>
 
-                    <Label Text="{res:TranslateExtention altitude}"
+                    <Label Text="{res:Translate altitude}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
                            Grid.Row="3"
                            Grid.Column="0"/>
 
-                    <Label x:Name="lbl_alt"
+                    <Label x:Name="LblAlt"
                            FontSize="Large"
                            Text="0.000"
                            VerticalOptions="Center" 
@@ -268,13 +287,13 @@
                            Grid.Row="3"
                            Grid.Column="2"/>
 
-                    <Label Text="{res:TranslateExtention status}"
+                    <Label Text="{res:Translate status}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
                            Grid.Row="4"
                            Grid.Column="0"/>
 
-                    <Label x:Name="lbl_status"
+                    <Label x:Name="LblStatus"
                            Text="No Satellites"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
@@ -282,6 +301,11 @@
                            Grid.Column="2"/>
                 </Grid>
                 <Grid x:Name="GridGyroscope">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -290,7 +314,7 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Label Text="{res:TranslateExtention gyroscope}"
+                    <Label Text="{res:Translate gyroscope}"
                            FontSize="Medium"
                            VerticalOptions="Center" 
                            HorizontalOptions="Start"
@@ -298,13 +322,13 @@
                            Grid.Row="0"
                            Grid.Column="0"/>
 
-                    <Label Text="{res:TranslateExtention current}"
+                    <Label Text="{res:Translate current}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
                            Grid.Row="1"
                            Grid.Column="1" />
 
-                    <Label Text="{res:TranslateExtention max}"
+                    <Label Text="{res:Translate max}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
                            Grid.Row="1"
@@ -316,7 +340,7 @@
                            Grid.Row="2"
                            Grid.Column="0"/>
 
-                    <Label x:Name="lbl_x_gyroscope_current"
+                    <Label x:Name="LblXGyroscopeCurrent"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -324,7 +348,7 @@
                            Grid.Row="2"
                            Grid.Column="1"/>
 
-                    <Label x:Name="lbl_x_gyroscope_max"
+                    <Label x:Name="LblXGyroscopeMax"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -338,7 +362,7 @@
                            Grid.Row="3"
                            Grid.Column="0"/>
 
-                    <Label x:Name="lbl_y_gyroscope_current"
+                    <Label x:Name="LblYGyroscopeCurrent"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -346,7 +370,7 @@
                            Grid.Row="3"
                            Grid.Column="1"/>
 
-                    <Label x:Name="lbl_y_gyroscope_max"
+                    <Label x:Name="LblYGyroscopeMax"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
@@ -360,7 +384,7 @@
                            Grid.Row="4"
                            Grid.Column="0"/>
 
-                    <Label x:Name="lbl_z_gyroscope_current"
+                    <Label x:Name="LblZGyroscopeCurrent"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -368,7 +392,7 @@
                            Grid.Row="4"
                            Grid.Column="1"/>
 
-                    <Label x:Name="lbl_z_gyroscope_max"
+                    <Label x:Name="LblZGyroscopeMax"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -377,6 +401,11 @@
                            Grid.Column="2"/>
                 </Grid>
                 <Grid x:Name="GridMagnetometer">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -385,7 +414,7 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Label Text="{res:TranslateExtention magnetometer}"
+                    <Label Text="{res:Translate magnetometer}"
                            FontSize="Medium"
                            VerticalOptions="Center" 
                            HorizontalOptions="Start"
@@ -393,13 +422,13 @@
                            Grid.Row="0"
                            Grid.Column="0"/>
 
-                    <Label Text="{res:TranslateExtention current}"
+                    <Label Text="{res:Translate current}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
                            Grid.Row="1"
                            Grid.Column="1" />
 
-                    <Label Text="{res:TranslateExtention max}"
+                    <Label Text="{res:Translate max}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
                            Grid.Row="1"
@@ -411,7 +440,7 @@
                            Grid.Row="2"
                            Grid.Column="0"/>
 
-                    <Label x:Name="lbl_x_magnetometer_current"
+                    <Label x:Name="LblXMagnetometerCurrent"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -419,7 +448,7 @@
                            Grid.Row="2"
                            Grid.Column="1"/>
 
-                    <Label x:Name="lbl_x_magnetometer_max"
+                    <Label x:Name="LblXMagnetometerMax"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -433,7 +462,7 @@
                            Grid.Row="3"
                            Grid.Column="0"/>
 
-                    <Label x:Name="lbl_y_magnetometer_current"
+                    <Label x:Name="LblYMagnetometerCurrent"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -441,7 +470,7 @@
                            Grid.Row="3"
                            Grid.Column="1"/>
 
-                    <Label x:Name="lbl_y_magnetometer_max"
+                    <Label x:Name="LblYMagnetometerMax"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
@@ -455,7 +484,7 @@
                            Grid.Row="4"
                            Grid.Column="0"/>
 
-                    <Label x:Name="lbl_z_magnetometer_current"
+                    <Label x:Name="LblZMagnetometerCurrent"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
@@ -463,7 +492,7 @@
                            Grid.Row="4"
                            Grid.Column="1"/>
 
-                    <Label x:Name="lbl_z_magnetometer_max"
+                    <Label x:Name="LblZMagnetometerMax"
                            Text="0.0"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 

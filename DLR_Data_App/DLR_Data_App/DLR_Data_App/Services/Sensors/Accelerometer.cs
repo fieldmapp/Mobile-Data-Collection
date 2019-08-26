@@ -1,24 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 using Xamarin.Essentials;
 
 
 namespace DLR_Data_App.Services.Sensors
 {
-  class Accelerometer
+  public class Accelerometer
   {
-    public float current_x { get; set; }
-    public float current_y { get; set; }
-    public float current_z { get; set; }
-    public float max_x { get; set; }
-    public float max_y { get; set; }
-    public float max_z { get; set; }
+    public float CurrentX { get; set; }
+    public float CurrentY { get; set; }
+    public float CurrentZ { get; set; }
+    public float MaxX { get; set; }
+    public float MaxY { get; set; }
+    public float MaxZ { get; set; }
 
     public Accelerometer()
     {
-      this.Reset();
+      Reset();
     }
     
     /**
@@ -28,23 +26,23 @@ namespace DLR_Data_App.Services.Sensors
     {
       var data = e.Reading;
 
-      current_x = data.Acceleration.X;
-      current_y = data.Acceleration.Y;
-      current_z = data.Acceleration.Z;
+      CurrentX = data.Acceleration.X;
+      CurrentY = data.Acceleration.Y;
+      CurrentZ = data.Acceleration.Z;
 
-      if(Math.Abs(current_x) > max_x)
+      if(Math.Abs(CurrentX) > MaxX)
       {
-        max_x = Math.Abs(current_x);
+        MaxX = Math.Abs(CurrentX);
       }
 
-      if (Math.Abs(current_y) > max_y)
+      if (Math.Abs(CurrentY) > MaxY)
       {
-        max_y = Math.Abs(current_y);
+        MaxY = Math.Abs(CurrentY);
       }
 
-      if (Math.Abs(current_z) > max_z)
+      if (Math.Abs(CurrentZ) > MaxZ)
       {
-        max_z = Math.Abs(current_z);
+        MaxZ = Math.Abs(CurrentZ);
       }
     }
 
@@ -53,12 +51,12 @@ namespace DLR_Data_App.Services.Sensors
      */
     public void Reset()
     {
-      current_x = 0.0F;
-      current_y = 0.0F;
-      current_z = 0.0F;
-      max_x = 0.0F;
-      max_y = 0.0F;
-      max_z = 0.0F;
+      CurrentX = 0.0F;
+      CurrentY = 0.0F;
+      CurrentZ = 0.0F;
+      MaxX = 0.0F;
+      MaxY = 0.0F;
+      MaxZ = 0.0F;
     }
   }
 }

@@ -1,18 +1,13 @@
-﻿using System;
-
+﻿using System.IO;
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using System.IO;
-using com.DLR.DLR_Data_App.Droid;
+using DLR_Data_App;
 
-namespace DLR_Data_App.Droid
+namespace com.DLR.DLR_Data_App.Droid
 {
-    [Activity(Label = "DLR Data App", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    [Activity(Label = "DLR Fieldmapp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize, ScreenOrientation = ScreenOrientation.Portrait)]
+    public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -22,11 +17,11 @@ namespace DLR_Data_App.Droid
             Xamarin.Essentials.Platform.Init(Application);
 
             base.OnCreate(savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-            string dbName = "DLRdata.sqlite";
-            string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            string fullPath = Path.Combine(folderPath, dbName);
+            const string dbName = "DLRdata.sqlite";
+            var folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            var fullPath = Path.Combine(folderPath, dbName);
 
             LoadApplication(new App(folderPath, fullPath));
         }

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DLR_Data_App.Models
+﻿namespace DLR_Data_App.Models
 {
   public enum MenuItemType
   {
-    Current_Project,
+    CurrentProject,
     Projects,
     Sensortest,
     Settings,

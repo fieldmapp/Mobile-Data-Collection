@@ -1,5 +1,4 @@
-﻿using DLR_Data_App.Localizations;
-using DLR_Data_App.Models.ProjectModel;
+﻿using DLR_Data_App.Models.ProjectModel;
 using ICSharpCode.SharpZipLib.Zip;
 using System;
 using System.Collections.Generic;
@@ -7,27 +6,36 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace DLR_Data_App.Services
 {
   /**
    * Class contains static helper functions
    */
-  class Helpers
+  public class Helpers
   {
-    /*
+    /**
      * Encrypts passphrases in SHA512
+     * @see https://docs.microsoft.com/de-de/dotnet/api/system.security.cryptography.hashalgorithm.computehash?view=netframework-4.8#System_Security_Cryptography_HashAlgorithm_ComputeHash_System_Byte__
+     * @see https://docs.microsoft.com/de-de/dotnet/api/system.security.cryptography.sha512?view=netframework-4.8
      */
     public static string Encrypt_password(string password)
     {
       var data = Encoding.UTF8.GetBytes(password);
+      byte[] resultBytes;
+      var sBuilder = new StringBuilder();
+
       using (SHA512 shaM = new SHA512Managed())
       {
-        data = shaM.ComputeHash(data);
+        resultBytes = shaM.ComputeHash(data);
       }
 
-      return Encoding.UTF8.GetString(data);
+      foreach (var t in resultBytes)
+      {
+        sBuilder.Append(t.ToString("x2"));
+      }
+
+      return sBuilder.ToString();
     }
 
     /**
@@ -40,20 +48,25 @@ namespace DLR_Data_App.Services
     {
       try
       {
-        var entry = new ZipEntry(Path.GetFileNameWithoutExtension(zipFilePath));
         var fileStreamIn = new FileStream(zipFilePath, FileMode.Open, FileAccess.Read);
         var zipInStream = new ZipInputStream(fileStreamIn);
-        entry = zipInStream.GetNextEntry();
-        //Directory.Delete(unzipFolderPath);
+        var entry = zipInStream.GetNextEntry();
+        if(Directory.Exists(unzipFolderPath))
+          Directory.Delete(unzipFolderPath, true);
 
         while (entry != null && entry.CanDecompress)
         {
           var outputFile = unzipFolderPath + @"/" + entry.Name;
           var outputDirectory = Path.GetDirectoryName(outputFile);
 
-          if (!Directory.Exists(outputDirectory))
+          if (outputDirectory != null)
           {
-            Directory.CreateDirectory(outputDirectory);
+            if (!Directory.Exists(outputDirectory))
+              Directory.CreateDirectory(outputDirectory);
+          }
+          else
+          {
+            return false;
           }
 
           if (entry.IsFile)
@@ -74,7 +87,7 @@ namespace DLR_Data_App.Services
         zipInStream.Close();
         fileStreamIn.Close();
       }
-      catch (Exception e)
+      catch (Exception)
       {
         return false;
       }
@@ -87,11 +100,13 @@ namespace DLR_Data_App.Services
      */
     public static Project TranslateProjectDetails(Project project)
     {
-      Project tempProject = new Project();
+      var tempProject = new Project
+      {
+        Authors = Parser.LanguageJson(project.Authors, project.Languages),
+        Title = Parser.LanguageJson(project.Title, project.Languages),
+        Description = Parser.LanguageJson(project.Description, project.Languages)
+      };
 
-      tempProject.Authors = Parser.LanguageJSON(project.Authors, project.Languages);
-      tempProject.Title = Parser.LanguageJSON(project.Title, project.Languages);
-      tempProject.Description = Parser.LanguageJSON(project.Description, project.Languages);
 
       return tempProject;
     }
@@ -102,15 +117,34 @@ namespace DLR_Data_App.Services
      */
     public static List<Project> TranslateProjectDetails(List<Project> projectList)
     {
-      List<Project> tempProjectList = new List<Project>();
+      var tempProjectList = new List<Project>();
 
-      for (int i = 0; i < projectList.Count; i++)
+      foreach (var t in projectList)
       {
-        tempProjectList.Add(TranslateProjectDetails(projectList[i]));
+        tempProjectList.Add(TranslateProjectDetails(t));
       }
 
       return tempProjectList;
     }
-    
-}
+
+    /**
+     * Set current user
+     */
+    public static void SetCurrentUser()
+    {
+      // get user id
+      if (App.CurrentUser.Id == 0)
+      {
+        var userList = Database.ReadUser();
+        foreach (var user in userList)
+        {
+          if (user.Username == App.CurrentUser.Username
+              && user.Password == App.CurrentUser.Password)
+          {
+            App.CurrentUser = user;
+          }
+        }
+      }
+    }
+  }
 }

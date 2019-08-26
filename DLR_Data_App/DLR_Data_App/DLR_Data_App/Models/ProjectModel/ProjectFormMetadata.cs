@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using SQLite;
+﻿using SQLite;
 
 namespace DLR_Data_App.Models.ProjectModel
 {
@@ -18,6 +14,6 @@ namespace DLR_Data_App.Models.ProjectModel
     public string Htitle { get; set; }
     public string InstanceName { get; set; }
     public string PublicKey { get; set; }
-    public string SubmissionURL { get; set; }
+    public string SubmissionUrl { get; set; }
   }
 }

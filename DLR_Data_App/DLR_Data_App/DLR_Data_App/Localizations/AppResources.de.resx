@@ -183,6 +183,15 @@
   <data name="direction" xml:space="preserve">
     <value>Richtung</value>
   </data>
+  <data name="edit" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="editdata" xml:space="preserve">
+    <value>Daten bearbeiten</value>
+  </data>
+  <data name="edithelp" xml:space="preserve">
+    <value>Bitte wählen Sie ein Datum und eine Zeit aus, in der Sie den Datensatz suchen. Es werden alle Datensätze in einer Liste dargestellt, wobei der zur Zeit passende Eintrag ausgewählt ist. Wählen Sie einen Eintrag zum Bearbeiten durch antippen aus.</value>
+  </data>
   <data name="failed" xml:space="preserve">
     <value>Fehlgeschlagen</value>
   </data>
@@ -200,6 +209,9 @@
   </data>
   <data name="gyroscope" xml:space="preserve">
     <value>Gyroskop</value>
+  </data>
+  <data name="help" xml:space="preserve">
+    <value>Hilfe</value>
   </data>
   <data name="latitude" xml:space="preserve">
     <value>Latitude</value>
@@ -234,6 +246,9 @@
   <data name="newproject" xml:space="preserve">
     <value>Neues Projekt</value>
   </data>
+  <data name="nouserfound" xml:space="preserve">
+    <value>Profil nicht vorhanden</value>
+  </data>
   <data name="okay" xml:space="preserve">
     <value>Okay</value>
   </data>
@@ -248,8 +263,6 @@
   </data>
   <data name="privacytext1" xml:space="preserve">
     <value>Das DLR nimmt den Schutz personenbezogener Daten sehr ernst. Wir möchten, dass Sie wissen, wann wir welche Daten speichern und wie wir sie verwenden. Als eingetragener Verein des deutschen Bürgerlichen Rechts unterliegen wir den Bestimmungen der EU-Datenschutzgrundverordnung (DSGVO) und des Bundesdatenschutzgesetzes (BDSG) sowie des Telemediengesetzes (TMG). Wir haben technische und organisatorische Maßnahmen getroffen, die sicherstellen, dass die Vorschriften über den Datenschutz sowohl von uns als auch von externen Dienstleistern beachtet werden.
-
-Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung personenbezogene Daten und anderer vertraulicher Inhalte (z.B. Bestellungen oder Anfragen an den Verantwortlichen) eine SSL-bzw. TLS-Verschlüsselung. Sie können eine verschlüsselte Verbindung an der Zeichenfolge „https://“ und dem Schloss-Symbol in Ihrer Browserzeile erkennen.
 
 I. Name und Anschrift des Verantwortlichen
 
@@ -358,11 +371,23 @@ Einwilligung ist jede von der betroffenen Person freiwillig für den bestimmten 
   <data name="removeproject" xml:space="preserve">
     <value>Projekt löschen</value>
   </data>
+  <data name="removeprojectwarning" xml:space="preserve">
+    <value>Wollen Sie das Projekt löschen?</value>
+  </data>
   <data name="reset" xml:space="preserve">
     <value>Zurücksetzen</value>
   </data>
   <data name="save" xml:space="preserve">
     <value>Speichern</value>
+  </data>
+  <data name="selectdate" xml:space="preserve">
+    <value>Tag wählen</value>
+  </data>
+  <data name="selectform" xml:space="preserve">
+    <value>Formular auswählen</value>
+  </data>
+  <data name="selecttime" xml:space="preserve">
+    <value>Zeit wählen</value>
   </data>
   <data name="sensors" xml:space="preserve">
     <value>Sensoren</value>
@@ -390,6 +415,12 @@ Einwilligung ist jede von der betroffenen Person freiwillig für den bestimmten 
   </data>
   <data name="updateaccountfailure" xml:space="preserve">
     <value>Profil konnte nicht geändert werden.</value>
+  </data>
+  <data name="useralreadyexists" xml:space="preserve">
+    <value>Profil existiert bereits</value>
+  </data>
+  <data name="wrongentry" xml:space="preserve">
+    <value>Eingabe fehlerhaft</value>
   </data>
   <data name="zippicker" xml:space="preserve">
     <value>Zip Archiv auswählen</value>

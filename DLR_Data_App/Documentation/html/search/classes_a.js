@@ -1,19 +1,6 @@
 var searchData=
 [
-  ['parser',['Parser',['../class_d_l_r___data___app_1_1_services_1_1_parser.html',1,'DLR_Data_App::Services']]],
-  ['profilelistpage',['ProfilelistPage',['../class_d_l_r___data___app_1_1_views_1_1_settings_1_1_profilelist_page.html',1,'DLR_Data_App::Views::Settings']]],
-  ['profilelistviewmodel',['ProfilelistViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_settings_1_1_profilelist_view_model.html',1,'DLR_Data_App::ViewModels::Settings']]],
-  ['profilepage',['ProfilePage',['../class_d_l_r___data___app_1_1_views_1_1_settings_1_1_profile_page.html',1,'DLR_Data_App::Views::Settings']]],
-  ['profileviewmodel',['ProfileViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_settings_1_1_profile_view_model.html',1,'DLR_Data_App::ViewModels::Settings']]],
-  ['project',['Project',['../class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project.html',1,'DLR_Data_App::Models::ProjectModel']]],
-  ['projectform',['ProjectForm',['../class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project_form.html',1,'DLR_Data_App::Models::ProjectModel']]],
-  ['projectformcontrols',['ProjectFormControls',['../class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project_form_controls.html',1,'DLR_Data_App::Models::ProjectModel']]],
-  ['projectformelementlist',['ProjectFormElementList',['../class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_database_connectors_1_1_project_form_element_list.html',1,'DLR_Data_App::Models::ProjectModel::DatabaseConnectors']]],
-  ['projectformelements',['ProjectFormElements',['../class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project_form_elements.html',1,'DLR_Data_App::Models::ProjectModel']]],
-  ['projectformlist',['ProjectFormList',['../class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_database_connectors_1_1_project_form_list.html',1,'DLR_Data_App::Models::ProjectModel::DatabaseConnectors']]],
-  ['projectformmetadata',['ProjectFormMetadata',['../class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project_form_metadata.html',1,'DLR_Data_App::Models::ProjectModel']]],
-  ['projectgenerator',['ProjectGenerator',['../class_d_l_r___data___app_1_1_services_1_1_project_generator.html',1,'DLR_Data_App::Services']]],
-  ['projectpage',['ProjectPage',['../class_d_l_r___data___app_1_1_views_1_1_project_page.html',1,'DLR_Data_App::Views']]],
-  ['projectuserconnection',['ProjectUserConnection',['../class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_database_connectors_1_1_project_user_connection.html',1,'DLR_Data_App::Models::ProjectModel::DatabaseConnectors']]],
-  ['projectviewmodel',['ProjectViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_project_view_model.html',1,'DLR_Data_App::ViewModels']]]
+  ['newprofilepage',['NewProfilePage',['../class_d_l_r___data___app_1_1_views_1_1_login_1_1_new_profile_page.html',1,'DLR_Data_App::Views::Login']]],
+  ['newprofileviewmodel',['NewProfileViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_login_1_1_new_profile_view_model.html',1,'DLR_Data_App.ViewModels.Login.NewProfileViewModel'],['../class_d_l_r___data___app_1_1_view_models_1_1_settings_1_1_new_profile_view_model.html',1,'DLR_Data_App.ViewModels.Settings.NewProfileViewModel']]],
+  ['newprojectpage',['NewProjectPage',['../class_d_l_r___data___app_1_1_views_1_1_project_list_1_1_new_project_page.html',1,'DLR_Data_App::Views::ProjectList']]]
 ];

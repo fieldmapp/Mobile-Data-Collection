@@ -1,11 +1,25 @@
 var searchData=
 [
-  ['selectcurrentproject',['SelectCurrentProject',['../class_d_l_r___data___app_1_1_services_1_1_database.html#abce2ee7a9b68bf9801144a83fe6c81a5',1,'DLR_Data_App::Services::Database']]],
-  ['sensorlistpage',['SensorListPage',['../class_d_l_r___data___app_1_1_views_1_1_settings_1_1_sensor_list_page.html',1,'DLR_Data_App::Views::Settings']]],
-  ['sensorlistviewmodel',['SensorListViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_settings_1_1_sensor_list_view_model.html',1,'DLR_Data_App::ViewModels::Settings']]],
-  ['sensortestpage',['SensorTestPage',['../class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html',1,'DLR_Data_App::Views']]],
-  ['sensortestviewmodel',['SensorTestViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_sensor_test_view_model.html',1,'DLR_Data_App::ViewModels']]],
-  ['settingspage',['SettingsPage',['../class_d_l_r___data___app_1_1_views_1_1_settings_1_1_settings_page.html',1,'DLR_Data_App::Views::Settings']]],
-  ['settingsviewmodel',['SettingsViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_settings_1_1_settings_view_model.html',1,'DLR_Data_App::ViewModels::Settings']]],
-  ['special_20commands',['Special Commands',['../specialcommand_page.html',1,'']]]
+  ['parsejson',['ParseJson',['../class_d_l_r___data___app_1_1_services_1_1_parser.html#a01d68ed8117f82b02728d17f3dc9948b',1,'DLR_Data_App::Services::Parser']]],
+  ['parseoptionsfromjson',['ParseOptionsFromJson',['../class_d_l_r___data___app_1_1_services_1_1_parser.html#a09e7807cd62647356e1ec02783a3b8c3',1,'DLR_Data_App::Services::Parser']]],
+  ['parser',['Parser',['../class_d_l_r___data___app_1_1_services_1_1_parser.html',1,'DLR_Data_App.Services.Parser'],['../class_d_l_r___data___app_1_1_services_1_1_parser.html#a01ea16cc516f463103d12e79f704f778',1,'DLR_Data_App.Services.Parser.Parser()']]],
+  ['parsezip',['ParseZip',['../class_d_l_r___data___app_1_1_services_1_1_parser.html#ac69dffae9efd1ace4745bcca49c7b68c',1,'DLR_Data_App::Services::Parser']]],
+  ['preferences',['Preferences',['../pref_page.html',1,'']]],
+  ['profilelistpage',['ProfileListPage',['../class_d_l_r___data___app_1_1_views_1_1_settings_1_1_profile_list_page.html',1,'DLR_Data_App::Views::Settings']]],
+  ['profilelistviewmodel',['ProfilelistViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_settings_1_1_profilelist_view_model.html',1,'DLR_Data_App::ViewModels::Settings']]],
+  ['profilepage',['ProfilePage',['../class_d_l_r___data___app_1_1_views_1_1_settings_1_1_profile_page.html',1,'DLR_Data_App.Views.Settings.ProfilePage'],['../class_d_l_r___data___app_1_1_views_1_1_settings_1_1_profile_page.html#aebf959e50226c1d3043d9e49e8255c9a',1,'DLR_Data_App.Views.Settings.ProfilePage.ProfilePage()']]],
+  ['profileviewmodel',['ProfileViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_settings_1_1_profile_view_model.html',1,'DLR_Data_App::ViewModels::Settings']]],
+  ['project',['Project',['../class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project.html',1,'DLR_Data_App::Models::ProjectModel']]],
+  ['projectdetailpage',['ProjectDetailPage',['../class_d_l_r___data___app_1_1_views_1_1_project_list_1_1_project_detail_page.html',1,'DLR_Data_App.Views.ProjectList.ProjectDetailPage'],['../class_d_l_r___data___app_1_1_views_1_1_project_list_1_1_project_detail_page.html#ac944d314c08336405c0bbb8265b28495',1,'DLR_Data_App.Views.ProjectList.ProjectDetailPage.ProjectDetailPage()']]],
+  ['projectdetailviewmodel',['ProjectDetailViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_project_list_1_1_project_detail_view_model.html',1,'DLR_Data_App::ViewModels::ProjectList']]],
+  ['projectform',['ProjectForm',['../class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project_form.html',1,'DLR_Data_App::Models::ProjectModel']]],
+  ['projectformelementlist',['ProjectFormElementList',['../class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_database_connectors_1_1_project_form_element_list.html',1,'DLR_Data_App::Models::ProjectModel::DatabaseConnectors']]],
+  ['projectformelements',['ProjectFormElements',['../class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project_form_elements.html',1,'DLR_Data_App::Models::ProjectModel']]],
+  ['projectformmetadata',['ProjectFormMetadata',['../class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project_form_metadata.html',1,'DLR_Data_App::Models::ProjectModel']]],
+  ['projectgenerator',['ProjectGenerator',['../class_d_l_r___data___app_1_1_services_1_1_project_generator.html',1,'DLR_Data_App.Services.ProjectGenerator'],['../class_d_l_r___data___app_1_1_services_1_1_project_generator.html#ad8fb86ffdb45fbc25300dbac510c6d02',1,'DLR_Data_App.Services.ProjectGenerator.ProjectGenerator()']]],
+  ['projectlistpage',['ProjectListPage',['../class_d_l_r___data___app_1_1_views_1_1_project_list_1_1_project_list_page.html',1,'DLR_Data_App.Views.ProjectList.ProjectListPage'],['../class_d_l_r___data___app_1_1_views_1_1_project_list_1_1_project_list_page.html#aff5bcfefeafc9073a529307a0e3737e9',1,'DLR_Data_App.Views.ProjectList.ProjectListPage.ProjectListPage()']]],
+  ['projectlistviewmodel',['ProjectListViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_project_list_1_1_project_list_view_model.html',1,'DLR_Data_App.ViewModels.ProjectList.ProjectListViewModel'],['../class_d_l_r___data___app_1_1_view_models_1_1_project_list_1_1_project_list_view_model.html#aec980fae8edfc98a0633a8a51b56754e',1,'DLR_Data_App.ViewModels.ProjectList.ProjectListViewModel.ProjectListViewModel()']]],
+  ['projectpage',['ProjectPage',['../class_d_l_r___data___app_1_1_views_1_1_current_project_1_1_project_page.html',1,'DLR_Data_App::Views::CurrentProject']]],
+  ['projectuserconnection',['ProjectUserConnection',['../class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_database_connectors_1_1_project_user_connection.html',1,'DLR_Data_App::Models::ProjectModel::DatabaseConnectors']]],
+  ['projectviewmodel',['ProjectViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_current_project_1_1_project_view_model.html',1,'DLR_Data_App::ViewModels::CurrentProject']]]
 ];

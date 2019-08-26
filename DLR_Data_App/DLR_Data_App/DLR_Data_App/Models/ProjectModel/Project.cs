@@ -1,8 +1,5 @@
 ﻿using SQLite;
-
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DLR_Data_App.Models.ProjectModel
 {
@@ -13,7 +10,7 @@ namespace DLR_Data_App.Models.ProjectModel
   {
     public Project()
     {
-      Formlist = new List<ProjectForm>();
+      FormList = new List<ProjectForm>();
     }
 
     [PrimaryKey, AutoIncrement]
@@ -40,6 +37,6 @@ namespace DLR_Data_App.Models.ProjectModel
 
     // List of forms
     [Ignore]
-    public List<ProjectForm> Formlist { get; set; }
+    public List<ProjectForm> FormList { get; set; }
   }
 }

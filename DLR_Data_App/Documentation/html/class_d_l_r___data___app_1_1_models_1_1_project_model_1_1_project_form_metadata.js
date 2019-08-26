@@ -6,6 +6,6 @@ var class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project_form_metad
     [ "Languages", "class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project_form_metadata.html#a2fceb1e21d1894a897b0d580fb75ba9b", null ],
     [ "OptionsPresets", "class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project_form_metadata.html#aab44e8e042a3adf088bfcefcc822bc60", null ],
     [ "PublicKey", "class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project_form_metadata.html#a65d939298808bd255c94316482999331", null ],
-    [ "SubmissionURL", "class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project_form_metadata.html#aac7f37f21fe398c0cb116eb21dab2090", null ],
+    [ "SubmissionUrl", "class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project_form_metadata.html#ac516e6e13b7dfbc1363f5a86115ee2df", null ],
     [ "Version", "class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project_form_metadata.html#ab619decc8403100bb81002ff9826c3e3", null ]
 ];

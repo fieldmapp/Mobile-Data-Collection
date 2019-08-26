@@ -16,7 +16,7 @@
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
-                <views:Projectlist.ItemsPage />
+                <views:ProjectList.ProjectListPage />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

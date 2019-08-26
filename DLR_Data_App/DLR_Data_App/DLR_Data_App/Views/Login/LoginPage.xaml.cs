@@ -1,14 +1,7 @@
 ﻿using DLR_Data_App.Localizations;
-using DLR_Data_App.Models;
 using DLR_Data_App.Services;
-using DLR_Data_App.Views;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Essentials;
+using DLR_Data_App.ViewModels.Login;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,106 +11,66 @@ using Xamarin.Forms.Xaml;
 namespace DLR_Data_App.Views.Login
 {
   [XamlCompilation(XamlCompilationOptions.Compile)]
-  public partial class LoginPage : ContentPage
+  public partial class LoginPage
   {
+    private readonly LoginViewModel _viewModel = new LoginViewModel();
+
     public LoginPage()
     {
       InitializeComponent();
-      Init();
-    }
+      BindingContext = _viewModel;
 
-    /**
-     * Initialize page
-     */
-    private void Init()
-    {
       LoginIcon.HeightRequest = 120;
 
       // after completing the input of username change focus to password and after that to login button
-      entry_Username.Completed += (s, e) => entry_Password.Focus();
-      entry_Password.Completed += (s, e) => btn_signin.Focus();
-
+      EntryUsername.Completed += (s, e) => EntryPassword.Focus();
+      EntryPassword.Completed += (s, e) => BtnSignin.Focus();
     }
 
     /**
      * Get login data, check them and on success navigate to project list
      */
-    async void Btn_signin_Clicked(object sender, EventArgs e)
+    private async void Btn_signin_Clicked(object sender, EventArgs e)
     {
-      if (Check_Information())
-      {
-        bool answer = await DisplayAlert(AppResources.privacypolicy, AppResources.privacytext1, AppResources.accept, AppResources.decline);
+      var checkUsername = EntryUsername.Text;
+      var checkPassword = Helpers.Encrypt_password(EntryPassword.Text);
 
-        if(answer)
+      if (_viewModel.Check_Information(checkUsername, checkPassword))
+      {
+        var answer = await DisplayAlert(AppResources.privacypolicy, AppResources.privacytext1, AppResources.accept, AppResources.decline);
+
+        if (!answer) return;
+
+        switch (Device.RuntimePlatform)
         {
-          if (Device.RuntimePlatform == Device.Android)
-          {
+          case Device.Android:
             Application.Current.MainPage = new MainPage();
-          }
-          else if (Device.RuntimePlatform == Device.iOS)
-          {
+            break;
+          case Device.iOS:
             await Navigation.PushModalAsync(new MainPage());
-          }
+            break;
         }
       }
       else
       {
-        await DisplayAlert(AppResources.login, AppResources.failed, AppResources.back);
+        await DisplayAlert(AppResources.login, AppResources.nouserfound, AppResources.back);
       }
     }
 
     /**
      * Open form for creating a new user
      */
-    async void Btn_newaccount_Clicked(object sender, EventArgs e)
+    private async void Btn_newaccount_Clicked(object sender, EventArgs e)
     {
-      //bool answer = await DisplayAlert(AppResources.newaccount, AppResources.newaccountwarning, AppResources.accept, AppResources.decline);
-
-      //if (answer)
-      //{
-        if (Device.RuntimePlatform == Device.Android)
-        {
+      switch (Device.RuntimePlatform)
+      {
+        case Device.Android:
           Application.Current.MainPage = new NewProfilePage();
-        }
-        else if (Device.RuntimePlatform == Device.iOS)
-        {
+          break;
+        case Device.iOS:
           await Navigation.PushModalAsync(new NewProfilePage());
-        }
-      //}
-    }
-
-    /**
-     * Checks login with stored data
-     */
-    private bool Check_Information()
-    {
-      // Get all users from database
-      List<User> userList = Database.ReadUser();
-
-      // Get input from user
-      string check_username = entry_Username.Text;
-      string check_password = Helpers.Encrypt_password(entry_Password.Text);
-
-      // Check if input empty
-      if (check_username == "" 
-        || check_password == "")
-      {
-        return false;
+          break;
       }
-
-      // Check if entry match with user in database
-      foreach(User user in userList)
-      {
-        // If user is found set as current user
-        if(user.Username == check_username 
-          && user.Password == check_password)
-        {
-          App.CurrentUser = user;
-          return true;
-        }
-      }
-
-      return false;
     }
   }
 }

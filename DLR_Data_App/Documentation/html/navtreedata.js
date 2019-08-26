@@ -23,8 +23,10 @@ for the JavaScript code in this file
 */
 var NAVTREE =
 [
-  [ "DLR Data App", "index.html", [
-    [ "Introduction", "index.html#intro_sec", null ],
+  [ "Fieldmapp", "index.html", [
+    [ "DLR Data App", "index.html", [
+      [ "Introduction", "index.html#intro_sec", null ]
+    ] ],
     [ "Preferences", "pref_page.html", null ],
     [ "Special Commands", "specialcommand_page.html", null ],
     [ "Packages", "namespaces.html", [
@@ -45,7 +47,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"namespace_d_l_r___data___app_1_1_views_1_1_login.html"
+"namespace_d_l_r___data___app_1_1_models_1_1_project_model_1_1_database_connectors.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,0 +1,4 @@
+var class_d_l_r___data___app_1_1_view_models_1_1_current_project_1_1_edit_data_detail_view_model =
+[
+    [ "EditDataDetailViewModel", "class_d_l_r___data___app_1_1_view_models_1_1_current_project_1_1_edit_data_detail_view_model.html#a1da79807d78b1c556d2868da6d087c47", null ]
+];

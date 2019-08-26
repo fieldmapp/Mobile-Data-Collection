@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
+using System.Linq;
 using DLR_Data_App.Models;
 using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Models.ProjectModel.DatabaseConnectors;
@@ -14,15 +14,8 @@ namespace DLR_Data_App.Services
    * 
    * https://docs.microsoft.com/de-de/xamarin/android/data-cloud/data-access/using-sqlite-orm
    */
-  class Database
-  {
-    /**
-     * Constructor
-     */
-    public Database()
-    {     
-    }
-
+  public class Database
+  { 
     /**
      * Insert data into the database
      * @param data The contents that will pushed into the database
@@ -30,10 +23,10 @@ namespace DLR_Data_App.Services
      */
     public static bool Insert<T>(ref T data)
     {
-      int resultInsert = 0;
+      int resultInsert;
 
       // database will be closed after leaving the using statement
-      using (SQLiteConnection conn = new SQLite.SQLiteConnection(App.DatabaseLocation))
+      using (var conn = new SQLiteConnection(App.DatabaseLocation))
       {
         // if table doesn't exist create a new one
         conn.CreateTable<T>();
@@ -43,14 +36,7 @@ namespace DLR_Data_App.Services
       }
 
       // check if data was successfully inserted
-      if (resultInsert > 0)
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }
+      return resultInsert > 0;
     }
 
     /**
@@ -60,10 +46,10 @@ namespace DLR_Data_App.Services
      */
     public static bool Update<T>(ref T data)
     {
-      int resultUpdate = 0;
+      int resultUpdate;
 
       // database will be closed after leaving the using statement
-      using (SQLiteConnection conn = new SQLite.SQLiteConnection(App.DatabaseLocation))
+      using (var conn = new SQLiteConnection(App.DatabaseLocation))
       {
         // if table doesn't exist create a new one
         conn.CreateTable<T>();
@@ -80,7 +66,7 @@ namespace DLR_Data_App.Services
       else
       {
         // if no element was updated the element is inserted into the database
-        Insert<T>(ref data);
+        Insert(ref data);
         return false;
       }
     }
@@ -92,10 +78,10 @@ namespace DLR_Data_App.Services
      */
     public static bool Delete<T>(ref T data)
     {
-      int resultDelete = 0;
+      int resultDelete;
 
       // database will be closed after leaving the using statement
-      using (SQLiteConnection conn = new SQLite.SQLiteConnection(App.DatabaseLocation))
+      using (var conn = new SQLiteConnection(App.DatabaseLocation))
       {
         // Update data into table
         resultDelete = conn.Delete(data);
@@ -121,7 +107,7 @@ namespace DLR_Data_App.Services
       List<User> result;
 
       // database will be closed after leaving the using statement
-      using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+      using (var conn = new SQLiteConnection(App.DatabaseLocation))
       {
         // if table doesn't exist create a new one
         conn.CreateTable<User>();
@@ -134,16 +120,57 @@ namespace DLR_Data_App.Services
     }
 
     /**
+     * Delete project with its forms
+     * @param project Project that should be deleted
+     */
+    public static void DeleteProject(Project project)
+    {
+      var queryForms = "DELETE FROM ProjectForm WHERE Id=?";
+      var queryFormElementList = "DELETE FROM ProjectFormElementList WHERE ElementId=?";
+      var queryFormElements = "DELETE FROM ProjectFormElements WHERE Id=?";
+      var queryFormMetadata = "DELETE FROM ProjectFormMetadata WHERE Id=?";
+      var queryUserConnection = "DELETE FROM ProjectUserConnection WHERE ProjectId=?";
+
+      using (var conn = new SQLiteConnection(App.DatabaseLocation))
+      {
+        // remove all elements of a form
+        foreach (var form in project.FormList)
+        {
+          // remove elements
+          foreach (var element in form.ElementList)
+          {
+            conn.Execute(queryFormElements, element.Id);
+            conn.Execute(queryFormElementList, element.Id);
+          }
+          
+          // remove metadata
+          // conn.Execute(queryFormMetadata, form.Metadata.Id);
+
+          // remove form
+          conn.Execute(queryForms, form.Id);
+        }
+
+        // remove connection between user and project
+        conn.Execute(queryUserConnection, project.Id);
+
+        // remove project
+        conn.Delete(project);
+      }
+    }
+
+    /**
      * Stores project in database
      * Own implementation of foreign keys caused by missing function in Xamarin SQL
      */
     public static bool InsertProject(ref Project project)
     {
+      bool status;
+      
       // Load current stored data to project list
-      List<Project> projectList = Database.ReadProjects();
+      var projectList = ReadProjects();
 
       // Check if project already exists and abort insertion if it does
-      foreach(Project p in projectList)
+      foreach(var p in projectList)
       {
         if(p.Title == project.Title)
         {
@@ -152,24 +179,57 @@ namespace DLR_Data_App.Services
       }
 
       // Insert project to database
-      Database.Insert<Project>(ref project);
+      status = Insert(ref project);
+      if (!status)
+      {
+        return false;
+      }
 
       // Add form to project
-      foreach (ProjectForm form in project.Formlist)
+      foreach (var form in project.FormList)
       {
-        ProjectForm formElement = form;
-        Database.Insert<ProjectForm>(ref formElement);
-
-        foreach (ProjectFormElements elements in form.ElementList)
+        var formElement = form;
+        formElement.ProjectId = project.Id;
+        status = Insert(ref formElement);
+        if (!status)
         {
-          ProjectFormElements controlElement = elements;
-          Database.Insert<ProjectFormElements>(ref controlElement);
+          return false;
         }
 
-        ProjectFormMetadata metadataElement = form.Metadata;
-        Database.Insert<ProjectFormMetadata>(ref metadataElement);
+        var metadata = form.Metadata;
+        status = Insert(ref metadata);
+        if (!status)
+        {
+          return false;
+        }
+
+        foreach (var elements in form.ElementList)
+        {
+          // store each form with its controls
+          var controlElement = elements;
+          status = Insert(ref controlElement);
+          if (!status)
+          {
+            return false;
+          }
+
+          // combine project with control elements
+          var combineElementList = new ProjectFormElementList
+          {
+            ElementId = controlElement.Id, FormId = formElement.Id, MetadataId = form.Metadata.Id
+          };
+          status = Insert(ref combineElementList);
+          if (!status)
+          {
+            return false;
+          }
+        }
       }
-      return true;
+
+      // Create custom table
+      status = CreateCustomTable(ref project);
+
+      return status;
     }
 
     /**
@@ -178,10 +238,10 @@ namespace DLR_Data_App.Services
      */
     public static List<Project> ReadProjects()
     {
-      List<Project> projectList = new List<Project>();
+      List<Project> projectList;
 
       // database will be closed after leaving the using statement
-      using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+      using (var conn = new SQLiteConnection(App.DatabaseLocation))
       {
         // if table doesn't exist create a new one
         conn.CreateTable<Project>();
@@ -190,10 +250,10 @@ namespace DLR_Data_App.Services
         projectList = conn.Table<Project>().ToList();
       }
 
-      for(int projectIterator = 0; projectIterator<projectList.Count; projectIterator++)
+      for(var projectIterator = 0; projectIterator<projectList.Count; projectIterator++)
       {
-        Project tempProject = projectList[projectIterator];
-        //ReadForms(ref tempProject);
+        var tempProject = projectList[projectIterator];
+        ReadForms(ref tempProject);
         projectList[projectIterator] = tempProject;
       }
       
@@ -201,62 +261,76 @@ namespace DLR_Data_App.Services
     }
 
     /**
-     * Return all forms for a project
-     * @return List of all projects in database
+     * Stores all forms in project
+     * @param Project
      */
-    public static bool ReadForms(ref Project project)
+    public static void ReadForms(ref Project project)
     {
-      List<ProjectForm> result;
-
       // database will be closed after leaving the using statement
-      using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+      using (var conn = new SQLiteConnection(App.DatabaseLocation))
       {
-        // if table doesn't exist create a new one
-        conn.CreateTable<ProjectFormList>();
+        // get all forms, which belong to the selected project
+        project.FormList = conn.Query<ProjectForm>("select * from ProjectForm where ProjectId == ?", project.Id);
 
-        var formList = conn.Query<int>("select formlist.FormId from ProjectFormList where formlist.ProjectId == ?", project.Id);
+        // get the list of the connections between all elements and forms
+        var elementConnection = conn.Query<ProjectFormElementList>("select * from ProjectFormElementList");
 
-        // get content of table
-        result = conn.Table<ProjectForm>().ToList();
+        // walk through the list
+        foreach (var connection in elementConnection)
+        {
+          // get single element of connection list
+          var element = conn.Query<ProjectFormElements>("select * from ProjectFormElements where Id == ?", connection.ElementId);
+          if (element.Count <= 0) continue;
+
+          // check if element list in project is initialized, if not initialize
+          if (project.FormList.Find(form => form.Id == connection.FormId).ElementList == null)
+          {
+            project.FormList.Find(form => form.Id == connection.FormId).ElementList = new List<ProjectFormElements>();
+          }
+            
+          // add element to form
+          project.FormList.Find(form => form.Id == connection.FormId).ElementList.Add(element.First());
+        }
       }
-
-      project.Formlist = result;
-
-      return true;
     }
 
     /**
      * Create custom table
+     * @param project Project containing information of forms
      */
-    public static bool CreateCustomTable(string tableName, List<Field> fieldList)
+    public static bool CreateCustomTable(ref Project project)
     {
-      bool status = false;
+      bool status;
+      var tableName = Parser.LanguageJsonStandard(project.Title, project.Languages) + "_" + project.Id;
 
       // Generate query for creating a new table
-      string query = "CREATE TABLE " + tableName + "(";
-      query += "Id Int PRIMARY KEY AUTOINCREMENT,";
-      query += "ProjectId Int,";
-      query += "FormId Int,";
+      var query = "CREATE TABLE IF NOT EXISTS " + tableName + "(";
+      query += "Id INTEGER PRIMARY KEY AUTOINCREMENT, ";
+      query += "ProjectId INTEGER, ";
+      query += "Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, ";
 
-      foreach(Field field in fieldList)
+      foreach(var form in project.FormList)
       {
-        query += field.FieldName + " " + field.FieldType + ",";
+        foreach (var element in form.ElementList)
+        {
+          query += element.Name + " VARCHAR, ";
+        }
       }
 
-      query.Remove(query.Length-1);
+      query = query.Remove(query.Length-2);
       query += ");";
-
-      using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+      
+      using (var conn = new SQLiteConnection(App.DatabaseLocation))
       {
         try
         {
           conn.Execute(query);
           status = true;
-        } catch
+        }
+        catch
         {
           status = false;
         }
-        
       }
 
       return status;
@@ -264,11 +338,80 @@ namespace DLR_Data_App.Services
 
     /**
      * Read custom table
+     * @param project Current working project
+     * @param elementNameList List of elements in project table datasets
      */
-    public static bool ReadCustomTable(string tableName)
+    public static bool ReadCustomTable(ref Project project, ref List<string> elementNameList)
     {
-      bool status = false;
+      bool status;
+      var tablename = Parser.LanguageJsonStandard(project.Title, project.Languages) + "_" + project.Id;
+      string query = "SELECT * FROM " + tablename;
 
+      using (var conn = new SQLiteConnection(App.DatabaseLocation))
+      {
+        try
+        {
+          //List<SQLiteConnection.ColumnInfo> tableInfo = conn.GetTableInfo(tablename);
+          /*dynamic dataset = new DynamicClass();
+          foreach (var element in elementNameList)
+          {
+            dataset.TrySetMember(element, null);
+          }
+          List<dataset> data = conn.Query(query);*/
+          
+          status = true;
+        }
+        catch(Exception e)
+        {
+          status = false;
+        }
+      }
+
+      return status;
+    }
+
+    /**
+     * Inserting measurement data
+     * @param tableName Name of project table
+     * @param fieldNames field names
+     * @param fieldValues values corresponding to field names
+     */
+    public static bool InsertCustomValues(string tableName, List<string> fieldNames, List<string> fieldValues)
+    {
+      bool status;
+
+      var query = "INSERT INTO ";
+      query += tableName;
+      query += "(";
+
+      foreach (var name in fieldNames)
+      {
+        query += name + ",";
+      }
+
+      query = query.Remove(query.Length - 1);
+      query += ") VALUES (";
+
+      foreach (var value in fieldValues)
+      {
+        query += "'" + value + "',";
+      }
+
+      query = query.Remove(query.Length - 1);
+      query += ");";
+
+      using (var conn = new SQLiteConnection(App.DatabaseLocation))
+      {
+        try
+        {
+          conn.Execute(query);
+          status = true;
+        }
+        catch
+        {
+          status = false;
+        }
+      }
 
       return status;
     }
@@ -300,19 +443,19 @@ namespace DLR_Data_App.Services
      */
     public static bool SelectCurrentProject(Project project)
     {
-      bool result = false;
-      Project oldCurrentProject = GetCurrentProject();
+      bool result;
+      var oldCurrentProject = GetCurrentProject();
 
       // Get current project and deselect it
       if (oldCurrentProject != null)
       {
         oldCurrentProject.CurrentProject = false;
-        Update<Project>(ref oldCurrentProject);
+        Update(ref oldCurrentProject);
       }
       
       // Set new current project
       project.CurrentProject = true;
-      result = Update<Project>(ref project);
+      result = Update(ref project);
 
       return result;
     }
@@ -323,31 +466,8 @@ namespace DLR_Data_App.Services
      */
     public static Project GetCurrentProject()
     {
-      List<Project> projectList = new List<Project>();
-
-      using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
-      {
-        // if table doesn't exist create a new one
-        conn.CreateTable<Project>();
-
-        // get first element of project list which has current project set as true
-        projectList = conn.Query<Project>("SELECT * FROM Project WHERE CurrentProject = 1");
-      }
-
-      if(projectList.Count == 1)
-      {
-        return projectList[0];
-      } else
-      {
-        // if more than one project is selected as current project, deselect all
-        for (int i = 0; i < projectList.Count; i++)
-        {
-          Project oldCurrentProject = projectList[i];
-          oldCurrentProject.CurrentProject = false;
-          Update<Project>(ref oldCurrentProject);
-        }
-        return null;
-      }
+      var projectList = ReadProjects();
+      return projectList.Find(project => project.CurrentProject);
     }
   }
 }

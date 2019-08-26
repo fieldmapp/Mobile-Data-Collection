@@ -259,6 +259,33 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit ähnelt.
+        /// </summary>
+        internal static string edit {
+            get {
+                return ResourceManager.GetString("edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit data ähnelt.
+        /// </summary>
+        internal static string editdata {
+            get {
+                return ResourceManager.GetString("editdata", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please select a date and time to select your dataset you want to edit. In the following list all datasets are listed, while the matching dataset to the time is selected. Tip on the dataset of your choise to edit it. ähnelt.
+        /// </summary>
+        internal static string edithelp {
+            get {
+                return ResourceManager.GetString("edithelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Failed ähnelt.
         /// </summary>
         internal static string failed {
@@ -309,6 +336,15 @@ namespace DLR_Data_App.Localizations {
         internal static string gyroscope {
             get {
                 return ResourceManager.GetString("gyroscope", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Help ähnelt.
+        /// </summary>
+        internal static string help {
+            get {
+                return ResourceManager.GetString("help", resourceCulture);
             }
         }
         
@@ -408,6 +444,15 @@ namespace DLR_Data_App.Localizations {
         internal static string newproject {
             get {
                 return ResourceManager.GetString("newproject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Profile not found ähnelt.
+        /// </summary>
+        internal static string nouserfound {
+            get {
+                return ResourceManager.GetString("nouserfound", resourceCulture);
             }
         }
         
@@ -565,6 +610,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Do you want to remove the project? ähnelt.
+        /// </summary>
+        internal static string removeprojectwarning {
+            get {
+                return ResourceManager.GetString("removeprojectwarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Reset ähnelt.
         /// </summary>
         internal static string reset {
@@ -579,6 +633,33 @@ namespace DLR_Data_App.Localizations {
         internal static string save {
             get {
                 return ResourceManager.GetString("save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select date ähnelt.
+        /// </summary>
+        internal static string selectdate {
+            get {
+                return ResourceManager.GetString("selectdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select Form ähnelt.
+        /// </summary>
+        internal static string selectform {
+            get {
+                return ResourceManager.GetString("selectform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select time ähnelt.
+        /// </summary>
+        internal static string selecttime {
+            get {
+                return ResourceManager.GetString("selecttime", resourceCulture);
             }
         }
         
@@ -660,6 +741,24 @@ namespace DLR_Data_App.Localizations {
         internal static string updateaccountfailure {
             get {
                 return ResourceManager.GetString("updateaccountfailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die User already exists ähnelt.
+        /// </summary>
+        internal static string useralreadyexists {
+            get {
+                return ResourceManager.GetString("useralreadyexists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wrong entry ähnelt.
+        /// </summary>
+        internal static string wrongentry {
+            get {
+                return ResourceManager.GetString("wrongentry", resourceCulture);
             }
         }
         

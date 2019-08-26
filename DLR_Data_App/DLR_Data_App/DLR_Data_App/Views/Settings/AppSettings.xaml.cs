@@ -1,11 +1,7 @@
 ﻿using DLR_Data_App.Localizations;
 using DLR_Data_App.Services;
 using DLR_Data_App.Views.Login;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -13,18 +9,16 @@ using Xamarin.Forms.Xaml;
 namespace DLR_Data_App.Views.Settings
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AppSettings : ContentPage
+	public partial class AppSettings
 	{
-    private List<String> elementList;
+    private readonly List<string> _elementList;
 
     public AppSettings ()
 		{
 			InitializeComponent ();
-      elementList = new List<string>();
-      elementList.Add(AppResources.privacypolicy);
-      elementList.Add(AppResources.removedatabase);
+      _elementList = new List<string> {AppResources.privacypolicy, AppResources.removedatabase};
 
-      AppSettingsList.ItemsSource = elementList;
+      AppSettingsList.ItemsSource = _elementList;
     }
 
     /**
@@ -34,7 +28,7 @@ namespace DLR_Data_App.Views.Settings
     {
       base.OnAppearing();
 
-      AppSettingsList.ItemsSource = elementList;
+      AppSettingsList.ItemsSource = _elementList;
     }
 
     /**
@@ -42,7 +36,7 @@ namespace DLR_Data_App.Views.Settings
      */
     private async void AppSettingsList_ItemTapped(object sender, ItemTappedEventArgs e)
     {
-      bool answer = false;
+      bool answer;
       switch (e.ItemIndex)
       {
         case 0:
@@ -78,8 +72,6 @@ namespace DLR_Data_App.Views.Settings
               await DisplayAlert(AppResources.removedatabase, AppResources.failed, AppResources.cancel);
             }
           }
-          break;
-        default:
           break;
       }
     }

@@ -9,6 +9,7 @@
     <NeutralLanguage>en-GB</NeutralLanguage>
     <AssemblyName>DLR_Data_App</AssemblyName>
     <RootNamespace>DLR_Data_App</RootNamespace>
+	<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>pdbonly</DebugType>
@@ -22,9 +23,9 @@
     <PackageReference Include="SharpZipLib" Version="1.1.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.555618" />
-    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.0.135" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.618606" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.18" />
   </ItemGroup>
   <ItemGroup>
     <XliffResource Include="MultilingualResources\DLR_Data_App.de.xlf" />
@@ -38,11 +39,32 @@
     <Compile Update="Views\Login\NewProfilePage.xaml.cs">
       <DependentUpon>NewProfilePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\ProjectList\ProjectDetailPage.xaml.cs">
+      <DependentUpon>ProjectDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ProjectList\NewProjectPage.xaml.cs">
+      <DependentUpon>NewProjectPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ProjectList\ProjectListPage.xaml.cs">
+      <DependentUpon>ProjectListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Settings\ProfilelistPage.xaml.cs">
+      <DependentUpon>ProfileListPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Localizations\AppResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CurrentProject\EditDataDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CurrentProject\EditDataPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ProjectList\ProjectListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Settings\AppSettings.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -50,13 +72,13 @@
     <EmbeddedResource Update="Views\Login\NewProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Settings\ProfilelistPage.xaml">
+    <EmbeddedResource Update="Views\Settings\ProfileListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Settings\ProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ProjectPage.xaml">
+    <EmbeddedResource Update="Views\CurrentProject\ProjectPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Settings\SensorListPage.xaml">
@@ -68,8 +90,5 @@
     <EmbeddedResource Update="Views\Settings\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\Login\" />
   </ItemGroup>
 </Project>
