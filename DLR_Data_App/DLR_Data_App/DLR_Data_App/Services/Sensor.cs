@@ -6,7 +6,7 @@ namespace DLR_Data_App.Services
 {
   public class Sensor
   {
-    SensorSpeed _speed = SensorSpeed.UI;
+    //SensorSpeed _speed = SensorSpeed.UI;
 
     // Return GPS data
     public static async Task<Gps> GetGps()

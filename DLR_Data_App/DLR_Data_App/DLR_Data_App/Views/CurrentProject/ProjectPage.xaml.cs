@@ -24,7 +24,11 @@ namespace DLR_Data_App.Views.CurrentProject
 		{
 			InitializeComponent ();
 
-      WalkElements(ref elementNameList, ref elementValueList, false);
+      if (_pages != null)
+      {
+        WalkElements(ref elementNameList, ref elementValueList, false);
+      }
+      
       BindingContext = _viewModel;
 		}
 

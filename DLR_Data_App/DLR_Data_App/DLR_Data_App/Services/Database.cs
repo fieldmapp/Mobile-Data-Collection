@@ -128,7 +128,7 @@ namespace DLR_Data_App.Services
       var queryForms = "DELETE FROM ProjectForm WHERE Id=?";
       var queryFormElementList = "DELETE FROM ProjectFormElementList WHERE ElementId=?";
       var queryFormElements = "DELETE FROM ProjectFormElements WHERE Id=?";
-      var queryFormMetadata = "DELETE FROM ProjectFormMetadata WHERE Id=?";
+      //var queryFormMetadata = "DELETE FROM ProjectFormMetadata WHERE Id=?";
       var queryUserConnection = "DELETE FROM ProjectUserConnection WHERE ProjectId=?";
 
       using (var conn = new SQLiteConnection(App.DatabaseLocation))
@@ -341,33 +341,40 @@ namespace DLR_Data_App.Services
      * @param project Current working project
      * @param elementNameList List of elements in project table datasets
      */
-    public static bool ReadCustomTable(ref Project project, ref List<string> elementNameList)
+    public static List<List<string>> ReadCustomTable(ref Project project, ref List<string> elementNameList)
     {
-      bool status;
-      var tablename = Parser.LanguageJsonStandard(project.Title, project.Languages) + "_" + project.Id;
-      string query = "SELECT * FROM " + tablename;
+      var datalist = new List<List<string>>();
+
+      var tableName = Parser.LanguageJsonStandard(project.Title, project.Languages) + "_" + project.Id;
+      string query = "SELECT ? FROM " + tableName + " WHERE ID=?";
 
       using (var conn = new SQLiteConnection(App.DatabaseLocation))
       {
         try
         {
-          //List<SQLiteConnection.ColumnInfo> tableInfo = conn.GetTableInfo(tablename);
-          /*dynamic dataset = new DynamicClass();
-          foreach (var element in elementNameList)
-          {
-            dataset.TrySetMember(element, null);
-          }
-          List<dataset> data = conn.Query(query);*/
+          var tableinfo = conn.GetTableInfo(tableName);
           
-          status = true;
+          foreach (var tablecolumn in tableinfo)
+          {
+            var lastElementId = conn.ExecuteScalar<int>("SELECT MAX(ID) FROM ? AS int", tableName);
+            var elementList = new List<string>();
+
+            for (var i = 0; i < lastElementId; i++)
+            {
+              var element = conn.ExecuteScalar<string>(query, tablecolumn.Name, i);
+              elementList.Add(element);
+            }
+
+            datalist.Add(elementList);
+          }
         }
         catch(Exception e)
         {
-          status = false;
+          return null;
         }
       }
 
-      return status;
+      return datalist;
     }
 
     /**
