@@ -15,9 +15,9 @@ namespace MobileDataCollection.Survey.Models
         {
             return new List<SurveyMenuItem>()
             {
-                new SurveyMenuItem("DoubleSlider", "Bedeckungsgrade", 4, 0, new List<int>{3,4}),
-                new SurveyMenuItem("ImageChecker", "Sortenerkennung", 2, 0, new List<int>{2}),
-                new SurveyMenuItem("Stadium", "Wuchsstadien", 6,  0, new List<int>{1})
+                new SurveyMenuItem("DoubleSlider", "Bedeckungsgrade", 4, new List<int>{3,4}),
+                new SurveyMenuItem("ImageChecker", "Sortenerkennung", 2, new List<int>{2}),
+                new SurveyMenuItem("Stadium", "Wuchsstadien", 6,  new List<int>{1})
             };
         }
 
@@ -163,9 +163,9 @@ namespace MobileDataCollection.Survey.Models
         {
             return new List<SurveyMenuItem>()
             {
-                new SurveyMenuItem("DoubleSlider", "Bedeckungsgrade", 4, 0, new List<int>{3,4}),
-                new SurveyMenuItem("ImageChecker", "Sortenerkennung", 2, 0, new List<int>{2}),
-                new SurveyMenuItem("Stadium", "Wuchsstadien", 6,  0, new List<int>{1})
+                new SurveyMenuItem("DoubleSlider", "Bedeckungsgrade", 4, new List<int>{3,4}),
+                new SurveyMenuItem("ImageChecker", "Sortenerkennung", 2, new List<int>{2}),
+                new SurveyMenuItem("Stadium", "Wuchsstadien", 6,  new List<int>{1})
             };
         }
 

@@ -72,13 +72,11 @@ namespace MobileDataCollection.Survey.Models
             get => (string)GetValue(ProgressStringProperty);
             set => SetValue(ProgressStringProperty, value);
         }
-        private string UpdateProgressString() => ProgressString = $"{AnswersGiven}/{AnswersNeeded} ({MaximumQuestionNumber})";
+        private string UpdateProgressString() => ProgressString = $"{AnswersGiven}/{AnswersNeeded} (max. {MaximumQuestionNumber})";
 
-        //TODO: Rework, such that this is not saved but reather calculated based on saved answers (maybe add timestamp or answercount to each answer)
         [JsonIgnore]
-        public int Streak { get; set; }
+        public int Streak { get; private set; }
 
-        //TODO: Rework, such that this is not saved but reather calculated based on saved answers (maybe add timestamp or answercount to each answer)
         [JsonIgnore]
         public int CurrentDifficulty { get; set; }
 
@@ -90,16 +88,38 @@ namespace MobileDataCollection.Survey.Models
 
         [JsonIgnore]
         public Type SurveyPageType { get; }
+        
+        public void ApplyAnswer(IUserAnswer answerItem)
+        {
+            bool answerRight = answerItem.EvaluateScore() > .85f;
+            if (answerRight)
+                Streak = Streak <= 0 ? 1 : Streak + 1;
+            else
+                Streak = Streak >= 0 ? -1 : Streak - 1;
+            if (Streak < -2)
+            {
+                CurrentDifficulty = Math.Max(1, CurrentDifficulty - 1);
+                Streak = 0;
+            }
+            else if (Streak > 2)
+            {
+                CurrentDifficulty = Math.Min(3, CurrentDifficulty + 1);
+                Streak = 0;
+            }
+        }
 
-        public SurveyMenuItem(string id, string chapterName, int answersNeeded, int answersGiven, List<int> introspectionQuestions, int streak = 0)
+        public SurveyMenuItem(string id, string chapterName, int answersNeeded, List<int> introspectionQuestions)
         {
             Id = id;
             ChapterName = chapterName;
             AnswersNeeded = answersNeeded;
-            AnswersGiven = answersGiven;
             IntrospectionQuestion = introspectionQuestions;
             CurrentDifficulty = 1;
             MaximumQuestionNumber = DatabankCommunication.GetAllQuestions(id).Count;
+            var answers = DatabankCommunication.GetAllAnswers(id);
+            AnswersGiven = answers.Count;
+            foreach (var answer in answers)
+                ApplyAnswer(answer);
 
             var nspace = typeof(App).Namespace;
             SurveyPageType = Type.GetType($"{nspace}.Views.{id.ToString()}Page");

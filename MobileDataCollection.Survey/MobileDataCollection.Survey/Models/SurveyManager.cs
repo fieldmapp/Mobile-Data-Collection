@@ -87,22 +87,8 @@ namespace MobileDataCollection.Survey.Models
 
             DatabankCommunication.AddAnswer(CurrentSurvey.Id, surveyPage.AnswerItem);
             CurrentSurvey.AnswersGiven++;
-
-            bool answerRight = surveyPage.AnswerItem.EvaluateScore() > .85f;
-            if (answerRight)
-                CurrentSurvey.Streak = CurrentSurvey.Streak <= 0 ? 1 : CurrentSurvey.Streak + 1;
-            else
-                CurrentSurvey.Streak = CurrentSurvey.Streak >= 0 ? -1 : CurrentSurvey.Streak - 1;
-            if (CurrentSurvey.Streak < -2)
-            {
-                CurrentSurvey.CurrentDifficulty = Math.Max(1, CurrentSurvey.CurrentDifficulty - 1);
-                CurrentSurvey.Streak = 0;
-            }
-            else if (CurrentSurvey.Streak > 2)
-            {
-                CurrentSurvey.CurrentDifficulty = Math.Min(3, CurrentSurvey.CurrentDifficulty + 1);
-                CurrentSurvey.Streak = 0;
-            }
+            
+            CurrentSurvey.ApplyAnswer(surveyPage.AnswerItem);
             ShowNewSurveyPage();
         }
 
