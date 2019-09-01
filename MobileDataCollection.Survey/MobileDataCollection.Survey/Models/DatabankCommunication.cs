@@ -25,6 +25,8 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         private static Dictionary<string, List<IUserAnswer>> Answers = new Dictionary<string, List<IUserAnswer>>();
 
+        public static List<SurveyMenuItem> SurveyMenuItems { get; private set; } = new List<SurveyMenuItem>();
+
         /// <summary>
         /// Used to load questions
         /// </summary>
@@ -38,6 +40,7 @@ namespace MobileDataCollection.Survey.Models
             StorageProvider = provider;
             Questions = StorageProvider.LoadQuestions();
             Answers = StorageProvider.LoadAnswers();
+            SurveyMenuItems = StorageProvider.LoadSurveyMenuItems();
 
             //TODO: Add way to clear answers (only for development)
         }
@@ -217,15 +220,6 @@ namespace MobileDataCollection.Survey.Models
             if (!Answers.ContainsKey(surveyId))
                 Answers.Add(surveyId, new List<IUserAnswer>());
             Answers[surveyId].Add(answer);
-        }
-
-        /// <summary>
-        /// Loads SurveyMenuItems from SurveyMenuItems.txt
-        /// Returns a List containing all loaded elements
-        /// </summary>
-        public static List<SurveyMenuItem> LoadSurveyMenuItems()
-        {
-            return StorageProvider.LoadSurveyMenuItems();
         }
     }
 }
