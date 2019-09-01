@@ -66,22 +66,5 @@ namespace MobileDataCollection.Survey.Models
             using (var jsonWriter = new JsonTextWriter(streamWriter))
                 JsonSerializer.Serialize(jsonWriter, answers);
         }
-
-        //TODO: Remove Save and Load
-        public void Save<T>(T savedata)
-        {
-            using (var storageStream = StorageAccessProvider.OpenFileWrite("answers"))
-            using (var streamWriter = new StreamWriter(storageStream))
-            using (var jsonWriter = new JsonTextWriter(streamWriter))
-                JsonSerializer.Serialize(jsonWriter, savedata);
-        }
-
-        public T Load<T>()
-        {
-            using (var storageStream = StorageAccessProvider.OpenFileRead("1.txt"))
-            using (var streamReader = new StreamReader(storageStream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-                return JsonSerializer.Deserialize<T>(jsonReader);
-        }
     }
 }

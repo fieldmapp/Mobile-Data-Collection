@@ -67,12 +67,6 @@ namespace MobileDataCollection.Survey.UWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            var memoryProvider = new MemoryStorageAccessProvider();
-            var jsonProvider = new JsonStorageProvider(memoryProvider);
-            jsonProvider.Save(new MockQuestionProvider().LoadSurveyMenuItems());
-            var result = jsonProvider.Load<List<SurveyMenuItem>>();
-            //App.Current.Exit();
-
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
