@@ -28,7 +28,7 @@ namespace MobileDataCollection.Survey.Models
         public IQuestionContent GetNextQuestion(SurveyMenuItem surveyType)
         {
             var neededType = surveyType.QuestionType;
-            var value = DatabankCommunication.LoadQuestion(surveyType.Id, CurrentSurvey.CurrentDifficulty, false);
+            var value = DatabankCommunication.GetQuestion(surveyType.Id, CurrentSurvey.CurrentDifficulty, false);
             if (value == null)
                 return null;
             return value;
@@ -43,7 +43,7 @@ namespace MobileDataCollection.Survey.Models
                 CurrentSurvey = selectedSurvey;
             }
             Navigation.PushAsync(new LoadingPage(), false);
-            if (CurrentSurvey.IntrospectionQuestion.All(q => DatabankCommunication.SearchAnswers("Introspection", q)))
+            if (CurrentSurvey.IntrospectionQuestion.All(q => DatabankCommunication.DoesAnswersExists("Introspection", q)))
             {
                 ShowEvaluationPage();
                 return;
@@ -56,7 +56,7 @@ namespace MobileDataCollection.Survey.Models
             if (CurrentSurvey == null)
                 return;
             var question = GetNextQuestion(CurrentSurvey);
-            if (question == null || CurrentSurvey.IntrospectionQuestion.Any(q => DatabankCommunication.SearchAnswers("Introspection", q)))
+            if (question == null || CurrentSurvey.IntrospectionQuestion.Any(q => DatabankCommunication.DoesAnswersExists("Introspection", q)))
             {
                 ShowNextIntrospectionPage();
                 return;
@@ -110,7 +110,7 @@ namespace MobileDataCollection.Survey.Models
         {
             if (CurrentSurvey == null)
                 return;
-            var newIntrospectionQuestion = (QuestionIntrospectionPage)CurrentSurvey.IntrospectionQuestion.Where(id => !DatabankCommunication.SearchAnswers("Introspection", id))
+            var newIntrospectionQuestion = (QuestionIntrospectionPage)CurrentSurvey.IntrospectionQuestion.Where(id => !DatabankCommunication.DoesAnswersExists("Introspection", id))
                 .Select(id => DatabankCommunication.LoadQuestionById("Introspection", id)).FirstOrDefault();
             if (newIntrospectionQuestion == null)
             {
@@ -144,8 +144,7 @@ namespace MobileDataCollection.Survey.Models
             evaluationPage.PageFinished += EvaluationPage_PageFinished;
             Navigation.PushAsync(evaluationPage);
             CurrentSurvey = null;
-            DatabankCommunication.SaveSurveyMenuItemsTxt(MainPage.GetAllSurveyMenuItem());
-            DatabankCommunication.SaveAllAnswersInTxt();
+            DatabankCommunication.SaveAnswers();
             DatabankCommunication.CreateCSV();
         }
 
@@ -160,7 +159,7 @@ namespace MobileDataCollection.Survey.Models
         {
             var surveyId = survey.Id;
             var answeredQuestions = DatabankCommunication.GetAllQuestions(surveyId)
-                .Where(q => DatabankCommunication.SearchAnswers(surveyId, q.InternId));
+                .Where(q => DatabankCommunication.DoesAnswersExists(surveyId, q.InternId));
             var answers = answeredQuestions.Select(q => DatabankCommunication.LoadAnswerById(surveyId, q.InternId));
             var easyAnsers = answeredQuestions.Where(q => q.Difficulty == 1)
                 .Select(q => DatabankCommunication.LoadAnswerById(surveyId, q.InternId));

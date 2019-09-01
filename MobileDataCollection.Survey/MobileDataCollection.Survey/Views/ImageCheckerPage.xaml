@@ -42,8 +42,7 @@
                          HorizontalOptions="Center"
                          VerticalOptions="CenterAndExpand"
                          IsEnabled="true"
-                         Pressed="PressPicture"
-                         Released="ReleasePicture"
+                         ShortPress="Picture_ShortPress"
                          BorderColor="White"
                          BorderWidth="5"/>
             <controls:DetailImage x:Name="PictureB"
@@ -54,8 +53,7 @@
                          HorizontalOptions="Center"
                          VerticalOptions="CenterAndExpand"
                          IsEnabled="true"
-                         Pressed="PressPicture"
-                         Released="ReleasePicture"
+                         ShortPress="Picture_ShortPress"
                          BorderColor="White"
                          BorderWidth="5"/>
             <controls:DetailImage x:Name="PictureC"
@@ -66,8 +64,7 @@
                          HorizontalOptions="Center"
                          VerticalOptions="CenterAndExpand"
                          IsEnabled="true"
-                         Pressed="PressPicture"
-                         Released="ReleasePicture"
+                         ShortPress="Picture_ShortPress"
                          BorderColor="White"
                          BorderWidth="5"/>
             <controls:DetailImage x:Name="PictureD"
@@ -79,8 +76,7 @@
                          HorizontalOptions="Center"
                          VerticalOptions="CenterAndExpand"
                          IsEnabled="true"
-                         Pressed="PressPicture"
-                         Released="ReleasePicture"
+                         ShortPress="Picture_ShortPress"
                          BorderColor="White"
                          BorderWidth="5"/>
         </Grid>

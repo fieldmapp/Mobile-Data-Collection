@@ -73,10 +73,6 @@ namespace MobileDataCollection.Survey.Views
             PictureC.BindingContext = this;
             PictureD.BindingContext = this;
             Frage.BindingContext = this;
-            PictureA.ShortPress += Picture_ShortPress;
-            PictureB.ShortPress += Picture_ShortPress;
-            PictureC.ShortPress += Picture_ShortPress;
-            PictureD.ShortPress += Picture_ShortPress;
 
             Header = $"Frage {answersGiven + 1}/{answersNeeded}";
             QuestionItem = question;

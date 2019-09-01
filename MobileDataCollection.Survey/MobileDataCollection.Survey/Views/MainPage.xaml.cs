@@ -48,7 +48,7 @@ namespace MobileDataCollection.Survey.Views
         public void LoadSurveyManagerFromDatabank()
         {
             Items = new ObservableCollection<SurveyMenuItem>();
-            List<SurveyMenuItem> surveyMenuItems = DatabankCommunication.LoadSurveyMenuItemsFromTxt();
+            List<SurveyMenuItem> surveyMenuItems = DatabankCommunication.LoadSurveyMenuItems();
             foreach(SurveyMenuItem item in surveyMenuItems)
             {
                 Items.Add(item);
@@ -67,7 +67,7 @@ namespace MobileDataCollection.Survey.Views
 
         private async void EvaluationClicked(object sender, ItemTappedEventArgs e)
         {
-            var evalItems = Items.Select(i => i.IntrospectionQuestion.All(q => DatabankCommunication.SearchAnswers("Introspection", q)) ? 
+            var evalItems = Items.Select(i => i.IntrospectionQuestion.All(q => DatabankCommunication.DoesAnswersExists("Introspection", q)) ? 
             SurveyManager.GenerateEvaluationItem(i) :
             new EvaluationItem(i.ChapterName, -1, -1, -1, -1)).ToList();
             await Navigation.PushAsync(new EvaluationMainPage(evalItems));

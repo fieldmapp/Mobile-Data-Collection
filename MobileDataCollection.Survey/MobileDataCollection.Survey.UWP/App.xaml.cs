@@ -1,8 +1,10 @@
-﻿using System;
+﻿using MobileDataCollection.Survey.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -31,6 +33,32 @@ namespace MobileDataCollection.Survey.UWP
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
+        class MemoryStorageAccessProvider : IStorageAccessProvider
+        {
+            byte[] Buffer;
+            string BufferContent => Encoding.UTF8.GetString(Buffer);
+            public Stream OpenAsset(string path)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Stream OpenFileRead(string path)
+            {
+                Windows.Storage.StorageFolder storageFolder =
+                    Windows.Storage.ApplicationData.Current.LocalFolder;
+                return storageFolder.OpenStreamForReadAsync("2.txt").GetAwaiter().GetResult();
+            }
+
+            public Stream OpenFileWrite(string path)
+            {
+                //Buffer = new byte[65536];
+                //return new MemoryStream(Buffer);
+                Windows.Storage.StorageFolder storageFolder =
+                    Windows.Storage.ApplicationData.Current.LocalFolder;
+                Windows.Storage.StorageFile sampleFile = storageFolder.CreateFileAsync("2.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting).AsTask().GetAwaiter().GetResult();
+                return sampleFile.OpenAsync(Windows.Storage.FileAccessMode.ReadWrite).AsTask().GetAwaiter().GetResult().AsStream();
+            }
+        }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -39,7 +67,11 @@ namespace MobileDataCollection.Survey.UWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
+            var memoryProvider = new MemoryStorageAccessProvider();
+            var jsonProvider = new JsonStorageProvider(memoryProvider);
+            jsonProvider.Save(new MockQuestionProvider().LoadSurveyMenuItems());
+            var result = jsonProvider.Load<List<SurveyMenuItem>>();
+            //App.Current.Exit();
 
             Frame rootFrame = Window.Current.Content as Frame;
 

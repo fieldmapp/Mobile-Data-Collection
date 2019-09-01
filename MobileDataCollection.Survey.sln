@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileDataCollection.Survey
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileDataCollection.Survey.UWP", "MobileDataCollection.Survey\MobileDataCollection.Survey.UWP\MobileDataCollection.Survey.UWP.csproj", "{2715B75F-4811-420A-AA27-E3DB92FDE8CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileDataCollection.Survey", "MobileDataCollection.Survey\MobileDataCollection.Survey\MobileDataCollection.Survey.csproj", "{E312E23F-8F89-4F80-96CC-116CCF4A403E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileDataCollection.Survey", "MobileDataCollection.Survey\MobileDataCollection.Survey\MobileDataCollection.Survey.csproj", "{E312E23F-8F89-4F80-96CC-116CCF4A403E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

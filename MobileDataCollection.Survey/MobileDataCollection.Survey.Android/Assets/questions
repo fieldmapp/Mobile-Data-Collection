@@ -1,0 +1,1114 @@
+{
+  "ImageChecker": [
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionImageCheckerPage, MobileDataCollection.Survey",
+      "InternId": 1,
+      "Difficulty": 1,
+      "QuestionText": "Wo sehen sie die Feldfruchtsorte Weizen abgebildet?",
+      "Image1Correct": 0,
+      "Image2Correct": 0,
+      "Image3Correct": 1,
+      "Image4Correct": 0,
+      "Image1Source": "ImageChecker_one_question1_picture1.png",
+      "Image2Source": "ImageChecker_one_question1_picture2.png",
+      "Image3Source": "ImageChecker_one_question1_picture3.png",
+      "Image4Source": "ImageChecker_one_question1_picture4.png"
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionImageCheckerPage, MobileDataCollection.Survey",
+      "InternId": 2,
+      "Difficulty": 1,
+      "QuestionText": "Wo sehen sie die Feldfruchtsorte Raps abgebildet?",
+      "Image1Correct": 0,
+      "Image2Correct": 1,
+      "Image3Correct": 1,
+      "Image4Correct": 0,
+      "Image1Source": "ImageChecker_one_question2_picture1.png",
+      "Image2Source": "ImageChecker_one_question2_picture2.png",
+      "Image3Source": "ImageChecker_one_question2_picture3.png",
+      "Image4Source": "ImageChecker_one_question2_picture4.png"
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionImageCheckerPage, MobileDataCollection.Survey",
+      "InternId": 3,
+      "Difficulty": 2,
+      "QuestionText": "Wo sehen sie die Feldfruchtsorte Raps abgebildet?",
+      "Image1Correct": 1,
+      "Image2Correct": 1,
+      "Image3Correct": 1,
+      "Image4Correct": 0,
+      "Image1Source": "ImageChecker_two_question3_picture1.png",
+      "Image2Source": "ImageChecker_two_question3_picture2.png",
+      "Image3Source": "ImageChecker_two_question3_picture3.png",
+      "Image4Source": "ImageChecker_two_question3_picture4.png"
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionImageCheckerPage, MobileDataCollection.Survey",
+      "InternId": 4,
+      "Difficulty": 2,
+      "QuestionText": "Wo sehen sie die Feldfruchtsorte Weizen abgebildet?",
+      "Image1Correct": 0,
+      "Image2Correct": 0,
+      "Image3Correct": 1,
+      "Image4Correct": 0,
+      "Image1Source": "ImageChecker_two_question4_picture1.png",
+      "Image2Source": "ImageChecker_two_question4_picture2.png",
+      "Image3Source": "ImageChecker_two_question4_picture3.png",
+      "Image4Source": "ImageChecker_two_question4_picture4.png"
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionImageCheckerPage, MobileDataCollection.Survey",
+      "InternId": 5,
+      "Difficulty": 3,
+      "QuestionText": "Wo sehen sie die Feldfruchtsorte Kartoffel abgebildet?",
+      "Image1Correct": 1,
+      "Image2Correct": 0,
+      "Image3Correct": 1,
+      "Image4Correct": 0,
+      "Image1Source": "ImageChecker_three_question5_picture1.png",
+      "Image2Source": "ImageChecker_three_question5_picture2.png",
+      "Image3Source": "ImageChecker_three_question5_picture3.png",
+      "Image4Source": "ImageChecker_three_question5_picture4.png"
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionImageCheckerPage, MobileDataCollection.Survey",
+      "InternId": 6,
+      "Difficulty": 3,
+      "QuestionText": "Wo sehen sie die Feldfruchtsorte Gerste abgebildet?",
+      "Image1Correct": 0,
+      "Image2Correct": 0,
+      "Image3Correct": 1,
+      "Image4Correct": 0,
+      "Image1Source": "ImageChecker_three_question6_picture1.png",
+      "Image2Source": "ImageChecker_three_question6_picture2.png",
+      "Image3Source": "ImageChecker_three_question6_picture3.png",
+      "Image4Source": "ImageChecker_three_question6_picture4.png"
+    }
+  ],
+  "DoubleSlider": [
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
+      "InternId": 1,
+      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "PictureAddress": "DoubleSlider_one_question1.png",
+      "CorrectAnswerA": 7,
+      "CorrectAnswerB": 4,
+      "Difficulty": 1
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
+      "InternId": 2,
+      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "PictureAddress": "DoubleSlider_one_question2.png",
+      "CorrectAnswerA": 49,
+      "CorrectAnswerB": 91,
+      "Difficulty": 1
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
+      "InternId": 3,
+      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "PictureAddress": "DoubleSlider_one_question3.png",
+      "CorrectAnswerA": 12,
+      "CorrectAnswerB": 3,
+      "Difficulty": 1
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
+      "InternId": 4,
+      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "PictureAddress": "DoubleSlider_one_question4.png",
+      "CorrectAnswerA": 64,
+      "CorrectAnswerB": 94,
+      "Difficulty": 1
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
+      "InternId": 5,
+      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "PictureAddress": "DoubleSlider_two_question1.png",
+      "CorrectAnswerA": 7,
+      "CorrectAnswerB": 96,
+      "Difficulty": 2
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
+      "InternId": 6,
+      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "PictureAddress": "DoubleSlider_two_question2.png",
+      "CorrectAnswerA": 49,
+      "CorrectAnswerB": 91,
+      "Difficulty": 2
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
+      "InternId": 7,
+      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "PictureAddress": "DoubleSlider_two_question3.png",
+      "CorrectAnswerA": 12,
+      "CorrectAnswerB": 3,
+      "Difficulty": 2
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
+      "InternId": 8,
+      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "PictureAddress": "DoubleSlider_two_question4.png",
+      "CorrectAnswerA": 64,
+      "CorrectAnswerB": 94,
+      "Difficulty": 2
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
+      "InternId": 9,
+      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "PictureAddress": "DoubleSlider_three_question1.png",
+      "CorrectAnswerA": 42,
+      "CorrectAnswerB": 87,
+      "Difficulty": 3
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
+      "InternId": 10,
+      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "PictureAddress": "DoubleSlider_three_question2.png",
+      "CorrectAnswerA": 6,
+      "CorrectAnswerB": 0,
+      "Difficulty": 3
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
+      "InternId": 11,
+      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "PictureAddress": "DoubleSlider_three_question3.png",
+      "CorrectAnswerA": 80,
+      "CorrectAnswerB": 5,
+      "Difficulty": 3
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
+      "InternId": 12,
+      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "PictureAddress": "DoubleSlider_three_question4.png",
+      "CorrectAnswerA": 76,
+      "CorrectAnswerB": 99,
+      "Difficulty": 3
+    }
+  ],
+  "Stadium": [
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 1,
+      "Image": "Stadium_one_question1.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Blattentwicklung",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Bestockung",
+          "ImageSource": "stadium_bestockung.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Längenwachstum/Schossen",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 3
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Mais",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Zuckerrübe",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "C",
+      "CorrectAnswerStadium": 1,
+      "Difficulty": 1
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 2,
+      "Image": "Stadium_one_question2.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Blattentwicklung",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Bestockung",
+          "ImageSource": "stadium_bestockung.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Längenwachstum/Schossen",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 3
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Mais",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Zuckerrübe",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "D",
+      "CorrectAnswerStadium": 1,
+      "Difficulty": 1
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 3,
+      "Image": "Stadium_one_question3.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Blattentwicklung",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Bestockung",
+          "ImageSource": "stadium_bestockung.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Längenwachstum/Schossen",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 3
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Mais",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Zuckerrübe",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "B",
+      "CorrectAnswerStadium": 1,
+      "Difficulty": 1
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 4,
+      "Image": "Stadium_one_question4.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Blattentwicklung",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Bestockung",
+          "ImageSource": "stadium_bestockung.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Längenwachstum/Schossen",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 3
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Mais",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Zuckerrübe",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "A",
+      "CorrectAnswerStadium": 1,
+      "Difficulty": 1
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 5,
+      "Image": "Stadium_one_question5.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Blattentwicklung",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Bestockung",
+          "ImageSource": "stadium_bestockung.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Längenwachstum/Schossen",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 3
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Mais",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Zuckerrübe",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "C",
+      "CorrectAnswerStadium": 3,
+      "Difficulty": 1
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 6,
+      "Image": "Stadium_one_question6.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Blattentwicklung",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Bestockung",
+          "ImageSource": "stadium_bestockung.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Längenwachstum/Schossen",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 3
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Mais",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Zuckerrübe",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "C",
+      "CorrectAnswerStadium": 2,
+      "Difficulty": 1
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 7,
+      "Image": "Stadium_two_question1.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Blattentwicklung",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Schossen/Haupttrieb",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Ähren/-Rispenschwellen",
+          "ImageSource": "stadium_ahrenrispenschwellen.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "Entwicklung der Blütenanlage",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 4
+        },
+        {
+          "StadiumName": "Blüte",
+          "ImageSource": "bluete.png",
+          "InternNumber": 5
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Gerste",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Raps",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "B",
+      "CorrectAnswerStadium": 5,
+      "Difficulty": 2
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 8,
+      "Image": "Stadium_two_question2.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Blattentwicklung",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Schossen/Haupttrieb",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Ähren/-Rispenschwellen",
+          "ImageSource": "stadium_ahrenrispenschwellen.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "Entwicklung der Blütenanlage",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 4
+        },
+        {
+          "StadiumName": "Blüte",
+          "ImageSource": "bluete.png",
+          "InternNumber": 5
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Gerste",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Raps",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "C",
+      "CorrectAnswerStadium": 4,
+      "Difficulty": 2
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 9,
+      "Image": "Stadium_two_question3.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Blattentwicklung",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Schossen/Haupttrieb",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Ähren/-Rispenschwellen",
+          "ImageSource": "stadium_ahrenrispenschwellen.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "Entwicklung der Blütenanlage",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 4
+        },
+        {
+          "StadiumName": "Blüte",
+          "ImageSource": "bluete.png",
+          "InternNumber": 5
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Gerste",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Raps",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "C",
+      "CorrectAnswerStadium": 5,
+      "Difficulty": 2
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 10,
+      "Image": "Stadium_two_question4.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Blattentwicklung",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Schossen/Haupttrieb",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Ähren/-Rispenschwellen",
+          "ImageSource": "stadium_ahrenrispenschwellen.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "Entwicklung der Blütenanlage",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 4
+        },
+        {
+          "StadiumName": "Blüte",
+          "ImageSource": "bluete.png",
+          "InternNumber": 5
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Gerste",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Raps",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "B",
+      "CorrectAnswerStadium": 1,
+      "Difficulty": 2
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 11,
+      "Image": "Stadium_two_question5.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Blattentwicklung",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Schossen/Haupttrieb",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Ähren/-Rispenschwellen",
+          "ImageSource": "stadium_ahrenrispenschwellen.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "Entwicklung der Blütenanlage",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 4
+        },
+        {
+          "StadiumName": "Blüte",
+          "ImageSource": "bluete.png",
+          "InternNumber": 5
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Gerste",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Raps",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "C",
+      "CorrectAnswerStadium": 2,
+      "Difficulty": 2
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 12,
+      "Image": "Stadium_two_question6.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Blattentwicklung",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Schossen/Haupttrieb",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Ähren/-Rispenschwellen",
+          "ImageSource": "stadium_ahrenrispenschwellen.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "Entwicklung der Blütenanlage",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 4
+        },
+        {
+          "StadiumName": "Blüte",
+          "ImageSource": "bluete.png",
+          "InternNumber": 5
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Gerste",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Raps",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "A",
+      "CorrectAnswerStadium": 3,
+      "Difficulty": 2
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 13,
+      "Image": "Stadium_three_question1.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Längenwachstum/Schossen",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Entwicklung vegetativer Pflanzenteile/Rübenkörper",
+          "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Entwicklung der Blütenanlage",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "Fruchtentwicklung",
+          "ImageSource": "bluete.png",
+          "InternNumber": 4
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Mais",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Raps",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "D"
+        },
+        {
+          "Name": "Zuckerrübe",
+          "InternLetter": "E"
+        }
+      ],
+      "CorrectAnswerFruitType": "E",
+      "CorrectAnswerStadium": 2,
+      "Difficulty": 3
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 14,
+      "Image": "Stadium_three_question2.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Längenwachstum/Schossen",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Entwicklung vegetativer Pflanzenteile/Rübenkörper",
+          "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Entwicklung der Blütenanlage",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "Fruchtentwicklung",
+          "ImageSource": "bluete.png",
+          "InternNumber": 4
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Mais",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Raps",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "D"
+        },
+        {
+          "Name": "Zuckerrübe",
+          "InternLetter": "E"
+        }
+      ],
+      "CorrectAnswerFruitType": "D",
+      "CorrectAnswerStadium": 4,
+      "Difficulty": 3
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 15,
+      "Image": "Stadium_three_question3.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Längenwachstum/Schossen",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Entwicklung vegetativer Pflanzenteile/Rübenkörper",
+          "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Entwicklung der Blütenanlage",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "Fruchtentwicklung",
+          "ImageSource": "bluete.png",
+          "InternNumber": 4
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Mais",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Raps",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "D"
+        },
+        {
+          "Name": "Zuckerrübe",
+          "InternLetter": "E"
+        }
+      ],
+      "CorrectAnswerFruitType": "B",
+      "CorrectAnswerStadium": 3,
+      "Difficulty": 3
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 16,
+      "Image": "Stadium_three_question4.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Längenwachstum/Schossen",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Entwicklung vegetativer Pflanzenteile/Rübenkörper",
+          "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Entwicklung der Blütenanlage",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "Fruchtentwicklung",
+          "ImageSource": "bluete.png",
+          "InternNumber": 4
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Mais",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Raps",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "D"
+        },
+        {
+          "Name": "Zuckerrübe",
+          "InternLetter": "E"
+        }
+      ],
+      "CorrectAnswerFruitType": "A",
+      "CorrectAnswerStadium": 3,
+      "Difficulty": 3
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 17,
+      "Image": "Stadium_three_question5.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Längenwachstum/Schossen",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Entwicklung vegetativer Pflanzenteile/Rübenkörper",
+          "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Entwicklung der Blütenanlage",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "Fruchtentwicklung",
+          "ImageSource": "bluete.png",
+          "InternNumber": 4
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Mais",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Raps",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "D"
+        },
+        {
+          "Name": "Zuckerrübe",
+          "InternLetter": "E"
+        }
+      ],
+      "CorrectAnswerFruitType": "C",
+      "CorrectAnswerStadium": 4,
+      "Difficulty": 3
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
+      "InternId": 18,
+      "Image": "Stadium_three_question6.png",
+      "Stadiums": [
+        {
+          "StadiumName": "Längenwachstum/Schossen",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "Entwicklung vegetativer Pflanzenteile/Rübenkörper",
+          "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "Entwicklung der Blütenanlage",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "Fruchtentwicklung",
+          "ImageSource": "bluete.png",
+          "InternNumber": 4
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "Kartoffel",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "Mais",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "Raps",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "Weizen",
+          "InternLetter": "D"
+        },
+        {
+          "Name": "Zuckerrübe",
+          "InternLetter": "E"
+        }
+      ],
+      "CorrectAnswerFruitType": "D",
+      "CorrectAnswerStadium": 1,
+      "Difficulty": 3
+    }
+  ],
+  "Introspection": [
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionIntrospectionPage, MobileDataCollection.Survey",
+      "InternId": 1,
+      "QuestionText": "Ich kann die Sorte von Feldfrüchten zuverlässig erkennen",
+      "Difficulty": -1
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionIntrospectionPage, MobileDataCollection.Survey",
+      "InternId": 2,
+      "QuestionText": "Ich kann phänologische Entwicklungsstadien von Feldfrüchten zuverlässig erkennen",
+      "Difficulty": -1
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionIntrospectionPage, MobileDataCollection.Survey",
+      "InternId": 3,
+      "QuestionText": "Ich kann den Bedeckungsgrad des Bodens durch Pflanzen zuverlässig schätzen",
+      "Difficulty": -1
+    },
+    {
+      "$type": "MobileDataCollection.Survey.Models.QuestionIntrospectionPage, MobileDataCollection.Survey",
+      "InternId": 4,
+      "QuestionText": "Ich kann den Anteil grüner Pflanzenbestandteile am gesamten Pflanzenmaterial zuverlässig schätzen",
+      "Difficulty": -1
+    }
+  ]
+}

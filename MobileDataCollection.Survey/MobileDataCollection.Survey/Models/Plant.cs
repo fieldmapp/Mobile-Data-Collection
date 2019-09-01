@@ -1,4 +1,5 @@
 ﻿//Main contributors: Maximilian Enderling, Max Moebius
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -32,7 +33,8 @@ namespace MobileDataCollection.Survey.Models
             get => (string)GetValue(InternLetterProperty);
             set => SetValue(InternLetterProperty, value);
         }
-        
+
+        [JsonIgnore]
         public Color BackgroundColor
         {
             get => (Color)GetValue(BackgroundColorProperty);
@@ -54,5 +56,10 @@ namespace MobileDataCollection.Survey.Models
             Name = plant.Name;
             InternLetter = plant.InternLetter;
         }
+
+        /// <summary>
+        /// Used for serialization only
+        /// </summary>
+        public Plant() { }
     }
 }

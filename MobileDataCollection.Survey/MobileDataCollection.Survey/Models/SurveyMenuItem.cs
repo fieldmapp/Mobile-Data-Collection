@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace MobileDataCollection.Survey.Models
 {
@@ -65,21 +66,29 @@ namespace MobileDataCollection.Survey.Models
             }
         }
 
+        [JsonIgnore]
         public string ProgressString
         {
             get => (string)GetValue(ProgressStringProperty);
             set => SetValue(ProgressStringProperty, value);
         }
         private string UpdateProgressString() => ProgressString = $"{AnswersGiven}/{AnswersNeeded} ({MaximumQuestionNumber})";
-        
+
+        //TODO: Rework, such that this is not saved but reather calculated based on saved answers (maybe add timestamp or answercount to each answer)
+        [JsonIgnore]
         public int Streak { get; set; }
 
+        //TODO: Rework, such that this is not saved but reather calculated based on saved answers (maybe add timestamp or answercount to each answer)
+        [JsonIgnore]
         public int CurrentDifficulty { get; set; }
 
+        [JsonIgnore]
         public Type QuestionType { get; }
 
+        [JsonIgnore]
         public Type AnswerType { get; }
 
+        [JsonIgnore]
         public Type SurveyPageType { get; }
 
         public SurveyMenuItem(string id, string chapterName, int answersNeeded, int answersGiven, List<int> introspectionQuestions, int streak = 0)
