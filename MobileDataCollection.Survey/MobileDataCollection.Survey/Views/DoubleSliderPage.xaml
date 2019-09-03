@@ -29,7 +29,7 @@
                    FontSize="Medium" 
                    TextColor="{StaticResource TextColor}"/>
             <Label Grid.Row="1" Margin="0,7,0,0" x:Name="QuestionText" 
-                   Text="{Binding QuestionItem.Text}"
+                   Text="{Binding QuestionItem.QuestionText}"
                    FontSize="Medium" TextColor="{StaticResource TextColor}"/>
             <Grid Grid.Row="2" Margin="0,0,0,15" >
                 <Grid.RowDefinitions>

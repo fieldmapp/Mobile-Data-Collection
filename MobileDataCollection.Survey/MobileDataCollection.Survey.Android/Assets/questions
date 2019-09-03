@@ -89,7 +89,7 @@
     {
       "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
       "InternId": 1,
-      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
       "PictureAddress": "DoubleSlider_one_question1.png",
       "CorrectAnswerA": 7,
       "CorrectAnswerB": 4,
@@ -98,7 +98,7 @@
     {
       "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
       "InternId": 2,
-      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
       "PictureAddress": "DoubleSlider_one_question2.png",
       "CorrectAnswerA": 49,
       "CorrectAnswerB": 91,
@@ -107,7 +107,7 @@
     {
       "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
       "InternId": 3,
-      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
       "PictureAddress": "DoubleSlider_one_question3.png",
       "CorrectAnswerA": 12,
       "CorrectAnswerB": 3,
@@ -116,7 +116,7 @@
     {
       "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
       "InternId": 4,
-      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
       "PictureAddress": "DoubleSlider_one_question4.png",
       "CorrectAnswerA": 64,
       "CorrectAnswerB": 94,
@@ -125,7 +125,7 @@
     {
       "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
       "InternId": 5,
-      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
       "PictureAddress": "DoubleSlider_two_question1.png",
       "CorrectAnswerA": 7,
       "CorrectAnswerB": 96,
@@ -134,7 +134,7 @@
     {
       "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
       "InternId": 6,
-      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
       "PictureAddress": "DoubleSlider_two_question2.png",
       "CorrectAnswerA": 49,
       "CorrectAnswerB": 91,
@@ -143,7 +143,7 @@
     {
       "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
       "InternId": 7,
-      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
       "PictureAddress": "DoubleSlider_two_question3.png",
       "CorrectAnswerA": 12,
       "CorrectAnswerB": 3,
@@ -152,7 +152,7 @@
     {
       "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
       "InternId": 8,
-      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
       "PictureAddress": "DoubleSlider_two_question4.png",
       "CorrectAnswerA": 64,
       "CorrectAnswerB": 94,
@@ -161,7 +161,7 @@
     {
       "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
       "InternId": 9,
-      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
       "PictureAddress": "DoubleSlider_three_question1.png",
       "CorrectAnswerA": 42,
       "CorrectAnswerB": 87,
@@ -170,7 +170,7 @@
     {
       "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
       "InternId": 10,
-      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
       "PictureAddress": "DoubleSlider_three_question2.png",
       "CorrectAnswerA": 6,
       "CorrectAnswerB": 0,
@@ -179,7 +179,7 @@
     {
       "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
       "InternId": 11,
-      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
       "PictureAddress": "DoubleSlider_three_question3.png",
       "CorrectAnswerA": 80,
       "CorrectAnswerB": 5,
@@ -188,7 +188,7 @@
     {
       "$type": "MobileDataCollection.Survey.Models.QuestionDoubleSliderPage, MobileDataCollection.Survey",
       "InternId": 12,
-      "Text": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
       "PictureAddress": "DoubleSlider_three_question4.png",
       "CorrectAnswerA": 76,
       "CorrectAnswerB": 99,
@@ -200,6 +200,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 1,
       "Image": "Stadium_one_question1.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Blattentwicklung",
@@ -243,6 +244,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 2,
       "Image": "Stadium_one_question2.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Blattentwicklung",
@@ -286,6 +288,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 3,
       "Image": "Stadium_one_question3.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Blattentwicklung",
@@ -329,6 +332,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 4,
       "Image": "Stadium_one_question4.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Blattentwicklung",
@@ -372,6 +376,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 5,
       "Image": "Stadium_one_question5.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Blattentwicklung",
@@ -415,6 +420,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 6,
       "Image": "Stadium_one_question6.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Blattentwicklung",
@@ -458,6 +464,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 7,
       "Image": "Stadium_two_question1.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Blattentwicklung",
@@ -511,6 +518,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 8,
       "Image": "Stadium_two_question2.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Blattentwicklung",
@@ -564,6 +572,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 9,
       "Image": "Stadium_two_question3.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Blattentwicklung",
@@ -617,6 +626,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 10,
       "Image": "Stadium_two_question4.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Blattentwicklung",
@@ -670,6 +680,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 11,
       "Image": "Stadium_two_question5.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Blattentwicklung",
@@ -723,6 +734,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 12,
       "Image": "Stadium_two_question6.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Blattentwicklung",
@@ -776,6 +788,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 13,
       "Image": "Stadium_three_question1.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Längenwachstum/Schossen",
@@ -828,6 +841,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 14,
       "Image": "Stadium_three_question2.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Längenwachstum/Schossen",
@@ -880,6 +894,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 15,
       "Image": "Stadium_three_question3.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Längenwachstum/Schossen",
@@ -932,6 +947,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 16,
       "Image": "Stadium_three_question4.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Längenwachstum/Schossen",
@@ -984,6 +1000,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 17,
       "Image": "Stadium_three_question5.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Längenwachstum/Schossen",
@@ -1036,6 +1053,7 @@
       "$type": "MobileDataCollection.Survey.Models.QuestionStadiumPage, MobileDataCollection.Survey",
       "InternId": 18,
       "Image": "Stadium_three_question6.png",
+      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
       "Stadiums": [
         {
           "StadiumName": "Längenwachstum/Schossen",

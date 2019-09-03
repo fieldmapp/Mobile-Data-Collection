@@ -15,12 +15,13 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(InternId), typeof(int), typeof(QuestionStadiumPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty DifficultyProperty = BindableProperty.Create(nameof(Difficulty), typeof(int), typeof(QuestionStadiumPage), 0, BindingMode.OneWay);
-        public static readonly BindableProperty StadiumSubItemsProperty = BindableProperty.Create(nameof(Stadiums), typeof(List<StadiumSubItem>), typeof(QuestionStadiumPage), null, BindingMode.OneWay);
-        public static readonly BindableProperty TestCollection2Property = BindableProperty.Create(nameof(Plants), typeof(List<Plant>), typeof(QuestionStadiumPage), null, BindingMode.OneWay);
+        public static readonly BindableProperty StadiumsProperty = BindableProperty.Create(nameof(Stadiums), typeof(List<StadiumSubItem>), typeof(QuestionStadiumPage), null, BindingMode.OneWay);
+        public static readonly BindableProperty PlantsProperty = BindableProperty.Create(nameof(Plants), typeof(List<Plant>), typeof(QuestionStadiumPage), null, BindingMode.OneWay);
         public static readonly BindableProperty CorrectAnswerFruitTypeProperty = BindableProperty.Create(nameof(CorrectAnswerFruitType), typeof(string), typeof(QuestionStadiumPage), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty CorrectAnswerStadiumProperty = BindableProperty.Create(nameof(CorrectAnswerStadium), typeof(int), typeof(QuestionStadiumPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty ImageProperty = BindableProperty.Create(nameof(Image), typeof(string), typeof(QuestionStadiumPage), string.Empty, BindingMode.OneWay);
-            
+        public static readonly BindableProperty QuestionTextProperty = BindableProperty.Create(nameof(QuestionText), typeof(string), typeof(QuestionIntrospectionPage), string.Empty, BindingMode.OneWay);
+
         /// <summary>
         /// Intern Id only for this type of question(StadiumPage)
         /// </summary>
@@ -45,17 +46,26 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public List<StadiumSubItem> Stadiums
         {
-            get => (List<StadiumSubItem>)GetValue(StadiumSubItemsProperty);
-            set => SetValue(StadiumSubItemsProperty, value);
+            get => (List<StadiumSubItem>)GetValue(StadiumsProperty);
+            set => SetValue(StadiumsProperty, value);
         }
-         
+
+        /// <summary>
+        /// Question which will be shown to the user
+        /// </summary>
+        public string QuestionText
+        {
+            get => (string)GetValue(QuestionTextProperty);
+            set => SetValue(QuestionTextProperty, value);
+        }
+
         /// <summary>
         /// Contains all possible fruit types
         /// </summary>
         public List<Plant> Plants
         {
-            get => (List<Plant>)GetValue(TestCollection2Property);
-            set => SetValue(TestCollection2Property, value);
+            get => (List<Plant>)GetValue(PlantsProperty);
+            set => SetValue(PlantsProperty, value);
         }
 
         /// <summary>
@@ -95,7 +105,7 @@ namespace MobileDataCollection.Survey.Models
         /// <param name="plants"></param>
         /// <param name="correctAnswerStadium"></param>
         /// <param name="correctAnswerFruitType"></param>
-        public QuestionStadiumPage(int internId, int difficulty, string image, List<StadiumSubItem> stadiums, List<Plant> plants, int correctAnswerStadium, string correctAnswerFruitType)
+        public QuestionStadiumPage(int internId, int difficulty, string image, List<StadiumSubItem> stadiums, List<Plant> plants, int correctAnswerStadium, string correctAnswerFruitType, string questionText)
         {
             if (!stadiums.Any(s => s.InternNumber == correctAnswerStadium))
                 throw new ArgumentException("Argument needs to be contained in "+nameof(stadiums), nameof(correctAnswerStadium));
@@ -109,6 +119,7 @@ namespace MobileDataCollection.Survey.Models
             Plants = plants;
             CorrectAnswerFruitType = correctAnswerFruitType;
             CorrectAnswerStadium = correctAnswerStadium;
+            QuestionText = questionText;
         }
     }
 }

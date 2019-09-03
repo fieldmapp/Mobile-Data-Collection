@@ -25,7 +25,7 @@
             <Label Grid.Row="0" x:Name="HeaderText" HorizontalTextAlignment="Center"
                    TextColor="{StaticResource TextColor}" Text="{Binding Header}" FontSize="Medium"/>
             <Label Grid.Row="1" Margin="0,7,0,0" x:Name="QuestionText" 
-                   Text="Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu." 
+                   Text="{Binding QuestionItem.QuestionText}"
                    FontSize="Medium" TextColor="{StaticResource TextColor}"/>
 
             <Grid Grid.Row="2" Margin="0,0,0,15" >
