@@ -21,10 +21,13 @@ namespace MobileDataCollection.Survey.Models
         private static Dictionary<string, List<IQuestionContent>> Questions = new Dictionary<string, List<IQuestionContent>>();
 
         /// <summary>
-        /// Dictionary containing all lists to save the answers
+        /// Dictionary containing all lists to save the answers. The order of each List is crucial to determine streak and should not be changed ever
         /// </summary>
         private static Dictionary<string, List<IUserAnswer>> Answers = new Dictionary<string, List<IUserAnswer>>();
 
+        /// <summary>
+        /// List containing all SurveyMenuItems, which contain all relevant information over the different survey types
+        /// </summary>
         public static List<SurveyMenuItem> SurveyMenuItems { get; private set; } = new List<SurveyMenuItem>();
 
         /// <summary>
@@ -68,18 +71,13 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public static void CreateCSV()
         {
-            string explination = "UserCode,Date"; /// contains the explination for the data
+            string explanation = "UserCode,Date"; /// contains the explanation for the data
             string data = "," + DateTime.Now.ToString("yyyy MM dd"); /// contains the data
-            /// sort the lists after InternId
-            Questions["ImageChecker"] = Questions["ImageChecker"].OrderBy(o => o.InternId).ToList();
-            Questions["DoubleSlider"] = Questions["DoubleSlider"].OrderBy(o => o.InternId).ToList();
-            Questions["Stadium"] = Questions["Stadium"].OrderBy(o => o.InternId).ToList();
-            Questions["Introspection"] = Questions["Introspection"].OrderBy(o => o.InternId).ToList();
 
             /// write all Introspection Answers in one line
-            foreach (QuestionIntrospectionPage question in Questions["Introspection"])
+            foreach (QuestionIntrospectionPage question in Questions["Introspection"].OrderBy(o => o.InternId))
             {
-                explination += ",SelectedAnswerQuestion" + question.InternId;
+                explanation += ",SelectedAnswerQuestion" + question.InternId;
                 if (DoesAnswersExists("Introspection", question.InternId))
                 {
                     AnswerIntrospectionPage answer = (AnswerIntrospectionPage)LoadAnswerById("Introspection", question.InternId);
@@ -92,9 +90,9 @@ namespace MobileDataCollection.Survey.Models
                 }
             }
             /// write all ImageChecker Answers in one line
-            foreach (QuestionImageCheckerPage question in Questions["ImageChecker"])
+            foreach (QuestionImageCheckerPage question in Questions["ImageChecker"].OrderBy(o => o.InternId))
             {
-                explination += ",DifficultyQuestion" + question.InternId + ",Img1SelQuestion" + question.InternId + ",Img2SelQuestion" + question.InternId + ",Img3SelQuestion" + question.InternId + ",Img4SelQuestion" + question.InternId;
+                explanation += ",DifficultyQuestion" + question.InternId + ",Img1SelQuestion" + question.InternId + ",Img2SelQuestion" + question.InternId + ",Img3SelQuestion" + question.InternId + ",Img4SelQuestion" + question.InternId;
                 if (DoesAnswersExists("ImageChecker", question.InternId))
                 {
                     AnswerImageCheckerPage answer = (AnswerImageCheckerPage) LoadAnswerById("ImageChecker", question.InternId);
@@ -107,9 +105,9 @@ namespace MobileDataCollection.Survey.Models
                 }
             }
             /// write all Stadium Answers in one line
-            foreach (QuestionStadiumPage question in Questions["Stadium"])
+            foreach (QuestionStadiumPage question in Questions["Stadium"].OrderBy(o => o.InternId))
             {
-                explination += ",DifficultyQuestion" + question.InternId + ",StadiumQuestion" + question.InternId + ",FruitTypeQuestion" + question.InternId;
+                explanation += ",DifficultyQuestion" + question.InternId + ",StadiumQuestion" + question.InternId + ",FruitTypeQuestion" + question.InternId;
                 if (DoesAnswersExists("Stadium", question.InternId))
                 {
                     AnswerStadiumPage answer = (AnswerStadiumPage)LoadAnswerById("Stadium", question.InternId);
@@ -122,9 +120,9 @@ namespace MobileDataCollection.Survey.Models
                 }
             }
             /// write all DoubleSlider Answers in one line
-            foreach (QuestionDoubleSliderPage question in Questions["DoubleSlider"])
+            foreach (QuestionDoubleSliderPage question in Questions["DoubleSlider"].OrderBy(o => o.InternId))
             {
-                explination += ",DifficultyQuestion" + question.InternId + ",ResAQuestion" + question.InternId + ",ResBQuestion" + question.InternId;
+                explanation += ",DifficultyQuestion" + question.InternId + ",ResAQuestion" + question.InternId + ",ResBQuestion" + question.InternId;
                 if (DoesAnswersExists("DoubleSlider", question.InternId))
                 {
                     AnswerDoubleSliderPage answer = (AnswerDoubleSliderPage)LoadAnswerById("DoubleSlider", question.InternId);
@@ -142,7 +140,7 @@ namespace MobileDataCollection.Survey.Models
             string filename = Path.Combine(path, "Answers.csv");
 
             ///write text in file
-            File.WriteAllText(filename, explination + "\n" + data);
+            File.WriteAllText(filename, explanation + "\n" + data);
         }
 
         /// <summary>
