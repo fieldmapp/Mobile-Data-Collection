@@ -1,4 +1,5 @@
-﻿//taken from http://bsubramanyamraju.blogspot.com/2018/03/how-to-create-radiobutton-in_13.html
+﻿//Main contributors: Max Moebius
+//Altered from http://bsubramanyamraju.blogspot.com/2018/03/how-to-create-radiobutton-in_13.html
 
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Main contributors: Maya Koehnen, Max Moebius
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -13,7 +14,7 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public static readonly BindableProperty InternIdProperty = BindableProperty.Create(nameof(InternId), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty DifficultyProperty = BindableProperty.Create(nameof(Difficulty), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
-        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(QuestionDoubleSliderPage), string.Empty, BindingMode.OneWay);
+        public static readonly BindableProperty QuestionTextProperty = BindableProperty.Create(nameof(QuestionText), typeof(string), typeof(QuestionDoubleSliderPage), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty PictureAdressProperty = BindableProperty.Create(nameof(PictureAddress), typeof(string), typeof(QuestionDoubleSliderPage), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty CorrectAnswerAProperty = BindableProperty.Create(nameof(CorrectAnswerA), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
         public static readonly BindableProperty CorrectAnswerBProperty = BindableProperty.Create(nameof(CorrectAnswerB), typeof(int), typeof(QuestionDoubleSliderPage), 0, BindingMode.OneWay);
@@ -39,10 +40,10 @@ namespace MobileDataCollection.Survey.Models
         /// <summary>
         /// Question which will be shown to the user
         /// </summary>
-        public string Text
+        public string QuestionText
         {
-            get => (string)GetValue(TextProperty);
-            set => SetValue(TextProperty, value);
+            get => (string)GetValue(QuestionTextProperty);
+            set => SetValue(QuestionTextProperty, value);
         }
 
         /// <summary>
@@ -95,7 +96,7 @@ namespace MobileDataCollection.Survey.Models
         public QuestionDoubleSliderPage(int internId, int difficulty, string pictureAddress, int answerA, int answerB)
         {
             InternId = internId;
-            Text = "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.";
+            QuestionText = "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.";
             PictureAddress = pictureAddress;
             CorrectAnswerA = answerA;
             CorrectAnswerB = answerB;

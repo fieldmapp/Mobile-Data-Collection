@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--Main contributors: Henning Woydt-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileDataCollection.Survey.Views.ImageCheckerPage"
@@ -41,8 +42,7 @@
                          HorizontalOptions="Center"
                          VerticalOptions="CenterAndExpand"
                          IsEnabled="true"
-                         Pressed="PressPicture"
-                         Released="ReleasePicture"
+                         ShortPress="Picture_ShortPress"
                          BorderColor="White"
                          BorderWidth="5"/>
             <controls:DetailImage x:Name="PictureB"
@@ -53,8 +53,7 @@
                          HorizontalOptions="Center"
                          VerticalOptions="CenterAndExpand"
                          IsEnabled="true"
-                         Pressed="PressPicture"
-                         Released="ReleasePicture"
+                         ShortPress="Picture_ShortPress"
                          BorderColor="White"
                          BorderWidth="5"/>
             <controls:DetailImage x:Name="PictureC"
@@ -65,8 +64,7 @@
                          HorizontalOptions="Center"
                          VerticalOptions="CenterAndExpand"
                          IsEnabled="true"
-                         Pressed="PressPicture"
-                         Released="ReleasePicture"
+                         ShortPress="Picture_ShortPress"
                          BorderColor="White"
                          BorderWidth="5"/>
             <controls:DetailImage x:Name="PictureD"
@@ -78,8 +76,7 @@
                          HorizontalOptions="Center"
                          VerticalOptions="CenterAndExpand"
                          IsEnabled="true"
-                         Pressed="PressPicture"
-                         Released="ReleasePicture"
+                         ShortPress="Picture_ShortPress"
                          BorderColor="White"
                          BorderWidth="5"/>
         </Grid>

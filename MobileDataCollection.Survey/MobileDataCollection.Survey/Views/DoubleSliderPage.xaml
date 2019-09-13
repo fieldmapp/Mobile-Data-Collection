@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Main contributors: Maya Koehnen-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileDataCollection.Survey.Views.DoubleSliderPage"
@@ -28,7 +29,7 @@
                    FontSize="Medium" 
                    TextColor="{StaticResource TextColor}"/>
             <Label Grid.Row="1" Margin="0,7,0,0" x:Name="QuestionText" 
-                   Text="{Binding QuestionItem.Text}"
+                   Text="{Binding QuestionItem.QuestionText}"
                    FontSize="Medium" TextColor="{StaticResource TextColor}"/>
             <Grid Grid.Row="2" Margin="0,0,0,15" >
                 <Grid.RowDefinitions>

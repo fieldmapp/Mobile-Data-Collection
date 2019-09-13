@@ -1,5 +1,5 @@
-﻿using System;
-
+﻿//Auto generated, Main contributors: Maximilian Enderling
+using System;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -17,8 +17,8 @@ namespace MobileDataCollection.Survey.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            AndroidQuestionProvider androidQuestionProvider = new AndroidQuestionProvider(this);
-            DatabankCommunication.Initilize(androidQuestionProvider);
+            AndroidStorageAccessProvider androidQuestionProvider = new AndroidStorageAccessProvider(this);
+            DatabankCommunication.Initilize(new JsonStorageProvider(androidQuestionProvider));
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;

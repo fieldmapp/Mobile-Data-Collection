@@ -1,4 +1,5 @@
-﻿using MobileDataCollection.Survey.Views;
+﻿//Main contributors: Maximilian Enderling
+using MobileDataCollection.Survey.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,6 +10,8 @@ namespace MobileDataCollection.Survey.Controls
 {
     class DetailImage : ImageButton
     {
+        public event EventHandler ShortPress;
+
         Stopwatch Stopwatch = new Stopwatch();
 
         public DetailImage()
@@ -31,6 +34,8 @@ namespace MobileDataCollection.Survey.Controls
             {
                 (Application.Current as App).Navigation.PushAsync(new ImageDetailPage(Source));
             }
+            else
+                ShortPress?.Invoke(this, null);
         }
     }
 }

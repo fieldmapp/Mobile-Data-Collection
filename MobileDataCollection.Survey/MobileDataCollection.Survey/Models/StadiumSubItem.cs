@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Main contributors: Maximilian Enderling, Max Moebius
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -24,6 +26,7 @@ namespace MobileDataCollection.Survey.Models
             set => SetValue(StadiumNameProperty, value);
         }
 
+        [JsonIgnore]
         public Color BackgroundColor
         {
             get => (Color)GetValue(BackgroundColorProperty);
@@ -60,5 +63,17 @@ namespace MobileDataCollection.Survey.Models
             ImageSource = imageSource;
             InternNumber = internNumber;
         }
+
+        public StadiumSubItem(StadiumSubItem item)
+        {
+            StadiumName = item.StadiumName;
+            ImageSource = item.ImageSource;
+            InternNumber = item.InternNumber;
+        }
+
+        /// <summary>
+        /// Used for serialization only
+        /// </summary>
+        private StadiumSubItem() { }
     }
 }

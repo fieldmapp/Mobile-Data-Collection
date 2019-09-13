@@ -1,8 +1,10 @@
-﻿using System;
+﻿//Main contributors: Maximilian Enderling, Max Moebius
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace MobileDataCollection.Survey.Models
 {
@@ -13,8 +15,6 @@ namespace MobileDataCollection.Survey.Models
         public static readonly BindableProperty AnswersNeededProperty = BindableProperty.Create(nameof(AnswersNeeded), typeof(int), typeof(SurveyMenuItem), 0, BindingMode.OneWay);
         public static readonly BindableProperty MaximumQuestionNumberProperty = BindableProperty.Create(nameof(MaximumQuestionNumber), typeof(int), typeof(SurveyMenuItem), 0, BindingMode.OneWay);
         public static readonly BindableProperty AnswersGivenProperty = BindableProperty.Create(nameof(AnswersGiven), typeof(int), typeof(SurveyMenuItem), 0, BindingMode.OneWay);
-        public static readonly BindableProperty UnlockedProperty = BindableProperty.Create(nameof(Unlocked), typeof(bool), typeof(SurveyMenuItem), false, BindingMode.OneWay);
-        public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(SurveyMenuItem), Color.White, BindingMode.OneWay);
         public static readonly BindableProperty ProgressStringProperty = BindableProperty.Create(nameof(ProgressString), typeof(string), typeof(SurveyMenuItem), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty IntrospectionQuestionProperty = BindableProperty.Create(nameof(IntrospectionQuestion), typeof(List<int>), typeof(SurveyMenuItem), new List<int>());
         
@@ -49,7 +49,7 @@ namespace MobileDataCollection.Survey.Models
         public int MaximumQuestionNumber
         {
             get => (int)GetValue(MaximumQuestionNumberProperty);
-            set
+            private set
             {
                 SetValue(MaximumQuestionNumberProperty, value);
                 UpdateProgressString();
@@ -66,46 +66,60 @@ namespace MobileDataCollection.Survey.Models
             }
         }
 
-        public bool Unlocked
-        {
-            get => (bool)GetValue(UnlockedProperty);
-            set => SetValue(UnlockedProperty, value);
-        }
-
+        [JsonIgnore]
         public string ProgressString
         {
             get => (string)GetValue(ProgressStringProperty);
             set => SetValue(ProgressStringProperty, value);
         }
-        private string UpdateProgressString() => ProgressString = $"{AnswersGiven}/{AnswersNeeded} ({MaximumQuestionNumber})";
-        
-        public Color BackgroundColor
-        {
-            get => (Color)GetValue(BackgroundColorProperty);
-            set => SetValue(BackgroundColorProperty, value);
-        }
+        private string UpdateProgressString() => ProgressString = $"{AnswersGiven}/{AnswersNeeded} (max. {MaximumQuestionNumber})";
 
-        public int Streak { get; set; }
+        [JsonIgnore]
+        public int Streak { get; private set; }
 
+        [JsonIgnore]
         public int CurrentDifficulty { get; set; }
 
+        [JsonIgnore]
         public Type QuestionType { get; }
 
+        [JsonIgnore]
         public Type AnswerType { get; }
 
+        [JsonIgnore]
         public Type SurveyPageType { get; }
+        
+        public void ApplyAnswer(IUserAnswer answerItem)
+        {
+            bool answerRight = answerItem.EvaluateScore() > .85f;
+            if (answerRight)
+                Streak = Streak <= 0 ? 1 : Streak + 1;
+            else
+                Streak = Streak >= 0 ? -1 : Streak - 1;
+            if (Streak < -2)
+            {
+                CurrentDifficulty = Math.Max(1, CurrentDifficulty - 1);
+                Streak = 0;
+            }
+            else if (Streak > 2)
+            {
+                CurrentDifficulty = Math.Min(3, CurrentDifficulty + 1);
+                Streak = 0;
+            }
+        }
 
-        public SurveyMenuItem(string id, string chapterName, int answersNeeded, int maximumQuestionNumber, int answersGiven, bool unlocked, Color backgroundColor, List<int> introspectionQuestions)
+        public SurveyMenuItem(string id, string chapterName, int answersNeeded, List<int> introspectionQuestions)
         {
             Id = id;
             ChapterName = chapterName;
             AnswersNeeded = answersNeeded;
-            MaximumQuestionNumber = maximumQuestionNumber;
-            AnswersGiven = answersGiven;
-            Unlocked = unlocked;
-            BackgroundColor = backgroundColor;
             IntrospectionQuestion = introspectionQuestions;
             CurrentDifficulty = 1;
+            MaximumQuestionNumber = DatabankCommunication.GetAllQuestions(id).Count;
+            var answers = DatabankCommunication.GetAllAnswers(id);
+            AnswersGiven = answers.Count;
+            foreach (var answer in answers)
+                ApplyAnswer(answer);
 
             var nspace = typeof(App).Namespace;
             SurveyPageType = Type.GetType($"{nspace}.Views.{id.ToString()}Page");
@@ -113,10 +127,22 @@ namespace MobileDataCollection.Survey.Models
                 throw new ArgumentException($"You need to provide an ISurveyPage matching the id given (for given id it needs to be called {id.ToString()}Page and must be located in {nspace}.Views");
             QuestionType = Type.GetType($"{nspace}.Models.Question{id.ToString()}Page");
             if (QuestionType == null || QuestionType.IsAssignableFrom(typeof(IQuestionContent)))
-                throw new ArgumentException($"You need to provide a IQuestionContent matching the id given (for given id it needs to be called Question{id.ToString()}Page and must be located in {nspace}.Models"); ;
+                throw new ArgumentException($"You need to provide a IQuestionContent matching the id given (for given id it needs to be called Question{id.ToString()}Page and must be located in {nspace}.Models");
             AnswerType = Type.GetType($"{nspace}.Models.Question{id.ToString()}Page");
             if (AnswerType == null || AnswerType.IsAssignableFrom(typeof(IUserAnswer)))
-                throw new ArgumentException($"You need to provide a SurveyPage matching the id given (for given id it needs to be called Answer{id.ToString()}Page and must be located in {nspace}.Models"); ;
+                throw new ArgumentException($"You need to provide a SurveyPage matching the id given (for given id it needs to be called Answer{id.ToString()}Page and must be located in {nspace}.Models");
+            if (!SurveyPageType.GetConstructors().Any(ci =>
+            {
+                var parms = ci.GetParameters();
+                if (parms[0].ParameterType != QuestionType)
+                    return false;
+                if (parms[1].ParameterType != typeof(int))
+                    return false;
+                if (parms[2].ParameterType != typeof(int))
+                    return false;
+                return true;
+            }))
+                throw new ArgumentException($"The class {nspace}.Views.{id.ToString()}Page needs to have a constructor with parameters: ({nspace}.Models.Question{id.ToString()}Page,int,int)");
         }
     }
 }

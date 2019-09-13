@@ -1,4 +1,5 @@
-﻿using MobileDataCollection.Survey.Models;
+﻿//Main contributors: Max Moebius, Henning Woydt
+using MobileDataCollection.Survey.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -60,11 +61,6 @@ namespace MobileDataCollection.Survey.Views
         /// </summary>
         Color nonSelectedColor = Color.White;
 
-        /// <summary>
-        /// used to measure if a picture should be enlarged or only marked
-        /// </summary>
-        Stopwatch stopwatch = new Stopwatch();
-
         public event EventHandler<PageResult> PageFinished;
 
         public ImageCheckerPage(QuestionImageCheckerPage question, int answersGiven, int answersNeeded)
@@ -82,6 +78,11 @@ namespace MobileDataCollection.Survey.Views
             QuestionItem = question;
         }
 
+        private void Picture_ShortPress(object sender, EventArgs e)
+        {
+            MarkPicture((ImageButton)sender);
+        }
+
         /// <summary>
         /// marks the background of a picture with color
         /// </summary>
@@ -90,27 +91,6 @@ namespace MobileDataCollection.Survey.Views
             imageButton.BorderColor = imageButton.BorderColor == nonSelectedColor ? selectedColor : nonSelectedColor;
         }
 
-        /// <summary>
-        /// starts a new stopwatch to measure how long the image has been pressed
-        /// </summary>
-        private void PressPicture(object sender, EventArgs e)
-        {
-            stopwatch.Reset();
-            stopwatch.Start();
-        }
-
-        /// <summary>
-        /// stops the timer and accordingly marks the picture or enlarges the picture
-        /// </summary>
-        private void ReleasePicture(object sender, EventArgs e)
-        {
-            ImageButton imageButton = (ImageButton)sender;
-            stopwatch.Stop();
-            if (stopwatch.ElapsedMilliseconds < 1000)
-            {
-                MarkPicture(imageButton);
-            }
-        }
         /// <summary>
         /// saves the answer and loads a new Question, if one is available
         /// </summary>

@@ -1,4 +1,5 @@
-﻿using MobileDataCollection.Survey.Models;
+﻿//Main contributors: Maximilian Enderling, Maya Koehnen
+using MobileDataCollection.Survey.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;

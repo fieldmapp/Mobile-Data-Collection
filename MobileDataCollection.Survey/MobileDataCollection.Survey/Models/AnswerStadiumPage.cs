@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Main contributors: Maximilian Enderling, Max Moebius, Henning Woydt
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;

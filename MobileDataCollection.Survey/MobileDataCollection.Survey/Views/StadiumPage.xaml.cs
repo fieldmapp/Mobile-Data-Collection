@@ -1,4 +1,5 @@
-﻿using MobileDataCollection.Survey.Controls;
+﻿//Main contributors: Maximilian Enderling, Maya Koehnen
+using MobileDataCollection.Survey.Controls;
 using MobileDataCollection.Survey.Models;
 using System;
 using System.Collections.Generic;
@@ -66,6 +67,7 @@ namespace MobileDataCollection.Survey.Views
             StadiumCollection = new ObservableCollection<StadiumSubItem>(question.Stadiums);
             PlantCollection = new ObservableCollection<Plant>(question.Plants);
             Picture.BindingContext = this;
+            QuestionText.BindingContext = this;
             StadiumInlinePicker.ItemSource = StadiumCollection;
             PlantInlinePicker.ItemSource = PlantCollection;
             Header = $"Frage {answersGiven + 1}/{answersNeeded}";

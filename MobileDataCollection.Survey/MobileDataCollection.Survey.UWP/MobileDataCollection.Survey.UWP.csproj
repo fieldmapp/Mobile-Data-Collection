@@ -130,13 +130,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <Content Include="bestockung.png" />
-    <Content Include="blattentwicklung.png" />
     <Content Include="Properties\Default.rd.xml" />
-    <Content Include="schossen.png" />
-    <Content Include="radiocheckedbg.png" />
-    <Content Include="radiocheckmark.png" />
-    <Content Include="radioborder.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -149,6 +143,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.2</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.5" />
   </ItemGroup>
