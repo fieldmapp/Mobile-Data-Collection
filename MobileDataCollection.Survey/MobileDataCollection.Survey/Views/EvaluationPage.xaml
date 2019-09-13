@@ -15,19 +15,17 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout Padding="20">
-            <Label Text="Ergebnisse" HorizontalOptions="CenterAndExpand" FontSize="Large"/>
-            <Grid VerticalOptions="CenterAndExpand" RowSpacing="15">
+        <StackLayout Padding="20" HorizontalOptions="CenterAndExpand">
+            <Label Margin="0,0,0,30" Text="Ergebnisse" HorizontalOptions="CenterAndExpand" FontSize="Large"/>
+            <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RowSpacing="15">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label FontSize="Medium" Margin="0,0,0,40" Text="Sie haben in dieser Kategorie" HorizontalOptions="CenterAndExpand"/>
-                <!--<ProgressBar Grid.Row="1" x:Name="PercentBar" ScaleY="2" ProgressColor="{Binding ProgressColor}"  
-                             BackgroundColor="{Binding BarColor}" Progress="{Binding PercentBarValue}">-->
+                <Label FontSize="Medium" Margin="0,0,0,40" Text="Ihre Antworten haben im Mittel zu" HorizontalOptions="CenterAndExpand"/>
                 <ProgressBar Grid.Row="1" x:Name="PercentBar" ScaleY="3" ProgressColor="{Binding ProgressColor}"  
                              Progress="{Binding PercentBarValue}">
                         <ProgressBar.GestureRecognizers>
@@ -36,7 +34,7 @@
                             NumberOfTapsRequired="1" />
                     </ProgressBar.GestureRecognizers>
                 </ProgressBar>
-                <Label  Margin="0,5,0,0" Grid.Row="2" x:Name="PercentLabel" Text="{Binding PercentLabelText}"
+                <Label  Margin="0,5,0,20" Grid.Row="2" x:Name="PercentLabel" Text="{Binding PercentLabelText}"
                 HorizontalOptions="CenterAndExpand" FontSize="Large">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer
@@ -44,21 +42,21 @@
                             NumberOfTapsRequired="1" />
                     </Label.GestureRecognizers>
                 </Label>
-                <Grid Margin="0,5,0,0" Grid.Row="3" HorizontalOptions="CenterAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="infoIcon.png" HeightRequest="15"/>
-                    <Label Grid.Column="1" FontSize="Small" Text="Klicken Sie für mehr Informationen">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer
+                <Label HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontSize="Medium" Grid.Row="3" Text="mit den korrekten Lösungen übereingestimmt."/>
+            </Grid>
+            <Grid Margin="0,5,0,10" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="infoIcon.png" HeightRequest="15"/>
+                <Label Grid.Column="1" FontSize="Small" Text="Klicken Sie für mehr Informationen">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
                             Tapped="DetailsClicked"
                             NumberOfTapsRequired="1" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </Grid>
-                <Label FontSize="Medium" Margin="0,50,0,0" Grid.Row="4" Text="erreicht" HorizontalOptions="CenterAndExpand"/>
+                    </Label.GestureRecognizers>
+                </Label>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

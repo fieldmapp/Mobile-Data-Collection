@@ -125,7 +125,7 @@ namespace MobileDataCollection.Survey.Views
             if(PictureA.BorderColor == nonSelectedColor && PictureB.BorderColor == nonSelectedColor 
                 && PictureC.BorderColor == nonSelectedColor && PictureD.BorderColor == nonSelectedColor)
             {
-                DisplayAlert("Hinweis", "Bitte eine oder mehrere Auswahlen treffen", "OK");
+                DisplayAlert("Hinweis", "Bitte vervollständigen Sie Ihre Auswahl um fortzufahren.", "OK");
                 return;
             }
 

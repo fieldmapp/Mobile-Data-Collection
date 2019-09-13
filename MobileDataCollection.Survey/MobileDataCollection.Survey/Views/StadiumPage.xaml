@@ -50,7 +50,27 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Frame Grid.Column="0" Padding="3" BorderColor="LightGray" CornerRadius="0">
+                <Frame Grid.Column="0" HeightRequest="100" Padding="3" BorderColor="LightGray" CornerRadius="0">
+                    <controls:InlinePicker x:Name="PlantInlinePicker">
+                        <controls:InlinePicker.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame BorderColor="{Binding BackgroundColor}" Padding="0" CornerRadius="0" BackgroundColor="{Binding BackgroundColor}">
+                                        <Frame BorderColor="{Binding BackgroundColor}" Margin="1" CornerRadius="0" BackgroundColor="White" Padding="0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Name}" />
+                                            </Grid>
+                                        </Frame>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </controls:InlinePicker.ItemTemplate>
+                    </controls:InlinePicker>
+                </Frame>
+                <Frame Grid.Column="1" Padding="3" BorderColor="LightGray" CornerRadius="0">
                     <controls:InlinePicker x:Name="StadiumInlinePicker">
                         <controls:InlinePicker.ItemTemplate>
                             <DataTemplate>
@@ -64,26 +84,6 @@
                                                 </Grid.ColumnDefinitions>
                                                 <Label Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Text="{Binding StadiumName}" />
                                                 <controls:DetailImage Grid.Column="1" BackgroundColor="{StaticResource Button}" Source="{Binding ImageSource}" HorizontalOptions="EndAndExpand"  HeightRequest="25"/>
-                                            </Grid>
-                                        </Frame>
-                                    </Frame>
-                                </ViewCell>
-                            </DataTemplate>
-                        </controls:InlinePicker.ItemTemplate>
-                    </controls:InlinePicker>
-                </Frame>
-                <Frame Grid.Column="1" HeightRequest="100" Padding="3" BorderColor="LightGray" CornerRadius="0">
-                    <controls:InlinePicker x:Name="PlantInlinePicker">
-                        <controls:InlinePicker.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Frame BorderColor="{Binding BackgroundColor}" Padding="0" CornerRadius="0" BackgroundColor="{Binding BackgroundColor}">
-                                        <Frame BorderColor="{Binding BackgroundColor}" Margin="1" CornerRadius="0" BackgroundColor="White" Padding="0">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Name}" />
                                             </Grid>
                                         </Frame>
                                     </Frame>

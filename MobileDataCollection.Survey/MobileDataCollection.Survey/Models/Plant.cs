@@ -12,7 +12,7 @@ namespace MobileDataCollection.Survey.Models
         /// </summary>
         public static readonly BindableProperty NameProperty = BindableProperty.Create(nameof(Name), typeof(string), typeof(Plant), string.Empty, BindingMode.OneWay);
         public static readonly BindableProperty InternLetterProperty = BindableProperty.Create(nameof(InternLetter), typeof(string), typeof(Plant), string.Empty, BindingMode.OneWay);
-        public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(StadiumSubItem), Color.Default, BindingMode.OneWay);
+        public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(Plant), Color.Default, BindingMode.OneWay);
 
         /// <summary>
         /// Name of the different Plants
