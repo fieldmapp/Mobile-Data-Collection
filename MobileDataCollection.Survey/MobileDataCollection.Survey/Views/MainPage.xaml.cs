@@ -33,6 +33,14 @@ namespace MobileDataCollection.Survey.Views
             SurveyManager.StartSurvey(tapped);
         }
 
+        private void HintClicked(object sender, ItemTappedEventArgs e)
+        {
+            DisplayAlert("Hinweis", "Hier sehen Sie alle verfügbaren Kategorien des Quiz. \n" +
+                "Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen für jede Kategorie:\n" +
+                "- wieviele Fragen Sie bereits beantwortet haben (links) \n" +
+                "- wieviele Fragen Sie mindestens beantworten müssen, um die Kategorie abzuschließen (rechts)", "OK");
+        }
+
         private async void EvaluationClicked(object sender, ItemTappedEventArgs e)
         {
             var evalItems = DatabankCommunication.SurveyMenuItems.Select(i => i.IntrospectionQuestion.All(q => DatabankCommunication.DoesAnswersExists("Introspection", q)) ? 

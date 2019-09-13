@@ -72,7 +72,7 @@ namespace MobileDataCollection.Survey.Models
             get => (string)GetValue(ProgressStringProperty);
             set => SetValue(ProgressStringProperty, value);
         }
-        private string UpdateProgressString() => ProgressString = $"{AnswersGiven}/{AnswersNeeded} (max. {MaximumQuestionNumber})";
+        private string UpdateProgressString() => ProgressString = $"{AnswersGiven}/{AnswersNeeded}";
 
         [JsonIgnore]
         public int Streak { get; private set; }

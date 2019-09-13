@@ -6,7 +6,22 @@
              x:Class="MobileDataCollection.Survey.Views.MainPage">
 <!--This is the Frontend representation of the Main Page. It consists of an ListView containing all question 
     categories with name and the answered questions and a button to navigate to the evaluation main page-->
+    <!--Hint to give the user a short explanation on the main page -->
     <StackLayout>
+        <Grid HeightRequest="30" Margin="0,10,5,5" HorizontalOptions="EndAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Image Margin="0,5,0,0" Source="infoIcon.png" HeightRequest="30" VerticalOptions="CenterAndExpand"/>
+            <Label Grid.Column="1" FontSize="Medium" Text="Hinweis" VerticalOptions="CenterAndExpand">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="HintClicked"
+                            NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
         <!--ListView consisting of the question categories-->
         <ListView Margin="0,5,0,0" x:Name="MenuList" ItemTapped="MenuList_ItemTapped">
             <ListView.ItemTemplate>

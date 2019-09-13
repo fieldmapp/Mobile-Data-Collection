@@ -50,6 +50,17 @@ namespace MobileDataCollection.Survey.Views
             set { SetValue(HeaderProperty, value); }
         }
 
+        public static readonly BindableProperty EvaluationTextColorProperty = BindableProperty.Create(nameof(EvaluationTextColor), typeof(Color), typeof(StadiumPage), Color.Transparent, BindingMode.OneWay);
+
+        /// <summary>
+        /// Color for the Evaluation Button
+        /// </summary>
+        public Color EvaluationTextColor
+        {
+            get { return (Color)GetValue(EvaluationTextColorProperty); }
+            set { SetValue(EvaluationTextColorProperty, value); }
+        }
+
         IQuestionContent ISurveyPage.QuestionItem => QuestionItem;
 
         IUserAnswer ISurveyPage.AnswerItem => AnswerItem;
@@ -73,6 +84,9 @@ namespace MobileDataCollection.Survey.Views
             Header = $"Frage {answersGiven + 1}/{answersNeeded}";
             HeaderText.BindingContext = this;
             PageFinished += StadiumPage_PageFinished;
+            EvalButton.BindingContext = this;
+            if (answersGiven >= answersNeeded)EvaluationTextColor = Color.Gray;
+                EvaluationTextColor = Color.LightGray;
         }
 
         private void StadiumPage_PageFinished(object sender, PageResult e)

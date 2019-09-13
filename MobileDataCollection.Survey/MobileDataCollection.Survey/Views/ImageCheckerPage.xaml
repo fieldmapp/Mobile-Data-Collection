@@ -87,7 +87,7 @@
             </Grid.ColumnDefinitions>
             <Image Grid.Column="0" HorizontalOptions="EndAndExpand" Source="lupe.png" HeightRequest="10"/>
             <Label Grid.Column="1" HorizontalOptions="StartAndExpand" 
-                       Text="Gedrückt halten" FontSize="Micro"/>
+                       Text="Bild zum Vergößern gedrückt halten" FontSize="Micro"/>
         </Grid>
         <Grid VerticalOptions="EndAndExpand">
             <Grid.ColumnDefinitions>

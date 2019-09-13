@@ -45,7 +45,7 @@
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" HorizontalOptions="EndAndExpand" Source="lupe.png" HeightRequest="10"/>
                     <Label Grid.Column="1" HorizontalOptions="StartAndExpand" 
-                       Text="Gedrückt halten" FontSize="Micro"/>
+                       Text="Bild zum Vergößern gedrückt halten" FontSize="Micro"/>
                 </Grid>
             </Grid>
            <!-- <controls:DetailImage Aspect="AspectFit" Grid.Row="2" x:Name="Picture" BackgroundColor="Transparent"
@@ -75,9 +75,9 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Text="Auswertung" FontSize="Medium"
+            <Button x:Name="EvalButton" Text="Auswertung" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
-                    TextColor="{StaticResource TextColor}"
+                    TextColor="{Binding EvaluationTextColor}"
                     Clicked="OnAuswertungButtonClicked"/>
             <Button Grid.Column="1"
                     Text="Weiter" FontSize="Medium"
