@@ -93,7 +93,7 @@ namespace MobileDataCollection.Survey.Views
             var selectedPlant = (PlantInlinePicker.SelectedItem as Plant)?.InternLetter;
             if (selectedPlant == null || selectedStadium == 0)
             {
-                DisplayAlert("Hinweis", "Bitte wähle sie jeweils eine Antwort aus", "OK");
+                DisplayAlert("Hinweis", "Bitte vervollständigen Sie Ihre Auswahl um fortzufahren.", "OK");
                 return;
             }
 
