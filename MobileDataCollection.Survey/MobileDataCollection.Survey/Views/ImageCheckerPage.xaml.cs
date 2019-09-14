@@ -46,6 +46,17 @@ namespace MobileDataCollection.Survey.Views
             get { return (string)GetValue(HeaderProperty); }
             set { SetValue(HeaderProperty, value); }
         }
+        public static readonly BindableProperty EvaluationTextColorProperty = BindableProperty.Create(nameof(EvaluationTextColor), typeof(Color), typeof(StadiumPage), Color.Transparent, BindingMode.OneWay);
+
+        /// <summary>
+        /// Color for the Evaluation Button
+        /// </summary>
+        public Color EvaluationTextColor
+        {
+            get { return (Color)GetValue(EvaluationTextColorProperty); }
+            set { SetValue(EvaluationTextColorProperty, value); }
+        }
+
 
         IQuestionContent ISurveyPage.QuestionItem => QuestionItem;
 
@@ -76,6 +87,9 @@ namespace MobileDataCollection.Survey.Views
 
             Header = $"Frage {answersGiven + 1}/{answersNeeded}";
             QuestionItem = question;
+            EvalButton.BindingContext = this;
+            if (answersGiven >= answersNeeded) EvaluationTextColor = Color.Gray;
+            EvaluationTextColor = Color.LightGray;
         }
 
         private void Picture_ShortPress(object sender, EventArgs e)

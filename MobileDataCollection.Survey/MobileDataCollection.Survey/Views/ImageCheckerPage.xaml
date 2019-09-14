@@ -94,9 +94,9 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Text="Auswertung" FontSize="Medium"
+            <Button x:Name="EvalButton" Text="Auswertung" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
-                    TextColor="{StaticResource TextColor}"
+                    TextColor="{Binding EvaluationTextColor}"
                     Clicked="OnAuswertungButtonClicked"/>
             <Button Grid.Column="1"
                     Text="Weiter" FontSize="Medium"
