@@ -10,5 +10,6 @@ namespace MobileDataCollection.Survey.Models
         List<SurveyMenuItem> LoadSurveyMenuItems();
         Dictionary<string, List<IUserAnswer>> LoadAnswers();
         void SaveAnswers(Dictionary<string, List<IUserAnswer>> answers);
+        void ExportAnswers(Dictionary<string, List<IUserAnswer>> answers);
     }
 }

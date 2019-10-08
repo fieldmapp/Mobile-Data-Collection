@@ -200,5 +200,9 @@ namespace MobileDataCollection.Survey.Models
                 }
             };
         }
+
+        public void ExportAnswers(Dictionary<string, List<IUserAnswer>> answers)
+        {
+        }
     }
 }

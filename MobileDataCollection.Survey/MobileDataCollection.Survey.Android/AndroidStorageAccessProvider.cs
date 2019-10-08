@@ -34,5 +34,11 @@ namespace MobileDataCollection.Survey.Droid
         public Stream OpenFileRead(string path) => File.Exists(path) ? File.OpenRead(path) : Stream.Null;
 
         public Stream OpenFileWrite(string path) => File.OpenWrite(path);
+
+        public Stream OpenFileWriteExternal(string path)
+        {
+            path = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, path);
+            return OpenFileWrite(path);
+        }
     }
 }

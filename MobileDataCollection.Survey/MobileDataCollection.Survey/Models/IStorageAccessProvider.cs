@@ -12,5 +12,7 @@ namespace MobileDataCollection.Survey.Models
         Stream OpenFileRead(string path);
 
         Stream OpenFileWrite(string path);
+
+        Stream OpenFileWriteExternal(string path);
     }
 }

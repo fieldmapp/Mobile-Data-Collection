@@ -55,6 +55,7 @@
             </ListView.ItemTemplate>
         </ListView>
         <!--Button to navigate to the evaluation main page-->
+        <Button Text="Antworten exportieren" Clicked="ExportAnwersClicked"/>
         <Button Text="Auswertung" Clicked="EvaluationClicked"/>
     </StackLayout>
 

@@ -219,5 +219,7 @@ namespace MobileDataCollection.Survey.Models
                 Answers.Add(surveyId, new List<IUserAnswer>());
             Answers[surveyId].Add(answer);
         }
+
+        public static void ExportAnswers() => StorageProvider.ExportAnswers(Answers);
     }
 }

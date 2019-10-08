@@ -49,6 +49,10 @@ namespace MobileDataCollection.Survey.Views
             await Navigation.PushAsync(new EvaluationMainPage(evalItems));
         }
 
+        private void ExportAnwersClicked(object sender, EventArgs e)
+        {
+            DatabankCommunication.ExportAnswers();
+        }
     }
 }
 

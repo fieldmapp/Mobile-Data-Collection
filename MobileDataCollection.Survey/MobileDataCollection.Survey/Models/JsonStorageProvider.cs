@@ -66,5 +66,15 @@ namespace MobileDataCollection.Survey.Models
             using (var jsonWriter = new JsonTextWriter(streamWriter))
                 JsonSerializer.Serialize(jsonWriter, answers);
         }
+
+        public void ExportAnswers(Dictionary<string, List<IUserAnswer>> answers)
+        {
+            var path = "dlr_answers.txt";
+
+            using (var storageStream = StorageAccessProvider.OpenFileWriteExternal(path))
+            using (var streamWriter = new StreamWriter(storageStream))
+            using (var jsonWriter = new JsonTextWriter(streamWriter))
+                JsonSerializer.Serialize(jsonWriter, answers);
+        }
     }
 }
