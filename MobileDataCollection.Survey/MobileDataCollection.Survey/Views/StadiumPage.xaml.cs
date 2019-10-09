@@ -81,7 +81,7 @@ namespace MobileDataCollection.Survey.Views
             QuestionText.BindingContext = this;
             StadiumInlinePicker.ItemSource = StadiumCollection;
             PlantInlinePicker.ItemSource = PlantCollection;
-            Header = $"Frage {answersGiven + 1}/{answersNeeded}";
+            Header = $"Frage {answersGiven + 1}/{answersNeeded} Id {question.InternId}";
             HeaderText.BindingContext = this;
             PageFinished += StadiumPage_PageFinished;
             EvalButton.BindingContext = this;

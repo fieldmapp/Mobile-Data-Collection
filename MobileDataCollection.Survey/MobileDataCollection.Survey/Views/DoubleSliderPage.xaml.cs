@@ -73,7 +73,7 @@ namespace MobileDataCollection.Survey.Views
             Picture.BindingContext = this;
             QuestionText.BindingContext = this;
             HeaderText.BindingContext = this;
-            Header = $"Frage {answersGiven + 1}/{answersNeeded}";
+            Header = $"Frage {answersGiven + 1}/{answersNeeded} Id {question.InternId}";
             EvalButton.BindingContext = this;
             if (answersGiven >= answersNeeded) EvaluationTextColor = Color.Gray;
             EvaluationTextColor = Color.LightGray;
