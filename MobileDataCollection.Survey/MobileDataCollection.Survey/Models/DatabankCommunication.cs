@@ -44,8 +44,6 @@ namespace MobileDataCollection.Survey.Models
             Questions = StorageProvider.LoadQuestions();
             Answers = StorageProvider.LoadAnswers();
             SurveyMenuItems = StorageProvider.LoadSurveyMenuItems();
-
-            //TODO: Add way to clear answers (only for development)
         }
 
         /// <summary>
