@@ -53,6 +53,11 @@ namespace MobileDataCollection.Survey.Views
         {
             DatabankCommunication.ExportAnswers();
         }
+
+        private void DeleteAnswersClicked(object sender, EventArgs e)
+        {
+            DatabankCommunication.ResetSavedAnswers();
+        }
     }
 }
 
