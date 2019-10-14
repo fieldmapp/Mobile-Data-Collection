@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DLR_Data_App.Views.LicensesPage"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             Title="{res:Translate licenses}"
+             Padding="30">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Xamarin"
+                       HorizontalOptions="Start"
+                       FontSize="Large" />
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="{res:Translate licenses}"
+                       Grid.Row="0"
+                       Grid.Column="0" />
+
+                    <Label Text="MIT"
+                       Grid.Row="0"
+                       Grid.Column="1"/>
+
+                    <Label Text="{res:Translate authors}"
+                       Grid.Row="1"
+                       Grid.Column="0"/>
+
+                    <Label Text="Microsoft"
+                       Grid.Row="1"
+                       Grid.Column="1"/>
+                </Grid>
+
+
+                <Label Text="sharpziplib"
+                       HorizontalOptions="Start"
+                       FontSize="Large"/>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="{res:Translate licenses}"
+                       Grid.Row="0"
+                       Grid.Column="0" />
+
+                    <Label Text="MIT"
+                       Grid.Row="0"
+                       Grid.Column="1"/>
+
+                    <Label Text="{res:Translate authors}"
+                       Grid.Row="1"
+                       Grid.Column="0"/>
+
+                    <Label Text="ICSharpCode"
+                       Grid.Row="1"
+                       Grid.Column="1"/>
+                </Grid>
+
+                <Label Text="sqlite-net-pcl"
+                       HorizontalOptions="Start"
+                       FontSize="Large" />
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="{res:Translate licenses}"
+                       Grid.Row="0"
+                       Grid.Column="0" />
+
+                    <Label Text="MIT"
+                       Grid.Row="0"
+                       Grid.Column="1"/>
+
+                    <Label Text="{res:Translate authors}"
+                       Grid.Row="1"
+                       Grid.Column="0"/>
+
+                    <Label Text="Frank A. Krueger"
+                       Grid.Row="1"
+                       Grid.Column="1"/>
+                </Grid>
+
+                <Label Text="Newtownsoft.Json"
+                       HorizontalOptions="Start"
+                       FontSize="Large"/>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="{res:Translate licenses}"
+                       Grid.Row="0"
+                       Grid.Column="0" />
+
+                    <Label Text="MIT"
+                       Grid.Row="0"
+                       Grid.Column="1"/>
+
+                    <Label Text="{res:Translate authors}"
+                       Grid.Row="1"
+                       Grid.Column="0"/>
+
+                    <Label Text="James Newton-King"
+                       Grid.Row="1"
+                       Grid.Column="1"/>
+                </Grid>
+
+                <Label Text="xunit"
+                       HorizontalOptions="Start"
+                       FontSize="Large" />
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="{res:Translate licenses}"
+                       Grid.Row="0"
+                       Grid.Column="0" />
+
+                    <Label Text="MIT"
+                       Grid.Row="0"
+                       Grid.Column="1"/>
+
+                    <Label Text="{res:Translate authors}"
+                       Grid.Row="1"
+                       Grid.Column="0"/>
+
+                    <Label Text="James Newkirk and Brad Wilson"
+                       Grid.Row="1"
+                       Grid.Column="1"/>
+                </Grid>
+
+                <Label Text="Xamarin.Essentials"
+                       HorizontalOptions="Start"
+                       FontSize="Large" />
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="{res:Translate licenses}"
+                       Grid.Row="0"
+                       Grid.Column="0" />
+
+                    <Label Text="MIT"
+                       Grid.Row="0"
+                       Grid.Column="1"/>
+
+                    <Label Text="{res:Translate authors}"
+                       Grid.Row="1"
+                       Grid.Column="0"/>
+
+                    <Label Text="Microsoft"
+                       Grid.Row="1"
+                       Grid.Column="1"/>
+                </Grid>
+
+                <Label Text="Xamarin.Plugin.FilePicker"
+                       HorizontalOptions="Start"
+                       FontSize="Large" />
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="{res:Translate licenses}"
+                       Grid.Row="0"
+                       Grid.Column="0" />
+
+                    <Label Text="MIT"
+                       Grid.Row="0"
+                       Grid.Column="1"/>
+
+                    <Label Text="{res:Translate authors}"
+                       Grid.Row="1"
+                       Grid.Column="0"/>
+
+                    <Label Text="Gerald Versluis and rafaelrmou and vividos"
+                       Grid.Row="1"
+                       Grid.Column="1"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,7 @@
+﻿/*! 
+ * \page deploy_page Deployment
+ * To deploy the app for Android as an APK you need to prepare the project before you can deploy it. In the following two pages are guides for that process:
+ * 
+ * - <a href="https://docs.microsoft.com/en-gb/xamarin/android/deploy-test/release-prep/?tabs=windows" target="_blank">Preparing Project</a>
+ * - <a href="https://docs.microsoft.com/en-gb/xamarin/android/deploy-test/signing/?tabs=windows" target="_blank">Deploying Project</a>
+ */

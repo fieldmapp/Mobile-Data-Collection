@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['newprofilepage',['NewProfilePage',['../class_d_l_r___data___app_1_1_views_1_1_login_1_1_new_profile_page.html#a707c7d9d98204d1d24b0642be6a4b65b',1,'DLR_Data_App::Views::Login::NewProfilePage']]]
+  ['insert_3c_20t_20_3e',['Insert&lt; T &gt;',['../class_d_l_r___data___app_1_1_services_1_1_database.html#a0d7a86b54ff48a190cb5c9516d598e83',1,'DLR_Data_App::Services::Database']]],
+  ['insertcustomvalues',['InsertCustomValues',['../class_d_l_r___data___app_1_1_services_1_1_database.html#ace2606ab71f47940f2edfde960a4bb33',1,'DLR_Data_App::Services::Database']]],
+  ['insertproject',['InsertProject',['../class_d_l_r___data___app_1_1_services_1_1_database.html#a155911b1b1f72da3878bf597d4c48b20',1,'DLR_Data_App::Services::Database']]]
 ];

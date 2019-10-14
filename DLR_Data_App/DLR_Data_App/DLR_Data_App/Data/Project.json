@@ -1,0 +1,19 @@
+{
+	"Project": {
+	    "0": "Feldkampagne",
+		"1": "Fieldcampagne"
+	},
+	"Author": {
+		"0": "Deutsches Zentrum für Luft- und Raumfahrt e.V. (DLR) Jena und Friedrich Schiller Universität Jena",
+		"1": "German Aerospace Center (DLR e.V.) Jena and Friedrich Schiller University Jena"
+	},
+	"Description": {
+		"0": "Messungen des Wachstums von Pfanzen zur Kalibrierung von Satelliten",
+		"1": "Measurements of the growth of plants for the calibration of satellites"
+	},
+	"Secret" : null,
+	"Languages": {
+		"0": "German",
+		"1": "English"
+	}
+}

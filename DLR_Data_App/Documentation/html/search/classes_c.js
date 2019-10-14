@@ -1,6 +1,7 @@
 var searchData=
 [
   ['parser',['Parser',['../class_d_l_r___data___app_1_1_services_1_1_parser.html',1,'DLR_Data_App::Services']]],
+  ['previewelement',['PreviewElement',['../class_d_l_r___data___app_1_1_models_1_1_preview_element.html',1,'DLR_Data_App::Models']]],
   ['profilelistpage',['ProfileListPage',['../class_d_l_r___data___app_1_1_views_1_1_settings_1_1_profile_list_page.html',1,'DLR_Data_App::Views::Settings']]],
   ['profilelistviewmodel',['ProfilelistViewModel',['../class_d_l_r___data___app_1_1_view_models_1_1_settings_1_1_profilelist_view_model.html',1,'DLR_Data_App::ViewModels::Settings']]],
   ['profilepage',['ProfilePage',['../class_d_l_r___data___app_1_1_views_1_1_settings_1_1_profile_page.html',1,'DLR_Data_App::Views::Settings']]],

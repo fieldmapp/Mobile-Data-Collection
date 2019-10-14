@@ -1,0 +1,7 @@
+var classmono_1_1android_1_1support_1_1design_1_1widget_1_1_bottom_navigation_view___on_navigation_ie9d71c6c186664ed279b77f9f21d9a3f =
+[
+    [ "BottomNavigationView_OnNavigationItemSelectedListenerImplementor", "classmono_1_1android_1_1support_1_1design_1_1widget_1_1_bottom_navigation_view___on_navigation_ie9d71c6c186664ed279b77f9f21d9a3f.html#adf7c34192a6c5d31464cdb4a56828f03", null ],
+    [ "monodroidAddReference", "classmono_1_1android_1_1support_1_1design_1_1widget_1_1_bottom_navigation_view___on_navigation_ie9d71c6c186664ed279b77f9f21d9a3f.html#a4c533149ea1e06bd26cd4f6181e94ba9", null ],
+    [ "monodroidClearReferences", "classmono_1_1android_1_1support_1_1design_1_1widget_1_1_bottom_navigation_view___on_navigation_ie9d71c6c186664ed279b77f9f21d9a3f.html#ac1245e1801119e2aa7ab0c353ab2a6d9", null ],
+    [ "onNavigationItemSelected", "classmono_1_1android_1_1support_1_1design_1_1widget_1_1_bottom_navigation_view___on_navigation_ie9d71c6c186664ed279b77f9f21d9a3f.html#a1bb6dccbb265a04710376bed48b9e13c", null ]
+];
