@@ -61,10 +61,7 @@ namespace MobileDataCollection.Survey.Models
         public static void ResetSavedAnswers()
         {
             Answers = new Dictionary<string, List<IUserAnswer>>();
-            foreach (var item in SurveyMenuItems)
-            {
-                item.AnswersGiven = 0;
-            }
+            SurveyMenuItems = StorageProvider.LoadSurveyMenuItems();
             SaveAnswers();
         }
 
