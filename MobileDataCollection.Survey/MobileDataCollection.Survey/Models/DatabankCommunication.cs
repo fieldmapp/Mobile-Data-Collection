@@ -56,11 +56,15 @@ namespace MobileDataCollection.Survey.Models
         }
 
         /// <summary>
-        /// Resets all Answer Txt (only writes "END_ANSWERS")
+        /// Resets all Answer Txt
         /// </summary>
         public static void ResetSavedAnswers()
         {
             Answers = new Dictionary<string, List<IUserAnswer>>();
+            foreach (var item in SurveyMenuItems)
+            {
+                item.AnswersGiven = 0;
+            }
             SaveAnswers();
         }
 
