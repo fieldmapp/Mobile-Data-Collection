@@ -120,6 +120,7 @@ namespace MobileDataCollection.Survey.Models
             MaximumQuestionNumber = DatabankCommunication.GetAllQuestions(id).Count;
             var answers = DatabankCommunication.GetAllAnswers(id);
             AnswersGiven = answers.Count;
+            PropertyChanged += SurveyMenuItem_PropertyChanged;
             foreach (var answer in answers)
                 ApplyAnswer(answer);
 
@@ -145,6 +146,12 @@ namespace MobileDataCollection.Survey.Models
                 return true;
             }))
                 throw new ArgumentException($"The class {nspace}.Views.{id.ToString()}Page needs to have a constructor with parameters: ({nspace}.Models.Question{id.ToString()}Page,int,int)");
+        }
+
+        private void SurveyMenuItem_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(AnswersGiven) || e.PropertyName == nameof(AnswersNeeded))
+                UpdateProgressString();
         }
     }
 }
