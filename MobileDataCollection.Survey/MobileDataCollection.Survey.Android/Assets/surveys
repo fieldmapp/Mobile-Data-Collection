@@ -6,9 +6,7 @@
       4
     ],
     "ChapterName": "Bedeckungsgrade",
-    "AnswersNeeded": 4,
-    "MaximumQuestionNumber": 0,
-    "AnswersGiven": 0
+    "AnswersNeeded": 4
   },
   {
     "Id": "ImageChecker",
@@ -16,9 +14,7 @@
       2
     ],
     "ChapterName": "Sortenerkennung",
-    "AnswersNeeded": 2,
-    "MaximumQuestionNumber": 0,
-    "AnswersGiven": 0
+    "AnswersNeeded": 2
   },
   {
     "Id": "Stadium",
@@ -26,8 +22,6 @@
       1
     ],
     "ChapterName": "Wuchsstadien",
-    "AnswersNeeded": 6,
-    "MaximumQuestionNumber": 0,
-    "AnswersGiven": 0
+    "AnswersNeeded": 6
   }
 ]

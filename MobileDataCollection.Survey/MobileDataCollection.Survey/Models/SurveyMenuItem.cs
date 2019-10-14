@@ -46,6 +46,7 @@ namespace MobileDataCollection.Survey.Models
             }
         }
 
+        [JsonIgnore]
         public int MaximumQuestionNumber
         {
             get => (int)GetValue(MaximumQuestionNumberProperty);
@@ -56,6 +57,7 @@ namespace MobileDataCollection.Survey.Models
             }
         }
 
+        [JsonIgnore]
         public int AnswersGiven
         {
             get => (int)GetValue(AnswersGivenProperty);
