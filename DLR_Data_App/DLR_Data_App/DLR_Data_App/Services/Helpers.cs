@@ -6,6 +6,8 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using DLR_Data_App.Localizations;
+using Newtonsoft.Json.Linq;
 
 namespace DLR_Data_App.Services
 {
@@ -16,6 +18,7 @@ namespace DLR_Data_App.Services
   {
     /**
      * Encrypts passphrases in SHA512
+     * @param password Password to encrypt
      * @see https://docs.microsoft.com/de-de/dotnet/api/system.security.cryptography.hashalgorithm.computehash?view=netframework-4.8#System_Security_Cryptography_HashAlgorithm_ComputeHash_System_Byte__
      * @see https://docs.microsoft.com/de-de/dotnet/api/system.security.cryptography.sha512?view=netframework-4.8
      */
@@ -40,7 +43,8 @@ namespace DLR_Data_App.Services
 
     /**
      * Extracts files from zip folder
-     * @param filepath path to zip folder
+     * @param zipFilePath path to zip folder
+     * @param unzipFolderPath path for extracted files
      * @returns Status of unzipping
      * @see https://stackoverflow.com/questions/42118378/how-to-unzip-downloaded-zip-file-in-xamarin-forms
      */
@@ -95,16 +99,77 @@ namespace DLR_Data_App.Services
     }
 
     /**
+     * exports data of current project to a json string
+     */
+    public static string ExportData()
+    {
+      // get data of the project from the db
+      var workingProject = Database.GetCurrentProject();
+      var tableContent = Database.ReadCustomTable(ref workingProject);
+      if (tableContent == null)
+      {
+        return "";
+      }
+
+      // get current user
+      var user = App.CurrentUser;
+
+      JObject dataObject = new JObject();
+
+      for (var i = 0; i < tableContent.RowNameList.Count; i++)
+      {
+        JArray dataArray = JArray.FromObject(tableContent.ValueList[i]);
+        JProperty name = new JProperty(tableContent.RowNameList[i], dataArray);
+        dataObject.Add(name);
+      }
+
+      JObject exportObject = new JObject(
+        new JProperty("User",
+          new JObject(
+              new JProperty("User_Id", user.Id),
+              new JProperty("User_Name", user.Username))),
+        new JProperty("Project",
+          new JObject(
+              new JProperty("Project_Id", workingProject.Id),
+              new JProperty("Project_Title", workingProject.Title),
+              new JProperty("Project_Authors", workingProject.Authors),
+              new JProperty("Project_Description", workingProject.Description))),
+        new JProperty("Data",
+          dataObject
+        ));
+
+      return exportObject.ToString();
+    }
+
+    /**
      * Translating project details to system language
      * @param project Project
      */
     public static Project TranslateProjectDetails(Project project)
     {
+      var authors = Parser.LanguageJson(project.Authors, project.Languages);
+      if (authors == "Unable to parse language from json")
+      {
+        authors = AppResources.noauthor;
+      }
+
+      var title = Parser.LanguageJson(project.Title, project.Languages);
+      if (title == "Unable to parse language from json")
+      {
+        title = AppResources.notitle;
+      }
+
+      var description = Parser.LanguageJson(project.Description, project.Languages);
+      if (description == "Unable to parse language from json")
+      {
+        description = AppResources.nodescription;
+      }
+
       var tempProject = new Project
       {
-        Authors = Parser.LanguageJson(project.Authors, project.Languages),
-        Title = Parser.LanguageJson(project.Title, project.Languages),
-        Description = Parser.LanguageJson(project.Description, project.Languages)
+        Authors = authors,
+        Title = title,
+        Description = description
       };
 
 

@@ -4,6 +4,9 @@ using DLR_Data_App.Services;
 
 namespace DLR_Data_App.ViewModels.Login
 {
+  /**
+   * View model for login
+   */
   public class LoginViewModel
   {
     /**

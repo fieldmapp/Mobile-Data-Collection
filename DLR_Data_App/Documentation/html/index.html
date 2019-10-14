@@ -89,13 +89,13 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="title">DLR Data App </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#intro_sec">Introduction</a></li>
-</ul>
-</div>
 <div class="textblock"><h1><a class="anchor" id="intro_sec"></a>
 Introduction</h1>
-</div></div><!-- contents -->
+<p>This app supports scientists of different fields to collect data for their scientific projects. The app was written with Xamarin in C# and XAML with Microsoft Visual Studio.</p>
+<h1><a class="anchor" id="creating_projects"></a>
+Creating projects</h1>
+<p>Each project is build from multiple formulars. These where created in the webapp <a href="https://build.opendatakit.org/" target="_blank">Open Data Kit Build</a>. The created forms have to be stored localy as <em>odkbuild</em> files and then put together in a ZIP-Archive. To specify the project there should be a project description added in a <em>Project.json</em> file with the following format:</p>
+<div class="fragment"><div class="line">{</div><div class="line">&quot;Project&quot;: {</div><div class="line">   &quot;0&quot;: &quot;Feldkampagne&quot;,</div><div class="line">    &quot;1&quot;: &quot;Fieldcampagne&quot;</div><div class="line">},</div><div class="line"> &quot;Author&quot;: {</div><div class="line">    &quot;0&quot;: &quot;Deutsches Zentrum für Luft- und Raumfahrt e.V. (DLR) Jena und Friedrich Schiller Universität Jena&quot;,</div><div class="line">    &quot;1&quot;: &quot;German Aerospace Center (DLR e.V.) Jena and Friedrich Schiller University Jena&quot;</div><div class="line"> },</div><div class="line"> &quot;Description&quot;: {</div><div class="line">    &quot;0&quot;: &quot;Messungen des Wachstums von Pfanzen zur Kalibrierung von Satelliten&quot;,</div><div class="line">    &quot;1&quot;: &quot;Measurements of the growth of plants for the calibration of satellites&quot;</div><div class="line"> },</div><div class="line"> &quot;Secret&quot; : null,</div><div class="line"> &quot;Languages&quot;: {</div><div class="line">    &quot;0&quot;: &quot;German&quot;,</div><div class="line">    &quot;1&quot;: &quot;English&quot;</div><div class="line"> }</div><div class="line">}</div></div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

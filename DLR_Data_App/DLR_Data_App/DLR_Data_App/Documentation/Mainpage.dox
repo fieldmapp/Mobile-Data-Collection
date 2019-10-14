@@ -1,6 +1,33 @@
 ﻿/*! \mainpage DLR Data App
  *
- * [TOC]
  * \section intro_sec Introduction
+ * This app supports scientists of different fields to collect data for their scientific projects. 
+ * The app was written with Xamarin in C# and XAML with Microsoft Visual Studio.
  *
+ * \section creating_projects Creating projects
+ * Each project is build from multiple formulars. These where created in the webapp <a href="https://build.opendatakit.org/" target="_blank">Open Data Kit Build</a>.
+ * The created forms have to be stored localy as *odkbuild* files and then put together in a ZIP-Archive. To specify the project there should be a project description
+ * added in a *Project.json* file with the following format:
+ *
+ * ```json
+ * {
+ * "Project": {
+ *    "0": "Feldkampagne",
+ *		"1": "Fieldcampagne"
+ * },
+ *	"Author": {
+ *		"0": "Deutsches Zentrum für Luft- und Raumfahrt e.V. (DLR) Jena und Friedrich Schiller Universität Jena",
+ *		"1": "German Aerospace Center (DLR e.V.) Jena and Friedrich Schiller University Jena"
+ *	},
+ *	"Description": {
+ *		"0": "Messungen des Wachstums von Pfanzen zur Kalibrierung von Satelliten",
+ *		"1": "Measurements of the growth of plants for the calibration of satellites"
+ *	},
+ *	"Secret" : null,
+ *	"Languages": {
+ *		"0": "German",
+ *		"1": "English"
+ *	}
+ * }
+ * ```
  */

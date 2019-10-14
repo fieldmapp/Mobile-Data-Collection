@@ -5,6 +5,9 @@ using System.Runtime.CompilerServices;
 
 namespace DLR_Data_App.ViewModels
 {
+  /**
+   * Base class which handles the title and changing properties
+   */
   public class BaseViewModel : INotifyPropertyChanged
   {
     public string TitleString = string.Empty;
@@ -14,6 +17,13 @@ namespace DLR_Data_App.ViewModels
       set => SetProperty(ref TitleString, value);
     }
 
+    /**
+     * Setting property
+     * @param backingStore Old parameter
+     * @param value New parameter
+     * @param propertyName Name of property
+     * @param onChanged EventHandler
+     */
     protected bool SetProperty<T>(ref T backingStore, T value,
         [CallerMemberName]string propertyName = "",
         Action onChanged = null)
@@ -29,6 +39,10 @@ namespace DLR_Data_App.ViewModels
 
     #region INotifyPropertyChanged
     public event PropertyChangedEventHandler PropertyChanged;
+    /**
+     * EventHandler for changed property
+     * @param propertyName Name of changed property
+     */
     protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
     {
       var changed = PropertyChanged;

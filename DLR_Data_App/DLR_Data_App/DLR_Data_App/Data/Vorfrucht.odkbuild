@@ -5,7 +5,9 @@
 			"label": {
 				"0": "Vorfrucht"
 			},
-			"hint": {},
+			"hint": {
+				"0": "Pflanzenkultur angeben"
+			},
 			"defaultValue": "",
 			"readOnly": false,
 			"required": false,
@@ -50,7 +52,9 @@
 			"label": {
 				"0": "Vorfrucht Anbau"
 			},
-			"hint": {},
+			"hint": {
+				"0": "Anbau angeben"
+			},
 			"defaultValue": "",
 			"readOnly": false,
 			"required": false,
@@ -89,7 +93,9 @@
 			"label": {
 				"0": "Vorfrucht Detail"
 			},
-			"hint": {},
+			"hint": {
+				"0": "Pflanze bestimmen"
+			},
 			"defaultValue": "",
 			"readOnly": false,
 			"required": false,

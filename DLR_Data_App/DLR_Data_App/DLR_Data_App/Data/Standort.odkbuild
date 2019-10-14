@@ -1,1 +1,38 @@
-{"title":"Standort","controls":[{"name":"currentLocation","label":{"0":"Standort"},"hint":{},"defaultValue":"","readOnly":false,"required":false,"requiredText":{},"relevance":"","constraint":"","invalidText":{},"calculate":"","kind":"Point","appearance":"Default (GPS)","metadata":{},"type":"inputLocation"}],"metadata":{"version":2,"activeLanguages":{"0":"German","_counter":0,"_display":"0"},"optionsPresets":[],"htitle":null,"instance_name":"","public_key":"","submission_url":""}}
+{
+	"title": "Standort",
+	"controls": [{
+			"name": "currentLocation",
+			"label": {
+				"0": "Standort"
+			},
+			"hint": {
+				"0": "Erfasst den lokalen Standort mittels Satellitenortung"
+			},
+			"defaultValue": "",
+			"readOnly": false,
+			"required": false,
+			"requiredText": {},
+			"relevance": "",
+			"constraint": "",
+			"invalidText": {},
+			"calculate": "",
+			"kind": "Point",
+			"appearance": "Default (GPS)",
+			"metadata": {},
+			"type": "inputLocation"
+		}
+	],
+	"metadata": {
+		"version": 2,
+		"activeLanguages": {
+			"0": "German",
+			"_counter": 0,
+			"_display": "0"
+		},
+		"optionsPresets": [],
+		"htitle": null,
+		"instance_name": "",
+		"public_key": "",
+		"submission_url": ""
+	}
+}

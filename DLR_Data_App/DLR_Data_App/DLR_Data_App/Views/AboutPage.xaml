@@ -13,7 +13,6 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <!--Page Level Resources: Compatible with Xamarin Live Player -->
-            <Color x:Key="Primary">#2196F3</Color>
             <Color x:Key="Accent">#96d1ff</Color>
             <Color x:Key="LightTextColor">#999999</Color>
         </ResourceDictionary>
@@ -37,7 +36,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="AppName" FontAttributes="Bold" FontSize="22" />
+                                <Span Text="Fieldmapp" FontAttributes="Bold" FontSize="22" />
                                 <Span Text=" " />
                                 <Span Text="1.0" ForegroundColor="{StaticResource LightTextColor}" />
                             </FormattedString.Spans>
@@ -48,11 +47,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <!--<Span Text="This app is written in C# and native APIs using the" />-->
                                 <Span Text="{res:Translate about1}" />
-                                <Span Text=" " />
-                                <Span Text="Xamarin Platform" FontAttributes="Bold" />
-                                <Span Text="." />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
@@ -62,18 +57,14 @@
                         <FormattedString>
                             <FormattedString.Spans>
                                 <Span Text="{res:Translate about2}" />
-                                <Span Text=" " />
-                                <Span Text="{res:Translate about3}" FontAttributes="Bold" />
-                                <Span Text=" " />
-                                <Span Text="{res:Translate about4}" />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Button Margin="0,10,0,0" Text="{res:Translate aboutButton}"
-                        Command="{Binding OpenWebCommand}"
-                        BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" />
+                <Button
+                    x:Name="licenseButton"
+                    Clicked="LicenseButton_OnClicked"
+                    Text="{res:Translate licenses}"/>
             </StackLayout>
         </ScrollView>
     </Grid>

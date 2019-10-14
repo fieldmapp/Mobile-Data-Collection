@@ -7,13 +7,17 @@ using Xamarin.Forms.Xaml;
 
 namespace DLR_Data_App.Views.Settings
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+  /**
+   * This class handles the profile information
+   */
+  [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ProfilePage
 	{
     private User _selectedUser;
 
     /**
      * Constructor
+     * @param user Chosen user from list
      */
     public ProfilePage (User user)
 		{

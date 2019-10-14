@@ -2,13 +2,12 @@
 using DLR_Data_App.Services;
 using DLR_Data_App.Views.Login;
 using System.Collections.Generic;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace DLR_Data_App.Views.Settings
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+  [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AppSettings
 	{
     private readonly List<string> _elementList;
@@ -16,7 +15,7 @@ namespace DLR_Data_App.Views.Settings
     public AppSettings ()
 		{
 			InitializeComponent ();
-      _elementList = new List<string> {AppResources.privacypolicy, AppResources.removedatabase};
+      _elementList = new List<string> {AppResources.privacypolicy, AppResources.removedatabase, AppResources.exportdatabase};
 
       AppSettingsList.ItemsSource = _elementList;
     }
@@ -72,6 +71,19 @@ namespace DLR_Data_App.Views.Settings
               await DisplayAlert(AppResources.removedatabase, AppResources.failed, AppResources.cancel);
             }
           }
+          break;
+        case 2:
+          // Export Database
+          var exportString = Helpers.ExportData();
+          if (App.FileManager.WriteExportFile(exportString))
+          {
+            await DisplayAlert(AppResources.save, AppResources.successful, AppResources.okay);
+          }
+          else
+          {
+            await DisplayAlert(AppResources.save, AppResources.failed, AppResources.okay);
+          }
+
           break;
       }
     }

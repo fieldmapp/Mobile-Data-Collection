@@ -3,8 +3,8 @@
 	<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="28" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.WRITE_USER_DICTIONARY" />
 	<uses-permission android:name="android.permission.READ_USER_DICTIONARY" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<application android:label="Fieldmapp.Android" android:icon="@mipmap/icon"></application>
 </manifest>

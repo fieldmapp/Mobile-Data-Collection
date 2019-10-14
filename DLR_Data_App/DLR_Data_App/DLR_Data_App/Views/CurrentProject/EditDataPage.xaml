@@ -10,7 +10,9 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <Grid Padding="10">
+        <Grid Padding="10"
+              VerticalOptions="StartAndExpand"
+              HorizontalOptions="FillAndExpand">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -21,40 +23,33 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Picker x:Name="FormPicker"
-                    ItemsSource="{Binding FormList}"
-                    ItemDisplayBinding="{Binding Title}"
-                    Title="{localizations:Translate selectform}"
-                    SelectedItem="{Binding SelectedProjectForm}"
-                    SelectedIndexChanged="FormPicker_OnSelectedIndexChanged"
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <DatePicker
+                    x:Name="DateSelection"
+                    Date="01.01.2019"
+                    HorizontalOptions="CenterAndExpand"
+                    DateSelected="DateSelection_OnDateSelected"
                     Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Grid.Row="0" />
-            <Label Text="{localizations:Translate selectdate}"
-                   VerticalOptions="CenterAndExpand"
-                   Grid.Column="0"
-                   Grid.Row="1"/>
-            <DatePicker
-                x:Name="DateSelection"
-                Date="01.01.2019"
-                MinimumDate="01.01.2019"
-                MaximumDate="01.01.2020"
-                HorizontalOptions="CenterAndExpand"
-                DateSelected="DateSelection_OnDateSelected"
-                Grid.Column="1"
-                Grid.Row="1"/>
-            <Label Text="{localizations:Translate selecttime}"
-                   VerticalOptions="CenterAndExpand"
-                   Grid.Column="0"
-                   Grid.Row="2"/>
-            <TimePicker
-                x:Name="TimeSelection"
-                Time="21:00"
-                HorizontalOptions="CenterAndExpand"
-                PropertyChanged="TimeSelection_OnPropertyChanged"
-                Grid.Column="1"
-                Grid.Row="2"/>
+                    Grid.Row="0"/>
+                <TimePicker
+                    x:Name="TimeSelection"
+                    Time="21:00"
+                    HorizontalOptions="CenterAndExpand"
+                    PropertyChanged="TimeSelection_OnPropertyChanged"
+                    Grid.Column="1"
+                    Grid.Row="0"/>
+            </Grid>
+            
             <ListView x:Name="DataList"
+                      HorizontalOptions="CenterAndExpand"
                       VerticalOptions="FillAndExpand"
                       HasUnevenRows="true"
                       IsPullToRefreshEnabled="true"
@@ -64,7 +59,7 @@
                       ItemsSource="{Binding ElementList}"
                       Grid.Column="0"
                       Grid.ColumnSpan="2"
-                      Grid.Row="2">
+                      Grid.Row="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -73,7 +68,7 @@
                                        LineBreakMode="NoWrap" 
                                        Style="{DynamicResource ListItemTextStyle}" 
                                        FontSize="16" />
-                                <Label Text="{Binding Id}" 
+                                <Label Text="{Binding Data}" 
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemDetailTextStyle}"
                                        FontSize="13" />

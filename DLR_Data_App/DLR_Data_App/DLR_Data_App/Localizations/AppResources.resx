@@ -121,16 +121,10 @@
     <value>About</value>
   </data>
   <data name="about1" xml:space="preserve">
-    <value>This app is written in C# and native APIs using the</value>
+    <value>The app was developed by the German Aerospace Center (DLR e.V.) in Co-operation with the Friedrich Schiller University Jena and University of Applied Sciences Stralsund.</value>
   </data>
   <data name="about2" xml:space="preserve">
-    <value>It shares code with its</value>
-  </data>
-  <data name="about3" xml:space="preserve">
-    <value>iOS, Android, and Windows</value>
-  </data>
-  <data name="about4" xml:space="preserve">
-    <value>versions.</value>
+    <value>It is written in C# and Xamarin and shares the same code on different plattforms.</value>
   </data>
   <data name="aboutButton" xml:space="preserve">
     <value>Learn more</value>
@@ -165,6 +159,9 @@
   <data name="compass" xml:space="preserve">
     <value>Compass</value>
   </data>
+  <data name="corruptentry" xml:space="preserve">
+    <value>Entry corrupt</value>
+  </data>
   <data name="current" xml:space="preserve">
     <value>Current</value>
   </data>
@@ -192,6 +189,9 @@
   <data name="edithelp" xml:space="preserve">
     <value>Please select a date and time to select your dataset you want to edit. In the following list all datasets are listed, while the matching dataset to the time is selected. Tip on the dataset of your choise to edit it.</value>
   </data>
+  <data name="exportdatabase" xml:space="preserve">
+    <value>Export database</value>
+  </data>
   <data name="failed" xml:space="preserve">
     <value>Failed</value>
   </data>
@@ -216,6 +216,9 @@
   <data name="latitude" xml:space="preserve">
     <value>Latitude</value>
   </data>
+  <data name="licenses" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
   <data name="login" xml:space="preserve">
     <value>Login</value>
   </data>
@@ -231,6 +234,9 @@
   <data name="max" xml:space="preserve">
     <value>Max</value>
   </data>
+  <data name="message" xml:space="preserve">
+    <value>Message</value>
+  </data>
   <data name="min" xml:space="preserve">
     <value>Min</value>
   </data>
@@ -245,6 +251,21 @@
   </data>
   <data name="newproject" xml:space="preserve">
     <value>New Project</value>
+  </data>
+  <data name="noactiveproject" xml:space="preserve">
+    <value>No active project selected. Please select a project and mark it as active.</value>
+  </data>
+  <data name="noauthor" xml:space="preserve">
+    <value>No author</value>
+  </data>
+  <data name="nodescription" xml:space="preserve">
+    <value>No description</value>
+  </data>
+  <data name="nohint" xml:space="preserve">
+    <value>No help available</value>
+  </data>
+  <data name="notitle" xml:space="preserve">
+    <value>No title</value>
   </data>
   <data name="nouserfound" xml:space="preserve">
     <value>Profile not found</value>
@@ -418,6 +439,9 @@ Consent of the data subject means any freely given, specific, informed and unamb
   </data>
   <data name="useralreadyexists" xml:space="preserve">
     <value>User already exists</value>
+  </data>
+  <data name="warning" xml:space="preserve">
+    <value>Warning</value>
   </data>
   <data name="wrongentry" xml:space="preserve">
     <value>Wrong entry</value>

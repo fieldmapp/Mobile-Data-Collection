@@ -1,178 +1,97 @@
 ﻿using System;
-
+using DLR_Data_App.Services;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace DLR_Data_App.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SensorTestPage
-	{
-    SensorSpeed _speed = SensorSpeed.UI;
-    private readonly Services.Sensors.Accelerometer _accelerometer;
-    private readonly Services.Sensors.Barometer _barometer;
-    private readonly Services.Sensors.Compass _compass;
-    private readonly Services.Sensors.Gps _gps;
-    private readonly Services.Sensors.Gyroscope _gyroscope;
-    private readonly Services.Sensors.Magnetometer _magnetometer;
+  {
+    private readonly Sensor _sensor;
 
     /**
-     * Check for preference changes before opening the page
-     */
-    protected override async void OnAppearing()
-    {
-      if (Preferences.Get("accelerometer", true))
-      {
-        if(!(Accelerometer.IsMonitoring))
-        {
-          Accelerometer.Start(_speed);
-          GridAccelerometer.IsEnabled = true;
-        }
-      }
-      else
-      {
-        Accelerometer.Stop();
-        GridAccelerometer.IsEnabled = false;
-      }
-
-      if (Preferences.Get("barometer", true))
-      {
-        if(!(Barometer.IsMonitoring))
-        {
-          Barometer.Start(_speed);
-          GridBarometer.IsEnabled = true;
-        }
-      }
-      else
-      {
-        Barometer.Stop();
-        GridBarometer.IsEnabled = false;
-      }
-
-      if (Preferences.Get("compass", true))
-      {
-        if(!(Compass.IsMonitoring))
-        {
-          Compass.Start(_speed);
-          GridCompass.IsEnabled = true;
-        }
-      }
-      else
-      {
-        Compass.Stop();
-        GridCompass.IsEnabled = false;
-      }
-
-      if (Preferences.Get("gps", true))
-      {
-        await _gps.GetLocationAsync();
-      }
-      else
-      {
-        GridGps.IsEnabled = false;
-      }
-
-      if (Preferences.Get("gyroscope", true))
-      {
-        if(!(Gyroscope.IsMonitoring))
-        {
-          Gyroscope.Start(_speed);
-          GridGyroscope.IsEnabled = true;
-        }
-      }
-      else
-      {
-        Gyroscope.Stop();
-        GridGyroscope.IsEnabled = false;
-      }
-
-      if (Preferences.Get("magnetometer", true))
-      {
-        if (Magnetometer.IsMonitoring) return;
-        Magnetometer.Start(_speed);
-        GridMagnetometer.IsEnabled = true;
-      }
-      else
-      {
-        Magnetometer.Stop();
-        GridMagnetometer.IsEnabled = false;
-      }
-    }
-
-    /**
-     * 
+     * This class prints all available sensor data
      */
     public SensorTestPage ()
 		{
-      _accelerometer = new Services.Sensors.Accelerometer();
-      _barometer = new Services.Sensors.Barometer();
-      _compass = new Services.Sensors.Compass();
-      _gps = new Services.Sensors.Gps();
-      _gyroscope = new Services.Sensors.Gyroscope();
-      _magnetometer = new Services.Sensors.Magnetometer();
+      _sensor = new Sensor();
 
-      Accelerometer.ReadingChanged += _accelerometer.Reading_Changed;
+      Accelerometer.ReadingChanged += _sensor.Accelerometer.Reading_Changed;
       Accelerometer.ReadingChanged += OnAccelerometer_Change;
-      Accelerometer.ReadingChanged += OnGps_Change;
 
-      Barometer.ReadingChanged += _barometer.Reading_Changed;
+      _sensor.Gps.StatusChanged += OnGps_Change;
+
+      Barometer.ReadingChanged += _sensor.Barometer.Reading_Changed;
       Barometer.ReadingChanged += OnBarometer_Change;
 
-      Compass.ReadingChanged += _compass.Reading_Changed;
+      Compass.ReadingChanged += _sensor.Compass.Reading_Changed;
       Compass.ReadingChanged += OnCompass_Change;
 
-      Gyroscope.ReadingChanged += _gyroscope.Reading_Changed;
+      Gyroscope.ReadingChanged += _sensor.Gyroscope.Reading_Changed;
       Gyroscope.ReadingChanged += OnGyroscope_Change;
 
-      Magnetometer.ReadingChanged += _magnetometer.Reading_Changed;
+      Magnetometer.ReadingChanged += _sensor.Magnetometer.Reading_Changed;
       Magnetometer.ReadingChanged += OnMagnetometer_Change;
 
       InitializeComponent ();
 		}
 
     /**
+     * Override hardware back button on Android devices to return to project list
+     */
+    protected override bool OnBackButtonPressed()
+    {
+      Device.BeginInvokeOnMainThread(async () => {
+        base.OnBackButtonPressed();
+        if (Application.Current.MainPage is MainPage mainPage)
+          await mainPage.NavigateFromMenu(1);
+      });
+
+      return true;
+    }
+
+    /**
      * Reset all data
      */
-    private async void ToolbarItem_Clicked(object sender, EventArgs e)
+    private void ToolbarItem_Clicked(object sender, EventArgs e)
     {
-      _accelerometer.Reset();
-      _barometer.Reset();
-      _compass.Reset();
-      _gyroscope.Reset();
-      _magnetometer.Reset();
+      _sensor.Accelerometer.Reset();
+      _sensor.Barometer.Reset();
+      _sensor.Compass.Reset();
+      _sensor.Gyroscope.Reset();
+      _sensor.Magnetometer.Reset();
 
-      // TODO: optimizing
-      await _gps.GetLocationAsync();
+      LblXAccelerometerCurrent.Text = _sensor.Accelerometer.CurrentX.ToString("N");
+      LblYAccelerometerCurrent.Text = _sensor.Accelerometer.CurrentY.ToString("N");
+      LblZAccelerometerCurrent.Text = _sensor.Accelerometer.CurrentZ.ToString("N");
 
-      LblXAccelerometerCurrent.Text = _accelerometer.CurrentX.ToString("N");
-      LblYAccelerometerCurrent.Text = _accelerometer.CurrentY.ToString("N");
-      LblZAccelerometerCurrent.Text = _accelerometer.CurrentZ.ToString("N");
+      LblXAccelerometerMax.Text = _sensor.Accelerometer.MaxX.ToString("N");
+      LblYAccelerometerMax.Text = _sensor.Accelerometer.MaxY.ToString("N");
+      LblZAccelerometerMax.Text = _sensor.Accelerometer.MaxZ.ToString("N");
 
-      LblXAccelerometerMax.Text = _accelerometer.MaxX.ToString("N");
-      LblYAccelerometerMax.Text = _accelerometer.MaxY.ToString("N");
-      LblZAccelerometerMax.Text = _accelerometer.MaxZ.ToString("N");
+      LblPressureBarometerCurrent.Text = _sensor.Barometer.CurrentPressure.ToString("N");
+      LblPressureBarometerMax.Text = _sensor.Barometer.MaxPressure.ToString("N");
 
-      LblPressureBarometerCurrent.Text = _barometer.CurrentPressure.ToString("N");
-      LblPressureBarometerMax.Text = _barometer.MaxPressure.ToString("N");
+      LblCompassDegrees.Text = _sensor.Compass.Degrees.ToString("N");
+      LblCompassDirection.Text = _sensor.Compass.Direction;
 
-      LblCompassDegrees.Text = _compass.Degrees.ToString("N");
-      LblCompassDirection.Text = _compass.Direction;
+      LblXGyroscopeCurrent.Text = _sensor.Gyroscope.CurrentX.ToString("N");
+      LblYGyroscopeCurrent.Text = _sensor.Gyroscope.CurrentY.ToString("N");
+      LblZGyroscopeCurrent.Text = _sensor.Gyroscope.CurrentZ.ToString("N");
 
-      LblXGyroscopeCurrent.Text = _gyroscope.CurrentX.ToString("N");
-      LblYGyroscopeCurrent.Text = _gyroscope.CurrentY.ToString("N");
-      LblZGyroscopeCurrent.Text = _gyroscope.CurrentZ.ToString("N");
+      LblXGyroscopeMax.Text = _sensor.Gyroscope.MaxX.ToString("N");
+      LblYGyroscopeMax.Text = _sensor.Gyroscope.MaxY.ToString("N");
+      LblZGyroscopeMax.Text = _sensor.Gyroscope.MaxZ.ToString("N");
 
-      LblXGyroscopeMax.Text = _gyroscope.MaxX.ToString("N");
-      LblYGyroscopeMax.Text = _gyroscope.MaxY.ToString("N");
-      LblZGyroscopeMax.Text = _gyroscope.MaxZ.ToString("N");
+      LblXMagnetometerCurrent.Text = _sensor.Magnetometer.CurrentX.ToString("N");
+      LblYMagnetometerCurrent.Text = _sensor.Magnetometer.CurrentY.ToString("N");
+      LblZMagnetometerCurrent.Text = _sensor.Magnetometer.CurrentZ.ToString("N");
 
-      LblXMagnetometerCurrent.Text = _magnetometer.CurrentX.ToString("N");
-      LblYMagnetometerCurrent.Text = _magnetometer.CurrentY.ToString("N");
-      LblZMagnetometerCurrent.Text = _magnetometer.CurrentZ.ToString("N");
-
-      LblXMagnetometerMax.Text = _magnetometer.MaxX.ToString("N");
-      LblYMagnetometerMax.Text = _magnetometer.MaxY.ToString("N");
-      LblZMagnetometerMax.Text = _magnetometer.MaxZ.ToString("N");
+      LblXMagnetometerMax.Text = _sensor.Magnetometer.MaxX.ToString("N");
+      LblYMagnetometerMax.Text = _sensor.Magnetometer.MaxY.ToString("N");
+      LblZMagnetometerMax.Text = _sensor.Magnetometer.MaxZ.ToString("N");
     }
 
     /**
@@ -180,13 +99,13 @@ namespace DLR_Data_App.Views
      */
     public void OnAccelerometer_Change(object sender, EventArgs e)
     {
-      LblXAccelerometerCurrent.Text = _accelerometer.CurrentX.ToString("N");
-      LblYAccelerometerCurrent.Text = _accelerometer.CurrentY.ToString("N");
-      LblZAccelerometerCurrent.Text = _accelerometer.CurrentZ.ToString("N");
+      LblXAccelerometerCurrent.Text = _sensor.Accelerometer.CurrentX.ToString("N");
+      LblYAccelerometerCurrent.Text = _sensor.Accelerometer.CurrentY.ToString("N");
+      LblZAccelerometerCurrent.Text = _sensor.Accelerometer.CurrentZ.ToString("N");
 
-      LblXAccelerometerMax.Text = _accelerometer.MaxX.ToString("N");
-      LblYAccelerometerMax.Text = _accelerometer.MaxY.ToString("N");
-      LblZAccelerometerMax.Text = _accelerometer.MaxZ.ToString("N");
+      LblXAccelerometerMax.Text = _sensor.Accelerometer.MaxX.ToString("N");
+      LblYAccelerometerMax.Text = _sensor.Accelerometer.MaxY.ToString("N");
+      LblZAccelerometerMax.Text = _sensor.Accelerometer.MaxZ.ToString("N");
     }
 
     /**
@@ -194,8 +113,8 @@ namespace DLR_Data_App.Views
      */
     public void OnBarometer_Change(object sender, EventArgs e)
     {
-      LblPressureBarometerCurrent.Text = _barometer.CurrentPressure.ToString("N");
-      LblPressureBarometerMax.Text = _barometer.MaxPressure.ToString("N");
+      LblPressureBarometerCurrent.Text = _sensor.Barometer.CurrentPressure.ToString("N");
+      LblPressureBarometerMax.Text = _sensor.Barometer.MaxPressure.ToString("N");
     }
 
     /**
@@ -203,8 +122,8 @@ namespace DLR_Data_App.Views
      */
     public void OnCompass_Change(object sender, EventArgs e)
     {
-      LblCompassDegrees.Text = _compass.Degrees.ToString("N");
-      LblCompassDirection.Text = _compass.Direction;
+      LblCompassDegrees.Text = _sensor.Compass.Degrees.ToString("N");
+      LblCompassDirection.Text = _sensor.Compass.Direction;
     }
 
     /**
@@ -212,10 +131,12 @@ namespace DLR_Data_App.Views
      */
     public void OnGps_Change(object sender, EventArgs e)
     {
-      LblLat.Text = _gps.Latitude.ToString("N6");
-      LblLon.Text = _gps.Longitude.ToString("N6");
-      LblAlt.Text = _gps.Altitude.ToString("N2");
-      LblStatus.Text = _gps.Message;
+      LblLat.Text = _sensor.Gps.Latitude.ToString("N6");
+      LblLon.Text = _sensor.Gps.Longitude.ToString("N6");
+      LblAlt.Text = _sensor.Gps.Altitude.ToString("N2");
+      LblStatus.Text = _sensor.Gps.Message;
+
+      //sensor._gps.GetLocationAsync();
     }
 
     /**
@@ -223,13 +144,13 @@ namespace DLR_Data_App.Views
      */
     public void OnGyroscope_Change(object sender, EventArgs e)
     {
-      LblXGyroscopeCurrent.Text = _gyroscope.CurrentX.ToString("N");
-      LblYGyroscopeCurrent.Text = _gyroscope.CurrentY.ToString("N");
-      LblZGyroscopeCurrent.Text = _gyroscope.CurrentZ.ToString("N");
+      LblXGyroscopeCurrent.Text = _sensor.Gyroscope.CurrentX.ToString("N");
+      LblYGyroscopeCurrent.Text = _sensor.Gyroscope.CurrentY.ToString("N");
+      LblZGyroscopeCurrent.Text = _sensor.Gyroscope.CurrentZ.ToString("N");
 
-      LblXGyroscopeMax.Text = _gyroscope.MaxX.ToString("N");
-      LblYGyroscopeMax.Text = _gyroscope.MaxY.ToString("N");
-      LblZGyroscopeMax.Text = _gyroscope.MaxZ.ToString("N");
+      LblXGyroscopeMax.Text = _sensor.Gyroscope.MaxX.ToString("N");
+      LblYGyroscopeMax.Text = _sensor.Gyroscope.MaxY.ToString("N");
+      LblZGyroscopeMax.Text = _sensor.Gyroscope.MaxZ.ToString("N");
     }
 
     /**
@@ -237,13 +158,13 @@ namespace DLR_Data_App.Views
      */
     public void OnMagnetometer_Change(object sender, EventArgs e)
     {
-      LblXMagnetometerCurrent.Text = _magnetometer.CurrentX.ToString("N");
-      LblYMagnetometerCurrent.Text = _magnetometer.CurrentY.ToString("N");
-      LblZMagnetometerCurrent.Text = _magnetometer.CurrentZ.ToString("N");
+      LblXMagnetometerCurrent.Text = _sensor.Magnetometer.CurrentX.ToString("N");
+      LblYMagnetometerCurrent.Text = _sensor.Magnetometer.CurrentY.ToString("N");
+      LblZMagnetometerCurrent.Text = _sensor.Magnetometer.CurrentZ.ToString("N");
 
-      LblXMagnetometerMax.Text = _magnetometer.MaxX.ToString("N");
-      LblYMagnetometerMax.Text = _magnetometer.MaxY.ToString("N");
-      LblZMagnetometerMax.Text = _magnetometer.MaxZ.ToString("N");
+      LblXMagnetometerMax.Text = _sensor.Magnetometer.MaxX.ToString("N");
+      LblYMagnetometerMax.Text = _sensor.Magnetometer.MaxY.ToString("N");
+      LblZMagnetometerMax.Text = _sensor.Magnetometer.MaxZ.ToString("N");
     }
   }
 }

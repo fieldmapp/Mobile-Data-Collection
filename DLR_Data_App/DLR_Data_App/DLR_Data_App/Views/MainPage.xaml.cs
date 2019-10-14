@@ -10,10 +10,17 @@ using Xamarin.Forms.Xaml;
 
 namespace DLR_Data_App.Views
 {
+  /**
+   * Main page which handles the menu and sets up the master page
+   */
   [XamlCompilation(XamlCompilationOptions.Compile)]
   public partial class MainPage
   {
     private readonly Dictionary<int, NavigationPage> _menuPages = new Dictionary<int, NavigationPage>();
+
+    /**
+     * Constructor for MainPage
+     */
     public MainPage()
     {
       InitializeComponent();
@@ -23,6 +30,10 @@ namespace DLR_Data_App.Views
       _menuPages.Add((int)MenuItemType.Projects, (NavigationPage)Detail);
     }
 
+    /**
+     * Navigate to selected page
+     * @param id int Selected page
+     */
     public async Task NavigateFromMenu(int id)
     {
       if (!_menuPages.ContainsKey(id))
@@ -47,7 +58,6 @@ namespace DLR_Data_App.Views
           case (int)MenuItemType.Logout:
             Application.Current.MainPage = new LoginPage();
             return;
-            //break;
         }
       }
 
@@ -56,7 +66,7 @@ namespace DLR_Data_App.Views
       if (newPage != null && Detail != newPage)
       {
         Detail = newPage;
-
+        
         if (Device.RuntimePlatform == Device.Android)
           await Task.Delay(100);
 

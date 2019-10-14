@@ -113,8 +113,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a830d31ef5d25fe087a35ce2b11332c68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88243597236ec57976466842c7c1cc80"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_l_r___data___app_1_1_services_1_1_database.html#a88243597236ec57976466842c7c1cc80">CreateCustomTable</a> (ref <a class="el" href="class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project.html">Project</a> project)</td></tr>
 <tr class="separator:a88243597236ec57976466842c7c1cc80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52212ae43567a8d343a9c3068eb92006"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_l_r___data___app_1_1_services_1_1_database.html#a52212ae43567a8d343a9c3068eb92006">ReadCustomTable</a> (ref <a class="el" href="class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project.html">Project</a> project, ref List&lt; string &gt; elementNameList)</td></tr>
-<tr class="separator:a52212ae43567a8d343a9c3068eb92006"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf51d322ab238f33e16003abc8611f50"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_d_l_r___data___app_1_1_models_1_1_table_data.html">TableData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_l_r___data___app_1_1_services_1_1_database.html#acf51d322ab238f33e16003abc8611f50">ReadCustomTable</a> (ref <a class="el" href="class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project.html">Project</a> project)</td></tr>
+<tr class="separator:acf51d322ab238f33e16003abc8611f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace2606ab71f47940f2edfde960a4bb33"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_l_r___data___app_1_1_services_1_1_database.html#ace2606ab71f47940f2edfde960a4bb33">InsertCustomValues</a> (string tableName, List&lt; string &gt; fieldNames, List&lt; string &gt; fieldValues)</td></tr>
 <tr class="separator:ace2606ab71f47940f2edfde960a4bb33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e2b8ee4af5103a5a101a435041f34c9"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_l_r___data___app_1_1_services_1_1_database.html#a7e2b8ee4af5103a5a101a435041f34c9">RemoveDatabase</a> ()</td></tr>
@@ -331,6 +331,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Success </dd></dl>
 
 </div>
 </div>
@@ -361,8 +362,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a52212ae43567a8d343a9c3068eb92006"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52212ae43567a8d343a9c3068eb92006">&#9670;&nbsp;</a></span>ReadCustomTable()</h2>
+<a id="acf51d322ab238f33e16003abc8611f50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf51d322ab238f33e16003abc8611f50">&#9670;&nbsp;</a></span>ReadCustomTable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -371,21 +372,11 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static bool DLR_Data_App.Services.Database.ReadCustomTable </td>
+          <td class="memname">static <a class="el" href="class_d_l_r___data___app_1_1_models_1_1_table_data.html">TableData</a> DLR_Data_App.Services.Database.ReadCustomTable </td>
           <td>(</td>
           <td class="paramtype">ref <a class="el" href="class_d_l_r___data___app_1_1_models_1_1_project_model_1_1_project.html">Project</a>&#160;</td>
-          <td class="paramname"><em>project</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>project</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">ref List&lt; string &gt;&#160;</td>
-          <td class="paramname"><em>elementNameList</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -397,10 +388,10 @@ Static Public Member Functions</h2></td></tr>
 <p>Read custom table </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">project</td><td>Current working project </td></tr>
-    <tr><td class="paramname">elementNameList</td><td>List of elements in project table datasets </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>TableData with field names and elements </dd></dl>
 
 </div>
 </div>
@@ -429,7 +420,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Stores all forms in project </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Project</td><td></td></tr>
+    <tr><td class="paramname">project</td><td>referencing to project and inserting forms </td></tr>
   </table>
   </dd>
 </dl>
@@ -581,7 +572,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>DLR_Data_App/DLR_Data_App/Services/Database.cs</li>
+<li>DLR_Data_App/DLR_Data_App/Services/<a class="el" href="_database_8cs.html">Database.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

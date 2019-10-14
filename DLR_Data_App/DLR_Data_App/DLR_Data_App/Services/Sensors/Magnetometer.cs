@@ -4,6 +4,9 @@ using Xamarin.Essentials;
 
 namespace DLR_Data_App.Services.Sensors
 {
+  /**
+   * This class handles the magnetometer
+   */
   public class Magnetometer
   {
     public float CurrentX { get; set; }
@@ -13,6 +16,9 @@ namespace DLR_Data_App.Services.Sensors
     public float MaxY { get; set; }
     public float MaxZ { get; set; }
 
+    /**
+     * Constructor
+     */
     public Magnetometer()
     {
       Reset();
@@ -20,7 +26,7 @@ namespace DLR_Data_App.Services.Sensors
 
 
     /**
-     * Collect values after each change
+     * EventHandler which collects values after each change
      */
     public void Reading_Changed(object sender, MagnetometerChangedEventArgs e)
     {

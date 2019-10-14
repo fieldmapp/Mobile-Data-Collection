@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Android;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
@@ -23,15 +24,29 @@ namespace com.DLR.DLR_Data_App.Droid
             var folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             var fullPath = Path.Combine(folderPath, dbName);
 
-            LoadApplication(new App(folderPath, fullPath));
+            LoadApplication(new App(folderPath, fullPath, new FileManager()));
+
+            if (PackageManager.CheckPermission(Manifest.Permission.ReadExternalStorage, PackageName) != Permission.Granted
+                && PackageManager.CheckPermission(Manifest.Permission.WriteExternalStorage, PackageName) != Permission.Granted)
+            {
+              var permissions = new string[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage };
+              RequestPermissions(permissions, 1);
+            }
         }
-    }
 
-  // https://www.c-sharpcorner.com/article/xamarin-forms-application-preferences-using-xamarin-essentials/
-  /*public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
-  {
-      Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        public void CheckAppPermissions()
+        {
+          if ((int)Build.VERSION.SdkInt < 23)
+          {
+            return;
+          }
 
-      base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-  }*/
+          if (PackageManager.CheckPermission(Manifest.Permission.ReadExternalStorage, PackageName) != Permission.Granted
+              && PackageManager.CheckPermission(Manifest.Permission.WriteExternalStorage, PackageName) != Permission.Granted)
+          {
+            var permissions = new string[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage };
+            RequestPermissions(permissions, 1);
+          }
+        }
+  }
 }

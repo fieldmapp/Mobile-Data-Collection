@@ -22,7 +22,9 @@
 			"label": {
 				"0": "Pflanzendichte in cm"
 			},
-			"hint": {},
+			"hint": {
+				"0": "Angeben wie dicht die Pflanzen nebeneinander stehen."
+			},
 			"defaultValue": "0",
 			"readOnly": false,
 			"required": false,
@@ -52,7 +54,9 @@
 			"label": {
 				"0": "CheckUnknown"
 			},
-			"hint": {},
+			"hint": {
+				"0": "Angeben ob Pflanzendichte bekannt ist. Ja/Nein"
+			},
 			"defaultValue": "",
 			"readOnly": false,
 			"required": false,

@@ -27,7 +27,6 @@ namespace DLR_Data_App.Views.ProjectList
      */
     private async void btn_filepicker_Clicked(object sender, EventArgs e)
     {
-      //var file = await CrossFilePicker.Current.PickFile();
       File = await CrossFilePicker.Current.PickFile();
 
       if (File != null)
@@ -35,11 +34,8 @@ namespace DLR_Data_App.Views.ProjectList
         if (File.FileName.EndsWith(".zip"))
         {
           LblZipPath.Text = File.FileName;
-          //lbl_zip_path.Text = file.FilePath;
-
           _fileCopyPath = Path.Combine(App.FolderLocation, "Data.zip");
-          Stream dataArray = File.GetStream();
-
+          var dataArray = File.GetStream();
           System.IO.File.Delete(_fileCopyPath);
 
           using (var fileCopy = System.IO.File.Create(_fileCopyPath))

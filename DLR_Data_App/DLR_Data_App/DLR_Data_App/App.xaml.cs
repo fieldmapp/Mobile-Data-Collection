@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms.Xaml;
 using DLR_Data_App.Views.Login;
 using DLR_Data_App.Models;
+using DLR_Data_App.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace DLR_Data_App
@@ -14,13 +15,15 @@ namespace DLR_Data_App
     public static string FolderLocation = string.Empty;
     public static User CurrentUser;
 
+    public static IFileManager FileManager;
+
     /*
      * Constructor without database support
      */
     public App()
     {
       InitializeComponent();
-
+      
       MainPage = new LoginPage();
     }
 
@@ -29,9 +32,11 @@ namespace DLR_Data_App
      * @param folderPath Path to the location of stored files in the filesystem
      * @param databaseLocation Path to the local database
      */
-    public App(string folderPath, string databaseLocation)
+    public App(string folderPath, string databaseLocation, IFileManager fileManager)
     {
       InitializeComponent();
+
+      FileManager = fileManager;
 
       FolderLocation = folderPath;
       DatabaseLocation = databaseLocation;

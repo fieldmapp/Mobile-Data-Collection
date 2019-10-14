@@ -1,1 +1,59 @@
-{"title":"Aussaat","controls":[{"name":"statusSeeding","label":{"0":"Aussaat erfolgt"},"hint":{},"defaultValue":"0","readOnly":false,"required":false,"requiredText":{},"relevance":"","constraint":"","invalidText":{},"calculate":"","options":[{"text":{"0":"Ja"},"cascade":[],"val":"1"},{"text":{"0":"Nein"},"cascade":[],"val":"2"},{"text":{"0":"Unbekannt"},"cascade":[],"val":"0"}],"cascading":false,"other":false,"appearance":"Default","metadata":{},"type":"inputSelectOne"}],"metadata":{"version":2,"activeLanguages":{"0":"German","_counter":0,"_display":"0"},"optionsPresets":[],"htitle":null,"instance_name":"","public_key":"","submission_url":""}}
+{
+	"title": "Aussaat",
+	"controls": [{
+			"name": "statusSeeding",
+			"label": {
+				"0": "Aussaat erfolgt"
+			},
+			"hint": {
+				"0": "Bestätigen mit ja, Ablehnen mit nein"
+			},
+			"defaultValue": "0",
+			"readOnly": false,
+			"required": false,
+			"requiredText": {},
+			"relevance": "",
+			"constraint": "",
+			"invalidText": {},
+			"calculate": "",
+			"options": [{
+					"text": {
+						"0": "Ja"
+					},
+					"cascade": [],
+					"val": "1"
+				}, {
+					"text": {
+						"0": "Nein"
+					},
+					"cascade": [],
+					"val": "2"
+				}, {
+					"text": {
+						"0": "Unbekannt"
+					},
+					"cascade": [],
+					"val": "0"
+				}
+			],
+			"cascading": false,
+			"other": false,
+			"appearance": "Default",
+			"metadata": {},
+			"type": "inputSelectOne"
+		}
+	],
+	"metadata": {
+		"version": 2,
+		"activeLanguages": {
+			"0": "German",
+			"_counter": 0,
+			"_display": "0"
+		},
+		"optionsPresets": [],
+		"htitle": null,
+		"instance_name": "",
+		"public_key": "",
+		"submission_url": ""
+	}
+}

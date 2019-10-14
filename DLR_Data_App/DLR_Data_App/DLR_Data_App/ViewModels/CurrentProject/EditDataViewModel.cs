@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using DLR_Data_App.Localizations;
+using DLR_Data_App.Models;
 using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Services;
 
@@ -13,41 +14,84 @@ namespace DLR_Data_App.ViewModels.CurrentProject
   public class EditDataViewModel : BaseViewModel
     {
       public List<ProjectForm> FormList { get; set; }
-      public ObservableCollection<ProjectFormElements> ElementList { get; set; }
-      public ProjectForm SelectedProjectForm { get; set; }
+      public ObservableCollection<PreviewElement> ElementList { get; set; }
 
       private Project _workingProject;
-      private List<string> _elementNameList;
+      private TableData _projectData;
       
       /**
        * Constructor
        * @param elementNameList lists column names of datasets for project
        */
-      public EditDataViewModel(List<string> elementNameList)
+      public EditDataViewModel()
       {
         Title = AppResources.editdata;
-        _elementNameList = elementNameList;
 
         _workingProject = Database.GetCurrentProject();
         FormList = _workingProject.FormList;
 
-        ElementList = new ObservableCollection<ProjectFormElements>();
+        ElementList = new ObservableCollection<PreviewElement>();
+
+        GetDataFromDb();
       }
 
       /**
-       * Update List of selected data sets
+       * Filter result list
+       * @param dateTime Selected datetime
+       * @returns element close to selected time
        */
-      public void UpdateList()
+      public PreviewElement UpdateSelection(DateTime dateTime)
       {
-        Database.ReadCustomTable(ref _workingProject, ref _elementNameList);
+        foreach (var element in ElementList)
+        {
+          var elementDateTime = DateTime.Parse(element.Timestamp);
+          if (DateTime.Compare(elementDateTime, dateTime) >= 0)
+          {
+            return element;
+          }
+        }
+
+        return null;
+      }
+    
+      /**
+       * Load data stored in db
+       */
+      private void GetDataFromDb()
+      {
+        // Get data from DB
+        _projectData = Database.ReadCustomTable(ref _workingProject);
 
         ElementList.Clear();
+      
+        // add the amount of elements that are available in db
+        for (var i = 0; i < _projectData.ValueList[0].Count; i++)
+        {
+          ElementList.Add(new PreviewElement());
+        }
 
-      }
+        var rowNameCounter = 0;
+        // walk through each value and add the data to the element
+        foreach (var dataRow in _projectData.ValueList)
+        {
+          var elementCounter = 0;
 
-      public void UpdateSelection(DateTime dateTime)
-      {
-        
+          foreach (var dataElement in dataRow)
+          {
+            if (_projectData.RowNameList[rowNameCounter] == "Timestamp")
+            {
+              ElementList[elementCounter].Timestamp = dataElement ?? AppResources.corruptentry;
+            }
+            else
+            {
+              ElementList[elementCounter].Data += dataElement + " ; ";
+            }
+            
+            elementCounter++;
+          }
+
+          rowNameCounter++;
+        }
       }
-    }
+  }
 }

@@ -2,6 +2,9 @@
 
 namespace DLR_Data_App.Services.Sensors
 {
+  /**
+   * This class handles the barometer
+   */
   public class Barometer
   {
     public double CurrentPressure { get; set; }
@@ -13,7 +16,7 @@ namespace DLR_Data_App.Services.Sensors
     }
 
     /**
-     * Collect values after each change
+     * EventHandler which collects values after each change
      */
     public void Reading_Changed(object sender, BarometerChangedEventArgs e)
     {

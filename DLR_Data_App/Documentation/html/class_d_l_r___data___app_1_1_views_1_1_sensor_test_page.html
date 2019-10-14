@@ -96,6 +96,8 @@ $(document).ready(function(){initNavTree('class_d_l_r___data___app_1_1_views_1_1
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ae85a66b67a032f692bd3816d80405e9e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#ae85a66b67a032f692bd3816d80405e9e">SensorTestPage</a> ()</td></tr>
+<tr class="separator:ae85a66b67a032f692bd3816d80405e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4c8dcd4e07932bae3bca94a47f675e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#ac4c8dcd4e07932bae3bca94a47f675e0">OnAccelerometer_Change</a> (object sender, EventArgs e)</td></tr>
 <tr class="separator:ac4c8dcd4e07932bae3bca94a47f675e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb67757e82a79e5b7d94e777df2f4716"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#aeb67757e82a79e5b7d94e777df2f4716">OnBarometer_Change</a> (object sender, EventArgs e)</td></tr>
@@ -111,9 +113,28 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ad8f91c646f8ce0fa31b0e81b2bbfc1e0"><td class="memItemLeft" align="right" valign="top">override async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#ad8f91c646f8ce0fa31b0e81b2bbfc1e0">OnAppearing</a> ()</td></tr>
-<tr class="separator:ad8f91c646f8ce0fa31b0e81b2bbfc1e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3aaec1c892f57a6082111c8dfe152e07"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_l_r___data___app_1_1_views_1_1_sensor_test_page.html#a3aaec1c892f57a6082111c8dfe152e07">OnBackButtonPressed</a> ()</td></tr>
+<tr class="separator:a3aaec1c892f57a6082111c8dfe152e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae85a66b67a032f692bd3816d80405e9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae85a66b67a032f692bd3816d80405e9e">&#9670;&nbsp;</a></span>SensorTestPage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DLR_Data_App.Views.SensorTestPage.SensorTestPage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This class prints all available sensor data </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="ac4c8dcd4e07932bae3bca94a47f675e0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac4c8dcd4e07932bae3bca94a47f675e0">&#9670;&nbsp;</a></span>OnAccelerometer_Change()</h2>
@@ -144,8 +165,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad8f91c646f8ce0fa31b0e81b2bbfc1e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad8f91c646f8ce0fa31b0e81b2bbfc1e0">&#9670;&nbsp;</a></span>OnAppearing()</h2>
+<a id="a3aaec1c892f57a6082111c8dfe152e07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3aaec1c892f57a6082111c8dfe152e07">&#9670;&nbsp;</a></span>OnBackButtonPressed()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -154,7 +175,7 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">override async void DLR_Data_App.Views.SensorTestPage.OnAppearing </td>
+          <td class="memname">override bool DLR_Data_App.Views.SensorTestPage.OnBackButtonPressed </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -166,7 +187,7 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Check for preference changes before opening the page </p>
+<p>Override hardware back button on Android devices to return to project list </p>
 
 </div>
 </div>
@@ -316,7 +337,7 @@ Protected Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>DLR_Data_App/DLR_Data_App/Views/SensorTestPage.xaml.cs</li>
+<li>DLR_Data_App/DLR_Data_App/Views/<a class="el" href="_sensor_test_page_8xaml_8cs.html">SensorTestPage.xaml.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

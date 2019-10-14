@@ -26,7 +26,7 @@ namespace DLR_Data_App.iOS
             var folderPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "..", "Library");
             var fullPath = Path.Combine(folderPath, dbName);
 
-            LoadApplication(new App(folderPath, fullPath));
+            LoadApplication(new App(folderPath, fullPath, new FileManager()));
 
             return base.FinishedLaunching(app, options);
         }

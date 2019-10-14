@@ -2,8 +2,14 @@
 
 namespace DLR_Data_App.ViewModels.Settings
 {
-  class AppSettingsViewModel : BaseViewModel
+  /**
+   * ViewModel for app settings
+   */
+  public class AppSettingsViewModel : BaseViewModel
   {
+    /**
+     * Constructor
+     */
     public AppSettingsViewModel()
     {
       Title = AppResources.general;

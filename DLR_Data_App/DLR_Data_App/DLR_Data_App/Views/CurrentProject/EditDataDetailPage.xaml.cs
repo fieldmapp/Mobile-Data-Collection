@@ -9,7 +9,7 @@ namespace DLR_Data_App.Views.CurrentProject
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class EditDataDetailPage
 	{
-    private Project _workingProject = Database.GetCurrentProject();
+    private readonly Project _workingProject = Database.GetCurrentProject();
 
     public EditDataDetailPage ()
 		{
@@ -18,7 +18,6 @@ namespace DLR_Data_App.Views.CurrentProject
       {
         GenerateForm(form);
       }
-      
     }
 
     /**

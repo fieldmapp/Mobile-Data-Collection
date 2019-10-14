@@ -19,6 +19,7 @@ namespace DLR_Data_App.Services
     
     /**
      * Constructor
+     * @param project project which will be used
      */
     public Parser(ref Project project)
     {
@@ -27,6 +28,8 @@ namespace DLR_Data_App.Services
 
     /**
      * Executes all processes to execute zip archive and add forms to project
+     * @param zipFile Path to ZIP archive
+     * @param unzipFolder Path to extract folder
      */
     public async Task<bool> ParseZip(string zipFile, string unzipFolder)
     {
@@ -51,12 +54,13 @@ namespace DLR_Data_App.Services
 
     /**
      * Parse Json files
+     * @param project Project which will be filled with parsed information
      * @param filename Path and File name for JSON file to parse
+     * @returns Project with parsed information
      * @see <a href="https://stackoverflow.com/questions/12676746/parse-json-string-in-c-sharp">Stackoverflow</a>
      */
     public Project ParseJson(Project project, string filename)
     {
-
       var form = new ProjectForm
       {
         ElementList = new List<ProjectFormElements>()
@@ -227,6 +231,8 @@ namespace DLR_Data_App.Services
 
     /**
      * Return list of options parsed from string
+     * @param inputString JSON Object which will be deserialized
+     * @returns List with options
      */
     public static List<Options> ParseOptionsFromJson(string inputString)
     {
@@ -235,6 +241,9 @@ namespace DLR_Data_App.Services
 
     /**
      * Parsing always the english string, if not available use the first language
+     * @param jsonList JSON string containing multiple language versions
+     * @param languageList List of available languages
+     * @returns String with english text
      */
     public static string LanguageJsonStandard(string jsonList, string languageList)
     {
@@ -277,9 +286,12 @@ namespace DLR_Data_App.Services
 
       return result;
     }
-    
+
     /**
      * Parsing string in the correct language from json string
+     * @param jsonList JSON string containing multiple language versions
+     * @param languageList List of available languages
+     * @returns String with text in local language
      */
     public static string LanguageJson(string jsonList, string languageList)
     {

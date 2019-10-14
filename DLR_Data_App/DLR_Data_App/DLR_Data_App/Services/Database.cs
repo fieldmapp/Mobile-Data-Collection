@@ -88,14 +88,7 @@ namespace DLR_Data_App.Services
       }
 
       // check if data was successfully deleted
-      if (resultDelete > 0)
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }
+      return resultDelete > 0;
     }
 
     /**
@@ -262,7 +255,7 @@ namespace DLR_Data_App.Services
 
     /**
      * Stores all forms in project
-     * @param Project
+     * @param project referencing to project and inserting forms
      */
     public static void ReadForms(ref Project project)
     {
@@ -339,38 +332,46 @@ namespace DLR_Data_App.Services
     /**
      * Read custom table
      * @param project Current working project
-     * @param elementNameList List of elements in project table datasets
+     * @return TableData with field names and elements
      */
-    public static List<List<string>> ReadCustomTable(ref Project project, ref List<string> elementNameList)
+    public static TableData ReadCustomTable(ref Project project)
     {
-      var datalist = new List<List<string>>();
+      var datalist = new TableData();
 
       var tableName = Parser.LanguageJsonStandard(project.Title, project.Languages) + "_" + project.Id;
-      string query = "SELECT ? FROM " + tableName + " WHERE ID=?";
-
+      
       using (var conn = new SQLiteConnection(App.DatabaseLocation))
       {
         try
         {
-          var tableinfo = conn.GetTableInfo(tableName);
-          
-          foreach (var tablecolumn in tableinfo)
+          var tableInfo = conn.GetTableInfo(tableName);
+
+          // getting highest id in table
+          var queryLastId = "SELECT MAX(ID) FROM " + tableName + " AS int";
+          var lastElementId = conn.ExecuteScalar<int>(queryLastId);
+
+          foreach (var tableColumn in tableInfo)
           {
-            var lastElementId = conn.ExecuteScalar<int>("SELECT MAX(ID) FROM ? AS int", tableName);
             var elementList = new List<string>();
 
-            for (var i = 0; i < lastElementId; i++)
+            for (var i = 0; i <= lastElementId; i++)
             {
-              var element = conn.ExecuteScalar<string>(query, tablecolumn.Name, i);
-              elementList.Add(element);
+              var query = "SELECT " + tableColumn.Name + " FROM " + tableName + " WHERE ID=" + i;
+              var element = conn.ExecuteScalar<string>(query);
+              if(element != null)
+                elementList.Add(element);
             }
 
-            datalist.Add(elementList);
+            datalist.RowNameList.Add(tableColumn.Name);
+            datalist.ValueList.Add(elementList);
           }
         }
         catch(Exception e)
         {
-          return null;
+          datalist.RowNameList.Add("Exception");
+          var error = new List<string> {e.Message};
+          datalist.ValueList.Add(error);
+          return datalist;
         }
       }
 
@@ -382,29 +383,28 @@ namespace DLR_Data_App.Services
      * @param tableName Name of project table
      * @param fieldNames field names
      * @param fieldValues values corresponding to field names
+     * @return Success
      */
     public static bool InsertCustomValues(string tableName, List<string> fieldNames, List<string> fieldValues)
     {
       bool status;
 
-      var query = "INSERT INTO ";
-      query += tableName;
-      query += "(";
+      var query = "INSERT INTO " + tableName + " (";
 
       foreach (var name in fieldNames)
       {
-        query += name + ",";
+        query += name + ", ";
       }
 
-      query = query.Remove(query.Length - 1);
+      query = query.Remove(query.Length - 2);
       query += ") VALUES (";
 
-      foreach (var value in fieldValues)
+      foreach (var values in fieldValues)
       {
-        query += "'" + value + "',";
+        query += "\"" + values + "\", ";
       }
 
-      query = query.Remove(query.Length - 1);
+      query = query.Remove(query.Length - 2);
       query += ");";
 
       using (var conn = new SQLiteConnection(App.DatabaseLocation))

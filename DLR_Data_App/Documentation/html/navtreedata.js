@@ -25,29 +25,41 @@ var NAVTREE =
 [
   [ "Fieldmapp", "index.html", [
     [ "DLR Data App", "index.html", [
-      [ "Introduction", "index.html#intro_sec", null ]
+      [ "Introduction", "index.html#intro_sec", null ],
+      [ "Creating projects", "index.html#creating_projects", null ]
     ] ],
+    [ "Deployment", "deploy_page.html", null ],
     [ "Preferences", "pref_page.html", null ],
     [ "Special Commands", "specialcommand_page.html", null ],
     [ "Packages", "namespaces.html", [
-      [ "Packages", "namespaces.html", "namespaces_dup" ]
+      [ "Packages", "namespaces.html", "namespaces_dup" ],
+      [ "Package Functions", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ]
+      ] ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ]
+        [ "All", "functions.html", "functions_dup" ],
+        [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", null ],
+        [ "Properties", "functions_prop.html", null ],
+        [ "Events", "functions_evnt.html", null ]
       ] ]
+    ] ],
+    [ "Files", "files.html", [
+      [ "File List", "files.html", "files_dup" ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"annotated.html",
-"namespace_d_l_r___data___app_1_1_models_1_1_project_model_1_1_database_connectors.html"
+"_about_page_8xaml_8cs.html",
+"class_d_l_r___data___app_1_1_view_models_1_1_sensor_test_view_model.html#a167fc72ecabd478e5deaf584c23f1cb2"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

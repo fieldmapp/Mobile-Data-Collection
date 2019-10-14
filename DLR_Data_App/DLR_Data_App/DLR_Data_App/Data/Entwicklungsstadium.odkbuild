@@ -1,1 +1,101 @@
-{"title":"Entwicklungsstadium","controls":[{"name":"phenologicalStadium","label":{"0":"Phänologisches Stadium"},"hint":{},"defaultValue":"0","readOnly":false,"required":false,"requiredText":{},"relevance":"","constraint":"","invalidText":{},"calculate":"","options":[{"text":{"0":"Keimung"},"cascade":[],"val":"1"},{"text":{"0":"Blattentwicklung"},"cascade":[],"val":"2"},{"text":{"0":"Bestockung"},"cascade":[],"val":"3"},{"text":{"0":"Schossen"},"cascade":[],"val":"4"},{"text":{"0":"Ährenschieben"},"cascade":[],"val":"5"},{"text":{"0":"Blüte"},"cascade":[],"val":"6"},{"text":{"0":"Fruchtentwicklung"},"cascade":[],"val":"7"},{"text":{"0":"Samenreife"},"cascade":[],"val":"8"},{"text":{"0":"Absterben"},"cascade":[],"val":"9"},{"text":{"0":"Unbekannt"},"cascade":[],"val":"0"}],"cascading":false,"other":false,"appearance":"Default","metadata":{},"type":"inputSelectOne"}],"metadata":{"version":2,"activeLanguages":{"0":"German","_counter":0,"_display":"0"},"optionsPresets":[],"htitle":null,"instance_name":"","public_key":"","submission_url":""}}
+{
+	"title": "Entwicklungsstadium",
+	"controls": [{
+			"name": "phenologicalStadium",
+			"label": {
+				"0": "Phänologisches Stadium"
+			},
+			"hint": {
+				"0": "Auswählen in welchem Stadium sich die Pflanze befindet."
+			},
+			"defaultValue": "0",
+			"readOnly": false,
+			"required": false,
+			"requiredText": {},
+			"relevance": "",
+			"constraint": "",
+			"invalidText": {},
+			"calculate": "",
+			"options": [{
+					"text": {
+						"0": "Keimung"
+					},
+					"cascade": [],
+					"val": "1"
+				}, {
+					"text": {
+						"0": "Blattentwicklung"
+					},
+					"cascade": [],
+					"val": "2"
+				}, {
+					"text": {
+						"0": "Bestockung"
+					},
+					"cascade": [],
+					"val": "3"
+				}, {
+					"text": {
+						"0": "Schossen"
+					},
+					"cascade": [],
+					"val": "4"
+				}, {
+					"text": {
+						"0": "Ährenschieben"
+					},
+					"cascade": [],
+					"val": "5"
+				}, {
+					"text": {
+						"0": "Blüte"
+					},
+					"cascade": [],
+					"val": "6"
+				}, {
+					"text": {
+						"0": "Fruchtentwicklung"
+					},
+					"cascade": [],
+					"val": "7"
+				}, {
+					"text": {
+						"0": "Samenreife"
+					},
+					"cascade": [],
+					"val": "8"
+				}, {
+					"text": {
+						"0": "Absterben"
+					},
+					"cascade": [],
+					"val": "9"
+				}, {
+					"text": {
+						"0": "Unbekannt"
+					},
+					"cascade": [],
+					"val": "0"
+				}
+			],
+			"cascading": false,
+			"other": false,
+			"appearance": "Default",
+			"metadata": {},
+			"type": "inputSelectOne"
+		}
+	],
+	"metadata": {
+		"version": 2,
+		"activeLanguages": {
+			"0": "German",
+			"_counter": 0,
+			"_display": "0"
+		},
+		"optionsPresets": [],
+		"htitle": null,
+		"instance_name": "",
+		"public_key": "",
+		"submission_url": ""
+	}
+}

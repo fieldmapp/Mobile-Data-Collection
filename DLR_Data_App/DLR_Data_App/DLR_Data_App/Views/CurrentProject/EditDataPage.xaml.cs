@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using DLR_Data_App.Localizations;
 using DLR_Data_App.ViewModels.CurrentProject;
@@ -19,12 +18,13 @@ namespace DLR_Data_App.Views.CurrentProject
     /**
      * Constructor
      */
-    public EditDataPage (List<string> elementNameList)
+    public EditDataPage()
     {
-      _viewModel = new EditDataViewModel(elementNameList);
+      _viewModel = new EditDataViewModel();
       BindingContext = _viewModel;
-      InitializeComponent ();
-		}
+
+      InitializeComponent();
+    }
 
     /**
      * Display help message
@@ -40,7 +40,7 @@ namespace DLR_Data_App.Views.CurrentProject
     private void DateSelection_OnDateSelected(object sender, DateChangedEventArgs e)
     {
       var dateTime = DateSelection.Date + TimeSelection.Time;
-      _viewModel.UpdateSelection(dateTime);
+      DataList.SelectedItem = _viewModel.UpdateSelection(dateTime);
     }
 
     /**
@@ -49,7 +49,7 @@ namespace DLR_Data_App.Views.CurrentProject
     private void TimeSelection_OnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
       var dateTime = DateSelection.Date + TimeSelection.Time;
-      _viewModel.UpdateSelection(dateTime);
+      DataList.SelectedItem = _viewModel.UpdateSelection(dateTime);
     }
 
     /**
@@ -58,11 +58,6 @@ namespace DLR_Data_App.Views.CurrentProject
     private void DataList_OnItemTapped(object sender, ItemTappedEventArgs e)
     {
       Navigation.PushAsync(new EditDataDetailPage());
-    }
-
-    private void FormPicker_OnSelectedIndexChanged(object sender, EventArgs e)
-    {
-      _viewModel.UpdateList();
     }
   }
 }

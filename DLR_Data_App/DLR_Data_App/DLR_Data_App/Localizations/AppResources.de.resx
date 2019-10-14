@@ -121,16 +121,10 @@
     <value>Über uns</value>
   </data>
   <data name="about1" xml:space="preserve">
-    <value>Diese App wurde in C# und mit nativen APIs entwickelt mit</value>
+    <value>Diese App wurde vom Deutschen Zentrum für Luft- und Raumfahrt (DLR e.V.) in Kooperation mit der Friedrich Schiller Universität Jena und Hochschule Stralsund entwickelt.</value>
   </data>
   <data name="about2" xml:space="preserve">
-    <value>Es verwendet gemeinsamen Quellcode unter</value>
-  </data>
-  <data name="about3" xml:space="preserve">
-    <value>iOS, Android und Windows</value>
-  </data>
-  <data name="about4" xml:space="preserve">
-    <value>Versionen.</value>
+    <value>Die App wurde in C# mit Xamarin entwickelt und verwendet auf unterschiedlichen Plattformen gemeinsamen Quellcode.</value>
   </data>
   <data name="aboutButton" xml:space="preserve">
     <value>Erfahre mehr</value>
@@ -165,6 +159,9 @@
   <data name="compass" xml:space="preserve">
     <value>Kompass</value>
   </data>
+  <data name="corruptentry" xml:space="preserve">
+    <value>Eintrag fehlerhaft</value>
+  </data>
   <data name="current" xml:space="preserve">
     <value>Aktuell</value>
   </data>
@@ -192,6 +189,9 @@
   <data name="edithelp" xml:space="preserve">
     <value>Bitte wählen Sie ein Datum und eine Zeit aus, in der Sie den Datensatz suchen. Es werden alle Datensätze in einer Liste dargestellt, wobei der zur Zeit passende Eintrag ausgewählt ist. Wählen Sie einen Eintrag zum Bearbeiten durch antippen aus.</value>
   </data>
+  <data name="exportdatabase" xml:space="preserve">
+    <value>Datenbank als JSON exportieren</value>
+  </data>
   <data name="failed" xml:space="preserve">
     <value>Fehlgeschlagen</value>
   </data>
@@ -216,6 +216,9 @@
   <data name="latitude" xml:space="preserve">
     <value>Latitude</value>
   </data>
+  <data name="licenses" xml:space="preserve">
+    <value>Lizenzen</value>
+  </data>
   <data name="login" xml:space="preserve">
     <value>Anmeldung</value>
   </data>
@@ -231,6 +234,9 @@
   <data name="max" xml:space="preserve">
     <value>Max</value>
   </data>
+  <data name="message" xml:space="preserve">
+    <value>Nachricht</value>
+  </data>
   <data name="min" xml:space="preserve">
     <value>Min</value>
   </data>
@@ -245,6 +251,21 @@
   </data>
   <data name="newproject" xml:space="preserve">
     <value>Neues Projekt</value>
+  </data>
+  <data name="noactiveproject" xml:space="preserve">
+    <value>Kein aktives Projekt. Bitte ein Projekt aus der Projektliste auswählen und als aktiv markieren.</value>
+  </data>
+  <data name="noauthor" xml:space="preserve">
+    <value>Kein Autor angegeben</value>
+  </data>
+  <data name="nodescription" xml:space="preserve">
+    <value>Keine Beschreibung angegeben</value>
+  </data>
+  <data name="nohint" xml:space="preserve">
+    <value>Keine Hilfe verfügbar</value>
+  </data>
+  <data name="notitle" xml:space="preserve">
+    <value>Kein Titel angeben</value>
   </data>
   <data name="nouserfound" xml:space="preserve">
     <value>Profil nicht vorhanden</value>
@@ -418,6 +439,9 @@ Einwilligung ist jede von der betroffenen Person freiwillig für den bestimmten 
   </data>
   <data name="useralreadyexists" xml:space="preserve">
     <value>Profil existiert bereits</value>
+  </data>
+  <data name="warning" xml:space="preserve">
+    <value>Warnung</value>
   </data>
   <data name="wrongentry" xml:space="preserve">
     <value>Eingabe fehlerhaft</value>

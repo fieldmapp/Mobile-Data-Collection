@@ -7,6 +7,9 @@ namespace DLR_Data_App.ViewModels.CurrentProject
    */
   public class ProjectViewModel : BaseViewModel
   {
+    /**
+     * Constructor
+     */
     public ProjectViewModel()
     {
       Title = AppResources.currentproject;

@@ -8,7 +8,7 @@ namespace DLR_Data_App.Services
   /**
    * Class for creating and managing a project
    */
-  class ProjectGenerator
+  public class ProjectGenerator
   {
     Project _workingProject;
     private readonly string _zipFile;

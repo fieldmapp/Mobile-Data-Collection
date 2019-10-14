@@ -70,7 +70,7 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die This app is written in C# and native APIs using the ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die The app was developed by the German Aerospace Center (DLR e.V.) in Co-operation with the Friedrich Schiller University Jena and University of Applied Sciences Stralsund. ähnelt.
         /// </summary>
         internal static string about1 {
             get {
@@ -79,29 +79,11 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die It shares code with its ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die It is written in C# and Xamarin and shares the same code on different plattforms. ähnelt.
         /// </summary>
         internal static string about2 {
             get {
                 return ResourceManager.GetString("about2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die iOS, Android, and Windows ähnelt.
-        /// </summary>
-        internal static string about3 {
-            get {
-                return ResourceManager.GetString("about3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die versions. ähnelt.
-        /// </summary>
-        internal static string about4 {
-            get {
-                return ResourceManager.GetString("about4", resourceCulture);
             }
         }
         
@@ -205,6 +187,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Entry corrupt ähnelt.
+        /// </summary>
+        internal static string corruptentry {
+            get {
+                return ResourceManager.GetString("corruptentry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Current ähnelt.
         /// </summary>
         internal static string current {
@@ -286,6 +277,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Export database ähnelt.
+        /// </summary>
+        internal static string exportdatabase {
+            get {
+                return ResourceManager.GetString("exportdatabase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Failed ähnelt.
         /// </summary>
         internal static string failed {
@@ -358,6 +358,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Licenses ähnelt.
+        /// </summary>
+        internal static string licenses {
+            get {
+                return ResourceManager.GetString("licenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Login ähnelt.
         /// </summary>
         internal static string login {
@@ -403,6 +412,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Message ähnelt.
+        /// </summary>
+        internal static string message {
+            get {
+                return ResourceManager.GetString("message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Min ähnelt.
         /// </summary>
         internal static string min {
@@ -444,6 +462,51 @@ namespace DLR_Data_App.Localizations {
         internal static string newproject {
             get {
                 return ResourceManager.GetString("newproject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No active project selected. Please select a project and mark it as active. ähnelt.
+        /// </summary>
+        internal static string noactiveproject {
+            get {
+                return ResourceManager.GetString("noactiveproject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No author ähnelt.
+        /// </summary>
+        internal static string noauthor {
+            get {
+                return ResourceManager.GetString("noauthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No description ähnelt.
+        /// </summary>
+        internal static string nodescription {
+            get {
+                return ResourceManager.GetString("nodescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No help available ähnelt.
+        /// </summary>
+        internal static string nohint {
+            get {
+                return ResourceManager.GetString("nohint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No title ähnelt.
+        /// </summary>
+        internal static string notitle {
+            get {
+                return ResourceManager.GetString("notitle", resourceCulture);
             }
         }
         
@@ -750,6 +813,15 @@ namespace DLR_Data_App.Localizations {
         internal static string useralreadyexists {
             get {
                 return ResourceManager.GetString("useralreadyexists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Warning ähnelt.
+        /// </summary>
+        internal static string warning {
+            get {
+                return ResourceManager.GetString("warning", resourceCulture);
             }
         }
         

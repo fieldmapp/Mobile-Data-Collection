@@ -5,7 +5,9 @@
 			"label": {
 				"0": "Anbaufrucht"
 			},
-			"hint": {},
+			"hint": {
+				"0": "Anbaukultur auswählen"
+			},
 			"defaultValue": "",
 			"readOnly": false,
 			"required": false,
@@ -50,7 +52,9 @@
 			"label": {
 				"0": "Anbaufrucht Anbau"
 			},
-			"hint": {},
+			"hint": {
+				"0": "Anbauart auswählen"
+			},
 			"defaultValue": "",
 			"readOnly": false,
 			"required": false,
@@ -89,7 +93,9 @@
 			"label": {
 				"0": "Anbaufrucht Detail"
 			},
-			"hint": {},
+			"hint": {
+				"0": "Anbaufrucht auswählen"
+			},
 			"defaultValue": "",
 			"readOnly": false,
 			"required": false,

@@ -130,7 +130,12 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructor </p>
+<p>Constructor </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">project</td><td>project which will be used </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -168,7 +173,14 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Parsing string in the correct language from json string </p>
+<p>Parsing string in the correct language from json string </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">jsonList</td><td>JSON string containing multiple language versions </td></tr>
+    <tr><td class="paramname">languageList</td><td>List of available languages </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String with text in local language </dd></dl>
 
 </div>
 </div>
@@ -205,7 +217,14 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Parsing always the english string, if not available use the first language </p>
+<p>Parsing always the english string, if not available use the first language </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">jsonList</td><td>JSON string containing multiple language versions </td></tr>
+    <tr><td class="paramname">languageList</td><td>List of available languages </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String with english text </dd></dl>
 
 </div>
 </div>
@@ -236,10 +255,12 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Parse Json files </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">project</td><td>Project which will be filled with parsed information </td></tr>
     <tr><td class="paramname">filename</td><td>Path and File name for JSON file to parse </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Project with parsed information </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a href="https://stackoverflow.com/questions/12676746/parse-json-string-in-c-sharp">Stackoverflow</a> </dd></dl>
 
 </div>
@@ -267,7 +288,13 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Return list of options parsed from string </p>
+<p>Return list of options parsed from string </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inputString</td><td>JSON Object which will be deserialized </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>List with options </dd></dl>
 
 </div>
 </div>
@@ -296,12 +323,18 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Executes all processes to execute zip archive and add forms to project </p>
+<p>Executes all processes to execute zip archive and add forms to project </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zipFile</td><td>Path to ZIP archive </td></tr>
+    <tr><td class="paramname">unzipFolder</td><td>Path to extract folder </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>DLR_Data_App/DLR_Data_App/Services/Parser.cs</li>
+<li>DLR_Data_App/DLR_Data_App/Services/<a class="el" href="_parser_8cs.html">Parser.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

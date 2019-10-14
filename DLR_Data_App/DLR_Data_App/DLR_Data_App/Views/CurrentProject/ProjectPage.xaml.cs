@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using DLR_Data_App.Localizations;
 using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Services;
+using DLR_Data_App.Services.Sensors;
 using DLR_Data_App.ViewModels.CurrentProject;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -13,12 +16,15 @@ namespace DLR_Data_App.Views.CurrentProject
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ProjectPage
 	{
-    public List<string> elementNameList = new List<string>();
-    public List<string> elementValueList = new List<string>();
+    public List<string> ElementNameList = new List<string>();
+    public List<string> ElementValueList = new List<string>();
+    public List<object> ElementList = new List<object>();
 
     private readonly ProjectViewModel _viewModel = new ProjectViewModel();
     private Project _workingProject = Database.GetCurrentProject();
     private List<ContentPage> _pages;
+
+    private readonly Sensor _sensor = new Sensor();
 
     public ProjectPage ()
 		{
@@ -26,9 +32,11 @@ namespace DLR_Data_App.Views.CurrentProject
 
       if (_pages != null)
       {
-        WalkElements(ref elementNameList, ref elementValueList, false);
+        WalkElements(false);
       }
-      
+
+      _sensor.Gps.StatusChanged += OnGpsChange;
+
       BindingContext = _viewModel;
 		}
 
@@ -36,14 +44,14 @@ namespace DLR_Data_App.Views.CurrentProject
      * Generating forms from parsed information
      * @param form Elements that should be generated
      */
-    private ContentPage GenerateForm(ProjectForm form)
+    public ContentPage GenerateForm(ProjectForm form)
     {
       var contentPage = new ContentPage();
       var scrollView = new ScrollView();
       var stack = new StackLayout();
 
       contentPage.Padding = new Thickness(10, 10, 10, 10);
-
+      
       // walk through list of elements and generate form containing elements
       foreach (var element in form.ElementList)
       {
@@ -66,13 +74,19 @@ namespace DLR_Data_App.Views.CurrentProject
         //------------------------
         // Special commands
 
+        // Display help
         var helpButton = new Button()
         {
           Text = AppResources.help
         };
-        helpButton.Clicked += async (sender, args) => await DisplayAlert(AppResources.help, Parser.LanguageJson(element.Hint, _workingProject.Languages),
-          AppResources.okay);
-        //stack.Children.Add(helpButton);
+
+        var hintText = Parser.LanguageJson(element.Hint, _workingProject.Languages);
+        if (hintText == "Unable to parse language from json")
+        {
+          hintText = AppResources.nohint;
+        }
+
+        helpButton.Clicked += async (sender, args) => await DisplayAlert(AppResources.help, hintText, AppResources.okay);
         grid.Children.Add(helpButton, 1, 0);
 
         // Display a ruler on the side of the screen
@@ -93,52 +107,73 @@ namespace DLR_Data_App.Views.CurrentProject
         {
           // input text
           case "inputText":
+          {
+            var placeholder = Parser.LanguageJson(element.Label, _workingProject.Languages);
+            if(placeholder == "Unable to parse language from json")
             {
-              var entry = new Entry
-              {
-                Placeholder = Parser.LanguageJson(element.Hint, _workingProject.Languages),
-                Keyboard = Keyboard.Default,
-                StyleId = element.Name
-              };
-
-              grid.Children.Add(entry, 0, 1);
-              Grid.SetColumnSpan(entry, 2);
-              break;
+              placeholder = "";
             }
+
+            var entry = new Entry
+            {
+              Placeholder = placeholder,
+              Keyboard = Keyboard.Default,
+              StyleId = element.Name
+            };
+            ElementList.Add(entry);
+
+            grid.Children.Add(entry, 0, 1);
+            Grid.SetColumnSpan(entry, 2);
+            break;
+          }
 
           // Selecting one item of list
           case "inputSelectOne":
           {
-            var elementList = new List<string>();
-              var options = Parser.ParseOptionsFromJson(element.Options);
-              foreach (var option in options)
-              {
-                option.text.TryGetValue("0", out var value);
-                elementList.Add(value);
-              }
-              var picker = new Picker
-              {
-                Title = Parser.LanguageJson(element.Label, _workingProject.Languages),
-                VerticalOptions = LayoutOptions.CenterAndExpand,
-                StyleId = element.Name,
-                ItemsSource = elementList
-              };
+            var optionsList = new List<string>();
+            var options = Parser.ParseOptionsFromJson(element.Options);
+            var title = Parser.LanguageJson(element.Label, _workingProject.Languages);
+            if (title == "Unable to parse language from json")
+            {
+              title = AppResources.notitle;
+            }
 
-              grid.Children.Add(picker, 0, 1);
-              Grid.SetColumnSpan(picker, 2);
-              break;
+            foreach (var option in options)
+            {
+              option.Text.TryGetValue("0", out var value);
+              optionsList.Add(value);
+            }
+            var picker = new Picker
+            {
+              Title = title,
+              VerticalOptions = LayoutOptions.CenterAndExpand,
+              StyleId = element.Name,
+              ItemsSource = optionsList
+            };
+            ElementList.Add(picker);
+
+            grid.Children.Add(picker, 0, 1);
+            Grid.SetColumnSpan(picker, 2);
+            break;
             }
 
           // Show an entry with only numeric input
           // As a walk around for an existing Samsung keyboard bug a normal keyboard layout is used
           case "inputNumeric":
             {
+              var placeholder = Parser.LanguageJson(element.Label, _workingProject.Languages);
+              if (placeholder == "Unable to parse language from json")
+              {
+                placeholder = "";
+              }
+
               var entry = new Entry
               {
-                Placeholder = Parser.LanguageJson(element.Hint, _workingProject.Languages),
+                Placeholder = placeholder,
                 Keyboard = Keyboard.Default,
                 StyleId = element.Name
               };
+              ElementList.Add(entry);
 
               grid.Children.Add(entry, 0, 1);
               Grid.SetColumnSpan(entry, 2);
@@ -148,9 +183,6 @@ namespace DLR_Data_App.Views.CurrentProject
           // Show current position
           case "inputLocation":
           {
-            //var gpsTask = Sensor.GetGps();
-            //var gps = gpsTask.Result;
-
             var labelLat = new Label()
             {
               Text = "Latitude"
@@ -158,27 +190,41 @@ namespace DLR_Data_App.Views.CurrentProject
 
             var labelLatData = new Label()
             {
-              //Text = gps.Latitude.ToString(CultureInfo.CurrentCulture),
-              Text = "",
+              Text = _sensor.Gps.Latitude.ToString(CultureInfo.CurrentCulture),
               StyleId = element.Name + "Lat"
             };
-
-            var labelLong = new Label()
+            ElementList.Add(labelLatData);
+            
+              var labelLong = new Label()
             {
               Text = "Longitude"
             };
 
             var labelLongData = new Label()
             {
-              //Text = gps.Longitude.ToString(CultureInfo.CurrentCulture),
-              Text = "",
+              Text = _sensor.Gps.Longitude.ToString(CultureInfo.CurrentCulture),
               StyleId = element.Name + "Long"
             };
+            ElementList.Add(labelLongData);
+
+            var labelMessage = new Label()
+            {
+              Text = AppResources.message
+            };
+
+            var labelMessageData = new Label()
+            {
+              Text = _sensor.Gps.Message,
+              StyleId = element.Name + "Message"
+            };
+            ElementList.Add(labelMessageData);
 
             grid.Children.Add(labelLat, 0, 1);
             grid.Children.Add(labelLatData, 1, 1);
             grid.Children.Add(labelLong, 0, 2);
             grid.Children.Add(labelLongData, 1, 2);
+            grid.Children.Add(labelMessage, 0, 3);
+            grid.Children.Add(labelMessageData, 1, 3);
             break;
           }
         }
@@ -191,18 +237,62 @@ namespace DLR_Data_App.Views.CurrentProject
     }
 
     /**
+     * Override hardware back button on Android devices to return to project list
+     */
+    protected override bool OnBackButtonPressed()
+    {
+      Device.BeginInvokeOnMainThread(async () => {
+        base.OnBackButtonPressed();
+        if (Application.Current.MainPage is MainPage mainPage)
+          await mainPage.NavigateFromMenu(1);
+      });
+      
+      return true;
+    }
+
+    /**
+     * Update shown gps data
+     */
+    private void OnGpsChange(object sender, GpsEventArgs e)
+    {
+      foreach (var element in ElementList)
+      {
+        if (element is Label label)
+        {
+          if (label.StyleId.Contains("Lat"))
+          {
+            label.Text = e.Latitude.ToString(CultureInfo.CurrentCulture);
+          }
+
+          if (label.StyleId.Contains("Long"))
+          {
+            label.Text = e.Longitude.ToString(CultureInfo.CurrentCulture);
+          }
+
+          if (label.StyleId.Contains("Message"))
+          {
+            label.Text = e.Message.ToString(CultureInfo.CurrentCulture);
+          }
+        }
+      }
+    }
+
+    /**
      * Refresh view
      */
     protected override void OnAppearing()
     {
-      base.OnAppearing();
-
-      if (Children.Count != 0) return;
-
       foreach (var page in UpdateView())
       {
         Children.Add(page);
       }
+
+      if (_pages == null || _pages.Count == 0)
+      {
+        Application.Current.MainPage.DisplayAlert(AppResources.warning, AppResources.noactiveproject, AppResources.okay);
+      }
+
+      base.OnAppearing();
     }
 
     /**
@@ -226,7 +316,8 @@ namespace DLR_Data_App.Views.CurrentProject
 
         foreach (var projectForm in _workingProject.FormList)
         {
-          _pages.Add(GenerateForm(projectForm));
+          var content = GenerateForm(projectForm);
+          _pages.Add(content);
         }
       }
 
@@ -234,11 +325,30 @@ namespace DLR_Data_App.Views.CurrentProject
     }
 
     /**
+     * Check if active project exists
+     */
+    private async Task<bool> CheckActiveProject()
+    {
+      if (_pages == null || _pages.Count == 0)
+      {
+        await DisplayAlert(AppResources.warning, AppResources.noactiveproject, AppResources.okay);
+        return false;
+      }
+      else
+      {
+        return true;
+      }
+    }
+
+    /**
      * Navigate to edit page
      */
-    private void EditClicked(object sender, EventArgs e)
+    private async void EditClicked(object sender, EventArgs e)
     {
-      Navigation.PushAsync(new EditDataPage(elementNameList));
+      if(await CheckActiveProject())
+      {
+        await Navigation.PushAsync(new EditDataPage());
+      }
     }
 
     /**
@@ -246,35 +356,38 @@ namespace DLR_Data_App.Views.CurrentProject
      */
     private async void SaveClicked(object sender, EventArgs e)
     {
-      WalkElements(ref elementNameList, ref elementValueList, false);
-
-      // Bugfix Tablename empty
-      var tableName = Parser.LanguageJsonStandard(_workingProject.Title, _workingProject.Languages) + "_" + _workingProject.Id;
-      var status = Database.InsertCustomValues(tableName, elementNameList, elementValueList);
-
-      string message;
-      if (status)
+      if (await CheckActiveProject())
       {
-        message = AppResources.successful;
-        WalkElements(ref elementNameList, ref elementValueList, true);
-      }
-      else
-      {
-        message = AppResources.failed;
-      }
+        WalkElements(false);
 
-      await DisplayAlert(AppResources.save, message, AppResources.okay);
+        var tableName = Parser.LanguageJsonStandard(_workingProject.Title, _workingProject.Languages) + "_" + _workingProject.Id;
+        var status = Database.InsertCustomValues(tableName, ElementNameList, ElementValueList);
+
+        string message;
+        if (status)
+        {
+          message = AppResources.successful;
+          WalkElements(true);
+        }
+        else
+        {
+          message = AppResources.failed;
+        }
+
+        await DisplayAlert(AppResources.save, message, AppResources.okay);
+      }
+      
     }
 
     /**
-     * Walk through all elements
+     * Walk through all elements, get values and store them in name list and value list
      *
-     * @param elementNameList reference to list of element names
-     * @param elementValueList reference to list of element values
      * @param bool if true resets content of element
      */
-    private void WalkElements(ref List<string> elementNameList, ref List<string> elementValueList, bool clean)
+    private void WalkElements(bool clean)
     {
+      var currentPosition = "";
+
       // walk trough all pages
       foreach (var page in _pages)
       {
@@ -300,9 +413,9 @@ namespace DLR_Data_App.Views.CurrentProject
                 }
                 else
                 {
-                  elementNameList.Add(entry.StyleId);
+                  ElementNameList.Add(entry.StyleId);
                   // check if entry is NULL, if true set default value
-                  elementValueList.Add(entry.Text ?? "0");
+                  ElementValueList.Add(entry.Text ?? "0");
                 }
               }
 
@@ -312,9 +425,30 @@ namespace DLR_Data_App.Views.CurrentProject
                 {
                   picker.SelectedIndex = 0;
                 }
-                elementNameList.Add(picker.StyleId);
-                // check if entry is NULL, if true set default value
-                elementValueList.Add(picker.SelectedItem as string ?? "0");
+                else
+                {
+                  ElementNameList.Add(picker.StyleId);
+                  // check if entry is NULL, if true set default value
+                  ElementValueList.Add(picker.SelectedItem as string ?? "0");
+                }
+              }
+
+              if (element is Label label)
+              {
+                if (label.StyleId != null)
+                {
+                  if (label.StyleId.Contains("Lat"))
+                  {
+                    currentPosition += label.Text;
+                  }
+                  else if (label.StyleId.Contains("Long"))
+                  {
+                    var elementName = label.StyleId.Substring(0, label.StyleId.Length - 4);
+                    currentPosition += " " + label.Text;
+                    ElementNameList.Add(elementName);
+                    ElementValueList.Add(currentPosition);
+                  }
+                }
               }
             }
           }

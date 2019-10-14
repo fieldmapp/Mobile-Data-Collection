@@ -2,6 +2,9 @@
 
 namespace DLR_Data_App.Services.Sensors
 {
+  /**
+   * This class handles the compass
+   */
   public class Compass
   {
     public double Degrees { get; set; }

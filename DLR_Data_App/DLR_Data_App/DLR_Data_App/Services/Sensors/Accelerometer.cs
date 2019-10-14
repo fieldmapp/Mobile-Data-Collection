@@ -5,6 +5,9 @@ using Xamarin.Essentials;
 
 namespace DLR_Data_App.Services.Sensors
 {
+  /**
+   * This class handles the accelerometer sensor
+   */
   public class Accelerometer
   {
     public float CurrentX { get; set; }
@@ -20,7 +23,7 @@ namespace DLR_Data_App.Services.Sensors
     }
     
     /**
-     * Collect values after each change
+     * EventHandler which collects values after each change
      */
     public void Reading_Changed(object sender, AccelerometerChangedEventArgs e)
     {

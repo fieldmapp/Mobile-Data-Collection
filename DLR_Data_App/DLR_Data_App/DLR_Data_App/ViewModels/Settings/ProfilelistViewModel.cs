@@ -2,7 +2,10 @@
 
 namespace DLR_Data_App.ViewModels.Settings
 {
-  class ProfilelistViewModel : BaseViewModel
+  /**
+   * ViewModel for profile list
+   */
+  public class ProfilelistViewModel : BaseViewModel
   {
     public ProfilelistViewModel()
     {

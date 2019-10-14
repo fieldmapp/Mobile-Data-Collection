@@ -15,6 +15,9 @@ namespace DLR_Data_App.Views.Login
   {
     private readonly LoginViewModel _viewModel = new LoginViewModel();
 
+    /**
+     * View for login page
+     */
     public LoginPage()
     {
       InitializeComponent();
