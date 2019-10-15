@@ -85,8 +85,7 @@ namespace MobileDataCollection.Survey.Views
             HeaderText.BindingContext = this;
             PageFinished += StadiumPage_PageFinished;
             EvalButton.BindingContext = this;
-            if (answersGiven >= answersNeeded)EvaluationTextColor = Color.Gray;
-                EvaluationTextColor = Color.LightGray;
+            EvaluationTextColor = answersGiven >= answersNeeded ? Color.Green : Color.LightGray;
         }
 
         private void StadiumPage_PageFinished(object sender, PageResult e)

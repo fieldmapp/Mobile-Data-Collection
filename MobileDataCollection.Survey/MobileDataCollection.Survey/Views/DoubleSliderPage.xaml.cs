@@ -75,8 +75,7 @@ namespace MobileDataCollection.Survey.Views
             HeaderText.BindingContext = this;
             Header = $"Frage {answersGiven + 1}/{answersNeeded} Id {question.InternId}";
             EvalButton.BindingContext = this;
-            if (answersGiven >= answersNeeded) EvaluationTextColor = Color.Gray;
-            EvaluationTextColor = Color.LightGray;
+            EvaluationTextColor = answersGiven >= answersNeeded ? Color.Green : Color.LightGray;
         }
         
         //Resets the Sliders

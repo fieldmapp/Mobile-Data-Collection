@@ -88,8 +88,7 @@ namespace MobileDataCollection.Survey.Views
             Header = $"Frage {answersGiven + 1}/{answersNeeded} Id {question.InternId}";
             QuestionItem = question;
             EvalButton.BindingContext = this;
-            if (answersGiven >= answersNeeded) EvaluationTextColor = Color.Gray;
-            EvaluationTextColor = Color.LightGray;
+            EvaluationTextColor = answersGiven >= answersNeeded ? Color.Green : Color.LightGray;
         }
 
         private void Picture_ShortPress(object sender, EventArgs e)
