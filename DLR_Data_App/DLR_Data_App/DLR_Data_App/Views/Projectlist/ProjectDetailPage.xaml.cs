@@ -5,6 +5,7 @@ using Xamarin.Forms.Xaml;
 
 using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Services;
+using DLR_Data_App.Models;
 
 namespace DLR_Data_App.Views.ProjectList
 {
@@ -48,7 +49,7 @@ namespace DLR_Data_App.Views.ProjectList
 
             // Navigate to current project
             if ((Application.Current as App).CurrentPage is MainPage mainPage)
-                await mainPage.NavigateFromMenu(0);
+                await mainPage.NavigateFromMenu(MenuItemType.CurrentProject);
         }
 
         /**

@@ -790,6 +790,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Survey ähnelt.
+        /// </summary>
+        internal static string survey {
+            get {
+                return ResourceManager.GetString("survey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Title ähnelt.
         /// </summary>
         internal static string title {

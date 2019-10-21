@@ -4,6 +4,7 @@ using DLR_Data_App.Views.CurrentProject;
 using DLR_Data_App.Views.Login;
 using DLR_Data_App.Views.ProjectList;
 using DLR_Data_App.Views.Settings;
+using DLR_Data_App.Views.Survey;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -17,7 +18,7 @@ namespace DLR_Data_App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage
     {
-        private readonly Dictionary<int, NavigationPage> _menuPages = new Dictionary<int, NavigationPage>();
+        private readonly Dictionary<MenuItemType, NavigationPage> _menuPages;
 
         /**
          * Constructor for MainPage
@@ -25,41 +26,30 @@ namespace DLR_Data_App.Views
         public MainPage()
         {
             InitializeComponent();
+            _menuPages = new Dictionary<MenuItemType, NavigationPage>
+            {
+                { MenuItemType.Projects, (NavigationPage)Detail },
+                { MenuItemType.CurrentProject, new NavigationPage(new ProjectPage()) },
+                { MenuItemType.Projects, new NavigationPage(new ProjectListPage()) },
+                { MenuItemType.Sensortest, new NavigationPage(new SensorTestPage()) },
+                { MenuItemType.Settings, new NavigationPage(new SettingsPage()) },
+                { MenuItemType.About, new NavigationPage(new AboutPage()) },
+                { MenuItemType.Survey, new NavigationPage(new SurveyListPage()) }
+            };
 
             MasterBehavior = MasterBehavior.Popover;
-
-            _menuPages.Add((int)MenuItemType.Projects, (NavigationPage)Detail);
         }
 
         /**
          * Navigate to selected page
          * @param id int Selected page
          */
-        public async Task NavigateFromMenu(int id)
+        public async Task NavigateFromMenu(MenuItemType id)
         {
-            if (!_menuPages.ContainsKey(id))
+            if (id == MenuItemType.Logout)
             {
-                switch (id)
-                {
-                    case (int)MenuItemType.CurrentProject:
-                        _menuPages.Add(id, new NavigationPage(new ProjectPage()));
-                        break;
-                    case (int)MenuItemType.Projects:
-                        _menuPages.Add(id, new NavigationPage(new ProjectListPage()));
-                        break;
-                    case (int)MenuItemType.Sensortest:
-                        _menuPages.Add(id, new NavigationPage(new SensorTestPage()));
-                        break;
-                    case (int)MenuItemType.Settings:
-                        _menuPages.Add(id, new NavigationPage(new SettingsPage()));
-                        break;
-                    case (int)MenuItemType.About:
-                        _menuPages.Add(id, new NavigationPage(new AboutPage()));
-                        break;
-                    case (int)MenuItemType.Logout:
-                        await this.PushPage(new LoginPage());
-                        return;
-                }
+                Application.Current.MainPage = new NavigationPage(new LoginPage());
+                return;
             }
 
             var newPage = _menuPages[id];

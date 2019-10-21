@@ -15,14 +15,15 @@ namespace DLR_Data_App.Views
             InitializeComponent();
 
             var menuItems = new List<HomeMenuItem>
-      {
-        new HomeMenuItem {Id = MenuItemType.CurrentProject, Title=AppResources.currentproject },
-        new HomeMenuItem {Id = MenuItemType.Projects, Title=AppResources.projects },
-        new HomeMenuItem {Id = MenuItemType.Sensortest, Title=AppResources.sensortest },
-        new HomeMenuItem {Id = MenuItemType.Settings, Title=AppResources.settings },
-        new HomeMenuItem {Id = MenuItemType.About, Title=AppResources.about },
-        new HomeMenuItem {Id = MenuItemType.Logout, Title=AppResources.logout }
-      };
+            {
+                new HomeMenuItem {Id = MenuItemType.CurrentProject, Title=AppResources.currentproject },
+                new HomeMenuItem {Id = MenuItemType.Projects, Title=AppResources.projects },
+                new HomeMenuItem {Id = MenuItemType.Sensortest, Title=AppResources.sensortest },
+                new HomeMenuItem {Id = MenuItemType.Settings, Title=AppResources.settings },
+                new HomeMenuItem {Id = MenuItemType.About, Title=AppResources.about },
+                new HomeMenuItem {Id = MenuItemType.Logout, Title=AppResources.logout },
+                new HomeMenuItem {Id = MenuItemType.Survey, Title = AppResources.survey }
+            };
 
             ListViewMenu.ItemsSource = menuItems;
 
@@ -31,7 +32,7 @@ namespace DLR_Data_App.Views
                 if (e.SelectedItem == null)
                     return;
 
-                var id = (int)((HomeMenuItem)e.SelectedItem).Id;
+                var id = ((HomeMenuItem)e.SelectedItem).Id;
                 await ((Application.Current as App).Navigation.RootPage as MainPage).NavigateFromMenu(id);
             };
         }

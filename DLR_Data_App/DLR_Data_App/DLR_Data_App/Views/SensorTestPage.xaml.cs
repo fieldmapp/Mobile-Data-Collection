@@ -1,4 +1,5 @@
 ﻿using System;
+using DLR_Data_App.Models;
 using DLR_Data_App.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -47,7 +48,7 @@ namespace DLR_Data_App.Views
             {
                 base.OnBackButtonPressed();
                 if ((Application.Current as App).CurrentPage is MainPage mainPage)
-                    await mainPage.NavigateFromMenu(1);
+                    await mainPage.NavigateFromMenu(MenuItemType.Projects);
             });
 
             return true;

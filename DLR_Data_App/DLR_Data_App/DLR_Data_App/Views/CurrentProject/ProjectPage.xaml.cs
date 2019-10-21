@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using DLR_Data_App.Localizations;
+using DLR_Data_App.Models;
 using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Services;
 using DLR_Data_App.Services.Sensors;
@@ -245,7 +246,7 @@ namespace DLR_Data_App.Views.CurrentProject
             {
                 base.OnBackButtonPressed();
                 if ((Application.Current as App).CurrentPage is MainPage mainPage)
-                    await mainPage.NavigateFromMenu(1);
+                    await mainPage.NavigateFromMenu(MenuItemType.Projects);
             });
 
             return true;

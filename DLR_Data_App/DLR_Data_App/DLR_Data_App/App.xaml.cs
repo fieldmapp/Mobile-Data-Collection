@@ -15,7 +15,7 @@ namespace DLR_Data_App
         public static string DatabaseLocation = string.Empty;
         public static string FolderLocation = string.Empty;
         public static User CurrentUser;
-        public NavigationPage Navigation;
+        public NavigationPage Navigation => MainPage as NavigationPage;
         public IStorageProvider StorageProvider;
         public Page CurrentPage => Navigation.CurrentPage;
         
@@ -34,7 +34,7 @@ namespace DLR_Data_App
             FolderLocation = folderPath;
             DatabaseLocation = databaseLocation;
             
-            MainPage = Navigation = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage(new LoginPage());
         }
         
         protected override void OnStart()

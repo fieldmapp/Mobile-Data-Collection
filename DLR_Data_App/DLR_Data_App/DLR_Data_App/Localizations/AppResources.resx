@@ -431,6 +431,9 @@ Consent of the data subject means any freely given, specific, informed and unamb
   <data name="successful" xml:space="preserve">
     <value>Successful</value>
   </data>
+  <data name="survey" xml:space="preserve">
+    <value>Survey</value>
+  </data>
   <data name="title" xml:space="preserve">
     <value>Title</value>
   </data>
