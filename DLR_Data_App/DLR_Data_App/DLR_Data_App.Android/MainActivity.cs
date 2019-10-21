@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using DLR_Data_App;
+using DLR_Data_App.Services;
 
 namespace com.DLR.DLR_Data_App.Droid
 {
@@ -24,29 +25,20 @@ namespace com.DLR.DLR_Data_App.Droid
             var folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             var fullPath = Path.Combine(folderPath, dbName);
 
-            LoadApplication(new App(folderPath, fullPath, new FileManager()));
+            var storageProvider = new JsonStorageProvider(new AndroidStorageAccessProvider(this));
+            LoadApplication(new App(folderPath, fullPath, new FileManager(), storageProvider));
 
-            if (PackageManager.CheckPermission(Manifest.Permission.ReadExternalStorage, PackageName) != Permission.Granted
-                && PackageManager.CheckPermission(Manifest.Permission.WriteExternalStorage, PackageName) != Permission.Granted)
-            {
-              var permissions = new string[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage };
-              RequestPermissions(permissions, 1);
-            }
+            CheckAppPermissions();
         }
 
         public void CheckAppPermissions()
         {
-          if ((int)Build.VERSION.SdkInt < 23)
-          {
-            return;
-          }
-
-          if (PackageManager.CheckPermission(Manifest.Permission.ReadExternalStorage, PackageName) != Permission.Granted
-              && PackageManager.CheckPermission(Manifest.Permission.WriteExternalStorage, PackageName) != Permission.Granted)
-          {
-            var permissions = new string[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage };
-            RequestPermissions(permissions, 1);
-          }
+            if (PackageManager.CheckPermission(Manifest.Permission.ReadExternalStorage, PackageName) != Permission.Granted
+                && PackageManager.CheckPermission(Manifest.Permission.WriteExternalStorage, PackageName) != Permission.Granted)
+            {
+                var permissions = new string[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage };
+                RequestPermissions(permissions, 1);
+            }
         }
   }
 }

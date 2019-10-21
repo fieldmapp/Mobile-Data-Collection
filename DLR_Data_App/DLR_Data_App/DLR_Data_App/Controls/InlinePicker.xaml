@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--Main contributors: Maximilian Enderling, Maya Koehnen-->
+<!--Main contributors: -->
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="DLR_Data_App.Controls.InlinePicker">
+    <ContentView.Content>
+        <ListView ItemAppearing="Scroll" ItemSelected="ListView_ItemSelected" RowHeight="40" x:Name="ListView" BackgroundColor="Transparent" SelectionMode="Single">
+            
+        </ListView>
+  </ContentView.Content>
+</ContentView>

@@ -16,6 +16,11 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Models\NewFolder\**" />
+    <EmbeddedResource Remove="Models\NewFolder\**" />
+    <None Remove="Models\NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="MultilingualResources\DLR_Data_App.de.xlf" />
   </ItemGroup>
   <ItemGroup>
@@ -51,8 +56,17 @@
     <Compile Update="Views\Settings\ProfilelistPage.xaml.cs">
       <DependentUpon>ProfileListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Survey\SurveyListPage.xaml.cs">
+      <DependentUpon>SurveyListPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Controls\InlinePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Localizations\AppResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
@@ -93,5 +107,38 @@
     <EmbeddedResource Update="Views\Settings\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Survey\DoubleSliderPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Survey\EvaluationDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Survey\EvaluationMainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Survey\EvaluationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Survey\ImageCheckerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Survey\ImageDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Survey\IntrospectionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Survey\LoadingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Survey\SurveyListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Survey\StadiumPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Survey\" />
   </ItemGroup>
 </Project>
