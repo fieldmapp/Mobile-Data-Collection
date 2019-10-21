@@ -77,5 +77,18 @@ namespace DLR_Data_App.Services
             using (var jsonWriter = new JsonTextWriter(streamWriter))
                 JsonSerializer.Serialize(jsonWriter, answers);
         }
+
+        public void ExportDatabase(string content)
+        {
+            var filename = "Fieldmapp_Database_" + DateTime.UtcNow + ".json";
+            filename = filename.Replace(' ', '_');
+            filename = filename.Replace(':', '_');
+
+            using (var fileStream = StorageAccessProvider.OpenFileWrite(filename))
+            using (var streamWriter = new StreamWriter(fileStream))
+            {
+                streamWriter.Write(content);
+            }
+        }
     }
 }

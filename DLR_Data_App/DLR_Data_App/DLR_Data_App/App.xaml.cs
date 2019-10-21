@@ -16,21 +16,19 @@ namespace DLR_Data_App
         public static string FolderLocation = string.Empty;
         public static User CurrentUser;
         public NavigationPage Navigation;
-
-        public static IFileManager FileManager;
+        public IStorageProvider StorageProvider;
         
         /*
          * Constructor with database support
          * @param folderPath Path to the location of stored files in the filesystem
          * @param databaseLocation Path to the local database
          */
-        public App(string folderPath, string databaseLocation, IFileManager fileManager, IStorageProvider storageProvider)
+        public App(string folderPath, string databaseLocation, IStorageProvider storageProvider)
         {
             InitializeComponent();
-            
-            FileManager = fileManager;
 
             DatabankCommunication.Initilize(storageProvider);
+            StorageProvider = storageProvider;
             
             FolderLocation = folderPath;
             DatabaseLocation = databaseLocation;

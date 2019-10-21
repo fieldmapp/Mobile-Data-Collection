@@ -12,5 +12,6 @@ namespace DLR_Data_App.Services
         Dictionary<string, List<IUserAnswer>> LoadAnswers();
         void SaveAnswers(Dictionary<string, List<IUserAnswer>> answers);
         void ExportAnswers(Dictionary<string, List<IUserAnswer>> answers);
+        void ExportDatabase(string content);
     }
 }
