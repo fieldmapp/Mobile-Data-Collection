@@ -9,104 +9,89 @@ using Xamarin.Forms.Xaml;
 
 namespace DLR_Data_App.Views.Login
 {
-  /**
-   * Creating a new profile, same design like login page
-   */
-  [XamlCompilation(XamlCompilationOptions.Compile)]
-  public partial class NewProfilePage
-  {
-    private User _user;
-
     /**
-     * Constructor
+     * Creating a new profile, same design like login page
      */
-    public NewProfilePage()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class NewProfilePage
     {
-      InitializeComponent();
+        private User _user;
 
-      // setting icon size
-      LoginIcon.HeightRequest = 120;
+        /**
+         * Constructor
+         */
+        public NewProfilePage()
+        {
+            InitializeComponent();
 
-      // directing user to next entry after inserting text to make it easier to insert informations
-      EntryUsername.Completed += (s, e) => EntryPassword.Focus();
-      EntryPassword.Completed += (s, e) => BtnAccept.Focus();
+            // setting icon size
+            LoginIcon.HeightRequest = 120;
+
+            // directing user to next entry after inserting text to make it easier to insert informations
+            EntryUsername.Completed += (s, e) => EntryPassword.Focus();
+            EntryPassword.Completed += (s, e) => BtnAccept.Focus();
+        }
+
+        /**
+         * Adding user
+         */
+        private async void Btn_accept_Clicked(object sender, EventArgs e)
+        {
+            var username = EntryUsername.Text;
+            var password = EntryPassword.Text;
+
+            // check if entry is empty
+            if (username == null
+              || password == null)
+            {
+                await DisplayAlert(AppResources.newaccount, AppResources.wrongentry, AppResources.okay);
+                return;
+            }
+
+            _user = new User { Username = username, Password = Helpers.Encrypt_password(password) };
+
+            foreach (var user in Database.ReadUser())
+            {
+                if (_user.Username != user.Username) continue;
+
+                await DisplayAlert(AppResources.newaccount, AppResources.useralreadyexists, AppResources.okay);
+                await Cancel();
+            }
+
+            var answer = await DisplayAlert(AppResources.privacypolicy, AppResources.privacytext1, AppResources.accept, AppResources.decline);
+
+            if (!answer)
+            {
+                // if user dont accept privacy policy cancel process and return to login page
+                await Cancel();
+            }
+
+            var status = Database.Insert(ref _user);
+            if (!status)
+            {
+                await DisplayAlert(AppResources.newaccount, AppResources.failed, AppResources.okay);
+                await Cancel();
+            }
+
+            App.CurrentUser = _user;
+
+            await this.PushPage(new MainPage());
+        }
+
+        /**
+         * Cancel user creation
+         */
+        private async void Btn_cancel_Clicked(object sender, EventArgs e)
+        {
+            await Cancel();
+        }
+
+        /**
+         * Cancel methode and return to login page
+         */
+        private async Task Cancel()
+        {
+            await this.PushPage(new LoginPage());
+        }
     }
-    
-    /**
-     * Adding user
-     */
-    private async void Btn_accept_Clicked(object sender, EventArgs e)
-    {
-      var username = EntryUsername.Text;
-      var password = EntryPassword.Text;
-
-      // check if entry is empty
-      if (username == null
-        || password == null)
-      {
-        await DisplayAlert(AppResources.newaccount, AppResources.wrongentry, AppResources.okay);
-        return;
-      }
-
-      _user = new User {Username = username, Password = Helpers.Encrypt_password(password)};
-
-      foreach (var user in Database.ReadUser())
-      {
-        if (_user.Username != user.Username) continue;
-
-        await DisplayAlert(AppResources.newaccount, AppResources.useralreadyexists, AppResources.okay);
-        await Cancel();
-      }
-
-      var answer = await DisplayAlert(AppResources.privacypolicy, AppResources.privacytext1, AppResources.accept, AppResources.decline);
-
-      if (!answer)
-      {
-        // if user dont accept privacy policy cancel process and return to login page
-        await Cancel();
-      }
-      
-      var status = Database.Insert(ref _user);
-      if (!status)
-      {
-        await DisplayAlert(AppResources.newaccount, AppResources.failed, AppResources.okay);
-        await Cancel();
-      }
-
-      App.CurrentUser = _user;
-
-      switch (Device.RuntimePlatform)
-      {
-        case Device.Android:
-          Application.Current.MainPage = new MainPage();
-          break;
-        case Device.iOS:
-          await Navigation.PushModalAsync(new MainPage());
-          break;
-      }
-    }
-
-    /**
-     * Cancel user creation
-     */
-    private async void Btn_cancel_Clicked(object sender, EventArgs e)
-    {
-      await Cancel();
-    }
-
-    /**
-     * Cancel methode and return to login page
-     */
-    private async Task Cancel()
-    {
-      if (Device.RuntimePlatform == Device.Android)
-      {
-        Application.Current.MainPage = new LoginPage();
-      }
-      else if (Device.RuntimePlatform == Device.iOS)
-      {
-        await Navigation.PushModalAsync(new LoginPage());
-      }
-    }
-  }
 }

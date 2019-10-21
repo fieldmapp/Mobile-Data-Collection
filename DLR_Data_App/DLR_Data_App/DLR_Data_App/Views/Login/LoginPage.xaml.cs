@@ -10,70 +10,54 @@ using Xamarin.Forms.Xaml;
  */
 namespace DLR_Data_App.Views.Login
 {
-  [XamlCompilation(XamlCompilationOptions.Compile)]
-  public partial class LoginPage
-  {
-    private readonly LoginViewModel _viewModel = new LoginViewModel();
-
-    /**
-     * View for login page
-     */
-    public LoginPage()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class LoginPage
     {
-      InitializeComponent();
-      BindingContext = _viewModel;
+        private readonly LoginViewModel _viewModel = new LoginViewModel();
 
-      LoginIcon.HeightRequest = 120;
-
-      // after completing the input of username change focus to password and after that to login button
-      EntryUsername.Completed += (s, e) => EntryPassword.Focus();
-      EntryPassword.Completed += (s, e) => BtnSignin.Focus();
-    }
-
-    /**
-     * Get login data, check them and on success navigate to project list
-     */
-    private async void Btn_signin_Clicked(object sender, EventArgs e)
-    {
-      var checkUsername = EntryUsername.Text;
-      var checkPassword = Helpers.Encrypt_password(EntryPassword.Text);
-
-      if (_viewModel.Check_Information(checkUsername, checkPassword))
-      {
-        var answer = await DisplayAlert(AppResources.privacypolicy, AppResources.privacytext1, AppResources.accept, AppResources.decline);
-
-        if (!answer) return;
-
-        switch (Device.RuntimePlatform)
+        /**
+         * View for login page
+         */
+        public LoginPage()
         {
-          case Device.Android:
-            Application.Current.MainPage = new MainPage();
-            break;
-          case Device.iOS:
-            await Navigation.PushModalAsync(new MainPage());
-            break;
-        }
-      }
-      else
-      {
-        await DisplayAlert(AppResources.login, AppResources.nouserfound, AppResources.back);
-      }
-    }
+            InitializeComponent();
+            BindingContext = _viewModel;
 
-    /**
-     * Open form for creating a new user
-     */
-    private async void Btn_newaccount_Clicked(object sender, EventArgs e)
-    {
-      switch (Device.RuntimePlatform)
-      {
-        case Device.Android:
-          Application.Current.MainPage = new NewProfilePage();
-          break;
-        case Device.iOS:
-          await Navigation.PushModalAsync(new NewProfilePage());
-          break;
-      }
+            LoginIcon.HeightRequest = 120;
+
+            // after completing the input of username change focus to password and after that to login button
+            EntryUsername.Completed += (s, e) => EntryPassword.Focus();
+            EntryPassword.Completed += (s, e) => BtnSignin.Focus();
+        }
+
+        /**
+         * Get login data, check them and on success navigate to project list
+         */
+        private async void Btn_signin_Clicked(object sender, EventArgs e)
+        {
+            var checkUsername = EntryUsername.Text;
+            var checkPassword = Helpers.Encrypt_password(EntryPassword.Text);
+
+            if (_viewModel.Check_Information(checkUsername, checkPassword))
+            {
+                var answer = await DisplayAlert(AppResources.privacypolicy, AppResources.privacytext1, AppResources.accept, AppResources.decline);
+
+                if (!answer) return;
+
+                await this.PushPage(new MainPage());
+            }
+            else
+            {
+                await DisplayAlert(AppResources.login, AppResources.nouserfound, AppResources.back);
+            }
+        }
+
+        /**
+         * Open form for creating a new user
+         */
+        private async void Btn_newaccount_Clicked(object sender, EventArgs e)
+        {
+            await this.PushPage(new NewProfilePage());
+        }
     }
-  }
 }

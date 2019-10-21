@@ -4,6 +4,7 @@ using DLR_Data_App.Views.Login;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using DLR_Data_App.Services;
 
 namespace DLR_Data_App.Views.Settings
 {
@@ -55,14 +56,7 @@ namespace DLR_Data_App.Views.Settings
                         {
                             // Successful
                             await DisplayAlert(AppResources.removedatabase, AppResources.successful, AppResources.okay);
-                            if (Device.RuntimePlatform == Device.Android)
-                            {
-                                Application.Current.MainPage = new LoginPage();
-                            }
-                            else if (Device.RuntimePlatform == Device.iOS)
-                            {
-                                await Navigation.PushModalAsync(new LoginPage());
-                            }
+                            await this.PushPage(new LoginPage());
                         }
                         else
                         {
