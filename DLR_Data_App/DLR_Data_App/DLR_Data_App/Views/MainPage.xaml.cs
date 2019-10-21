@@ -1,4 +1,5 @@
 ﻿using DLR_Data_App.Models;
+using DLR_Data_App.Services;
 using DLR_Data_App.Views.CurrentProject;
 using DLR_Data_App.Views.Login;
 using DLR_Data_App.Views.ProjectList;
@@ -10,68 +11,68 @@ using Xamarin.Forms.Xaml;
 
 namespace DLR_Data_App.Views
 {
-  /**
-   * Main page which handles the menu and sets up the master page
-   */
-  [XamlCompilation(XamlCompilationOptions.Compile)]
-  public partial class MainPage
-  {
-    private readonly Dictionary<int, NavigationPage> _menuPages = new Dictionary<int, NavigationPage>();
-
     /**
-     * Constructor for MainPage
+     * Main page which handles the menu and sets up the master page
      */
-    public MainPage()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class MainPage
     {
-      InitializeComponent();
+        private readonly Dictionary<int, NavigationPage> _menuPages = new Dictionary<int, NavigationPage>();
 
-      MasterBehavior = MasterBehavior.Popover;
-
-      _menuPages.Add((int)MenuItemType.Projects, (NavigationPage)Detail);
-    }
-
-    /**
-     * Navigate to selected page
-     * @param id int Selected page
-     */
-    public async Task NavigateFromMenu(int id)
-    {
-      if (!_menuPages.ContainsKey(id))
-      {
-        switch (id)
+        /**
+         * Constructor for MainPage
+         */
+        public MainPage()
         {
-          case (int)MenuItemType.CurrentProject:
-            _menuPages.Add(id, new NavigationPage(new ProjectPage()));
-            break;
-          case (int)MenuItemType.Projects:
-            _menuPages.Add(id, new NavigationPage(new ProjectListPage()));
-            break;
-          case (int)MenuItemType.Sensortest:
-            _menuPages.Add(id, new NavigationPage(new SensorTestPage()));
-            break;
-          case (int)MenuItemType.Settings:
-            _menuPages.Add(id, new NavigationPage(new SettingsPage()));
-            break;
-          case (int)MenuItemType.About:
-            _menuPages.Add(id, new NavigationPage(new AboutPage()));
-            break;
-          case (int)MenuItemType.Logout:
-            Application.Current.MainPage = new LoginPage();
-            return;
+            InitializeComponent();
+
+            MasterBehavior = MasterBehavior.Popover;
+
+            _menuPages.Add((int)MenuItemType.Projects, (NavigationPage)Detail);
         }
-      }
 
-      var newPage = _menuPages[id];
+        /**
+         * Navigate to selected page
+         * @param id int Selected page
+         */
+        public async Task NavigateFromMenu(int id)
+        {
+            if (!_menuPages.ContainsKey(id))
+            {
+                switch (id)
+                {
+                    case (int)MenuItemType.CurrentProject:
+                        _menuPages.Add(id, new NavigationPage(new ProjectPage()));
+                        break;
+                    case (int)MenuItemType.Projects:
+                        _menuPages.Add(id, new NavigationPage(new ProjectListPage()));
+                        break;
+                    case (int)MenuItemType.Sensortest:
+                        _menuPages.Add(id, new NavigationPage(new SensorTestPage()));
+                        break;
+                    case (int)MenuItemType.Settings:
+                        _menuPages.Add(id, new NavigationPage(new SettingsPage()));
+                        break;
+                    case (int)MenuItemType.About:
+                        _menuPages.Add(id, new NavigationPage(new AboutPage()));
+                        break;
+                    case (int)MenuItemType.Logout:
+                        await this.PushPage(new LoginPage());
+                        return;
+                }
+            }
 
-      if (newPage != null && Detail != newPage)
-      {
-        Detail = newPage;
-        
-        if (Device.RuntimePlatform == Device.Android)
-          await Task.Delay(100);
+            var newPage = _menuPages[id];
 
-        IsPresented = false;
-      }
+            if (newPage != null && Detail != newPage)
+            {
+                Detail = newPage;
+
+                if (Device.RuntimePlatform == Device.Android)
+                    await Task.Delay(100);
+
+                IsPresented = false;
+            }
+        }
     }
-  }
 }

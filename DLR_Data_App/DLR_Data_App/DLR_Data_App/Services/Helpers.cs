@@ -217,7 +217,7 @@ namespace DLR_Data_App.Services
         {
             if (Device.RuntimePlatform == Device.Android)
             {
-                Application.Current.MainPage = new NavigationPage(page);
+                await (Application.Current as App).Navigation.PushAsync(new NavigationPage(page));
             }
             else if (Device.RuntimePlatform == Device.iOS)
             {

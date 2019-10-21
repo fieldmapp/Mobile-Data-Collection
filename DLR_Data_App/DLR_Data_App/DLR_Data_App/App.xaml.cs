@@ -17,6 +17,7 @@ namespace DLR_Data_App
         public static User CurrentUser;
         public NavigationPage Navigation;
         public IStorageProvider StorageProvider;
+        public Page CurrentPage => Navigation.CurrentPage;
         
         /*
          * Constructor with database support

@@ -7,16 +7,14 @@ using Xamarin.Forms.Xaml;
 
 namespace DLR_Data_App.Views
 {
-  [XamlCompilation(XamlCompilationOptions.Compile)]
-  public partial class MenuPage
-  {
-    private static MainPage RootPage => Application.Current.MainPage as MainPage;
-
-    public MenuPage()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class MenuPage
     {
-      InitializeComponent();
+        public MenuPage()
+        {
+            InitializeComponent();
 
-      var menuItems = new List<HomeMenuItem>
+            var menuItems = new List<HomeMenuItem>
       {
         new HomeMenuItem {Id = MenuItemType.CurrentProject, Title=AppResources.currentproject },
         new HomeMenuItem {Id = MenuItemType.Projects, Title=AppResources.projects },
@@ -26,16 +24,16 @@ namespace DLR_Data_App.Views
         new HomeMenuItem {Id = MenuItemType.Logout, Title=AppResources.logout }
       };
 
-      ListViewMenu.ItemsSource = menuItems;
+            ListViewMenu.ItemsSource = menuItems;
 
-      ListViewMenu.ItemSelected += async (sender, e) =>
-      {
-        if (e.SelectedItem == null)
-          return;
+            ListViewMenu.ItemSelected += async (sender, e) =>
+            {
+                if (e.SelectedItem == null)
+                    return;
 
-        var id = (int)((HomeMenuItem)e.SelectedItem).Id;
-        await RootPage.NavigateFromMenu(id);
-      };
+                var id = (int)((HomeMenuItem)e.SelectedItem).Id;
+                await ((Application.Current as App).Navigation.RootPage as MainPage).NavigateFromMenu(id);
+            };
+        }
     }
-  }
 }
