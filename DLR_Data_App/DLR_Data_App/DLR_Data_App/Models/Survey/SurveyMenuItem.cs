@@ -127,15 +127,15 @@ namespace DLR_Data_App.Models.Survey
                 ApplyAnswer(answer);
 
             var nspace = typeof(App).Namespace;
-            SurveyPageType = Type.GetType($"{nspace}.Views.{id.ToString()}Page");
+            SurveyPageType = Type.GetType($"{nspace}.Views.Survey.{id.ToString()}Page");
             if (SurveyPageType == null || SurveyPageType.IsAssignableFrom(typeof(ISurveyPage)))
-                throw new ArgumentException($"You need to provide an ISurveyPage matching the id given (for given id it needs to be called {id.ToString()}Page and must be located in {nspace}.Views");
-            QuestionType = Type.GetType($"{nspace}.Models.Question{id.ToString()}Page");
+                throw new ArgumentException($"You need to provide an ISurveyPage matching the id given (for given id it needs to be called {id.ToString()}Page and must be located in {nspace}.Views.Survey");
+            QuestionType = Type.GetType($"{nspace}.Models.Survey.Question{id.ToString()}Page");
             if (QuestionType == null || QuestionType.IsAssignableFrom(typeof(IQuestionContent)))
-                throw new ArgumentException($"You need to provide a IQuestionContent matching the id given (for given id it needs to be called Question{id.ToString()}Page and must be located in {nspace}.Models");
-            AnswerType = Type.GetType($"{nspace}.Models.Question{id.ToString()}Page");
+                throw new ArgumentException($"You need to provide a IQuestionContent matching the id given (for given id it needs to be called Question{id.ToString()}Page and must be located in {nspace}.Models.Survey");
+            AnswerType = Type.GetType($"{nspace}.Models.Survey.Question{id.ToString()}Page");
             if (AnswerType == null || AnswerType.IsAssignableFrom(typeof(IUserAnswer)))
-                throw new ArgumentException($"You need to provide a SurveyPage matching the id given (for given id it needs to be called Answer{id.ToString()}Page and must be located in {nspace}.Models");
+                throw new ArgumentException($"You need to provide a SurveyPage matching the id given (for given id it needs to be called Answer{id.ToString()}Page and must be located in {nspace}.Models.Survey");
             if (!SurveyPageType.GetConstructors().Any(ci =>
             {
                 var parms = ci.GetParameters();
@@ -147,7 +147,7 @@ namespace DLR_Data_App.Models.Survey
                     return false;
                 return true;
             }))
-                throw new ArgumentException($"The class {nspace}.Views.{id.ToString()}Page needs to have a constructor with parameters: ({nspace}.Models.Question{id.ToString()}Page,int,int)");
+                throw new ArgumentException($"The class {nspace}.Views.Survey.{id.ToString()}Page needs to have a constructor with parameters: ({nspace}.Models.Survey.Question{id.ToString()}Page,int,int)");
         }
 
         private void SurveyMenuItem_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

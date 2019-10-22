@@ -28,7 +28,6 @@ namespace DLR_Data_App.Views
             InitializeComponent();
             _menuPages = new Dictionary<MenuItemType, NavigationPage>
             {
-                { MenuItemType.Projects, (NavigationPage)Detail },
                 { MenuItemType.CurrentProject, new NavigationPage(new ProjectPage()) },
                 { MenuItemType.Projects, new NavigationPage(new ProjectListPage()) },
                 { MenuItemType.Sensortest, new NavigationPage(new SensorTestPage()) },

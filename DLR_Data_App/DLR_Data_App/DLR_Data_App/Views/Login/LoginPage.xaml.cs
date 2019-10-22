@@ -44,7 +44,7 @@ namespace DLR_Data_App.Views.Login
 
                 if (!answer) return;
 
-                await this.PushPage(new MainPage());
+                (Application.Current as App).MainPage = new NavigationPage(new MainPage());
             }
             else
             {
