@@ -47,7 +47,7 @@ namespace DLR_Data_App.Views
         {
             if (id == MenuItemType.Logout)
             {
-                Application.Current.MainPage = new NavigationPage(new LoginPage());
+                Application.Current.MainPage = new LoginPage();
                 return;
             }
 

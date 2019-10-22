@@ -55,7 +55,8 @@ namespace DLR_Data_App.Views.Login
                 if (_user.Username != user.Username) continue;
 
                 await DisplayAlert(AppResources.newaccount, AppResources.useralreadyexists, AppResources.okay);
-                await Cancel();
+                Cancel();
+                return;
             }
 
             var answer = await DisplayAlert(AppResources.privacypolicy, AppResources.privacytext1, AppResources.accept, AppResources.decline);
@@ -63,35 +64,37 @@ namespace DLR_Data_App.Views.Login
             if (!answer)
             {
                 // if user dont accept privacy policy cancel process and return to login page
-                await Cancel();
+                Cancel();
+                return;
             }
 
             var status = Database.Insert(ref _user);
             if (!status)
             {
                 await DisplayAlert(AppResources.newaccount, AppResources.failed, AppResources.okay);
-                await Cancel();
+                Cancel();
+                return;
             }
 
             App.CurrentUser = _user;
 
-            await this.PushPage(new MainPage());
+            Application.Current.MainPage = new MainPage();
         }
 
         /**
          * Cancel user creation
          */
-        private async void Btn_cancel_Clicked(object sender, EventArgs e)
+        private void Btn_cancel_Clicked(object sender, EventArgs e)
         {
-            await Cancel();
+            Cancel();
         }
 
         /**
          * Cancel methode and return to login page
          */
-        private async Task Cancel()
+        private void Cancel()
         {
-            await this.PushPage(new LoginPage());
+            Application.Current.MainPage = new LoginPage();
         }
     }
 }

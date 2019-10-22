@@ -33,7 +33,7 @@ namespace DLR_Data_App.Views
                     return;
 
                 var id = ((HomeMenuItem)e.SelectedItem).Id;
-                await ((Application.Current as App).Navigation.RootPage as MainPage).NavigateFromMenu(id);
+                await (Application.Current.MainPage as MainPage).NavigateFromMenu(id);
             };
         }
     }

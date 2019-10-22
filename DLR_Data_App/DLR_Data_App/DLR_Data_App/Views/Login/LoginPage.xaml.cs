@@ -44,7 +44,7 @@ namespace DLR_Data_App.Views.Login
 
                 if (!answer) return;
 
-                (Application.Current as App).MainPage = new NavigationPage(new MainPage());
+                Application.Current.MainPage = new MainPage();
             }
             else
             {
@@ -55,9 +55,9 @@ namespace DLR_Data_App.Views.Login
         /**
          * Open form for creating a new user
          */
-        private async void Btn_newaccount_Clicked(object sender, EventArgs e)
+        private void Btn_newaccount_Clicked(object sender, EventArgs e)
         {
-            await this.PushPage(new NewProfilePage());
+            Application.Current.MainPage = new NewProfilePage();
         }
     }
 }

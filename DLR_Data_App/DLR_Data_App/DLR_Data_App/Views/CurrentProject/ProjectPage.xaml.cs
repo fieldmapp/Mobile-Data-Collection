@@ -245,7 +245,7 @@ namespace DLR_Data_App.Views.CurrentProject
             Device.BeginInvokeOnMainThread(async () =>
             {
                 base.OnBackButtonPressed();
-                if ((Application.Current as App).CurrentPage is MainPage mainPage)
+                if (Application.Current.MainPage is MainPage mainPage)
                     await mainPage.NavigateFromMenu(MenuItemType.Projects);
             });
 

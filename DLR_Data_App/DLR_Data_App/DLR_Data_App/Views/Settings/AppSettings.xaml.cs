@@ -56,7 +56,7 @@ namespace DLR_Data_App.Views.Settings
                         {
                             // Successful
                             await DisplayAlert(AppResources.removedatabase, AppResources.successful, AppResources.okay);
-                            await this.PushPage(new LoginPage());
+                            App.Current.MainPage = new LoginPage();
                         }
                         else
                         {
