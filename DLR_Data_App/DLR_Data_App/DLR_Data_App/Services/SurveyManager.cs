@@ -88,6 +88,7 @@ namespace DLR_Data_App.Services
             }
 
             DatabankCommunication.AddAnswer(CurrentSurvey.Id, surveyPage.AnswerItem);
+            DatabankCommunication.SaveAnswers();
             CurrentSurvey.AnswersGiven++;
             
             CurrentSurvey.ApplyAnswer(surveyPage.AnswerItem);
@@ -122,6 +123,7 @@ namespace DLR_Data_App.Services
                 return;
             }
             DatabankCommunication.AddAnswer("Introspection", introspectionPage.AnswerItem);
+            DatabankCommunication.SaveAnswers();
             ShowNextIntrospectionPage();
         }
 
