@@ -13,19 +13,21 @@ namespace DLR_Data_App.Services
     /// <summary>
     /// This class is responsible for keeping question data, both
     /// QuestionContent and UserAnswers. Chooses next Question (+type).
-    /// Dont keep when switching users.
+    /// Re-initialize after switching users
     /// </summary>
-    class SurveyManager
+    static class SurveyManager
     {
-        INavigation Navigation;
-        SurveyMenuItem CurrentSurvey;
+        static INavigation Navigation;
+        static SurveyMenuItem CurrentSurvey;
 
-        public SurveyManager(INavigation navigation)
+        public static void Initialize(INavigation navigation, string userId)
         {
             Navigation = navigation;
+
+            DatabankCommunication.Initilize(userId);
         }
 
-        public IQuestionContent GetNextQuestion(SurveyMenuItem surveyType)
+        public static IQuestionContent GetNextQuestion(SurveyMenuItem surveyType)
         {
             var neededType = surveyType.QuestionType;
             var value = DatabankCommunication.GetQuestion(surveyType.Id, CurrentSurvey.CurrentDifficulty, false);
@@ -34,7 +36,7 @@ namespace DLR_Data_App.Services
             return value;
         }
 
-        public void StartSurvey(SurveyMenuItem selectedSurvey)
+        public static void StartSurvey(SurveyMenuItem selectedSurvey)
         {
             lock(selectedSurvey)
             {
@@ -51,7 +53,7 @@ namespace DLR_Data_App.Services
             ShowNewSurveyPage();
         }
 
-        private void ShowNewSurveyPage()
+        private static void ShowNewSurveyPage()
         {
             if (CurrentSurvey == null)
                 return;
@@ -66,7 +68,7 @@ namespace DLR_Data_App.Services
             Navigation.PushAsync(newPage as ContentPage);
         }
 
-        private void NewPage_PageFinished(object sender, PageResult e)
+        private static void NewPage_PageFinished(object sender, PageResult e)
         {
             if (e == PageResult.Evaluation && CurrentSurvey.AnswersGiven < CurrentSurvey.AnswersNeeded)
                 return;
@@ -92,7 +94,7 @@ namespace DLR_Data_App.Services
             ShowNewSurveyPage();
         }
 
-        private void ShowNextIntrospectionPage()
+        private static void ShowNextIntrospectionPage()
         {
             if (CurrentSurvey == null)
                 return;
@@ -108,7 +110,7 @@ namespace DLR_Data_App.Services
             Navigation.PushAsync(introspectionPage);
         }
 
-        private void IntrospectionPage_PageFinished(object sender, PageResult e)
+        private static void IntrospectionPage_PageFinished(object sender, PageResult e)
         {
             var introspectionPage = sender as IntrospectionPage;
             introspectionPage.PageFinished -= IntrospectionPage_PageFinished;
@@ -123,7 +125,7 @@ namespace DLR_Data_App.Services
             ShowNextIntrospectionPage();
         }
 
-        private void ShowEvaluationPage()
+        private static void ShowEvaluationPage()
         {
             var evalItem = GenerateEvaluationItem(CurrentSurvey);
             var evaluationPage = new EvaluationPage(evalItem);
@@ -134,14 +136,14 @@ namespace DLR_Data_App.Services
             DatabankCommunication.CreateCSV();
         }
 
-        private void EvaluationPage_PageFinished(object sender, EventArgs e)
+        private static void EvaluationPage_PageFinished(object sender, EventArgs e)
         {
             (sender as EvaluationPage).PageFinished -= EvaluationPage_PageFinished;
             Navigation.PopAsync();
             Navigation.PopAsync();
         }
 
-        public EvaluationItem GenerateEvaluationItem(SurveyMenuItem survey)
+        public static EvaluationItem GenerateEvaluationItem(SurveyMenuItem survey)
         {
             var surveyId = survey.Id;
             var answeredQuestions = DatabankCommunication.GetAllQuestions(surveyId)

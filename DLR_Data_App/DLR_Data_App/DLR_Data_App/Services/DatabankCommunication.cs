@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Drawing;
 using DLR_Data_App.Models.Survey;
+using Xamarin.Forms;
 
 namespace DLR_Data_App.Services
 {
@@ -34,17 +35,22 @@ namespace DLR_Data_App.Services
         /// <summary>
         /// Used to load questions
         /// </summary>
-        private static IStorageProvider StorageProvider;
+        private static IStorageProvider StorageProvider => (Application.Current as App).StorageProvider;
+
+        /// <summary>
+        /// The name of the user currently logged into the app
+        /// </summary>
+        private static string UserId;
 
         /// <summary>
         /// Initializes the DatabankCommunication
         /// </summary>
-        public static void Initilize(IStorageProvider provider)
+        public static void Initilize(string userId)
         {
-            StorageProvider = provider;
             Questions = StorageProvider.LoadQuestions();
-            Answers = StorageProvider.LoadAnswers();
+            Answers = StorageProvider.LoadAnswers(userId);
             SurveyMenuItems = StorageProvider.LoadSurveyMenuItems();
+            UserId = userId;
         }
 
         /// <summary>
@@ -53,7 +59,7 @@ namespace DLR_Data_App.Services
         /// </summary>
         public static void SaveAnswers()
         {
-            StorageProvider.SaveAnswers(Answers);
+            StorageProvider.SaveAnswers(Answers, UserId);
         }
 
         /// <summary>
@@ -220,6 +226,6 @@ namespace DLR_Data_App.Services
             Answers[surveyId].Add(answer);
         }
 
-        public static void ExportAnswers() => StorageProvider.ExportAnswers(Answers);
+        public static void ExportAnswers() => StorageProvider.ExportAnswers(Answers, UserId);
     }
 }

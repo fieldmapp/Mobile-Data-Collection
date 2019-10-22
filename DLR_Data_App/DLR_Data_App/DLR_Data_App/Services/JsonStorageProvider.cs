@@ -24,10 +24,10 @@ namespace DLR_Data_App.Services
             };
         }
 
-        public Dictionary<string, List<IUserAnswer>> LoadAnswers()
+        public Dictionary<string, List<IUserAnswer>> LoadAnswers(string userId)
         {
             var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            path = Path.Combine(path, "answers");
+            path = Path.Combine(path, "answers " + userId);
 
             using (var storageStream = StorageAccessProvider.OpenFileRead(path))
             {
@@ -57,10 +57,10 @@ namespace DLR_Data_App.Services
             return DeserializeFromAsset<List<SurveyMenuItem>>("surveys");
         }
 
-        public void SaveAnswers(Dictionary<string, List<IUserAnswer>> answers)
+        public void SaveAnswers(Dictionary<string, List<IUserAnswer>> answers, string userId)
         {
             var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            path = Path.Combine(path, "answers");
+            path = Path.Combine(path, "answers_" + userId);
 
             using (var storageStream = StorageAccessProvider.OpenFileWrite(path))
             using (var streamWriter = new StreamWriter(storageStream))
@@ -68,9 +68,9 @@ namespace DLR_Data_App.Services
                 JsonSerializer.Serialize(jsonWriter, answers);
         }
 
-        public void ExportAnswers(Dictionary<string, List<IUserAnswer>> answers)
+        public void ExportAnswers(Dictionary<string, List<IUserAnswer>> answers, string userId)
         {
-            var path = "dlr_answers.txt";
+            var path = $"dlr_answers_{userId}.txt";
 
             using (var storageStream = StorageAccessProvider.OpenFileWriteExternal(path))
             using (var streamWriter = new StreamWriter(storageStream))

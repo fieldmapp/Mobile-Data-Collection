@@ -28,7 +28,6 @@ namespace DLR_Data_App
         {
             InitializeComponent();
 
-            DatabankCommunication.Initilize(storageProvider);
             StorageProvider = storageProvider;
             
             FolderLocation = folderPath;

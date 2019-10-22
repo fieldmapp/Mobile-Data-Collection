@@ -9,9 +9,9 @@ namespace DLR_Data_App.Services
     {
         Dictionary<string, List<IQuestionContent>> LoadQuestions();
         List<SurveyMenuItem> LoadSurveyMenuItems();
-        Dictionary<string, List<IUserAnswer>> LoadAnswers();
-        void SaveAnswers(Dictionary<string, List<IUserAnswer>> answers);
-        void ExportAnswers(Dictionary<string, List<IUserAnswer>> answers);
+        Dictionary<string, List<IUserAnswer>> LoadAnswers(string userId);
+        void SaveAnswers(Dictionary<string, List<IUserAnswer>> answers, string userId);
+        void ExportAnswers(Dictionary<string, List<IUserAnswer>> answers, string userId);
         void ExportDatabase(string content);
     }
 }

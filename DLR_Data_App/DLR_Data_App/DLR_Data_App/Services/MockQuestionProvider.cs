@@ -170,9 +170,9 @@ namespace DLR_Data_App.Services
             };
         }
 
-        public void SaveAnswers(Dictionary<string, List<IUserAnswer>> answers) { }
+        public void SaveAnswers(Dictionary<string, List<IUserAnswer>> answers, string username) { }
 
-        public Dictionary<string, List<IUserAnswer>> LoadAnswers()
+        public Dictionary<string, List<IUserAnswer>> LoadAnswers(string username)
         {
             return new Dictionary<string, List<IUserAnswer>>
             {
@@ -202,7 +202,7 @@ namespace DLR_Data_App.Services
             };
         }
 
-        public void ExportAnswers(Dictionary<string, List<IUserAnswer>> answers)
+        public void ExportAnswers(Dictionary<string, List<IUserAnswer>> answers, string username)
         {
         }
 

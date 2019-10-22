@@ -13,16 +13,14 @@ namespace DLR_Data_App.Views.Survey
 {
     public partial class SurveyListPage : ContentPage
     {
-        SurveyManager SurveyManager;
         /// Constructor for the MainPage
         public SurveyListPage()
         {
-            //Initialize components
             InitializeComponent();
-            //Settings the ItemsSource for the ListView containing the question categories
+
+            SurveyManager.Initialize(Navigation, App.CurrentUser.Id.ToString());
+            
             MenuList.ItemsSource = DatabankCommunication.SurveyMenuItems;
-            //Setting the SurveyManager
-            SurveyManager = new SurveyManager(Navigation);
         }
         /// Defining the Event for the click on an element in the ListView
         private void MenuList_ItemTapped(object sender, ItemTappedEventArgs e)
