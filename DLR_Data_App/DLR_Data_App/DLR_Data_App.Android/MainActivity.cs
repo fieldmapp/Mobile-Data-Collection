@@ -26,7 +26,7 @@ namespace com.DLR.DLR_Data_App.Droid
             var fullPath = Path.Combine(folderPath, dbName);
 
             var storageProvider = new JsonStorageProvider(new AndroidStorageAccessProvider(this));
-            LoadApplication(new App(folderPath, fullPath, new FileManager(), storageProvider));
+            LoadApplication(new App(folderPath, fullPath, storageProvider));
 
             CheckAppPermissions();
         }

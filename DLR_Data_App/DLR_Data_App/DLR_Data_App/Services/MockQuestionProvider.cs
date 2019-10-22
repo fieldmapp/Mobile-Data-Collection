@@ -205,5 +205,9 @@ namespace DLR_Data_App.Services
         public void ExportAnswers(Dictionary<string, List<IUserAnswer>> answers)
         {
         }
+
+        public void ExportDatabase(string content)
+        {
+        }
     }
 }
