@@ -3,8 +3,10 @@ using Android;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Views;
 using DLR_Data_App;
 using DLR_Data_App.Services;
+using Xamarin.Forms;
 
 namespace com.DLR.DLR_Data_App.Droid
 {
@@ -40,5 +42,25 @@ namespace com.DLR.DLR_Data_App.Droid
                 RequestPermissions(permissions, 1);
             }
         }
-  }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            // check if the current item id 
+            // is equals to the back button id
+            if (item.ItemId == 16908332)
+            {
+                // retrieve the current xamarin forms page instance
+                var currentpage = (Xamarin.Forms.Application.Current as App).Navigation.CurrentPage;
+                if (!currentpage.SendBackButtonPressed())
+                    return base.OnOptionsItemSelected(item);
+                return false;
+            }
+            else
+            {
+                //since its not the back button 
+                //click, pass the event to the base
+                return base.OnOptionsItemSelected(item);
+            }
+        }
+    }
 }
