@@ -7,6 +7,7 @@ using System.Text;
 using System.Drawing;
 using DLR_Data_App.Models.Survey;
 using Xamarin.Forms;
+using System.Collections.ObjectModel;
 
 namespace DLR_Data_App.Services
 {
@@ -30,7 +31,7 @@ namespace DLR_Data_App.Services
         /// <summary>
         /// List containing all SurveyMenuItems, which contain all relevant information over the different survey types
         /// </summary>
-        public static List<SurveyMenuItem> SurveyMenuItems { get; private set; } = new List<SurveyMenuItem>();
+        public static ObservableCollection<SurveyMenuItem> SurveyMenuItems { get; private set; } = new ObservableCollection<SurveyMenuItem>();
 
         /// <summary>
         /// Used to load questions
@@ -49,7 +50,7 @@ namespace DLR_Data_App.Services
         {
             Questions = StorageProvider.LoadQuestions();
             Answers = StorageProvider.LoadAnswers(userId);
-            SurveyMenuItems = StorageProvider.LoadSurveyMenuItems();
+            SurveyMenuItems = new ObservableCollection<SurveyMenuItem>(StorageProvider.LoadSurveyMenuItems());
             UserId = userId;
         }
 
@@ -68,7 +69,11 @@ namespace DLR_Data_App.Services
         public static void ResetSavedAnswers()
         {
             Answers = new Dictionary<string, List<IUserAnswer>>();
-            SurveyMenuItems = StorageProvider.LoadSurveyMenuItems();
+            SurveyMenuItems.Clear();
+            foreach (var item in StorageProvider.LoadSurveyMenuItems())
+            {
+                SurveyMenuItems.Add(item);
+            }
             SaveAnswers();
         }
 
