@@ -31,10 +31,10 @@ namespace DLR_Data_App.Views
             {
                 { MenuItemType.CurrentProject, new NavigationPage(new ProjectPage()) },
                 { MenuItemType.Projects, new NavigationPage(new ProjectListPage()) },
+                { MenuItemType.Survey, new NavigationPage(new SurveyListPage()) },
                 { MenuItemType.Sensortest, new NavigationPage(new SensorTestPage()) },
                 { MenuItemType.Settings, new NavigationPage(new SettingsPage()) },
-                { MenuItemType.About, new NavigationPage(new AboutPage()) },
-                { MenuItemType.Survey, new NavigationPage(new SurveyListPage()) }
+                { MenuItemType.About, new NavigationPage(new AboutPage()) }
             };
 
             Detail = _menuPages[MenuItemType.Projects];
