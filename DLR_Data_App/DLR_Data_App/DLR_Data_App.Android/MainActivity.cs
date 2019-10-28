@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using Android;
 using Android.App;
 using Android.Content.PM;
@@ -32,17 +34,39 @@ namespace com.DLR.DLR_Data_App.Droid
             var storageProvider = new JsonStorageProvider(new AndroidStorageAccessProvider(this));
             LoadApplication(new App(folderPath, fullPath, storageProvider));
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            // SetSupportActionBar(toolbar);
-            // 
-            // MessagingCenter.Subscribe<object, bool>(this, "ReloadToolbar", (sender, reload) => {
-            //     if (reload)
-            //     {
-            //         ReloadToolbar();
-            //     }
-            // });
+            SetSupportActionBar(toolbar);
+
+            MessagingCenter.Subscribe<object, bool>(this, "ReloadToolbar", (sender, reload) =>
+            {
+                if (reload)
+                {
+                    ReloadToolbar();
+                }
+            });
 
             CheckAppPermissions();
         }
+
+        public override void SetSupportActionBar(Toolbar toolbar)
+        {
+            base.SetSupportActionBar(toolbar);
+
+            // Workaround for ToolbarItems not apearing on android (https://github.com/xamarin/Xamarin.Forms/issues/2118)
+            Task.Run(() =>
+            {
+                var currentPage = (App.Current as App).CurrentPage;
+                var items = currentPage.ToolbarItems.ToList();
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    currentPage.ToolbarItems.Clear();
+                    foreach (var item in items)
+                    {
+                        currentPage.ToolbarItems.Add(item);
+                    }
+                });
+            });
+        }
+
 
         private void ReloadToolbar()
         {
