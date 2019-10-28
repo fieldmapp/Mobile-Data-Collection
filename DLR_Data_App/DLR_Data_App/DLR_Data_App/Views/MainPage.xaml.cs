@@ -37,10 +37,22 @@ namespace DLR_Data_App.Views
                 { MenuItemType.Survey, new NavigationPage(new SurveyListPage()) }
             };
 
-            MasterBehavior = MasterBehavior.Popover;
+            Detail = _menuPages[MenuItemType.Projects];
 
+            MasterBehavior = MasterBehavior.Popover;
+            
             MessagingCenter.Subscribe<EventArgs>(this, "OpenMasterMenu", args => IsPresented = true);
+
+            Appearing += MainPage_Appearing;
         }
+
+        private async void MainPage_Appearing(object sender, EventArgs e)
+        {
+            Appearing -= MainPage_Appearing;
+            await Task.Delay(100);
+            MessagingCenter.Send<object, bool>(this, "ReloadToolbar", true);
+        }
+
 
         /**
          * Navigate to selected page
