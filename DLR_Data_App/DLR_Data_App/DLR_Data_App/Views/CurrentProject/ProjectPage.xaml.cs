@@ -238,21 +238,6 @@ namespace DLR_Data_App.Views.CurrentProject
         }
 
         /**
-         * Override hardware back button on Android devices to return to project list
-         */
-        protected override bool OnBackButtonPressed()
-        {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                base.OnBackButtonPressed();
-                if (Application.Current.MainPage is MainPage mainPage)
-                    await mainPage.NavigateFromMenu(MenuItemType.Projects);
-            });
-
-            return true;
-        }
-
-        /**
          * Update shown gps data
          */
         private void OnGpsChange(object sender, GpsEventArgs e)

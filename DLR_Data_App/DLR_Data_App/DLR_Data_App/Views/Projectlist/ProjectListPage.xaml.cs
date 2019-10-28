@@ -39,7 +39,7 @@ namespace DLR_Data_App.Views.ProjectList
     {
       Application.Current.ModalPopping += HandleModalPopping;
       _newProjectPage = new NewProjectPage();
-      await Navigation.PushModalAsync(new NavigationPage(_newProjectPage));
+      await Navigation.PushModalAsync(_newProjectPage);
     }
 
     /**
@@ -71,7 +71,7 @@ namespace DLR_Data_App.Views.ProjectList
      */
     private async void ProjectListView_ItemTapped(object sender, ItemTappedEventArgs e)
     {
-      await Navigation.PushAsync(new ProjectDetailPage(_projectList[e.ItemIndex]));
+      await this.PushPage(new ProjectDetailPage(_projectList[e.ItemIndex]));
     }
   }
 }

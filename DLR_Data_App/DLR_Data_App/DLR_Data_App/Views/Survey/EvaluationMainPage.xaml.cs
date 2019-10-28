@@ -1,5 +1,6 @@
 ﻿//Main contributors: Maya Koehnen
 using DLR_Data_App.Models.Survey;
+using DLR_Data_App.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,7 +40,7 @@ namespace DLR_Data_App.Views.Survey
                 throw new NotImplementedException();
             EvaluationItem tapped = (EvaluationItem)e.Item;
             ///Navigate to the DetailPage and hand over the needed percentages 
-            await Navigation.PushAsync(new EvaluationDetailsPage(tapped.PercentEasy, tapped.PercentMedium, tapped.PercentHard));
+            await this.PushPage(new EvaluationDetailsPage(tapped.PercentEasy, tapped.PercentMedium, tapped.PercentHard));
         }
     }
 }

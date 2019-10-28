@@ -1,8 +1,10 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Android;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.V7.Widget;
 using Android.Views;
 using DLR_Data_App;
 using DLR_Data_App.Services;
@@ -29,8 +31,26 @@ namespace com.DLR.DLR_Data_App.Droid
 
             var storageProvider = new JsonStorageProvider(new AndroidStorageAccessProvider(this));
             LoadApplication(new App(folderPath, fullPath, storageProvider));
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            // SetSupportActionBar(toolbar);
+            // 
+            // MessagingCenter.Subscribe<object, bool>(this, "ReloadToolbar", (sender, reload) => {
+            //     if (reload)
+            //     {
+            //         ReloadToolbar();
+            //     }
+            // });
 
             CheckAppPermissions();
+        }
+
+        private void ReloadToolbar()
+        {
+            Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            if (toolbar != null)
+            {
+                SetSupportActionBar(toolbar);
+            }
         }
 
         public void CheckAppPermissions()
@@ -43,6 +63,17 @@ namespace com.DLR.DLR_Data_App.Droid
             }
         }
 
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            if (toolbar != null)
+            {
+                SetSupportActionBar(toolbar);
+            }
+        }
+
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             // check if the current item id 
@@ -52,7 +83,16 @@ namespace com.DLR.DLR_Data_App.Droid
                 // retrieve the current xamarin forms page instance
                 var currentpage = (Xamarin.Forms.Application.Current as App).Navigation.CurrentPage;
                 if (!currentpage.SendBackButtonPressed())
-                    return base.OnOptionsItemSelected(item);
+                {
+                    if (base.OnOptionsItemSelected(item))
+                        return true;
+                    else
+                        //Hack:
+                        //Assume the NavigationStack of MainPage.Detail is of height 1 (only root in stack)
+                        //Use MessagingCenter to open the Master menu
+                        //We need to override OnBackButtonPressed in every non-root Page to return true though
+                        MessagingCenter.Send(EventArgs.Empty, "OpenMasterMenu");
+                }
                 return false;
             }
             else

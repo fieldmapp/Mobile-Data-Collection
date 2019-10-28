@@ -5,6 +5,7 @@ using DLR_Data_App.Views.Login;
 using DLR_Data_App.Views.ProjectList;
 using DLR_Data_App.Views.Settings;
 using DLR_Data_App.Views.Survey;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -37,6 +38,8 @@ namespace DLR_Data_App.Views
             };
 
             MasterBehavior = MasterBehavior.Popover;
+
+            MessagingCenter.Subscribe<EventArgs>(this, "OpenMasterMenu", args => IsPresented = true);
         }
 
         /**
@@ -59,6 +62,8 @@ namespace DLR_Data_App.Views
 
                 if (Device.RuntimePlatform == Device.Android)
                     await Task.Delay(100);
+
+                MessagingCenter.Send<object, bool>(this, "ReloadToolbar", true);
 
                 IsPresented = false;
             }

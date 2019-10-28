@@ -4,7 +4,6 @@ using DLR_Data_App.Views.Login;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using DLR_Data_App.Services;
 
 namespace DLR_Data_App.Views.Settings
 {

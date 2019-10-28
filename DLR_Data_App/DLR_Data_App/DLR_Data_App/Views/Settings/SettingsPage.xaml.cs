@@ -11,20 +11,5 @@ namespace DLR_Data_App.Views.Settings
         {
             InitializeComponent();
         }
-
-        /**
-         * Override hardware back button on Android devices to return to project list
-         */
-        protected override bool OnBackButtonPressed()
-        {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                base.OnBackButtonPressed();
-                if (Application.Current.MainPage is MainPage mainPage)
-                    await mainPage.NavigateFromMenu(MenuItemType.Projects);
-            });
-
-            return true;
-        }
     }
 }

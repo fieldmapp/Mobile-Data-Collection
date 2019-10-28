@@ -17,13 +17,11 @@ namespace DLR_Data_App.Services
     /// </summary>
     static class SurveyManager
     {
-        static INavigation Navigation;
+        static NavigationPage Navigation => (Application.Current as App).Navigation;
         static SurveyMenuItem CurrentSurvey;
 
-        public static void Initialize(INavigation navigation, string userId)
+        public static void Initialize(string userId)
         {
-            Navigation = navigation;
-
             DatabankCommunication.Initilize(userId);
         }
 

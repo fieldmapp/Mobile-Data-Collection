@@ -18,7 +18,7 @@ namespace DLR_Data_App.Views.Survey
         {
             InitializeComponent();
 
-            SurveyManager.Initialize(Navigation, App.CurrentUser.Id.ToString());
+            SurveyManager.Initialize(App.CurrentUser.Id.ToString());
             
             MenuList.ItemsSource = DatabankCommunication.SurveyMenuItems;
         }
@@ -45,7 +45,8 @@ namespace DLR_Data_App.Views.Survey
             var evalItems = DatabankCommunication.SurveyMenuItems.Select(i => i.IntrospectionQuestion.All(q => DatabankCommunication.DoesAnswersExists("Introspection", q)) ? 
                 SurveyManager.GenerateEvaluationItem(i) :
                 new EvaluationItem(i.ChapterName, -1, -1, -1, -1)).ToList();
-            await Navigation.PushAsync(new EvaluationMainPage(evalItems));
+            
+            await this.PushPage(new EvaluationMainPage(evalItems));
         }
 
         private void ExportAnwersClicked(object sender, EventArgs e)
