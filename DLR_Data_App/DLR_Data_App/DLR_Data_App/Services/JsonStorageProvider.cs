@@ -80,11 +80,9 @@ namespace DLR_Data_App.Services
 
         public void ExportDatabase(string content)
         {
-            var filename = "Fieldmapp_Database_" + DateTime.UtcNow + ".json";
-            filename = filename.Replace(' ', '_');
-            filename = filename.Replace(':', '_');
+            var filename = "Fieldmapp_Database_" + DateTime.UtcNow.ToString("ddMMyyyyHHmmf") + ".json";
 
-            using (var fileStream = StorageAccessProvider.OpenFileWrite(filename))
+            using (var fileStream = StorageAccessProvider.OpenFileWriteExternal(filename))
             using (var streamWriter = new StreamWriter(fileStream))
             {
                 streamWriter.Write(content);
