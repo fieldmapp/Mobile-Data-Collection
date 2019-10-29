@@ -69,6 +69,8 @@ namespace DLR_Data_App.Views.Login
             }
 
             var status = Database.Insert(ref _user);
+            App.CurrentUser = _user;
+
             if (!status)
             {
                 await DisplayAlert(AppResources.newaccount, AppResources.failed, AppResources.okay);
@@ -78,7 +80,7 @@ namespace DLR_Data_App.Views.Login
 
             App.CurrentUser = _user;
 
-            Application.Current.MainPage = new MainPage();
+            Application.Current.MainPage = new SplashScreenPage();
         }
 
         /**

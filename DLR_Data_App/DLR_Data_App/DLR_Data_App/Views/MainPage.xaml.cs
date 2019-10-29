@@ -24,18 +24,10 @@ namespace DLR_Data_App.Views
         /**
          * Constructor for MainPage
          */
-        public MainPage()
+        public MainPage(Dictionary<MenuItemType, NavigationPage> menuPages)
         {
             InitializeComponent();
-            _menuPages = new Dictionary<MenuItemType, NavigationPage>
-            {
-                { MenuItemType.CurrentProject, new NavigationPage(new ProjectPage()) },
-                { MenuItemType.Projects, new NavigationPage(new ProjectListPage()) },
-                { MenuItemType.Survey, new NavigationPage(new SurveyListPage()) },
-                { MenuItemType.Sensortest, new NavigationPage(new SensorTestPage()) },
-                { MenuItemType.Settings, new NavigationPage(new SettingsPage()) },
-                { MenuItemType.About, new NavigationPage(new AboutPage()) }
-            };
+            _menuPages = menuPages;
 
             Detail = _menuPages[MenuItemType.Projects];
 

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DLR_Data_App.Views.SplashScreenPage"
+             BackgroundImageSource="Background_Login.png">
+    <ContentPage.Content>
+        <StackLayout>
+            <Image x:Name="LoginIcon" 
+                Source="LoginIconWhite.png" 
+                Margin="20,80,20,0"/>
+            <ActivityIndicator
+                IsRunning="True" Color="Black"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

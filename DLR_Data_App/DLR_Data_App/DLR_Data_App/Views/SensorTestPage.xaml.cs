@@ -17,6 +17,8 @@ namespace DLR_Data_App.Views
          */
         public SensorTestPage()
         {
+            InitializeComponent();
+
             _sensor = new Sensor();
 
             Accelerometer.ReadingChanged += _sensor.Accelerometer.Reading_Changed;
@@ -35,8 +37,6 @@ namespace DLR_Data_App.Views
 
             Magnetometer.ReadingChanged += _sensor.Magnetometer.Reading_Changed;
             Magnetometer.ReadingChanged += OnMagnetometer_Change;
-
-            InitializeComponent();
         }
 
         /**

@@ -1,42 +1,32 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using DLR_Data_App.Models;
 using DLR_Data_App.Services;
 
 namespace DLR_Data_App.ViewModels.Login
 {
-  /**
-   * View model for login
-   */
-  public class LoginViewModel
-  {
     /**
-     * Checks login with stored data
+     * View model for login
      */
-    public bool Check_Information(string checkUsername, string checkPassword)
+    public class LoginViewModel
     {
-      // Get all users from database
-      List<User> userList = Database.ReadUser();
-
-      // Check if input empty
-      if (checkUsername == ""
-          || checkPassword == "")
-      {
-        return false;
-      }
-
-      // Check if entry match with user in database
-      foreach (User user in userList)
-      {
-        // If user is found set as current user
-        if (user.Username == checkUsername
-            && user.Password == checkPassword)
+        /**
+         * Checks login with stored data
+         */
+        public bool Check_Information(string checkUsername, string checkPassword)
         {
-          App.CurrentUser = user;
-          return true;
-        }
-      }
+            // Get all users from database
+            List<User> userList = Database.ReadUser();
 
-      return false;
+            // Check if input empty
+            if (string.IsNullOrWhiteSpace(checkUsername) || string.IsNullOrWhiteSpace(checkPassword))
+            {
+                return false;
+            }
+
+            var matchedUser = userList.FirstOrDefault(u => u.Username == checkUsername && u.Password == checkPassword);
+            App.CurrentUser = matchedUser;
+            return matchedUser != null;
+        }
     }
-  }
 }

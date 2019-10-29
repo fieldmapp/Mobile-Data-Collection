@@ -40,11 +40,7 @@ namespace DLR_Data_App.Views.Login
 
             if (_viewModel.Check_Information(checkUsername, checkPassword))
             {
-                var answer = await DisplayAlert(AppResources.privacypolicy, AppResources.privacytext1, AppResources.accept, AppResources.decline);
-
-                if (!answer) return;
-
-                Application.Current.MainPage = new MainPage();
+                Application.Current.MainPage = new SplashScreenPage();
             }
             else
             {
