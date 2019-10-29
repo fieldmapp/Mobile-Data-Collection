@@ -76,30 +76,31 @@ namespace DLR_Data_App.Views.CurrentProject
                 // Special commands
 
                 // Display help
-                var helpButton = new Button()
-                {
-                    Text = AppResources.help
-                };
 
                 var hintText = Parser.LanguageJson(element.Hint, _workingProject.Languages);
-                if (hintText == "Unable to parse language from json")
+                if (hintText != "Unable to parse language from json")
                 {
-                    hintText = AppResources.nohint;
-                }
+                    var helpButton = new Button()
+                    {
+                        Text = AppResources.help
+                    };
 
-                helpButton.Clicked += async (sender, args) => await DisplayAlert(AppResources.help, hintText, AppResources.okay);
-                grid.Children.Add(helpButton, 1, 0);
 
-                // Display a ruler on the side of the screen
-                if (element.Type == "inputText" && element.Name.Contains("propRuler"))
-                {
-                    continue;
-                }
 
-                // Display a checkbox with name "unknown"
-                if (element.Type == "inputText" && element.Name.Contains("unknown"))
-                {
-                    continue;
+                    helpButton.Clicked += async (sender, args) => await DisplayAlert(AppResources.help, hintText, AppResources.okay);
+                    grid.Children.Add(helpButton, 1, 0);
+
+                    // Display a ruler on the side of the screen
+                    if (element.Type == "inputText" && element.Name.Contains("propRuler"))
+                    {
+                        continue;
+                    }
+
+                    // Display a checkbox with name "unknown"
+                    if (element.Type == "inputText" && element.Name.Contains("unknown"))
+                    {
+                        continue;
+                    }
                 }
 
                 //-------------------------
