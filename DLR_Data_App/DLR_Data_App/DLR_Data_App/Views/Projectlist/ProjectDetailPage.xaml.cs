@@ -64,5 +64,11 @@ namespace DLR_Data_App.Views.ProjectList
                 await Navigation.PopAsync();
             }
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            base.OnBackButtonPressed();
+            return true;
+        }
     }
 }
