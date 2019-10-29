@@ -136,7 +136,7 @@ namespace DLR_Data_App.Views.CurrentProject
 
         protected override bool OnBackButtonPressed()
         {
-            base.OnBackButtonPressed();
+            Navigation.PopAsync();
             return true;
         }
     }
