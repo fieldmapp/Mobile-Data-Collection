@@ -21,16 +21,6 @@ namespace DLR_Data_App.Views.Settings
         }
         
         /**
-         * Update app list on each appearance
-         */
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            
-            AppSettingsList.ItemsSource = _elementList;
-        }
-        
-        /**
          * List of settings about the app shown
          */
         private async void AppSettingsList_ItemTapped(object sender, ItemTappedEventArgs e)

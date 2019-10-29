@@ -39,6 +39,24 @@ namespace DLR_Data_App.Views.CurrentProject
             _sensor.Gps.StatusChanged += OnGpsChange;
 
             BindingContext = _viewModel;
+
+            Appearing += ProjectPage_Appearing;
+        }
+
+        private void ProjectPage_Appearing(object sender, EventArgs e)
+        {
+            Appearing -= ProjectPage_Appearing;
+            foreach (var page in UpdateView())
+            {
+                Children.Add(page);
+            }
+
+            if (_pages == null || _pages.Count == 0)
+            {
+                (Application.Current as App).CurrentPage.DisplayAlert(AppResources.warning, AppResources.noactiveproject, AppResources.okay);
+            }
+
+            base.OnAppearing();
         }
 
         /**
@@ -263,24 +281,6 @@ namespace DLR_Data_App.Views.CurrentProject
                     }
                 }
             }
-        }
-
-        /**
-         * Refresh view
-         */
-        protected override void OnAppearing()
-        {
-            foreach (var page in UpdateView())
-            {
-                Children.Add(page);
-            }
-
-            if (_pages == null || _pages.Count == 0)
-            {
-                (Application.Current as App).CurrentPage.DisplayAlert(AppResources.warning, AppResources.noactiveproject, AppResources.okay);
-            }
-
-            base.OnAppearing();
         }
 
         /**

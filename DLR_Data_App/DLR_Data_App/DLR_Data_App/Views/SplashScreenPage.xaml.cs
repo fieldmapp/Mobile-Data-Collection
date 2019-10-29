@@ -30,6 +30,8 @@ namespace DLR_Data_App.Views
 
         private async void SplashScreenPage_Appearing(object sender, EventArgs e)
         {
+            Appearing -= SplashScreenPage_Appearing;
+
             var builderTask = Task.Run(() => CreateNeededRessources());
             var answer = await DisplayAlert(AppResources.privacypolicy, AppResources.privacytext1, AppResources.accept, AppResources.decline);
             if (!answer)

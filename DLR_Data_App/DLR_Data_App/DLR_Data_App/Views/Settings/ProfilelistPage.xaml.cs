@@ -20,15 +20,6 @@ namespace DLR_Data_App.Views.Settings
             InitializeComponent();
             // Get all users from database
             _userList = Database.ReadUser();
-        }
-
-        /**
-         * Refresh list on each new appearing
-         */
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
             ProfileListView.ItemsSource = _userList;
         }
 
