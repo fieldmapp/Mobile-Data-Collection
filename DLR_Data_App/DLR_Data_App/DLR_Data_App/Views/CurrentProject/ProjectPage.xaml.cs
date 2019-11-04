@@ -33,7 +33,7 @@ namespace DLR_Data_App.Views.CurrentProject
 
             if (_pages != null)
             {
-                WalkElements(SaveInfoFromView);
+                Helpers.WalkElements(_pages, SaveInfoFromView);
             }
 
             _sensor.Gps.StatusChanged += OnGpsChange;
@@ -48,7 +48,7 @@ namespace DLR_Data_App.Views.CurrentProject
             if (element is Entry entry)
                 entry.Text = "";
             else if (element is Picker picker)
-                picker.SelectedIndex = 0;
+                picker.SelectedIndex = -1;
         }
 
         private void SaveInfoFromView(View element)
@@ -63,10 +63,27 @@ namespace DLR_Data_App.Views.CurrentProject
                 ElementNameList.Add(picker.StyleId);
                 ElementValueList.Add(picker.SelectedItem as string ?? "0");
             }
-            else if (element is Label label && (label.StyleId != null && label.StyleId.Contains("Lat") || label.StyleId.Contains("Long")))
+            else if (element is Label label && label.StyleId != null)
             {
-                ElementNameList.Add(label.StyleId);
-                ElementValueList.Add(label.Text);
+                var containedInfo = string.Empty;
+                if (label.StyleId.Contains("Lat"))
+                    containedInfo = "Lat";
+                else if (label.StyleId.Contains("Long"))
+                    containedInfo = "Long";
+                if (containedInfo != string.Empty)
+                {
+                    var styleId = label.StyleId.Replace(containedInfo, string.Empty);
+                    var index = ElementNameList.IndexOf(styleId);
+                    if (index != -1)
+                    {
+                        ElementValueList[index] += $" {containedInfo}: {label.Text}";
+                    }
+                    else
+                    {
+                        ElementNameList.Add(styleId);
+                        ElementValueList.Add($"{containedInfo}: {label.Text}");
+                    }
+                }
             }
         }
 
@@ -105,7 +122,7 @@ namespace DLR_Data_App.Views.CurrentProject
         /**
          * Update view
          */
-        public List<ContentPage> UpdateView()
+        public IEnumerable<ContentPage> UpdateView()
         {
             // Get current project
             _workingProject = Database.GetCurrentProject();
@@ -126,10 +143,11 @@ namespace DLR_Data_App.Views.CurrentProject
                     var content = FormFactory.GenerateForm(projectForm, _workingProject, DisplayAlert);
                     ElementList.AddRange(content.ElementList);
                     _pages.Add(content.Form);
+                    yield return content.Form;
                 }
             }
 
-            return _pages;
+            yield break;
         }
 
         /**
@@ -166,7 +184,7 @@ namespace DLR_Data_App.Views.CurrentProject
         {
             if (await CheckActiveProject())
             {
-                WalkElements(SaveInfoFromView);
+                Helpers.WalkElements(_pages, SaveInfoFromView);
 
                 var tableName = Parser.LanguageJsonStandard(_workingProject.Title, _workingProject.Languages) + "_" + _workingProject.Id;
                 var status = Database.InsertCustomValues(tableName, ElementNameList, ElementValueList);
@@ -175,7 +193,7 @@ namespace DLR_Data_App.Views.CurrentProject
                 if (status)
                 {
                     message = AppResources.successful;
-                    WalkElements(ClearView);
+                    Helpers.WalkElements(_pages, ClearView);
                 }
                 else
                 {
@@ -183,28 +201,6 @@ namespace DLR_Data_App.Views.CurrentProject
                 }
 
                 await DisplayAlert(AppResources.save, message, AppResources.okay);
-            }
-        }
-
-        /**
-         * Walk through all elements, applies actionToApply
-         *
-         * @param action that gets applied to all views
-         */
-        private void WalkElements(Action<View> actionToApply)
-        {
-            foreach (var page in _pages)
-            {
-                foreach (var stack in page.Content.LogicalChildren.OfType<StackLayout>())
-                {
-                    foreach (var grid in stack.Children.OfType<Grid>())
-                    {
-                        foreach (var element in grid.Children)
-                        {
-                            actionToApply(element);
-                        }
-                    }
-                }
             }
         }
     }

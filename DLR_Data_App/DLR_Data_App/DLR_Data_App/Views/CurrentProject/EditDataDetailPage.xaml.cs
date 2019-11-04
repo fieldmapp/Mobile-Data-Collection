@@ -1,6 +1,12 @@
 ﻿using DLR_Data_App.Localizations;
+using DLR_Data_App.Models;
 using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Services;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,134 +16,91 @@ namespace DLR_Data_App.Views.CurrentProject
     public partial class EditDataDetailPage
     {
         private readonly Project _workingProject = Database.GetCurrentProject();
+        public List<View> ElementList = new List<View>();
 
-        public EditDataDetailPage()
+        public EditDataDetailPage(Dictionary<string,string> projectData)
         {
+            void WriteInfoToView(View element)
+            {
+                if (element is Entry entry)
+                {
+                    entry.Text = projectData[entry.StyleId];
+                }
+                else if (element is Picker picker)
+                {
+                    picker.SelectedIndex = picker.Items.IndexOf(projectData[picker.StyleId]);
+                }
+                else if (element is Label label && label.StyleId != null)
+                {
+                    var containedInfo = string.Empty;
+                    if (label.StyleId.Contains("Lat"))
+                        containedInfo = "Lat";
+                    else if (label.StyleId.Contains("Long"))
+                        containedInfo = "Long";
+                    if (containedInfo != string.Empty)
+                    {
+                        var styleId = label.StyleId.Replace(containedInfo, string.Empty);
+                        var locationInfo = projectData[styleId];
+                        var locationStartIndex = locationInfo.IndexOf(containedInfo) + $"{containedInfo}:".Length;
+                        string locationString = string.Empty;
+                        for (int i = locationStartIndex; i < locationInfo.Length; i++)
+                        {
+                            if (locationInfo[i] == ' ')
+                                break;
+                            locationString += locationInfo[i];
+                        }
+                        label.Text = locationString;
+                    }
+                }
+            }
+
             InitializeComponent();
-            foreach (var form in _workingProject.FormList)
+
+            if (_workingProject == null)
             {
-                GenerateForm(form);
+                Title = AppResources.currentproject;
             }
-        }
-
-        /**
-         * Generating forms from parsed information
-         * @param form Elements that should be generated
-         */
-        private ContentPage GenerateForm(ProjectForm form)
-        {
-            var contentPage = new ContentPage();
-            var scrollView = new ScrollView();
-            var stack = new StackLayout();
-
-            // walk through list of elements and generate form containing elements
-            foreach (var element in form.ElementList)
+            else
             {
-                contentPage.Title = Parser.LanguageJson(element.Label, _workingProject.Languages);
-
-                var grid = new Grid();
-                grid.RowDefinitions.Add(new RowDefinition());
-                grid.RowDefinitions.Add(new RowDefinition());
-                grid.ColumnDefinitions.Add(new ColumnDefinition());
-                grid.ColumnDefinitions.Add(new ColumnDefinition());
-
-                // show name of element
-                var label = new Label
-                {
-                    Text = Parser.LanguageJson(element.Label, _workingProject.Languages)
-                };
-                //stack.Children.Add(label);
-                grid.Children.Add(label, 0, 0);
-
-                //------------------------
-                // Special commands
-
-                var helpButton = new Button()
-                {
-                    Text = AppResources.help
-                };
-                helpButton.Clicked += async (sender, args) => await DisplayAlert(AppResources.help, Parser.LanguageJson(element.Hint, _workingProject.Languages),
-                  AppResources.okay);
-                //stack.Children.Add(helpButton);
-                grid.Children.Add(helpButton, 1, 0);
-
-                // Display a ruler on the side of the screen
-                if (element.Type == "inputText" && element.Name.Contains("propRuler"))
-                {
-                    continue;
-                }
-
-                // Display a checkbox with name "unknown"
-                if (element.Type == "inputText" && element.Name.Contains("unknown"))
-                {
-                    continue;
-                }
-
-                //-------------------------
-                // Normal fields
-                switch (element.Type)
-                {
-                    // input text
-                    case "inputText":
-                        {
-                            var entry = new Entry
-                            {
-                                Placeholder = Parser.LanguageJson(element.Hint, _workingProject.Languages),
-                                Keyboard = Keyboard.Default,
-                                StyleId = element.Name
-                            };
-
-                            //stack.Children.Add(entry);
-                            grid.Children.Add(entry, 0, 1);
-                            Grid.SetColumnSpan(entry, 2);
-                            break;
-                        }
-
-                    // Selecting one item of list
-                    case "inputSelectOne":
-                        {
-                            var picker = new Picker
-                            {
-                                Title = Parser.LanguageJson(element.Label, _workingProject.Languages),
-                                VerticalOptions = LayoutOptions.CenterAndExpand,
-                                StyleId = element.Name
-                            };
-
-                            //stack.Children.Add(picker);
-                            grid.Children.Add(picker, 0, 1);
-                            Grid.SetColumnSpan(picker, 2);
-                            break;
-                        }
-
-                    // Show an entry with only numeric input
-                    // As a walk around for an existing Samsung keyboard bug a normal keyboard layout is used
-                    case "inputNumeric":
-                        {
-                            var entry = new Entry
-                            {
-                                Placeholder = Parser.LanguageJson(element.Hint, _workingProject.Languages),
-                                Keyboard = Keyboard.Default,
-                                StyleId = element.Name
-                            };
-
-                            //stack.Children.Add(entry);
-                            grid.Children.Add(entry, 0, 1);
-                            Grid.SetColumnSpan(entry, 2);
-                            break;
-                        }
-                }
-                stack.Children.Add(grid);
+                var translatedProject = Helpers.TranslateProjectDetails(_workingProject);
+                Title = translatedProject.Title;
+                return;
             }
 
-            scrollView.Content = stack;
-            contentPage.Content = scrollView;
-            return contentPage;
+            var pages = UpdateView();
+
+            foreach (var contentPage in pages)
+            {
+                Children.Add(contentPage);
+            }
+
+            Helpers.WalkElements(pages, WriteInfoToView);
         }
+
+        
+
 
         protected override bool OnBackButtonPressed()
         {
             Navigation.PopAsync();
             return true;
+        }
+
+        public List<ContentPage> UpdateView()
+        {
+            var _pages = new List<ContentPage>();
+
+            if (_workingProject == null)
+                return _pages;
+
+            foreach (var projectForm in _workingProject.FormList)
+            {
+                var content = FormFactory.GenerateForm(projectForm, _workingProject, DisplayAlert);
+                ElementList.AddRange(content.ElementList);
+                _pages.Add(content.Form);
+            }
+
+            return _pages;
         }
     }
 }

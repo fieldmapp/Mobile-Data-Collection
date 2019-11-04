@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using DLR_Data_App.Localizations;
 using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace DLR_Data_App.Services
 {
@@ -222,6 +223,23 @@ namespace DLR_Data_App.Services
             else if (Device.RuntimePlatform == Device.iOS)
             {
                 await navElement.Navigation.PushModalAsync(page);
+            }
+        }
+
+        public static void WalkElements(List<ContentPage> pages, Action<View> actionToApply)
+        {
+            foreach (var page in pages)
+            {
+                foreach (var stack in page.Content.LogicalChildren.OfType<StackLayout>())
+                {
+                    foreach (var grid in stack.Children.OfType<Grid>())
+                    {
+                        foreach (var element in grid.Children)
+                        {
+                            actionToApply(element);
+                        }
+                    }
+                }
             }
         }
     }

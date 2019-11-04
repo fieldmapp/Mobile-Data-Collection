@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using DLR_Data_App.Localizations;
 using DLR_Data_App.ViewModels.CurrentProject;
@@ -57,7 +58,13 @@ namespace DLR_Data_App.Views.CurrentProject
          */
         private void DataList_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            Navigation.PushAsync(new EditDataDetailPage());
+            var projectData = new Dictionary<string, string>();
+            for (int i = 0; i < _viewModel.ProjectData.RowNameList.Count; i++)
+            {
+                if (_viewModel.ProjectData.RowNameList[i] != "ProjectId")
+                    projectData.Add(_viewModel.ProjectData.RowNameList[i], _viewModel.ProjectData.ValueList[i][e.ItemIndex]);
+            }
+            Navigation.PushAsync(new EditDataDetailPage(projectData));
         }
 
         protected override bool OnBackButtonPressed()
