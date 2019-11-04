@@ -338,14 +338,14 @@ namespace DLR_Data_App.Services
          */
         public static TableData ReadCustomTable(ref Project project)
         {
-            var datalist = new TableData();
-
             var tableName = Parser.LanguageJsonStandard(project.Title, project.Languages) + "_" + project.Id;
 
             using (var conn = new SQLiteConnection(App.DatabaseLocation))
             {
                 try
                 {
+                    var datalist = new TableData();
+
                     var tableInfo = conn.GetTableInfo(tableName);
 
                     // getting highest id in table
@@ -367,17 +367,13 @@ namespace DLR_Data_App.Services
                         datalist.RowNameList.Add(tableColumn.Name);
                         datalist.ValueList.Add(elementList);
                     }
-                }
-                catch (Exception e)
-                {
-                    datalist.RowNameList.Add("Exception");
-                    var error = new List<string> { e.Message };
-                    datalist.ValueList.Add(error);
                     return datalist;
                 }
+                catch
+                {
+                    return null;
+                }
             }
-
-            return datalist;
         }
 
         /**
