@@ -101,49 +101,6 @@ namespace DLR_Data_App.Services
         }
 
         /**
-         * exports data of current project to a json string
-         */
-        public static string ExportData()
-        {
-            // get data of the project from the db
-            var workingProject = Database.GetCurrentProject();
-            var tableContent = Database.ReadCustomTable(ref workingProject);
-            if (tableContent == null)
-            {
-                return "";
-            }
-
-            // get current user
-            var user = App.CurrentUser;
-
-            JObject dataObject = new JObject();
-
-            for (var i = 0; i < tableContent.RowNameList.Count; i++)
-            {
-                JArray dataArray = JArray.FromObject(tableContent.ValueList[i]);
-                JProperty name = new JProperty(tableContent.RowNameList[i], dataArray);
-                dataObject.Add(name);
-            }
-
-            JObject exportObject = new JObject(
-              new JProperty("User",
-                new JObject(
-                    new JProperty("User_Id", user.Id),
-                    new JProperty("User_Name", user.Username))),
-              new JProperty("Project",
-                new JObject(
-                    new JProperty("Project_Id", workingProject.Id),
-                    new JProperty("Project_Title", workingProject.Title),
-                    new JProperty("Project_Authors", workingProject.Authors),
-                    new JProperty("Project_Description", workingProject.Description))),
-              new JProperty("Data",
-                dataObject
-              ));
-
-            return exportObject.ToString();
-        }
-
-        /**
          * Translating project details to system language
          * @param project Project
          */
@@ -182,37 +139,7 @@ namespace DLR_Data_App.Services
          * Translating project details to system language
          * @param projectList List of projects
          */
-        public static List<Project> TranslateProjectDetails(List<Project> projectList)
-        {
-            var tempProjectList = new List<Project>();
-
-            foreach (var t in projectList)
-            {
-                tempProjectList.Add(TranslateProjectDetails(t));
-            }
-
-            return tempProjectList;
-        }
-
-        /**
-         * Set current user
-         */
-        public static void SetCurrentUser()
-        {
-            // get user id
-            if (App.CurrentUser.Id == 0)
-            {
-                var userList = Database.ReadUser();
-                foreach (var user in userList)
-                {
-                    if (user.Username == App.CurrentUser.Username
-                        && user.Password == App.CurrentUser.Password)
-                    {
-                        App.CurrentUser = user;
-                    }
-                }
-            }
-        }
+        public static List<Project> TranslateProjectDetails(List<Project> projectList) => projectList.Select(TranslateProjectDetails).ToList();
 
         public static async Task PushPage(this NavigableElement navElement, Page page)
         {
