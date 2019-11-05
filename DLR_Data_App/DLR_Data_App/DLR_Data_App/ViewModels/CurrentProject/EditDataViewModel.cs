@@ -36,28 +36,9 @@ namespace DLR_Data_App.ViewModels.CurrentProject
         }
 
         /**
-         * Filter result list
-         * @param dateTime Selected datetime
-         * @returns element close to selected time
-         */
-        public PreviewElement UpdateSelection(DateTime dateTime)
-        {
-            foreach (var element in ElementList)
-            {
-                var elementDateTime = DateTime.Parse(element.Timestamp);
-                if (DateTime.Compare(elementDateTime, dateTime) >= 0)
-                {
-                    return element;
-                }
-            }
-
-            return null;
-        }
-
-        /**
          * Load data stored in db
          */
-        private void GetDataFromDb()
+        public void GetDataFromDb()
         {
             // Get data from DB
             ProjectData = Database.ReadCustomTable(ref _workingProject);

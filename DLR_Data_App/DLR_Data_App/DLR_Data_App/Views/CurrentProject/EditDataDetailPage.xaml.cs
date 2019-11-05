@@ -22,7 +22,7 @@ namespace DLR_Data_App.Views.CurrentProject
         public List<View> ElementList = new List<View>();
         private List<ContentPage> _pages;
 
-        public EditDataDetailPage(Dictionary<string, string> projectData, Action<bool> callback)
+        public EditDataDetailPage(Dictionary<string, string> projectData)
         {
             void WriteInfoToView(View element)
             {

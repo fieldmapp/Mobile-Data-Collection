@@ -36,24 +36,6 @@ namespace DLR_Data_App.Views.CurrentProject
         }
 
         /**
-         * Date changed
-         */
-        private void DateSelection_OnDateSelected(object sender, DateChangedEventArgs e)
-        {
-            var dateTime = DateSelection.Date + TimeSelection.Time;
-            DataList.SelectedItem = _viewModel.UpdateSelection(dateTime);
-        }
-
-        /**
-         * Time changed
-         */
-        private void TimeSelection_OnPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            var dateTime = DateSelection.Date + TimeSelection.Time;
-            DataList.SelectedItem = _viewModel.UpdateSelection(dateTime);
-        }
-
-        /**
          * Data set selected
          */
         private void DataList_OnItemTapped(object sender, ItemTappedEventArgs e)

@@ -10,45 +10,7 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <Grid Padding="10"
-              VerticalOptions="StartAndExpand"
-              HorizontalOptions="FillAndExpand">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <DatePicker
-                    x:Name="DateSelection"
-                    Date="01.01.2019"
-                    HorizontalOptions="CenterAndExpand"
-                    DateSelected="DateSelection_OnDateSelected"
-                    Grid.Column="0"
-                    Grid.Row="0"/>
-                <TimePicker
-                    x:Name="TimeSelection"
-                    Time="21:00"
-                    HorizontalOptions="CenterAndExpand"
-                    PropertyChanged="TimeSelection_OnPropertyChanged"
-                    Grid.Column="1"
-                    Grid.Row="0"/>
-            </Grid>
-            
-            <ListView x:Name="DataList"
+        <ListView x:Name="DataList"
                       HorizontalOptions="CenterAndExpand"
                       VerticalOptions="FillAndExpand"
                       HasUnevenRows="true"
@@ -60,23 +22,22 @@
                       Grid.Column="0"
                       Grid.ColumnSpan="2"
                       Grid.Row="1">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Padding="10">
-                                <Label Text="{Binding Timestamp}" 
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Timestamp}" 
                                        LineBreakMode="NoWrap" 
                                        Style="{DynamicResource ListItemTextStyle}" 
                                        FontSize="16" />
-                                <Label Text="{Binding Data}" 
+                            <Label Text="{Binding Data}" 
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemDetailTextStyle}"
                                        FontSize="13" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>
