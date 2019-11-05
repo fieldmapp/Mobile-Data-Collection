@@ -15,10 +15,14 @@ namespace DLR_Data_App.Views.CurrentProject
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditDataDetailPage
     {
+        public List<string> ElementNameList = new List<string>();
+        public List<string> ElementValueList = new List<string>();
         private readonly Project _workingProject = Database.GetCurrentProject();
+        private int _id;
         public List<View> ElementList = new List<View>();
+        private List<ContentPage> _pages;
 
-        public EditDataDetailPage(Dictionary<string, string> projectData)
+        public EditDataDetailPage(Dictionary<string, string> projectData, Action<bool> callback)
         {
             void WriteInfoToView(View element)
             {
@@ -61,29 +65,22 @@ namespace DLR_Data_App.Views.CurrentProject
             InitializeComponent();
 
             if (_workingProject == null)
-            {
-                Title = AppResources.currentproject;
-            }
-            else
-            {
-                var translatedProject = Helpers.TranslateProjectDetails(_workingProject);
-                Title = translatedProject.Title;
-                return;
-            }
+                throw new Exception();
 
-            var pages = UpdateView();
+            var translatedProject = Helpers.TranslateProjectDetails(_workingProject);
+            Title = translatedProject.Title;
 
-            foreach (var contentPage in pages)
+            _id = Convert.ToInt32(projectData["Id"]);
+
+            _pages = UpdateView();
+            foreach (var contentPage in _pages)
             {
                 Children.Add(contentPage);
             }
 
-            Helpers.WalkElements(pages, WriteInfoToView);
+            Helpers.WalkElements(_pages, WriteInfoToView);
         }
-
-
-
-
+        
         protected override bool OnBackButtonPressed()
         {
             Navigation.PopAsync();
@@ -109,7 +106,52 @@ namespace DLR_Data_App.Views.CurrentProject
 
         private async void SaveClicked(object sender, EventArgs e)
         {
+            var tableName = Parser.LanguageJsonStandard(_workingProject.Title, _workingProject.Languages) + "_" + _workingProject.Id;
 
+            ElementNameList = new List<string>();
+            ElementValueList = new List<string>();
+            Helpers.WalkElements(_pages, SaveInfoFromView);
+
+            var success = Database.UpdateCustomValuesById(tableName, _id, ElementNameList, ElementValueList);
+
+            string message = success ? AppResources.successful : AppResources.failed;
+            await DisplayAlert(AppResources.save, message, AppResources.okay);
+        }
+
+        private void SaveInfoFromView(View element)
+        {
+            if (element is Entry entry)
+            {
+                ElementNameList.Add(entry.StyleId);
+                ElementValueList.Add(entry.Text ?? "0");
+            }
+            else if (element is Picker picker)
+            {
+                ElementNameList.Add(picker.StyleId);
+                ElementValueList.Add(picker.SelectedItem as string ?? "0");
+            }
+            else if (element is Label label && label.StyleId != null)
+            {
+                var containedInfo = string.Empty;
+                if (label.StyleId.Contains("Lat"))
+                    containedInfo = "Lat";
+                else if (label.StyleId.Contains("Long"))
+                    containedInfo = "Long";
+                if (containedInfo != string.Empty)
+                {
+                    var styleId = label.StyleId.Replace(containedInfo, string.Empty);
+                    var index = ElementNameList.IndexOf(styleId);
+                    if (index != -1)
+                    {
+                        ElementValueList[index] += $" {containedInfo}: {label.Text}";
+                    }
+                    else
+                    {
+                        ElementNameList.Add(styleId);
+                        ElementValueList.Add($"{containedInfo}: {label.Text}");
+                    }
+                }
+            }
         }
     }
 }

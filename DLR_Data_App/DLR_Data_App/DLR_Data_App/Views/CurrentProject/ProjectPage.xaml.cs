@@ -31,11 +31,6 @@ namespace DLR_Data_App.Views.CurrentProject
         {
             InitializeComponent();
 
-            if (_pages != null)
-            {
-                Helpers.WalkElements(_pages, SaveInfoFromView);
-            }
-
             _sensor.Gps.StatusChanged += OnGpsChange;
 
             BindingContext = _viewModel;
@@ -184,6 +179,8 @@ namespace DLR_Data_App.Views.CurrentProject
         {
             if (await CheckActiveProject())
             {
+                ElementNameList = new List<string>();
+                ElementValueList = new List<string>();
                 Helpers.WalkElements(_pages, SaveInfoFromView);
 
                 var tableName = Parser.LanguageJsonStandard(_workingProject.Title, _workingProject.Languages) + "_" + _workingProject.Id;
