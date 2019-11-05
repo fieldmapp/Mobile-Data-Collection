@@ -25,6 +25,13 @@ namespace DLR_Data_App.Views.CurrentProject
             BindingContext = _viewModel;
 
             InitializeComponent();
+
+            Appearing += EditDataPage_Appearing;
+        }
+
+        private void EditDataPage_Appearing(object sender, EventArgs e)
+        {
+            _viewModel.GetDataFromDb();
         }
 
         /**
