@@ -18,7 +18,7 @@ namespace DLR_Data_App.Views.CurrentProject
         private readonly Project _workingProject = Database.GetCurrentProject();
         public List<View> ElementList = new List<View>();
 
-        public EditDataDetailPage(Dictionary<string,string> projectData)
+        public EditDataDetailPage(Dictionary<string, string> projectData)
         {
             void WriteInfoToView(View element)
             {
@@ -41,15 +41,19 @@ namespace DLR_Data_App.Views.CurrentProject
                     {
                         var styleId = label.StyleId.Replace(containedInfo, string.Empty);
                         var locationInfo = projectData[styleId];
-                        var locationStartIndex = locationInfo.IndexOf(containedInfo) + $"{containedInfo}:".Length;
-                        string locationString = string.Empty;
-                        for (int i = locationStartIndex; i < locationInfo.Length; i++)
+                        var locationStartIndex = locationInfo.IndexOf(containedInfo);
+                        if (locationStartIndex != -1)
                         {
-                            if (locationInfo[i] == ' ')
-                                break;
-                            locationString += locationInfo[i];
+                            locationStartIndex += +$"{containedInfo}:".Length;
+                            string locationString = string.Empty;
+                            for (int i = locationStartIndex; i < locationInfo.Length; i++)
+                            {
+                                if (locationInfo[i] == ' ')
+                                    break;
+                                locationString += locationInfo[i];
+                            }
+                            label.Text = locationString;
                         }
-                        label.Text = locationString;
                     }
                 }
             }
@@ -77,7 +81,7 @@ namespace DLR_Data_App.Views.CurrentProject
             Helpers.WalkElements(pages, WriteInfoToView);
         }
 
-        
+
 
 
         protected override bool OnBackButtonPressed()
@@ -101,6 +105,11 @@ namespace DLR_Data_App.Views.CurrentProject
             }
 
             return _pages;
+        }
+
+        private async void SaveClicked(object sender, EventArgs e)
+        {
+
         }
     }
 }
