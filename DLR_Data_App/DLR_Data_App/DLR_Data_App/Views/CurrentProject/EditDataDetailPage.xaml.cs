@@ -106,7 +106,7 @@ namespace DLR_Data_App.Views.CurrentProject
 
         private async void SaveClicked(object sender, EventArgs e)
         {
-            var tableName = Parser.LanguageJsonStandard(_workingProject.Title, _workingProject.Languages) + "_" + _workingProject.Id;
+            var tableName = _workingProject.GetTableName();
 
             ElementNameList = new List<string>();
             ElementValueList = new List<string>();

@@ -183,7 +183,7 @@ namespace DLR_Data_App.Views.CurrentProject
                 ElementValueList = new List<string>();
                 Helpers.WalkElements(_pages, SaveInfoFromView);
 
-                var tableName = Parser.LanguageJsonStandard(_workingProject.Title, _workingProject.Languages) + "_" + _workingProject.Id;
+                var tableName = _workingProject.GetTableName();
                 var status = Database.InsertCustomValues(tableName, ElementNameList, ElementValueList);
 
                 string message;

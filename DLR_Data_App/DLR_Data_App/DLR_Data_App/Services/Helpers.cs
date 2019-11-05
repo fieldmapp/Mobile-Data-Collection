@@ -242,5 +242,7 @@ namespace DLR_Data_App.Services
                 }
             }
         }
+
+        public static string GetTableName(this Project project) => Parser.LanguageJsonStandard(project.Title, project.Languages) + "_" + project.Id;
     }
 }

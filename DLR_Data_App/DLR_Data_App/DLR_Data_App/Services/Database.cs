@@ -303,7 +303,7 @@ namespace DLR_Data_App.Services
         public static bool CreateCustomTable(ref Project project)
         {
             bool status;
-            var tableName = Parser.LanguageJsonStandard(project.Title, project.Languages) + "_" + project.Id;
+            var tableName = project.GetTableName();
             CheckValidSqlName(tableName);
             // Generate query for creating a new table
             var query = "CREATE TABLE IF NOT EXISTS " + tableName + "(";
@@ -346,7 +346,7 @@ namespace DLR_Data_App.Services
          */
         public static TableData ReadCustomTable(ref Project project)
         {
-            var tableName = Parser.LanguageJsonStandard(project.Title, project.Languages) + "_" + project.Id;
+            var tableName = project.GetTableName();
 
             using (var conn = new SQLiteConnection(App.DatabaseLocation))
             {
