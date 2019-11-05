@@ -392,11 +392,14 @@ namespace DLR_Data_App.Services
          * @param fieldValues values corresponding to field names
          * @return Success
          */
-        public static bool InsertCustomValues(string tableName, List<string> fieldNames, List<string> fieldValues)
+        public static bool InsertCustomValues(string tableName, List<string> fieldNames, List<string> fieldValues, int? id = null)
         {
             bool status;
             CheckValidSqlName(tableName);
             var query = $"INSERT INTO {tableName} (";
+
+            if (id != null)
+                query += $"Id, ";
 
             foreach (var name in fieldNames)
             {
@@ -406,6 +409,9 @@ namespace DLR_Data_App.Services
 
             query = query.Remove(query.Length - 2);
             query += ") VALUES (";
+
+            if (id != null)
+                query += $"{id}, ";
 
             List<object> queryParams = new List<object>();
 
@@ -432,6 +438,24 @@ namespace DLR_Data_App.Services
             }
 
             return status;
+        }
+
+        public static bool UpdateCustomValuesById(string tableName, int id, List<string> fieldNames, List<string> fieldValues)
+        {
+            CheckValidSqlName(tableName);
+            string query = $"DELETE FROM {tableName} WHERE Id={id}";
+            using (var conn = new SQLiteConnection(App.DatabaseLocation))
+            {
+                try
+                {
+                    conn.Execute(query);
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return InsertCustomValues(tableName, fieldNames, fieldValues, id);
         }
 
         /**
