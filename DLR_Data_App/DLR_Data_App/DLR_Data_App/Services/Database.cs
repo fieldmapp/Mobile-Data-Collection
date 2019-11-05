@@ -16,6 +16,13 @@ namespace DLR_Data_App.Services
      */
     public class Database
     {
+        private static void CheckValidSqlName(string name)
+        {
+            bool isValidChar(char c) => char.IsLetterOrDigit(c) || c == '_';
+            if (!name.All(isValidChar))
+                throw new ArgumentException($"{nameof(name)} is not a valid SQL name");
+        }
+
         /**
          * Insert data into the database
          * @param data The contents that will pushed into the database
@@ -297,7 +304,7 @@ namespace DLR_Data_App.Services
         {
             bool status;
             var tableName = Parser.LanguageJsonStandard(project.Title, project.Languages) + "_" + project.Id;
-
+            CheckValidSqlName(tableName);
             // Generate query for creating a new table
             var query = "CREATE TABLE IF NOT EXISTS " + tableName + "(";
             query += "Id INTEGER PRIMARY KEY AUTOINCREMENT, ";
@@ -308,6 +315,7 @@ namespace DLR_Data_App.Services
             {
                 foreach (var element in form.ElementList)
                 {
+                    CheckValidSqlName(element.Name);
                     query += element.Name + " VARCHAR, ";
                 }
             }
@@ -347,9 +355,9 @@ namespace DLR_Data_App.Services
                     var datalist = new TableData();
 
                     var tableInfo = conn.GetTableInfo(tableName);
-
+                    CheckValidSqlName(tableName);
                     // getting highest id in table
-                    var queryLastId = "SELECT MAX(ID) FROM " + tableName + " AS int";
+                    var queryLastId = $"SELECT MAX(ID) FROM {tableName} AS int";
                     var lastElementId = conn.ExecuteScalar<int>(queryLastId);
 
                     foreach (var tableColumn in tableInfo)
@@ -358,7 +366,8 @@ namespace DLR_Data_App.Services
 
                         for (var i = 0; i <= lastElementId; i++)
                         {
-                            var query = "SELECT " + tableColumn.Name + " FROM " + tableName + " WHERE ID=" + i;
+                            CheckValidSqlName(tableColumn.Name);
+                            var query = $"SELECT {tableColumn.Name} FROM {tableName} WHERE ID={i}";
                             var element = conn.ExecuteScalar<string>(query);
                             if (element != null)
                                 elementList.Add(element);
@@ -386,30 +395,34 @@ namespace DLR_Data_App.Services
         public static bool InsertCustomValues(string tableName, List<string> fieldNames, List<string> fieldValues)
         {
             bool status;
-
-            var query = "INSERT INTO " + tableName + " (";
+            CheckValidSqlName(tableName);
+            var query = $"INSERT INTO {tableName} (";
 
             foreach (var name in fieldNames)
             {
-                query += name + ", ";
+                CheckValidSqlName(name);
+                query += $"{name}, ";
             }
 
             query = query.Remove(query.Length - 2);
             query += ") VALUES (";
 
+            List<object> queryParams = new List<object>();
+
             foreach (var values in fieldValues)
             {
-                query += "\"" + values + "\", ";
+                queryParams.Add(values);
+                query += "?, ";
             }
 
             query = query.Remove(query.Length - 2);
             query += ");";
-
+            
             using (var conn = new SQLiteConnection(App.DatabaseLocation))
             {
                 try
                 {
-                    conn.Execute(query);
+                    conn.Execute(query, queryParams.ToArray());
                     status = true;
                 }
                 catch
