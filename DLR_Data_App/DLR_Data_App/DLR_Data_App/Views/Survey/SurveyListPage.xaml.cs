@@ -1,4 +1,5 @@
 ﻿//Main contributors: Maximilian Enderling, Henning Woydt
+using DLR_Data_App.Localizations;
 using DLR_Data_App.Models.Survey;
 using DLR_Data_App.Services;
 using System;
@@ -57,6 +58,20 @@ namespace DLR_Data_App.Views.Survey
         private void DeleteAnswersClicked(object sender, EventArgs e)
         {
             DatabankCommunication.ResetSavedAnswers();
+        }
+
+        DateTime LastBackButtonPress = DateTime.MinValue;
+
+        protected override bool OnBackButtonPressed()
+        {
+            if ((DateTime.UtcNow - LastBackButtonPress).TotalSeconds < 3)
+                return base.OnBackButtonPressed();
+            else
+            {
+                LastBackButtonPress = DateTime.UtcNow;
+                DependencyService.Get<IToast>().ShortAlert(AppResources.appclosewarning);
+                return true;
+            }
         }
     }
 }

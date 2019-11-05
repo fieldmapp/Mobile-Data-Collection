@@ -141,6 +141,9 @@
   <data name="altitude" xml:space="preserve">
     <value>Altitude</value>
   </data>
+  <data name="appclosewarning" xml:space="preserve">
+    <value>Next tap will close the app.</value>
+  </data>
   <data name="authors" xml:space="preserve">
     <value>Authors</value>
   </data>

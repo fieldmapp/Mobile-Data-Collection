@@ -133,6 +133,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Next tap will close the app. ähnelt.
+        /// </summary>
+        internal static string appclosewarning {
+            get {
+                return ResourceManager.GetString("appclosewarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Authors ähnelt.
         /// </summary>
         internal static string authors {

@@ -7,6 +7,7 @@ using Xamarin.Forms.Xaml;
 using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.ViewModels.ProjectList;
 using DLR_Data_App.Services;
+using DLR_Data_App.Localizations;
 
 /**
  * Lists all available projects
@@ -72,6 +73,20 @@ namespace DLR_Data_App.Views.ProjectList
         private async void ProjectListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             await this.PushPage(new ProjectDetailPage(_projectList[e.ItemIndex]));
+        }
+
+        DateTime LastBackButtonPress = DateTime.MinValue;
+
+        protected override bool OnBackButtonPressed()
+        {
+            if ((DateTime.UtcNow - LastBackButtonPress).TotalSeconds < 3)
+                return base.OnBackButtonPressed();
+            else
+            {
+                LastBackButtonPress = DateTime.UtcNow;
+                DependencyService.Get<IToast>().ShortAlert(AppResources.appclosewarning);
+                return true;
+            }
         }
     }
 }

@@ -452,4 +452,7 @@ Einwilligung ist jede von der betroffenen Person freiwillig für den bestimmten 
   <data name="zippicker" xml:space="preserve">
     <value>Zip Archiv auswählen</value>
   </data>
+  <data name="appclosewarning" xml:space="preserve">
+    <value>Nochmaliges Tippen beendet die App.</value>
+  </data>
 </root>
