@@ -14,7 +14,6 @@
                       HorizontalOptions="CenterAndExpand"
                       VerticalOptions="FillAndExpand"
                       HasUnevenRows="true"
-                      IsPullToRefreshEnabled="true"
                       CachingStrategy="RecycleElement"
                       ItemTapped="DataList_OnItemTapped"
                       SelectionMode="None"

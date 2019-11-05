@@ -13,7 +13,6 @@
         <ListView x:Name="ProjectListView"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
-                IsPullToRefreshEnabled="true"
                 CachingStrategy="RecycleElement"
                 ItemTapped="ProjectListView_ItemTapped"
                 SelectionMode="None"
