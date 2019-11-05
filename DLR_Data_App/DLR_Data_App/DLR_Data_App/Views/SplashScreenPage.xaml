@@ -9,7 +9,7 @@
                 Source="LoginIconWhite.png" 
                 Margin="20,80,20,0"/>
             <ActivityIndicator
-                IsRunning="True" Color="Black"/>
+                IsRunning="True" Color="LightGreen"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
