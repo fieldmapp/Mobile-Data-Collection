@@ -2,6 +2,7 @@
 using DLR_Data_App.Models.ProjectModel;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -169,6 +170,7 @@ namespace DLR_Data_App.Services
 
                             var labelLatData = new Label()
                             {
+                                Text = sensor.Gps.Latitude.ToString(CultureInfo.CurrentCulture),
                                 StyleId = element.Name + "Lat"
                             };
                             elementList.Add(labelLatData);
@@ -180,6 +182,7 @@ namespace DLR_Data_App.Services
 
                             var labelLongData = new Label()
                             {
+                                Text = sensor.Gps.Longitude.ToString(CultureInfo.CurrentCulture),
                                 StyleId = element.Name + "Long"
                             };
                             elementList.Add(labelLongData);
