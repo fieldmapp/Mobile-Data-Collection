@@ -18,5 +18,11 @@ namespace DLR_Data_App.Views.Survey
             InitializeComponent();
             Image.Source = imageSource;
 		}
-	}
+
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PopAsync();
+            return true;
+        }
+    }
 }

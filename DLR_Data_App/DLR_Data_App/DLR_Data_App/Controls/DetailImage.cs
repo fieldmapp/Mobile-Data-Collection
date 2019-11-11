@@ -5,15 +5,18 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DLR_Data_App.Controls
 {
     class DetailImage : ImageButton
     {
+        static readonly TimeSpan LongPressThreshold = TimeSpan.FromMilliseconds(500);
         public event EventHandler ShortPress;
 
         Stopwatch Stopwatch = new Stopwatch();
+        Guid LastPressGuid = Guid.Empty;
 
         public DetailImage()
         {
@@ -23,19 +26,23 @@ namespace DLR_Data_App.Controls
 
         private void PressPicture(object sender, EventArgs e)
         {
-            Stopwatch.Reset();
-            Stopwatch.Start();
+            var pressGuid = LastPressGuid = Guid.NewGuid();
+            Stopwatch.Restart();
+            _ = AutoOpenDetailPage(pressGuid);
+        }
+
+        private async Task AutoOpenDetailPage(Guid pressGuid)
+        {
+            await Task.Delay(LongPressThreshold);
+            if (LastPressGuid == pressGuid)
+                Device.BeginInvokeOnMainThread(() => _ = this.PushPage(new ImageDetailPage(Source)));
         }
 
         private void ReleasePicture(object sender, EventArgs e)
         {
             Stopwatch.Stop();
             ImageButton imageButton = (ImageButton)sender;
-            if (Stopwatch.ElapsedMilliseconds > 500)
-            {
-                _ = this.PushPage(new ImageDetailPage(Source));
-            }
-            else
+            if (Stopwatch.Elapsed < LongPressThreshold)
                 ShortPress?.Invoke(this, null);
         }
     }
