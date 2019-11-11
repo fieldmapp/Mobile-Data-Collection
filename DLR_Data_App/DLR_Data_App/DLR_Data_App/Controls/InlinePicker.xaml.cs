@@ -19,14 +19,31 @@ namespace DLR_Data_App.Controls
         public IEnumerable ItemSource { get => ListView.ItemsSource; set => ListView.ItemsSource = value; }
         public object SelectedItem => ListView.SelectedItem;
         static readonly Color SelectedColor = Color.DarkSeaGreen;
+        const bool IndicateScrollable = true;
 
         public InlinePicker()
         {
             InitializeComponent();
+            ListView.PropertyChanged += ListView_PropertyChanged;
         }
 
-        public void Scroll(object sender, EventArgs e)
+        private void ListView_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            if (e.PropertyName == nameof(ListView.ItemsSource) && IndicateScrollable)
+                Task.Run(IndicateScroll);
+        }
+
+        private async Task IndicateScroll()
+        {
+            var lastItem = ItemSource.OfType<object>().LastOrDefault();
+            if (lastItem == null)
+                return;
+            ListView.ScrollTo(lastItem, ScrollToPosition.MakeVisible, true);
+            await Task.Delay(1500);
+            var firstItem = ItemSource.OfType<object>().FirstOrDefault();
+            if (firstItem == null)
+                return;
+            ListView.ScrollTo(firstItem, ScrollToPosition.MakeVisible, true);
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

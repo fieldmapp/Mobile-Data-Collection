@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              x:Class="DLR_Data_App.Controls.InlinePicker">
     <ContentView.Content>
-        <ListView ItemAppearing="Scroll" ItemSelected="ListView_ItemSelected" RowHeight="40" x:Name="ListView" BackgroundColor="Transparent" SelectionMode="Single">
+        <ListView ItemSelected="ListView_ItemSelected" RowHeight="40" x:Name="ListView" BackgroundColor="Transparent" SelectionMode="Single">
             
         </ListView>
   </ContentView.Content>
