@@ -314,9 +314,6 @@
     <AndroidResource Include="Resources\drawable-mdpi\stadium_stadium_ahrenrispenschwellen.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-mdpi\Stadium_three_question1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-mdpi\Stadium_three_question2.png" />
   </ItemGroup>
   <ItemGroup>
@@ -479,9 +476,6 @@
     <AndroidResource Include="Resources\drawable-xhdpi\Stadium_one_question6.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\Stadium_three_question1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\Stadium_three_question2.png" />
   </ItemGroup>
   <ItemGroup>
@@ -513,6 +507,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\Stadium_two_question6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\Stadium_three_question1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\Stadium_three_question1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
