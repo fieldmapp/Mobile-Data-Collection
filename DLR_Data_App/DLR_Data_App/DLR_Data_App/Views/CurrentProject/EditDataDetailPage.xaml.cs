@@ -2,6 +2,7 @@
 using DLR_Data_App.Models;
 using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Services;
+using DLR_Data_App.Services.Sensors;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -20,6 +21,7 @@ namespace DLR_Data_App.Views.CurrentProject
         private readonly Project _workingProject = Database.GetCurrentProject();
         private int _id;
         public List<View> ElementList = new List<View>();
+        private readonly Sensor _sensor = new Sensor();
         private List<ContentPage> _pages;
 
         public EditDataDetailPage(Dictionary<string, string> projectData)
@@ -64,6 +66,8 @@ namespace DLR_Data_App.Views.CurrentProject
 
             InitializeComponent();
 
+            _sensor.Gps.StatusChanged += OnGpsChange;
+
             if (_workingProject == null)
                 throw new Exception();
 
@@ -96,12 +100,30 @@ namespace DLR_Data_App.Views.CurrentProject
 
             foreach (var projectForm in _workingProject.FormList)
             {
-                var content = FormFactory.GenerateForm(projectForm, _workingProject, DisplayAlert);
+                var content = FormFactory.GenerateForm(projectForm, _workingProject, DisplayAlert, _sensor);
                 ElementList.AddRange(content.ElementList);
                 _pages.Add(content.Form);
             }
 
             return _pages;
+        }
+
+        /**
+         * Update shown gps data
+         */
+        private void OnGpsChange(object sender, GpsEventArgs e)
+        {
+            foreach (var label in ElementList.OfType<Label>())
+            {
+                if (label.StyleId.Contains("Lat"))
+                    label.Text = e.Latitude.ToString(CultureInfo.CurrentCulture);
+
+                if (label.StyleId.Contains("Long"))
+                    label.Text = e.Longitude.ToString(CultureInfo.CurrentCulture);
+
+                if (label.StyleId.Contains("Message"))
+                    label.Text = e.Message.ToString(CultureInfo.CurrentCulture);
+            }
         }
 
         private async void SaveClicked(object sender, EventArgs e)

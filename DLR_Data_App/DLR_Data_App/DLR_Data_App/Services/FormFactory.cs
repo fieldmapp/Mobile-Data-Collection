@@ -21,7 +21,7 @@ namespace DLR_Data_App.Services
     }
     static class FormFactory
     {
-        public static FormContent GenerateForm(ProjectForm form, Project currentProject, Func<string, string, string, Task> displayAlert)
+        public static FormContent GenerateForm(ProjectForm form, Project currentProject, Func<string, string, string, Task> displayAlert, Sensor sensor)
         {
             var contentPage = new ContentPage();
             var scrollView = new ScrollView();
@@ -191,6 +191,7 @@ namespace DLR_Data_App.Services
 
                             var labelMessageData = new Label()
                             {
+                                Text = sensor.Gps.Message,
                                 StyleId = element.Name + "Message"
                             };
                             elementList.Add(labelMessageData);

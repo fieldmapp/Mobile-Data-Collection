@@ -44,7 +44,7 @@ namespace com.DLR.DLR_Data_App.Droid
                 }
             });
 
-            CheckAppPermissions();
+            EnsureAppPermission(Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage, Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation);
         }
 
         public override void SetSupportActionBar(Toolbar toolbar)
@@ -77,13 +77,15 @@ namespace com.DLR.DLR_Data_App.Droid
             }
         }
 
-        public void CheckAppPermissions()
+        public void EnsureAppPermission(params string[] perms)
         {
-            if (PackageManager.CheckPermission(Manifest.Permission.ReadExternalStorage, PackageName) != Permission.Granted
-                && PackageManager.CheckPermission(Manifest.Permission.WriteExternalStorage, PackageName) != Permission.Granted)
+            foreach (var perm in perms)
             {
-                var permissions = new string[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage };
-                RequestPermissions(permissions, 1);
+                if (PackageManager.CheckPermission(perm, PackageName) != Permission.Granted)
+                {
+                    var permissions = new string[] { perm };
+                    RequestPermissions(permissions, 1);
+                }
             }
         }
 

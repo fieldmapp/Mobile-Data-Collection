@@ -135,7 +135,7 @@ namespace DLR_Data_App.Views.CurrentProject
 
                 foreach (var projectForm in _workingProject.FormList)
                 {
-                    var content = FormFactory.GenerateForm(projectForm, _workingProject, DisplayAlert);
+                    var content = FormFactory.GenerateForm(projectForm, _workingProject, DisplayAlert, _sensor);
                     ElementList.AddRange(content.ElementList);
                     _pages.Add(content.Form);
                     yield return content.Form;
