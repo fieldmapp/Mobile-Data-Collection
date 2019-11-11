@@ -168,7 +168,7 @@ namespace DLR_Data_App.Views.CurrentProject
         {
             if (await CheckActiveProject())
             {
-                await Navigation.PushAsync(new EditDataPage());
+                await this.PushPage(new EditDataPage());
             }
         }
 

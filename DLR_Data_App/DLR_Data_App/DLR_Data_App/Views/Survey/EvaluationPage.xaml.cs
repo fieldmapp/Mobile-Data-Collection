@@ -1,5 +1,6 @@
 ﻿//Main contributors: Maya Koehnen
 using DLR_Data_App.Models.Survey;
+using DLR_Data_App.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,7 +62,7 @@ namespace DLR_Data_App.Views.Survey
         }
         void DetailsClicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new EvaluationDetailsPage(EvaluationItem.PercentEasy,EvaluationItem.PercentMedium,EvaluationItem.PercentHard));
+            _ = this.PushPage(new EvaluationDetailsPage(EvaluationItem.PercentEasy, EvaluationItem.PercentMedium, EvaluationItem.PercentHard));
         }
 
         protected override bool OnBackButtonPressed()

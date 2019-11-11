@@ -29,7 +29,7 @@ namespace DLR_Data_App.Views.Settings
         private async void ProfileListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             User selectedUser = _userList[e.ItemIndex];
-            await Navigation.PushAsync(new ProfilePage(selectedUser));
+            await this.PushPage(new ProfilePage(selectedUser));
         }
 
     }

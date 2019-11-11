@@ -1,4 +1,5 @@
 ﻿//Main contributors: Maximilian Enderling
+using DLR_Data_App.Services;
 using DLR_Data_App.Views.Survey;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace DLR_Data_App.Controls
             ImageButton imageButton = (ImageButton)sender;
             if (Stopwatch.ElapsedMilliseconds > 500)
             {
-                (Application.Current as App).Navigation.PushAsync(new ImageDetailPage(Source));
+                _ = this.PushPage(new ImageDetailPage(Source));
             }
             else
                 ShortPress?.Invoke(this, null);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using DLR_Data_App.Localizations;
+using DLR_Data_App.Services;
 using DLR_Data_App.ViewModels.CurrentProject;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -53,7 +54,7 @@ namespace DLR_Data_App.Views.CurrentProject
                 if (_viewModel.ProjectData.RowNameList[i] != "ProjectId")
                     projectData.Add(_viewModel.ProjectData.RowNameList[i], _viewModel.ProjectData.ValueList[i][e.ItemIndex]);
             }
-            Navigation.PushAsync(new EditDataDetailPage(projectData));
+            _ = this.PushPage(new EditDataDetailPage(projectData));
         }
 
         protected override bool OnBackButtonPressed()

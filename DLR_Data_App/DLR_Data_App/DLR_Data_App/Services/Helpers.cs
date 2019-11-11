@@ -141,15 +141,15 @@ namespace DLR_Data_App.Services
          */
         public static List<Project> TranslateProjectDetails(List<Project> projectList) => projectList.Select(TranslateProjectDetails).ToList();
 
-        public static async Task PushPage(this NavigableElement navElement, Page page)
+        public static async Task PushPage(this NavigableElement navElement, Page page, bool animated = true)
         {
             if (Device.RuntimePlatform == Device.Android)
             {
-                await (Application.Current as App).Navigation.PushAsync(page);
+                await (Application.Current as App).Navigation.PushAsync(page, animated);
             }
             else if (Device.RuntimePlatform == Device.iOS)
             {
-                await navElement.Navigation.PushModalAsync(page);
+                await navElement.Navigation.PushModalAsync(page, animated);
             }
         }
 

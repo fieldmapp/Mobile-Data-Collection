@@ -42,7 +42,7 @@ namespace DLR_Data_App.Services
                     return;
                 CurrentSurvey = selectedSurvey;
             }
-            Navigation.PushAsync(new LoadingPage(), false);
+            _ = Navigation.PushPage(new LoadingPage(), false);
             if (CurrentSurvey.IntrospectionQuestion.All(q => DatabankCommunication.DoesAnswersExists("Introspection", q)))
             {
                 ShowEvaluationPage();
@@ -63,7 +63,7 @@ namespace DLR_Data_App.Services
             }
             var newPage = (ISurveyPage)Activator.CreateInstance(CurrentSurvey.SurveyPageType, new object[] { question, CurrentSurvey.AnswersGiven, CurrentSurvey.AnswersNeeded });
             newPage.PageFinished += NewPage_PageFinished;
-            Navigation.PushAsync(newPage as ContentPage);
+            _ = Navigation.PushPage(newPage as ContentPage);
         }
 
         private static void NewPage_PageFinished(object sender, PageResult e)
@@ -106,7 +106,7 @@ namespace DLR_Data_App.Services
             }
             var introspectionPage = new IntrospectionPage(newIntrospectionQuestion);
             introspectionPage.PageFinished += IntrospectionPage_PageFinished;
-            Navigation.PushAsync(introspectionPage);
+            _ = Navigation.PushPage(introspectionPage);
         }
 
         private static void IntrospectionPage_PageFinished(object sender, PageResult e)
@@ -130,7 +130,7 @@ namespace DLR_Data_App.Services
             var evalItem = GenerateEvaluationItem(CurrentSurvey);
             var evaluationPage = new EvaluationPage(evalItem);
             evaluationPage.PageFinished += EvaluationPage_PageFinished;
-            Navigation.PushAsync(evaluationPage);
+            _ = Navigation.PushPage(evaluationPage);
             CurrentSurvey = null;
             DatabankCommunication.SaveAnswers();
             DatabankCommunication.CreateCSV();
