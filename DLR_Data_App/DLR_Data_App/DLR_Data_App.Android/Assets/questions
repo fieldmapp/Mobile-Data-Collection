@@ -6,8 +6,8 @@
       "Difficulty": 1,
       "QuestionText": "Wo sehen sie die Feldfruchtsorte Weizen abgebildet?",
       "Image1Correct": 0,
-      "Image2Correct": 0,
-      "Image3Correct": 1,
+      "Image2Correct": 1,
+      "Image3Correct": 0,
       "Image4Correct": 0,
       "Image1Source": "ImageChecker_one_question1_picture1.png",
       "Image2Source": "ImageChecker_one_question1_picture2.png",
@@ -91,8 +91,8 @@
       "InternId": 1,
       "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
       "PictureAddress": "DoubleSlider_one_question1.png",
-      "CorrectAnswerA": 7,
-      "CorrectAnswerB": 4,
+      "CorrectAnswerA": 60,
+      "CorrectAnswerB": 23,
       "Difficulty": 1
     },
     {
@@ -100,8 +100,8 @@
       "InternId": 2,
       "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
       "PictureAddress": "DoubleSlider_one_question2.png",
-      "CorrectAnswerA": 49,
-      "CorrectAnswerB": 91,
+      "CorrectAnswerA": 43,
+      "CorrectAnswerB": 99,
       "Difficulty": 1
     },
     {
@@ -118,8 +118,8 @@
       "InternId": 4,
       "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
       "PictureAddress": "DoubleSlider_one_question4.png",
-      "CorrectAnswerA": 64,
-      "CorrectAnswerB": 94,
+      "CorrectAnswerA": 90,
+      "CorrectAnswerB": 1,
       "Difficulty": 1
     },
     {
@@ -618,7 +618,7 @@
           "InternLetter": "D"
         }
       ],
-      "CorrectAnswerFruitType": "C",
+      "CorrectAnswerFruitType": "D",
       "CorrectAnswerStadium": 5,
       "Difficulty": 2
     },
@@ -726,7 +726,7 @@
           "InternLetter": "D"
         }
       ],
-      "CorrectAnswerFruitType": "C",
+      "CorrectAnswerFruitType": "D",
       "CorrectAnswerStadium": 2,
       "Difficulty": 2
     },

@@ -29,7 +29,7 @@ namespace DLR_Data_App.Services
         {
             return new List<IQuestionContent>
             {
-                new QuestionImageCheckerPage(1, "Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 0, 1, 0, "ImageChecker_one_question1_picture1.png", "ImageChecker_one_question1_picture2.png", "ImageChecker_one_question1_picture3.png", "ImageChecker_one_question1_picture4.png"),
+                new QuestionImageCheckerPage(1, "Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 1, 0, 0, "ImageChecker_one_question1_picture1.png", "ImageChecker_one_question1_picture2.png", "ImageChecker_one_question1_picture3.png", "ImageChecker_one_question1_picture4.png"),
                 new QuestionImageCheckerPage(2, "Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 1, 0, 1, 1, 0, "ImageChecker_one_question2_picture1.png", "ImageChecker_one_question2_picture2.png", "ImageChecker_one_question2_picture3.png", "ImageChecker_one_question2_picture4.png"),
                 new QuestionImageCheckerPage(3, "Wo sehen sie die Feldfruchtsorte Raps abgebildet?", 2, 1, 1, 1, 0, "ImageChecker_two_question3_picture1.png", "ImageChecker_two_question3_picture2.png", "ImageChecker_two_question3_picture3.png", "ImageChecker_two_question3_picture4.png"),
                 new QuestionImageCheckerPage(4, "Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 2, 0, 0, 1, 0, "ImageChecker_two_question4_picture1.png", "ImageChecker_two_question4_picture2.png", "ImageChecker_two_question4_picture3.png", "ImageChecker_two_question4_picture4.png"),
@@ -45,10 +45,10 @@ namespace DLR_Data_App.Services
         {
             return new List<IQuestionContent>
             {
-                new QuestionDoubleSliderPage(1, 1, "DoubleSlider_one_question1.png", 7, 4),
-                new QuestionDoubleSliderPage(2, 1, "DoubleSlider_one_question2.png", 49, 91),
+                new QuestionDoubleSliderPage(1, 1, "DoubleSlider_one_question1.png", 60, 23),
+                new QuestionDoubleSliderPage(2, 1, "DoubleSlider_one_question2.png", 43, 99),
                 new QuestionDoubleSliderPage(3, 1, "DoubleSlider_one_question3.png", 12, 3),
-                new QuestionDoubleSliderPage(4, 1, "DoubleSlider_one_question4.png", 64, 94),
+                new QuestionDoubleSliderPage(4, 1, "DoubleSlider_one_question4.png", 90, 1),
                 new QuestionDoubleSliderPage(5, 2, "DoubleSlider_two_question1.png", 7, 96),
                 new QuestionDoubleSliderPage(6, 2, "DoubleSlider_two_question2.png", 49, 91),
                 new QuestionDoubleSliderPage(7, 2, "DoubleSlider_two_question3.png", 12, 3),
@@ -121,9 +121,9 @@ namespace DLR_Data_App.Services
 
                 new QuestionStadiumPage(7, 2, "Stadium_two_question1.png", stadiums2.ToList(), plants2.ToList(), 5, "B", questionText),
                 new QuestionStadiumPage(8, 2, "Stadium_two_question2.png", stadiums2.ToList(), plants2.ToList(), 4, "C", questionText),
-                new QuestionStadiumPage(9, 2, "Stadium_two_question3.png", stadiums2.ToList(), plants2.ToList(), 5, "C", questionText),
+                new QuestionStadiumPage(9, 2, "Stadium_two_question3.png", stadiums2.ToList(), plants2.ToList(), 5, "D", questionText),
                 new QuestionStadiumPage(10, 2, "Stadium_two_question4.png", stadiums2.ToList(), plants2.ToList(), 1, "B", questionText),
-                new QuestionStadiumPage(11, 2, "Stadium_two_question5.png", stadiums2.ToList(), plants2.ToList(), 2, "C", questionText),
+                new QuestionStadiumPage(11, 2, "Stadium_two_question5.png", stadiums2.ToList(), plants2.ToList(), 2, "D", questionText),
                 new QuestionStadiumPage(12, 2, "Stadium_two_question6.png", stadiums2.ToList(), plants2.ToList(), 3, "A", questionText),
 
                 new QuestionStadiumPage(13, 3, "Stadium_three_question1.png", stadiums3.ToList(), plants3.ToList(), 2, "E", questionText),
