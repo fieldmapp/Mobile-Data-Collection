@@ -78,21 +78,28 @@ namespace DLR_Data_App.Views
 
         protected override bool OnBackButtonPressed()
         {
-            if (!IsPresented)
+            if ((App.Current as App).Navigation.Navigation.NavigationStack.Count == 1)
             {
-                IsPresented = true;
-                return true;
+                if (!IsPresented)
+                {
+                    IsPresented = true;
+                    return true;
+                }
+                else
+                {
+                    if ((DateTime.UtcNow - LastBackButtonPress).TotalSeconds < 3)
+                        return base.OnBackButtonPressed();
+                    else
+                    {
+                        LastBackButtonPress = DateTime.UtcNow;
+                        DependencyService.Get<IToast>().ShortAlert(AppResources.appclosewarning);
+                        return true;
+                    }
+                }
             }
             else
             {
-                if ((DateTime.UtcNow - LastBackButtonPress).TotalSeconds < 3)
-                    return base.OnBackButtonPressed();
-                else
-                {
-                    LastBackButtonPress = DateTime.UtcNow;
-                    DependencyService.Get<IToast>().ShortAlert(AppResources.appclosewarning);
-                    return true;
-                }
+                return (App.Current as App).CurrentPage.SendBackButtonPressed();
             }
         }
     }
