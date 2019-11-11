@@ -1,4 +1,5 @@
-﻿using DLR_Data_App.Models;
+﻿using DLR_Data_App.Localizations;
+using DLR_Data_App.Models;
 using DLR_Data_App.Services;
 using DLR_Data_App.Views.CurrentProject;
 using DLR_Data_App.Views.Login;
@@ -70,6 +71,28 @@ namespace DLR_Data_App.Views
                 MessagingCenter.Send<object, bool>(this, "ReloadToolbar", true);
 
                 IsPresented = false;
+            }
+        }
+
+        DateTime LastBackButtonPress = DateTime.MinValue;
+
+        protected override bool OnBackButtonPressed()
+        {
+            if (!IsPresented)
+            {
+                IsPresented = true;
+                return true;
+            }
+            else
+            {
+                if ((DateTime.UtcNow - LastBackButtonPress).TotalSeconds < 3)
+                    return base.OnBackButtonPressed();
+                else
+                {
+                    LastBackButtonPress = DateTime.UtcNow;
+                    DependencyService.Get<IToast>().ShortAlert(AppResources.appclosewarning);
+                    return true;
+                }
             }
         }
     }

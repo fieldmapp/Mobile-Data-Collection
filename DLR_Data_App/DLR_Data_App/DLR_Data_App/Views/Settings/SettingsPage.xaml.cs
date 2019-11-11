@@ -14,19 +14,5 @@ namespace DLR_Data_App.Views.Settings
         {
             InitializeComponent();
         }
-
-        DateTime LastBackButtonPress = DateTime.MinValue;
-
-        protected override bool OnBackButtonPressed()
-        {
-            if ((DateTime.UtcNow - LastBackButtonPress).TotalSeconds < 3)
-                return base.OnBackButtonPressed();
-            else
-            {
-                LastBackButtonPress = DateTime.UtcNow;
-                DependencyService.Get<IToast>().ShortAlert(AppResources.appclosewarning);
-                return true;
-            }
-        }
     }
 }
