@@ -1,42 +1,49 @@
-﻿using Xamarin.Essentials;
+﻿using System;
+using Xamarin.Essentials;
 
 namespace DLR_Data_App.Services.Sensors
 {
-  /**
-   * This class handles the barometer
-   */
-  public class Barometer
-  {
-    public double CurrentPressure { get; set; }
-    public double MaxPressure { get; set; }
-
-    public Barometer()
-    {
-      Reset();
-    }
-
     /**
-     * EventHandler which collects values after each change
+     * This class handles the barometer
      */
-    public void Reading_Changed(object sender, BarometerChangedEventArgs e)
+    public class Barometer
     {
-      var data = e.Reading;
+        public event EventHandler<BarometerChangedEventArgs> ReadingChanged
+        {
+            add => Xamarin.Essentials.Barometer.ReadingChanged += value;
+            remove => Xamarin.Essentials.Barometer.ReadingChanged -= value;
+        }
 
-      CurrentPressure = data.PressureInHectopascals;
+        public double CurrentPressure { get; set; }
+        public double MaxPressure { get; set; }
 
-      if(CurrentPressure > MaxPressure)
-      {
-        MaxPressure = CurrentPressure;
-      }
+        public Barometer()
+        {
+            Reset();
+        }
+
+        /**
+         * EventHandler which collects values after each change
+         */
+        public void Reading_Changed(object sender, BarometerChangedEventArgs e)
+        {
+            var data = e.Reading;
+
+            CurrentPressure = data.PressureInHectopascals;
+
+            if (CurrentPressure > MaxPressure)
+            {
+                MaxPressure = CurrentPressure;
+            }
+        }
+
+        /**
+         * Resets values
+         */
+        public void Reset()
+        {
+            CurrentPressure = 0.0;
+            MaxPressure = 0.0;
+        }
     }
-
-    /**
-     * Resets values
-     */
-    public void Reset()
-    {
-      CurrentPressure = 0.0;
-      MaxPressure = 0.0;
-    }
-  }
 }
