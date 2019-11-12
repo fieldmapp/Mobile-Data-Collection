@@ -40,7 +40,7 @@ namespace DLR_Data_App.Views.Login
 
             if (_viewModel.Check_Information(checkUsername, checkPassword))
             {
-                Application.Current.MainPage = new SplashScreenPage();
+                Application.Current.MainPage = new SplashScreenPage(true);
             }
             else
             {

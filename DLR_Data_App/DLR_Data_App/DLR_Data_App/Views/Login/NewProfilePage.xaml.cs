@@ -80,7 +80,7 @@ namespace DLR_Data_App.Views.Login
 
             App.CurrentUser = _user;
 
-            Application.Current.MainPage = new SplashScreenPage();
+            Application.Current.MainPage = new SplashScreenPage(false);
         }
 
         /**
