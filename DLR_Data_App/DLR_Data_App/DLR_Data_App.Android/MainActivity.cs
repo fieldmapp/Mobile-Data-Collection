@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -79,14 +80,16 @@ namespace com.DLR.DLR_Data_App.Droid
 
         public void EnsureAppPermission(params string[] perms)
         {
+            List<string> neededPerms = new List<string>();
             foreach (var perm in perms)
             {
                 if (PackageManager.CheckPermission(perm, PackageName) != Permission.Granted)
                 {
-                    var permissions = new string[] { perm };
-                    RequestPermissions(permissions, 1);
+                    neededPerms.Add(perm);
                 }
             }
+            if (neededPerms.Any())
+                RequestPermissions(neededPerms.ToArray(), 1);
         }
 
         protected override void OnResume()
