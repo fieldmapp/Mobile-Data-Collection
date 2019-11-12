@@ -2,7 +2,9 @@
 <!--Main contributors: Maximilian Enderling-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DLR_Data_App.Views.Survey.LoadingPage">
+             x:Class="DLR_Data_App.Views.Survey.LoadingPage"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             Title="{res:Translate survey}">
     <ContentPage.Content>
         <StackLayout>
             <ActivityIndicator IsRunning="True" Color="Black" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>

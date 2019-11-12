@@ -69,7 +69,7 @@ namespace DLR_Data_App.Views.Survey
 		{
             InitializeComponent();
             QuestionItem = question;
-
+            
             Picture.BindingContext = this;
             QuestionText.BindingContext = this;
             HeaderText.BindingContext = this;

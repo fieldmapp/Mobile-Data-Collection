@@ -5,7 +5,9 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="DLR_Data_App.Views.Survey.EvaluationDetailsPage">
+             x:Class="DLR_Data_App.Views.Survey.EvaluationDetailsPage"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             Title="{res:Translate survey}">
     <ContentPage.Content>
         <!-- Page is structured with StackLayout with 20pt Padding-->
         <StackLayout Padding="20">

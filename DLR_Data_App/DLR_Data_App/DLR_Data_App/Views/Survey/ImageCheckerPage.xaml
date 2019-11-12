@@ -3,7 +3,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DLR_Data_App.Views.Survey.ImageCheckerPage"
-             xmlns:controls="clr-namespace:DLR_Data_App.Controls">
+             xmlns:controls="clr-namespace:DLR_Data_App.Controls"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             Title="{res:Translate survey}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Button">White</Color>

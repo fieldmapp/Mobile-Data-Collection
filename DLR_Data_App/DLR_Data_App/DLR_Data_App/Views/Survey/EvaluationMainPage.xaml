@@ -5,7 +5,9 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="DLR_Data_App.Views.Survey.EvaluationMainPage">
+             x:Class="DLR_Data_App.Views.Survey.EvaluationMainPage"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             Title="{res:Translate survey}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Button">Transparent</Color>
