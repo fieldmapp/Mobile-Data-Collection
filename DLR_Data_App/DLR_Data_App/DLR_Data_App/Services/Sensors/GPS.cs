@@ -55,7 +55,7 @@ namespace DLR_Data_App.Services.Sensors
          * EventHandler for handling changes in latitude, longitude and altitude
          * @param e GpsEventArgs
          */
-        protected virtual void OnStatusChanged(GpsEventArgs e)
+        public virtual void OnStatusChanged(GpsEventArgs e)
         {
             var handler = StatusChanged;
             handler?.Invoke(this, e);

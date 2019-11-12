@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace DLR_Data_App.Services
@@ -112,7 +113,7 @@ namespace DLR_Data_App.Services
             while (true)
             {
                 await Gps.GetLocationAsync();
-
+                
                 await Task.Delay(10000);
             }
         }

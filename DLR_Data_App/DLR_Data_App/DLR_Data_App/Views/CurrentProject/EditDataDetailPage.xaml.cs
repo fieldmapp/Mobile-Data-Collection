@@ -84,7 +84,7 @@ namespace DLR_Data_App.Views.CurrentProject
 
             Helpers.WalkElements(_pages, WriteInfoToView);
         }
-        
+
         protected override bool OnBackButtonPressed()
         {
             Navigation.PopAsync();
@@ -116,13 +116,13 @@ namespace DLR_Data_App.Views.CurrentProject
             foreach (var label in ElementList.OfType<Label>())
             {
                 if (label.StyleId.Contains("Lat"))
-                    label.Text = e.Latitude.ToString(CultureInfo.CurrentCulture);
+                    Device.BeginInvokeOnMainThread(() => label.Text = e.Latitude.ToString(CultureInfo.CurrentCulture));
 
                 if (label.StyleId.Contains("Long"))
-                    label.Text = e.Longitude.ToString(CultureInfo.CurrentCulture);
+                    Device.BeginInvokeOnMainThread(() => label.Text = e.Longitude.ToString(CultureInfo.CurrentCulture));
 
                 if (label.StyleId.Contains("Message"))
-                    label.Text = e.Message.ToString(CultureInfo.CurrentCulture);
+                    Device.BeginInvokeOnMainThread(() => label.Text = e.Message.ToString(CultureInfo.CurrentCulture));
             }
         }
 

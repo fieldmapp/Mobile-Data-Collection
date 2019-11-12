@@ -2,6 +2,7 @@
 using DLR_Data_App.Localizations;
 using DLR_Data_App.Models;
 using DLR_Data_App.Services;
+using DLR_Data_App.Services.Sensors;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -22,22 +23,22 @@ namespace DLR_Data_App.Views
 
             _sensor = new Sensor();
 
-            Accelerometer.ReadingChanged += _sensor.Accelerometer.Reading_Changed;
-            Accelerometer.ReadingChanged += OnAccelerometer_Change;
+            Xamarin.Essentials.Accelerometer.ReadingChanged += _sensor.Accelerometer.Reading_Changed;
+            Xamarin.Essentials.Accelerometer.ReadingChanged += OnAccelerometer_Change;
 
             _sensor.Gps.StatusChanged += OnGps_Change;
 
-            Barometer.ReadingChanged += _sensor.Barometer.Reading_Changed;
-            Barometer.ReadingChanged += OnBarometer_Change;
+            Xamarin.Essentials.Barometer.ReadingChanged += _sensor.Barometer.Reading_Changed;
+            Xamarin.Essentials.Barometer.ReadingChanged += OnBarometer_Change;
 
-            Compass.ReadingChanged += _sensor.Compass.Reading_Changed;
-            Compass.ReadingChanged += OnCompass_Change;
+            Xamarin.Essentials.Compass.ReadingChanged += _sensor.Compass.Reading_Changed;
+            Xamarin.Essentials.Compass.ReadingChanged += OnCompass_Change;
 
-            Gyroscope.ReadingChanged += _sensor.Gyroscope.Reading_Changed;
-            Gyroscope.ReadingChanged += OnGyroscope_Change;
+            Xamarin.Essentials.Gyroscope.ReadingChanged += _sensor.Gyroscope.Reading_Changed;
+            Xamarin.Essentials.Gyroscope.ReadingChanged += OnGyroscope_Change;
 
-            Magnetometer.ReadingChanged += _sensor.Magnetometer.Reading_Changed;
-            Magnetometer.ReadingChanged += OnMagnetometer_Change;
+            Xamarin.Essentials.Magnetometer.ReadingChanged += _sensor.Magnetometer.Reading_Changed;
+            Xamarin.Essentials.Magnetometer.ReadingChanged += OnMagnetometer_Change;
         }
 
         /**
@@ -117,14 +118,15 @@ namespace DLR_Data_App.Views
         /**
          * Updates gps values
          */
-        public void OnGps_Change(object sender, EventArgs e)
+        public void OnGps_Change(object sender, GpsEventArgs e)
         {
-            LblLat.Text = _sensor.Gps.Latitude.ToString("N6");
-            LblLon.Text = _sensor.Gps.Longitude.ToString("N6");
-            LblAlt.Text = _sensor.Gps.Altitude.ToString("N2");
-            LblStatus.Text = _sensor.Gps.Message;
-
-            //sensor._gps.GetLocationAsync();
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                LblLat.Text = e.Latitude.ToString("N6");
+                LblLon.Text = e.Longitude.ToString("N6");
+                LblAlt.Text = e.Altitude.ToString("N2");
+                LblStatus.Text = e.Message;
+            });
         }
 
         /**
