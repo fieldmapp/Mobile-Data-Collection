@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:localizations="clr-namespace:DLR_Data_App.Localizations;assembly=DLR_Data_App"
              x:Class="DLR_Data_App.Views.CurrentProject.EditDataPage"
-             Title="{localizations:Translate edit}">
+             Title="{Binding Title}">
 
     <ContentPage.Content>
         <ListView x:Name="DataList"
