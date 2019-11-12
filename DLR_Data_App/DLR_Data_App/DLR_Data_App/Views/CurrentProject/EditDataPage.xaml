@@ -5,10 +5,6 @@
              x:Class="DLR_Data_App.Views.CurrentProject.EditDataPage"
              Title="{localizations:Translate edit}">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{localizations:Translate help}" Clicked="HelpClicked" />
-    </ContentPage.ToolbarItems>
-
     <ContentPage.Content>
         <ListView x:Name="DataList"
                       HorizontalOptions="CenterAndExpand"

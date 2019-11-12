@@ -36,14 +36,6 @@ namespace DLR_Data_App.Views.CurrentProject
         }
 
         /**
-         * Display help message
-         */
-        public async void HelpClicked(object sender, EventArgs eventArgs)
-        {
-            await DisplayAlert(AppResources.help, AppResources.edithelp, AppResources.okay);
-        }
-
-        /**
          * Data set selected
          */
         private void DataList_OnItemTapped(object sender, ItemTappedEventArgs e)
