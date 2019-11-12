@@ -66,8 +66,6 @@ namespace DLR_Data_App.Views.CurrentProject
 
             InitializeComponent();
 
-            _sensor.Gps.StatusChanged += OnGpsChange;
-
             if (_workingProject == null)
                 throw new Exception();
 
@@ -83,6 +81,18 @@ namespace DLR_Data_App.Views.CurrentProject
             }
 
             Helpers.WalkElements(_pages, WriteInfoToView);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _sensor.Gps.StatusChanged += OnGpsChange;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            _sensor.Gps.StatusChanged -= OnGpsChange;
         }
 
         protected override bool OnBackButtonPressed()

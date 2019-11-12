@@ -1,9 +1,6 @@
 ﻿using System;
-using DLR_Data_App.Localizations;
-using DLR_Data_App.Models;
 using DLR_Data_App.Services;
 using DLR_Data_App.Services.Sensors;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -22,23 +19,28 @@ namespace DLR_Data_App.Views
             InitializeComponent();
 
             _sensor = Sensor.Instance;
+        }
 
-            Xamarin.Essentials.Accelerometer.ReadingChanged += _sensor.Accelerometer.Reading_Changed;
-            Xamarin.Essentials.Accelerometer.ReadingChanged += OnAccelerometer_Change;
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 
+            _sensor.Accelerometer.ReadingChanged += OnAccelerometer_Change;
             _sensor.Gps.StatusChanged += OnGps_Change;
+            _sensor.Barometer.ReadingChanged += OnBarometer_Change;
+            _sensor.Compass.ReadingChanged += OnCompass_Change;
+            _sensor.Gyroscope.ReadingChanged += OnGyroscope_Change;
+            _sensor.Magnetometer.ReadingChanged += OnMagnetometer_Change;
+        }
 
-            Xamarin.Essentials.Barometer.ReadingChanged += _sensor.Barometer.Reading_Changed;
-            Xamarin.Essentials.Barometer.ReadingChanged += OnBarometer_Change;
-
-            Xamarin.Essentials.Compass.ReadingChanged += _sensor.Compass.Reading_Changed;
-            Xamarin.Essentials.Compass.ReadingChanged += OnCompass_Change;
-
-            Xamarin.Essentials.Gyroscope.ReadingChanged += _sensor.Gyroscope.Reading_Changed;
-            Xamarin.Essentials.Gyroscope.ReadingChanged += OnGyroscope_Change;
-
-            Xamarin.Essentials.Magnetometer.ReadingChanged += _sensor.Magnetometer.Reading_Changed;
-            Xamarin.Essentials.Magnetometer.ReadingChanged += OnMagnetometer_Change;
+        protected override void OnDisappearing()
+        {
+            _sensor.Accelerometer.ReadingChanged -= OnAccelerometer_Change;
+            _sensor.Gps.StatusChanged -= OnGps_Change;
+            _sensor.Barometer.ReadingChanged -= OnBarometer_Change;
+            _sensor.Compass.ReadingChanged -= OnCompass_Change;
+            _sensor.Gyroscope.ReadingChanged -= OnGyroscope_Change;
+            _sensor.Magnetometer.ReadingChanged -= OnMagnetometer_Change;
         }
 
         /**

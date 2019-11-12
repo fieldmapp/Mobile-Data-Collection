@@ -31,11 +31,21 @@ namespace DLR_Data_App.Views.CurrentProject
         {
             InitializeComponent();
 
-            _sensor.Gps.StatusChanged += OnGpsChange;
-
             BindingContext = _viewModel;
 
             Appearing += ProjectPage_Appearing;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _sensor.Gps.StatusChanged += OnGpsChange;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            _sensor.Gps.StatusChanged -= OnGpsChange;
         }
 
         private void ClearView(View element)
