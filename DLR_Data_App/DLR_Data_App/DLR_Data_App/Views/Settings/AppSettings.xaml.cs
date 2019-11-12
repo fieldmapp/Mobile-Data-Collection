@@ -31,11 +31,7 @@ namespace DLR_Data_App.Views.Settings
             {
                 case 0:
                     // Show privacy policy
-                    answer = await DisplayAlert(AppResources.privacypolicy, AppResources.privacytext1, AppResources.accept, AppResources.decline);
-                    if (!answer)
-                    {
-                        // if user declines privacy policy remove his account
-                    }
+                    await DisplayAlert(AppResources.privacypolicy, AppResources.privacytext1, AppResources.okay);
                     break;
                 case 1:
                     // Remove Database
