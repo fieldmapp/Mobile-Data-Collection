@@ -11,34 +11,13 @@ namespace DLR_Data_App.Services.Sensors
     {
         public event EventHandler<GpsEventArgs> StatusChanged;
 
-        private double _altitude;
-        private double _latitude;
-        private double _longitude;
-        private string _message;
+        public double Altitude { get; set; }
 
-        public double Altitude
-        {
-            get => _altitude;
-            set => _altitude = value;
-        }
+        public double Latitude { get; set; }
 
-        public double Latitude
-        {
-            get => _latitude;
-            set => _latitude = value;
-        }
+        public double Longitude { get; set; }
 
-        public double Longitude
-        {
-            get => _longitude;
-            set => _longitude = value;
-        }
-
-        public string Message
-        {
-            get => _message;
-            set => _message = value;
-        }
+        public string Message { get; set; }
 
         /**
          * Constructor initializes all variables
@@ -55,10 +34,9 @@ namespace DLR_Data_App.Services.Sensors
          * EventHandler for handling changes in latitude, longitude and altitude
          * @param e GpsEventArgs
          */
-        public virtual void OnStatusChanged(GpsEventArgs e)
+        protected virtual void OnStatusChanged(GpsEventArgs e)
         {
-            var handler = StatusChanged;
-            handler?.Invoke(this, e);
+            StatusChanged?.Invoke(this, e);
         }
 
         /**
@@ -109,7 +87,7 @@ namespace DLR_Data_App.Services.Sensors
                     Message = "Unknown error";
                 }
 
-                OnStatusChanged(new GpsEventArgs(_message, _latitude, _longitude, _altitude));
+                OnStatusChanged(new GpsEventArgs(Message, Latitude, Longitude, Altitude));
             }
         }
     }
