@@ -48,6 +48,27 @@ namespace com.DLR.DLR_Data_App.Droid
             EnsureAppPermission(Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage, Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation);
         }
 
+        Page LastPage;
+        object ToolbarItemsLock = new object();
+
+        private void ResetToolbarItems(Page page, List<ToolbarItem> toolbarItems)
+        {
+            //TODO: Fix issue with tabbed page:
+            //When you turn your smartphone on and off (just the screen), the ToolbarItems will disappear
+            //Probably has something to do with TabbedPage calling OnAppearing multiple times
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                lock (ToolbarItemsLock)
+                {
+                    page.ToolbarItems.Clear();
+                    foreach (var item in toolbarItems)
+                    {
+                        page.ToolbarItems.Add(item);
+                    }
+                }
+            });
+        }
+
         public override void SetSupportActionBar(Toolbar toolbar)
         {
             base.SetSupportActionBar(toolbar);
@@ -57,17 +78,21 @@ namespace com.DLR.DLR_Data_App.Droid
             {
                 var currentPage = (App.Current as App).CurrentPage;
                 var items = currentPage.ToolbarItems.ToList();
-                Device.BeginInvokeOnMainThread(() =>
+
+                if (LastPage != null)
+                    LastPage.Appearing -= currentPage_Appearing;
+
+                LastPage = currentPage;
+                currentPage.Appearing += currentPage_Appearing;
+
+                ResetToolbarItems(currentPage, items);
+                
+                void currentPage_Appearing(object sender, EventArgs e)
                 {
-                    currentPage.ToolbarItems.Clear();
-                    foreach (var item in items)
-                    {
-                        currentPage.ToolbarItems.Add(item);
-                    }
-                });
+                    ResetToolbarItems((Page)sender, items);
+                }
             });
         }
-
 
         private void ReloadToolbar()
         {
