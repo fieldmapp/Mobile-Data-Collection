@@ -21,7 +21,7 @@ namespace DLR_Data_App.Views
         {
             InitializeComponent();
 
-            _sensor = new Sensor();
+            _sensor = Sensor.Instance;
 
             Xamarin.Essentials.Accelerometer.ReadingChanged += _sensor.Accelerometer.Reading_Changed;
             Xamarin.Essentials.Accelerometer.ReadingChanged += OnAccelerometer_Change;

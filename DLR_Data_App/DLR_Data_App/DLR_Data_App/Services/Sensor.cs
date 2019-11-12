@@ -9,6 +9,8 @@ namespace DLR_Data_App.Services
      */
     public class Sensor
     {
+        public static Sensor Instance;
+
         private SensorSpeed _speed = SensorSpeed.UI;
 
         public Sensors.Accelerometer Accelerometer;

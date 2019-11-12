@@ -25,7 +25,7 @@ namespace DLR_Data_App.Views.CurrentProject
         private Project _workingProject = Database.GetCurrentProject();
         private List<ContentPage> _pages;
 
-        private readonly Sensor _sensor = new Sensor();
+        private readonly Sensor _sensor = Sensor.Instance;
 
         public ProjectPage()
         {

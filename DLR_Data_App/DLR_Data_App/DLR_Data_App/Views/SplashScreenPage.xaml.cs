@@ -1,5 +1,6 @@
 ﻿using DLR_Data_App.Localizations;
 using DLR_Data_App.Models;
+using DLR_Data_App.Services;
 using DLR_Data_App.Views.CurrentProject;
 using DLR_Data_App.Views.Login;
 using DLR_Data_App.Views.ProjectList;
@@ -45,6 +46,8 @@ namespace DLR_Data_App.Views
 
         void CreateNeededRessources()
         {
+            Sensor.Instance = new Sensor();
+
             MenuItems = new Dictionary<MenuItemType, NavigationPage>
             {
                 { MenuItemType.CurrentProject, new NavigationPage(new ProjectPage()) },
