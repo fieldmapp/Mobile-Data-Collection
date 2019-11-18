@@ -8,11 +8,11 @@
              Title="{res:Translate survey}">
     <ContentPage.Content>
         <Grid Padding="20">
-            <controls:PinchToZoomContainer>
-                <controls:PinchToZoomContainer.Content>
+            <controls:ImageInspectionContainer>
+                <controls:ImageInspectionContainer.Content>
                     <Image x:Name="Image" />
-                </controls:PinchToZoomContainer.Content>
-            </controls:PinchToZoomContainer>
+                </controls:ImageInspectionContainer.Content>
+            </controls:ImageInspectionContainer>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

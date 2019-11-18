@@ -8,7 +8,7 @@ using Xamarin.Forms.Internals;
 
 namespace DLR_Data_App.Controls
 {
-    public class PinchToZoomContainer : ContentView
+    public class ImageInspectionContainer : ContentView
     {
         private double _startScale, _currentScale;
         private double _startX, _startY;
@@ -19,7 +19,7 @@ namespace DLR_Data_App.Controls
 
         bool PinchEnded;
 
-        public PinchToZoomContainer()
+        public ImageInspectionContainer()
         {
             var tap = new TapGestureRecognizer { NumberOfTapsRequired = 2 };
             tap.Tapped += OnTapped;
