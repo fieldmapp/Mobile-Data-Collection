@@ -65,15 +65,18 @@ namespace DLR_Data_App.Views.ProjectList
                     if (result)
                     {
                         await DisplayAlert(AppResources.projects, AppResources.successful, AppResources.okay);
-                        await Navigation.PopModalAsync();
                     }
                     else
                     {
                         await DisplayAlert(AppResources.projects, AppResources.failed, AppResources.okay);
+                        await Navigation.PopModalAsync();
                     }
                 }
             }
-            await DisplayAlert(AppResources.projects, AppResources.failed, AppResources.okay);
+            else
+            {
+                await DisplayAlert(AppResources.projects, AppResources.failed, AppResources.okay);
+            }
         }
 
         /**
@@ -86,7 +89,7 @@ namespace DLR_Data_App.Views.ProjectList
 
         protected override bool OnBackButtonPressed()
         {
-            Navigation.PopAsync();
+            Navigation.PopModalAsync();
             return true;
         }
     }
