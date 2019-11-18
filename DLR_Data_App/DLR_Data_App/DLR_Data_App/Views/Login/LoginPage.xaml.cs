@@ -5,19 +5,13 @@ using DLR_Data_App.ViewModels.Login;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-/**
- * Login page class 
- */
 namespace DLR_Data_App.Views.Login
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage
     {
         private readonly LoginViewModel _viewModel = new LoginViewModel();
-
-        /**
-         * View for login page
-         */
+        
         public LoginPage()
         {
             InitializeComponent();
@@ -27,9 +21,9 @@ namespace DLR_Data_App.Views.Login
             EntryUsername.Completed += (s, e) => BtnSignin.Focus();
         }
 
-        /**
-         * Get login data, check them and on success navigate to project list
-         */
+        /// <summary>
+        /// Gets login data, checks them and on success navigates to project list.
+        /// </summary>
         private async void Btn_signin_Clicked(object sender, EventArgs e)
         {
             var checkUsername = EntryUsername.Text;
@@ -44,9 +38,9 @@ namespace DLR_Data_App.Views.Login
             }
         }
 
-        /**
-         * Open form for creating a new user
-         */
+        /// <summary>
+        /// Opens form for creating a new user.
+        /// </summary>
         private void Btn_newaccount_Clicked(object sender, EventArgs e)
         {
             Application.Current.MainPage = new NewProfilePage();

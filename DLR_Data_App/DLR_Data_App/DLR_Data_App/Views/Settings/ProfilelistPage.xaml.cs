@@ -7,9 +7,6 @@ using Xamarin.Forms.Xaml;
 
 namespace DLR_Data_App.Views.Settings
 {
-    /**
-     * Lists all existing profiles from database
-     */
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfileListPage
     {
@@ -23,9 +20,9 @@ namespace DLR_Data_App.Views.Settings
             ProfileListView.ItemsSource = _userList;
         }
 
-        /**
-         * Show details of selected user 
-         */
+        /// <summary>
+        /// Show details of selected user
+        /// </summary>
         private async void ProfileListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             User selectedUser = _userList[e.ItemIndex];

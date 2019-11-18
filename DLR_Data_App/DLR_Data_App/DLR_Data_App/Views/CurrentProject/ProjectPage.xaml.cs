@@ -106,9 +106,9 @@ namespace DLR_Data_App.Views.CurrentProject
             }
         }
 
-        /**
-         * Update shown gps data
-         */
+        /// <summary>
+        /// Updates shown gps data.
+        /// </summary>
         private void OnGpsChange(object sender, GpsEventArgs e)
         {
             foreach (var label in ElementList.OfType<Label>())
@@ -124,9 +124,9 @@ namespace DLR_Data_App.Views.CurrentProject
             }
         }
 
-        /**
-         * Update view
-         */
+        /// <summary>
+        /// Updates view.
+        /// </summary>
         public IEnumerable<ContentPage> UpdateView()
         {
             // Get current project
@@ -155,9 +155,9 @@ namespace DLR_Data_App.Views.CurrentProject
             yield break;
         }
 
-        /**
-         * Check if active project exists
-         */
+        /// <summary>
+        /// Checks if active project exists.
+        /// </summary>
         private async Task<bool> CheckActiveProject()
         {
             if (_pages == null || _pages.Count == 0)
@@ -171,9 +171,9 @@ namespace DLR_Data_App.Views.CurrentProject
             }
         }
 
-        /**
-         * Navigate to edit page
-         */
+        /// <summary>
+        /// Navigates to <see cref="EditDataPage"/>.
+        /// </summary>
         private async void EditClicked(object sender, EventArgs e)
         {
             if (await CheckActiveProject())
@@ -182,9 +182,9 @@ namespace DLR_Data_App.Views.CurrentProject
             }
         }
 
-        /**
-         * Save data
-         */
+        /// <summary>
+        /// Saves the user-supplied data.
+        /// </summary>
         private async void SaveClicked(object sender, EventArgs e)
         {
             if (await CheckActiveProject())

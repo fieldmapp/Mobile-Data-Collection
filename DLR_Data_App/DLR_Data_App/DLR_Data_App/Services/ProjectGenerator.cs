@@ -6,30 +6,19 @@ using System.Threading.Tasks;
 
 namespace DLR_Data_App.Services
 {
-    /**
-     * Class for creating and managing a project
-     */
     public class ProjectGenerator
     {
         Project _workingProject;
         private readonly string _zipFile;
 
-        /**
-         * Constructor
-         */
         public ProjectGenerator(string file)
         {
             _zipFile = file;
         }
 
-        /**
-         * Start the generating project process and runs all necessary functions
-         * - creating new project
-         * - extract zip
-         * - generate database tables
-         * - generate forms
-         * @returns bool Status
-         */
+        /// <summary>
+        /// Starts the project generation process and runs all necessary functions: creating new project , extract zip, generate database tables, generate forms.
+        /// </summary>
         public async Task<bool> GenerateProject()
         {
             _workingProject = new Project();
@@ -50,11 +39,10 @@ namespace DLR_Data_App.Services
 
             return status;
         }
-
-        /**
-         * Create a database table which represents each form and 
-         * @returns bool Status
-         */
+        
+        /// <summary>
+        /// Creates a database table which represents each form.
+        /// </summary>
         private bool GenerateDatabaseTable()
         {
             // Insert current working project with forms to database 
@@ -82,8 +70,7 @@ namespace DLR_Data_App.Services
             var projectUserConnection = new ProjectUserConnection
             {
                 ProjectId = _workingProject.Id,
-                UserId = App.CurrentUser.Id,
-                Weight = 0
+                UserId = App.CurrentUser.Id
             };
 
             status = Database.Insert(ref projectUserConnection);

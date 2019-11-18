@@ -118,9 +118,9 @@ namespace DLR_Data_App.Views.CurrentProject
             return _pages;
         }
 
-        /**
-         * Update shown gps data
-         */
+        /// <summary>
+        /// Updates shown gps data.
+        /// </summary>
         private void OnGpsChange(object sender, GpsEventArgs e)
         {
             foreach (var label in ElementList.OfType<Label>())

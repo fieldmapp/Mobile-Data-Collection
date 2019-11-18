@@ -4,9 +4,6 @@ using Xamarin.Essentials;
 
 namespace DLR_Data_App.Services
 {
-    /**
-     * This class controls all available sensors
-     */
     public class Sensor
     {
         public static Sensor Instance;
@@ -20,9 +17,9 @@ namespace DLR_Data_App.Services
         public Sensors.Gyroscope Gyroscope;
         public Sensors.Magnetometer Magnetometer;
 
-        /**
-         * Check for preference changes before opening the page
-         */
+        /// <summary>
+        /// Checks for preference changes before opening the page.
+        /// </summary>
         private void Init()
         {
             if (Preferences.Get("accelerometer", true))
@@ -84,9 +81,6 @@ namespace DLR_Data_App.Services
             }
         }
 
-        /**
-         * Constructor for initializing sensors
-         */
         public Sensor()
         {
             Accelerometer = new Sensors.Accelerometer();
@@ -107,9 +101,9 @@ namespace DLR_Data_App.Services
             UpdateGps();
         }
 
-        /**
-         * Updating GPS each 10 seconds in the background
-         */
+        /// <summary>
+        /// Updates the GPS each 10 seconds in the background
+        /// </summary>
         public async void UpdateGps()
         {
             while (true)

@@ -7,18 +7,15 @@ using Xamarin.Forms.Xaml;
 
 namespace DLR_Data_App.Views.Settings
 {
-    /**
-     * This class handles the profile information
-     */
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfilePage
     {
         private User _selectedUser;
 
-        /**
-         * Constructor
-         * @param user Chosen user from list
-         */
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="user">User Chosen user from list</param>
         public ProfilePage(User user)
         {
             InitializeComponent();
@@ -26,17 +23,17 @@ namespace DLR_Data_App.Views.Settings
             EntryName.Text = _selectedUser.Username;
         }
 
-        /**
-         * Cancel editing
-         */
+        /// <summary>
+        /// Cancel editing
+        /// </summary>
         private async void Btn_cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
         }
 
-        /**
-         * Remove profile
-         */
+        /// <summary>
+        /// Remove profile
+        /// </summary>
         private async void Btn_remove_Clicked(object sender, EventArgs e)
         {
             // ask user if he really wants to remove his account

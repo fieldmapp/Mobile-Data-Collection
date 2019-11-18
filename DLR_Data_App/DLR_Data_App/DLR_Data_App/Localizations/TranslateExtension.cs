@@ -8,9 +8,6 @@ using Xamarin.Forms.Xaml;
 namespace DLR_Data_App.Localizations
 {
   [ContentProperty("Text")]
-  /**
-   * Class used to translate strings
-   */
   public class TranslateExtension : IMarkupExtension
   {
     private const string ResourceId = "DLR_Data_App.Localizations.AppResources";

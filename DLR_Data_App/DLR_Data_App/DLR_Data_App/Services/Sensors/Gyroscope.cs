@@ -4,9 +4,6 @@ using Xamarin.Essentials;
 
 namespace DLR_Data_App.Services.Sensors
 {
-    /**
-     * This class handles the gyroscope
-     */
     public class Gyroscope
     {
         public event EventHandler<GyroscopeChangedEventArgs> ReadingChanged
@@ -21,18 +18,15 @@ namespace DLR_Data_App.Services.Sensors
         public float MaxX { get; set; }
         public float MaxY { get; set; }
         public float MaxZ { get; set; }
-
-        /**
-         * Constructor
-         */
+        
         public Gyroscope()
         {
             Reset();
         }
 
-        /**
-         * EventHandler which collects values after each change
-         */
+        /// <summary>
+        /// EventHandler which collects values after each change
+        /// </summary>
         public void Reading_Changed(object sender, GyroscopeChangedEventArgs e)
         {
             var data = e.Reading;
@@ -57,9 +51,9 @@ namespace DLR_Data_App.Services.Sensors
             }
         }
 
-        /**
-         * Resets values
-         */
+        /// <summary>
+        /// Resets values.
+        /// </summary>
         public void Reset()
         {
             CurrentX = 0.0F;

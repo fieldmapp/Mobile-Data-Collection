@@ -7,9 +7,6 @@ using Xamarin.Forms;
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace DLR_Data_App
 {
-    /*
-     * Main class for cross platform app
-     */
     public partial class App
     {
         public static string DatabaseLocation = string.Empty;
@@ -19,11 +16,12 @@ namespace DLR_Data_App
         public IStorageProvider StorageProvider;
         public Page CurrentPage => Navigation.CurrentPage;
         
-        /*
-         * Constructor with database support
-         * @param folderPath Path to the location of stored files in the filesystem
-         * @param databaseLocation Path to the local database
-         */
+        /// <summary>
+        /// Constructor with database support
+        /// </summary>
+        /// <param name="folderPath">Path to the location of stored files in the filesystem</param>
+        /// <param name="databaseLocation"></param>
+        /// <param name="storageProvider">Path to the local database</param>
         public App(string folderPath, string databaseLocation, IStorageProvider storageProvider)
         {
             InitializeComponent();

@@ -5,14 +5,11 @@ using DLR_Data_App.Services;
 
 namespace DLR_Data_App.ViewModels.Login
 {
-    /**
-     * View model for login
-     */
     public class LoginViewModel
     {
-        /**
-         * Checks login with stored data
-         */
+        /// <summary>
+        /// Checks login with stored data
+        /// </summary>
         public bool Check_Information(string checkUsername)
         {
             // Check if input empty

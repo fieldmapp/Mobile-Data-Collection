@@ -9,17 +9,11 @@ using Xamarin.Forms.Xaml;
 
 namespace DLR_Data_App.Views.CurrentProject
 {
-    /**
-     * Class for editing data in database
-     */
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditDataPage
     {
         private readonly EditDataViewModel _viewModel;
 
-        /**
-         * Constructor
-         */
         public EditDataPage()
         {
             _viewModel = new EditDataViewModel();
@@ -32,12 +26,10 @@ namespace DLR_Data_App.Views.CurrentProject
 
         private void EditDataPage_Appearing(object sender, EventArgs e)
         {
-            _viewModel.GetDataFromDb();
+            _viewModel.GetDataFromDatabase();
         }
 
-        /**
-         * Data set selected
-         */
+        
         private void DataList_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             var projectData = new Dictionary<string, string>();

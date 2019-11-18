@@ -45,7 +45,7 @@ namespace DLR_Data_App.Services
                 // show name of element
                 var label = new Label
                 {
-                    Text = Parser.LanguageJson(element.Label, currentProject.Languages)
+                    Text = Parser.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages)
                 };
                 //stack.Children.Add(label);
                 grid.Children.Add(label, 0, 0);
@@ -55,7 +55,7 @@ namespace DLR_Data_App.Services
 
                 // Display help
 
-                var hintText = Parser.LanguageJson(element.Hint, currentProject.Languages);
+                var hintText = Parser.GetCurrentLanguageStringFromJsonList(element.Hint, currentProject.Languages);
                 if (hintText != "Unable to parse language from json")
                 {
                     var helpButton = new Button()
@@ -88,7 +88,7 @@ namespace DLR_Data_App.Services
                     // input text
                     case "inputText":
                         {
-                            var placeholder = Parser.LanguageJson(element.Label, currentProject.Languages);
+                            var placeholder = Parser.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages);
                             if (placeholder == "Unable to parse language from json")
                             {
                                 placeholder = "";
@@ -112,7 +112,7 @@ namespace DLR_Data_App.Services
                         {
                             var optionsList = new List<string>();
                             var options = Parser.ParseOptionsFromJson(element.Options);
-                            var title = Parser.LanguageJson(element.Label, currentProject.Languages);
+                            var title = Parser.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages);
                             if (title == "Unable to parse language from json")
                             {
                                 title = AppResources.notitle;
@@ -141,7 +141,7 @@ namespace DLR_Data_App.Services
                     // As a walk around for an existing Samsung keyboard bug a normal keyboard layout is used
                     case "inputNumeric":
                         {
-                            var placeholder = Parser.LanguageJson(element.Label, currentProject.Languages);
+                            var placeholder = Parser.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages);
                             if (placeholder == "Unable to parse language from json")
                             {
                                 placeholder = "";

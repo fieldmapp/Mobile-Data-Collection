@@ -2,17 +2,11 @@
 
 namespace DLR_Data_App.ViewModels
 {
-  /**
-   * ViewModel for sensor test
-   */
-  class SensorTestViewModel : BaseViewModel
-  {
-    /**
-     * Constructor
-     */
-    public SensorTestViewModel()
+    class SensorTestViewModel : BaseViewModel
     {
-      Title = AppResources.sensortest;
+        public SensorTestViewModel()
+        {
+            Title = AppResources.sensortest;
+        }
     }
-  }
 }

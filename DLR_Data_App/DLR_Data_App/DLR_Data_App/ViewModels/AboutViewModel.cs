@@ -6,24 +6,15 @@ using Xamarin.Forms;
 
 namespace DLR_Data_App.ViewModels
 {
-  /**
-   * ViewModel for the about page
-   */
-  public class AboutViewModel : BaseViewModel
-  {
-    /**
-     * Constructor
-     */
-    public AboutViewModel()
+    public class AboutViewModel : BaseViewModel
     {
-      Title = AppResources.about;
+        public AboutViewModel()
+        {
+            Title = AppResources.about;
 
-      OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://www.dlr.de/dlr/desktopdefault.aspx/tabid-10002/")));
+            OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://www.dlr.de/dlr/desktopdefault.aspx/tabid-10002/")));
+        }
+        
+        public ICommand OpenWebCommand { get; }
     }
-
-    /**
-     * Interface for opening a webpage in the local browser
-     */
-    public ICommand OpenWebCommand { get; }
-  }
 }

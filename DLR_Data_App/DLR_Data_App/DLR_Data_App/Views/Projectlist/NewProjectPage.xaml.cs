@@ -22,9 +22,9 @@ namespace DLR_Data_App.Views.ProjectList
             BindingContext = this;
         }
 
-        /**
-         * Pick zip file containing project
-         */
+        /// <summary>
+        /// Pick zip file containing project
+        /// </summary>
         private async void btn_filepicker_Clicked(object sender, EventArgs e)
         {
             File = await CrossFilePicker.Current.PickFile();
@@ -50,9 +50,9 @@ namespace DLR_Data_App.Views.ProjectList
             }
         }
 
-        /**
-         * Parse selected file and add project to local database
-         */
+        /// <summary>
+        /// Parse selected file and add project to local database
+        /// </summary>
         private async void Btn_save_Clicked(object sender, EventArgs e)
         {
             if (File != null)
@@ -79,9 +79,9 @@ namespace DLR_Data_App.Views.ProjectList
             }
         }
 
-        /**
-         * Cancel the process to add a new project
-         */
+        /// <summary>
+        /// Cancel the process to add a new project
+        /// </summary>
         private async void Btn_cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopModalAsync();

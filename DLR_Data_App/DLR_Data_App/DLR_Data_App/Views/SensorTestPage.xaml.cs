@@ -10,10 +10,7 @@ namespace DLR_Data_App.Views
     public partial class SensorTestPage
     {
         private readonly Sensor _sensor;
-
-        /**
-         * This class prints all available sensor data
-         */
+        
         public SensorTestPage()
         {
             InitializeComponent();
@@ -43,9 +40,9 @@ namespace DLR_Data_App.Views
             _sensor.Magnetometer.ReadingChanged -= OnMagnetometer_Change;
         }
 
-        /**
-         * Reset all data
-         */
+        /// <summary>
+        /// Resets all data.
+        /// </summary>
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             _sensor.Accelerometer.Reset();
@@ -85,9 +82,9 @@ namespace DLR_Data_App.Views
             LblZMagnetometerMax.Text = _sensor.Magnetometer.MaxZ.ToString("N");
         }
 
-        /**
-         * Updates acceleration values
-         */
+        /// <summary>
+        /// Updates acceleration values
+        /// </summary>
         public void OnAccelerometer_Change(object sender, EventArgs e)
         {
             LblXAccelerometerCurrent.Text = _sensor.Accelerometer.CurrentX.ToString("N");
@@ -99,27 +96,29 @@ namespace DLR_Data_App.Views
             LblZAccelerometerMax.Text = _sensor.Accelerometer.MaxZ.ToString("N");
         }
 
-        /**
-         * Updates barometer values
-         */
+        /// <summary>
+        /// Updates barometer values
+        /// </summary>
         public void OnBarometer_Change(object sender, EventArgs e)
         {
             LblPressureBarometerCurrent.Text = _sensor.Barometer.CurrentPressure.ToString("N");
             LblPressureBarometerMax.Text = _sensor.Barometer.MaxPressure.ToString("N");
         }
 
-        /**
-         * Updates compass values
-         */
+        /// <summary>
+        /// Updates compass values.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void OnCompass_Change(object sender, EventArgs e)
         {
             LblCompassDegrees.Text = _sensor.Compass.Degrees.ToString("N");
             LblCompassDirection.Text = _sensor.Compass.Direction;
         }
 
-        /**
-         * Updates gps values
-         */
+        /// <summary>
+        /// Updates gps values.
+        /// </summary>
         public void OnGps_Change(object sender, GpsEventArgs e)
         {
             Device.BeginInvokeOnMainThread(() =>
@@ -131,9 +130,9 @@ namespace DLR_Data_App.Views
             });
         }
 
-        /**
-         * Updates gyroscope values
-         */
+        /// <summary>
+        /// Updates gyroscope values.
+        /// </summary>
         public void OnGyroscope_Change(object sender, EventArgs e)
         {
             LblXGyroscopeCurrent.Text = _sensor.Gyroscope.CurrentX.ToString("N");
@@ -145,9 +144,9 @@ namespace DLR_Data_App.Views
             LblZGyroscopeMax.Text = _sensor.Gyroscope.MaxZ.ToString("N");
         }
 
-        /**
-         * Updates magnetometer values
-         */
+        /// <summary>
+        /// Updates magnetometer values.
+        /// </summary>
         public void OnMagnetometer_Change(object sender, EventArgs e)
         {
             LblXMagnetometerCurrent.Text = _sensor.Magnetometer.CurrentX.ToString("N");

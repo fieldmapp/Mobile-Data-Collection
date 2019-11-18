@@ -13,17 +13,18 @@ using System.Linq;
 
 namespace DLR_Data_App.Services
 {
-    /**
-     * Class contains static helper functions
-     */
+    /// <summary>
+    /// Static class containing both normal and extension methods. 
+    /// </summary>
     public static class Helpers
     {
-        /**
-         * Hashes passphrases in SHA512
-         * @param input String to encrypt
-         * @see https://docs.microsoft.com/de-de/dotnet/api/system.security.cryptography.hashalgorithm.computehash?view=netframework-4.8#System_Security_Cryptography_HashAlgorithm_ComputeHash_System_Byte__
-         * @see https://docs.microsoft.com/de-de/dotnet/api/system.security.cryptography.sha512?view=netframework-4.8
-         */
+        /// <summary>
+        /// Hashes passphrases in SHA512
+        /// </summary>
+        /// <param name="input">String to hash</param>
+        /// <returns>Hashed string</returns>
+        /// <see cref="https://docs.microsoft.com/de-de/dotnet/api/system.security.cryptography.hashalgorithm.computehash?view=netframework-4.8#System_Security_Cryptography_HashAlgorithm_ComputeHash_System_Byte__"/>
+        /// <see cref="https://docs.microsoft.com/de-de/dotnet/api/system.security.cryptography.sha512?view=netframework-4.8"/>
         public static string CalculateSHA512Hash(string input)
         {
             var data = Encoding.UTF8.GetBytes(input);
@@ -42,14 +43,14 @@ namespace DLR_Data_App.Services
 
             return sBuilder.ToString();
         }
-
-        /**
-         * Extracts files from zip folder
-         * @param zipFilePath path to zip folder
-         * @param unzipFolderPath path for extracted files
-         * @returns Status of unzipping
-         * @see https://stackoverflow.com/questions/42118378/how-to-unzip-downloaded-zip-file-in-xamarin-forms
-         */
+        
+        /// <summary>
+        /// Extracts files from zip folder
+        /// </summary>
+        /// <param name="zipFilePath">Path of zip folder</param>
+        /// <param name="unzipFolderPath">Path of extracted files</param>
+        /// <returns>A task that represents the completion of unzipping</returns>
+        /// <see cref="https://stackoverflow.com/questions/42118378/how-to-unzip-downloaded-zip-file-in-xamarin-forms"/>
         public static async Task<bool> UnzipFileAsync(string zipFilePath, string unzipFolderPath)
         {
             try
@@ -100,25 +101,26 @@ namespace DLR_Data_App.Services
             return true;
         }
 
-        /**
-         * Translating project details to system language
-         * @param project Project
-         */
+        /// <summary>
+        /// Translates the details of a project to the runtime system language
+        /// </summary>
+        /// <param name="project">Project to be translated</param>
+        /// <returns>New project with details in correct language (or with hints that the detail is missing)</returns>
         public static Project TranslateProjectDetails(Project project)
         {
-            var authors = Parser.LanguageJson(project.Authors, project.Languages);
+            var authors = Parser.GetCurrentLanguageStringFromJsonList(project.Authors, project.Languages);
             if (authors == "Unable to parse language from json")
             {
                 authors = AppResources.noauthor;
             }
 
-            var title = Parser.LanguageJson(project.Title, project.Languages);
+            var title = Parser.GetCurrentLanguageStringFromJsonList(project.Title, project.Languages);
             if (title == "Unable to parse language from json")
             {
                 title = AppResources.notitle;
             }
 
-            var description = Parser.LanguageJson(project.Description, project.Languages);
+            var description = Parser.GetCurrentLanguageStringFromJsonList(project.Description, project.Languages);
             if (description == "Unable to parse language from json")
             {
                 description = AppResources.nodescription;
@@ -135,12 +137,19 @@ namespace DLR_Data_App.Services
             return tempProject;
         }
 
-        /**
-         * Translating project details to system language
-         * @param projectList List of projects
-         */
+        /// <summary>
+        /// Translates the details of multiple projects to the runtime system language
+        /// </summary>
+        /// <param name="project">Projects to be translated</param>
+        /// <returns>New projects with details in correct language (or with hints that the detail is missing)</returns>
         public static List<Project> TranslateProjectDetails(List<Project> projectList) => projectList.Select(TranslateProjectDetails).ToList();
 
+        /// <summary>
+        /// Pushes a new page to the navigation stack with respect to the operation system
+        /// </summary>
+        /// <param name="navElement">Navigation element with attached NavigationPage. When called from a page, its just "this".</param>
+        /// <param name="page">New page that should be pushed to the navigation stack.</param>
+        /// <param name="animated">Determines if the new page should appear in an animation.</param>
         public static async Task PushPage(this NavigableElement navElement, Page page, bool animated = true)
         {
             if (Device.RuntimePlatform == Device.Android)
@@ -153,6 +162,11 @@ namespace DLR_Data_App.Services
             }
         }
 
+        /// <summary>
+        /// Walks the elements of a content page and applies a supplied action. This is deterministic.
+        /// </summary>
+        /// <param name="pages">A list of all pages whose elements should be walked through.</param>
+        /// <param name="actionToApply">Action that will be applied to each element.</param>
         public static void WalkElements(List<ContentPage> pages, Action<View> actionToApply)
         {
             foreach (var page in pages)
@@ -170,6 +184,11 @@ namespace DLR_Data_App.Services
             }
         }
 
-        public static string GetTableName(this Project project) => Parser.LanguageJsonStandard(project.Title, project.Languages) + "_" + project.Id;
+        /// <summary>
+        /// Creates the unique table name of a project. This is based on the title and the id.
+        /// </summary>
+        /// <param name="project">Project of which the table name should be retured.</param>
+        /// <returns>Unique table name for the given project.</returns>
+        public static string GetTableName(this Project project) => Parser.GetEnglishStringFromJsonList(project.Title, project.Languages) + "_" + project.Id;
     }
 }

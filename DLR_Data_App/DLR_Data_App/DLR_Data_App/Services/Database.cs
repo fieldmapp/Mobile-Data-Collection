@@ -9,13 +9,17 @@ using SQLite;
 
 namespace DLR_Data_App.Services
 {
-    /**
-     * Database class to handle database access
-     * 
-     * https://docs.microsoft.com/de-de/xamarin/android/data-cloud/data-access/using-sqlite-orm
-     */
+    /// <summary>
+    /// Class which handles database access
+    /// </summary>
+    /// <see cref="https://docs.microsoft.com/de-de/xamarin/android/data-cloud/data-access/using-sqlite-orm"/>
     public class Database
     {
+        /// <summary>
+        /// Checks if a given string is a name which is safe to use in SQL. Throws an <see cref="System.ArgumentException"/> if its not.
+        /// </summary>
+        /// <param name="name">String to check</param>
+        /// <exception cref="System.ArgumentException">Thrown when the given string has content which is neither a letter, a digit or an underscore.</exception>
         private static void CheckValidSqlName(string name)
         {
             bool isValidChar(char c) => char.IsLetterOrDigit(c) || c == '_';
@@ -23,11 +27,12 @@ namespace DLR_Data_App.Services
                 throw new ArgumentException($"{nameof(name)} is not a valid SQL name");
         }
 
-        /**
-         * Insert data into the database
-         * @param data The contents that will pushed into the database
-         * @return Status of inserting data
-         */
+        /// <summary>
+        /// Inserts data into the database
+        /// </summary>
+        /// <typeparam name="T">The type of both the database content and the content to add to the database</typeparam>
+        /// <param name="data">The contents that will pushed into the database</param>
+        /// <returns>Status of inserting data</returns>
         public static bool Insert<T>(ref T data)
         {
             int resultInsert;
@@ -46,11 +51,12 @@ namespace DLR_Data_App.Services
             return resultInsert > 0;
         }
 
-        /**
-         * Update data in database
-         * @param data The contents that will updated in the database
-         * @return Status of updating data
-         */
+        /// <summary>
+        /// Updates data in database
+        /// </summary>
+        /// <typeparam name="T">The type of both the database content and the content to be updated in the database</typeparam>
+        /// <param name="data">The contents that will updated in the database</param>
+        /// <returns>Status of updating data</returns>
         public static bool Update<T>(ref T data)
         {
             int resultUpdate;
@@ -78,11 +84,12 @@ namespace DLR_Data_App.Services
             }
         }
 
-        /**
-         * Delete data from database
-         * @param data The contents that will deleted from the database
-         * @return Status of deleting data
-         */
+        /// <summary>
+        /// Deletes data from database
+        /// </summary>
+        /// <typeparam name="T">The type of both the database content and the content to be deleted from the database</typeparam>
+        /// <param name="data">The contents that will deleted from the database</param>
+        /// <returns>Status of deleting data</returns>
         public static bool Delete<T>(ref T data)
         {
             int resultDelete;
@@ -97,11 +104,11 @@ namespace DLR_Data_App.Services
             // check if data was successfully deleted
             return resultDelete > 0;
         }
-
-        /**
-         * Return all users
-         * @return List of all users in database
-         */
+        
+        /// <summary>
+        /// Reads all users from the database.
+        /// </summary>
+        /// <returns>List of all users in database</returns>
         public static List<User> ReadUsers()
         {
             List<User> result;
@@ -118,11 +125,11 @@ namespace DLR_Data_App.Services
 
             return result;
         }
-
-        /**
-         * Delete project with its forms
-         * @param project Project that should be deleted
-         */
+        
+        /// <summary>
+        /// Deletes all data from the database which are belonging to a specific project.
+        /// </summary>
+        /// <param name="project">Project of which all data should be deleted</param>
         public static void DeleteProject(Project project)
         {
             var queryForms = "DELETE FROM ProjectForm WHERE Id=?";
@@ -157,11 +164,13 @@ namespace DLR_Data_App.Services
                 conn.Delete(project);
             }
         }
-
-        /**
-         * Stores project in database
-         * Own implementation of foreign keys caused by missing function in Xamarin SQL
-         */
+        
+        /// <summary>
+        /// Stores project in database.
+        /// This uses an own implementation of foreign keys, because this function is missing in the SQLite implementation which is supported for Xamarin.
+        /// </summary>
+        /// <param name="project">Project to be inserted</param>
+        /// <returns>True if project insertion was successful</returns>
         public static bool InsertProject(ref Project project)
         {
             bool status;
@@ -233,11 +242,11 @@ namespace DLR_Data_App.Services
 
             return status;
         }
-
-        /**
-         * Return all projects
-         * @return List of all projects in database
-         */
+        
+        /// <summary>
+        /// Reads all projects from the database.
+        /// </summary>
+        /// <returns>List of all projects in database</returns>
         public static List<Project> ReadProjects()
         {
             List<Project> projectList;
@@ -262,10 +271,10 @@ namespace DLR_Data_App.Services
             return projectList;
         }
 
-        /**
-         * Stores all forms in project
-         * @param project referencing to project and inserting forms
-         */
+        /// <summary>
+        /// Stores all forms in project
+        /// </summary>
+        /// <param name="project">Project to which its forms will be added from the database</param>
         public static void ReadForms(ref Project project)
         {
             // database will be closed after leaving the using statement
@@ -296,10 +305,11 @@ namespace DLR_Data_App.Services
             }
         }
 
-        /**
-         * Create custom table
-         * @param project Project containing information of forms
-         */
+        /// <summary>
+        /// Creates a custom table in the database, based on a supplied project.
+        /// </summary>
+        /// <param name="project">Project containing information of forms</param>
+        /// <returns>True if creation was successful</returns>
         public static bool CreateCustomTable(ref Project project)
         {
             bool status;
@@ -338,12 +348,12 @@ namespace DLR_Data_App.Services
 
             return status;
         }
-
-        /**
-         * Read custom table
-         * @param project Current working project
-         * @return TableData with field names and elements
-         */
+        
+        /// <summary>
+        /// Reads the custom table of a supplied project.
+        /// </summary>
+        /// <param name="project">Project of which the table data should be read from the database</param>
+        /// <returns>Data contained in the table belonging to the project</returns>
         public static TableData ReadCustomTable(ref Project project)
         {
             var tableName = project.GetTableName();
@@ -384,14 +394,15 @@ namespace DLR_Data_App.Services
                 }
             }
         }
-
-        /**
-         * Inserting measurement data
-         * @param tableName Name of project table
-         * @param fieldNames field names
-         * @param fieldValues values corresponding to field names
-         * @return Success
-         */
+        
+        /// <summary>
+        /// Inserts a row of data to a projects table.
+        /// </summary>
+        /// <param name="tableName">Name of the projects table</param>
+        /// <param name="fieldNames">List containing the names of all fields</param>
+        /// <param name="fieldValues">List containing the values of all fields</param>
+        /// <param name="id">Id of the row. If not supplied (=null) SQLite will find a suitable id</param>
+        /// <returns>True if insertion was successful</returns>
         public static bool InsertCustomValues(string tableName, List<string> fieldNames, List<string> fieldValues, int? id = null)
         {
             bool status;
@@ -439,7 +450,14 @@ namespace DLR_Data_App.Services
 
             return status;
         }
-
+        /// <summary>
+        /// Updates a row of data in a projects table.
+        /// </summary>
+        /// <param name="tableName">Name of the projects table</param>
+        /// <param name="id">Id of the row</param>
+        /// <param name="fieldNames">List containing the names of all fields</param>
+        /// <param name="fieldValues">List containing the values of all fields</param>
+        /// <returns>True if update was successful</returns>
         public static bool UpdateCustomValuesById(string tableName, int id, List<string> fieldNames, List<string> fieldValues)
         {
             CheckValidSqlName(tableName);
@@ -458,10 +476,10 @@ namespace DLR_Data_App.Services
             return InsertCustomValues(tableName, fieldNames, fieldValues, id);
         }
 
-        /**
-         * Removes database file
-         * @return boolean if removal was successful
-         */
+        /// <summary>
+        /// Removes the database file.
+        /// </summary>
+        /// <returns>True if removal was successful</returns>
         public static bool RemoveDatabase()
         {
             try
@@ -478,12 +496,12 @@ namespace DLR_Data_App.Services
             }
         }
 
-        /**
-         * Select project as current project and deselect other project as current project
-         * @param project Select project as current project
-         * @return Status of setting new current project
-         */
-        public static bool SelectCurrentProject(Project project)
+        /// <summary>
+        /// Set a project as current project. Will unset previous selected project.
+        /// </summary>
+        /// <param name="project">Project which should be set as active project</param>
+        /// <returns>True if switching of current project was successful</returns>
+        public static bool SetCurrentProject(Project project)
         {
             bool result;
             var oldCurrentProject = GetCurrentProject();
@@ -502,14 +520,13 @@ namespace DLR_Data_App.Services
             return result;
         }
 
-        /**
-         * Returns the current project
-         * @return current project
-         */
+        /// <summary>
+        /// Searches the database for the currently active project
+        /// </summary>
+        /// <returns>Project which has CurrentProject set to true</returns>
         public static Project GetCurrentProject()
         {
-            var projectList = ReadProjects();
-            return projectList.Find(project => project.CurrentProject);
+            return ReadProjects().Find(project => project.CurrentProject);
         }
     }
 }

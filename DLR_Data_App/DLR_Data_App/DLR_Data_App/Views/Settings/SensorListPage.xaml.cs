@@ -12,9 +12,7 @@ namespace DLR_Data_App.Views.Settings
             InitializeComponent();
             Init();
         }
-
-        /**
-         */
+        
         private void Init()
         {
             SwitchAccelerometer.IsToggled = Preferences.Get("accelerometer", true);

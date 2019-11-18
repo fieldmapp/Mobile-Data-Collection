@@ -20,10 +20,10 @@ namespace DLR_Data_App.Views.Settings
             
             AppSettingsList.ItemsSource = _elementList;
         }
-        
-        /**
-         * List of settings about the app shown
-         */
+
+        /// <summary>
+        /// List of settings about the app shown
+        /// </summary>
         private async void AppSettingsList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             bool answer;
@@ -60,9 +60,9 @@ namespace DLR_Data_App.Views.Settings
             }
         }
 
-        /**
-         * exports data of current project to a json string
-         */
+        /// <summary>
+        /// Exports data of current project to a json string.
+        /// </summary>
         public static string ExportData()
         {
             // get data of the project from the db

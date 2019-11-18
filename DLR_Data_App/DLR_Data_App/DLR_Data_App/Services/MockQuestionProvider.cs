@@ -11,7 +11,6 @@ namespace DLR_Data_App.Services
         /// <summary>
         /// Creates a List with the deafult SurveymenuItems and retuns this list
         /// </summary>
-        /// <returns></returns>
         public static List<SurveyMenuItem> GenerateSurveyMenuItems()
         {
             return new List<SurveyMenuItem>()

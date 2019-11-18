@@ -4,9 +4,6 @@ using Xamarin.Essentials;
 
 namespace DLR_Data_App.Services.Sensors
 {
-    /**
-     * This class handles the localization 
-     */
     public class Gps
     {
         public event EventHandler<GpsEventArgs> StatusChanged;
@@ -18,10 +15,7 @@ namespace DLR_Data_App.Services.Sensors
         public double Longitude { get; set; }
 
         public string Message { get; set; }
-
-        /**
-         * Constructor initializes all variables
-         */
+        
         public Gps()
         {
             Altitude = 0.0;
@@ -30,18 +24,17 @@ namespace DLR_Data_App.Services.Sensors
             Message = "";
         }
 
-        /**
-         * EventHandler for handling changes in latitude, longitude and altitude
-         * @param e GpsEventArgs
-         */
+        /// <summary>
+        /// EventHandler for handling changes in latitude, longitude and altitude
+        /// </summary>
         protected virtual void OnStatusChanged(GpsEventArgs e)
         {
             StatusChanged?.Invoke(this, e);
         }
 
-        /**
-         * Get location
-         */
+        /// <summary>
+        /// Gets location.
+        /// </summary>
         public async Task GetLocationAsync()
         {
             if (Preferences.Get("gps", true))
@@ -94,13 +87,13 @@ namespace DLR_Data_App.Services.Sensors
 
     public class GpsEventArgs : EventArgs
     {
-        /**
-         * Class for transporting data at events
-         * @param message Status message
-         * @param latitude Latitude coordinate
-         * @param longitude Longitude coordinate
-         * @param altitude Altitude
-         */
+        /// <summary>
+        /// Class for transporting data at events 
+        /// </summary>
+        /// <param name="message">Status message</param>
+        /// <param name="latitude">Latitude coordinate</param>
+        /// <param name="longitude">Longitude coordinate</param>
+        /// <param name="altitude">Altitude</param>
         public GpsEventArgs(string message, double latitude, double longitude, double altitude)
         {
             Message = message;

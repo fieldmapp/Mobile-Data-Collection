@@ -9,9 +9,6 @@ using DLR_Data_App.ViewModels.ProjectList;
 using DLR_Data_App.Services;
 using DLR_Data_App.Localizations;
 
-/**
- * Lists all available projects
- */
 namespace DLR_Data_App.Views.ProjectList
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -21,10 +18,7 @@ namespace DLR_Data_App.Views.ProjectList
         private NewProjectPage _newProjectPage;
 
         private readonly ProjectListViewModel _viewModel;
-
-        /**
-         * Constructor
-         */
+        
         public ProjectListPage()
         {
             InitializeComponent();
@@ -33,9 +27,11 @@ namespace DLR_Data_App.Views.ProjectList
             BindingContext = _viewModel;
         }
 
-        /**
-         * Open new project dialog
-         */
+        /// <summary>
+        /// Opens a <see cref="NewProjectPage"/>.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void AddItem_Clicked(object sender, EventArgs e)
         {
             Application.Current.ModalPopping += HandleModalPopping;
@@ -43,10 +39,12 @@ namespace DLR_Data_App.Views.ProjectList
             await Navigation.PushModalAsync(_newProjectPage);
         }
 
-        /**
-         * Handle refreshing the list, after adding a new project
-         * @see https://stackoverflow.com/questions/39652909/await-for-a-pushmodalasync-form-to-closed-in-xamarin-forms
-         */
+        /// <summary>
+        /// Handles refreshing the list after adding a new project.
+        /// <see cref="https://stackoverflow.com/questions/39652909/await-for-a-pushmodalasync-form-to-closed-in-xamarin-forms"/>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HandleModalPopping(object sender, ModalPoppingEventArgs e)
         {
             _projectList = Database.ReadProjects();
@@ -56,9 +54,9 @@ namespace DLR_Data_App.Views.ProjectList
             Application.Current.ModalPopping -= HandleModalPopping;
         }
 
-        /**
-         * Refresh list
-         */
+        /// <summary>
+        /// Refreshs list
+        /// </summary>
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -67,9 +65,9 @@ namespace DLR_Data_App.Views.ProjectList
             _viewModel.UpdateProjects();
         }
 
-        /**
-         * Open details of project
-         */
+        /// <summary>
+        /// Opens detail of project
+        /// </summary>
         private async void ProjectListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             await this.PushPage(new ProjectDetailPage(_projectList[e.ItemIndex]));

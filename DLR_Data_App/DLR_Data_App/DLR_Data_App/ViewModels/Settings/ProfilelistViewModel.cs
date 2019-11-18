@@ -2,15 +2,12 @@
 
 namespace DLR_Data_App.ViewModels.Settings
 {
-  /**
-   * ViewModel for profile list
-   */
-  public class ProfilelistViewModel : BaseViewModel
-  {
-    public ProfilelistViewModel()
+    public class ProfilelistViewModel : BaseViewModel
     {
-      Title = AppResources.profiles;
+        public ProfilelistViewModel()
+        {
+            Title = AppResources.profiles;
+        }
+
     }
-    
-  }
 }

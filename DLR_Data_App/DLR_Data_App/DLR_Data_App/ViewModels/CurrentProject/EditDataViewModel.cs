@@ -8,9 +8,6 @@ using DLR_Data_App.Services;
 
 namespace DLR_Data_App.ViewModels.CurrentProject
 {
-    /**
-     * View model for edit page
-     */
     public class EditDataViewModel : BaseViewModel
     {
         public List<ProjectForm> FormList { get; set; }
@@ -18,11 +15,7 @@ namespace DLR_Data_App.ViewModels.CurrentProject
         public TableData ProjectData { get; set; }
 
         private Project _workingProject;
-
-        /**
-         * Constructor
-         * @param elementNameList lists column names of datasets for project
-         */
+        
         public EditDataViewModel()
         {
             Title = AppResources.editdata;
@@ -32,13 +25,13 @@ namespace DLR_Data_App.ViewModels.CurrentProject
 
             ElementList = new ObservableCollection<PreviewElement>();
 
-            GetDataFromDb();
+            GetDataFromDatabase();
         }
 
-        /**
-         * Load data stored in db
-         */
-        public void GetDataFromDb()
+        /// <summary>
+        /// Loads data stored in database.
+        /// </summary>
+        public void GetDataFromDatabase()
         {
             // Get data from DB
             ProjectData = Database.ReadCustomTable(ref _workingProject);

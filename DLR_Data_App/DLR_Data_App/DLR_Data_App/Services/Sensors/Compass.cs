@@ -3,9 +3,6 @@ using Xamarin.Essentials;
 
 namespace DLR_Data_App.Services.Sensors
 {
-    /**
-     * This class handles the compass
-     */
     public class Compass
     {
         public event EventHandler<CompassChangedEventArgs> ReadingChanged
@@ -22,9 +19,9 @@ namespace DLR_Data_App.Services.Sensors
             Reset();
         }
 
-        /**
-         * Collect values after each change
-         */
+        /// <summary>
+        /// Collects values after each change.
+        /// </summary>
         public void Reading_Changed(object sender, CompassChangedEventArgs e)
         {
             var data = e.Reading;
@@ -33,18 +30,18 @@ namespace DLR_Data_App.Services.Sensors
             CalcDirection();
         }
 
-        /**
-         * Resets values
-         */
+        /// <summary>
+        /// Resets values.
+        /// </summary>
         public void Reset()
         {
             Degrees = 0.0;
             Direction = "N";
         }
 
-        /** 
-         * Generates direction from angle of degrees
-         */
+        /// <summary>
+        /// Generates direction from angle of degrees.
+        /// </summary>
         private void CalcDirection()
         {
             if (Degrees > 337.5 || Degrees < 22.5)

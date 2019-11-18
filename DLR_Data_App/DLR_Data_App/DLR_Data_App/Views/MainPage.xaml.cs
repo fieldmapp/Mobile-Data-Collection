@@ -14,17 +14,11 @@ using Xamarin.Forms.Xaml;
 
 namespace DLR_Data_App.Views
 {
-    /**
-     * Main page which handles the menu and sets up the master page
-     */
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage
     {
         private readonly Dictionary<MenuItemType, NavigationPage> _menuPages;
 
-        /**
-         * Constructor for MainPage
-         */
         public MainPage(Dictionary<MenuItemType, NavigationPage> menuPages)
         {
             InitializeComponent();
@@ -46,11 +40,11 @@ namespace DLR_Data_App.Views
             MessagingCenter.Send<object, bool>(this, "ReloadToolbar", true);
         }
 
-
-        /**
-         * Navigate to selected page
-         * @param id int Selected page
-         */
+        /// <summary>
+        /// Navigate to selected page
+        /// </summary>
+        /// <param name="id">Selected page</param>
+        /// <returns></returns>
         public async Task NavigateFromMenu(MenuItemType id)
         {
             if (id == MenuItemType.Logout)

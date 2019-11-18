@@ -10,17 +10,11 @@ using Xamarin.Forms.Xaml;
 
 namespace DLR_Data_App.Views.Login
 {
-    /**
-     * Creating a new profile, same design like login page
-     */
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewProfilePage
     {
         private User _user;
 
-        /**
-         * Constructor
-         */
         public NewProfilePage()
         {
             InitializeComponent();
@@ -29,9 +23,9 @@ namespace DLR_Data_App.Views.Login
             EntryUsername.Completed += (s, e) => BtnAccept.Focus();
         }
 
-        /**
-         * Adding user
-         */
+        /// <summary>
+        /// Adds user
+        /// </summary>
         private async void Btn_accept_Clicked(object sender, EventArgs e)
         {
             var username = EntryUsername.Text;
@@ -76,9 +70,9 @@ namespace DLR_Data_App.Views.Login
             Application.Current.MainPage = new SplashScreenPage(false);
         }
 
-        /**
-         * Cancel user creation
-         */
+        /// <summary>
+        /// Cancels user creation
+        /// </summary>
         private void Btn_cancel_Clicked(object sender, EventArgs e)
         {
             Application.Current.MainPage = new LoginPage();

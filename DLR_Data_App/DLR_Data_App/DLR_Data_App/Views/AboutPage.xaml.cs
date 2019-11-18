@@ -13,10 +13,7 @@ namespace DLR_Data_App.Views
         {
             InitializeComponent();
         }
-
-        /**
-         * License Button clicked
-         */
+        
         private async void LicenseButton_OnClicked(object sender, EventArgs e)
         {
             await this.PushPage(new LicensesPage());

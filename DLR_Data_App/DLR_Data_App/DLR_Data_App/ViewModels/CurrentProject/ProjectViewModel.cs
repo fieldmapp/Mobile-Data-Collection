@@ -2,17 +2,11 @@
 
 namespace DLR_Data_App.ViewModels.CurrentProject
 {
-  /**
-   * Class for presenting current project
-   */
-  public class ProjectViewModel : BaseViewModel
-  {
-    /**
-     * Constructor
-     */
-    public ProjectViewModel()
+    public class ProjectViewModel : BaseViewModel
     {
-      Title = AppResources.currentproject;
+        public ProjectViewModel()
+        {
+            Title = AppResources.currentproject;
+        }
     }
-  }
 }

@@ -22,9 +22,9 @@ namespace DLR_Data_App.Views.ProjectList
             BindingContext = Helpers.TranslateProjectDetails(project);
         }
 
-        /**
-         * Default constructor only for Xamarin Form Previewer used
-         */
+        /// <summary>
+        /// Default constructor only to be used by the Xamarin Form Previewer 
+        /// </summary>
         public ProjectDetailPage()
         {
             _workingProject = new Project
@@ -39,22 +39,22 @@ namespace DLR_Data_App.Views.ProjectList
             BindingContext = _workingProject;
         }
 
-        /**
-         * Select project as current active project
-         */
+        /// <summary>
+        /// Selects project as current active project.
+        /// </summary>
         private async void Btn_current_project_Clicked(object sender, EventArgs e)
         {
             // Set project in database as current project
-            Database.SelectCurrentProject(_workingProject);
+            Database.SetCurrentProject(_workingProject);
 
             // Navigate to current project
             if (Application.Current.MainPage is MainPage mainPage)
                 await mainPage.NavigateFromMenu(MenuItemType.CurrentProject);
         }
 
-        /**
-         * Remove project from database
-         */
+        /// <summary>
+        /// Removes project from database.
+        /// </summary>
         private async void Btn_remove_project_Clicked(object sender, EventArgs e)
         {
             var answer = await DisplayAlert(AppResources.removeproject, AppResources.removeprojectwarning, AppResources.okay, AppResources.cancel);
