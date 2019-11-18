@@ -23,8 +23,6 @@ namespace DLR_Data_App.Views.Login
             InitializeComponent();
             BindingContext = _viewModel;
 
-            LoginIcon.HeightRequest = 120;
-
             // after completing the input of username change focus to password and after that to login button
             EntryUsername.Completed += (s, e) => EntryPassword.Focus();
             EntryPassword.Completed += (s, e) => BtnSignin.Focus();

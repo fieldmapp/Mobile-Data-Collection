@@ -24,9 +24,6 @@ namespace DLR_Data_App.Views.Login
         {
             InitializeComponent();
 
-            // setting icon size
-            LoginIcon.HeightRequest = 120;
-
             // directing user to next entry after inserting text to make it easier to insert informations
             EntryUsername.Completed += (s, e) => EntryPassword.Focus();
             EntryPassword.Completed += (s, e) => BtnAccept.Focus();

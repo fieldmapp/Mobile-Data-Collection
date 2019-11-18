@@ -7,14 +7,8 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand">
-                <Image x:Name="LoginIcon" 
-                       Source="LoginIconWhite.png" 
-                       Margin="0,80,0,0"/>
-            </StackLayout>
-
             <StackLayout x:Name="LoginEntries" 
-                         VerticalOptions="StartAndExpand"
+                         VerticalOptions="CenterAndExpand"
                          Padding="40,0,40,0">
 
                 <Label Text="{res:Translate newaccount}"

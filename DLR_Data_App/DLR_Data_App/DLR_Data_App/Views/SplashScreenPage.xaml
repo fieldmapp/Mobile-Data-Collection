@@ -4,12 +4,6 @@
              x:Class="DLR_Data_App.Views.SplashScreenPage"
              BackgroundImageSource="Background_Login.png">
     <ContentPage.Content>
-        <StackLayout>
-            <Image x:Name="LoginIcon" 
-                Source="LoginIconWhite.png" 
-                Margin="20,80,20,0"/>
-            <ActivityIndicator
-                IsRunning="True" Color="LightGreen"/>
-        </StackLayout>
+        <ActivityIndicator VerticalOptions="Center" IsRunning="True" Color="LightGreen"/>
     </ContentPage.Content>
 </ContentPage>
