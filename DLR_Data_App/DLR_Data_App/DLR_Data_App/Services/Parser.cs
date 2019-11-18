@@ -212,9 +212,6 @@ namespace DLR_Data_App.Services
           case "Description":
             project.Description = value.ToString();
             break;
-          case "Secret":
-            project.Secret = value.ToString();
-            break;
           case "Languages":
             project.Languages = value.ToString();
             break;

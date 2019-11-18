@@ -9,5 +9,4 @@
  * |         | gyroscope    | Status of gyroscope sensor    |
  * |         | magnetometer | Status of magnetometer sensor |
  * |User     | username     | Registered user name          |
- * |         | password     | Registered encrypted password |
  */

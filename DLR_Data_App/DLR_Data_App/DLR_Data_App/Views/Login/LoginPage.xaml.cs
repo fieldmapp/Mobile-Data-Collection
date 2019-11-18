@@ -23,9 +23,8 @@ namespace DLR_Data_App.Views.Login
             InitializeComponent();
             BindingContext = _viewModel;
 
-            // after completing the input of username change focus to password and after that to login button
-            EntryUsername.Completed += (s, e) => EntryPassword.Focus();
-            EntryPassword.Completed += (s, e) => BtnSignin.Focus();
+            // after completing the input of username change focus to login button
+            EntryUsername.Completed += (s, e) => BtnSignin.Focus();
         }
 
         /**
@@ -34,9 +33,8 @@ namespace DLR_Data_App.Views.Login
         private async void Btn_signin_Clicked(object sender, EventArgs e)
         {
             var checkUsername = EntryUsername.Text;
-            var checkPassword = Helpers.Encrypt_password(EntryPassword.Text);
 
-            if (_viewModel.Check_Information(checkUsername, checkPassword))
+            if (_viewModel.Check_Information(checkUsername))
             {
                 Application.Current.MainPage = new SplashScreenPage(true);
             }

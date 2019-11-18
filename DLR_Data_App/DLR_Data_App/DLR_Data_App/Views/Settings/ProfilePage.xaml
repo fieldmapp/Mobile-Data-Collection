@@ -14,38 +14,29 @@
         <StackLayout>
             <Label Text="{res:Translate name}"/>
             <Entry x:Name="EntryName"
-                       Placeholder="{res:Translate name}" />
-            <Label Text="{res:Translate password}"/>
-            <Entry x:Name="EntryPassword"
-                       Placeholder="******"
-                       IsPassword="true" />
+                   IsReadOnly="True"
+                   Placeholder="{res:Translate name}" />
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-                
-                <Button x:Name="BtnSave"
-                        Text="{res:Translate save}"
+
+                <Button x:Name="BtnRemove"
+                        Text="{res:Translate remove}"
                         Grid.Row="0"
                         Grid.Column="0"
-                        Clicked="Btn_save_Clicked"/>
-
+                        Clicked="Btn_remove_Clicked"/>
+                
                 <Button x:Name="BtnCancel"
                         Text="{res:Translate cancel}"
                         Grid.Row="0"
                         Grid.Column="1"
                         Clicked="Btn_cancel_Clicked"/>
 
-                <Button x:Name="BtnRemove"
-                        Text="{res:Translate remove}"
-                        Grid.Row="0"
-                        Grid.Column="2"
-                        Clicked="Btn_remove_Clicked"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

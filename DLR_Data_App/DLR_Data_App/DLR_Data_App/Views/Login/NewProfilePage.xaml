@@ -21,13 +21,6 @@
                        TextColor="White"
                        Placeholder="{res:Translate name}"
                        PlaceholderColor="Gray"/>
-                <Label Text="{res:Translate password}"
-                       TextColor="White"/>
-                <Entry x:Name="EntryPassword"
-                       TextColor="White"
-                       Placeholder="******"
-                       PlaceholderColor="Gray"
-                       IsPassword="true" />
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />

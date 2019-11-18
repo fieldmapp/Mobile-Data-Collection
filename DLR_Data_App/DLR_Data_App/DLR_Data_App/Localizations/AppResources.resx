@@ -276,9 +276,6 @@
   <data name="okay" xml:space="preserve">
     <value>Okay</value>
   </data>
-  <data name="password" xml:space="preserve">
-    <value>Password</value>
-  </data>
   <data name="pressure" xml:space="preserve">
     <value>Pressure</value>
   </data>

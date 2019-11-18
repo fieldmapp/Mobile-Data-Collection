@@ -102,7 +102,7 @@ namespace DLR_Data_App.Services
          * Return all users
          * @return List of all users in database
          */
-        public static List<User> ReadUser()
+        public static List<User> ReadUsers()
         {
             List<User> result;
 

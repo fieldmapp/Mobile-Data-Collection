@@ -23,16 +23,6 @@
                     TextColor="White"
                     VerticalOptions="Center" 
                     HorizontalOptions="FillAndExpand" />
-                <Label Text="{res:Translate password}"
-                       TextColor="White"/>
-                <Entry x:Name="EntryPassword"
-                    Placeholder="******"
-                    PlaceholderColor="Gray"
-                    IsPassword="True"
-                    Text=""
-                    TextColor="White"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="FillAndExpand" />
                 
                 <Grid>
                     <Grid.ColumnDefinitions>

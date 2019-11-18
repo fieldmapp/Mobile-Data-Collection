@@ -19,7 +19,7 @@ namespace DLR_Data_App.Views.Settings
         {
             InitializeComponent();
             // Get all users from database
-            _userList = Database.ReadUser();
+            _userList = Database.ReadUsers();
             ProfileListView.ItemsSource = _userList;
         }
 

@@ -19,14 +19,14 @@ namespace DLR_Data_App.Services
     public static class Helpers
     {
         /**
-         * Encrypts passphrases in SHA512
-         * @param password Password to encrypt
+         * Hashes passphrases in SHA512
+         * @param input String to encrypt
          * @see https://docs.microsoft.com/de-de/dotnet/api/system.security.cryptography.hashalgorithm.computehash?view=netframework-4.8#System_Security_Cryptography_HashAlgorithm_ComputeHash_System_Byte__
          * @see https://docs.microsoft.com/de-de/dotnet/api/system.security.cryptography.sha512?view=netframework-4.8
          */
-        public static string Encrypt_password(string password)
+        public static string CalculateSHA512Hash(string input)
         {
-            var data = Encoding.UTF8.GetBytes(password);
+            var data = Encoding.UTF8.GetBytes(input);
             byte[] resultBytes;
             var sBuilder = new StringBuilder();
 

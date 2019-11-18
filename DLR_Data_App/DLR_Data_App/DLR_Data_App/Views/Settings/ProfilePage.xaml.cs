@@ -24,32 +24,6 @@ namespace DLR_Data_App.Views.Settings
             InitializeComponent();
             _selectedUser = user;
             EntryName.Text = _selectedUser.Username;
-            EntryPassword.Text = "";
-        }
-
-        /**
-         * Save changes
-         */
-        private async void Btn_save_Clicked(object sender, EventArgs e)
-        {
-            _selectedUser.Username = EntryName.Text;
-
-            if (EntryPassword.Text != "")
-            {
-                _selectedUser.Password = Helpers.Encrypt_password(EntryPassword.Text);
-            }
-
-            var result = Database.Update(ref _selectedUser);
-            if (result)
-            {
-                await DisplayAlert(AppResources.profile, AppResources.successful, AppResources.accept);
-                await Navigation.PopAsync();
-            }
-            else
-            {
-                // Unable to update data
-                await DisplayAlert(AppResources.profile, AppResources.updateaccountfailure, AppResources.accept);
-            }
         }
 
         /**

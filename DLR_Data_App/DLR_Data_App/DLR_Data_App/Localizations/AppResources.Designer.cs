@@ -538,15 +538,6 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Password ähnelt.
-        /// </summary>
-        internal static string password {
-            get {
-                return ResourceManager.GetString("password", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Pressure ähnelt.
         /// </summary>
         internal static string pressure {

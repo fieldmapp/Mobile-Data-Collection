@@ -13,20 +13,17 @@ namespace DLR_Data_App.ViewModels.Login
         /**
          * Checks login with stored data
          */
-        public bool Check_Information(string checkUsername, string checkPassword)
+        public bool Check_Information(string checkUsername)
         {
-            // Get all users from database
-            List<User> userList = Database.ReadUser();
-
             // Check if input empty
-            if (string.IsNullOrWhiteSpace(checkUsername) || string.IsNullOrWhiteSpace(checkPassword))
+            if (string.IsNullOrWhiteSpace(checkUsername))
             {
                 return false;
             }
-
-            var matchedUser = userList.FirstOrDefault(u => u.Username == checkUsername && u.Password == checkPassword);
-            App.CurrentUser = matchedUser;
-            return matchedUser != null;
+            
+            var user = Database.ReadUsers().FirstOrDefault(u => u.Username == checkUsername);
+            App.CurrentUser = user;
+            return user != null;
         }
     }
 }

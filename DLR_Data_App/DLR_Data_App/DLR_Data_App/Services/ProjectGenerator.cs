@@ -1,6 +1,7 @@
 ﻿using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Models.ProjectModel.DatabaseConnectors;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DLR_Data_App.Services
@@ -70,25 +71,10 @@ namespace DLR_Data_App.Services
             foreach (var project in projectList)
             {
                 if (project.Title == _workingProject.Title
-                  && project.Secret == _workingProject.Secret
                   && project.Authors == _workingProject.Authors
                   && project.Description == _workingProject.Description)
                 {
                     _workingProject.Id = project.Id;
-                }
-            }
-
-            // not necessary but get sure the current user is set
-            if (App.CurrentUser.Id == 0)
-            {
-                var userList = Database.ReadUser();
-                foreach (var user in userList)
-                {
-                    if (user.Username == App.CurrentUser.Username
-                        && user.Password == App.CurrentUser.Password)
-                    {
-                        App.CurrentUser = user;
-                    }
                 }
             }
 

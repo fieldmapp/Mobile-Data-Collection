@@ -25,10 +25,6 @@ namespace DLR_Data_App.Models.ProjectModel
     // Authors of the project
     public string Authors { get; set; }
 
-    // Secret password of project, if not set or null there is no password
-    // Stored in SHA512
-    public string Secret { get; set; }
-
     // Available languages
     public string Languages { get; set; }
 
