@@ -455,4 +455,7 @@ Einwilligung ist jede von der betroffenen Person freiwillig für den bestimmten 
   <data name="saveddata" xml:space="preserve">
     <value>Gespeicherte Daten</value>
   </data>
+  <data name="unknown" xml:space="preserve">
+    <value>Unbekannt</value>
+  </data>
 </root>

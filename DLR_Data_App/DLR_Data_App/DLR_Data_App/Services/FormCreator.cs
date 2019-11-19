@@ -127,6 +127,8 @@ namespace DLR_Data_App.Services
                 option.Text.TryGetValue("0", out var value);
                 optionsList.Add(value);
             }
+            optionsList.Add(AppResources.unknown);
+
             var picker = new Picker
             {
                 Title = title,

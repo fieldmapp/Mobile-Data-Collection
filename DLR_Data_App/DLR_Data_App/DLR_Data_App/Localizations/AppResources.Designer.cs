@@ -817,6 +817,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unknown ähnelt.
+        /// </summary>
+        internal static string unknown {
+            get {
+                return ResourceManager.GetString("unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Unable to save changes on profile. ähnelt.
         /// </summary>
         internal static string updateaccountfailure {
