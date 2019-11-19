@@ -65,11 +65,11 @@ namespace DLR_Data_App.Views.ProjectList
                     if (result)
                     {
                         await DisplayAlert(AppResources.projects, AppResources.successful, AppResources.okay);
+                        await Navigation.PopModalAsync();
                     }
                     else
                     {
                         await DisplayAlert(AppResources.projects, AppResources.failed, AppResources.okay);
-                        await Navigation.PopModalAsync();
                     }
                 }
             }
