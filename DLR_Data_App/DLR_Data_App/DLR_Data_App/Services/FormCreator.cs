@@ -11,14 +11,12 @@ namespace DLR_Data_App.Services
 {
     class FormContent
     {
-        public FormContent(ContentPage form, List<View> elementList)
+        public FormContent(ContentPage form)
         {
             Form = form;
-            ElementList = elementList;
         }
 
         public ContentPage Form { get; }
-        public List<View> ElementList { get; }
     }
     static class FormCreator
     {
@@ -27,7 +25,6 @@ namespace DLR_Data_App.Services
             var contentPage = new ContentPage();
             var scrollView = new ScrollView();
             var stack = new StackLayout();
-            List<View> elementList = new List<View>();
 
             contentPage.Padding = new Thickness(10, 10, 10, 10);
 
@@ -95,7 +92,6 @@ namespace DLR_Data_App.Services
                                 Keyboard = Keyboard.Default,
                                 StyleId = element.Name
                             };
-                            elementList.Add(entry);
 
                             grid.Children.Add(entry, 0, 1);
                             Grid.SetColumnSpan(entry, 2);
@@ -125,7 +121,6 @@ namespace DLR_Data_App.Services
                                 StyleId = element.Name,
                                 ItemsSource = optionsList
                             };
-                            elementList.Add(picker);
 
                             grid.Children.Add(picker, 0, 1);
                             Grid.SetColumnSpan(picker, 2);
@@ -148,7 +143,6 @@ namespace DLR_Data_App.Services
                                 Keyboard = Keyboard.Default,
                                 StyleId = element.Name
                             };
-                            elementList.Add(entry);
 
                             grid.Children.Add(entry, 0, 1);
                             Grid.SetColumnSpan(entry, 2);
@@ -165,7 +159,6 @@ namespace DLR_Data_App.Services
                                 Text = sensor.Gps.Latitude.ToString(CultureInfo.CurrentCulture),
                                 StyleId = element.Name + "Lat"
                             };
-                            elementList.Add(labelLatData);
 
                             var labelLong = new Label { Text = "Longitude" };
 
@@ -174,7 +167,6 @@ namespace DLR_Data_App.Services
                                 Text = sensor.Gps.Longitude.ToString(CultureInfo.CurrentCulture),
                                 StyleId = element.Name + "Long"
                             };
-                            elementList.Add(labelLongData);
 
                             var labelMessage = new Label { Text = AppResources.message };
 
@@ -183,7 +175,7 @@ namespace DLR_Data_App.Services
                                 Text = sensor.Gps.Message,
                                 StyleId = element.Name + "Message"
                             };
-                            elementList.Add(labelMessageData);
+
                             var saveButton = new Button { Text = AppResources.save };
 
                             var savedLocation = new Label { Text = AppResources.saveddata };
@@ -214,7 +206,7 @@ namespace DLR_Data_App.Services
 
             scrollView.Content = stack;
             contentPage.Content = scrollView;
-            return new FormContent(contentPage, elementList);
+            return new FormContent(contentPage);
         }
 
     }
