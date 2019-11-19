@@ -9,9 +9,9 @@ using Xamarin.Forms;
 
 namespace DLR_Data_App.Services
 {
-    class FormContent
+    class FormCreator
     {
-        public FormContent(ContentPage form, List<View> elementList)
+        public FormCreator(ContentPage form, List<View> elementList)
         {
             Form = form;
             ElementList = elementList;
@@ -22,7 +22,7 @@ namespace DLR_Data_App.Services
     }
     static class FormFactory
     {
-        public static FormContent GenerateForm(ProjectForm form, Project currentProject, Func<string, string, string, Task> displayAlert, Sensor sensor)
+        public static FormCreator GenerateForm(ProjectForm form, Project currentProject, Func<string, string, string, Task> displayAlert, Sensor sensor)
         {
             var contentPage = new ContentPage();
             var scrollView = new ScrollView();
@@ -213,7 +213,7 @@ namespace DLR_Data_App.Services
 
             scrollView.Content = stack;
             contentPage.Content = scrollView;
-            return new FormContent(contentPage, elementList);
+            return new FormCreator(contentPage, elementList);
         }
 
     }
