@@ -97,7 +97,7 @@ namespace DLR_Data_App.Views.CurrentProject
         /// </summary>
         private void OnGpsChange(object sender, GpsEventArgs e)
         {
-            foreach (var label in Helpers.WalkElements(_pages).OfType<Label>())
+            foreach (var label in Helpers.WalkElements(_pages).OfType<Label>().Where(l => l.StyleId != null))
             {
                 if (label.StyleId.Contains("Lat"))
                     Device.BeginInvokeOnMainThread(() => label.Text = e.Latitude.ToString(CultureInfo.CurrentCulture));

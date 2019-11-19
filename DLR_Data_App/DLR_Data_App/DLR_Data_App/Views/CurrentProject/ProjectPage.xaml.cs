@@ -55,8 +55,9 @@ namespace DLR_Data_App.Views.CurrentProject
         private void ProjectPage_Appearing(object sender, EventArgs e)
         {
             Appearing -= ProjectPage_Appearing;
-            
-            foreach (var page in UpdateView())
+
+            _pages = UpdateView();
+            foreach (var page in _pages)
             {
                 Children.Add(page);
             }
@@ -72,7 +73,7 @@ namespace DLR_Data_App.Views.CurrentProject
         /// </summary>
         private void OnGpsChange(object sender, GpsEventArgs e)
         {
-            foreach (var label in Helpers.WalkElements(_pages).OfType<Label>())
+            foreach (var label in Helpers.WalkElements(_pages).OfType<Label>().Where(l => l.StyleId != null))
             {
                 if (label.StyleId.Contains("Lat"))
                     Device.BeginInvokeOnMainThread(() => label.Text = e.Latitude.ToString(CultureInfo.CurrentCulture));
