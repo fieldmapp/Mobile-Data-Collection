@@ -136,7 +136,7 @@ namespace DLR_Data_App.Services
             var queryFormElementList = "DELETE FROM ProjectFormElementList WHERE ElementId=?";
             var queryFormElements = "DELETE FROM ProjectFormElements WHERE Id=?";
             //var queryFormMetadata = "DELETE FROM ProjectFormMetadata WHERE Id=?";
-            var queryUserConnection = "DELETE FROM ProjectUserConnection WHERE ProjectId=?";
+            //var queryUserConnection = "DELETE FROM ProjectUserConnection WHERE ProjectId=?";
 
             using (var conn = new SQLiteConnection(App.DatabaseLocation))
             {
@@ -158,7 +158,7 @@ namespace DLR_Data_App.Services
                 }
 
                 // remove connection between user and project
-                conn.Execute(queryUserConnection, project.Id);
+                //conn.Execute(queryUserConnection, project.Id);
 
                 // remove project
                 conn.Delete(project);
