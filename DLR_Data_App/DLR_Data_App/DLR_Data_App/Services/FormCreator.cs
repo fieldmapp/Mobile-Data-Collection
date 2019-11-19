@@ -9,9 +9,9 @@ using Xamarin.Forms;
 
 namespace DLR_Data_App.Services
 {
-    class FormCreator
+    class FormContent
     {
-        public FormCreator(ContentPage form, List<View> elementList)
+        public FormContent(ContentPage form, List<View> elementList)
         {
             Form = form;
             ElementList = elementList;
@@ -20,9 +20,9 @@ namespace DLR_Data_App.Services
         public ContentPage Form { get; }
         public List<View> ElementList { get; }
     }
-    static class FormFactory
+    static class FormCreator
     {
-        public static FormCreator GenerateForm(ProjectForm form, Project currentProject, Func<string, string, string, Task> displayAlert, Sensor sensor)
+        public static FormContent GenerateForm(ProjectForm form, Project currentProject, Func<string, string, string, Task> displayAlert, Sensor sensor)
         {
             var contentPage = new ContentPage();
             var scrollView = new ScrollView();
@@ -58,13 +58,8 @@ namespace DLR_Data_App.Services
                 var hintText = Parser.GetCurrentLanguageStringFromJsonList(element.Hint, currentProject.Languages);
                 if (hintText != "Unable to parse language from json")
                 {
-                    var helpButton = new Button()
-                    {
-                        Text = AppResources.help
-                    };
-
-
-
+                    var helpButton = new Button { Text = AppResources.help };
+                    
                     helpButton.Clicked += async (sender, args) => await displayAlert(AppResources.help, hintText, AppResources.okay);
                     grid.Children.Add(helpButton, 1, 0);
 
@@ -163,10 +158,7 @@ namespace DLR_Data_App.Services
                     // Show current position
                     case "inputLocation":
                         {
-                            var labelLat = new Label()
-                            {
-                                Text = "Latitude"
-                            };
+                            var labelLat = new Label { Text = "Latitude" };
 
                             var labelLatData = new Label()
                             {
@@ -175,10 +167,7 @@ namespace DLR_Data_App.Services
                             };
                             elementList.Add(labelLatData);
 
-                            var labelLong = new Label()
-                            {
-                                Text = "Longitude"
-                            };
+                            var labelLong = new Label { Text = "Longitude" };
 
                             var labelLongData = new Label()
                             {
@@ -187,10 +176,7 @@ namespace DLR_Data_App.Services
                             };
                             elementList.Add(labelLongData);
 
-                            var labelMessage = new Label()
-                            {
-                                Text = AppResources.message
-                            };
+                            var labelMessage = new Label { Text = AppResources.message };
 
                             var labelMessageData = new Label()
                             {
@@ -198,6 +184,16 @@ namespace DLR_Data_App.Services
                                 StyleId = element.Name + "Message"
                             };
                             elementList.Add(labelMessageData);
+                            var saveButton = new Button { Text = AppResources.save };
+
+                            var savedLocation = new Label { Text = AppResources.saveddata };
+                            var savedLocationData = new Label
+                            {
+                                Text = "",
+                                StyleId = element.Name + "LocationData"
+                            };
+
+                            saveButton.Clicked += (sender, args) => savedLocationData.Text = $"Lat:{labelLongData.Text} Long:{labelLatData.Text}"; 
 
                             grid.Children.Add(labelLat, 0, 1);
                             grid.Children.Add(labelLatData, 1, 1);
@@ -205,6 +201,11 @@ namespace DLR_Data_App.Services
                             grid.Children.Add(labelLongData, 1, 2);
                             grid.Children.Add(labelMessage, 0, 3);
                             grid.Children.Add(labelMessageData, 1, 3);
+                            grid.Children.Add(saveButton, 0, 4);
+                            Grid.SetColumnSpan(saveButton, 2);
+                            grid.Children.Add(savedLocation, 0, 5);
+                            grid.Children.Add(savedLocationData, 1, 5);
+
                             break;
                         }
                 }
@@ -213,7 +214,7 @@ namespace DLR_Data_App.Services
 
             scrollView.Content = stack;
             contentPage.Content = scrollView;
-            return new FormCreator(contentPage, elementList);
+            return new FormContent(contentPage, elementList);
         }
 
     }

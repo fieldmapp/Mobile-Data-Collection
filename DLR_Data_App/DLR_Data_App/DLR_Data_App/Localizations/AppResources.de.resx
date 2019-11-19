@@ -452,4 +452,7 @@ Einwilligung ist jede von der betroffenen Person freiwillig für den bestimmten 
   <data name="appclosewarning" xml:space="preserve">
     <value>Nochmaliges Tippen beendet die App.</value>
   </data>
+  <data name="saveddata" xml:space="preserve">
+    <value>Gespeicherte Daten</value>
+  </data>
 </root>

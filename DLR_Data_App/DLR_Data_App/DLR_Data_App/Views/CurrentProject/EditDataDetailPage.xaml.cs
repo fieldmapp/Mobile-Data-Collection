@@ -36,31 +36,9 @@ namespace DLR_Data_App.Views.CurrentProject
                 {
                     picker.SelectedIndex = picker.Items.IndexOf(projectData[picker.StyleId]);
                 }
-                else if (element is Label label && label.StyleId != null)
+                else if (element is Label label && label.StyleId != null && label.StyleId.EndsWith("LocationData"))
                 {
-                    var containedInfo = string.Empty;
-                    if (label.StyleId.Contains("Lat"))
-                        containedInfo = "Lat";
-                    else if (label.StyleId.Contains("Long"))
-                        containedInfo = "Long";
-                    if (containedInfo != string.Empty)
-                    {
-                        var styleId = label.StyleId.Replace(containedInfo, string.Empty);
-                        var locationInfo = projectData[styleId];
-                        var locationStartIndex = locationInfo.IndexOf(containedInfo);
-                        if (locationStartIndex != -1)
-                        {
-                            locationStartIndex += +$"{containedInfo}:".Length;
-                            string locationString = string.Empty;
-                            for (int i = locationStartIndex; i < locationInfo.Length; i++)
-                            {
-                                if (locationInfo[i] == ' ')
-                                    break;
-                                locationString += locationInfo[i];
-                            }
-                            label.Text = locationString;
-                        }
-                    }
+                    label.Text = projectData[label.StyleId.Substring(0, label.StyleId.Length - "LocationData".Length)];
                 }
             }
 
@@ -110,7 +88,7 @@ namespace DLR_Data_App.Views.CurrentProject
 
             foreach (var projectForm in _workingProject.FormList)
             {
-                var content = FormFactory.GenerateForm(projectForm, _workingProject, DisplayAlert, _sensor);
+                var content = FormCreator.GenerateForm(projectForm, _workingProject, DisplayAlert, _sensor);
                 ElementList.AddRange(content.ElementList);
                 _pages.Add(content.Form);
             }
@@ -162,27 +140,10 @@ namespace DLR_Data_App.Views.CurrentProject
                 ElementNameList.Add(picker.StyleId);
                 ElementValueList.Add(picker.SelectedItem as string ?? "0");
             }
-            else if (element is Label label && label.StyleId != null)
+            else if (element is Label label && label.StyleId != null && label.StyleId.EndsWith("LocationData"))
             {
-                var containedInfo = string.Empty;
-                if (label.StyleId.Contains("Lat"))
-                    containedInfo = "Lat";
-                else if (label.StyleId.Contains("Long"))
-                    containedInfo = "Long";
-                if (containedInfo != string.Empty)
-                {
-                    var styleId = label.StyleId.Replace(containedInfo, string.Empty);
-                    var index = ElementNameList.IndexOf(styleId);
-                    if (index != -1)
-                    {
-                        ElementValueList[index] += $" {containedInfo}: {label.Text}";
-                    }
-                    else
-                    {
-                        ElementNameList.Add(styleId);
-                        ElementValueList.Add($"{containedInfo}: {label.Text}");
-                    }
-                }
+                ElementNameList.Add(label.StyleId.Substring(0, label.StyleId.Length - "LocationData".Length));
+                ElementValueList.Add(label.Text);
             }
         }
     }

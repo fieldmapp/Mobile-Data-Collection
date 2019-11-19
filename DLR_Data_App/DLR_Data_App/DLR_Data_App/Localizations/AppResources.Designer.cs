@@ -700,6 +700,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Saved data ähnelt.
+        /// </summary>
+        internal static string saveddata {
+            get {
+                return ResourceManager.GetString("saveddata", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Select date ähnelt.
         /// </summary>
         internal static string selectdate {
