@@ -46,8 +46,6 @@ namespace DLR_Data_App.Services
 
         private static void CreateLocationSelector(Grid grid, ProjectFormElements element, Project currentProject)
         {
-            return;
-
             var labelLat = new Label { Text = "Latitude" };
 
             var labelLatData = new Label()
@@ -189,22 +187,22 @@ namespace DLR_Data_App.Services
                 }
 
 
-                //if (element.Type == "inputText" && element.Name != null && element.Name.StartsWith("{") && element.Name.EndsWith("}"))
-                //{
-                //    //Special element
-                //    var specialElementType = element.Name.Substring(1, element.Name.Length - 2);
-                //    if (SpecialTypeToViewCreator.TryGetValue(specialElementType, out var viewCreator))
-                //    {
-                //        viewCreator(grid, element, currentProject);
-                //    }
-                //}
-                //else
-                //{
-                //    if (TypeToViewCreator.TryGetValue(element.Type, out var viewCreator))
-                //    {
-                //        viewCreator(grid, element, currentProject);
-                //    }
-                //}
+                if (element.Type == "inputText" && element.Name != null && element.Name.StartsWith("{") && element.Name.EndsWith("}"))
+                {
+                    //Special element
+                    var specialElementType = element.Name.Substring(1, element.Name.Length - 2);
+                    if (SpecialTypeToViewCreator.TryGetValue(specialElementType, out var viewCreator))
+                    {
+                        viewCreator(grid, element, currentProject);
+                    }
+                }
+                else
+                {
+                    if (TypeToViewCreator.TryGetValue(element.Type, out var viewCreator))
+                    {
+                        viewCreator(grid, element, currentProject);
+                    }
+                }
 
                 stack.Children.Add(grid);
             }
