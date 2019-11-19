@@ -22,22 +22,16 @@ namespace DLR_Data_App.Services
         public async Task<bool> GenerateProject()
         {
             _workingProject = new Project();
-            bool status;
 
             // parsing form files
             Parser parser = new Parser(ref _workingProject);
-            status = await parser.ParseZip(_zipFile, Path.Combine(App.FolderLocation, "unzip"));
 
             // check if parsing failed
-            if (!status)
-            {
+            if (!await parser.ParseZip(_zipFile, Path.Combine(App.FolderLocation, "unzip")))
                 return false;
-            }
 
             // create tables for project
-            status = GenerateDatabaseTable();
-
-            return status;
+            return GenerateDatabaseTable();
         }
         
         /// <summary>
@@ -45,14 +39,8 @@ namespace DLR_Data_App.Services
         /// </summary>
         private bool GenerateDatabaseTable()
         {
-            // Insert current working project with forms to database 
-            var status = Database.InsertProject(ref _workingProject);
-
-            // check status
-            if (!status)
-            {
+            if (!Database.InsertProject(ref _workingProject))
                 return false;
-            }
 
             // get created id from database and set it in workingProject
             var projectList = Database.ReadProjects();
@@ -73,9 +61,7 @@ namespace DLR_Data_App.Services
                 UserId = App.CurrentUser.Id
             };
 
-            status = Database.Insert(ref projectUserConnection);
-
-            return status;
+            return Database.Insert(ref projectUserConnection);
         }
 
     }

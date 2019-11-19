@@ -173,8 +173,6 @@ namespace DLR_Data_App.Services
         /// <returns>True if project insertion was successful</returns>
         public static bool InsertProject(ref Project project)
         {
-            bool status;
-
             // Load current stored data to project list
             var projectList = ReadProjects();
 
@@ -188,39 +186,27 @@ namespace DLR_Data_App.Services
             }
 
             // Insert project to database
-            status = Insert(ref project);
-            if (!status)
-            {
+            if (!Insert(ref project))
                 return false;
-            }
 
             // Add form to project
             foreach (var form in project.FormList)
             {
                 var formElement = form;
                 formElement.ProjectId = project.Id;
-                status = Insert(ref formElement);
-                if (!status)
-                {
+                if (!Insert(ref formElement))
                     return false;
-                }
 
                 var metadata = form.Metadata;
-                status = Insert(ref metadata);
-                if (!status)
-                {
+                if (!Insert(ref metadata))
                     return false;
-                }
 
                 foreach (var elements in form.ElementList)
                 {
                     // store each form with its controls
                     var controlElement = elements;
-                    status = Insert(ref controlElement);
-                    if (!status)
-                    {
+                    if (!Insert(ref controlElement))
                         return false;
-                    }
 
                     // combine project with control elements
                     var combineElementList = new ProjectFormElementList
@@ -229,18 +215,13 @@ namespace DLR_Data_App.Services
                         FormId = formElement.Id,
                         MetadataId = form.Metadata.Id
                     };
-                    status = Insert(ref combineElementList);
-                    if (!status)
-                    {
+                    if (!Insert(ref combineElementList))
                         return false;
-                    }
                 }
             }
 
             // Create custom table
-            status = CreateCustomTable(ref project);
-
-            return status;
+            return CreateCustomTable(ref project);
         }
         
         /// <summary>
