@@ -106,7 +106,7 @@ namespace DLR_Data_App.Views.CurrentProject
 
                 foreach (var projectForm in _workingProject.FormList)
                 {
-                    var content = FormCreator.GenerateForm(projectForm, _workingProject, DisplayAlert, _sensor);
+                    var content = FormCreator.GenerateForm(projectForm, _workingProject, DisplayAlert);
                     pages.Add(content.Form);
                 }
             }

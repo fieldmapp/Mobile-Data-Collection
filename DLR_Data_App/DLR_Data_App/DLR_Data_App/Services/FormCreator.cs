@@ -20,7 +20,147 @@ namespace DLR_Data_App.Services
     }
     static class FormCreator
     {
-        public static FormContent GenerateForm(ProjectForm form, Project currentProject, Func<string, string, string, Task> displayAlert, Sensor sensor)
+        private static Dictionary<string, Action<Grid, ProjectFormElements, Project>> TypeToViewCreator = new Dictionary<string, Action<Grid, ProjectFormElements, Project>>()
+        {
+            { "inputText", CreateTextInput },
+            { "inputSelectOne", CreatePicker },
+            { "inputNumeric", CreateNumericInput },
+            { "inputLocation", CreateLocationSelector }
+        };
+
+        private static Dictionary<string, Action<Grid, ProjectFormElements, Project>> SpecialTypeToViewCreator = new Dictionary<string, Action<Grid, ProjectFormElements, Project>>
+        {
+            { "propRuler", CreateRuler },
+            { "unknown", CreateUnknownChecker }
+        };
+
+        private static void CreateUnknownChecker(Grid grid, ProjectFormElements element, Project currentProject)
+        {
+            
+        }
+
+        private static void CreateRuler(Grid grid, ProjectFormElements element, Project currentProject)
+        {
+            
+        }
+
+        private static void CreateLocationSelector(Grid grid, ProjectFormElements element, Project currentProject)
+        {
+            return;
+
+            var labelLat = new Label { Text = "Latitude" };
+
+            var labelLatData = new Label()
+            {
+                Text = Sensor.Instance.Gps.Latitude.ToString(CultureInfo.CurrentCulture),
+                StyleId = element.Name + "Lat"
+            };
+
+            var labelLong = new Label { Text = "Longitude" };
+
+            var labelLongData = new Label()
+            {
+                Text = Sensor.Instance.Gps.Longitude.ToString(CultureInfo.CurrentCulture),
+                StyleId = element.Name + "Long"
+            };
+
+            var labelMessage = new Label { Text = AppResources.message };
+
+            var labelMessageData = new Label()
+            {
+                Text = Sensor.Instance.Gps.Message,
+                StyleId = element.Name + "Message"
+            };
+
+            var saveButton = new Button { Text = AppResources.save };
+
+            var savedLocation = new Label { Text = AppResources.saveddata };
+            var savedLocationData = new Label
+            {
+                Text = "",
+                StyleId = element.Name + "LocationData"
+            };
+
+            saveButton.Clicked += (sender, args) => savedLocationData.Text = $"Lat:{labelLongData.Text} Long:{labelLatData.Text}";
+
+            grid.Children.Add(labelLat, 0, 1);
+            grid.Children.Add(labelLatData, 1, 1);
+            grid.Children.Add(labelLong, 0, 2);
+            grid.Children.Add(labelLongData, 1, 2);
+            grid.Children.Add(labelMessage, 0, 3);
+            grid.Children.Add(labelMessageData, 1, 3);
+            grid.Children.Add(saveButton, 0, 4);
+            Grid.SetColumnSpan(saveButton, 2);
+            grid.Children.Add(savedLocation, 0, 5);
+            grid.Children.Add(savedLocationData, 1, 5);
+        }
+
+        private static void CreateNumericInput(Grid grid, ProjectFormElements element, Project currentProject)
+        {
+            var placeholder = Parser.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages);
+            if (placeholder == "Unable to parse language from json")
+            {
+                placeholder = "";
+            }
+
+            var entry = new Entry
+            {
+                Placeholder = placeholder,
+                Keyboard = Keyboard.Default,
+                StyleId = element.Name
+            };
+
+            grid.Children.Add(entry, 0, 1);
+            Grid.SetColumnSpan(entry, 2);
+        }
+
+        private static void CreatePicker(Grid grid, ProjectFormElements element, Project currentProject)
+        {
+            var optionsList = new List<string>();
+            var options = Parser.ParseOptionsFromJson(element.Options);
+            var title = Parser.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages);
+            if (title == "Unable to parse language from json")
+            {
+                title = AppResources.notitle;
+            }
+
+            foreach (var option in options)
+            {
+                option.Text.TryGetValue("0", out var value);
+                optionsList.Add(value);
+            }
+            var picker = new Picker
+            {
+                Title = title,
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                StyleId = element.Name,
+                ItemsSource = optionsList
+            };
+
+            grid.Children.Add(picker, 0, 1);
+            Grid.SetColumnSpan(picker, 2);
+        }
+
+        private static void CreateTextInput(Grid grid, ProjectFormElements element, Project currentProject)
+        {
+            var placeholder = Parser.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages);
+            if (placeholder == "Unable to parse language from json")
+            {
+                placeholder = "";
+            }
+
+            var entry = new Entry
+            {
+                Placeholder = placeholder,
+                Keyboard = Keyboard.Default,
+                StyleId = element.Name
+            };
+
+            grid.Children.Add(entry, 0, 1);
+            Grid.SetColumnSpan(entry, 2);
+        }
+
+        public static FormContent GenerateForm(ProjectForm form, Project currentProject, Func<string, string, string, Task> displayAlert)
         {
             var contentPage = new ContentPage();
             var scrollView = new ScrollView();
@@ -28,179 +168,44 @@ namespace DLR_Data_App.Services
 
             contentPage.Padding = new Thickness(10, 10, 10, 10);
 
+            contentPage.Title = form.Title;
+
             // walk through list of elements and generate form containing elements
             foreach (var element in form.ElementList)
             {
-                contentPage.Title = form.Title;
-
                 var grid = new Grid();
-                grid.RowDefinitions.Add(new RowDefinition());
-                grid.RowDefinitions.Add(new RowDefinition());
-                grid.ColumnDefinitions.Add(new ColumnDefinition());
-                grid.ColumnDefinitions.Add(new ColumnDefinition());
-
-                // show name of element
-                var label = new Label
-                {
-                    Text = Parser.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages)
-                };
-                //stack.Children.Add(label);
-                grid.Children.Add(label, 0, 0);
-
-                //------------------------
-                // Special commands
-
-                // Display help
-
+                
+                var elementNameLabel = new Label { Text = Parser.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages) };
+                grid.Children.Add(elementNameLabel, 0, 0);
+                
                 var hintText = Parser.GetCurrentLanguageStringFromJsonList(element.Hint, currentProject.Languages);
+
                 if (hintText != "Unable to parse language from json")
                 {
                     var helpButton = new Button { Text = AppResources.help };
                     
                     helpButton.Clicked += async (sender, args) => await displayAlert(AppResources.help, hintText, AppResources.okay);
                     grid.Children.Add(helpButton, 1, 0);
-
-                    // Display a ruler on the side of the screen
-                    if (element.Type == "inputText" && element.Name.Contains("propRuler"))
-                    {
-                        continue;
-                    }
-
-                    // Display a checkbox with name "unknown"
-                    if (element.Type == "inputText" && element.Name.Contains("unknown"))
-                    {
-                        continue;
-                    }
                 }
 
-                //-------------------------
-                // Normal fields
-                switch (element.Type)
-                {
-                    // input text
-                    case "inputText":
-                        {
-                            var placeholder = Parser.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages);
-                            if (placeholder == "Unable to parse language from json")
-                            {
-                                placeholder = "";
-                            }
 
-                            var entry = new Entry
-                            {
-                                Placeholder = placeholder,
-                                Keyboard = Keyboard.Default,
-                                StyleId = element.Name
-                            };
+                //if (element.Type == "inputText" && element.Name != null && element.Name.StartsWith("{") && element.Name.EndsWith("}"))
+                //{
+                //    //Special element
+                //    var specialElementType = element.Name.Substring(1, element.Name.Length - 2);
+                //    if (SpecialTypeToViewCreator.TryGetValue(specialElementType, out var viewCreator))
+                //    {
+                //        viewCreator(grid, element, currentProject);
+                //    }
+                //}
+                //else
+                //{
+                //    if (TypeToViewCreator.TryGetValue(element.Type, out var viewCreator))
+                //    {
+                //        viewCreator(grid, element, currentProject);
+                //    }
+                //}
 
-                            grid.Children.Add(entry, 0, 1);
-                            Grid.SetColumnSpan(entry, 2);
-                            break;
-                        }
-
-                    // Selecting one item of list
-                    case "inputSelectOne":
-                        {
-                            var optionsList = new List<string>();
-                            var options = Parser.ParseOptionsFromJson(element.Options);
-                            var title = Parser.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages);
-                            if (title == "Unable to parse language from json")
-                            {
-                                title = AppResources.notitle;
-                            }
-
-                            foreach (var option in options)
-                            {
-                                option.Text.TryGetValue("0", out var value);
-                                optionsList.Add(value);
-                            }
-                            var picker = new Picker
-                            {
-                                Title = title,
-                                VerticalOptions = LayoutOptions.CenterAndExpand,
-                                StyleId = element.Name,
-                                ItemsSource = optionsList
-                            };
-
-                            grid.Children.Add(picker, 0, 1);
-                            Grid.SetColumnSpan(picker, 2);
-                            break;
-                        }
-
-                    // Show an entry with only numeric input
-                    // As a walk around for an existing Samsung keyboard bug a normal keyboard layout is used
-                    case "inputNumeric":
-                        {
-                            var placeholder = Parser.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages);
-                            if (placeholder == "Unable to parse language from json")
-                            {
-                                placeholder = "";
-                            }
-
-                            var entry = new Entry
-                            {
-                                Placeholder = placeholder,
-                                Keyboard = Keyboard.Default,
-                                StyleId = element.Name
-                            };
-
-                            grid.Children.Add(entry, 0, 1);
-                            Grid.SetColumnSpan(entry, 2);
-                            break;
-                        }
-
-                    // Show current position
-                    case "inputLocation":
-                        {
-                            var labelLat = new Label { Text = "Latitude" };
-
-                            var labelLatData = new Label()
-                            {
-                                Text = sensor.Gps.Latitude.ToString(CultureInfo.CurrentCulture),
-                                StyleId = element.Name + "Lat"
-                            };
-
-                            var labelLong = new Label { Text = "Longitude" };
-
-                            var labelLongData = new Label()
-                            {
-                                Text = sensor.Gps.Longitude.ToString(CultureInfo.CurrentCulture),
-                                StyleId = element.Name + "Long"
-                            };
-
-                            var labelMessage = new Label { Text = AppResources.message };
-
-                            var labelMessageData = new Label()
-                            {
-                                Text = sensor.Gps.Message,
-                                StyleId = element.Name + "Message"
-                            };
-
-                            var saveButton = new Button { Text = AppResources.save };
-
-                            var savedLocation = new Label { Text = AppResources.saveddata };
-                            var savedLocationData = new Label
-                            {
-                                Text = "",
-                                StyleId = element.Name + "LocationData"
-                            };
-
-                            saveButton.Clicked += (sender, args) => savedLocationData.Text = $"Lat:{labelLongData.Text} Long:{labelLatData.Text}"; 
-
-                            grid.Children.Add(labelLat, 0, 1);
-                            grid.Children.Add(labelLatData, 1, 1);
-                            grid.Children.Add(labelLong, 0, 2);
-                            grid.Children.Add(labelLongData, 1, 2);
-                            grid.Children.Add(labelMessage, 0, 3);
-                            grid.Children.Add(labelMessageData, 1, 3);
-                            grid.Children.Add(saveButton, 0, 4);
-                            Grid.SetColumnSpan(saveButton, 2);
-                            grid.Children.Add(savedLocation, 0, 5);
-                            grid.Children.Add(savedLocationData, 1, 5);
-
-                            break;
-                        }
-                }
                 stack.Children.Add(grid);
             }
 
