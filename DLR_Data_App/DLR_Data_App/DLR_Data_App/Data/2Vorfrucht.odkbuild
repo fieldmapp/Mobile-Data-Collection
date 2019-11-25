@@ -1,12 +1,12 @@
 {
-	"title": "Anbaufrucht",
+	"title": "Vorfrucht",
 	"controls": [{
-			"name": "cultivatedFruit",
+			"name": "preceedingCrop",
 			"label": {
-				"0": "Anbaufrucht"
+				"0": "Vorfrucht"
 			},
 			"hint": {
-				"0": "Anbaukultur auswählen"
+				"0": "Pflanzenkultur angeben"
 			},
 			"defaultValue": "",
 			"readOnly": false,
@@ -34,12 +34,6 @@
 					},
 					"cascade": [],
 					"val": "3"
-				}, {
-					"text": {
-						"0": "Unbekannt"
-					},
-					"cascade": [],
-					"val": "0"
 				}
 			],
 			"cascading": false,
@@ -48,12 +42,12 @@
 			"metadata": {},
 			"type": "inputSelectOne"
 		}, {
-			"name": "cultivatedFruitCultivation",
+			"name": "preceedingCropCultivation",
 			"label": {
-				"0": "Anbaufrucht Anbau"
+				"0": "Vorfrucht Anbau"
 			},
 			"hint": {
-				"0": "Anbauart auswählen"
+				"0": "Anbau angeben"
 			},
 			"defaultValue": "",
 			"readOnly": false,
@@ -89,12 +83,12 @@
 			"metadata": {},
 			"type": "inputSelectOne"
 		}, {
-			"name": "cultivatedFruitDetailFruit",
+			"name": "preceedingCropDetailFruit",
 			"label": {
-				"0": "Anbaufrucht Detail"
+				"0": "Vorfrucht Detail"
 			},
 			"hint": {
-				"0": "Anbaufrucht auswählen"
+				"0": "Pflanze bestimmen"
 			},
 			"defaultValue": "",
 			"readOnly": false,
@@ -296,12 +290,6 @@
 					},
 					"cascade": [],
 					"val": "32"
-				}, {
-					"text": {
-						"0": "Unbekannt"
-					},
-					"cascade": [],
-					"val": "0"
 				}
 			],
 			"cascading": false,

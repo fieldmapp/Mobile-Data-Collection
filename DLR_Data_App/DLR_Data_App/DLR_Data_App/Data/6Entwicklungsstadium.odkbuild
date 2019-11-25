@@ -70,12 +70,6 @@
 					},
 					"cascade": [],
 					"val": "9"
-				}, {
-					"text": {
-						"0": "Unbekannt"
-					},
-					"cascade": [],
-					"val": "0"
 				}
 			],
 			"cascading": false,
