@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using DLR_Data_App.Services;
 using DLR_Data_App.Services.Sensors;
 using Xamarin.Forms;
@@ -80,6 +83,10 @@ namespace DLR_Data_App.Views
             LblXMagnetometerMax.Text = _sensor.Magnetometer.MaxX.ToString("N");
             LblYMagnetometerMax.Text = _sensor.Magnetometer.MaxY.ToString("N");
             LblZMagnetometerMax.Text = _sensor.Magnetometer.MaxZ.ToString("N");
+
+            Velocity = 0;
+            MovementSum = 0;
+            MovementZ.Text = "0";
         }
 
         /// <summary>
@@ -87,6 +94,9 @@ namespace DLR_Data_App.Views
         /// </summary>
         public void OnAccelerometer_Change(object sender, EventArgs e)
         {
+            var partsOfOneSecond = MovementStopWatch.ElapsedMilliseconds / 1000d;
+            MovementStopWatch.Restart();
+
             LblXAccelerometerCurrent.Text = _sensor.Accelerometer.CurrentX.ToString("N");
             LblYAccelerometerCurrent.Text = _sensor.Accelerometer.CurrentY.ToString("N");
             LblZAccelerometerCurrent.Text = _sensor.Accelerometer.CurrentZ.ToString("N");
@@ -94,7 +104,40 @@ namespace DLR_Data_App.Views
             LblXAccelerometerMax.Text = _sensor.Accelerometer.MaxX.ToString("N");
             LblYAccelerometerMax.Text = _sensor.Accelerometer.MaxY.ToString("N");
             LblZAccelerometerMax.Text = _sensor.Accelerometer.MaxZ.ToString("N");
+
+            if (InitStep < InitEnd)
+            {
+                InitSteps[InitStep] = _sensor.Accelerometer.CurrentZ;
+                InitStep++;
+            }
+            else if (InitStep == InitEnd)
+            {
+                ConstantAcceleration = InitSteps.Average();
+                AccelerationStandardVariance = Math.Abs(InitSteps.Average(s => s - ConstantAcceleration));
+                InitStep++;
+            }
+            else
+            {
+                var velocityChange = _sensor.Accelerometer.CurrentZ - ConstantAcceleration;
+                if (Math.Abs(velocityChange) > AccelerationStandardVariance * 2)
+                {
+                    Velocity += velocityChange * G * partsOfOneSecond;
+
+                    MovementSum += Velocity * partsOfOneSecond;
+                    MovementZ.Text = MovementSum.ToString("N");
+                }
+            }
         }
+
+        Stopwatch MovementStopWatch = Stopwatch.StartNew();
+        double Velocity = 0;
+        double MovementSum = 0;
+        const double G = 9.80665;
+        double[] InitSteps = new double[InitEnd];
+        double ConstantAcceleration;
+        double AccelerationStandardVariance;
+        int InitStep = 0;
+        const int InitEnd = 1000;
 
         /// <summary>
         /// Updates barometer values

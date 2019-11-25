@@ -500,6 +500,53 @@
                            Grid.Row="4"
                            Grid.Column="2"/>
                 </Grid>
+
+                <Grid x:Name="GridMovement">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Text="Bewegung"
+                           FontSize="Medium"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Start"
+                           Grid.ColumnSpan="3"
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+
+                    <Label Text="Aktuell"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="1"
+                           Grid.Column="1" />
+
+                    <Label Text="{res:Translate max}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           Grid.Row="1"
+                           Grid.Column="2"/>
+
+                    <Label Text="Z:"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="2"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="MovementZ"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="2"
+                           Grid.Column="1"/>
+                </Grid>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
