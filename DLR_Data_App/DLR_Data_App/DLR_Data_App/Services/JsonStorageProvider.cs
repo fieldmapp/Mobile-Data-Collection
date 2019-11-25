@@ -24,18 +24,18 @@ namespace DLR_Data_App.Services
             };
         }
 
-        public Dictionary<string, List<IUserAnswer>> LoadAnswers(string userId)
+        public SurveyResults LoadAnswers(string userId)
         {
             var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            path = Path.Combine(path, "answers " + userId);
+            path = Path.Combine(path, "answers_" + userId);
 
             using (var storageStream = StorageAccessProvider.OpenFileRead(path))
             {
                 if (storageStream.Length == 0)
-                    return new Dictionary<string, List<IUserAnswer>>();
+                    return new SurveyResults() { UserId = userId, Results = new List<SurveyResult>() };
                 using (var streamReader = new StreamReader(storageStream))
                 using (var jsonReader = new JsonTextReader(streamReader))
-                    return JsonSerializer.Deserialize<Dictionary<string, List<IUserAnswer>>>(jsonReader);
+                    return JsonSerializer.Deserialize<SurveyResults>(jsonReader);
             }
         }
 
@@ -57,25 +57,25 @@ namespace DLR_Data_App.Services
             return DeserializeFromAsset<List<SurveyMenuItem>>("surveys");
         }
 
-        public void SaveAnswers(Dictionary<string, List<IUserAnswer>> answers, string userId)
+        public void SaveAnswers(SurveyResults results)
         {
             var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            path = Path.Combine(path, "answers_" + userId);
+            path = Path.Combine(path, "answers_" + results.UserId);
 
             using (var storageStream = StorageAccessProvider.OpenFileWrite(path))
             using (var streamWriter = new StreamWriter(storageStream))
             using (var jsonWriter = new JsonTextWriter(streamWriter))
-                JsonSerializer.Serialize(jsonWriter, answers);
+                JsonSerializer.Serialize(jsonWriter, results);
         }
 
-        public void ExportAnswers(Dictionary<string, List<IUserAnswer>> answers, string userId)
+        public void ExportAnswers(SurveyResults results)
         {
-            var path = $"dlr_answers_{userId}.txt";
+            var path = $"dlr_answers_{results.UserId}.txt";
 
             using (var storageStream = StorageAccessProvider.OpenFileWriteExternal(path))
             using (var streamWriter = new StreamWriter(storageStream))
             using (var jsonWriter = new JsonTextWriter(streamWriter))
-                JsonSerializer.Serialize(jsonWriter, answers);
+                JsonSerializer.Serialize(jsonWriter, results);
         }
 
         public void ExportDatabase(string content)

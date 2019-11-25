@@ -169,11 +169,11 @@ namespace DLR_Data_App.Services
             };
         }
 
-        public void SaveAnswers(Dictionary<string, List<IUserAnswer>> answers, string username) { }
+        public void SaveAnswers(SurveyResults results) { }
 
-        public Dictionary<string, List<IUserAnswer>> LoadAnswers(string username)
+        public SurveyResults LoadAnswers(string username)
         {
-            return new Dictionary<string, List<IUserAnswer>>
+            var answers = new Dictionary<string, List<IUserAnswer>>
             {
                 ["ImageChecker"] = new List<IUserAnswer>
                 {
@@ -199,14 +199,12 @@ namespace DLR_Data_App.Services
                     new AnswerStadiumPage(2,"A",2)
                 }
             };
+            var surveyResult = new SurveyResult() { TimeStamp = DateTime.UtcNow, UserAnswers = answers };
+            return new SurveyResults() { UserId = username, Results = new List<SurveyResult>() { surveyResult } };
         }
 
-        public void ExportAnswers(Dictionary<string, List<IUserAnswer>> answers, string username)
-        {
-        }
+        public void ExportAnswers(SurveyResults results) { }
 
-        public void ExportDatabase(string content)
-        {
-        }
+        public void ExportDatabase(string content) { }
     }
 }

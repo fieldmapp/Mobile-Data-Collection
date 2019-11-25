@@ -13,6 +13,7 @@ namespace DLR_Data_App.Services
 {
     public static class DatabankCommunication
     {
+        private const double MaxMinutesToContinueSurvey = 5;
         /// <summary>
         /// Used to create a randum number
         /// </summary>
@@ -43,24 +44,57 @@ namespace DLR_Data_App.Services
         /// </summary>
         private static string UserId;
 
+        private static DateTime? ContinuedAnswersDateTime;
+
         /// <summary>
         /// Initializes the DatabankCommunication
         /// </summary>
         public static void Initilize(string userId)
         {
-            Questions = StorageProvider.LoadQuestions();
-            Answers = StorageProvider.LoadAnswers(userId);
-            SurveyMenuItems = new ObservableCollection<SurveyMenuItem>(StorageProvider.LoadSurveyMenuItems());
             UserId = userId;
+            Questions = StorageProvider.LoadQuestions();
+            Answers = LoadAnswerToContinue();
+            SurveyMenuItems = new ObservableCollection<SurveyMenuItem>(StorageProvider.LoadSurveyMenuItems());
+        }
+
+        private static Dictionary<string, List<IUserAnswer>> LoadAnswerToContinue()
+        {
+            var answers = StorageProvider.LoadAnswers(UserId);
+            var answersToContinue = answers.Results.FirstOrDefault(r => Math.Abs((r.TimeStamp - DateTime.UtcNow).TotalMinutes) < MaxMinutesToContinueSurvey);
+
+            if (answersToContinue == null)
+            {
+                ContinuedAnswersDateTime = null;
+                return new Dictionary<string, List<IUserAnswer>>();
+            }
+            else
+            {
+                ContinuedAnswersDateTime = answersToContinue.TimeStamp;
+                return answersToContinue.UserAnswers;
+            }
         }
 
         /// <summary>
-        /// Saves all Answers
+        /// Saves all answers.
         /// This will override old saved data!
         /// </summary>
         public static void SaveAnswers()
         {
-            StorageProvider.SaveAnswers(Answers, UserId);
+            var savedAnswers = StorageProvider.LoadAnswers(UserId);
+            var currentAnswer = savedAnswers.Results.FirstOrDefault(r => r.TimeStamp == ContinuedAnswersDateTime);
+            var now = DateTime.UtcNow;
+            ContinuedAnswersDateTime = now;
+            if (currentAnswer == null)
+            {
+                currentAnswer = new SurveyResult() { TimeStamp = now, UserAnswers = Answers };
+                savedAnswers.Results.Add(currentAnswer);
+            }
+            else
+            {
+                currentAnswer.TimeStamp = now;
+                currentAnswer.UserAnswers = Answers;
+            }
+            StorageProvider.SaveAnswers(savedAnswers);
         }
 
         /// <summary>
@@ -231,6 +265,6 @@ namespace DLR_Data_App.Services
             Answers[surveyId].Add(answer);
         }
 
-        public static void ExportAnswers() => StorageProvider.ExportAnswers(Answers, UserId);
+        public static void ExportAnswers() => StorageProvider.ExportAnswers(StorageProvider.LoadAnswers(UserId));
     }
 }
