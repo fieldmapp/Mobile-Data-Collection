@@ -3,6 +3,7 @@ using DLR_Data_App.Models.ProjectModel;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -188,11 +189,12 @@ namespace DLR_Data_App.Services
                     grid.Children.Add(helpButton, 1, 0);
                 }
 
+                IEnumerable<char> findSpecialType(string name) => name.SkipWhile(c => c != '{').Skip(1).TakeWhile(c => c != '}');
 
-                if (element.Type == "inputText" && element.Name != null && element.Name.StartsWith("{") && element.Name.EndsWith("}"))
+                if (element.Type == "inputText" && element.Name != null && findSpecialType(element.Name).Count() > 0)
                 {
                     //Special element
-                    var specialElementType = element.Name.Substring(1, element.Name.Length - 2);
+                    var specialElementType = new string(findSpecialType(element.Name).ToArray());
                     if (SpecialTypeToViewCreator.TryGetValue(specialElementType, out var viewCreator))
                     {
                         viewCreator(grid, element, currentProject);
