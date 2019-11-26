@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
+using System.Linq;
 using DLR_Data_App.Models;
 using DLR_Data_App.Models.ProjectModel;
 using Newtonsoft.Json;
@@ -281,6 +282,38 @@ namespace DLR_Data_App.Services
             return result;
         }
 
+        public static string GetCurrentLanguageCodeFromJsonList(string languageList)
+        {
+            try
+            {
+                var currentLanguage = CultureInfo.CurrentUICulture.EnglishName;
+                // check which languages are available
+                var languageObjects = JObject.Parse(languageList); // parse as object 
+                string languageCode = null;
+                foreach (var app in languageObjects)
+                {
+                    var key = app.Key;
+                    var value = app.Value.ToString();
+
+                    // if local language matches available language store key in result
+                    if (!currentLanguage.Contains(value)) continue;
+                    languageCode = key;
+                    break;
+                }
+                if (languageCode == null)
+                {
+                    var languagesEnumerator = languageObjects.GetEnumerator();
+                    languagesEnumerator.MoveNext();
+                    return languagesEnumerator.Current.Key;
+                }
+                return languageCode;
+            }
+            catch (Exception)
+            {
+                return "Error in JSON file";
+            }
+        }
+
         /// <summary>
         /// Selects a string in the runtime systems language from a JSON list. 
         /// </summary>
@@ -290,27 +323,15 @@ namespace DLR_Data_App.Services
         public static string GetCurrentLanguageStringFromJsonList(string jsonList, string languageList)
         {
             // get current language
-            var currentLanguage = CultureInfo.CurrentUICulture.EnglishName;
             var result = "Unable to parse language from json";
             var temp = "0";
 
             try
             {
-                // check which languages are available
-                var objects = JObject.Parse(languageList); // parse as object  
-                foreach (var app in objects)
-                {
-                    var key = app.Key;
-                    var value = app.Value.ToString();
-
-                    // if local language matches available language store key in result
-                    if (!currentLanguage.Contains(value)) continue;
-                    temp = key;
-                    break;
-                }
+                var languageCode = GetCurrentLanguageCodeFromJsonList(languageList);
 
                 // get string from json list in the correct language
-                objects = JObject.Parse(jsonList); // parse as object  
+                var objects = JObject.Parse(jsonList); // parse as object  
                 foreach (var app in objects)
                 {
                     var key = app.Key;

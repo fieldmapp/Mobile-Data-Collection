@@ -122,10 +122,10 @@ namespace DLR_Data_App.Services
             {
                 title = AppResources.notitle;
             }
-
+            var currentLanguageCode = Parser.GetCurrentLanguageCodeFromJsonList(currentProject.Languages);
             foreach (var option in options)
             {
-                option.Text.TryGetValue("0", out var value);
+                option.Text.TryGetValue(currentLanguageCode, out var value);
                 optionsList.Add(value);
             }
             optionsList.Add(AppResources.unknown);
