@@ -27,6 +27,23 @@ namespace DLR_Data_App.Services
                 throw new ArgumentException($"{nameof(name)} is not a valid SQL name");
         }
 
+        public static SQLiteConnection CreateConnection() => new SQLiteConnection(App.DatabaseLocation);
+
+        public static string SaveTransactionPoint(SQLiteConnection conn)
+        {
+            return conn.SaveTransactionPoint();
+        }
+
+        public static void RollbackChanges(string transactionPointName, SQLiteConnection conn)
+        {
+            conn.RollbackTo(transactionPointName);
+        }
+
+        public static void CommitChanges(string transactionPointName, SQLiteConnection conn)
+        {
+            conn.Release(transactionPointName);
+        }
+
         /// <summary>
         /// Inserts data into the database
         /// </summary>
@@ -35,20 +52,26 @@ namespace DLR_Data_App.Services
         /// <returns>Status of inserting data</returns>
         public static bool Insert<T>(ref T data)
         {
-            int resultInsert;
-
             // database will be closed after leaving the using statement
-            using (var conn = new SQLiteConnection(App.DatabaseLocation))
+            using (var conn = CreateConnection())
             {
-                // if table doesn't exist create a new one
-                conn.CreateTable<T>();
-
-                // Insert data into table
-                resultInsert = conn.Insert(data);
+                return Insert(ref data, conn);
             }
+        }
 
-            // check if data was successfully inserted
-            return resultInsert > 0;
+        /// <summary>
+        /// Inserts data into the database
+        /// </summary>
+        /// <typeparam name="T">The type of both the database content and the content to add to the database</typeparam>
+        /// <param name="data">The contents that will pushed into the database</param>
+        /// <returns>Status of inserting data</returns>
+        public static bool Insert<T>(ref T data, SQLiteConnection conn)
+        {
+            // if table doesn't exist create a new one
+            conn.CreateTable<T>();
+
+            // Insert data into table
+            return conn.Insert(data) > 0;
         }
 
         /// <summary>
@@ -59,17 +82,27 @@ namespace DLR_Data_App.Services
         /// <returns>Status of updating data</returns>
         public static bool Update<T>(ref T data)
         {
-            int resultUpdate;
-
             // database will be closed after leaving the using statement
-            using (var conn = new SQLiteConnection(App.DatabaseLocation))
+            using (var conn = CreateConnection())
             {
-                // if table doesn't exist create a new one
-                conn.CreateTable<T>();
-
-                // Update data into table
-                resultUpdate = conn.Update(data);
+                return Update(ref data, conn);
             }
+        }
+
+        /// <summary>
+        /// Updates data in database
+        /// </summary>
+        /// <typeparam name="T">The type of both the database content and the content to be updated in the database</typeparam>
+        /// <param name="data">The contents that will updated in the database</param>
+        /// <returns>Status of updating data</returns>
+        public static bool Update<T>(ref T data, SQLiteConnection conn)
+        {
+            int resultUpdate;
+            // if table doesn't exist create a new one
+            conn.CreateTable<T>();
+
+            // Update data into table
+            resultUpdate = conn.Update(data);
 
             // check if data was successfully updated
             if (resultUpdate > 0)
@@ -79,7 +112,7 @@ namespace DLR_Data_App.Services
             else
             {
                 // if no element was updated the element is inserted into the database
-                Insert(ref data);
+                Insert(ref data, conn);
                 return false;
             }
         }
@@ -92,45 +125,74 @@ namespace DLR_Data_App.Services
         /// <returns>Status of deleting data</returns>
         public static bool Delete<T>(ref T data)
         {
-            int resultDelete;
-
             // database will be closed after leaving the using statement
-            using (var conn = new SQLiteConnection(App.DatabaseLocation))
+            using (var conn = CreateConnection())
             {
-                // Update data into table
-                resultDelete = conn.Delete(data);
+                return Delete(ref data, conn);
             }
+        }
 
+        /// <summary>
+        /// Deletes data from database
+        /// </summary>
+        /// <typeparam name="T">The type of both the database content and the content to be deleted from the database</typeparam>
+        /// <param name="data">The contents that will deleted from the database</param>
+        /// <returns>Status of deleting data</returns>
+        public static bool Delete<T>(ref T data, SQLiteConnection conn)
+        {
+            int resultDelete;
+            // Update data into table
+            resultDelete = conn.Delete(data);
             // check if data was successfully deleted
             return resultDelete > 0;
         }
-        
+
         /// <summary>
         /// Reads all users from the database.
         /// </summary>
         /// <returns>List of all users in database</returns>
         public static List<User> ReadUsers()
         {
-            List<User> result;
-
             // database will be closed after leaving the using statement
-            using (var conn = new SQLiteConnection(App.DatabaseLocation))
+            using (var conn = CreateConnection())
             {
-                // if table doesn't exist create a new one
-                conn.CreateTable<User>();
-
-                // get content of table
-                result = conn.Table<User>().ToList();
+                return ReadUsers(conn);
             }
+        }
+
+        /// <summary>
+        /// Reads all users from the database.
+        /// </summary>
+        /// <returns>List of all users in database</returns>
+        public static List<User> ReadUsers(SQLiteConnection conn)
+        {
+            List<User> result;
+            // if table doesn't exist create a new one
+            conn.CreateTable<User>();
+
+            // get content of table
+            result = conn.Table<User>().ToList();
 
             return result;
         }
-        
+
         /// <summary>
         /// Deletes all data from the database which are belonging to a specific project.
         /// </summary>
         /// <param name="project">Project of which all data should be deleted</param>
         public static void DeleteProject(Project project)
+        {
+            using (var conn = CreateConnection())
+            {
+                DeleteProject(project, conn);
+            }
+        }
+
+        /// <summary>
+        /// Deletes all data from the database which are belonging to a specific project.
+        /// </summary>
+        /// <param name="project">Project of which all data should be deleted</param>
+        public static void DeleteProject(Project project, SQLiteConnection conn)
         {
             var queryForms = "DELETE FROM ProjectForm WHERE Id=?";
             var queryFormElementList = "DELETE FROM ProjectFormElementList WHERE ElementId=?";
@@ -138,33 +200,30 @@ namespace DLR_Data_App.Services
             //var queryFormMetadata = "DELETE FROM ProjectFormMetadata WHERE Id=?";
             //var queryUserConnection = "DELETE FROM ProjectUserConnection WHERE ProjectId=?";
 
-            using (var conn = new SQLiteConnection(App.DatabaseLocation))
+            // remove all elements of a form
+            foreach (var form in project.FormList)
             {
-                // remove all elements of a form
-                foreach (var form in project.FormList)
+                // remove elements
+                foreach (var element in form.ElementList)
                 {
-                    // remove elements
-                    foreach (var element in form.ElementList)
-                    {
-                        conn.Execute(queryFormElements, element.Id);
-                        conn.Execute(queryFormElementList, element.Id);
-                    }
-
-                    // remove metadata
-                    // conn.Execute(queryFormMetadata, form.Metadata.Id);
-
-                    // remove form
-                    conn.Execute(queryForms, form.Id);
+                    conn.Execute(queryFormElements, element.Id);
+                    conn.Execute(queryFormElementList, element.Id);
                 }
 
-                // remove connection between user and project
-                //conn.Execute(queryUserConnection, project.Id);
+                // remove metadata
+                // conn.Execute(queryFormMetadata, form.Metadata.Id);
 
-                // remove project
-                conn.Delete(project);
+                // remove form
+                conn.Execute(queryForms, form.Id);
             }
+
+            // remove connection between user and project
+            //conn.Execute(queryUserConnection, project.Id);
+
+            // remove project
+            conn.Delete(project);
         }
-        
+
         /// <summary>
         /// Stores project in database.
         /// This uses an own implementation of foreign keys, because this function is missing in the SQLite implementation which is supported for Xamarin.
@@ -173,8 +232,22 @@ namespace DLR_Data_App.Services
         /// <returns>True if project insertion was successful</returns>
         public static bool InsertProject(ref Project project)
         {
+            using (var conn = CreateConnection())
+            {
+                return InsertProject(ref project, conn);
+            }
+        }
+
+        /// <summary>
+        /// Stores project in database.
+        /// This uses an own implementation of foreign keys, because this function is missing in the SQLite implementation which is supported for Xamarin.
+        /// </summary>
+        /// <param name="project">Project to be inserted</param>
+        /// <returns>True if project insertion was successful</returns>
+        public static bool InsertProject(ref Project project, SQLiteConnection conn)
+        {
             // Load current stored data to project list
-            var projectList = ReadProjects();
+            var projectList = ReadProjects(conn);
 
             // Check if project already exists and abort insertion if it does
             foreach (var p in projectList)
@@ -186,7 +259,7 @@ namespace DLR_Data_App.Services
             }
 
             // Insert project to database
-            if (!Insert(ref project))
+            if (!Insert(ref project, conn))
                 return false;
 
             // Add form to project
@@ -194,18 +267,18 @@ namespace DLR_Data_App.Services
             {
                 var formElement = form;
                 formElement.ProjectId = project.Id;
-                if (!Insert(ref formElement))
+                if (!Insert(ref formElement, conn))
                     return false;
 
                 var metadata = form.Metadata;
-                if (!Insert(ref metadata))
+                if (!Insert(ref metadata, conn))
                     return false;
 
                 foreach (var elements in form.ElementList)
                 {
                     // store each form with its controls
                     var controlElement = elements;
-                    if (!Insert(ref controlElement))
+                    if (!Insert(ref controlElement, conn))
                         return false;
 
                     // combine project with control elements
@@ -215,32 +288,40 @@ namespace DLR_Data_App.Services
                         FormId = formElement.Id,
                         MetadataId = form.Metadata.Id
                     };
-                    if (!Insert(ref combineElementList))
+                    if (!Insert(ref combineElementList, conn))
                         return false;
                 }
             }
 
             // Create custom table
-            return CreateCustomTable(ref project);
+            return CreateCustomTable(ref project, conn);
         }
-        
+
         /// <summary>
         /// Reads all projects from the database.
         /// </summary>
         /// <returns>List of all projects in database</returns>
         public static List<Project> ReadProjects()
         {
-            List<Project> projectList;
-
             // database will be closed after leaving the using statement
-            using (var conn = new SQLiteConnection(App.DatabaseLocation))
+            using (var conn = CreateConnection())
             {
-                // if table doesn't exist create a new one
-                conn.CreateTable<Project>();
-
-                // get content of table
-                projectList = conn.Table<Project>().ToList();
+                return ReadProjects(conn);
             }
+        }
+
+        /// <summary>
+        /// Reads all projects from the database.
+        /// </summary>
+        /// <returns>List of all projects in database</returns>
+        public static List<Project> ReadProjects(SQLiteConnection conn)
+        {
+            List<Project> projectList;
+            // if table doesn't exist create a new one
+            conn.CreateTable<Project>();
+
+            // get content of table
+            projectList = conn.Table<Project>().ToList();
 
             for (var projectIterator = 0; projectIterator < projectList.Count; projectIterator++)
             {
@@ -259,30 +340,39 @@ namespace DLR_Data_App.Services
         public static void ReadForms(ref Project project)
         {
             // database will be closed after leaving the using statement
-            using (var conn = new SQLiteConnection(App.DatabaseLocation))
+            using (var conn = CreateConnection())
             {
-                // get all forms, which belong to the selected project
-                project.FormList = conn.Query<ProjectForm>("select * from ProjectForm where ProjectId == ?", project.Id);
+                ReadForms(ref project, conn);
+            }
+        }
 
-                // get the list of the connections between all elements and forms
-                var elementConnection = conn.Query<ProjectFormElementList>("select * from ProjectFormElementList");
+        /// <summary>
+        /// Stores all forms in project
+        /// </summary>
+        /// <param name="project">Project to which its forms will be added from the database</param>
+        public static void ReadForms(ref Project project, SQLiteConnection conn)
+        {
+            // get all forms, which belong to the selected project
+            project.FormList = conn.Query<ProjectForm>("select * from ProjectForm where ProjectId == ?", project.Id);
 
-                // walk through the list
-                foreach (var connection in elementConnection)
+            // get the list of the connections between all elements and forms
+            var elementConnection = conn.Query<ProjectFormElementList>("select * from ProjectFormElementList");
+
+            // walk through the list
+            foreach (var connection in elementConnection)
+            {
+                // get single element of connection list
+                var element = conn.Query<ProjectFormElements>("select * from ProjectFormElements where Id == ?", connection.ElementId);
+                if (element.Count <= 0) continue;
+
+                // check if element list in project is initialized, if not initialize
+                if (project.FormList.Find(form => form.Id == connection.FormId).ElementList == null)
                 {
-                    // get single element of connection list
-                    var element = conn.Query<ProjectFormElements>("select * from ProjectFormElements where Id == ?", connection.ElementId);
-                    if (element.Count <= 0) continue;
-
-                    // check if element list in project is initialized, if not initialize
-                    if (project.FormList.Find(form => form.Id == connection.FormId).ElementList == null)
-                    {
-                        project.FormList.Find(form => form.Id == connection.FormId).ElementList = new List<ProjectFormElements>();
-                    }
-
-                    // add element to form
-                    project.FormList.Find(form => form.Id == connection.FormId).ElementList.Add(element.First());
+                    project.FormList.Find(form => form.Id == connection.FormId).ElementList = new List<ProjectFormElements>();
                 }
+
+                // add element to form
+                project.FormList.Find(form => form.Id == connection.FormId).ElementList.Add(element.First());
             }
         }
 
@@ -293,7 +383,19 @@ namespace DLR_Data_App.Services
         /// <returns>True if creation was successful</returns>
         public static bool CreateCustomTable(ref Project project)
         {
-            bool status;
+            using (var conn = CreateConnection())
+            {
+                return CreateCustomTable(ref project, conn);
+            }
+        }
+
+        /// <summary>
+        /// Creates a custom table in the database, based on a supplied project.
+        /// </summary>
+        /// <param name="project">Project containing information of forms</param>
+        /// <returns>True if creation was successful</returns>
+        public static bool CreateCustomTable(ref Project project, SQLiteConnection conn)
+        {
             var tableName = project.GetTableName();
             CheckValidSqlName(tableName);
             // Generate query for creating a new table
@@ -314,22 +416,17 @@ namespace DLR_Data_App.Services
             query = query.Remove(query.Length - 2);
             query += ");";
 
-            using (var conn = new SQLiteConnection(App.DatabaseLocation))
+            try
             {
-                try
-                {
-                    conn.Execute(query);
-                    status = true;
-                }
-                catch
-                {
-                    status = false;
-                }
+                conn.Execute(query);
+                return true;
             }
-
-            return status;
+            catch
+            {
+                return false;
+            }
         }
-        
+
         /// <summary>
         /// Reads the custom table of a supplied project.
         /// </summary>
@@ -337,45 +434,55 @@ namespace DLR_Data_App.Services
         /// <returns>Data contained in the table belonging to the project</returns>
         public static TableData ReadCustomTable(ref Project project)
         {
-            var tableName = project.GetTableName();
-
-            using (var conn = new SQLiteConnection(App.DatabaseLocation))
+            using (var conn = CreateConnection())
             {
-                try
-                {
-                    var datalist = new TableData();
-
-                    var tableInfo = conn.GetTableInfo(tableName);
-                    CheckValidSqlName(tableName);
-                    // getting highest id in table
-                    var queryLastId = $"SELECT MAX(ID) FROM {tableName} AS int";
-                    var lastElementId = conn.ExecuteScalar<int>(queryLastId);
-
-                    foreach (var tableColumn in tableInfo)
-                    {
-                        var elementList = new List<string>();
-
-                        for (var i = 0; i <= lastElementId; i++)
-                        {
-                            CheckValidSqlName(tableColumn.Name);
-                            var query = $"SELECT {tableColumn.Name} FROM {tableName} WHERE ID={i}";
-                            var element = conn.ExecuteScalar<string>(query);
-                            if (element != null)
-                                elementList.Add(element);
-                        }
-
-                        datalist.RowNameList.Add(tableColumn.Name);
-                        datalist.ValueList.Add(elementList);
-                    }
-                    return datalist;
-                }
-                catch
-                {
-                    return null;
-                }
+                return ReadCustomTable(ref project, conn);
             }
         }
-        
+
+        /// <summary>
+        /// Reads the custom table of a supplied project.
+        /// </summary>
+        /// <param name="project">Project of which the table data should be read from the database</param>
+        /// <returns>Data contained in the table belonging to the project</returns>
+        public static TableData ReadCustomTable(ref Project project, SQLiteConnection conn)
+        {
+            var tableName = project.GetTableName();
+
+            try
+            {
+                var datalist = new TableData();
+
+                var tableInfo = conn.GetTableInfo(tableName);
+                CheckValidSqlName(tableName);
+                // getting highest id in table
+                var queryLastId = $"SELECT MAX(ID) FROM {tableName} AS int";
+                var lastElementId = conn.ExecuteScalar<int>(queryLastId);
+
+                foreach (var tableColumn in tableInfo)
+                {
+                    var elementList = new List<string>();
+
+                    for (var i = 0; i <= lastElementId; i++)
+                    {
+                        CheckValidSqlName(tableColumn.Name);
+                        var query = $"SELECT {tableColumn.Name} FROM {tableName} WHERE ID={i}";
+                        var element = conn.ExecuteScalar<string>(query);
+                        if (element != null)
+                            elementList.Add(element);
+                    }
+
+                    datalist.RowNameList.Add(tableColumn.Name);
+                    datalist.ValueList.Add(elementList);
+                }
+                return datalist;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         /// Inserts a row of data to a projects table.
         /// </summary>
@@ -386,7 +493,22 @@ namespace DLR_Data_App.Services
         /// <returns>True if insertion was successful</returns>
         public static bool InsertCustomValues(string tableName, List<string> fieldNames, List<string> fieldValues, int? id = null)
         {
-            bool status;
+            using (var conn = CreateConnection())
+            {
+                return InsertCustomValues(tableName, fieldNames, fieldValues, conn, id);
+            }
+        }
+
+        /// <summary>
+        /// Inserts a row of data to a projects table.
+        /// </summary>
+        /// <param name="tableName">Name of the projects table</param>
+        /// <param name="fieldNames">List containing the names of all fields</param>
+        /// <param name="fieldValues">List containing the values of all fields</param>
+        /// <param name="id">Id of the row. If not supplied (=null) SQLite will find a suitable id</param>
+        /// <returns>True if insertion was successful</returns>
+        public static bool InsertCustomValues(string tableName, List<string> fieldNames, List<string> fieldValues, SQLiteConnection conn, int? id = null)
+        {
             CheckValidSqlName(tableName);
             var query = $"INSERT INTO {tableName} (";
 
@@ -415,22 +537,18 @@ namespace DLR_Data_App.Services
 
             query = query.Remove(query.Length - 2);
             query += ");";
-            
-            using (var conn = new SQLiteConnection(App.DatabaseLocation))
-            {
-                try
-                {
-                    conn.Execute(query, queryParams.ToArray());
-                    status = true;
-                }
-                catch
-                {
-                    status = false;
-                }
-            }
 
-            return status;
+            try
+            {
+                conn.Execute(query, queryParams.ToArray());
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
+
         /// <summary>
         /// Updates a row of data in a projects table.
         /// </summary>
@@ -441,18 +559,31 @@ namespace DLR_Data_App.Services
         /// <returns>True if update was successful</returns>
         public static bool UpdateCustomValuesById(string tableName, int id, List<string> fieldNames, List<string> fieldValues)
         {
+            using (var conn = CreateConnection())
+            {
+                return UpdateCustomValuesById(tableName, id, fieldNames, fieldValues, conn);
+            }
+        }
+
+        /// <summary>
+        /// Updates a row of data in a projects table.
+        /// </summary>
+        /// <param name="tableName">Name of the projects table</param>
+        /// <param name="id">Id of the row</param>
+        /// <param name="fieldNames">List containing the names of all fields</param>
+        /// <param name="fieldValues">List containing the values of all fields</param>
+        /// <returns>True if update was successful</returns>
+        public static bool UpdateCustomValuesById(string tableName, int id, List<string> fieldNames, List<string> fieldValues, SQLiteConnection conn)
+        {
             CheckValidSqlName(tableName);
             string query = $"DELETE FROM {tableName} WHERE Id={id}";
-            using (var conn = new SQLiteConnection(App.DatabaseLocation))
+            try
             {
-                try
-                {
-                    conn.Execute(query);
-                }
-                catch
-                {
-                    return false;
-                }
+                conn.Execute(query);
+            }
+            catch
+            {
+                return false;
             }
             return InsertCustomValues(tableName, fieldNames, fieldValues, id);
         }
