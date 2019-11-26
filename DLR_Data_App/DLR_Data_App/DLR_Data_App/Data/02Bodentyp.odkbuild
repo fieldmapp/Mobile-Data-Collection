@@ -1,0 +1,46 @@
+{
+    "title":"Bodentyp",
+    "controls":[
+        {
+            "name":"groundType",
+            "label":{
+                "0":"Bodentyp"
+            },
+            "hint":{
+                "0":""
+            },
+            "defaultValue":"",
+            "readOnly":false,
+            "required":false,
+            "requiredText":{
+                "0":""
+            },
+            "relevance":"",
+            "constraint":"",
+            "calculate":"",
+            "length":false,
+            "invalidText":{
+                "0":""
+            },
+            "metadata":{
+
+            },
+            "type":"inputText"
+        }
+    ],
+    "metadata":{
+        "version":2,
+        "activeLanguages":{
+            "0":"German",
+            "_counter":0,
+            "_display":"0"
+        },
+        "optionsPresets":[
+
+        ],
+        "htitle":null,
+        "instance_name":"",
+        "public_key":"",
+        "submission_url":""
+    }
+}

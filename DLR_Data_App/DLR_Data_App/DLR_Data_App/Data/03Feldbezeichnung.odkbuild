@@ -50,11 +50,11 @@
 	],
 	"metadata": {
 		"version": 2,
-		"activeLanguages": {
-			"0": "English",
-			"_counter": 0,
-			"_display": "0"
-		},
+		"activeLanguages":{
+            "0":"German",
+            "_counter":0,
+            "_display":"0"
+        },
 		"optionsPresets": [],
 		"htitle": null,
 		"instance_name": "",

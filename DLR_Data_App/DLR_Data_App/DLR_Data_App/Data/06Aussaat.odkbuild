@@ -1,10 +1,10 @@
 {
-    "title":"Düngung",
+    "title":"Aussaat",
     "controls":[
         {
-            "name":"fertilizerUsed",
+            "name":"stockDamaged",
             "label":{
-                "0":"Wurde Dünger im laufenden Anbauzyklus aufgebracht?"
+                "0":"Gibt es eine Schädigung am Bestand?"
             },
             "hint":{
 
@@ -50,9 +50,35 @@
             "type":"inputSelectOne"
         },
         {
-            "name":"fertilizerUseDate",
+            "name":"reasonDamage",
             "label":{
-                "0":"Datum der Düngung"
+                "0":"Ursache"
+            },
+            "hint":{
+                "0":""
+            },
+            "defaultValue":"",
+            "readOnly":false,
+            "required":false,
+            "requiredText":{
+
+            },
+            "relevance":"",
+            "constraint":"",
+            "calculate":"",
+            "length":false,
+            "invalidText":{
+
+            },
+            "metadata":{
+
+            },
+            "type":"inputText"
+        },
+        {
+            "name":"damageDateStart",
+            "label":{
+                "0":"Beginn des Schädigungseintritts"
             },
             "hint":{
 
@@ -77,35 +103,9 @@
             "type":"inputDate"
         },
         {
-            "name":"fertilizerKind",
+            "name":"damgeDateEnd",
             "label":{
-                "0":"Düngemittelart"
-            },
-            "hint":{
-
-            },
-            "defaultValue":"",
-            "readOnly":false,
-            "required":false,
-            "requiredText":{
-
-            },
-            "relevance":"",
-            "constraint":"",
-            "calculate":"",
-            "length":false,
-            "invalidText":{
-
-            },
-            "metadata":{
-
-            },
-            "type":"inputText"
-        },
-        {
-            "name":"fertilizerAmount",
-            "label":{
-                "0":"Menge pro Anbaufläche in kg/ha"
+                "0":"Ende des Schädigungseintritts"
             },
             "hint":{
 
@@ -120,6 +120,38 @@
             "constraint":"",
             "calculate":"",
             "range":false,
+            "invalidText":{
+
+            },
+            "kind":"Full Date",
+            "metadata":{
+
+            },
+            "type":"inputDate"
+        },
+        {
+            "name":"damagePercentage",
+            "label":{
+                "0":"Geschädigte Fläche in %"
+            },
+            "hint":{
+
+            },
+            "defaultValue":"",
+            "readOnly":false,
+            "required":false,
+            "requiredText":{
+
+            },
+            "relevance":"",
+            "constraint":"",
+            "calculate":"",
+            "range":{
+                "min":"0",
+                "max":"100",
+                "minInclusive":true,
+                "maxInclusive":true
+            },
             "invalidText":{
 
             },
@@ -147,7 +179,7 @@
         "optionsPresets":[
 
         ],
-        "htitle":"Düngung",
+        "htitle":"Schäden",
         "instance_name":"",
         "public_key":"",
         "submission_url":""

@@ -1,10 +1,10 @@
 {
-    "title":"Untitled Form",
+    "title":"Bewässerung",
     "controls":[
         {
             "name":"wateringSystemExisting",
             "label":{
-                "1":"Bewässerungsanlage vorhanden"
+                "0":"Bewässerungsanlage vorhanden"
             },
             "hint":{
 
@@ -24,7 +24,7 @@
             "options":[
                 {
                     "text":{
-                        "1":"Ja"
+                        "0":"Ja"
                     },
                     "cascade":[
 
@@ -33,7 +33,7 @@
                 },
                 {
                     "text":{
-                        "1":"Nein"
+                        "0":"Nein"
                     },
                     "cascade":[
 
@@ -52,7 +52,7 @@
         {
             "name":"wateringSystemStart",
             "label":{
-                "1":"Bewässerungsbeginn"
+                "0":"Bewässerungsbeginn"
             },
             "hint":{
 
@@ -79,7 +79,7 @@
         {
             "name":"wateringSystemEnd",
             "label":{
-                "1":"Bewässerungsende"
+                "0":"Bewässerungsende"
             },
             "hint":{
 
@@ -106,7 +106,7 @@
         {
             "name":"wateringAmmount",
             "label":{
-                "1":"Bewässerungsmenge in Litern pro Tag"
+                "0":"Bewässerungsmenge in Litern pro Tag"
             },
             "hint":{
 
@@ -140,7 +140,7 @@
         {
             "name":"wateringAreaSize",
             "label":{
-                "1":"Auf Fläche von ... ha"
+                "0":"Auf Fläche von ... ha"
             },
             "hint":{
 
@@ -175,8 +175,8 @@
     "metadata":{
         "version":2,
         "activeLanguages":{
-            "1":"German",
-            "_counter":1,
+            "0":"German",
+            "_counter":0,
             "_display":"0"
         },
         "optionsPresets":[
