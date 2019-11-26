@@ -1,8 +1,10 @@
 ﻿using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Models.ProjectModel.DatabaseConnectors;
+using SQLite;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace DLR_Data_App.Services
 {
@@ -31,19 +33,33 @@ namespace DLR_Data_App.Services
                 return false;
 
             // create tables for project
-            return GenerateDatabaseTable();
+
+            using (var dbConn = Database.CreateConnection())
+            {
+                var startPoint = Database.SaveTransactionPoint(dbConn);
+                if (GenerateDatabaseTable(dbConn))
+                {
+                    Database.CommitChanges(startPoint, dbConn);
+                    return true;
+                }
+                else
+                {
+                    Database.RollbackChanges(startPoint, dbConn);
+                    return false;
+                }
+            }
         }
         
         /// <summary>
         /// Creates a database table which represents each form.
         /// </summary>
-        private bool GenerateDatabaseTable()
+        private bool GenerateDatabaseTable(SQLiteConnection dbConn)
         {
-            if (!Database.InsertProject(ref _workingProject))
+            if (!Database.InsertProject(ref _workingProject, dbConn))
                 return false;
 
             // get created id from database and set it in workingProject
-            var projectList = Database.ReadProjects();
+            var projectList = Database.ReadProjects(dbConn);
             foreach (var project in projectList)
             {
                 if (project.Title == _workingProject.Title
@@ -61,7 +77,7 @@ namespace DLR_Data_App.Services
                 UserId = App.CurrentUser.Id
             };
 
-            return Database.Insert(ref projectUserConnection);
+            return Database.Insert(ref projectUserConnection, dbConn);
         }
 
     }
