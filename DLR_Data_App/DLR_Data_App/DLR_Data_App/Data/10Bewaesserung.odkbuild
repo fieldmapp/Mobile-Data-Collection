@@ -1,0 +1,190 @@
+{
+    "title":"Untitled Form",
+    "controls":[
+        {
+            "name":"wateringSystemExisting",
+            "label":{
+                "1":"Bewässerungsanlage vorhanden"
+            },
+            "hint":{
+
+            },
+            "defaultValue":"1",
+            "readOnly":false,
+            "required":false,
+            "requiredText":{
+
+            },
+            "relevance":"",
+            "constraint":"",
+            "invalidText":{
+
+            },
+            "calculate":"",
+            "options":[
+                {
+                    "text":{
+                        "1":"Ja"
+                    },
+                    "cascade":[
+
+                    ],
+                    "val":"0"
+                },
+                {
+                    "text":{
+                        "1":"Nein"
+                    },
+                    "cascade":[
+
+                    ],
+                    "val":"1"
+                }
+            ],
+            "cascading":false,
+            "other":false,
+            "appearance":"Default",
+            "metadata":{
+
+            },
+            "type":"inputSelectOne"
+        },
+        {
+            "name":"wateringSystemStart",
+            "label":{
+                "1":"Bewässerungsbeginn"
+            },
+            "hint":{
+
+            },
+            "defaultValue":"",
+            "readOnly":false,
+            "required":false,
+            "requiredText":{
+
+            },
+            "relevance":"",
+            "constraint":"",
+            "calculate":"",
+            "range":false,
+            "invalidText":{
+
+            },
+            "kind":"Full Date",
+            "metadata":{
+
+            },
+            "type":"inputDate"
+        },
+        {
+            "name":"wateringSystemEnd",
+            "label":{
+                "1":"Bewässerungsende"
+            },
+            "hint":{
+
+            },
+            "defaultValue":"",
+            "readOnly":false,
+            "required":false,
+            "requiredText":{
+
+            },
+            "relevance":"",
+            "constraint":"",
+            "calculate":"",
+            "range":false,
+            "invalidText":{
+
+            },
+            "kind":"Full Date",
+            "metadata":{
+
+            },
+            "type":"inputDate"
+        },
+        {
+            "name":"wateringAmmount",
+            "label":{
+                "1":"Bewässerungsmenge in Litern pro Tag"
+            },
+            "hint":{
+
+            },
+            "defaultValue":"",
+            "readOnly":false,
+            "required":false,
+            "requiredText":{
+
+            },
+            "relevance":"",
+            "constraint":"",
+            "calculate":"",
+            "range":false,
+            "invalidText":{
+
+            },
+            "appearance":"Textbox",
+            "kind":"Integer",
+            "selectRange":{
+                "min":"1",
+                "max":"10"
+            },
+            "selectStep":"1",
+            "sliderTicks":true,
+            "metadata":{
+
+            },
+            "type":"inputNumeric"
+        },
+        {
+            "name":"wateringAreaSize",
+            "label":{
+                "1":"Auf Fläche von ... ha"
+            },
+            "hint":{
+
+            },
+            "defaultValue":"",
+            "readOnly":false,
+            "required":false,
+            "requiredText":{
+
+            },
+            "relevance":"",
+            "constraint":"",
+            "calculate":"",
+            "range":false,
+            "invalidText":{
+
+            },
+            "appearance":"Textbox",
+            "kind":"Integer",
+            "selectRange":{
+                "min":"1",
+                "max":"10"
+            },
+            "selectStep":"1",
+            "sliderTicks":true,
+            "metadata":{
+
+            },
+            "type":"inputNumeric"
+        }
+    ],
+    "metadata":{
+        "version":2,
+        "activeLanguages":{
+            "1":"German",
+            "_counter":1,
+            "_display":"0"
+        },
+        "optionsPresets":[
+
+        ],
+        "htitle":"Bewässerung",
+        "instance_name":"",
+        "public_key":"",
+        "submission_url":""
+    }
+}
