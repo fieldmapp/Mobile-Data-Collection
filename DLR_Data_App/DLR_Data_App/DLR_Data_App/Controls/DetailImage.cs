@@ -40,6 +40,7 @@ namespace DLR_Data_App.Controls
 
         private void ReleasePicture(object sender, EventArgs e)
         {
+            LastPressGuid = Guid.Empty;
             Stopwatch.Stop();
             ImageButton imageButton = (ImageButton)sender;
             if (Stopwatch.Elapsed < LongPressThreshold)
