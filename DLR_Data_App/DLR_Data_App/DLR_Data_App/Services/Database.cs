@@ -20,11 +20,16 @@ namespace DLR_Data_App.Services
         /// </summary>
         /// <param name="name">String to check</param>
         /// <exception cref="System.ArgumentException">Thrown when the given string has content which is neither a letter, a digit or an underscore.</exception>
-        private static void CheckValidSqlName(string name)
+        private static string MakeValidSqlName(string name)
         {
             bool isValidChar(char c) => char.IsLetterOrDigit(c) || c == '_';
-            if (!name.All(isValidChar))
-                throw new ArgumentException($"{nameof(name)} is not a valid SQL name");
+
+            string safeName = new string(name.Where(isValidChar).ToArray());
+
+            if (safeName != name)
+                Console.WriteLine($"{nameof(name)} is not a valid SQL name");
+
+            return safeName;
         }
 
         public static SQLiteConnection CreateConnection() => new SQLiteConnection(App.DatabaseLocation);
@@ -397,7 +402,7 @@ namespace DLR_Data_App.Services
         public static bool CreateCustomTable(ref Project project, SQLiteConnection conn)
         {
             var tableName = project.GetTableName();
-            CheckValidSqlName(tableName);
+            tableName = MakeValidSqlName(tableName);
             // Generate query for creating a new table
             var query = "CREATE TABLE IF NOT EXISTS " + tableName + "(";
             query += "Id INTEGER PRIMARY KEY AUTOINCREMENT, ";
@@ -408,8 +413,8 @@ namespace DLR_Data_App.Services
             {
                 foreach (var element in form.ElementList)
                 {
-                    CheckValidSqlName(element.Name);
-                    query += element.Name + " VARCHAR, ";
+                    var elementName = MakeValidSqlName(element.Name);
+                    query += elementName + " VARCHAR, ";
                 }
             }
 
@@ -454,7 +459,7 @@ namespace DLR_Data_App.Services
                 var datalist = new TableData();
 
                 var tableInfo = conn.GetTableInfo(tableName);
-                CheckValidSqlName(tableName);
+                tableName = MakeValidSqlName(tableName);
                 // getting highest id in table
                 var queryLastId = $"SELECT MAX(ID) FROM {tableName} AS int";
                 var lastElementId = conn.ExecuteScalar<int>(queryLastId);
@@ -465,8 +470,8 @@ namespace DLR_Data_App.Services
 
                     for (var i = 0; i <= lastElementId; i++)
                     {
-                        CheckValidSqlName(tableColumn.Name);
-                        var query = $"SELECT {tableColumn.Name} FROM {tableName} WHERE ID={i}";
+                        var columnName = MakeValidSqlName(tableColumn.Name);
+                        var query = $"SELECT {columnName} FROM {tableName} WHERE ID={i}";
                         var element = conn.ExecuteScalar<string>(query);
                         if (element != null)
                             elementList.Add(element);
@@ -509,7 +514,7 @@ namespace DLR_Data_App.Services
         /// <returns>True if insertion was successful</returns>
         public static bool InsertCustomValues(string tableName, List<string> fieldNames, List<string> fieldValues, SQLiteConnection conn, int? id = null)
         {
-            CheckValidSqlName(tableName);
+            tableName = MakeValidSqlName(tableName);
             var query = $"INSERT INTO {tableName} (";
 
             if (id != null)
@@ -517,8 +522,8 @@ namespace DLR_Data_App.Services
 
             foreach (var name in fieldNames)
             {
-                CheckValidSqlName(name);
-                query += $"{name}, ";
+                var elementName = MakeValidSqlName(name);
+                query += $"{elementName}, ";
             }
 
             query = query.Remove(query.Length - 2);
@@ -575,7 +580,7 @@ namespace DLR_Data_App.Services
         /// <returns>True if update was successful</returns>
         public static bool UpdateCustomValuesById(string tableName, int id, List<string> fieldNames, List<string> fieldValues, SQLiteConnection conn)
         {
-            CheckValidSqlName(tableName);
+            tableName = MakeValidSqlName(tableName);
             string query = $"DELETE FROM {tableName} WHERE Id={id}";
             try
             {
