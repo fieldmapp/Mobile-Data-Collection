@@ -331,7 +331,7 @@ namespace DLR_Data_App.Services
             for (var projectIterator = 0; projectIterator < projectList.Count; projectIterator++)
             {
                 var tempProject = projectList[projectIterator];
-                ReadForms(ref tempProject);
+                ReadForms(ref tempProject, conn);
                 projectList[projectIterator] = tempProject;
             }
 
