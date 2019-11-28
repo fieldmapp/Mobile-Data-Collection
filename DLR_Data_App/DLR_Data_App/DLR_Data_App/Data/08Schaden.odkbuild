@@ -1,187 +1,187 @@
 {
-    "title":"Schäden",
-    "controls":[
+  "title": "Schäden",
+  "controls": [
+    {
+      "name": "stockDamaged",
+      "label": {
+        "0": "Gibt es eine Schädigung am Bestand?"
+      },
+      "hint": {
+
+      },
+      "defaultValue": "1",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+
+      },
+      "calculate": "",
+      "options": [
         {
-            "name":"stockDamaged",
-            "label":{
-                "0":"Gibt es eine Schädigung am Bestand?"
-            },
-            "hint":{
+          "text": {
+            "0": "Ja"
+          },
+          "cascade": [
 
-            },
-            "defaultValue":"1",
-            "readOnly":false,
-            "required":false,
-            "requiredText":{
-
-            },
-            "relevance":"",
-            "constraint":"",
-            "invalidText":{
-
-            },
-            "calculate":"",
-            "options":[
-                {
-                    "text":{
-                        "0":"Ja"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"0"
-                },
-                {
-                    "text":{
-                        "0":"Nein"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"1"
-                }
-            ],
-            "cascading":false,
-            "other":false,
-            "appearance":"Default",
-            "metadata":{
-
-            },
-            "type":"inputSelectOne"
+          ],
+          "val": "0"
         },
         {
-            "name":"reasonDamage",
-            "label":{
-                "0":"Ursache"
-            },
-            "hint":{
-                "0":""
-            },
-            "defaultValue":"",
-            "readOnly":false,
-            "required":false,
-            "requiredText":{
+          "text": {
+            "0": "Nein"
+          },
+          "cascade": [
 
-            },
-            "relevance":"",
-            "constraint":"",
-            "calculate":"",
-            "length":false,
-            "invalidText":{
-
-            },
-            "metadata":{
-
-            },
-            "type":"inputText"
-        },
-        {
-            "name":"damageDateStart",
-            "label":{
-                "0":"Beginn des Schädigungseintritts"
-            },
-            "hint":{
-
-            },
-            "defaultValue":"",
-            "readOnly":false,
-            "required":false,
-            "requiredText":{
-
-            },
-            "relevance":"",
-            "constraint":"",
-            "calculate":"",
-            "range":false,
-            "invalidText":{
-
-            },
-            "kind":"Full Date",
-            "metadata":{
-
-            },
-            "type":"inputDate"
-        },
-        {
-            "name":"damgeDateEnd",
-            "label":{
-                "0":"Ende des Schädigungseintritts"
-            },
-            "hint":{
-
-            },
-            "defaultValue":"",
-            "readOnly":false,
-            "required":false,
-            "requiredText":{
-
-            },
-            "relevance":"",
-            "constraint":"",
-            "calculate":"",
-            "range":false,
-            "invalidText":{
-
-            },
-            "kind":"Full Date",
-            "metadata":{
-
-            },
-            "type":"inputDate"
-        },
-        {
-            "name":"damagePercentage",
-            "label":{
-                "0":"Geschädigte Fläche in %"
-            },
-            "hint":{
-
-            },
-            "defaultValue":"",
-            "readOnly":false,
-            "required":false,
-            "requiredText":{
-
-            },
-            "relevance":"",
-            "constraint":"",
-            "calculate":"",
-            "range":{
-                "min":"0",
-                "max":"100",
-                "minInclusive":true,
-                "maxInclusive":true
-            },
-            "invalidText":{
-
-            },
-            "appearance":"Textbox",
-            "kind":"Integer",
-            "selectRange":{
-                "min":"1",
-                "max":"10"
-            },
-            "selectStep":"1",
-            "sliderTicks":true,
-            "metadata":{
-
-            },
-            "type":"inputNumeric"
+          ],
+          "val": "1"
         }
-    ],
-    "metadata":{
-        "version":2,
-        "activeLanguages":{
-            "0":"German",
-            "_counter":0,
-            "_display":"0"
-        },
-        "optionsPresets":[
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
 
-        ],
-        "htitle":"Schäden",
-        "instance_name":"",
-        "public_key":"",
-        "submission_url":""
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "reasonDamage",
+      "label": {
+        "0": "Ursache"
+      },
+      "hint": {
+        "0": ""
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+
+      },
+      "relevance": "",
+      "constraint": "",
+      "calculate": "",
+      "length": false,
+      "invalidText": {
+
+      },
+      "metadata": {
+
+      },
+      "type": "inputText"
+    },
+    {
+      "name": "damageDateStart",
+      "label": {
+        "0": "Beginn des Schädigungseintritts"
+      },
+      "hint": {
+
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+
+      },
+      "relevance": "",
+      "constraint": "",
+      "calculate": "",
+      "range": false,
+      "invalidText": {
+
+      },
+      "kind": "Full Date",
+      "metadata": {
+
+      },
+      "type": "inputDate"
+    },
+    {
+      "name": "damgeDateEnd",
+      "label": {
+        "0": "Ende des Schädigungseintritts"
+      },
+      "hint": {
+
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+
+      },
+      "relevance": "",
+      "constraint": "",
+      "calculate": "",
+      "range": false,
+      "invalidText": {
+
+      },
+      "kind": "Full Date",
+      "metadata": {
+
+      },
+      "type": "inputDate"
+    },
+    {
+      "name": "damagePercentage",
+      "label": {
+        "0": "Geschädigte Fläche in %"
+      },
+      "hint": {
+
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+
+      },
+      "relevance": "",
+      "constraint": "",
+      "calculate": "",
+      "range": {
+        "min": "0",
+        "max": "100",
+        "minInclusive": true,
+        "maxInclusive": true
+      },
+      "invalidText": {
+
+      },
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "10"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
+      "metadata": {
+
+      },
+      "type": "inputNumeric"
     }
+  ],
+  "metadata": {
+    "version": 2,
+    "activeLanguages": {
+      "0": "German",
+      "_counter": 0,
+      "_display": "0"
+    },
+    "optionsPresets": [
+
+    ],
+    "htitle": "Schäden",
+    "instance_name": "",
+    "public_key": "",
+    "submission_url": ""
+  }
 }

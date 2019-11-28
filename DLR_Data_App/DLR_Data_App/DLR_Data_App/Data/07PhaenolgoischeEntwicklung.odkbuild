@@ -1,455 +1,455 @@
 {
-    "title":"Phänologische Entwicklung",
-    "controls":[
+  "title": "Phänologische Entwicklung",
+  "controls": [
+    {
+      "name": "avgPhenologicalStadium",
+      "label": {
+        "0": "Mittleres phänologisches Stadium"
+      },
+      "hint": {
+        "0": "Auswählen in welchem Stadium sich die Pflanze befindet."
+      },
+      "defaultValue": "0",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+
+      },
+      "calculate": "",
+      "options": [
         {
-            "name":"avgPhenologicalStadium",
-            "label":{
-                "0":"Mittleres phänologisches Stadium"
-            },
-            "hint":{
-                "0":"Auswählen in welchem Stadium sich die Pflanze befindet."
-            },
-            "defaultValue":"0",
-            "readOnly":false,
-            "required":false,
-            "requiredText":{
+          "text": {
+            "0": "Keimung"
+          },
+          "cascade": [
 
-            },
-            "relevance":"",
-            "constraint":"",
-            "invalidText":{
-
-            },
-            "calculate":"",
-            "options":[
-                {
-                    "text":{
-                        "0":"Keimung"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"1"
-                },
-                {
-                    "text":{
-                        "0":"Blattentwicklung"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"2"
-                },
-                {
-                    "text":{
-                        "0":"Bestockung"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"3"
-                },
-                {
-                    "text":{
-                        "0":"Schossen"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"4"
-                },
-                {
-                    "text":{
-                        "0":"Ährenschieben"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"5"
-                },
-                {
-                    "text":{
-                        "0":"Blüte"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"6"
-                },
-                {
-                    "text":{
-                        "0":"Fruchtentwicklung"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"7"
-                },
-                {
-                    "text":{
-                        "0":"Samenreife"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"8"
-                },
-                {
-                    "text":{
-                        "0":"Absterben"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"9"
-                }
-            ],
-            "cascading":false,
-            "other":false,
-            "appearance":"Default",
-            "metadata":{
-
-            },
-            "type":"inputSelectOne"
+          ],
+          "val": "1"
         },
         {
-            "name":"minPhenologicalStadium",
-            "label":{
-                "0":"Geringstes phänologisches Stadium"
-            },
-            "hint":{
-                "0":"Auswählen in welchem Stadium sich die Pflanze befindet."
-            },
-            "defaultValue":"0",
-            "readOnly":false,
-            "required":false,
-            "requiredText":{
+          "text": {
+            "0": "Blattentwicklung"
+          },
+          "cascade": [
 
-            },
-            "relevance":"",
-            "constraint":"",
-            "invalidText":{
-
-            },
-            "calculate":"",
-            "options":[
-                {
-                    "text":{
-                        "0":"Keimung"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"1"
-                },
-                {
-                    "text":{
-                        "0":"Blattentwicklung"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"2"
-                },
-                {
-                    "text":{
-                        "0":"Bestockung"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"3"
-                },
-                {
-                    "text":{
-                        "0":"Schossen"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"4"
-                },
-                {
-                    "text":{
-                        "0":"Ährenschieben"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"5"
-                },
-                {
-                    "text":{
-                        "0":"Blüte"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"6"
-                },
-                {
-                    "text":{
-                        "0":"Fruchtentwicklung"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"7"
-                },
-                {
-                    "text":{
-                        "0":"Samenreife"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"8"
-                },
-                {
-                    "text":{
-                        "0":"Absterben"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"9"
-                }
-            ],
-            "cascading":false,
-            "other":false,
-            "appearance":"Default",
-            "metadata":{
-
-            },
-            "type":"inputSelectOne"
+          ],
+          "val": "2"
         },
         {
-            "name":"maxPhenologicalStadium",
-            "label":{
-                "0":"Höchstes phänologisches Stadium"
-            },
-            "hint":{
-                "0":"Auswählen in welchem Stadium sich die Pflanze befindet."
-            },
-            "defaultValue":"0",
-            "readOnly":false,
-            "required":false,
-            "requiredText":{
+          "text": {
+            "0": "Bestockung"
+          },
+          "cascade": [
 
-            },
-            "relevance":"",
-            "constraint":"",
-            "invalidText":{
-
-            },
-            "calculate":"",
-            "options":[
-                {
-                    "text":{
-                        "0":"Keimung"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"1"
-                },
-                {
-                    "text":{
-                        "0":"Blattentwicklung"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"2"
-                },
-                {
-                    "text":{
-                        "0":"Bestockung"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"3"
-                },
-                {
-                    "text":{
-                        "0":"Schossen"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"4"
-                },
-                {
-                    "text":{
-                        "0":"Ährenschieben"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"5"
-                },
-                {
-                    "text":{
-                        "0":"Blüte"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"6"
-                },
-                {
-                    "text":{
-                        "0":"Fruchtentwicklung"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"7"
-                },
-                {
-                    "text":{
-                        "0":"Samenreife"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"8"
-                },
-                {
-                    "text":{
-                        "0":"Absterben"
-                    },
-                    "cascade":[
-
-                    ],
-                    "val":"9"
-                }
-            ],
-            "cascading":false,
-            "other":false,
-            "appearance":"Default",
-            "metadata":{
-
-            },
-            "type":"inputSelectOne"
+          ],
+          "val": "3"
         },
         {
-            "name":"plantHeight",
-            "label":{
-                "0":"Pflanzenhöhe in cm"
-            },
-            "hint":{
+          "text": {
+            "0": "Schossen"
+          },
+          "cascade": [
 
-            },
-            "defaultValue":"",
-            "readOnly":false,
-            "required":false,
-            "requiredText":{
-
-            },
-            "relevance":"",
-            "constraint":"",
-            "calculate":"",
-            "range":false,
-            "invalidText":{
-
-            },
-            "appearance":"Textbox",
-            "kind":"Integer",
-            "selectRange":{
-                "min":"1",
-                "max":"10"
-            },
-            "selectStep":"1",
-            "sliderTicks":true,
-            "metadata":{
-
-            },
-            "type":"inputNumeric"
+          ],
+          "val": "4"
         },
         {
-            "name":"percentPlantCoverage",
-            "label":{
-                "0":"Prozentuale Abdeckung des Bodens durch Pflanzen"
-            },
-            "hint":{
+          "text": {
+            "0": "Ährenschieben"
+          },
+          "cascade": [
 
-            },
-            "defaultValue":"",
-            "readOnly":false,
-            "required":false,
-            "requiredText":{
-
-            },
-            "relevance":"",
-            "constraint":"",
-            "calculate":"",
-            "range":false,
-            "invalidText":{
-
-            },
-            "appearance":"Textbox",
-            "kind":"Integer",
-            "selectRange":{
-                "min":"1",
-                "max":"100"
-            },
-            "selectStep":"1",
-            "sliderTicks":true,
-            "metadata":{
-
-            },
-            "type":"inputNumeric"
+          ],
+          "val": "5"
         },
         {
-            "name":"percentGreenPlants",
-            "label":{
-                "0":"Prozentulaer Anteil grüner Pflanzen"
-            },
-            "hint":{
+          "text": {
+            "0": "Blüte"
+          },
+          "cascade": [
 
-            },
-            "defaultValue":"",
-            "readOnly":false,
-            "required":false,
-            "requiredText":{
+          ],
+          "val": "6"
+        },
+        {
+          "text": {
+            "0": "Fruchtentwicklung"
+          },
+          "cascade": [
 
-            },
-            "relevance":"",
-            "constraint":"",
-            "calculate":"",
-            "range":false,
-            "invalidText":{
+          ],
+          "val": "7"
+        },
+        {
+          "text": {
+            "0": "Samenreife"
+          },
+          "cascade": [
 
-            },
-            "appearance":"Textbox",
-            "kind":"Integer",
-            "selectRange":{
-                "min":"1",
-                "max":"100"
-            },
-            "selectStep":"1",
-            "sliderTicks":true,
-            "metadata":{
+          ],
+          "val": "8"
+        },
+        {
+          "text": {
+            "0": "Absterben"
+          },
+          "cascade": [
 
-            },
-            "type":"inputNumeric"
+          ],
+          "val": "9"
         }
-    ],
-    "metadata":{
-        "version":2,
-        "activeLanguages":{
-            "0":"German",
-            "_counter":0,
-            "_display":"0"
-        },
-        "optionsPresets":[
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
 
-        ],
-        "htitle":null,
-        "instance_name":"",
-        "public_key":"",
-        "submission_url":""
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "minPhenologicalStadium",
+      "label": {
+        "0": "Geringstes phänologisches Stadium"
+      },
+      "hint": {
+        "0": "Auswählen in welchem Stadium sich die Pflanze befindet."
+      },
+      "defaultValue": "0",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Keimung"
+          },
+          "cascade": [
+
+          ],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "Blattentwicklung"
+          },
+          "cascade": [
+
+          ],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "Bestockung"
+          },
+          "cascade": [
+
+          ],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "Schossen"
+          },
+          "cascade": [
+
+          ],
+          "val": "4"
+        },
+        {
+          "text": {
+            "0": "Ährenschieben"
+          },
+          "cascade": [
+
+          ],
+          "val": "5"
+        },
+        {
+          "text": {
+            "0": "Blüte"
+          },
+          "cascade": [
+
+          ],
+          "val": "6"
+        },
+        {
+          "text": {
+            "0": "Fruchtentwicklung"
+          },
+          "cascade": [
+
+          ],
+          "val": "7"
+        },
+        {
+          "text": {
+            "0": "Samenreife"
+          },
+          "cascade": [
+
+          ],
+          "val": "8"
+        },
+        {
+          "text": {
+            "0": "Absterben"
+          },
+          "cascade": [
+
+          ],
+          "val": "9"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "maxPhenologicalStadium",
+      "label": {
+        "0": "Höchstes phänologisches Stadium"
+      },
+      "hint": {
+        "0": "Auswählen in welchem Stadium sich die Pflanze befindet."
+      },
+      "defaultValue": "0",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Keimung"
+          },
+          "cascade": [
+
+          ],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "Blattentwicklung"
+          },
+          "cascade": [
+
+          ],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "Bestockung"
+          },
+          "cascade": [
+
+          ],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "Schossen"
+          },
+          "cascade": [
+
+          ],
+          "val": "4"
+        },
+        {
+          "text": {
+            "0": "Ährenschieben"
+          },
+          "cascade": [
+
+          ],
+          "val": "5"
+        },
+        {
+          "text": {
+            "0": "Blüte"
+          },
+          "cascade": [
+
+          ],
+          "val": "6"
+        },
+        {
+          "text": {
+            "0": "Fruchtentwicklung"
+          },
+          "cascade": [
+
+          ],
+          "val": "7"
+        },
+        {
+          "text": {
+            "0": "Samenreife"
+          },
+          "cascade": [
+
+          ],
+          "val": "8"
+        },
+        {
+          "text": {
+            "0": "Absterben"
+          },
+          "cascade": [
+
+          ],
+          "val": "9"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "plantHeight",
+      "label": {
+        "0": "Pflanzenhöhe in cm"
+      },
+      "hint": {
+
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+
+      },
+      "relevance": "",
+      "constraint": "",
+      "calculate": "",
+      "range": false,
+      "invalidText": {
+
+      },
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "10"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
+      "metadata": {
+
+      },
+      "type": "inputNumeric"
+    },
+    {
+      "name": "percentPlantCoverage",
+      "label": {
+        "0": "Prozentuale Abdeckung des Bodens durch Pflanzen"
+      },
+      "hint": {
+
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+
+      },
+      "relevance": "",
+      "constraint": "",
+      "calculate": "",
+      "range": false,
+      "invalidText": {
+
+      },
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "100"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
+      "metadata": {
+
+      },
+      "type": "inputNumeric"
+    },
+    {
+      "name": "percentGreenPlants",
+      "label": {
+        "0": "Prozentulaer Anteil grüner Pflanzen"
+      },
+      "hint": {
+
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+
+      },
+      "relevance": "",
+      "constraint": "",
+      "calculate": "",
+      "range": false,
+      "invalidText": {
+
+      },
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "100"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
+      "metadata": {
+
+      },
+      "type": "inputNumeric"
     }
+  ],
+  "metadata": {
+    "version": 2,
+    "activeLanguages": {
+      "0": "German",
+      "_counter": 0,
+      "_display": "0"
+    },
+    "optionsPresets": [
+
+    ],
+    "htitle": null,
+    "instance_name": "",
+    "public_key": "",
+    "submission_url": ""
+  }
 }

@@ -1,81 +1,81 @@
 {
-    "title":"Ernte",
-    "controls":[
-        {
-            "name":"dateHarvest",
-            "label":{
-                "0":"Datum der Ernte"
-            },
-            "hint":{
-                "0":""
-            },
-            "defaultValue":"",
-            "readOnly":false,
-            "required":false,
-            "requiredText":{
-                "0":""
-            },
-            "relevance":"",
-            "constraint":"",
-            "calculate":"",
-            "range":false,
-            "invalidText":{
-                "0":""
-            },
-            "kind":"Full Date",
-            "metadata":{
+  "title": "Ernte",
+  "controls": [
+    {
+      "name": "dateHarvest",
+      "label": {
+        "0": "Datum der Ernte"
+      },
+      "hint": {
+        "0": ""
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "0": ""
+      },
+      "relevance": "",
+      "constraint": "",
+      "calculate": "",
+      "range": false,
+      "invalidText": {
+        "0": ""
+      },
+      "kind": "Full Date",
+      "metadata": {
 
-            },
-            "type":"inputDate"
-        },
-        {
-            "name":"amoutHarvest",
-            "label":{
-                "0":"Erntemenge in dt/ha"
-            },
-            "hint":{
+      },
+      "type": "inputDate"
+    },
+    {
+      "name": "amoutHarvest",
+      "label": {
+        "0": "Erntemenge in dt/ha"
+      },
+      "hint": {
 
-            },
-            "defaultValue":"",
-            "readOnly":false,
-            "required":false,
-            "requiredText":{
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
 
-            },
-            "relevance":"",
-            "constraint":"",
-            "calculate":"",
-            "range":false,
-            "invalidText":{
+      },
+      "relevance": "",
+      "constraint": "",
+      "calculate": "",
+      "range": false,
+      "invalidText": {
 
-            },
-            "appearance":"Textbox",
-            "kind":"Integer",
-            "selectRange":{
-                "min":"1",
-                "max":"10"
-            },
-            "selectStep":"1",
-            "sliderTicks":true,
-            "metadata":{
+      },
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "10"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
+      "metadata": {
 
-            },
-            "type":"inputNumeric"
-        }
-    ],
-    "metadata":{
-        "version":2,
-        "activeLanguages":{
-            "0":"German",
-            "_counter":0,
-            "_display":"0"
-        },
-        "optionsPresets":[
-
-        ],
-        "htitle":"Ernte",
-        "instance_name":"",
-        "public_key":"",
-        "submission_url":""
+      },
+      "type": "inputNumeric"
     }
+  ],
+  "metadata": {
+    "version": 2,
+    "activeLanguages": {
+      "0": "German",
+      "_counter": 0,
+      "_display": "0"
+    },
+    "optionsPresets": [
+
+    ],
+    "htitle": "Ernte",
+    "instance_name": "",
+    "public_key": "",
+    "submission_url": ""
+  }
 }
