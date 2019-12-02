@@ -362,6 +362,9 @@ Consent of the data subject means any freely given, specific, informed and unamb
   <data name="profiles" xml:space="preserve">
     <value>Profiles</value>
   </data>
+  <data name="profiling" xml:space="preserve">
+    <value>Profiling</value>
+  </data>
   <data name="projectdetails" xml:space="preserve">
     <value>Project Details</value>
   </data>
@@ -433,9 +436,6 @@ Consent of the data subject means any freely given, specific, informed and unamb
   </data>
   <data name="successful" xml:space="preserve">
     <value>Successful</value>
-  </data>
-  <data name="survey" xml:space="preserve">
-    <value>Survey</value>
   </data>
   <data name="title" xml:space="preserve">
     <value>Title</value>

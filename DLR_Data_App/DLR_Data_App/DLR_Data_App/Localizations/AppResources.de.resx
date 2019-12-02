@@ -428,8 +428,8 @@ Einwilligung ist jede von der betroffenen Person freiwillig für den bestimmten 
   <data name="successful" xml:space="preserve">
     <value>Erfolgreich</value>
   </data>
-  <data name="Survey" xml:space="preserve">
-    <value>Nutzereinschätzung</value>
+  <data name="profiling" xml:space="preserve">
+    <value>Profiling</value>
   </data>
   <data name="title" xml:space="preserve">
     <value>Titel</value>

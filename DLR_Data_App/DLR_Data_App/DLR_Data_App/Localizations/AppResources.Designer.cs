@@ -583,6 +583,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Profiling ähnelt.
+        /// </summary>
+        internal static string profiling {
+            get {
+                return ResourceManager.GetString("profiling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Project Details ähnelt.
         /// </summary>
         internal static string projectdetails {
@@ -795,15 +804,6 @@ namespace DLR_Data_App.Localizations {
         internal static string successful {
             get {
                 return ResourceManager.GetString("successful", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Survey ähnelt.
-        /// </summary>
-        internal static string survey {
-            get {
-                return ResourceManager.GetString("survey", resourceCulture);
             }
         }
         

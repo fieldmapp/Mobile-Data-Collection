@@ -8,7 +8,7 @@
         Settings,
         About,
         Logout,
-        Survey
+        Profiling
     }
     public class HomeMenuItem
     {
