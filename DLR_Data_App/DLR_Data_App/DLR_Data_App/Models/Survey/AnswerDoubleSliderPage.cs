@@ -62,7 +62,7 @@ namespace DLR_Data_App.Models.Survey
                 float adjustedDiff = diff * 100f / maxDiff;
                 return 1 - adjustedDiff / 100;
             }
-            var question = (QuestionDoubleSliderPage)DatabankCommunication.LoadQuestionById("DoubleSlider", InternId);
+            var question = (QuestionDoubleSliderPage)SurveyStorageManager.LoadQuestionById("DoubleSlider", InternId);
             return evalSingleSlider(question.CorrectAnswerA, ResultQuestionA) * .5f
                 + evalSingleSlider(question.CorrectAnswerB, ResultQuestionB) * .5f;
         }

@@ -20,7 +20,7 @@ namespace DLR_Data_App.Views.Survey
 
             SurveyManager.Initialize(App.CurrentUser.Id.ToString());
             
-            MenuList.ItemsSource = DatabankCommunication.SurveyMenuItems;
+            MenuList.ItemsSource = SurveyStorageManager.SurveyMenuItems;
         }
         /// Defining the Event for the click on an element in the ListView
         private void MenuList_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -42,7 +42,7 @@ namespace DLR_Data_App.Views.Survey
 
         private async void EvaluationClicked(object sender, EventArgs e)
         {
-            var evalItems = DatabankCommunication.SurveyMenuItems.Select(i => i.IntrospectionQuestion.All(q => DatabankCommunication.DoesAnswersExists("Introspection", q)) ? 
+            var evalItems = SurveyStorageManager.SurveyMenuItems.Select(i => i.IntrospectionQuestion.All(q => SurveyStorageManager.DoesAnswersExists("Introspection", q)) ? 
                 SurveyManager.GenerateEvaluationItem(i) :
                 new EvaluationItem(i.ChapterName, -1, -1, -1, -1)).ToList();
             
@@ -51,12 +51,12 @@ namespace DLR_Data_App.Views.Survey
 
         private void ExportAnwersClicked(object sender, EventArgs e)
         {
-            DatabankCommunication.ExportAnswers();
+            SurveyStorageManager.ExportAnswers();
         }
 
         private void DeleteAnswersClicked(object sender, EventArgs e)
         {
-            DatabankCommunication.ResetSavedAnswers();
+            SurveyStorageManager.ResetSavedAnswers();
         }
     }
 }

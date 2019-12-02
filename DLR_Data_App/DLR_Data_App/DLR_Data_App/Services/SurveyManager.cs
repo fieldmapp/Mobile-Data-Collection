@@ -22,13 +22,13 @@ namespace DLR_Data_App.Services
 
         public static void Initialize(string userId)
         {
-            DatabankCommunication.Initilize(userId);
+            SurveyStorageManager.Initilize(userId);
         }
 
         public static IQuestionContent GetNextQuestion(SurveyMenuItem surveyType)
         {
             var neededType = surveyType.QuestionType;
-            var value = DatabankCommunication.GetQuestion(surveyType.Id, CurrentSurvey.CurrentDifficulty, false);
+            var value = SurveyStorageManager.GetQuestion(surveyType.Id, CurrentSurvey.CurrentDifficulty, false);
             if (value == null)
                 return null;
             return value;
@@ -43,7 +43,7 @@ namespace DLR_Data_App.Services
                 CurrentSurvey = selectedSurvey;
             }
             _ = Navigation.PushPage(new LoadingPage(), false);
-            if (CurrentSurvey.IntrospectionQuestion.All(q => DatabankCommunication.DoesAnswersExists("Introspection", q)))
+            if (CurrentSurvey.IntrospectionQuestion.All(q => SurveyStorageManager.DoesAnswersExists("Introspection", q)))
             {
                 ShowEvaluationPage();
                 return;
@@ -56,7 +56,7 @@ namespace DLR_Data_App.Services
             if (CurrentSurvey == null)
                 return;
             var question = GetNextQuestion(CurrentSurvey);
-            if (question == null || CurrentSurvey.IntrospectionQuestion.Any(q => DatabankCommunication.DoesAnswersExists("Introspection", q)))
+            if (question == null || CurrentSurvey.IntrospectionQuestion.Any(q => SurveyStorageManager.DoesAnswersExists("Introspection", q)))
             {
                 ShowNextIntrospectionPage();
                 return;
@@ -85,8 +85,8 @@ namespace DLR_Data_App.Services
                 return;
             }
 
-            DatabankCommunication.AddAnswer(CurrentSurvey.Id, surveyPage.AnswerItem);
-            DatabankCommunication.SaveAnswers();
+            SurveyStorageManager.AddAnswer(CurrentSurvey.Id, surveyPage.AnswerItem);
+            SurveyStorageManager.SaveAnswers();
             CurrentSurvey.AnswersGiven++;
             
             CurrentSurvey.ApplyAnswer(surveyPage.AnswerItem);
@@ -97,8 +97,8 @@ namespace DLR_Data_App.Services
         {
             if (CurrentSurvey == null)
                 return;
-            var newIntrospectionQuestion = (QuestionIntrospectionPage)CurrentSurvey.IntrospectionQuestion.Where(id => !DatabankCommunication.DoesAnswersExists("Introspection", id))
-                .Select(id => DatabankCommunication.LoadQuestionById("Introspection", id)).FirstOrDefault();
+            var newIntrospectionQuestion = (QuestionIntrospectionPage)CurrentSurvey.IntrospectionQuestion.Where(id => !SurveyStorageManager.DoesAnswersExists("Introspection", id))
+                .Select(id => SurveyStorageManager.LoadQuestionById("Introspection", id)).FirstOrDefault();
             if (newIntrospectionQuestion == null)
             {
                 ShowEvaluationPage();
@@ -120,8 +120,8 @@ namespace DLR_Data_App.Services
                 Navigation.PopAsync();
                 return;
             }
-            DatabankCommunication.AddAnswer("Introspection", introspectionPage.AnswerItem);
-            DatabankCommunication.SaveAnswers();
+            SurveyStorageManager.AddAnswer("Introspection", introspectionPage.AnswerItem);
+            SurveyStorageManager.SaveAnswers();
             ShowNextIntrospectionPage();
         }
 
@@ -132,8 +132,8 @@ namespace DLR_Data_App.Services
             evaluationPage.PageFinished += EvaluationPage_PageFinished;
             _ = Navigation.PushPage(evaluationPage);
             CurrentSurvey = null;
-            DatabankCommunication.SaveAnswers();
-            DatabankCommunication.CreateCSV();
+            SurveyStorageManager.SaveAnswers();
+            SurveyStorageManager.CreateCSV();
         }
 
         private static void EvaluationPage_PageFinished(object sender, EventArgs e)
@@ -146,15 +146,15 @@ namespace DLR_Data_App.Services
         public static EvaluationItem GenerateEvaluationItem(SurveyMenuItem survey)
         {
             var surveyId = survey.Id;
-            var answeredQuestions = DatabankCommunication.GetAllQuestions(surveyId)
-                .Where(q => DatabankCommunication.DoesAnswersExists(surveyId, q.InternId));
-            var answers = answeredQuestions.Select(q => DatabankCommunication.LoadAnswerById(surveyId, q.InternId));
+            var answeredQuestions = SurveyStorageManager.GetAllQuestions(surveyId)
+                .Where(q => SurveyStorageManager.DoesAnswersExists(surveyId, q.InternId));
+            var answers = answeredQuestions.Select(q => SurveyStorageManager.LoadAnswerById(surveyId, q.InternId));
             var easyAnsers = answeredQuestions.Where(q => q.Difficulty == 1)
-                .Select(q => DatabankCommunication.LoadAnswerById(surveyId, q.InternId));
+                .Select(q => SurveyStorageManager.LoadAnswerById(surveyId, q.InternId));
             var mediumAnswers = answeredQuestions.Where(q => q.Difficulty == 2)
-                .Select(q => DatabankCommunication.LoadAnswerById(surveyId, q.InternId));
+                .Select(q => SurveyStorageManager.LoadAnswerById(surveyId, q.InternId));
             var hardAnswers = answeredQuestions.Where(q => q.Difficulty == 3)
-                .Select(q => DatabankCommunication.LoadAnswerById(surveyId, q.InternId));
+                .Select(q => SurveyStorageManager.LoadAnswerById(surveyId, q.InternId));
 
             var average = answers.Any() ? (int)answers.Average(a => a.EvaluateScore() * 100) : -1;
             var easyAverage = easyAnsers.Any() ? (int)easyAnsers.Average(a => a.EvaluateScore() * 100) : -1;

@@ -119,8 +119,8 @@ namespace DLR_Data_App.Models.Survey
             AnswersNeeded = answersNeeded;
             IntrospectionQuestion = introspectionQuestions;
             CurrentDifficulty = 1;
-            MaximumQuestionNumber = DatabankCommunication.GetAllQuestions(id).Count;
-            var answers = DatabankCommunication.GetAllAnswers(id);
+            MaximumQuestionNumber = SurveyStorageManager.GetAllQuestions(id).Count;
+            var answers = SurveyStorageManager.GetAllAnswers(id);
             AnswersGiven = answers.Count;
             PropertyChanged += SurveyMenuItem_PropertyChanged;
             foreach (var answer in answers)

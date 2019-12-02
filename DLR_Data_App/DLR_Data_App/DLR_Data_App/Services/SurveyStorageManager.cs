@@ -11,7 +11,7 @@ using System.Collections.ObjectModel;
 
 namespace DLR_Data_App.Services
 {
-    public static class DatabankCommunication
+    public static class SurveyStorageManager
     {
         private const double MaxMinutesToContinueSurvey = 5;
         /// <summary>

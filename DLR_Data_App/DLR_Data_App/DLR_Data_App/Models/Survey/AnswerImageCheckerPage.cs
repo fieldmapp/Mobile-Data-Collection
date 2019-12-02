@@ -79,7 +79,7 @@ namespace DLR_Data_App.Models.Survey
 
         public float EvaluateScore()
         {
-            var question = (QuestionImageCheckerPage)DatabankCommunication.LoadQuestionById("ImageChecker", InternId);
+            var question = (QuestionImageCheckerPage)SurveyStorageManager.LoadQuestionById("ImageChecker", InternId);
             float score = 0;
             if (question.Image1Correct == Image1Selected)
                 score += .25f;

@@ -56,7 +56,7 @@ namespace DLR_Data_App.Models.Survey
 
         public float EvaluateScore()
         {
-            var question = (QuestionStadiumPage)DatabankCommunication.LoadQuestionById("Stadium", InternId);
+            var question = (QuestionStadiumPage)SurveyStorageManager.LoadQuestionById("Stadium", InternId);
             float score = 0;
             if (question.CorrectAnswerFruitType == AnswerFruitType)
                 score += .5f;
