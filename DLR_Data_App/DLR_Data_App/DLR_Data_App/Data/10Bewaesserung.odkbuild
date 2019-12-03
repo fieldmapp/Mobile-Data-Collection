@@ -4,126 +4,95 @@
     {
       "name": "wateringSystemExisting",
       "label": {
-        "0": "Bewässerungsanlage vorhanden"
+        "0": "Bewässerungsanlage vorhanden",
+        "1": "Watering system present"
       },
       "hint": {
-
+        "0": "",
+        "1": ""
       },
       "defaultValue": "1",
       "readOnly": false,
       "required": false,
-      "requiredText": {
-
-      },
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
-      "invalidText": {
-
-      },
+      "invalidText": { "1": "" },
       "calculate": "",
       "options": [
         {
-          "text": {
-            "0": "Ja"
-          },
-          "cascade": [
-
-          ],
+          "text": { "0": "Ja" },
+          "cascade": [],
           "val": "0"
         },
         {
-          "text": {
-            "0": "Nein"
-          },
-          "cascade": [
-
-          ],
+          "text": { "0": "Nein" },
+          "cascade": [],
           "val": "1"
         }
       ],
       "cascading": false,
       "other": false,
       "appearance": "Default",
-      "metadata": {
-
-      },
+      "metadata": {},
       "type": "inputSelectOne"
     },
     {
       "name": "wateringSystemStart",
       "label": {
-        "0": "Bewässerungsbeginn"
+        "0": "Bewässerungsbeginn",
+        "1": "Start of watering"
       },
-      "hint": {
-
-      },
+      "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {
-
-      },
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "range": false,
-      "invalidText": {
-
-      },
       "kind": "Full Date",
-      "metadata": {
-
-      },
+      "metadata": {},
       "type": "inputDate"
     },
     {
       "name": "wateringSystemEnd",
       "label": {
-        "0": "Bewässerungsende"
+        "0": "Bewässerungsende",
+        "1": "End of watering"
       },
-      "hint": {
-
-      },
+      "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {
-
-      },
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "range": false,
-      "invalidText": {
-
-      },
       "kind": "Full Date",
-      "metadata": {
-
-      },
+      "metadata": {},
       "type": "inputDate"
     },
     {
       "name": "wateringAmmount",
       "label": {
-        "0": "Bewässerungsmenge in Litern pro Tag"
+        "0": "Bewässerungsmenge in Litern pro Tag",
+        "1": "Amount of watering in liters per day"
       },
-      "hint": {
-
-      },
+      "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {
-
-      },
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "range": false,
-      "invalidText": {
-
-      },
       "appearance": "Textbox",
       "kind": "Integer",
       "selectRange": {
@@ -132,32 +101,25 @@
       },
       "selectStep": "1",
       "sliderTicks": true,
-      "metadata": {
-
-      },
+      "metadata": {},
       "type": "inputNumeric"
     },
     {
       "name": "wateringAreaSize",
       "label": {
-        "0": "Auf Fläche von ... ha"
+        "0": "Auf Fläche von ... ha",
+        "1": "To an area of ... ha"
       },
-      "hint": {
-
-      },
+      "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {
-
-      },
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "range": false,
-      "invalidText": {
-
-      },
       "appearance": "Textbox",
       "kind": "Integer",
       "selectRange": {
@@ -166,9 +128,7 @@
       },
       "selectStep": "1",
       "sliderTicks": true,
-      "metadata": {
-
-      },
+      "metadata": {},
       "type": "inputNumeric"
     }
   ],
@@ -176,13 +136,12 @@
     "version": 2,
     "activeLanguages": {
       "0": "German",
-      "_counter": 0,
+      "1": "English",
+      "_counter": 1,
       "_display": "0"
     },
-    "optionsPresets": [
-
-    ],
-    "htitle": "Bewässerung",
+    "optionsPresets": [],
+    "htitle": null,
     "instance_name": "",
     "public_key": "",
     "submission_url": ""

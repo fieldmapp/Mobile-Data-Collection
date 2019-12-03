@@ -4,51 +4,48 @@
     {
       "name": "dateHarvest",
       "label": {
-        "0": "Datum der Ernte"
+        "0": "Datum der Ernte",
+        "1": "Date of harvest"
       },
       "hint": {
-        "0": ""
+        "0": "",
+        "1": ""
       },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
       "requiredText": {
-        "0": ""
+        "0": "",
+        "1": ""
       },
       "relevance": "",
       "constraint": "",
+      "invalidText": {
+        "0": "",
+        "1": ""
+      },
       "calculate": "",
       "range": false,
-      "invalidText": {
-        "0": ""
-      },
       "kind": "Full Date",
-      "metadata": {
-
-      },
+      "metadata": {},
       "type": "inputDate"
     },
     {
       "name": "amoutHarvest",
       "label": {
-        "0": "Erntemenge in dt/ha"
+        "0": "Erntemenge in dt/ha",
+        "1": "Amout of harvest in dt/ha"
       },
-      "hint": {
-
-      },
+      "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {
-
-      },
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "range": false,
-      "invalidText": {
-
-      },
       "appearance": "Textbox",
       "kind": "Integer",
       "selectRange": {
@@ -57,9 +54,7 @@
       },
       "selectStep": "1",
       "sliderTicks": true,
-      "metadata": {
-
-      },
+      "metadata": {},
       "type": "inputNumeric"
     }
   ],
@@ -67,13 +62,12 @@
     "version": 2,
     "activeLanguages": {
       "0": "German",
-      "_counter": 0,
+      "1": "English",
+      "_counter": 1,
       "_display": "0"
     },
-    "optionsPresets": [
-
-    ],
-    "htitle": "Ernte",
+    "optionsPresets": [],
+    "htitle": null,
     "instance_name": "",
     "public_key": "",
     "submission_url": ""

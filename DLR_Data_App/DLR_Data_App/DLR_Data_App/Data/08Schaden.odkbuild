@@ -4,156 +4,118 @@
     {
       "name": "stockDamaged",
       "label": {
-        "0": "Gibt es eine Schädigung am Bestand?"
+        "0": "Gibt es eine Schädigung am Bestand?",
+        "1": "Is the stock damaged?"
       },
-      "hint": {
-
-      },
+      "hint": { "1": "" },
       "defaultValue": "1",
       "readOnly": false,
       "required": false,
-      "requiredText": {
-
-      },
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
-      "invalidText": {
-
-      },
+      "invalidText": { "1": "" },
       "calculate": "",
       "options": [
         {
-          "text": {
-            "0": "Ja"
-          },
-          "cascade": [
-
-          ],
+          "text": { "0": "Ja" },
+          "cascade": [],
           "val": "0"
         },
         {
-          "text": {
-            "0": "Nein"
-          },
-          "cascade": [
-
-          ],
+          "text": { "0": "Nein" },
+          "cascade": [],
           "val": "1"
         }
       ],
       "cascading": false,
       "other": false,
       "appearance": "Default",
-      "metadata": {
-
-      },
+      "metadata": {},
       "type": "inputSelectOne"
     },
     {
       "name": "reasonDamage",
       "label": {
-        "0": "Ursache"
+        "0": "Ursache",
+        "1": "Reason"
       },
       "hint": {
-        "0": ""
+        "0": "",
+        "1": ""
       },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {
-
-      },
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "length": false,
-      "invalidText": {
-
-      },
-      "metadata": {
-
-      },
+      "metadata": {},
       "type": "inputText"
     },
     {
       "name": "damageDateStart",
       "label": {
-        "0": "Beginn des Schädigungseintritts"
+        "0": "Beginn des Schädigungseintritts",
+        "1": "Start of damage"
       },
-      "hint": {
-
-      },
+      "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {
-
-      },
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "range": false,
-      "invalidText": {
-
-      },
       "kind": "Full Date",
-      "metadata": {
-
-      },
+      "metadata": {},
       "type": "inputDate"
     },
     {
       "name": "damgeDateEnd",
       "label": {
-        "0": "Ende des Schädigungseintritts"
+        "0": "Ende des Schädigungseintritts",
+        "1": "End of damage"
       },
-      "hint": {
-
-      },
+      "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {
-
-      },
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "range": false,
-      "invalidText": {
-
-      },
       "kind": "Full Date",
-      "metadata": {
-
-      },
+      "metadata": {},
       "type": "inputDate"
     },
     {
       "name": "damagePercentage",
       "label": {
-        "0": "Geschädigte Fläche in %"
+        "0": "Geschädigte Fläche in %",
+        "1": "Damaged area in percent"
       },
-      "hint": {
-
-      },
+      "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {
-
-      },
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "range": {
         "min": "0",
         "max": "100",
         "minInclusive": true,
         "maxInclusive": true
-      },
-      "invalidText": {
-
       },
       "appearance": "Textbox",
       "kind": "Integer",
@@ -163,9 +125,7 @@
       },
       "selectStep": "1",
       "sliderTicks": true,
-      "metadata": {
-
-      },
+      "metadata": {},
       "type": "inputNumeric"
     }
   ],
@@ -173,13 +133,12 @@
     "version": 2,
     "activeLanguages": {
       "0": "German",
-      "_counter": 0,
+      "1": "English",
+      "_counter": 1,
       "_display": "0"
     },
-    "optionsPresets": [
-
-    ],
-    "htitle": "Schäden",
+    "optionsPresets": [],
+    "htitle": null,
     "instance_name": "",
     "public_key": "",
     "submission_url": ""

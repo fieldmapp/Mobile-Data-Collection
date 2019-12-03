@@ -4,125 +4,91 @@
     {
       "name": "fertilizerUsed",
       "label": {
-        "0": "Wurde Dünger im laufenden Anbauzyklus aufgebracht?"
+        "0": "Wurde Dünger im laufenden Anbauzyklus aufgebracht?",
+        "1": "Was fertelizer used in the current growing cycle"
       },
-      "hint": {
-
-      },
+      "hint": { "1": "" },
       "defaultValue": "1",
       "readOnly": false,
       "required": false,
-      "requiredText": {
-
-      },
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
-      "invalidText": {
-
-      },
+      "invalidText": { "1": "" },
       "calculate": "",
       "options": [
         {
-          "text": {
-            "0": "Ja"
-          },
-          "cascade": [
-
-          ],
+          "text": { "0": "Ja" },
+          "cascade": [],
           "val": "0"
         },
         {
-          "text": {
-            "0": "Nein"
-          },
-          "cascade": [
-
-          ],
+          "text": { "0": "Nein" },
+          "cascade": [],
           "val": "1"
         }
       ],
       "cascading": false,
       "other": false,
       "appearance": "Default",
-      "metadata": {
-
-      },
+      "metadata": {},
       "type": "inputSelectOne"
     },
     {
       "name": "fertilizerUseDate",
       "label": {
-        "0": "Datum der Düngung"
+        "0": "Datum der Düngung",
+        "1": "Date of fertilization"
       },
-      "hint": {
-
-      },
+      "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {
-
-      },
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "range": false,
-      "invalidText": {
-
-      },
       "kind": "Full Date",
-      "metadata": {
-
-      },
+      "metadata": {},
       "type": "inputDate"
     },
     {
       "name": "fertilizerKind",
       "label": {
-        "0": "Düngemittelart"
+        "0": "Düngemittelart",
+        "1": "Type of fertilizer"
       },
-      "hint": {
-
-      },
+      "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {
-
-      },
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "length": false,
-      "invalidText": {
-
-      },
-      "metadata": {
-
-      },
+      "metadata": {},
       "type": "inputText"
     },
     {
       "name": "fertilizerAmount",
       "label": {
-        "0": "Menge pro Anbaufläche in kg/ha"
+        "0": "Menge pro Anbaufläche in kg/ha",
+        "1": "Amount of fertilizer per acerage in kg/ha"
       },
-      "hint": {
-
-      },
+      "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {
-
-      },
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "range": false,
-      "invalidText": {
-
-      },
       "appearance": "Textbox",
       "kind": "Integer",
       "selectRange": {
@@ -131,9 +97,7 @@
       },
       "selectStep": "1",
       "sliderTicks": true,
-      "metadata": {
-
-      },
+      "metadata": {},
       "type": "inputNumeric"
     }
   ],
@@ -141,13 +105,12 @@
     "version": 2,
     "activeLanguages": {
       "0": "German",
-      "_counter": 0,
+      "1": "English",
+      "_counter": 1,
       "_display": "0"
     },
-    "optionsPresets": [
-
-    ],
-    "htitle": "Düngung",
+    "optionsPresets": [],
+    "htitle": null,
     "instance_name": "",
     "public_key": "",
     "submission_url": ""

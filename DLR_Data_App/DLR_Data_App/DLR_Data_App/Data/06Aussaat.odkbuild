@@ -3,82 +3,106 @@
   "controls": [
     {
       "name": "dateSowing",
-      "label": { "0": "Datum" },
-      "hint": {},
+      "label": {
+        "0": "Datum",
+        "1": "Date"
+      },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {},
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "range": false,
-      "invalidText": {},
       "kind": "Full Date",
       "metadata": {},
       "type": "inputDate"
     },
     {
       "name": "directionPlantRows",
-      "label": { "0": "Ausrichtung der Pflanzenreihen{compass}" },
-      "hint": {},
+      "label": {
+        "0": "Ausrichtung der Pflanzenreihen{compass}",
+        "1": "Alignment of plant rows{compass}"
+      },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {},
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "length": false,
-      "invalidText": {},
       "metadata": {},
       "type": "inputText"
     },
     {
       "name": "distancePlantRows",
-      "label": { "0": "Pflanzenreihenabstand in cm{distanceHorizontal}" },
-      "hint": {},
+      "label": {
+        "0": "Pflanzenreihenabstand in cm{distanceHorizontal}",
+        "1": "Distance betweent plant rows{distanceHorizontal}"
+      },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {},
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "length": false,
-      "invalidText": {},
       "metadata": {},
       "type": "inputText"
     },
     {
       "name": "amoutSowing",
-      "label": { "0": "Aussaatdichte in Pflanzen" },
-      "hint": {},
+      "label": {
+        "0": "Aussaatdichte in Pflanzen",
+        "1": "Amout of sowed plants"
+      },
+      "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {},
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "length": false,
-      "invalidText": {},
       "metadata": {},
       "type": "inputText"
     },
     {
       "name": "lengthPlantRow",
-      "label": { "0": "auf cm Pflanzenreihe" },
-      "hint": {},
+      "label": {
+        "0": "auf cm Pflanzenreihe",
+        "1": "per cm plant row"
+      },
+      "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
-      "requiredText": {},
+      "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
+      "invalidText": { "1": "" },
       "calculate": "",
       "length": false,
-      "invalidText": {},
       "metadata": {},
       "type": "inputText"
     }
@@ -87,7 +111,8 @@
     "version": 2,
     "activeLanguages": {
       "0": "German",
-      "_counter": 0,
+      "1": "English",
+      "_counter": 1,
       "_display": "0"
     },
     "optionsPresets": [],
