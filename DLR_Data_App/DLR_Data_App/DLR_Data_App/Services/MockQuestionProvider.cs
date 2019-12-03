@@ -206,5 +206,10 @@ namespace DLR_Data_App.Services
         public void ExportAnswers(SurveyResults results) { }
 
         public void ExportDatabase(string content) { }
+
+        public Dictionary<string, string> LoadTranslations()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

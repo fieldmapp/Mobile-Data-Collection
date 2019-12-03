@@ -4,7 +4,7 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
       "InternId": 1,
       "Difficulty": 1,
-      "QuestionText": "Wo sehen sie die Feldfruchtsorte Weizen abgebildet?",
+      "QuestionText": "whereWheat",
       "Image1Correct": 0,
       "Image2Correct": 1,
       "Image3Correct": 0,
@@ -18,7 +18,7 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
       "InternId": 2,
       "Difficulty": 1,
-      "QuestionText": "Wo sehen sie die Feldfruchtsorte Raps abgebildet?",
+      "QuestionText": "whereRape",
       "Image1Correct": 0,
       "Image2Correct": 1,
       "Image3Correct": 1,
@@ -32,7 +32,7 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
       "InternId": 3,
       "Difficulty": 2,
-      "QuestionText": "Wo sehen sie die Feldfruchtsorte Raps abgebildet?",
+      "QuestionText": "whereRape",
       "Image1Correct": 1,
       "Image2Correct": 1,
       "Image3Correct": 1,
@@ -46,7 +46,7 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
       "InternId": 4,
       "Difficulty": 2,
-      "QuestionText": "Wo sehen sie die Feldfruchtsorte Weizen abgebildet?",
+      "QuestionText": "whereWheat",
       "Image1Correct": 0,
       "Image2Correct": 0,
       "Image3Correct": 1,
@@ -60,7 +60,7 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
       "InternId": 5,
       "Difficulty": 3,
-      "QuestionText": "Wo sehen sie die Feldfruchtsorte Kartoffel abgebildet?",
+      "QuestionText": "wherePotato",
       "Image1Correct": 1,
       "Image2Correct": 0,
       "Image3Correct": 1,
@@ -74,7 +74,7 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
       "InternId": 6,
       "Difficulty": 3,
-      "QuestionText": "Wo sehen sie die Feldfruchtsorte Gerste abgebildet?",
+      "QuestionText": "whereBarley",
       "Image1Correct": 0,
       "Image2Correct": 0,
       "Image3Correct": 1,
@@ -89,7 +89,7 @@
     {
       "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 1,
-      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_one_question1.png",
       "CorrectAnswerA": 60,
       "CorrectAnswerB": 23,
@@ -98,7 +98,7 @@
     {
       "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 2,
-      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_one_question2.png",
       "CorrectAnswerA": 43,
       "CorrectAnswerB": 99,
@@ -107,7 +107,7 @@
     {
       "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 3,
-      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_one_question3.png",
       "CorrectAnswerA": 12,
       "CorrectAnswerB": 3,
@@ -116,7 +116,7 @@
     {
       "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 4,
-      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_one_question4.png",
       "CorrectAnswerA": 90,
       "CorrectAnswerB": 1,
@@ -125,7 +125,7 @@
     {
       "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 5,
-      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_two_question1.png",
       "CorrectAnswerA": 7,
       "CorrectAnswerB": 96,
@@ -134,7 +134,7 @@
     {
       "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 6,
-      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_two_question2.png",
       "CorrectAnswerA": 49,
       "CorrectAnswerB": 91,
@@ -143,7 +143,7 @@
     {
       "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 7,
-      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_two_question3.png",
       "CorrectAnswerA": 12,
       "CorrectAnswerB": 3,
@@ -152,7 +152,7 @@
     {
       "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 8,
-      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_two_question4.png",
       "CorrectAnswerA": 64,
       "CorrectAnswerB": 94,
@@ -161,7 +161,7 @@
     {
       "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 9,
-      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_three_question1.png",
       "CorrectAnswerA": 42,
       "CorrectAnswerB": 87,
@@ -170,7 +170,7 @@
     {
       "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 10,
-      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_three_question2.png",
       "CorrectAnswerA": 6,
       "CorrectAnswerB": 0,
@@ -179,7 +179,7 @@
     {
       "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 11,
-      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_three_question3.png",
       "CorrectAnswerA": 80,
       "CorrectAnswerB": 5,
@@ -188,7 +188,7 @@
     {
       "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 12,
-      "QuestionText": "Schätzen Sie den Grad der Bedeckung des Bodens durch Pflanzen (A) und den Anteil grüner Pflanzenbestandteile (B) ein.",
+      "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_three_question4.png",
       "CorrectAnswerA": 76,
       "CorrectAnswerB": 99,
@@ -200,39 +200,39 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 1,
       "Image": "Stadium_one_question1.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Blattentwicklung",
+          "StadiumName": "stadiumLeafDevelopment",
           "ImageSource": "stadium_blattentwicklung.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Bestockung",
+          "StadiumName": "stadiumTiltering",
           "ImageSource": "stadium_bestockung.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Längenwachstum/Schossen",
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 3
         }
       ],
       "Plants": [
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "A"
         },
         {
-          "Name": "Mais",
+          "Name": "corn",
           "InternLetter": "B"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "C"
         },
         {
-          "Name": "Zuckerrübe",
+          "Name": "sugarBeet",
           "InternLetter": "D"
         }
       ],
@@ -244,39 +244,39 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 2,
       "Image": "Stadium_one_question2.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Blattentwicklung",
+          "StadiumName": "stadiumLeafDevelopment",
           "ImageSource": "stadium_blattentwicklung.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Bestockung",
+          "StadiumName": "stadiumTiltering",
           "ImageSource": "stadium_bestockung.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Längenwachstum/Schossen",
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 3
         }
       ],
       "Plants": [
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "A"
         },
         {
-          "Name": "Mais",
+          "Name": "corn",
           "InternLetter": "B"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "C"
         },
         {
-          "Name": "Zuckerrübe",
+          "Name": "sugarBeet",
           "InternLetter": "D"
         }
       ],
@@ -288,39 +288,39 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 3,
       "Image": "Stadium_one_question3.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Blattentwicklung",
+          "StadiumName": "stadiumLeafDevelopment",
           "ImageSource": "stadium_blattentwicklung.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Bestockung",
+          "StadiumName": "stadiumTiltering",
           "ImageSource": "stadium_bestockung.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Längenwachstum/Schossen",
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 3
         }
       ],
       "Plants": [
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "A"
         },
         {
-          "Name": "Mais",
+          "Name": "corn",
           "InternLetter": "B"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "C"
         },
         {
-          "Name": "Zuckerrübe",
+          "Name": "sugarBeet",
           "InternLetter": "D"
         }
       ],
@@ -332,39 +332,39 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 4,
       "Image": "Stadium_one_question4.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Blattentwicklung",
+          "StadiumName": "stadiumLeafDevelopment",
           "ImageSource": "stadium_blattentwicklung.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Bestockung",
+          "StadiumName": "stadiumTiltering",
           "ImageSource": "stadium_bestockung.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Längenwachstum/Schossen",
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 3
         }
       ],
       "Plants": [
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "A"
         },
         {
-          "Name": "Mais",
+          "Name": "corn",
           "InternLetter": "B"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "C"
         },
         {
-          "Name": "Zuckerrübe",
+          "Name": "sugarBeet",
           "InternLetter": "D"
         }
       ],
@@ -376,39 +376,39 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 5,
       "Image": "Stadium_one_question5.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Blattentwicklung",
+          "StadiumName": "stadiumLeafDevelopment",
           "ImageSource": "stadium_blattentwicklung.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Bestockung",
+          "StadiumName": "stadiumTiltering",
           "ImageSource": "stadium_bestockung.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Längenwachstum/Schossen",
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 3
         }
       ],
       "Plants": [
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "A"
         },
         {
-          "Name": "Mais",
+          "Name": "corn",
           "InternLetter": "B"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "C"
         },
         {
-          "Name": "Zuckerrübe",
+          "Name": "sugarBeet",
           "InternLetter": "D"
         }
       ],
@@ -420,39 +420,39 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 6,
       "Image": "Stadium_one_question6.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Blattentwicklung",
+          "StadiumName": "stadiumLeafDevelopment",
           "ImageSource": "stadium_blattentwicklung.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Bestockung",
+          "StadiumName": "stadiumTiltering",
           "ImageSource": "stadium_bestockung.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Längenwachstum/Schossen",
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 3
         }
       ],
       "Plants": [
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "A"
         },
         {
-          "Name": "Mais",
+          "Name": "corn",
           "InternLetter": "B"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "C"
         },
         {
-          "Name": "Zuckerrübe",
+          "Name": "sugarBeet",
           "InternLetter": "D"
         }
       ],
@@ -464,49 +464,49 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 7,
       "Image": "Stadium_two_question1.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Blattentwicklung",
+          "StadiumName": "stadiumLeafDevelopment",
           "ImageSource": "stadium_blattentwicklung.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Schossen/Haupttrieb",
+          "StadiumName": "stadiumShootDevelopmentMainStem",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Ähren/-Rispenschwellen",
+          "StadiumName": "stadiumBooting",
           "ImageSource": "stadium_ahrenrispenschwellen.png",
           "InternNumber": 3
         },
         {
-          "StadiumName": "Entwicklung der Blütenanlage",
+          "StadiumName": "stadiumInfloresceneEmergence",
           "ImageSource": "stadium_entwicklungbluetenanlage.png",
           "InternNumber": 4
         },
         {
-          "StadiumName": "Blüte",
+          "StadiumName": "flowering",
           "ImageSource": "bluete.png",
           "InternNumber": 5
         }
       ],
       "Plants": [
         {
-          "Name": "Gerste",
+          "Name": "barley",
           "InternLetter": "A"
         },
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "B"
         },
         {
-          "Name": "Raps",
+          "Name": "rape",
           "InternLetter": "C"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "D"
         }
       ],
@@ -518,49 +518,49 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 8,
       "Image": "Stadium_two_question2.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Blattentwicklung",
+          "StadiumName": "stadiumLeafDevelopment",
           "ImageSource": "stadium_blattentwicklung.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Schossen/Haupttrieb",
+          "StadiumName": "stadiumShootDevelopmentMainStem",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Ähren/-Rispenschwellen",
+          "StadiumName": "stadiumBooting",
           "ImageSource": "stadium_ahrenrispenschwellen.png",
           "InternNumber": 3
         },
         {
-          "StadiumName": "Entwicklung der Blütenanlage",
+          "StadiumName": "stadiumInfloresceneEmergence",
           "ImageSource": "stadium_entwicklungbluetenanlage.png",
           "InternNumber": 4
         },
         {
-          "StadiumName": "Blüte",
+          "StadiumName": "flowering",
           "ImageSource": "bluete.png",
           "InternNumber": 5
         }
       ],
       "Plants": [
         {
-          "Name": "Gerste",
+          "Name": "barley",
           "InternLetter": "A"
         },
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "B"
         },
         {
-          "Name": "Raps",
+          "Name": "rape",
           "InternLetter": "C"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "D"
         }
       ],
@@ -572,49 +572,49 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 9,
       "Image": "Stadium_two_question3.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Blattentwicklung",
+          "StadiumName": "stadiumLeafDevelopment",
           "ImageSource": "stadium_blattentwicklung.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Schossen/Haupttrieb",
+          "StadiumName": "stadiumShootDevelopmentMainStem",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Ähren/-Rispenschwellen",
+          "StadiumName": "stadiumBooting",
           "ImageSource": "stadium_ahrenrispenschwellen.png",
           "InternNumber": 3
         },
         {
-          "StadiumName": "Entwicklung der Blütenanlage",
+          "StadiumName": "stadiumInfloresceneEmergence",
           "ImageSource": "stadium_entwicklungbluetenanlage.png",
           "InternNumber": 4
         },
         {
-          "StadiumName": "Blüte",
+          "StadiumName": "flowering",
           "ImageSource": "bluete.png",
           "InternNumber": 5
         }
       ],
       "Plants": [
         {
-          "Name": "Gerste",
+          "Name": "barley",
           "InternLetter": "A"
         },
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "B"
         },
         {
-          "Name": "Raps",
+          "Name": "rape",
           "InternLetter": "C"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "D"
         }
       ],
@@ -626,49 +626,49 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 10,
       "Image": "Stadium_two_question4.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Blattentwicklung",
+          "StadiumName": "stadiumLeafDevelopment",
           "ImageSource": "stadium_blattentwicklung.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Schossen/Haupttrieb",
+          "StadiumName": "stadiumShootDevelopmentMainStem",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Ähren/-Rispenschwellen",
+          "StadiumName": "stadiumBooting",
           "ImageSource": "stadium_ahrenrispenschwellen.png",
           "InternNumber": 3
         },
         {
-          "StadiumName": "Entwicklung der Blütenanlage",
+          "StadiumName": "stadiumInfloresceneEmergence",
           "ImageSource": "stadium_entwicklungbluetenanlage.png",
           "InternNumber": 4
         },
         {
-          "StadiumName": "Blüte",
+          "StadiumName": "flowering",
           "ImageSource": "bluete.png",
           "InternNumber": 5
         }
       ],
       "Plants": [
         {
-          "Name": "Gerste",
+          "Name": "barley",
           "InternLetter": "A"
         },
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "B"
         },
         {
-          "Name": "Raps",
+          "Name": "rape",
           "InternLetter": "C"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "D"
         }
       ],
@@ -680,49 +680,49 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 11,
       "Image": "Stadium_two_question5.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Blattentwicklung",
+          "StadiumName": "stadiumLeafDevelopment",
           "ImageSource": "stadium_blattentwicklung.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Schossen/Haupttrieb",
+          "StadiumName": "stadiumShootDevelopmentMainStem",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Ähren/-Rispenschwellen",
+          "StadiumName": "stadiumBooting",
           "ImageSource": "stadium_ahrenrispenschwellen.png",
           "InternNumber": 3
         },
         {
-          "StadiumName": "Entwicklung der Blütenanlage",
+          "StadiumName": "stadiumInfloresceneEmergence",
           "ImageSource": "stadium_entwicklungbluetenanlage.png",
           "InternNumber": 4
         },
         {
-          "StadiumName": "Blüte",
+          "StadiumName": "flowering",
           "ImageSource": "bluete.png",
           "InternNumber": 5
         }
       ],
       "Plants": [
         {
-          "Name": "Gerste",
+          "Name": "barley",
           "InternLetter": "A"
         },
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "B"
         },
         {
-          "Name": "Raps",
+          "Name": "rape",
           "InternLetter": "C"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "D"
         }
       ],
@@ -734,49 +734,49 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 12,
       "Image": "Stadium_two_question6.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Blattentwicklung",
+          "StadiumName": "stadiumLeafDevelopment",
           "ImageSource": "stadium_blattentwicklung.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Schossen/Haupttrieb",
+          "StadiumName": "stadiumShootDevelopmentMainStem",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Ähren/-Rispenschwellen",
+          "StadiumName": "stadiumBooting",
           "ImageSource": "stadium_ahrenrispenschwellen.png",
           "InternNumber": 3
         },
         {
-          "StadiumName": "Entwicklung der Blütenanlage",
+          "StadiumName": "stadiumInfloresceneEmergence",
           "ImageSource": "stadium_entwicklungbluetenanlage.png",
           "InternNumber": 4
         },
         {
-          "StadiumName": "Blüte",
+          "StadiumName": "flowering",
           "ImageSource": "bluete.png",
           "InternNumber": 5
         }
       ],
       "Plants": [
         {
-          "Name": "Gerste",
+          "Name": "barley",
           "InternLetter": "A"
         },
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "B"
         },
         {
-          "Name": "Raps",
+          "Name": "rape",
           "InternLetter": "C"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "D"
         }
       ],
@@ -788,48 +788,48 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 13,
       "Image": "Stadium_three_question1.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Längenwachstum/Schossen",
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Entwicklung vegetativer Pflanzenteile/Rübenkörper",
+          "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
           "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Entwicklung der Blütenanlage",
+          "StadiumName": "stadiumInfloresceneEmergence",
           "ImageSource": "stadium_entwicklungbluetenanlage.png",
           "InternNumber": 3
         },
         {
-          "StadiumName": "Fruchtentwicklung",
+          "StadiumName": "stadiumFruitDevelopment",
           "ImageSource": "bluete.png",
           "InternNumber": 4
         }
       ],
       "Plants": [
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "A"
         },
         {
-          "Name": "Mais",
+          "Name": "corn",
           "InternLetter": "B"
         },
         {
-          "Name": "Raps",
+          "Name": "rape",
           "InternLetter": "C"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "D"
         },
         {
-          "Name": "Zuckerrübe",
+          "Name": "sugarBeet",
           "InternLetter": "E"
         }
       ],
@@ -841,48 +841,48 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 14,
       "Image": "Stadium_three_question2.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Längenwachstum/Schossen",
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Entwicklung vegetativer Pflanzenteile/Rübenkörper",
+          "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
           "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Entwicklung der Blütenanlage",
+          "StadiumName": "stadiumInfloresceneEmergence",
           "ImageSource": "stadium_entwicklungbluetenanlage.png",
           "InternNumber": 3
         },
         {
-          "StadiumName": "Fruchtentwicklung",
+          "StadiumName": "stadiumFruitDevelopment",
           "ImageSource": "bluete.png",
           "InternNumber": 4
         }
       ],
       "Plants": [
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "A"
         },
         {
-          "Name": "Mais",
+          "Name": "corn",
           "InternLetter": "B"
         },
         {
-          "Name": "Raps",
+          "Name": "rape",
           "InternLetter": "C"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "D"
         },
         {
-          "Name": "Zuckerrübe",
+          "Name": "sugarBeet",
           "InternLetter": "E"
         }
       ],
@@ -894,48 +894,48 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 15,
       "Image": "Stadium_three_question3.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Längenwachstum/Schossen",
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Entwicklung vegetativer Pflanzenteile/Rübenkörper",
+          "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
           "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Entwicklung der Blütenanlage",
+          "StadiumName": "stadiumInfloresceneEmergence",
           "ImageSource": "stadium_entwicklungbluetenanlage.png",
           "InternNumber": 3
         },
         {
-          "StadiumName": "Fruchtentwicklung",
+          "StadiumName": "stadiumFruitDevelopment",
           "ImageSource": "bluete.png",
           "InternNumber": 4
         }
       ],
       "Plants": [
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "A"
         },
         {
-          "Name": "Mais",
+          "Name": "corn",
           "InternLetter": "B"
         },
         {
-          "Name": "Raps",
+          "Name": "rape",
           "InternLetter": "C"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "D"
         },
         {
-          "Name": "Zuckerrübe",
+          "Name": "sugarBeet",
           "InternLetter": "E"
         }
       ],
@@ -947,48 +947,48 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 16,
       "Image": "Stadium_three_question4.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Längenwachstum/Schossen",
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Entwicklung vegetativer Pflanzenteile/Rübenkörper",
+          "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
           "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Entwicklung der Blütenanlage",
+          "StadiumName": "stadiumInfloresceneEmergence",
           "ImageSource": "stadium_entwicklungbluetenanlage.png",
           "InternNumber": 3
         },
         {
-          "StadiumName": "Fruchtentwicklung",
+          "StadiumName": "stadiumFruitDevelopment",
           "ImageSource": "bluete.png",
           "InternNumber": 4
         }
       ],
       "Plants": [
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "A"
         },
         {
-          "Name": "Mais",
+          "Name": "corn",
           "InternLetter": "B"
         },
         {
-          "Name": "Raps",
+          "Name": "rape",
           "InternLetter": "C"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "D"
         },
         {
-          "Name": "Zuckerrübe",
+          "Name": "sugarBeet",
           "InternLetter": "E"
         }
       ],
@@ -1000,48 +1000,48 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 17,
       "Image": "Stadium_three_question5.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Längenwachstum/Schossen",
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Entwicklung vegetativer Pflanzenteile/Rübenkörper",
+          "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
           "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Entwicklung der Blütenanlage",
+          "StadiumName": "stadiumInfloresceneEmergence",
           "ImageSource": "stadium_entwicklungbluetenanlage.png",
           "InternNumber": 3
         },
         {
-          "StadiumName": "Fruchtentwicklung",
+          "StadiumName": "stadiumFruitDevelopment",
           "ImageSource": "bluete.png",
           "InternNumber": 4
         }
       ],
       "Plants": [
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "A"
         },
         {
-          "Name": "Mais",
+          "Name": "corn",
           "InternLetter": "B"
         },
         {
-          "Name": "Raps",
+          "Name": "rape",
           "InternLetter": "C"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "D"
         },
         {
-          "Name": "Zuckerrübe",
+          "Name": "sugarBeet",
           "InternLetter": "E"
         }
       ],
@@ -1053,48 +1053,48 @@
       "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
       "InternId": 18,
       "Image": "Stadium_three_question6.png",
-      "QuestionText": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
+      "QuestionText": "assignPlantAndStadium",
       "Stadiums": [
         {
-          "StadiumName": "Längenwachstum/Schossen",
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
           "ImageSource": "stadium_laengenwachstumschossen.png",
           "InternNumber": 1
         },
         {
-          "StadiumName": "Entwicklung vegetativer Pflanzenteile/Rübenkörper",
+          "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
           "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
           "InternNumber": 2
         },
         {
-          "StadiumName": "Entwicklung der Blütenanlage",
+          "StadiumName": "stadiumInfloresceneEmergence",
           "ImageSource": "stadium_entwicklungbluetenanlage.png",
           "InternNumber": 3
         },
         {
-          "StadiumName": "Fruchtentwicklung",
+          "StadiumName": "stadiumFruitDevelopment",
           "ImageSource": "bluete.png",
           "InternNumber": 4
         }
       ],
       "Plants": [
         {
-          "Name": "Kartoffel",
+          "Name": "potato",
           "InternLetter": "A"
         },
         {
-          "Name": "Mais",
+          "Name": "corn",
           "InternLetter": "B"
         },
         {
-          "Name": "Raps",
+          "Name": "rape",
           "InternLetter": "C"
         },
         {
-          "Name": "Weizen",
+          "Name": "wheat",
           "InternLetter": "D"
         },
         {
-          "Name": "Zuckerrübe",
+          "Name": "sugarBeet",
           "InternLetter": "E"
         }
       ],
@@ -1107,25 +1107,25 @@
     {
       "$type": "DLR_Data_App.Models.Survey.QuestionIntrospectionPage, DLR_Data_App",
       "InternId": 1,
-      "QuestionText": "Ich kann die Sorte von Feldfrüchten zuverlässig erkennen",
+      "QuestionText": "selfEvaluationCrop",
       "Difficulty": -1
     },
     {
       "$type": "DLR_Data_App.Models.Survey.QuestionIntrospectionPage, DLR_Data_App",
       "InternId": 2,
-      "QuestionText": "Ich kann phänologische Entwicklungsstadien von Feldfrüchten zuverlässig erkennen",
+      "QuestionText": "selfEvaluationStadium",
       "Difficulty": -1
     },
     {
       "$type": "DLR_Data_App.Models.Survey.QuestionIntrospectionPage, DLR_Data_App",
       "InternId": 3,
-      "QuestionText": "Ich kann den Bedeckungsgrad des Bodens durch Pflanzen zuverlässig schätzen",
+      "QuestionText": "selfEvaluationCoverage",
       "Difficulty": -1
     },
     {
       "$type": "DLR_Data_App.Models.Survey.QuestionIntrospectionPage, DLR_Data_App",
       "InternId": 4,
-      "QuestionText": "Ich kann den Anteil grüner Pflanzenbestandteile am gesamten Pflanzenmaterial zuverlässig schätzen",
+      "QuestionText": "selfEvaluationGreenCoverage",
       "Difficulty": -1
     }
   ]

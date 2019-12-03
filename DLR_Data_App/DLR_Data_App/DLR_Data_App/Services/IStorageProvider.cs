@@ -8,6 +8,7 @@ namespace DLR_Data_App.Services
     public interface IStorageProvider
     {
         Dictionary<string, List<IQuestionContent>> LoadQuestions();
+        Dictionary<string, string> LoadTranslations();
         List<SurveyMenuItem> LoadSurveyMenuItems();
         SurveyResults LoadAnswers(string userId);
         void SaveAnswers(SurveyResults results);

@@ -8,6 +8,7 @@ using System.Drawing;
 using DLR_Data_App.Models.Survey;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using System.Globalization;
 
 namespace DLR_Data_App.Services
 {
@@ -28,6 +29,8 @@ namespace DLR_Data_App.Services
         /// Dictionary containing all lists to save the answers. The order of each List is crucial to determine streak and should not be changed ever
         /// </summary>
         private static Dictionary<string, List<IUserAnswer>> Answers = new Dictionary<string, List<IUserAnswer>>();
+
+        private static Dictionary<string, string> Translations = new Dictionary<string, string>();
 
         /// <summary>
         /// List containing all SurveyMenuItems, which contain all relevant information over the different survey types
@@ -52,9 +55,18 @@ namespace DLR_Data_App.Services
         public static void Initilize(string userId)
         {
             UserId = userId;
+            Translations = StorageProvider.LoadTranslations();
             Questions = StorageProvider.LoadQuestions();
+            foreach (var question in Questions.SelectMany(q => q.Value))
+            {
+                question.Translate(Translations);
+            }
             Answers = LoadAnswerToContinue();
             SurveyMenuItems = new ObservableCollection<SurveyMenuItem>(StorageProvider.LoadSurveyMenuItems());
+            foreach (var surveyMenuItem in SurveyMenuItems)
+            {
+                surveyMenuItem.ChapterName = Helpers.GetCurrentLanguageTranslation(Translations, surveyMenuItem.ChapterName);
+            }
         }
 
         private static Dictionary<string, List<IUserAnswer>> LoadAnswerToContinue()

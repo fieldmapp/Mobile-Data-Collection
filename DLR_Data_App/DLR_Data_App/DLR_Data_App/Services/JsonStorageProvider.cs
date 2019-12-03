@@ -88,5 +88,10 @@ namespace DLR_Data_App.Services
                 streamWriter.Write(content);
             }
         }
+
+        public Dictionary<string, string> LoadTranslations()
+        {
+            return DeserializeFromAsset<Dictionary<string, string>>("translations");
+        }
     }
 }

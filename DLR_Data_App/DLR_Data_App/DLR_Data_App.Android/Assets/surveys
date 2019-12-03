@@ -5,7 +5,7 @@
       3,
       4
     ],
-    "ChapterName": "Bedeckungsgrade",
+    "ChapterName": "chapterCoverage",
     "AnswersNeeded": 4
   },
   {
@@ -13,7 +13,7 @@
     "IntrospectionQuestion": [
       2
     ],
-    "ChapterName": "Sortenerkennung",
+    "ChapterName": "chapterPlantIdentification",
     "AnswersNeeded": 2
   },
   {
@@ -21,7 +21,7 @@
     "IntrospectionQuestion": [
       1
     ],
-    "ChapterName": "Wuchsstadien",
+    "ChapterName": "chapterGrewStages",
     "AnswersNeeded": 6
   }
 ]

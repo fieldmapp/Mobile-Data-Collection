@@ -9,5 +9,7 @@ namespace DLR_Data_App.Models.Survey
     {
         int Difficulty { get; }
         int InternId { get; }
+
+        void Translate(Dictionary<string, string> translations);
     }
 }

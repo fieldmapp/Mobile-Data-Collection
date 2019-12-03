@@ -10,6 +10,7 @@ using DLR_Data_App.Localizations;
 using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 using System.Linq;
+using System.Globalization;
 
 namespace DLR_Data_App.Services
 {
@@ -205,5 +206,32 @@ namespace DLR_Data_App.Services
         /// <param name="project">Project of which the table name should be retured.</param>
         /// <returns>Unique table name for the given project.</returns>
         public static string GetTableName(this Project project) => Parser.GetEnglishStringFromJsonList(project.Title, project.Languages) + "_" + project.Id;
+
+        public static string GetEnglishTranslation(Dictionary<string,string> translations, string translationKey)
+        {
+            const string englishLanguageExtension = "English";
+            translationKey = translationKey + englishLanguageExtension;
+            if (!translations.TryGetValue(translationKey, out string translation))
+            {
+                translation = "translation missing";
+            }
+            return translation;
+        }
+
+        public static string GetCurrentLanguageTranslation(Dictionary<string, string> translations, string translationKey)
+        {
+            string currentLanguageExtension = CultureInfo.CurrentUICulture.EnglishName;
+            int firstSpaceInCurrentLanguageExtension = currentLanguageExtension.IndexOf(' ');
+            if (firstSpaceInCurrentLanguageExtension != -1)
+            {
+                currentLanguageExtension = currentLanguageExtension.Substring(0, firstSpaceInCurrentLanguageExtension);
+            }
+            var currentLanguageTranslationKey = translationKey + currentLanguageExtension;
+            if (!translations.TryGetValue(currentLanguageTranslationKey, out string translation))
+            {
+                translation = GetEnglishTranslation(translations, translationKey);
+            }
+            return translation;
+        }
     }
 }

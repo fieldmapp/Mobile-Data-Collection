@@ -5,6 +5,7 @@ using System.Text;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using System.Linq;
+using DLR_Data_App.Services;
 
 namespace DLR_Data_App.Models.Survey
 {
@@ -120,6 +121,19 @@ namespace DLR_Data_App.Models.Survey
             CorrectAnswerFruitType = correctAnswerFruitType;
             CorrectAnswerStadium = correctAnswerStadium;
             QuestionText = questionText;
+        }
+
+        public void Translate(Dictionary<string, string> translations)
+        {
+            QuestionText = Helpers.GetCurrentLanguageTranslation(translations, QuestionText);
+            foreach (var stadium in Stadiums)
+            {
+                stadium.StadiumName = Helpers.GetCurrentLanguageTranslation(translations, stadium.StadiumName);
+            }
+            foreach (var plant in Plants)
+            {
+                plant.Name = Helpers.GetCurrentLanguageTranslation(translations, plant.Name);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿//Main contributors: Maya Koehnen, Henning Woydt
+using DLR_Data_App.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -141,6 +142,11 @@ namespace DLR_Data_App.Models.Survey
             Image2Source = im2Source;
             Image3Source = im3Source;
             Image4Source = im4Source;
+        }
+
+        public void Translate(Dictionary<string, string> translations)
+        {
+            QuestionText = Helpers.GetCurrentLanguageTranslation(translations, QuestionText);
         }
     }
 }

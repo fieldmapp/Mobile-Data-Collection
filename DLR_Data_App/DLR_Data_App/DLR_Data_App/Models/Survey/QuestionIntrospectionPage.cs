@@ -1,4 +1,5 @@
 ﻿//Main contributors: Max Moebius, Maya Koehnen
+using DLR_Data_App.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,6 +48,11 @@ namespace DLR_Data_App.Models.Survey
         {
             InternId = internId;
             QuestionText = text;
+        }
+
+        public void Translate(Dictionary<string, string> translations)
+        {
+            QuestionText = Helpers.GetCurrentLanguageTranslation(translations, QuestionText);
         }
     }
 }
