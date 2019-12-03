@@ -26,58 +26,100 @@ namespace DLR_Data_App.Services
             {
                 if (!(Xamarin.Essentials.Accelerometer.IsMonitoring))
                 {
-                    Xamarin.Essentials.Accelerometer.Start(_speed);
+                    try
+                    {
+                        Xamarin.Essentials.Accelerometer.Start(_speed);
+                    }
+                    catch (FeatureNotEnabledException) { }
                 }
             }
             else
             {
-                Xamarin.Essentials.Accelerometer.Stop();
+                try
+                {
+                    Xamarin.Essentials.Accelerometer.Stop();
+                }
+                catch (FeatureNotEnabledException) { }
+
             }
 
             if (Preferences.Get("barometer", true))
             {
                 if (!(Xamarin.Essentials.Barometer.IsMonitoring))
                 {
-                    Xamarin.Essentials.Barometer.Start(_speed);
+                    try
+                    {
+                        Xamarin.Essentials.Barometer.Start(_speed);
+                    }
+                    catch (FeatureNotEnabledException) { }
+
                 }
             }
             else
             {
-                Xamarin.Essentials.Barometer.Stop();
+                try
+                {
+                    Xamarin.Essentials.Barometer.Stop();
+                }
+                catch (FeatureNotEnabledException) { }
             }
 
             if (Preferences.Get("compass", true))
             {
                 if (!(Xamarin.Essentials.Compass.IsMonitoring))
                 {
-                    Xamarin.Essentials.Compass.Start(_speed);
+                    try
+                    {
+                        Xamarin.Essentials.Compass.Start(_speed);
+                    }
+                    catch (FeatureNotEnabledException) { }
                 }
             }
             else
             {
-                Xamarin.Essentials.Compass.Stop();
+                try
+                {
+                    Xamarin.Essentials.Compass.Stop();
+                }
+                catch (FeatureNotEnabledException) { }
             }
 
             if (Preferences.Get("gyroscope", true))
             {
                 if (!(Xamarin.Essentials.Gyroscope.IsMonitoring))
                 {
-                    Xamarin.Essentials.Gyroscope.Start(_speed);
+                    try
+                    {
+                        Xamarin.Essentials.Gyroscope.Start(_speed);
+                    }
+                    catch (FeatureNotEnabledException) { }
                 }
             }
             else
             {
-                Xamarin.Essentials.Gyroscope.Stop();
+                try
+                {
+                    Xamarin.Essentials.Gyroscope.Stop();
+                }
+                catch (FeatureNotEnabledException) { }
             }
 
             if (Preferences.Get("magnetometer", true))
             {
                 if (Xamarin.Essentials.Magnetometer.IsMonitoring) return;
-                Xamarin.Essentials.Magnetometer.Start(_speed);
+                try
+                {
+                    Xamarin.Essentials.Magnetometer.Start(_speed);
+                }
+                catch (FeatureNotEnabledException) { }
             }
             else
             {
-                Xamarin.Essentials.Magnetometer.Stop();
+                try
+                {
+                    Xamarin.Essentials.Magnetometer.Stop();
+                }
+                catch (FeatureNotEnabledException) { }
             }
         }
 
@@ -109,7 +151,7 @@ namespace DLR_Data_App.Services
             while (true)
             {
                 await Gps.GetLocationAsync();
-                
+
                 await Task.Delay(10000);
             }
         }
