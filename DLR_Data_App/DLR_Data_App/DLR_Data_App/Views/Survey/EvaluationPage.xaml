@@ -19,7 +19,7 @@
 
     <ContentPage.Content>
         <StackLayout Padding="20" HorizontalOptions="CenterAndExpand">
-            <Label Margin="0,0,0,30" Text="Ergebnisse" HorizontalOptions="CenterAndExpand" FontSize="Large"/>
+            <Label Margin="0,0,0,30" Text="{res:Translate results}" HorizontalOptions="CenterAndExpand" FontSize="Large"/>
             <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RowSpacing="15">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -28,7 +28,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label FontSize="Medium" Margin="0,0,0,40" Text="Ihre Antworten haben im Mittel zu" HorizontalOptions="CenterAndExpand"/>
+                <Label FontSize="Medium" Margin="0,0,0,40" Text="{res:Translate answersCorrectAveragePart1}" HorizontalOptions="CenterAndExpand"/>
                 <ProgressBar Grid.Row="1" x:Name="PercentBar" ScaleY="3" ProgressColor="{Binding ProgressColor}"  
                              Progress="{Binding PercentBarValue}">
                         <ProgressBar.GestureRecognizers>
@@ -45,7 +45,7 @@
                             NumberOfTapsRequired="1" />
                     </Label.GestureRecognizers>
                 </Label>
-                <Label HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontSize="Medium" Grid.Row="3" Text="mit den korrekten Lösungen übereingestimmt."/>
+                <Label HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontSize="Medium" Grid.Row="3" Text="{res:Translate answersCorrectAveragePart2}"/>
             </Grid>
             <Grid Margin="0,5,0,10" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand">
                 <Grid.ColumnDefinitions>
@@ -53,7 +53,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Image Source="infoIcon.png" HeightRequest="15"/>
-                <Label Grid.Column="1" FontSize="Small" Text="Klicken Sie für mehr Informationen">
+                <Label Grid.Column="1" FontSize="Small" Text="{res:Translate tapForMoreInfo}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer
                             Tapped="DetailsClicked"

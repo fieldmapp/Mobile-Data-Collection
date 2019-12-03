@@ -1,4 +1,5 @@
 ﻿//Main contributors: Max Moebius, Henning Woydt
+using DLR_Data_App.Localizations;
 using DLR_Data_App.Models.Survey;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,9 @@ namespace DLR_Data_App.Views.Survey
         /// <summary>
         /// Bindings of QuestionItem, AnswerItem and Header
         /// </summary>
-        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), typeof(QuestionImageCheckerPage), typeof(ImageCheckerPage), new QuestionImageCheckerPage(1, "Wo sehen sie die Feldfruchtsorte Weizen abgebildet?", 1, 0, 0, 1, 0, "Q1_G1_F1_B1_klein.png", "Q1_G1_F1_B2_klein.png", "Q1_G1_F1_B3_klein.png", "Q1_G1_F1_B4_klein.png"), BindingMode.OneWay);
+        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), typeof(QuestionImageCheckerPage), typeof(ImageCheckerPage), new QuestionImageCheckerPage(1, string.Empty, 1, 0, 0, 1, 0, string.Empty, string.Empty, string.Empty, string.Empty), BindingMode.OneWay);
         public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerImageCheckerPage), typeof(ImageCheckerPage), null);
-        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(string), typeof(ImageCheckerPage), "demo", BindingMode.OneWay);
+        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(string), typeof(ImageCheckerPage), string.Empty, BindingMode.OneWay);
 
         /// <summary>
         /// Item of the given Question
@@ -85,7 +86,7 @@ namespace DLR_Data_App.Views.Survey
             PictureD.BindingContext = this;
             Frage.BindingContext = this;
 
-            Header = $"Frage {answersGiven + 1}/{answersNeeded} Id {question.InternId}";
+            Header = string.Format(AppResources.questionEntryFormat, answersGiven + 1, answersNeeded, question.InternId);
             QuestionItem = question;
             EvalButton.BindingContext = this;
             EvaluationTextColor = answersGiven >= answersNeeded ? Color.Green : Color.LightGray;
@@ -118,7 +119,7 @@ namespace DLR_Data_App.Views.Survey
             if(PictureA.BorderColor == nonSelectedColor && PictureB.BorderColor == nonSelectedColor 
                 && PictureC.BorderColor == nonSelectedColor && PictureD.BorderColor == nonSelectedColor)
             {
-                DisplayAlert("Hinweis", "Bitte vervollständigen Sie Ihre Auswahl um fortzufahren.", "OK");
+                DisplayAlert(AppResources.hint, AppResources.completeSelectionToAdvance, AppResources.ok);
                 return;
             }
 

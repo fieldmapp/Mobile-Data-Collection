@@ -1,4 +1,5 @@
 ﻿//Main contributors: Maya Koehnen
+using DLR_Data_App.Localizations;
 using DLR_Data_App.Models.Survey;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,9 @@ namespace DLR_Data_App.Views.Survey
         /// <summary>
         /// Bindings of QuestionItem, AnswerItem and Header
         /// </summary>
-        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), typeof(QuestionDoubleSliderPage), typeof(DoubleSliderPage), new QuestionDoubleSliderPage(1, 1, "DoubleSlider_one_question1.png", 7, 4), BindingMode.OneWay);
+        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), typeof(QuestionDoubleSliderPage), typeof(DoubleSliderPage), new QuestionDoubleSliderPage(1, 1, string.Empty, 7, 4), BindingMode.OneWay);
         public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem),  typeof(AnswerDoubleSliderPage), typeof(DoubleSliderPage), null, BindingMode.OneWay);
-        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(string), typeof(DoubleSliderPage), "demo", BindingMode.OneWay);
+        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(string), typeof(DoubleSliderPage), string.Empty, BindingMode.OneWay);
 
         public event EventHandler<PageResult> PageFinished;
 
@@ -73,7 +74,7 @@ namespace DLR_Data_App.Views.Survey
             Picture.BindingContext = this;
             QuestionText.BindingContext = this;
             HeaderText.BindingContext = this;
-            Header = $"Frage {answersGiven + 1}/{answersNeeded} Id {question.InternId}";
+            Header = string.Format(AppResources.questionEntryFormat, answersGiven + 1, answersNeeded, question.InternId);
             EvalButton.BindingContext = this;
             EvaluationTextColor = answersGiven >= answersNeeded ? Color.Green : Color.LightGray;
         }
@@ -105,7 +106,7 @@ namespace DLR_Data_App.Views.Survey
 
             if(sliderA.Value == 0 && sliderB.Value == 0 && !hintNoticed)
             {
-                DisplayAlert("Hinweis", "Ist Ihre Auswahl so in Ordnung?", "OK");
+                DisplayAlert(AppResources.hint, AppResources.selectionCorrectQuestion, AppResources.ok);
                 hintNoticed = true;
                 return;
             }

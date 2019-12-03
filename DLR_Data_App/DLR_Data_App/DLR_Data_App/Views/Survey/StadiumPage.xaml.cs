@@ -1,4 +1,5 @@
 ﻿//Main contributors: Maximilian Enderling, Maya Koehnen
+using DLR_Data_App.Localizations;
 using DLR_Data_App.Models.Survey;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace DLR_Data_App.Views.Survey
         /// </summary>
         public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem),typeof(QuestionStadiumPage), typeof(StadiumPage), null, BindingMode.OneWay);
         public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerStadiumPage), typeof(StadiumPage), null, BindingMode.OneWay);
-        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(string), typeof(StadiumPage), "demo", BindingMode.OneWay);
+        public static readonly BindableProperty HeaderProperty = BindableProperty.Create(nameof(Header), typeof(string), typeof(StadiumPage), string.Empty, BindingMode.OneWay);
 
         /// <summary>
         /// Item of the given Question
@@ -80,7 +81,7 @@ namespace DLR_Data_App.Views.Survey
             QuestionText.BindingContext = this;
             StadiumInlinePicker.ItemSource = StadiumCollection;
             PlantInlinePicker.ItemSource = PlantCollection;
-            Header = $"Frage {answersGiven + 1}/{answersNeeded} Id {question.InternId}";
+            Header = string.Format(AppResources.questionEntryFormat, answersGiven + 1, answersNeeded, question.InternId);
             HeaderText.BindingContext = this;
             PageFinished += StadiumPage_PageFinished;
             EvalButton.BindingContext = this;
@@ -107,7 +108,7 @@ namespace DLR_Data_App.Views.Survey
             var selectedPlant = (PlantInlinePicker.SelectedItem as Plant)?.InternLetter;
             if (selectedPlant == null || selectedStadium == 0)
             {
-                DisplayAlert("Hinweis", "Bitte vervollständigen Sie Ihre Auswahl um fortzufahren.", "OK");
+                DisplayAlert(AppResources.hint, AppResources.completeSelectionToAdvance, AppResources.ok);
                 return;
             }
 

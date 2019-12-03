@@ -32,15 +32,15 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <ctrls:RadioButton x:Name="Button1" Grid.Row="0" Title="trifft zu" Tapped="Button_Tapped" FontSize="Medium"/>
-                <ctrls:RadioButton x:Name="Button2" Grid.Row="1" Title="trifft eher zu" Tapped="Button_Tapped" FontSize="Large"/> <!--FontSize gibt es noch nicht-->
-                <ctrls:RadioButton x:Name="Button3" Grid.Row="2" Title="trifft teilweise zu" Tapped="Button_Tapped"/>
-                <ctrls:RadioButton x:Name="Button4" Grid.Row="3" Title="trifft eher nicht zu" Tapped="Button_Tapped"/>
-                <ctrls:RadioButton x:Name="Button5" Grid.Row="4" Title="trifft nicht zu" Tapped="Button_Tapped"/>
+                <ctrls:RadioButton x:Name="Button1" Grid.Row="0" Title="{res:Translate introspection0}" Tapped="Button_Tapped" FontSize="Medium"/>
+                <ctrls:RadioButton x:Name="Button2" Grid.Row="1" Title="{res:Translate introspection1}" Tapped="Button_Tapped" FontSize="Large"/> <!--FontSize gibt es noch nicht-->
+                <ctrls:RadioButton x:Name="Button3" Grid.Row="2" Title="{res:Translate introspection2}" Tapped="Button_Tapped"/>
+                <ctrls:RadioButton x:Name="Button4" Grid.Row="3" Title="{res:Translate introspection3}" Tapped="Button_Tapped"/>
+                <ctrls:RadioButton x:Name="Button5" Grid.Row="4" Title="{res:Translate introspection4}" Tapped="Button_Tapped"/>
             </Grid>
 
             <Button Grid.Column="1"
-                    Text="Weiter" FontSize="Medium"
+                    Text="{res:Translate next}" FontSize="Medium"
                     BackgroundColor="{StaticResource Button}"
                     TextColor="{StaticResource TextColor}"
                     VerticalOptions="End"

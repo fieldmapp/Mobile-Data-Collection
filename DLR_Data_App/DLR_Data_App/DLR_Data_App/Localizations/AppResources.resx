@@ -141,6 +141,12 @@
   <data name="altitude" xml:space="preserve">
     <value>Altitude</value>
   </data>
+  <data name="answersCorrectAveragePart1" xml:space="preserve">
+    <value>Your answers were averagely </value>
+  </data>
+  <data name="answersCorrectAveragePart2" xml:space="preserve">
+    <value> correct.</value>
+  </data>
   <data name="appclosewarning" xml:space="preserve">
     <value>Next tap will close the app.</value>
   </data>
@@ -162,6 +168,9 @@
   <data name="compass" xml:space="preserve">
     <value>Compass</value>
   </data>
+  <data name="completeSelectionToAdvance" xml:space="preserve">
+    <value>Please complete your selection to advance.</value>
+  </data>
   <data name="corruptentry" xml:space="preserve">
     <value>Entry corrupt</value>
   </data>
@@ -177,11 +186,20 @@
   <data name="degrees" xml:space="preserve">
     <value>Degrees</value>
   </data>
+  <data name="deleteSavedAnswersSurvey" xml:space="preserve">
+    <value>Delete saved answers</value>
+  </data>
   <data name="description" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="details" xml:space="preserve">
+    <value>Details</value>
+  </data>
   <data name="direction" xml:space="preserve">
     <value>Direction</value>
+  </data>
+  <data name="easyWithColon" xml:space="preserve">
+    <value>Easy:</value>
   </data>
   <data name="edit" xml:space="preserve">
     <value>Edit</value>
@@ -191,6 +209,12 @@
   </data>
   <data name="edithelp" xml:space="preserve">
     <value>Please select a date and time to select your dataset you want to edit. In the following list all datasets are listed, while the matching dataset to the time is selected. Tip on the dataset of your choise to edit it.</value>
+  </data>
+  <data name="evaluation" xml:space="preserve">
+    <value>Evaluation</value>
+  </data>
+  <data name="exportAnswersSurvey" xml:space="preserve">
+    <value>Export saved answers</value>
   </data>
   <data name="exportdatabase" xml:space="preserve">
     <value>Export database</value>
@@ -213,8 +237,38 @@
   <data name="gyroscope" xml:space="preserve">
     <value>Gyroscope</value>
   </data>
+  <data name="hardWithColon" xml:space="preserve">
+    <value>Hard:</value>
+  </data>
   <data name="help" xml:space="preserve">
     <value>Help</value>
+  </data>
+  <data name="hint" xml:space="preserve">
+    <value>Hint</value>
+  </data>
+  <data name="hintProfilingListPage" xml:space="preserve">
+    <value>Here you see every available category for this quiz.
+Tap on one to answer the questions of it. For each category you see:
+- how many questions you have allready answered (left)
+- how many questions you need to answer (at least) to finish the category (right)</value>
+  </data>
+  <data name="holdImageToEnlarge" xml:space="preserve">
+    <value>Hold image to enlarge it</value>
+  </data>
+  <data name="introspection0" xml:space="preserve">
+    <value>True</value>
+  </data>
+  <data name="introspection1" xml:space="preserve">
+    <value>Mostly true</value>
+  </data>
+  <data name="introspection2" xml:space="preserve">
+    <value>Somewhat true</value>
+  </data>
+  <data name="introspection3" xml:space="preserve">
+    <value>Mostly not true</value>
+  </data>
+  <data name="introspection4" xml:space="preserve">
+    <value>Not true</value>
   </data>
   <data name="latitude" xml:space="preserve">
     <value>Latitude</value>
@@ -243,6 +297,9 @@
   <data name="min" xml:space="preserve">
     <value>Min</value>
   </data>
+  <data name="moderateWithColon" xml:space="preserve">
+    <value>Moderate:</value>
+  </data>
   <data name="name" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -254,6 +311,9 @@
   </data>
   <data name="newproject" xml:space="preserve">
     <value>New Project</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>Next</value>
   </data>
   <data name="noactiveproject" xml:space="preserve">
     <value>No active project selected. Please select a project and mark it as active.</value>
@@ -273,8 +333,14 @@
   <data name="nouserfound" xml:space="preserve">
     <value>Profile not found</value>
   </data>
+  <data name="ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
   <data name="okay" xml:space="preserve">
     <value>Okay</value>
+  </data>
+  <data name="pleaseMakeSelection" xml:space="preserve">
+    <value>Please make a selection</value>
   </data>
   <data name="pressure" xml:space="preserve">
     <value>Pressure</value>
@@ -365,11 +431,17 @@ Consent of the data subject means any freely given, specific, informed and unamb
   <data name="profiling" xml:space="preserve">
     <value>Profiling</value>
   </data>
+  <data name="profilingResultsDifferentDifficulties" xml:space="preserve">
+    <value>Here you can see your results in the different difficulties</value>
+  </data>
   <data name="projectdetails" xml:space="preserve">
     <value>Project Details</value>
   </data>
   <data name="projects" xml:space="preserve">
     <value>Projects</value>
+  </data>
+  <data name="questionEntryFormat" xml:space="preserve">
+    <value>Question {0}/{1} Id {2}</value>
   </data>
   <data name="rememberlogin" xml:space="preserve">
     <value>Remember login</value>
@@ -401,6 +473,9 @@ Consent of the data subject means any freely given, specific, informed and unamb
   <data name="reset" xml:space="preserve">
     <value>Reset</value>
   </data>
+  <data name="results" xml:space="preserve">
+    <value>Results</value>
+  </data>
   <data name="save" xml:space="preserve">
     <value>Save</value>
   </data>
@@ -412,6 +487,9 @@ Consent of the data subject means any freely given, specific, informed and unamb
   </data>
   <data name="selectform" xml:space="preserve">
     <value>Select Form</value>
+  </data>
+  <data name="selectionCorrectQuestion" xml:space="preserve">
+    <value>Is your selection correct?</value>
   </data>
   <data name="selecttime" xml:space="preserve">
     <value>Select time</value>
@@ -436,6 +514,12 @@ Consent of the data subject means any freely given, specific, informed and unamb
   </data>
   <data name="successful" xml:space="preserve">
     <value>Successful</value>
+  </data>
+  <data name="tapForMorInfo" xml:space="preserve">
+    <value>Tap for more information</value>
+  </data>
+  <data name="tapOnBarForInfo" xml:space="preserve">
+    <value>Tap on a bar for more informations</value>
   </data>
   <data name="title" xml:space="preserve">
     <value>Title</value>

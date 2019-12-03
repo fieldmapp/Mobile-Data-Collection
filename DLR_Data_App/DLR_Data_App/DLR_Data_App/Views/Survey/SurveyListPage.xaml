@@ -16,7 +16,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Image Margin="0,5,0,0" Source="infoIcon.png" HeightRequest="30" VerticalOptions="CenterAndExpand"/>
-            <Label Grid.Column="1" FontSize="Medium" Text="Hinweis" VerticalOptions="CenterAndExpand" >
+            <Label Grid.Column="1" FontSize="Medium" Text="{res:Translate hint}" VerticalOptions="CenterAndExpand" >
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                       Tapped = "HintClicked"
@@ -56,10 +56,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="Gespeicherte Antworten löschen" Clicked="DeleteAnswersClicked"/>
-        <Button Text="Antworten exportieren" Clicked="ExportAnwersClicked"/>
+        <Button Text="{res:Translate deleteSavedAnswersSurvey}" Clicked="DeleteAnswersClicked"/>
+        <Button Text="{res:Translate exportAnswersSurvey}" Clicked="ExportAnwersClicked"/>
         <!--Button to navigate to the evaluation main page-->
-        <Button Text="Auswertung" Clicked="EvaluationClicked"/>
+        <Button Text="{res:Translate evaluation}" Clicked="EvaluationClicked"/>
     </StackLayout>
 
 </ContentPage>

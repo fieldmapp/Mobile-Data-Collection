@@ -44,7 +44,7 @@ namespace DLR_Data_App.Views.Survey
         /// Result for medium questions
         /// Label which displays result als text
         public static readonly BindableProperty PercentMediumLabelProperty = BindableProperty.Create(nameof(PercentMediumLabelText),
-            typeof(String), typeof(EvaluationPage), "100%", BindingMode.OneWay);
+            typeof(String), typeof(EvaluationPage), string.Empty, BindingMode.OneWay);
         public String PercentMediumLabelText
         {
             get { return (String)GetValue(PercentMediumLabelProperty); }
@@ -70,7 +70,7 @@ namespace DLR_Data_App.Views.Survey
         /// Result for hard questions
         /// Label which displays result als text
         public static readonly BindableProperty PercentHardLabelProperty = BindableProperty.Create(nameof(PercentHardLabelText),
-            typeof(String), typeof(EvaluationPage), "100%", BindingMode.OneWay);
+            typeof(String), typeof(EvaluationPage), string.Empty, BindingMode.OneWay);
         public String PercentHardLabelText
         {
             get { return (String)GetValue(PercentHardLabelProperty); }

@@ -1,5 +1,6 @@
 ﻿//Main contributors: Max Moebius, Henning Woydt
 using DLR_Data_App.Controls;
+using DLR_Data_App.Localizations;
 using DLR_Data_App.Models.Survey;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace DLR_Data_App.Views.Survey
         /// <summary>
         /// Bindings of QuestionItem and AnswerItem
         /// </summary>
-        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), typeof(QuestionIntrospectionPage), typeof(IntrospectionPage), new QuestionIntrospectionPage(1,"demo"), BindingMode.OneWay);
+        public static readonly BindableProperty QuestionItemProperty = BindableProperty.Create(nameof(QuestionItem), typeof(QuestionIntrospectionPage), typeof(IntrospectionPage), new QuestionIntrospectionPage(1, string.Empty), BindingMode.OneWay);
         public static readonly BindableProperty AnswerItemProperty = BindableProperty.Create(nameof(AnswerItem), typeof(AnswerIntrospectionPage), typeof(IntrospectionPage), null, BindingMode.OneWay);
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace DLR_Data_App.Views.Survey
             var selectedRadioButton = RadioButtonIndex.Keys.FirstOrDefault(r => r.IsChecked);
             if (selectedRadioButton == null)
             {
-                DisplayAlert("Hinweis", "Bitte eine Auswahl treffen", "OK");
+                DisplayAlert(AppResources.hint, AppResources.pleaseMakeSelection, AppResources.ok);
                 return;
             }
 

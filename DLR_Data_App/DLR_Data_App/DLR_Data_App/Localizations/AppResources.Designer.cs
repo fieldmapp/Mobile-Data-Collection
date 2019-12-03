@@ -133,6 +133,24 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Your answers were averagely  ähnelt.
+        /// </summary>
+        internal static string answersCorrectAveragePart1 {
+            get {
+                return ResourceManager.GetString("answersCorrectAveragePart1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  correct. ähnelt.
+        /// </summary>
+        internal static string answersCorrectAveragePart2 {
+            get {
+                return ResourceManager.GetString("answersCorrectAveragePart2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Next tap will close the app. ähnelt.
         /// </summary>
         internal static string appclosewarning {
@@ -196,6 +214,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please complete your selection to advance. ähnelt.
+        /// </summary>
+        internal static string completeSelectionToAdvance {
+            get {
+                return ResourceManager.GetString("completeSelectionToAdvance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Entry corrupt ähnelt.
         /// </summary>
         internal static string corruptentry {
@@ -241,6 +268,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Delete saved answers ähnelt.
+        /// </summary>
+        internal static string deleteSavedAnswersSurvey {
+            get {
+                return ResourceManager.GetString("deleteSavedAnswersSurvey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Description ähnelt.
         /// </summary>
         internal static string description {
@@ -250,11 +286,29 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Details ähnelt.
+        /// </summary>
+        internal static string details {
+            get {
+                return ResourceManager.GetString("details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Direction ähnelt.
         /// </summary>
         internal static string direction {
             get {
                 return ResourceManager.GetString("direction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Easy: ähnelt.
+        /// </summary>
+        internal static string easyWithColon {
+            get {
+                return ResourceManager.GetString("easyWithColon", resourceCulture);
             }
         }
         
@@ -282,6 +336,24 @@ namespace DLR_Data_App.Localizations {
         internal static string edithelp {
             get {
                 return ResourceManager.GetString("edithelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Evaluation ähnelt.
+        /// </summary>
+        internal static string evaluation {
+            get {
+                return ResourceManager.GetString("evaluation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Export saved answers ähnelt.
+        /// </summary>
+        internal static string exportAnswersSurvey {
+            get {
+                return ResourceManager.GetString("exportAnswersSurvey", resourceCulture);
             }
         }
         
@@ -349,11 +421,95 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hard: ähnelt.
+        /// </summary>
+        internal static string hardWithColon {
+            get {
+                return ResourceManager.GetString("hardWithColon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Help ähnelt.
         /// </summary>
         internal static string help {
             get {
                 return ResourceManager.GetString("help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hint ähnelt.
+        /// </summary>
+        internal static string hint {
+            get {
+                return ResourceManager.GetString("hint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Here you see every available category for this quiz.
+        ///Tap on one to answer the questions of it. For each category you see:
+        ///- how many questions you have allready answered (left)
+        ///- how many questions you need to answer (at least) to finish the category (right) ähnelt.
+        /// </summary>
+        internal static string hintProfilingListPage {
+            get {
+                return ResourceManager.GetString("hintProfilingListPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hold image to enlarge it ähnelt.
+        /// </summary>
+        internal static string holdImageToEnlarge {
+            get {
+                return ResourceManager.GetString("holdImageToEnlarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die True ähnelt.
+        /// </summary>
+        internal static string introspection0 {
+            get {
+                return ResourceManager.GetString("introspection0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Mostly true ähnelt.
+        /// </summary>
+        internal static string introspection1 {
+            get {
+                return ResourceManager.GetString("introspection1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Somewhat true ähnelt.
+        /// </summary>
+        internal static string introspection2 {
+            get {
+                return ResourceManager.GetString("introspection2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Mostly not true ähnelt.
+        /// </summary>
+        internal static string introspection3 {
+            get {
+                return ResourceManager.GetString("introspection3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Not true ähnelt.
+        /// </summary>
+        internal static string introspection4 {
+            get {
+                return ResourceManager.GetString("introspection4", resourceCulture);
             }
         }
         
@@ -439,6 +595,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Moderate: ähnelt.
+        /// </summary>
+        internal static string moderateWithColon {
+            get {
+                return ResourceManager.GetString("moderateWithColon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
         internal static string name {
@@ -471,6 +636,15 @@ namespace DLR_Data_App.Localizations {
         internal static string newproject {
             get {
                 return ResourceManager.GetString("newproject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Next ähnelt.
+        /// </summary>
+        internal static string next {
+            get {
+                return ResourceManager.GetString("next", resourceCulture);
             }
         }
         
@@ -529,11 +703,29 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ok ähnelt.
+        /// </summary>
+        internal static string ok {
+            get {
+                return ResourceManager.GetString("ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Okay ähnelt.
         /// </summary>
         internal static string okay {
             get {
                 return ResourceManager.GetString("okay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please make a selection ähnelt.
+        /// </summary>
+        internal static string pleaseMakeSelection {
+            get {
+                return ResourceManager.GetString("pleaseMakeSelection", resourceCulture);
             }
         }
         
@@ -592,6 +784,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Here you can see your results in the different difficulties ähnelt.
+        /// </summary>
+        internal static string profilingResultsDifferentDifficulties {
+            get {
+                return ResourceManager.GetString("profilingResultsDifferentDifficulties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Project Details ähnelt.
         /// </summary>
         internal static string projectdetails {
@@ -606,6 +807,15 @@ namespace DLR_Data_App.Localizations {
         internal static string projects {
             get {
                 return ResourceManager.GetString("projects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Question {0}/{1} Id {2} ähnelt.
+        /// </summary>
+        internal static string questionEntryFormat {
+            get {
+                return ResourceManager.GetString("questionEntryFormat", resourceCulture);
             }
         }
         
@@ -700,6 +910,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Results ähnelt.
+        /// </summary>
+        internal static string results {
+            get {
+                return ResourceManager.GetString("results", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
         /// </summary>
         internal static string save {
@@ -732,6 +951,15 @@ namespace DLR_Data_App.Localizations {
         internal static string selectform {
             get {
                 return ResourceManager.GetString("selectform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Is your selection correct? ähnelt.
+        /// </summary>
+        internal static string selectionCorrectQuestion {
+            get {
+                return ResourceManager.GetString("selectionCorrectQuestion", resourceCulture);
             }
         }
         
@@ -804,6 +1032,24 @@ namespace DLR_Data_App.Localizations {
         internal static string successful {
             get {
                 return ResourceManager.GetString("successful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Tap for more information ähnelt.
+        /// </summary>
+        internal static string tapForMorInfo {
+            get {
+                return ResourceManager.GetString("tapForMorInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Tap on a bar for more informations ähnelt.
+        /// </summary>
+        internal static string tapOnBarForInfo {
+            get {
+                return ResourceManager.GetString("tapOnBarForInfo", resourceCulture);
             }
         }
         
