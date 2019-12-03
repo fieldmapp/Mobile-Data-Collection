@@ -243,14 +243,14 @@ namespace DLR_Data_App.Services
         public static string GetEnglishStringFromJsonList(string jsonList, string languageList)
         {
             var currentLanguage = CultureInfo.GetCultureInfo("en-GB").EnglishName;
-            var result = "Unable to parse language from json";
+            string result = null;
             var temp = "0";
 
             try
             {
                 // check which languages are available
-                var objects = JObject.Parse(languageList); // parse as object  
-                foreach (var app in objects)
+                var languageObjects = JObject.Parse(languageList); // parse as object  
+                foreach (var app in languageObjects)
                 {
                     var key = app.Key;
                     var value = app.Value.ToString();
@@ -262,8 +262,8 @@ namespace DLR_Data_App.Services
                 }
 
                 // get string from json list in the correct language
-                objects = JObject.Parse(jsonList); // parse as object  
-                foreach (var app in objects)
+                var translationObjects = JObject.Parse(jsonList); // parse as object  
+                foreach (var app in languageObjects)
                 {
                     var key = app.Key;
                     var value = app.Value.ToString();
@@ -273,13 +273,20 @@ namespace DLR_Data_App.Services
                     result = value;
                     break;
                 }
+                if (result == null)
+                {
+                    //just pick first available translation
+                    var languagesEnumerator = languageObjects.GetEnumerator();
+                    languagesEnumerator.MoveNext();
+                    return languagesEnumerator.Current.Key;
+                }
             }
             catch (Exception)
             {
                 result = "Error in JSON file";
             }
 
-            return result;
+            return result ?? "Unable to parse language from json";
         }
 
         public static string GetCurrentLanguageCodeFromJsonList(string languageList)
@@ -302,6 +309,7 @@ namespace DLR_Data_App.Services
                 }
                 if (languageCode == null)
                 {
+                    //just pick first available translation
                     var languagesEnumerator = languageObjects.GetEnumerator();
                     languagesEnumerator.MoveNext();
                     return languagesEnumerator.Current.Key;
