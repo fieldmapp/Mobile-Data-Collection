@@ -26,7 +26,8 @@ namespace DLR_Data_App.Services
             { "inputText", CreateTextInput },
             { "inputSelectOne", CreatePicker },
             { "inputNumeric", CreateNumericInput },
-            { "inputLocation", CreateLocationSelector }
+            { "inputLocation", CreateLocationSelector },
+            { "inputDate", CreateDateSelector }
         };
 
         private static Dictionary<string, Action<Grid, ProjectFormElements, Project>> SpecialTypeToViewCreator = new Dictionary<string, Action<Grid, ProjectFormElements, Project>>
@@ -43,6 +44,14 @@ namespace DLR_Data_App.Services
         private static void CreateRuler(Grid grid, ProjectFormElements element, Project currentProject)
         {
             
+        }
+
+
+        private static void CreateDateSelector(Grid grid, ProjectFormElements element, Project currentProject)
+        {
+            var datePicker = new DatePicker { StyleId = element.Name };
+            grid.Children.Add(datePicker, 0, 1);
+            Grid.SetColumnSpan(datePicker, 2);
         }
 
         private static void CreateLocationSelector(Grid grid, ProjectFormElements element, Project currentProject)
