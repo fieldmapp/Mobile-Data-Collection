@@ -371,13 +371,17 @@ namespace DLR_Data_App.Services
                 if (element.Count <= 0) continue;
 
                 // check if element list in project is initialized, if not initialize
-                if (project.FormList.Find(form => form.Id == connection.FormId).ElementList == null)
+                var matchingProjectForm = project.FormList.Find(form => form.Id == connection.FormId);
+                if (matchingProjectForm != null)
                 {
-                    project.FormList.Find(form => form.Id == connection.FormId).ElementList = new List<ProjectFormElements>();
-                }
+                    if (matchingProjectForm.ElementList == null)
+                    {
+                        matchingProjectForm.ElementList = new List<ProjectFormElements>();
+                    }
 
-                // add element to form
-                project.FormList.Find(form => form.Id == connection.FormId).ElementList.Add(element.First());
+                    // add element to form
+                    matchingProjectForm.ElementList.Add(element.First());
+                }
             }
         }
 
