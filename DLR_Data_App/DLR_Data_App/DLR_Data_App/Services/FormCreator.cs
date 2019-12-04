@@ -190,12 +190,16 @@ namespace DLR_Data_App.Services
                 
                 var hintText = Parser.GetCurrentLanguageStringFromJsonList(element.Hint, currentProject.Languages);
 
-                if (hintText != "Unable to parse language from json")
+                if (hintText != "Unable to parse language from json" && !string.IsNullOrWhiteSpace(hintText))
                 {
                     var helpButton = new Button { Text = AppResources.help };
                     
                     helpButton.Clicked += async (sender, args) => await displayAlert(AppResources.help, hintText, AppResources.okay);
                     grid.Children.Add(helpButton, 1, 0);
+                }
+                else
+                {
+                    Grid.SetColumnSpan(elementNameLabel, 2);
                 }
 
                 IEnumerable<char> findSpecialType(string name) => name.SkipWhile(c => c != '{').Skip(1).TakeWhile(c => c != '}');
