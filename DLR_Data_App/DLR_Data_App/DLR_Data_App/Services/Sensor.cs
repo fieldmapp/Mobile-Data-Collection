@@ -30,7 +30,7 @@ namespace DLR_Data_App.Services
                     {
                         Xamarin.Essentials.Accelerometer.Start(_speed);
                     }
-                    catch (FeatureNotEnabledException) { }
+                    catch (FeatureNotSupportedException) { }
                 }
             }
             else
@@ -39,7 +39,7 @@ namespace DLR_Data_App.Services
                 {
                     Xamarin.Essentials.Accelerometer.Stop();
                 }
-                catch (FeatureNotEnabledException) { }
+                catch (FeatureNotSupportedException) { }
 
             }
 
@@ -51,7 +51,7 @@ namespace DLR_Data_App.Services
                     {
                         Xamarin.Essentials.Barometer.Start(_speed);
                     }
-                    catch (FeatureNotEnabledException) { }
+                    catch (FeatureNotSupportedException) { }
 
                 }
             }
@@ -61,7 +61,7 @@ namespace DLR_Data_App.Services
                 {
                     Xamarin.Essentials.Barometer.Stop();
                 }
-                catch (FeatureNotEnabledException) { }
+                catch (FeatureNotSupportedException) { }
             }
 
             if (Preferences.Get("compass", true))
@@ -72,7 +72,7 @@ namespace DLR_Data_App.Services
                     {
                         Xamarin.Essentials.Compass.Start(_speed);
                     }
-                    catch (FeatureNotEnabledException) { }
+                    catch (FeatureNotSupportedException) { }
                 }
             }
             else
@@ -81,7 +81,7 @@ namespace DLR_Data_App.Services
                 {
                     Xamarin.Essentials.Compass.Stop();
                 }
-                catch (FeatureNotEnabledException) { }
+                catch (FeatureNotSupportedException) { }
             }
 
             if (Preferences.Get("gyroscope", true))
@@ -92,7 +92,7 @@ namespace DLR_Data_App.Services
                     {
                         Xamarin.Essentials.Gyroscope.Start(_speed);
                     }
-                    catch (FeatureNotEnabledException) { }
+                    catch (FeatureNotSupportedException) { }
                 }
             }
             else
@@ -101,7 +101,7 @@ namespace DLR_Data_App.Services
                 {
                     Xamarin.Essentials.Gyroscope.Stop();
                 }
-                catch (FeatureNotEnabledException) { }
+                catch (FeatureNotSupportedException) { }
             }
 
             if (Preferences.Get("magnetometer", true))
@@ -111,7 +111,7 @@ namespace DLR_Data_App.Services
                 {
                     Xamarin.Essentials.Magnetometer.Start(_speed);
                 }
-                catch (FeatureNotEnabledException) { }
+                catch (FeatureNotSupportedException) { }
             }
             else
             {
@@ -119,7 +119,7 @@ namespace DLR_Data_App.Services
                 {
                     Xamarin.Essentials.Magnetometer.Stop();
                 }
-                catch (FeatureNotEnabledException) { }
+                catch (FeatureNotSupportedException) { }
             }
         }
 
