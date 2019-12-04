@@ -20,6 +20,7 @@ namespace DLR_Data_App.Views.CurrentProject
         private readonly ProjectViewModel _viewModel = new ProjectViewModel();
         private Project _workingProject = Database.GetCurrentProject();
         private List<ContentPage> _pages;
+        private Project _projectLastCheck;
 
         private readonly Sensor _sensor = Sensor.Instance;
 
@@ -54,7 +55,12 @@ namespace DLR_Data_App.Views.CurrentProject
 
         private void ProjectPage_Appearing(object sender, EventArgs e)
         {
-            Appearing -= ProjectPage_Appearing;
+            if (_projectLastCheck == _workingProject)
+                return;
+            else
+                Children.Clear();
+
+            _projectLastCheck = _workingProject;
 
             _pages = UpdateView();
             foreach (var page in _pages)
