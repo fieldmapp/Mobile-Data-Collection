@@ -105,7 +105,7 @@ namespace DLR_Data_App.Services
             var entry = new Entry
             {
                 Placeholder = placeholder,
-                Keyboard = Keyboard.Default,
+                Keyboard = Keyboard.Numeric,
                 StyleId = element.Name
             };
 
