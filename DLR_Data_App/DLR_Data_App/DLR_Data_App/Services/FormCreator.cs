@@ -10,14 +10,28 @@ using Xamarin.Forms;
 
 namespace DLR_Data_App.Services
 {
+    class FormElement
+    {
+        public FormElement(Grid grid, ProjectFormElements data)
+        {
+            Grid = grid;
+            Data = data;
+        }
+
+        public Grid Grid { get; }
+        public ProjectFormElements Data { get; }
+    }
+
     class FormContent
     {
-        public FormContent(ContentPage form)
+        public FormContent(ContentPage form, IReadOnlyList<FormElement> elements)
         {
             Form = form;
+            Elements = elements;
         }
 
         public ContentPage Form { get; }
+        public IReadOnlyList<FormElement> Elements { get; }
     }
     static class FormCreator
     {
@@ -175,6 +189,7 @@ namespace DLR_Data_App.Services
             var contentPage = new ContentPage();
             var scrollView = new ScrollView();
             var stack = new StackLayout();
+            var elements = new List<FormElement>();
 
             contentPage.Padding = new Thickness(10, 10, 10, 10);
 
@@ -220,13 +235,13 @@ namespace DLR_Data_App.Services
                         viewCreator(grid, element, currentProject);
                     }
                 }
-
+                elements.Add(new FormElement(grid, element));
                 stack.Children.Add(grid);
             }
 
             scrollView.Content = stack;
             contentPage.Content = scrollView;
-            return new FormContent(contentPage);
+            return new FormContent(contentPage, elements.AsReadOnly());
         }
 
     }
