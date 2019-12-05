@@ -57,11 +57,9 @@ namespace DLR_Data_App.Views.CurrentProject
         {
             if (_projectLastCheck == _workingProject)
                 return;
-            else
-                Children.Clear();
-
             _projectLastCheck = _workingProject;
 
+            Children.Clear();
             _pages = UpdateView();
             foreach (var page in _pages)
             {
