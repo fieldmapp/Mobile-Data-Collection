@@ -244,5 +244,15 @@ namespace DLR_Data_App.Services
             }
             return -1;
         }
+
+        public static IEnumerable<T> TakeUntilIncluding<T>(this IEnumerable<T> list, Func<T, bool> predicate)
+        {
+            foreach (T el in list)
+            {
+                yield return el;
+                if (predicate(el))
+                    yield break;
+            }
+        }
     }
 }
