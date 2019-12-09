@@ -147,6 +147,9 @@ namespace DLR_Data_App.Services
                                         case "type":
                                             projectFormElements.Type = controlValue.ToString();
                                             break;
+                                        case "range":
+                                            projectFormElements.Range = controlValue.ToString();
+                                            break;
                                     }
                                 }
                                 form.ElementList.Add(projectFormElements);
