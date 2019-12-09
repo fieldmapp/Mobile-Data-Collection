@@ -13,7 +13,7 @@
       },
       "defaultValue": "0",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -21,47 +21,82 @@
       "calculate": "",
       "options": [
         {
-          "text": { "0": "Keimung" },
+          "text": {
+            "0": "Keimung",
+            "1": "Sprouting"
+          },
+          "cascade": [],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Blattentwicklung",
+            "1": "Leaf development"
+          },
           "cascade": [],
           "val": "1"
         },
         {
-          "text": { "0": "Blattentwicklung" },
+          "text": {
+            "0": "Bestockung",
+            "1": "Formation of side shoots"
+          },
           "cascade": [],
           "val": "2"
         },
         {
-          "text": { "0": "Bestockung" },
+          "text": {
+            "0": "Schossen",
+            "1": "Shoot development"
+          },
           "cascade": [],
           "val": "3"
         },
         {
-          "text": { "0": "Schossen" },
+          "text": {
+            "0": "Ährenschwellen",
+            "1": "Bolting"
+          },
           "cascade": [],
           "val": "4"
         },
         {
-          "text": { "0": "Ährenschieben" },
+          "text": {
+            "0": "Ährenschieben",
+            "1": "Heading"
+          },
           "cascade": [],
           "val": "5"
         },
         {
-          "text": { "0": "Blüte" },
+          "text": {
+            "0": "Blüte",
+            "1": "Flowering"
+          },
           "cascade": [],
           "val": "6"
         },
         {
-          "text": { "0": "Fruchtentwicklung" },
+          "text": {
+            "0": "Fruchtentwickung",
+            "1": "Development of fruit"
+          },
           "cascade": [],
           "val": "7"
         },
         {
-          "text": { "0": "Samenreife" },
+          "text": {
+            "0": "Samenreife",
+            "1": "Ripening of fruit and seed"
+          },
           "cascade": [],
           "val": "8"
         },
         {
-          "text": { "0": "Absterben" },
+          "text": {
+            "0": "Absterben",
+            "1": "Senescence"
+          },
           "cascade": [],
           "val": "9"
         }
@@ -84,7 +119,7 @@
       },
       "defaultValue": "0",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -92,47 +127,82 @@
       "calculate": "",
       "options": [
         {
-          "text": { "0": "Keimung" },
+          "text": {
+            "0": "Keimung",
+            "1": "Sprouting"
+          },
+          "cascade": [],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Blattentwicklung",
+            "1": "Leaf development"
+          },
           "cascade": [],
           "val": "1"
         },
         {
-          "text": { "0": "Blattentwicklung" },
+          "text": {
+            "0": "Bestockung",
+            "1": "Formation of side shoots"
+          },
           "cascade": [],
           "val": "2"
         },
         {
-          "text": { "0": "Bestockung" },
+          "text": {
+            "0": "Schossen",
+            "1": "Shoot development"
+          },
           "cascade": [],
           "val": "3"
         },
         {
-          "text": { "0": "Schossen" },
+          "text": {
+            "0": "Ährenschwellen",
+            "1": "Bolting"
+          },
           "cascade": [],
           "val": "4"
         },
         {
-          "text": { "0": "Ährenschieben" },
+          "text": {
+            "0": "Ährenschieben",
+            "1": "Heading"
+          },
           "cascade": [],
           "val": "5"
         },
         {
-          "text": { "0": "Blüte" },
+          "text": {
+            "0": "Blüte",
+            "1": "Flowering"
+          },
           "cascade": [],
           "val": "6"
         },
         {
-          "text": { "0": "Fruchtentwicklung" },
+          "text": {
+            "0": "Fruchtentwickung",
+            "1": "Development of fruit"
+          },
           "cascade": [],
           "val": "7"
         },
         {
-          "text": { "0": "Samenreife" },
+          "text": {
+            "0": "Samenreife",
+            "1": "Ripening of fruit and seed"
+          },
           "cascade": [],
           "val": "8"
         },
         {
-          "text": { "0": "Absterben" },
+          "text": {
+            "0": "Absterben",
+            "1": "Senescence"
+          },
           "cascade": [],
           "val": "9"
         }
@@ -155,7 +225,7 @@
       },
       "defaultValue": "0",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -163,47 +233,82 @@
       "calculate": "",
       "options": [
         {
-          "text": { "0": "Keimung" },
+          "text": {
+            "0": "Keimung",
+            "1": "Sprouting"
+          },
+          "cascade": [],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Blattentwicklung",
+            "1": "Leaf development"
+          },
           "cascade": [],
           "val": "1"
         },
         {
-          "text": { "0": "Blattentwicklung" },
+          "text": {
+            "0": "Bestockung",
+            "1": "Formation of side shoots"
+          },
           "cascade": [],
           "val": "2"
         },
         {
-          "text": { "0": "Bestockung" },
+          "text": {
+            "0": "Schossen",
+            "1": "Shoot development"
+          },
           "cascade": [],
           "val": "3"
         },
         {
-          "text": { "0": "Schossen" },
+          "text": {
+            "0": "Ährenschwellen",
+            "1": "Bolting"
+          },
           "cascade": [],
           "val": "4"
         },
         {
-          "text": { "0": "Ährenschieben" },
+          "text": {
+            "0": "Ährenschieben",
+            "1": "Heading"
+          },
           "cascade": [],
           "val": "5"
         },
         {
-          "text": { "0": "Blüte" },
+          "text": {
+            "0": "Blüte",
+            "1": "Flowering"
+          },
           "cascade": [],
           "val": "6"
         },
         {
-          "text": { "0": "Fruchtentwicklung" },
+          "text": {
+            "0": "Fruchtentwickung",
+            "1": "Development of fruit"
+          },
           "cascade": [],
           "val": "7"
         },
         {
-          "text": { "0": "Samenreife" },
+          "text": {
+            "0": "Samenreife",
+            "1": "Ripening of fruit and seed"
+          },
           "cascade": [],
           "val": "8"
         },
         {
-          "text": { "0": "Absterben" },
+          "text": {
+            "0": "Absterben",
+            "1": "Senescence"
+          },
           "cascade": [],
           "val": "9"
         }
@@ -223,7 +328,7 @@
       "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -245,12 +350,12 @@
       "name": "percentPlantCoverage",
       "label": {
         "0": "Prozentuale Abdeckung des Bodens durch Pflanzen",
-        "1": "Soil covarage of plants in percent"
+        "1": "Fractional vegetation cover"
       },
       "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -272,12 +377,12 @@
       "name": "percentGreenPlants",
       "label": {
         "0": "Prozentualer Anteil grüner Pflanzen",
-        "1": "Perentage of green plants"
+        "1": "Proportion of green plant material on all plants"
       },
       "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",

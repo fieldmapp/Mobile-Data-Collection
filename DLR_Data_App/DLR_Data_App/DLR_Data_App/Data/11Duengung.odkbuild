@@ -5,25 +5,37 @@
       "name": "fertilizerUsed",
       "label": {
         "0": "Wurde Dünger im laufenden Anbauzyklus aufgebracht?",
-        "1": "Was fertelizer used in the current growing cycle"
+        "1": "Has fertilizer been applied to this cultivar?"
       },
-      "hint": { "1": "" },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
       "defaultValue": "1",
       "readOnly": false,
-      "required": false,
-      "requiredText": { "1": "" },
+      "required": true,
+      "requiredText": {
+        "0": "",
+        "1": ""
+      },
       "relevance": "",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
       "options": [
         {
-          "text": { "0": "Ja" },
+          "text": {
+            "0": "Ja",
+            "1": "Yes"
+          },
           "cascade": [],
           "val": "0"
         },
         {
-          "text": { "0": "Nein" },
+          "text": {
+            "0": "Nein",
+            "1": "No"
+          },
           "cascade": [],
           "val": "1"
         }
@@ -43,7 +55,7 @@
       "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -58,12 +70,12 @@
       "name": "fertilizerKind",
       "label": {
         "0": "Düngemittelart",
-        "1": "Type of fertilizer"
+        "1": "Kind of fertilizer"
       },
       "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -82,7 +94,7 @@
       "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",

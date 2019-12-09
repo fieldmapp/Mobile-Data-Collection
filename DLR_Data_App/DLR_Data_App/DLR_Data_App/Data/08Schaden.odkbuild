@@ -5,12 +5,15 @@
       "name": "stockDamaged",
       "label": {
         "0": "Gibt es eine Schädigung am Bestand?",
-        "1": "Is the stock damaged?"
+        "1": "Is there any damage on the cultivated crops?"
       },
-      "hint": { "1": "" },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
       "defaultValue": "1",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -18,12 +21,18 @@
       "calculate": "",
       "options": [
         {
-          "text": { "0": "Ja" },
+          "text": {
+            "0": "Ja",
+            "1": "Yes"
+          },
           "cascade": [],
           "val": "0"
         },
         {
-          "text": { "0": "Nein" },
+          "text": {
+            "0": "Nein",
+            "1": "No"
+          },
           "cascade": [],
           "val": "1"
         }
@@ -38,7 +47,7 @@
       "name": "reasonDamage",
       "label": {
         "0": "Ursache",
-        "1": "Reason"
+        "1": "Cause of the damage"
       },
       "hint": {
         "0": "",
@@ -46,7 +55,7 @@
       },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -60,12 +69,12 @@
       "name": "damageDateStart",
       "label": {
         "0": "Beginn des Schädigungseintritts",
-        "1": "Start of damage"
+        "1": "Start of hazard"
       },
       "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -80,12 +89,15 @@
       "name": "damgeDateEnd",
       "label": {
         "0": "Ende des Schädigungseintritts",
-        "1": "End of damage"
+        "1": "End of hazard"
       },
-      "hint": { "1": "" },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -100,12 +112,12 @@
       "name": "damagePercentage",
       "label": {
         "0": "Geschädigte Fläche in %",
-        "1": "Damaged area in percent"
+        "1": "Affected area in percent"
       },
       "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",

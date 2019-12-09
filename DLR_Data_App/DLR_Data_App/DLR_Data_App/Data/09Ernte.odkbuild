@@ -13,7 +13,7 @@
       },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": {
         "0": "",
         "1": ""
@@ -39,7 +39,7 @@
       "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",

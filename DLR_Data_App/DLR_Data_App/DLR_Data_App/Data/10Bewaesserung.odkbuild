@@ -5,7 +5,7 @@
       "name": "wateringSystemExisting",
       "label": {
         "0": "Bewässerungsanlage vorhanden",
-        "1": "Watering system present"
+        "1": "Irrigation system available?"
       },
       "hint": {
         "0": "",
@@ -13,7 +13,7 @@
       },
       "defaultValue": "1",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -41,12 +41,12 @@
       "name": "wateringSystemStart",
       "label": {
         "0": "Bewässerungsbeginn",
-        "1": "Start of watering"
+        "1": "Start of irrigation"
       },
       "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -61,12 +61,12 @@
       "name": "wateringSystemEnd",
       "label": {
         "0": "Bewässerungsende",
-        "1": "End of watering"
+        "1": "End of irrigation"
       },
       "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -81,12 +81,12 @@
       "name": "wateringAmmount",
       "label": {
         "0": "Bewässerungsmenge in Litern pro Tag",
-        "1": "Amount of watering in liters per day"
+        "1": "Liter per day"
       },
       "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -108,12 +108,12 @@
       "name": "wateringAreaSize",
       "label": {
         "0": "Auf Fläche von ... ha",
-        "1": "To an area of ... ha"
+        "1": "On an area of ... ha"
       },
       "hint": { "1": "" },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",

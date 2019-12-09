@@ -13,7 +13,7 @@
       },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -21,17 +21,26 @@
       "calculate": "",
       "options": [
         {
-          "text": { "0": "Brache" },
+          "text": {
+            "0": "Brache",
+            "1": "Fallow"
+          },
           "cascade": [],
           "val": "1"
         },
         {
-          "text": { "0": "Monokultur" },
+          "text": {
+            "0": "Monokultur",
+            "1": "Monoculture"
+          },
           "cascade": [],
           "val": "2"
         },
         {
-          "text": { "0": "Polykultur" },
+          "text": {
+            "0": "Polykultur",
+            "1": "Pulyculture"
+          },
           "cascade": [],
           "val": "3"
         }
@@ -54,7 +63,7 @@
       },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -62,17 +71,26 @@
       "calculate": "",
       "options": [
         {
-          "text": { "0": "Sommeranbau" },
+          "text": {
+            "0": "Sommeranbau",
+            "1": "Spring crop"
+          },
           "cascade": [],
           "val": "1"
         },
         {
-          "text": { "0": "Winteranbau" },
+          "text": {
+            "0": "Winteranbau",
+            "1": "Winter crop"
+          },
           "cascade": [],
           "val": "2"
         },
         {
-          "text": { "0": "Sonstiges" },
+          "text": {
+            "0": "Sonstiges",
+            "1": "Other"
+          },
           "cascade": [],
           "val": "0"
         }
@@ -95,7 +113,7 @@
       },
       "defaultValue": "",
       "readOnly": false,
-      "required": false,
+      "required": true,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -103,164 +121,164 @@
       "calculate": "",
       "options": [
         {
-          "text": { "0": "Getreide" },
+          "text": {
+            "0": "Getreide",
+            "1": "Cereals"
+          },
           "cascade": [],
           "val": "1"
         },
         {
-          "text": { "0": "Hülsenfrüchte" },
+          "text": {
+            "0": "Hülsenfrüchte",
+            "1": "Legumes"
+          },
           "cascade": [],
           "val": "2"
         },
         {
-          "text": { "0": "Hackfrüchte" },
+          "text": {
+            "0": "Hackfrüchte",
+            "1": "Root crops"
+          },
           "cascade": [],
           "val": "3"
         },
         {
-          "text": { "0": "Ölfrüchte" },
+          "text": {
+            "0": "Ölfrüchte",
+            "1": "Oil seeds"
+          },
           "cascade": [],
           "val": "4"
         },
         {
-          "text": { "0": "Sonstige" },
+          "text": {
+            "0": "Sonstige",
+            "1": "Other"
+          },
           "cascade": [],
           "val": "5"
         },
         {
-          "text": { "0": "Amarant" },
-          "cascade": [],
-          "val": "6"
-        },
-        {
-          "text": { "0": "Dinkel" },
+          "text": {
+            "0": "Weizen",
+            "1": "Wheat"
+          },
           "cascade": [],
           "val": "7"
         },
         {
-          "text": { "0": "Durum/Hartweizen" },
+          "text": {
+            "0": "Roggen",
+            "1": "Rye"
+          },
           "cascade": [],
           "val": "8"
         },
         {
-          "text": { "0": "Gerste" },
+          "text": {
+            "0": "Gerste",
+            "1": "Barley"
+          },
           "cascade": [],
           "val": "9"
         },
         {
-          "text": { "0": "Grünkern" },
+          "text": {
+            "0": "Hafer",
+            "1": "Oat"
+          },
           "cascade": [],
           "val": "10"
         },
         {
-          "text": { "0": "Hafer" },
+          "text": {
+            "0": "Triticale",
+            "1": "Triticale"
+          },
           "cascade": [],
           "val": "11"
         },
         {
-          "text": { "0": "Hirse" },
+          "text": {
+            "0": "Mais",
+            "1": "Corn"
+          },
           "cascade": [],
           "val": "12"
         },
         {
-          "text": { "0": "Mais" },
+          "text": {
+            "0": "Erbsen",
+            "1": "Pea"
+          },
           "cascade": [],
           "val": "13"
         },
         {
-          "text": { "0": "Reis" },
+          "text": {
+            "0": "Ackerbohne",
+            "1": "Field bean"
+          },
           "cascade": [],
           "val": "14"
         },
         {
-          "text": { "0": "Roggen" },
+          "text": {
+            "0": "Süßlupine",
+            "1": "Sweet lupins"
+          },
           "cascade": [],
           "val": "15"
         },
         {
-          "text": { "0": "Triticale" },
+          "text": {
+            "0": "Sojabohne",
+            "1": "Soybean"
+          },
           "cascade": [],
           "val": "16"
         },
         {
-          "text": { "0": "Weizen" },
+          "text": {
+            "0": "Kartoffel",
+            "1": "Potato"
+          },
           "cascade": [],
           "val": "17"
         },
         {
-          "text": { "0": "Bohne" },
+          "text": {
+            "0": "Zuckerrübe",
+            "1": "Sugar beet"
+          },
           "cascade": [],
           "val": "18"
         },
         {
-          "text": { "0": "Erbsen" },
+          "text": {
+            "0": "Raps",
+            "1": "Oilseed rape"
+          },
           "cascade": [],
           "val": "19"
         },
         {
-          "text": { "0": "Erdnuss" },
+          "text": {
+            "0": "Leinsamen",
+            "1": "Flaxseed"
+          },
           "cascade": [],
           "val": "20"
         },
         {
-          "text": { "0": "Kichererbsen" },
+          "text": {
+            "0": "Sonnenblume",
+            "1": "Sunflower"
+          },
           "cascade": [],
           "val": "21"
-        },
-        {
-          "text": { "0": "Linsen" },
-          "cascade": [],
-          "val": "22"
-        },
-        {
-          "text": { "0": "Sojasprossen" },
-          "cascade": [],
-          "val": "23"
-        },
-        {
-          "text": { "0": "Kartoffel" },
-          "cascade": [],
-          "val": "24"
-        },
-        {
-          "text": { "0": "Kohl" },
-          "cascade": [],
-          "val": "25"
-        },
-        {
-          "text": { "0": "Karotten" },
-          "cascade": [],
-          "val": "26"
-        },
-        {
-          "text": { "0": "Zuckerrübe" },
-          "cascade": [],
-          "val": "27"
-        },
-        {
-          "text": { "0": "Öllein" },
-          "cascade": [],
-          "val": "28"
-        },
-        {
-          "text": { "0": "Raps" },
-          "cascade": [],
-          "val": "29"
-        },
-        {
-          "text": { "0": "Rübsen" },
-          "cascade": [],
-          "val": "30"
-        },
-        {
-          "text": { "0": "Senf" },
-          "cascade": [],
-          "val": "31"
-        },
-        {
-          "text": { "0": "Sonnenblumen" },
-          "cascade": [],
-          "val": "32"
         }
       ],
       "cascading": false,
