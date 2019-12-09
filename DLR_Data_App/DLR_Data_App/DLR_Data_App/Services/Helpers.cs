@@ -233,5 +233,16 @@ namespace DLR_Data_App.Services
             }
             return translation;
         }
+
+        public static int IndexOf<T>(this IReadOnlyList<T> list, T element)
+        {
+            var listCount = list.Count;
+            for (int i = 0; i < listCount; i++)
+            {
+                if (list[i].Equals(element))
+                    return i;
+            }
+            return -1;
+        }
     }
 }
