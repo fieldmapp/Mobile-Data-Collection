@@ -92,7 +92,12 @@
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
-      "range": false,
+      "range": {
+        "min": "0",
+        "max": "",
+        "minInclusive": true,
+        "maxInclusive": false
+      },
       "appearance": "Textbox",
       "kind": "Integer",
       "selectRange": {
@@ -119,7 +124,12 @@
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
-      "range": false,
+      "range": {
+        "min": "0",
+        "max": "",
+        "minInclusive": true,
+        "maxInclusive": false
+      },
       "appearance": "Textbox",
       "kind": "Integer",
       "selectRange": {

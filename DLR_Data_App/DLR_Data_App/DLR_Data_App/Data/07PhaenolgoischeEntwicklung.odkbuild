@@ -334,7 +334,12 @@
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
-      "range": false,
+      "range": {
+        "min": "0",
+        "max": "500",
+        "minInclusive": true,
+        "maxInclusive": true
+      },
       "appearance": "Textbox",
       "kind": "Integer",
       "selectRange": {
@@ -361,7 +366,12 @@
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
-      "range": false,
+      "range": {
+        "min": "0",
+        "max": "100",
+        "minInclusive": true,
+        "maxInclusive": true
+      },
       "appearance": "Textbox",
       "kind": "Integer",
       "selectRange": {
@@ -388,7 +398,12 @@
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
-      "range": false,
+      "range": {
+        "min": "0",
+        "max": "100",
+        "minInclusive": true,
+        "maxInclusive": true
+      },
       "appearance": "Textbox",
       "kind": "Integer",
       "selectRange": {

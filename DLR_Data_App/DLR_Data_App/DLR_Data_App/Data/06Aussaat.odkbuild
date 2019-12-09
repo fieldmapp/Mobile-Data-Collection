@@ -74,18 +74,31 @@
         "0": "Aussaatdichte in Pflanzen",
         "1": "Amout of sowed plants"
       },
-      "hint": { "1": "" },
+      "hint": {},
       "defaultValue": "",
       "readOnly": false,
       "required": true,
-      "requiredText": { "1": "" },
+      "requiredText": {},
       "relevance": "",
       "constraint": "",
-      "invalidText": { "1": "" },
       "calculate": "",
-      "length": false,
+      "range": {
+        "min": "0",
+        "max": "",
+        "minInclusive": true,
+        "maxInclusive": false
+      },
+      "invalidText": {},
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "10"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
       "metadata": {},
-      "type": "inputText"
+      "type": "inputNumeric"
     },
     {
       "name": "lengthPlantRow",
@@ -93,18 +106,31 @@
         "0": "auf cm Pflanzenreihe",
         "1": "per cm plant row"
       },
-      "hint": { "1": "" },
+      "hint": {},
       "defaultValue": "",
       "readOnly": false,
       "required": true,
-      "requiredText": { "1": "" },
+      "requiredText": {},
       "relevance": "",
       "constraint": "",
-      "invalidText": { "1": "" },
       "calculate": "",
-      "length": false,
+      "range": {
+        "min": "0",
+        "max": "",
+        "minInclusive": true,
+        "maxInclusive": false
+      },
+      "invalidText": {},
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "10"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
       "metadata": {},
-      "type": "inputText"
+      "type": "inputNumeric"
     }
   ],
   "metadata": {
