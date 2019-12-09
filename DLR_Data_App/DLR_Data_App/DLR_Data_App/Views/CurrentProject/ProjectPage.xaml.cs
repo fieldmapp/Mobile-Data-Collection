@@ -61,7 +61,7 @@ namespace DLR_Data_App.Views.CurrentProject
             _projectLastCheck = _workingProject;
 
             Children.Clear();
-            _pages = UpdateView();
+            UpdateView();
             foreach (var page in _pages)
             {
                 Children.Add(page);
@@ -92,13 +92,14 @@ namespace DLR_Data_App.Views.CurrentProject
         }
 
         /// <summary>
-        /// Updates view.
+        /// Updates view. Sets _pages and _formElements.
         /// </summary>
-        public List<ContentPage> UpdateView()
+        public void UpdateView()
         {
             // Get current project
             _workingProject = Database.GetCurrentProject();
             var pages = new List<ContentPage>();
+            var formElements = new List<FormElement>();
 
             // Check if current project is set
             if (_workingProject == null)
@@ -113,27 +114,35 @@ namespace DLR_Data_App.Views.CurrentProject
                 foreach (var projectForm in _workingProject.FormList)
                 {
                     var content = FormCreator.GenerateForm(projectForm, _workingProject, DisplayAlert);
-                    _formElements = content.Elements;
-                    foreach (var formElement in _formElements)
+                    formElements.AddRange(content.Elements);
+                    foreach (var formElement in content.Elements)
                     {
                         formElement.ContentChanged += FormElement_ContentChanged;
                     }
                     pages.Add(content.Form);
                 }
             }
-            var firstElement = _formElements.FirstOrDefault();
+            var firstElement = formElements.FirstOrDefault();
             if (firstElement != null)
             {
                 firstElement.Grid.IsVisible = true;
             }
-            
-            return pages;
+            _pages = pages;
+            _formElements = formElements.AsReadOnly();
         }
 
-        private void FormElement_ContentChanged(object sender, EventArgs e)
+        private void FormElement_ContentChanged(object sender, EventArgs args)
         {
             var changedElement = (FormElement)sender;
-            var nextElement = _formElements.FirstOrDefault();
+            var indexOfChangedElement = _formElements.IndexOf(changedElement);
+
+            var nextUnlockableElement = _formElements.SkipWhile(e => e.Grid.IsVisible).FirstOrDefault();
+            if (nextUnlockableElement != null)
+            {
+                var indexOfNextElement = _formElements.IndexOf(nextUnlockableElement);
+                if (indexOfNextElement == indexOfChangedElement + 1)
+                    nextUnlockableElement.Grid.IsVisible = true;
+            }
         }
 
         /// <summary>

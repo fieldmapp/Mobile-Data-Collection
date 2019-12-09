@@ -70,7 +70,7 @@ namespace DLR_Data_App.Services
         private static Grid CreateStandardBaseGrid(FormCreationParams parms)
         {
             var elementNameLabel = new Label { Text = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages) };
-            var grid = new Grid();
+            var grid = new Grid { IsVisible = false };
             grid.Children.Add(elementNameLabel, 0, 0);
 
             var hintText = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Hint, parms.CurrentProject.Languages);
