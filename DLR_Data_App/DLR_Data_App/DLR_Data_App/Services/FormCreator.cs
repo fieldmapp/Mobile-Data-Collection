@@ -10,34 +10,33 @@ using Xamarin.Forms;
 
 namespace DLR_Data_App.Services
 {
-    struct FormCreationParams
+    class FormCreationParams
     {
-        public Grid Grid;
         public ProjectFormElements Element;
         public Project CurrentProject;
-        public EventHandler ContentChanged;
+        public Func<string, string, string, Task> DisplayAlertFunc;
 
-        public FormCreationParams(Grid grid, ProjectFormElements element, Project currentProject, EventHandler contentChanged)
+
+        public FormCreationParams(ProjectFormElements element, Project currentProject, Func<string, string, string, Task> displayAlertFunc)
         {
-            Grid = grid;
             Element = element;
             CurrentProject = currentProject;
-            ContentChanged = contentChanged;
+            DisplayAlertFunc = displayAlertFunc;
         }
     }
     class FormElement
     {
-        public FormElement(Grid grid, ProjectFormElements data, EventHandler contentChanged)
+        public FormElement(Grid grid, ProjectFormElements data)
         {
-            new FormCreationParams();
             Grid = grid;
             Data = data;
-            contentChanged += (a,b) => ContentChanged(this, null);
         }
-
+        
         public Grid Grid { get; }
         public ProjectFormElements Data { get; }
         public event EventHandler ContentChanged;
+
+        public void OnContentChanged() => ContentChanged?.Invoke(this, null);
     }
 
     class FormContent
@@ -53,7 +52,7 @@ namespace DLR_Data_App.Services
     }
     static class FormCreator
     {
-        private static Dictionary<string, Action<FormCreationParams>> TypeToViewCreator = new Dictionary<string, Action<FormCreationParams>>()
+        private static Dictionary<string, Func<FormCreationParams, FormElement>> TypeToViewCreator = new Dictionary<string, Func<FormCreationParams, FormElement>>()
         {
             { "inputText", CreateTextInput },
             { "inputSelectOne", CreatePicker },
@@ -62,34 +61,64 @@ namespace DLR_Data_App.Services
             { "inputDate", CreateDateSelector }
         };
 
-        private static Dictionary<string, Action<FormCreationParams>> SpecialTypeToViewCreator = new Dictionary<string, Action<FormCreationParams>>
+        private static Dictionary<string, Func<FormCreationParams, FormElement>> SpecialTypeToViewCreator = new Dictionary<string, Func<FormCreationParams, FormElement>>
         {
             { "propRuler", CreateRuler },
             { "unknown", CreateUnknownChecker }
         };
 
-        private static void CreateUnknownChecker(FormCreationParams parms)
+        private static Grid CreateStandardBaseGrid(FormCreationParams parms)
         {
-            
+            var elementNameLabel = new Label { Text = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages) };
+            var grid = new Grid();
+            grid.Children.Add(elementNameLabel, 0, 0);
+
+            var hintText = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Hint, parms.CurrentProject.Languages);
+
+            if (hintText != "Unable to parse language from json" && !string.IsNullOrWhiteSpace(hintText))
+            {
+                var helpButton = new Button { Text = AppResources.help };
+
+                helpButton.Clicked += async (sender, args) => await parms.DisplayAlertFunc(AppResources.help, hintText, AppResources.okay);
+                grid.Children.Add(helpButton, 1, 0);
+            }
+            else
+            {
+                Grid.SetColumnSpan(elementNameLabel, 2);
+            }
+            return grid;
         }
 
-        private static void CreateRuler(FormCreationParams parms)
+        private static FormElement CreateUnknownChecker(FormCreationParams parms)
         {
-            
+            return new FormElement(new Grid(), parms.Element);
+        }
+
+        private static FormElement CreateRuler(FormCreationParams parms)
+        {
+            return new FormElement(new Grid(), parms.Element);
         }
 
 
-        private static void CreateDateSelector(FormCreationParams parms)
+        private static FormElement CreateDateSelector(FormCreationParams parms)
         {
+            var grid = CreateStandardBaseGrid(parms);
+            var formElement = new FormElement(grid, parms.Element);
+
             //TODO: Save and load dates
             var datePicker = new DatePicker { StyleId = parms.Element.Name };
-            datePicker.DateSelected += (a,b) => parms.ContentChanged(null, null);
-            parms.Grid.Children.Add(datePicker, 0, 1);
+            datePicker.DateSelected += (a,b) => formElement.OnContentChanged();
+            grid.Children.Add(datePicker, 0, 1);
             Grid.SetColumnSpan(datePicker, 2);
+
+            return formElement;
         }
 
-        private static void CreateLocationSelector(FormCreationParams parms)
+        private static FormElement CreateLocationSelector(FormCreationParams parms)
         {
+            var grid = CreateStandardBaseGrid(parms);
+            var formElement = new FormElement(grid, parms.Element);
+
             var labelLat = new Label { Text = "Latitude" };
 
             var labelLatData = new Label()
@@ -124,22 +153,27 @@ namespace DLR_Data_App.Services
             };
 
             saveButton.Clicked += (sender, args) => savedLocationData.Text = $"Lat:{labelLongData.Text} Long:{labelLatData.Text}";
-            saveButton.Clicked += (a,b) => parms.ContentChanged(null, null);
+            saveButton.Clicked += (a, b) => formElement.OnContentChanged();
 
-            parms.Grid.Children.Add(labelLat, 0, 1);
-            parms.Grid.Children.Add(labelLatData, 1, 1);
-            parms.Grid.Children.Add(labelLong, 0, 2);
-            parms.Grid.Children.Add(labelLongData, 1, 2);
-            parms.Grid.Children.Add(labelMessage, 0, 3);
-            parms.Grid.Children.Add(labelMessageData, 1, 3);
-            parms.Grid.Children.Add(saveButton, 0, 4);
+            grid.Children.Add(labelLat, 0, 1);
+            grid.Children.Add(labelLatData, 1, 1);
+            grid.Children.Add(labelLong, 0, 2);
+            grid.Children.Add(labelLongData, 1, 2);
+            grid.Children.Add(labelMessage, 0, 3);
+            grid.Children.Add(labelMessageData, 1, 3);
+            grid.Children.Add(saveButton, 0, 4);
             Grid.SetColumnSpan(saveButton, 2);
-            parms.Grid.Children.Add(savedLocation, 0, 5);
-            parms.Grid.Children.Add(savedLocationData, 1, 5);
+            grid.Children.Add(savedLocation, 0, 5);
+            grid.Children.Add(savedLocationData, 1, 5);
+
+            return formElement;
         }
 
-        private static void CreateNumericInput(FormCreationParams parms)
+        private static FormElement CreateNumericInput(FormCreationParams parms)
         {
+            var grid = CreateStandardBaseGrid(parms);
+            var formElement = new FormElement(grid, parms.Element);
+
             var placeholder = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
             if (placeholder == "Unable to parse language from json")
             {
@@ -153,14 +187,19 @@ namespace DLR_Data_App.Services
                 StyleId = parms.Element.Name
             };
 
-            entry.TextChanged += (a, b) => parms.ContentChanged(null, null);
+            entry.TextChanged += (a, b) => formElement.OnContentChanged();
 
-            parms.Grid.Children.Add(entry, 0, 1);
+            grid.Children.Add(entry, 0, 1);
             Grid.SetColumnSpan(entry, 2);
+
+            return formElement;
         }
 
-        private static void CreatePicker(FormCreationParams parms)
+        private static FormElement CreatePicker(FormCreationParams parms)
         {
+            var grid = CreateStandardBaseGrid(parms);
+            var formElement = new FormElement(grid, parms.Element);
+
             var optionsList = new List<string>();
             var options = Parser.ParseOptionsFromJson(parms.Element.Options);
             var title = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
@@ -184,14 +223,19 @@ namespace DLR_Data_App.Services
                 ItemsSource = optionsList
             };
 
-            picker.SelectedIndexChanged += (a, b) => parms.ContentChanged(null, null);
+            picker.SelectedIndexChanged += (a, b) => formElement.OnContentChanged();
 
-            parms.Grid.Children.Add(picker, 0, 1);
+            grid.Children.Add(picker, 0, 1);
             Grid.SetColumnSpan(picker, 2);
+
+            return formElement;
         }
 
-        private static void CreateTextInput(FormCreationParams parms)
+        private static FormElement CreateTextInput(FormCreationParams parms)
         {
+            var grid = CreateStandardBaseGrid(parms);
+            var formElement = new FormElement(grid, parms.Element);
+
             var placeholder = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
             if (placeholder == "Unable to parse language from json")
             {
@@ -205,10 +249,12 @@ namespace DLR_Data_App.Services
                 StyleId = parms.Element.Name
             };
 
-            entry.TextChanged += (a,b) => parms.ContentChanged(null, null);
+            entry.TextChanged += (a,b) => formElement.OnContentChanged();
 
-            parms.Grid.Children.Add(entry, 0, 1);
+            grid.Children.Add(entry, 0, 1);
             Grid.SetColumnSpan(entry, 2);
+
+            return formElement;
         }
 
         public static FormContent GenerateForm(ProjectForm form, Project currentProject, Func<string, string, string, Task> displayAlert)
@@ -221,30 +267,13 @@ namespace DLR_Data_App.Services
             contentPage.Padding = new Thickness(10, 10, 10, 10);
 
             contentPage.Title = form.Title;
-
             // walk through list of elements and generate form containing elements
             foreach (var element in form.ElementList)
             {
-                var grid = new Grid();
-                EventHandler contentChanged = delegate { };
-                var elementNameLabel = new Label { Text = Parser.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages) };
-                grid.Children.Add(elementNameLabel, 0, 0);
-                
-                var hintText = Parser.GetCurrentLanguageStringFromJsonList(element.Hint, currentProject.Languages);
-
-                if (hintText != "Unable to parse language from json" && !string.IsNullOrWhiteSpace(hintText))
-                {
-                    var helpButton = new Button { Text = AppResources.help };
-                    
-                    helpButton.Clicked += async (sender, args) => await displayAlert(AppResources.help, hintText, AppResources.okay);
-                    grid.Children.Add(helpButton, 1, 0);
-                }
-                else
-                {
-                    Grid.SetColumnSpan(elementNameLabel, 2);
-                }
-
                 IEnumerable<char> findSpecialType(string name) => name.SkipWhile(c => c != '{').Skip(1).TakeWhile(c => c != '}');
+
+                var formCreationParams = new FormCreationParams(element, currentProject, displayAlert);
+                FormElement formElement = null;
 
                 if (element.Type == "inputText" && element.Name != null && findSpecialType(element.Name).Any())
                 {
@@ -252,18 +281,21 @@ namespace DLR_Data_App.Services
                     var specialElementType = new string(findSpecialType(element.Name).ToArray());
                     if (SpecialTypeToViewCreator.TryGetValue(specialElementType, out var viewCreator))
                     {
-                        viewCreator(new FormCreationParams(grid, element, currentProject, contentChanged));
+                        formElement = viewCreator(formCreationParams);
                     }
                 }
                 else
                 {
                     if (TypeToViewCreator.TryGetValue(element.Type, out var viewCreator))
                     {
-                        viewCreator(new FormCreationParams(grid, element, currentProject, contentChanged));
+                        formElement = viewCreator(formCreationParams);
                     }
                 }
-                elements.Add(new FormElement(grid, element, contentChanged));
-                stack.Children.Add(grid);
+                if (formElement != null)
+                {
+                    elements.Add(formElement);
+                    stack.Children.Add(formElement.Grid);
+                }
             }
 
             scrollView.Content = stack;
