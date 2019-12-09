@@ -21,6 +21,7 @@ namespace DLR_Data_App.Views.CurrentProject
         private Project _workingProject = Database.GetCurrentProject();
         private List<ContentPage> _pages;
         private Project _projectLastCheck;
+        private IReadOnlyList<FormElement> _formElements;
 
         private readonly Sensor _sensor = Sensor.Instance;
 
@@ -112,11 +113,27 @@ namespace DLR_Data_App.Views.CurrentProject
                 foreach (var projectForm in _workingProject.FormList)
                 {
                     var content = FormCreator.GenerateForm(projectForm, _workingProject, DisplayAlert);
+                    _formElements = content.Elements;
+                    foreach (var formElement in _formElements)
+                    {
+                        formElement.ContentChanged += FormElement_ContentChanged;
+                    }
                     pages.Add(content.Form);
                 }
             }
-
+            var firstElement = _formElements.FirstOrDefault();
+            if (firstElement != null)
+            {
+                firstElement.Grid.IsVisible = true;
+            }
+            
             return pages;
+        }
+
+        private void FormElement_ContentChanged(object sender, EventArgs e)
+        {
+            var changedElement = (FormElement)sender;
+            var nextElement = _formElements.FirstOrDefault();
         }
 
         /// <summary>
