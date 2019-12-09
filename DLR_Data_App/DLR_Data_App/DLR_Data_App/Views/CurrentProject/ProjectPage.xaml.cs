@@ -122,11 +122,12 @@ namespace DLR_Data_App.Views.CurrentProject
                     pages.Add(content.Form);
                 }
             }
-            var firstElement = formElements.FirstOrDefault();
-            if (firstElement != null)
+            var initialVisibleElements = formElements.TakeUntilIncluding(f => f.Data.Required);
+            foreach (var element in initialVisibleElements)
             {
-                firstElement.Grid.IsVisible = true;
+                element.Grid.IsVisible = true;
             }
+
             _pages = pages;
             _formElements = formElements.AsReadOnly();
         }
@@ -134,14 +135,20 @@ namespace DLR_Data_App.Views.CurrentProject
         private void FormElement_ContentChanged(object sender, EventArgs args)
         {
             var changedElement = (FormElement)sender;
-            var indexOfChangedElement = _formElements.IndexOf(changedElement);
 
-            var nextUnlockableElement = _formElements.SkipWhile(e => e.Grid.IsVisible).FirstOrDefault();
-            if (nextUnlockableElement != null)
+            //if the element was not required to progress, then changing it can't make a new element visible
+            if (changedElement.Data.Required)
             {
-                var indexOfNextElement = _formElements.IndexOf(nextUnlockableElement);
-                if (indexOfNextElement == indexOfChangedElement + 1)
-                    nextUnlockableElement.Grid.IsVisible = true;
+                var currentlyRequiredElement = _formElements.LastOrDefault(e => e.Grid.IsVisible && e.Data.Required);
+                if (currentlyRequiredElement == changedElement)
+                {
+                    //Show all questions until (including) the next required one
+                    var newlyUnlockedElements = _formElements.SkipWhile(e => e.Grid.IsVisible).TakeUntilIncluding(e => e.Data.Required);
+                    foreach (var element in newlyUnlockedElements)
+                    {
+                        element.Grid.IsVisible = true;
+                    }
+                }
             }
         }
 
