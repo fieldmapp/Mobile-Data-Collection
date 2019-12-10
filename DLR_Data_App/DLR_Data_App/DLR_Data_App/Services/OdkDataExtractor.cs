@@ -9,7 +9,7 @@ namespace DLR_Data_App.Services
 {
     class OdkBooleanExpresion
     {
-        public OdkBooleanExpresion(string odkExpression, List<string> fieldNames)
+        public OdkBooleanExpresion(string odkExpression)
         {
             //make expression compatible with ncalc, found mostly by trial and error
             odkExpression = odkExpression.Replace("mod", "%");
@@ -18,13 +18,9 @@ namespace DLR_Data_App.Services
             odkExpression = odkExpression.Replace("false()", "false");
             odkExpression = odkExpression.Replace("sin(", "Sin(");
             odkExpression = odkExpression.Replace("cos(", "Cos(");
-            foreach (var fieldName in fieldNames)
-            {
-                if (fieldName != Database.MakeValidSqlName(fieldName))
-                    throw new ArgumentException($"Odk field name {fieldName} is not safe");
 
-                odkExpression = odkExpression.Replace("${" + fieldName + "}", fieldName);
-            }
+            odkExpression = odkExpression.Replace("${", string.Empty);
+            odkExpression = odkExpression.Replace("}", string.Empty);
 
             Expression = new Expression(odkExpression);
             Expression.EvaluateFunction += Expression_EvaluateFunction;
@@ -46,7 +42,7 @@ namespace DLR_Data_App.Services
         Expression Expression;
         object ExpressionLock = new object();
 
-        bool Evaluate(Dictionary<string,string> variables)
+        public bool Evaluate(Dictionary<string,string> variables)
         {
             void insertVariableValues(string name, ParameterArgs args)
             {
@@ -80,7 +76,7 @@ namespace DLR_Data_App.Services
             Max = max;
         }
 
-        bool IsValidDecimalInput(float input)
+        public bool IsValidDecimalInput(float input)
         {
             if (Min.HasValue)
             {
@@ -99,7 +95,7 @@ namespace DLR_Data_App.Services
             return true;
         }
 
-        bool IsValidIntegerInput(float input)
+        public bool IsValidIntegerInput(float input)
         {
             if (Min.HasValue)
             {
@@ -173,9 +169,9 @@ namespace DLR_Data_App.Services
             return range;
         }
 
-        public static OdkBooleanExpresion GetBooleanExpression(string odkExpression, List<string> fieldNames)
+        public static OdkBooleanExpresion GetBooleanExpression(string odkExpression)
         {
-            return new OdkBooleanExpresion(odkExpression, fieldNames);
+            return new OdkBooleanExpresion(odkExpression);
         }
     }
 }
