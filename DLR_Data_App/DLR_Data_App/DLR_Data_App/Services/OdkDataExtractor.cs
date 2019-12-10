@@ -1,10 +1,69 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using NCalc;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace DLR_Data_App.Services
 {
+    class OdkBooleanExpresion
+    {
+        public OdkBooleanExpresion(string odkExpression, List<string> fieldNames)
+        {
+            //make expression compatible with ncalc, found mostly by trial and error
+            odkExpression = odkExpression.Replace("mod", "%");
+            odkExpression = odkExpression.Replace("div", "/");
+            odkExpression = odkExpression.Replace("true()", "true");
+            odkExpression = odkExpression.Replace("false()", "false");
+            odkExpression = odkExpression.Replace("sin(", "Sin(");
+            odkExpression = odkExpression.Replace("cos(", "Cos(");
+            foreach (var fieldName in fieldNames)
+            {
+                if (fieldName != Database.MakeValidSqlName(fieldName))
+                    throw new ArgumentException($"Odk field name {fieldName} is not safe");
+
+                odkExpression = odkExpression.Replace("${" + fieldName + "}", fieldName);
+            }
+
+            Expression = new Expression(odkExpression);
+            Expression.EvaluateFunction += Expression_EvaluateFunction;
+        }
+
+        private void Expression_EvaluateFunction(string name, FunctionArgs args)
+        {
+            if (name == "boolean-from-string")
+            {
+                var childValue = args.Parameters[0].Evaluate().ToString();
+                args.Result = childValue == "true" || childValue == "1";
+            }
+            else if (name == "random")
+            {
+                args.Result = App.RandomProvider.Next();
+            }
+        }
+
+        Expression Expression;
+        object ExpressionLock = new object();
+
+        bool Evaluate(Dictionary<string,string> variables)
+        {
+            void insertVariableValues(string name, ParameterArgs args)
+            {
+                if (variables.TryGetValue(name, out var variableValue))
+                {
+                    args.Result = variableValue;
+                }
+            }
+            lock (ExpressionLock)
+            {
+                Expression.EvaluateParameter += insertVariableValues;
+                var result = Expression.Evaluate();
+                return result is bool b && b;
+            }
+        }
+    }
+
     struct OdkRange
     {
         public bool MinInclusive;
@@ -112,6 +171,11 @@ namespace DLR_Data_App.Services
                 }
             }
             return range;
+        }
+
+        public static OdkBooleanExpresion GetBooleanExpression(string odkExpression, List<string> fieldNames)
+        {
+            return new OdkBooleanExpresion(odkExpression, fieldNames);
         }
     }
 }
