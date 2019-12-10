@@ -60,8 +60,9 @@ namespace DLR_Data_App.Views.CurrentProject
                 return;
             _projectLastCheck = _workingProject;
 
+            UnlockedElements = new HashSet<FormElement>();
             Children.Clear();
-            UpdateView();
+            LoadPagesAndElements();
             foreach (var page in _pages)
             {
                 Children.Add(page);
@@ -94,7 +95,7 @@ namespace DLR_Data_App.Views.CurrentProject
         /// <summary>
         /// Updates view. Sets _pages and _formElements.
         /// </summary>
-        public void UpdateView()
+        public void LoadPagesAndElements()
         {
             // Get current project
             _workingProject = Database.GetCurrentProject();
@@ -126,6 +127,7 @@ namespace DLR_Data_App.Views.CurrentProject
             var initialVisibleElements = formElements.TakeUntilIncluding(f => f.Data.Required);
             foreach (var element in initialVisibleElements)
             {
+                UnlockedElements.Add(element);
                 element.Grid.IsVisible = true;
             }
 
@@ -154,9 +156,9 @@ namespace DLR_Data_App.Views.CurrentProject
 
         private void RefreshVisibilityOnUnlockedElements()
         {
-            foreach (var element in UnlockedElements)
+            foreach (var element in UnlockedElements.Where(e => e.ShouldBeShownExpression != null))
             {
-                if (element.ShouldBeShownExpression?.Evaluate(GeatherVariables()) ?? true)
+                if (element.ShouldBeShownExpression.Evaluate(GeatherVariables()))
                     element.Grid.IsVisible = true;
                 else
                     element.Grid.IsVisible = false;
@@ -184,7 +186,7 @@ namespace DLR_Data_App.Views.CurrentProject
             return variables;
         }
 
-        HashSet<FormElement> UnlockedElements = new HashSet<FormElement>();
+        HashSet<FormElement> UnlockedElements;
 
         private void FormElement_ValidContentChange(object sender, EventArgs _)
         {
@@ -205,6 +207,7 @@ namespace DLR_Data_App.Views.CurrentProject
                     }
                 }
             }
+            RefreshVisibilityOnUnlockedElements();
         }
 
         /// <summary>
