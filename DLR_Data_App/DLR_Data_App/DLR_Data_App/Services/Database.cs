@@ -19,8 +19,7 @@ namespace DLR_Data_App.Services
         /// Checks if a given string is a name which is safe to use in SQL. Throws an <see cref="System.ArgumentException"/> if its not.
         /// </summary>
         /// <param name="name">String to check</param>
-        /// <exception cref="System.ArgumentException">Thrown when the given string has content which is neither a letter, a digit or an underscore.</exception>
-        private static string MakeValidSqlName(string name)
+        public static string MakeValidSqlName(string name)
         {
             bool isValidChar(char c) => char.IsLetterOrDigit(c) || c == '_';
 
