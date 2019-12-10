@@ -3,6 +3,7 @@ using DLR_Data_App.Views.Login;
 using DLR_Data_App.Models;
 using DLR_Data_App.Services;
 using Xamarin.Forms;
+using System;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace DLR_Data_App
@@ -11,6 +12,7 @@ namespace DLR_Data_App
     {
         public static string DatabaseLocation = string.Empty;
         public static string FolderLocation = string.Empty;
+        public static Random RandomProvider = new Random();
         public static User CurrentUser;
         public NavigationPage Navigation => (MainPage as MasterDetailPage).Detail as NavigationPage;
         public IStorageProvider StorageProvider;
@@ -25,7 +27,7 @@ namespace DLR_Data_App
         public App(string folderPath, string databaseLocation, IStorageProvider storageProvider)
         {
             InitializeComponent();
-
+            
             StorageProvider = storageProvider;
             
             FolderLocation = folderPath;
@@ -33,7 +35,7 @@ namespace DLR_Data_App
             
             MainPage = new LoginPage();
         }
-        
+
         protected override void OnStart()
         {
             // Handle when your app starts
