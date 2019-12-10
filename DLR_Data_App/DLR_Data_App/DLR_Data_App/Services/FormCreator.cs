@@ -15,8 +15,7 @@ namespace DLR_Data_App.Services
         public ProjectFormElements Element;
         public Project CurrentProject;
         public Func<string, string, string, Task> DisplayAlertFunc;
-
-
+        
         public FormCreationParams(ProjectFormElements element, Project currentProject, Func<string, string, string, Task> displayAlertFunc)
         {
             Element = element;
@@ -30,13 +29,17 @@ namespace DLR_Data_App.Services
         {
             Grid = grid;
             Data = data;
+            ShouldBeShownExpression = string.IsNullOrWhiteSpace(data.Relevance) ? null : OdkDataExtractor.GetBooleanExpression(data.Relevance);
         }
         
         public Grid Grid { get; }
         public ProjectFormElements Data { get; }
-        public event EventHandler ContentChanged;
+        public event EventHandler ValidContentChange;
+        public event EventHandler InvalidContentChange;
+        public OdkBooleanExpresion ShouldBeShownExpression { get; }
 
-        public void OnContentChanged() => ContentChanged?.Invoke(this, null);
+        public void OnValidContentChange() => ValidContentChange?.Invoke(this, null);
+        public void OnInvalidContentChange() => InvalidContentChange?.Invoke(this, null);
     }
 
     class FormContent
@@ -107,7 +110,7 @@ namespace DLR_Data_App.Services
 
             //TODO: Save and load dates
             var datePicker = new DatePicker { StyleId = parms.Element.Name };
-            datePicker.DateSelected += (a,b) => formElement.OnContentChanged();
+            datePicker.DateSelected += (a,b) => formElement.OnValidContentChange();
             grid.Children.Add(datePicker, 0, 1);
             Grid.SetColumnSpan(datePicker, 2);
 
@@ -153,7 +156,7 @@ namespace DLR_Data_App.Services
             };
 
             saveButton.Clicked += (sender, args) => savedLocationData.Text = $"Lat:{labelLongData.Text} Long:{labelLatData.Text}";
-            saveButton.Clicked += (a, b) => formElement.OnContentChanged();
+            saveButton.Clicked += (a, b) => formElement.OnValidContentChange();
 
             grid.Children.Add(labelLat, 0, 1);
             grid.Children.Add(labelLatData, 1, 1);
@@ -186,8 +189,15 @@ namespace DLR_Data_App.Services
                 Keyboard = Keyboard.Numeric,
                 StyleId = parms.Element.Name
             };
+            var range = OdkDataExtractor.GetRangeFromJsonString(parms.Element.Range);
 
-            entry.TextChanged += (a, b) => formElement.OnContentChanged();
+            entry.TextChanged += (a, b) =>
+            {
+                if (!string.IsNullOrWhiteSpace(b.NewTextValue) && range.IsValidDecimalInput(Convert.ToSingle(b.NewTextValue)))
+                    formElement.OnValidContentChange();
+                else
+                    formElement.OnInvalidContentChange();
+            };
 
             grid.Children.Add(entry, 0, 1);
             Grid.SetColumnSpan(entry, 2);
@@ -223,7 +233,7 @@ namespace DLR_Data_App.Services
                 ItemsSource = optionsList
             };
 
-            picker.SelectedIndexChanged += (a, b) => formElement.OnContentChanged();
+            picker.SelectedIndexChanged += (a, b) => formElement.OnValidContentChange();
 
             grid.Children.Add(picker, 0, 1);
             Grid.SetColumnSpan(picker, 2);
@@ -249,7 +259,7 @@ namespace DLR_Data_App.Services
                 StyleId = parms.Element.Name
             };
 
-            entry.TextChanged += (a,b) => formElement.OnContentChanged();
+            entry.TextChanged += (a,b) => formElement.OnValidContentChange();
 
             grid.Children.Add(entry, 0, 1);
             Grid.SetColumnSpan(entry, 2);

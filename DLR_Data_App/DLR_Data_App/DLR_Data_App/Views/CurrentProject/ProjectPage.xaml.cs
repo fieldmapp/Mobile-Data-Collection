@@ -117,7 +117,8 @@ namespace DLR_Data_App.Views.CurrentProject
                     formElements.AddRange(content.Elements);
                     foreach (var formElement in content.Elements)
                     {
-                        formElement.ContentChanged += FormElement_ContentChanged;
+                        formElement.ValidContentChange += FormElement_ValidContentChange;
+                        formElement.InvalidContentChange += FormElement_InvalidContentChange;
                     }
                     pages.Add(content.Form);
                 }
@@ -132,7 +133,60 @@ namespace DLR_Data_App.Views.CurrentProject
             _formElements = formElements.AsReadOnly();
         }
 
-        private void FormElement_ContentChanged(object sender, EventArgs args)
+        private void FormElement_InvalidContentChange(object sender, EventArgs _)
+        {
+            var changedElement = (FormElement)sender;
+
+            //if the element was not required to progress, then changing it can't make elements invisible
+            if (changedElement.Data.Required)
+            {
+                foreach (var element in _formElements.SkipWhileIncluding(e => e != changedElement))
+                {
+                    UnlockedElements.Remove(element);
+                    foreach (var view in element.Grid.Children)
+                    {
+                        ClearView(view);
+                    }
+                }
+            }
+            RefreshVisibilityOnUnlockedElements();
+        }
+
+        private void RefreshVisibilityOnUnlockedElements()
+        {
+            foreach (var element in UnlockedElements)
+            {
+                if (element.ShouldBeShownExpression?.Evaluate(GeatherVariables()) ?? true)
+                    element.Grid.IsVisible = true;
+                else
+                    element.Grid.IsVisible = false;
+            }
+        }
+
+        Dictionary<string,string> GeatherVariables()
+        {
+            Dictionary<string, string> variables = new Dictionary<string, string>();
+            foreach (var view in Helpers.WalkElements(_pages))
+            {
+                if (view is Entry entry)
+                {
+                    variables.Add(entry.StyleId, entry.Text ?? "0");
+                }
+                else if (view is Picker picker)
+                {
+                    variables.Add(picker.StyleId, picker.SelectedItem as string ?? "");
+                }
+                else if (view is Label label && label.StyleId != null && label.StyleId.EndsWith("LocationData"))
+                {
+                    variables.Add(label.StyleId.Substring(0, label.StyleId.Length - "LocationData".Length), label.Text);
+                }
+            }
+            return variables;
+        }
+
+        HashSet<FormElement> UnlockedElements = new HashSet<FormElement>();
+
+        private void FormElement_ValidContentChange(object sender, EventArgs _)
         {
             var changedElement = (FormElement)sender;
 
@@ -146,6 +200,7 @@ namespace DLR_Data_App.Views.CurrentProject
                     var newlyUnlockedElements = _formElements.SkipWhile(e => e.Grid.IsVisible).TakeUntilIncluding(e => e.Data.Required);
                     foreach (var element in newlyUnlockedElements)
                     {
+                        UnlockedElements.Add(element);
                         element.Grid.IsVisible = true;
                     }
                 }
