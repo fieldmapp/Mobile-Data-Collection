@@ -254,5 +254,15 @@ namespace DLR_Data_App.Services
                     yield break;
             }
         }
+
+        public static IEnumerable<T> SkipWhileIncluding<T>(this IEnumerable<T> list, Func<T, bool> predicate)
+        {
+            bool yielding = false;
+            foreach (T element in list)
+            {
+                if (yielding) yield return element;
+                if (!yielding && !predicate(element)) yielding = true;
+            }
+        }
     }
 }
