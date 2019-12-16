@@ -42,6 +42,8 @@ namespace DLR_Data_App.Services
         /// </summary>
         private static IStorageProvider StorageProvider => (Application.Current as App).StorageProvider;
 
+        private static string CurrentSurveyId;
+
         /// <summary>
         /// The name of the user currently logged into the app
         /// </summary>
@@ -62,7 +64,9 @@ namespace DLR_Data_App.Services
                 question.Translate(Translations);
             }
             Answers = LoadAnswerToContinue();
-            SurveyMenuItems = new ObservableCollection<SurveyMenuItem>(StorageProvider.LoadSurveyMenuItems());
+            SurveyData surveyData = StorageProvider.LoadSurveyData();
+            CurrentSurveyId = surveyData.SurveyId;
+            SurveyMenuItems = new ObservableCollection<SurveyMenuItem>(surveyData.SurveyMenuItems);
             foreach (var surveyMenuItem in SurveyMenuItems)
             {
                 surveyMenuItem.ChapterName = Helpers.GetCurrentLanguageTranslation(Translations, surveyMenuItem.ChapterName);
@@ -116,7 +120,7 @@ namespace DLR_Data_App.Services
         {
             Answers = new Dictionary<string, List<IUserAnswer>>();
             SurveyMenuItems.Clear();
-            foreach (var item in StorageProvider.LoadSurveyMenuItems())
+            foreach (var item in StorageProvider.LoadSurveyData().SurveyMenuItems)
             {
                 SurveyMenuItems.Add(item);
             }

@@ -9,7 +9,7 @@ namespace DLR_Data_App.Services
     {
         Dictionary<string, List<IQuestionContent>> LoadQuestions();
         Dictionary<string, string> LoadTranslations();
-        List<SurveyMenuItem> LoadSurveyMenuItems();
+        SurveyData LoadSurveyData();
         SurveyResults LoadAnswers(string userId);
         void SaveAnswers(SurveyResults results);
         void ExportAnswers(SurveyResults results);
