@@ -56,7 +56,7 @@ namespace DLR_Data_App.Views.CurrentProject
 
         private void ProjectPage_Appearing(object sender, EventArgs e)
         {
-            if (_projectLastCheck == _workingProject)
+            if (_projectLastCheck?.Id == _workingProject?.Id)
                 return;
             _projectLastCheck = _workingProject;
 
