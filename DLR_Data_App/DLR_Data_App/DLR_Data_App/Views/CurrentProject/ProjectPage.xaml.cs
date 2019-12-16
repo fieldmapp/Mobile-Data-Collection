@@ -143,6 +143,7 @@ namespace DLR_Data_App.Views.CurrentProject
                 foreach (var element in _formElements.SkipWhileIncluding(e => e != changedElement))
                 {
                     UnlockedElements.Remove(element);
+                    element.Grid.IsVisible = false;
                     foreach (var view in element.Grid.Children)
                     {
                         ClearView(view);
@@ -205,6 +206,7 @@ namespace DLR_Data_App.Views.CurrentProject
                     }
                 }
             }
+            RefreshVisibilityOnUnlockedElements();
         }
 
         /// <summary>
