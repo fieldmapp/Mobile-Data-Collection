@@ -55,6 +55,7 @@ namespace DLR_Data_App.Services
             {
                 Expression.EvaluateParameter += insertVariableValues;
                 var result = Expression.Evaluate();
+                Expression.EvaluateParameter -= insertVariableValues;
                 return result is bool b && b;
             }
         }
