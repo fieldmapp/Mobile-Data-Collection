@@ -8,7 +8,7 @@
         "1": "Date of harvest"
       },
       "hint": {
-        "0": "",
+        "0": "Durch Tippen auf das Datum, erscheint ein Kalender. Wählen Sie aus diesem das Datum der Ernte aus und bestätigen Sie Ihre Auswahl mit Tippen auf [OK].",
         "1": ""
       },
       "defaultValue": "",
@@ -36,7 +36,10 @@
         "0": "Erntemenge in dt/ha",
         "1": "Amout of harvest in dt/ha"
       },
-      "hint": { "1": "" },
+      "hint": {
+        "0": "Geben Sie die Erntemenge in Dezitonnen pro Hektar (bzw. Doppelzentner pro Hektar) ein.",
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
       "required": true,

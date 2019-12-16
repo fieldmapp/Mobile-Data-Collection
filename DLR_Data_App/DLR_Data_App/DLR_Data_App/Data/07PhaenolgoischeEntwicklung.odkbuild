@@ -227,7 +227,7 @@
       "readOnly": false,
       "required": true,
       "requiredText": { "1": "" },
-      "relevance": "",
+      "relevance": "${avgPhenologicalStadium}>${minPhenologicalStadium}",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
@@ -325,12 +325,15 @@
         "0": "Pflanzenhöhe in cm",
         "1": "Plant height in cm"
       },
-      "hint": { "1": "" },
+      "hint": {
+        "0": "Messen (oder schätze) Sie die Höhe der Pflanzen und tragen Sie die Höhe als cm-Wert ein.",
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
       "required": true,
       "requiredText": { "1": "" },
-      "relevance": "",
+      "relevance": "${avgPhenologicalStadium}<${maxPhenologicalStadium}",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
@@ -357,7 +360,10 @@
         "0": "Prozentuale Abdeckung des Bodens durch Pflanzen",
         "1": "Fractional vegetation cover"
       },
-      "hint": { "1": "" },
+      "hint": {
+        "0": "Wählen sie eine für die Umgebung repräsentative Fläche von ca. 1 m x 1m aus. Schauen sie senkrecht auf diese Fläche. Schätzen Sie nun für diese Fläche den Anteil des Bodens, der durch Pflanzen bedeckt ist. Tragen Sie Ihre Schätzung hier ein."
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
       "required": true,
@@ -386,10 +392,13 @@
     {
       "name": "percentGreenPlants",
       "label": {
-        "0": "Prozentualer Anteil grüner Pflanzen",
+        "0": "Prozentualer Anteil grüner Pflanzenbestandteile am gesamten Pflanzenmaterial",
         "1": "Proportion of green plant material on all plants"
       },
-      "hint": { "1": "" },
+      "hint": {
+        "0": "Wählen sie eine für die Umgebung repräsentative Fläche von ca. 1 m x 1m aus. Schauen sie senkrecht auf diese Fläche. Schätzen Sie nun für diese Fläche den Anteil des grünen Pflanzenmaterial am gesamten sichtbaren Pflanzenmaterial. Tragen Sie Ihre Schätzung hier ein.",
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
       "required": true,

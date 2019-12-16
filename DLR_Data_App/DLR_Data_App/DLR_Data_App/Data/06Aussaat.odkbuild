@@ -8,7 +8,7 @@
         "1": "Date"
       },
       "hint": {
-        "0": "",
+        "0": "Durch Tippen auf das Datum, erscheint ein Kalender. Wählen Sie aus diesem das Datum der Aussaat aus und bestätigen Sie Ihre Auswahl mit Tippen auf [OK].",
         "1": ""
       },
       "defaultValue": "",
@@ -31,7 +31,7 @@
         "1": "Alignment of plant rows{compass}"
       },
       "hint": {
-        "0": "",
+        "0": "Messen (oder schätze) Sie den geringsten Abstand zweier benachbarter Pflanzreihen und tragen Sie diesen als Zentimeterwert in die dafür vorgesehene Spalte ein.",
         "1": ""
       },
       "defaultValue": "",
@@ -71,10 +71,13 @@
     {
       "name": "amoutSowing",
       "label": {
-        "0": "Aussaatdichte in Pflanzen",
+        "0": "Anzahl der Pflanzen",
         "1": "Amout of sowed plants"
       },
-      "hint": {},
+      "hint": {
+        "0": "Wählen Sie sich ein Teilstück einer Pflanzreihe aus. Zählen Sie auf diesem Teilstück alle Pflanzen und tragen Sie den Wert ein.",
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
       "required": true,
@@ -106,7 +109,10 @@
         "0": "auf cm Pflanzenreihe",
         "1": "per cm plant row"
       },
-      "hint": {},
+      "hint": {
+        "0": "Messen (oder schätze) Sie nun die Länge des Teilstücks der Pflanzreihe, auf dem Sie die Anzahl der Pflanzen bestimmt haben und tragen Sie die Länge ein.",
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
       "required": true,

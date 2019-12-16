@@ -8,7 +8,7 @@
         "1": "Soil type"
       },
       "hint": {
-        "0": "",
+        "0": "Tragen Sie den Namen des Bodentyps in das vorgesehen Feld ein. Falls Ihnen der Bodentyp unbekannt ist, wählen Sie bitte „Unbekannt“ an",
         "1": ""
       },
       "defaultValue": "",

@@ -8,7 +8,7 @@
         "1": "Field name"
       },
       "hint": {
-        "0": "Name des Feldes",
+        "0": "Geben Sie die Bezeichnung des Feldes unter Nennung des bewirtschaftenden Betriebes an, durch den der Feldname festgelegt wurde.",
         "1": "Name of the field"
       },
       "defaultValue": "",
@@ -18,7 +18,7 @@
       "relevance": "",
       "constraint": "",
       "invalidText": {
-        "0": "Name inkorrekt",
+        "0": "",
         "1": ""
       },
       "calculate": "",
@@ -32,7 +32,10 @@
         "0": "Feldnummer",
         "1": "Field number"
       },
-      "hint": { "1": "" },
+      "hint": {
+        "0": "Geben Sie die Nummer des Feldes an, die durch den bewirtschaftenden Betrieb vergeben wurde.",
+        "1":  ""
+      },
       "defaultValue": "0",
       "readOnly": false,
       "required": true,

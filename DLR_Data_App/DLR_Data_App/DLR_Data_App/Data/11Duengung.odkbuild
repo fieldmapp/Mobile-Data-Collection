@@ -52,12 +52,15 @@
         "0": "Datum der Düngung",
         "1": "Date of fertilization"
       },
-      "hint": { "1": "" },
+      "hint": {
+        "0": "Durch Tippen auf das Datum, erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem gedüngt wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OK].",
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
-      "required": true,
+      "required": false,
       "requiredText": { "1": "" },
-      "relevance": "",
+      "relevance": "${fertilizerUsed}=0",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
@@ -72,10 +75,13 @@
         "0": "Düngemittelart",
         "1": "Kind of fertilizer"
       },
-      "hint": { "1": "" },
-      "defaultValue": "",
+      "hint": {
+        "0": "Geben Sie unter „Düngemittelart“ den Namen des Düngemittels ein, das ausgebracht wurde. Falls Sie diesen nicht wissen, können Sie auch eine kategorische Angabe wie „Mineraldünger“, „anorganischer Dünger“, „organischer Dünger“, „Gülle“, „Stallmist“ oder „Klärschlamm“ machen.",
+        "1": ""
+      },
+      "defaultValue": "${fertilizerUsed}=0",
       "readOnly": false,
-      "required": true,
+      "required": false,
       "requiredText": { "1": "" },
       "relevance": "",
       "constraint": "",
@@ -91,12 +97,15 @@
         "0": "Menge pro Anbaufläche in kg/ha",
         "1": "Amount of fertilizer per acerage in kg/ha"
       },
-      "hint": { "1": "" },
+      "hint": {
+        "0": "Geben Sie unter „Menge pro Anbaufläche in kg/ha“ die Menge des pro Fläche ausgebrachten Düngemittels ein.",
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
-      "required": true,
+      "required": false,
       "requiredText": { "1": "" },
-      "relevance": "",
+      "relevance": "${fertilizerUsed}=0",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",

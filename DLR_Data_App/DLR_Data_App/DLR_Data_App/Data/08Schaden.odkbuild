@@ -1,5 +1,5 @@
 {
-  "title": "Schäden",
+  "title": "Schäden am Bestand",
   "controls": [
     {
       "name": "stockDamaged",
@@ -50,14 +50,14 @@
         "1": "Cause of the damage"
       },
       "hint": {
-        "0": "",
+        "0": "Wählen Sie aus dem Auswahlmenü eine Ursache für den Schaden am Bestand aus. Für den Fall, dass die aktuelle Ursache nicht in der Auswahl enthalten ist, geben Sie diese bitte unter „Sonstiges“ ein.",
         "1": ""
       },
       "defaultValue": "",
       "readOnly": false,
-      "required": true,
+      "required": false,
       "requiredText": { "1": "" },
-      "relevance": "",
+      "relevance": "${stockDamaged}=0",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
@@ -71,12 +71,15 @@
         "0": "Beginn des Schädigungseintritts",
         "1": "Start of hazard"
       },
-      "hint": { "1": "" },
+      "hint": {
+        "0": "Durch Tippen auf das Datum, erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, zu dem die Schädigung eingetreten ist und bestätigen Sie Ihre Auswahl mit Tippen auf [OK].",
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
-      "required": true,
+      "required": false,
       "requiredText": { "1": "" },
-      "relevance": "",
+      "relevance": "${stockDamaged}=0",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
@@ -92,14 +95,14 @@
         "1": "End of hazard"
       },
       "hint": {
-        "0": "",
+        "0": "Durch Tippen auf das Datum, erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, ab dem die Ausweitung der Schädigung beendet war und bestätigen Sie Ihre Auswahl mit Tippen auf [OK].",
         "1": ""
       },
       "defaultValue": "",
       "readOnly": false,
-      "required": true,
+      "required": false,
       "requiredText": { "1": "" },
-      "relevance": "",
+      "relevance": "${stockDamaged}=0",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
@@ -114,12 +117,15 @@
         "0": "Geschädigte Fläche in %",
         "1": "Affected area in percent"
       },
-      "hint": { "1": "" },
+      "hint": {
+        "0": "Schätzen Sie den Anteil der Fläche am Feld, die von der Schädigung betroffen ist und tragen Sie diesen Wert als Prozentangabe unter „Geschädigte Fläche in %“ ein.",
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
-      "required": true,
+      "required": false,
       "requiredText": { "1": "" },
-      "relevance": "",
+      "relevance": "${stockDamaged}=0",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",

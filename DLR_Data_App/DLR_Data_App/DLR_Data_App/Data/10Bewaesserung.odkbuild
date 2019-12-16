@@ -43,12 +43,15 @@
         "0": "Bewässerungsbeginn",
         "1": "Start of irrigation"
       },
-      "hint": { "1": "" },
+      "hint": {
+        "0": "Durch Tippen auf das Datum, erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem mit der Bewässerung des Feldes begonnen wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OK].",
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
-      "required": true,
+      "required": false,
       "requiredText": { "1": "" },
-      "relevance": "",
+      "relevance": "${wateringSystemExisting}=0",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
@@ -63,12 +66,15 @@
         "0": "Bewässerungsende",
         "1": "End of irrigation"
       },
-      "hint": { "1": "" },
+      "hint": {
+        "0": "Durch Tippen auf das Datum, erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem das Feld letztmalig bewässert wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OK].",
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
-      "required": true,
+      "required": false,
       "requiredText": { "1": "" },
-      "relevance": "",
+      "relevance": "${wateringSystemExisting}=0",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
@@ -83,12 +89,14 @@
         "0": "Bewässerungsmenge in Litern pro Tag",
         "1": "Liter per day"
       },
-      "hint": { "1": "" },
+      "hint": {
+        "0": "Geben Sie den gemessenen bzw. geschätzten Wert der Wassermenge in Litern an, die pro Tag auf das Feld aufgebracht wurde."
+      },
       "defaultValue": "",
       "readOnly": false,
-      "required": true,
+      "required": false,
       "requiredText": { "1": "" },
-      "relevance": "",
+      "relevance": "${wateringSystemExisting}=0",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
@@ -115,12 +123,15 @@
         "0": "Auf Fläche von ... ha",
         "1": "On an area of ... ha"
       },
-      "hint": { "1": "" },
+      "hint": {
+        "0": "Geben Sie an, auf welche Fläche diese Wassermenge verteilt wurde.",
+        "1": ""
+      },
       "defaultValue": "",
       "readOnly": false,
-      "required": true,
+      "required": false,
       "requiredText": { "1": "" },
-      "relevance": "",
+      "relevance": "${wateringSystemExisting}=0",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",

@@ -4,11 +4,11 @@
     {
       "name": "preceedingCrop",
       "label": {
-        "0": "Vorfrucht",
+        "0": "Vorfrucht: Bepflanzungsart",
         "1": "Preceeding crop"
       },
       "hint": {
-        "0": "Pflanzenkultur angeben",
+        "0": "Art der Bepflanzung in der vorherigen Anbauperiode (dh. meistens dem vorangegangenen Jahr) aus dem Menü durch Antippen auswählen.",
         "1": "Enter plant culture"
       },
       "defaultValue": "",
@@ -54,11 +54,11 @@
     {
       "name": "preceedingCropCultivation",
       "label": {
-        "0": "Vorfrucht Anbau",
+        "0": "Vorfrucht: Anbautyp",
         "1": "Preceeding crop cultivation"
       },
       "hint": {
-        "0": "Anbau angeben",
+        "0": "Art des Anbaus entsprechend des Saatzeitpunktes in der vorherigen Anbauperiode (dh. meistens dem vorangegangenen Jahr) aus dem Menü durch Antippen auswählen.",
         "1": "Enter preceeding crop cultivation"
       },
       "defaultValue": "",
@@ -102,13 +102,13 @@
       "type": "inputSelectOne"
     },
     {
-      "name": "preceedingCropDetailFruit",
+      "name": "preceedingCropFruitType",
       "label": {
-        "0": "Vorfrucht Detail",
+        "0": "Vorfrucht: Pflanzenkategorie",
         "1": "Preceeding crop detail"
       },
       "hint": {
-        "0": "Pflanze bestimmen",
+        "0": "Kategorie, der die Feldfruchtsorte zuzuordnen ist, aus dem Menü durch Antippen auswählen.",
         "1": "Determine plant"
       },
       "defaultValue": "",
@@ -159,14 +159,40 @@
           },
           "cascade": [],
           "val": "5"
-        },
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {},
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "preceedingCropCereals",
+      "label": {
+        "0": "Vorfrucht: Sorte",
+        "1": "Preceeding crop"
+      },
+      "hint": {
+        "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
+        "1": ""
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": { "1": "" },
+      "relevance": "${preceedingCropFruitType}=0",
+      "constraint": "",
+      "invalidText": { "1": "" },
+      "calculate": "",
+      "options": [
         {
           "text": {
             "0": "Weizen",
             "1": "Wheat"
           },
           "cascade": [],
-          "val": "7"
+          "val": "0"
         },
         {
           "text": {
@@ -174,7 +200,7 @@
             "1": "Rye"
           },
           "cascade": [],
-          "val": "8"
+          "val": "1"
         },
         {
           "text": {
@@ -182,7 +208,7 @@
             "1": "Barley"
           },
           "cascade": [],
-          "val": "9"
+          "val": "2"
         },
         {
           "text": {
@@ -190,7 +216,7 @@
             "1": "Oat"
           },
           "cascade": [],
-          "val": "10"
+          "val": "3"
         },
         {
           "text": {
@@ -198,7 +224,7 @@
             "1": "Triticale"
           },
           "cascade": [],
-          "val": "11"
+          "val": "4"
         },
         {
           "text": {
@@ -206,15 +232,41 @@
             "1": "Corn"
           },
           "cascade": [],
-          "val": "12"
-        },
+          "val": "5"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {},
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "preceedingCropLegumes",
+      "label": {
+        "0": "Vorfrucht: Sorte",
+        "1": "Preceeding crop"
+      },
+      "hint": {
+        "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
+        "1": ""
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": { "1": "" },
+      "relevance": "",
+      "constraint": "${preceedingCropFruitType}=1",
+      "invalidText": { "1": "" },
+      "calculate": "",
+      "options": [
         {
           "text": {
             "0": "Erbsen",
             "1": "Pea"
           },
           "cascade": [],
-          "val": "13"
+          "val": "0"
         },
         {
           "text": {
@@ -222,7 +274,7 @@
             "1": "Field bean"
           },
           "cascade": [],
-          "val": "14"
+          "val": "1"
         },
         {
           "text": {
@@ -230,7 +282,7 @@
             "1": "Sweet lupins"
           },
           "cascade": [],
-          "val": "15"
+          "val": "2"
         },
         {
           "text": {
@@ -238,15 +290,41 @@
             "1": "Soybean"
           },
           "cascade": [],
-          "val": "16"
-        },
+          "val": "3"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {},
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "preceedingCropRootCrops",
+      "label": {
+        "0": "Vorfrucht: Sorte",
+        "1": "Preceeding crop"
+      },
+      "hint": {
+        "0": "Kategorie, der die Feldfruchtsorte zuzuordnen ist, aus dem Menü durch Antippen auswählen.",
+        "1": ""
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": { "1": "" },
+      "relevance": "${preceedingCropFruitType}=2",
+      "constraint": "",
+      "invalidText": { "1": "" },
+      "calculate": "",
+      "options": [
         {
           "text": {
             "0": "Kartoffel",
             "1": "Potato"
           },
           "cascade": [],
-          "val": "17"
+          "val": "0"
         },
         {
           "text": {
@@ -254,8 +332,34 @@
             "1": "Sugar beet"
           },
           "cascade": [],
-          "val": "18"
-        },
+          "val": "1"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {},
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "preceedingCropOilSeeds",
+      "label": {
+        "0": "Vorfrucht: Sorte",
+        "1": "Preceeding crop"
+      },
+      "hint": {
+        "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
+        "1": ""
+      },
+      "defaultValue": "${preceedingCropFruitType}=3",
+      "readOnly": false,
+      "required": false,
+      "requiredText": { "1": "" },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": { "1": "" },
+      "calculate": "",
+      "options": [
         {
           "text": {
             "0": "Raps",
@@ -286,6 +390,31 @@
       "appearance": "Default",
       "metadata": {},
       "type": "inputSelectOne"
+    },
+    {
+      "name": "preceedingCropOther",
+      "label": {
+        "0": "Vorfrucht: Sorte",
+        "1": "Preceeding crop"
+      },
+      "hint": {
+        "0": "Sorte der Feldfrucht eingeben.",
+        "1": ""
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": { "1": "" },
+      "relevance": "${preceedingCropFruitType}=4",
+      "constraint": "",
+      "invalidText": {
+        "0": "",
+        "1": ""
+      },
+      "calculate": "",
+      "length": false,
+      "metadata": {},
+      "type": "inputText"
     }
   ],
   "metadata": {
