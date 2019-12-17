@@ -730,6 +730,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please save your answers before closing this page ähnelt.
+        /// </summary>
+        internal static string pleaseSaveBeforeQuiting {
+            get {
+                return ResourceManager.GetString("pleaseSaveBeforeQuiting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Pressure ähnelt.
         /// </summary>
         internal static string pressure {
@@ -1014,6 +1023,15 @@ namespace DLR_Data_App.Localizations {
         internal static string signin {
             get {
                 return ResourceManager.GetString("signin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Skip ähnelt.
+        /// </summary>
+        internal static string skip {
+            get {
+                return ResourceManager.GetString("skip", resourceCulture);
             }
         }
         

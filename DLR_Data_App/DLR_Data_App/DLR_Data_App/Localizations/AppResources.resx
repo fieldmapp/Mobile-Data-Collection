@@ -342,6 +342,9 @@ Tap on one to answer the questions of it. For each category you see:
   <data name="pleaseMakeSelection" xml:space="preserve">
     <value>Please make a selection</value>
   </data>
+  <data name="pleaseSaveBeforeQuiting" xml:space="preserve">
+    <value>Please save your answers before closing this page</value>
+  </data>
   <data name="pressure" xml:space="preserve">
     <value>Pressure</value>
   </data>
@@ -508,6 +511,9 @@ Consent of the data subject means any freely given, specific, informed and unamb
   </data>
   <data name="signin" xml:space="preserve">
     <value>Sign in</value>
+  </data>
+  <data name="skip" xml:space="preserve">
+    <value>Skip</value>
   </data>
   <data name="status" xml:space="preserve">
     <value>Status</value>

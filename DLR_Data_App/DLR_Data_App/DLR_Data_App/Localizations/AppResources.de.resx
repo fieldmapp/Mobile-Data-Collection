@@ -542,4 +542,10 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen fÃ
   <data name="selectionCorrectQuestion" xml:space="preserve">
     <value>Ist Ihre Auswahl so in Ordnung?</value>
   </data>
+  <data name="skip" xml:space="preserve">
+    <value>Ãœberspringen</value>
+  </data>
+  <data name="pleaseSaveBeforeQuiting" xml:space="preserve">
+    <value>Vor dem Beenden bitte speichern</value>
+  </data>
 </root>
