@@ -168,9 +168,12 @@ namespace DLR_Data_App.Views.CurrentProject
 
         private void RefreshVisibilityOnUnlockedElements()
         {
+            Dictionary<string,string> variables = null;
             foreach (var element in UnlockedElements.Where(e => e.ShouldBeShownExpression != null))
             {
-                if (element.ShouldBeShownExpression.Evaluate(GeatherVariables()))
+                if (variables == null)
+                    variables = GeatherVariables();
+                if (element.ShouldBeShownExpression.Evaluate(variables))
                 {
                     element.Grid.IsVisible = true;
                 }
