@@ -164,43 +164,6 @@ namespace DLR_Data_App.Services
         }
 
         /// <summary>
-        /// Walks the elements of a content page and applies a supplied action. This is deterministic.
-        /// </summary>
-        /// <param name="pages">An enumerable of all pages whose elements should be walked through</param>
-        /// <param name="actionToApply">Action that will be applied to each element.</param>
-        public static void WalkElements(IEnumerable<ContentPage> pages, Action<View> actionToApply)
-        {
-            foreach (var view in WalkElements(pages))
-            {
-                actionToApply(view);
-            }
-        }
-
-
-        /// <summary>
-        /// Walks the elements of a content page and returns an IEnumerable of them. This is deerministic.
-        /// </summary>
-        /// <param name="pages">An enumerable of all pages whose elements should be walked through</param>
-        /// <returns>An IEnumerable of the elements which is created deferredly.</returns>
-        public static IEnumerable<View> WalkElements(IEnumerable<ContentPage> pages)
-        {
-            foreach (var page in pages)
-            {
-                foreach (var stack in page.Content.LogicalChildren.OfType<StackLayout>())
-                {
-                    foreach (var grid in stack.Children.OfType<Grid>())
-                    {
-                        foreach (var element in grid.Children)
-                        {
-                            yield return element;
-                        }
-                    }
-                }
-            }
-            yield break;
-        }
-
-        /// <summary>
         /// Creates the unique table name of a project. This is based on the title and the id.
         /// </summary>
         /// <param name="project">Project of which the table name should be retured.</param>

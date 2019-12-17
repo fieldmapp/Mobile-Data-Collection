@@ -53,9 +53,9 @@ namespace com.DLR.DLR_Data_App.Droid
 
         private void ResetToolbarItems(Page page, List<ToolbarItem> toolbarItems)
         {
-            //TODO: Fix issue with tabbed page:
             //When you turn your smartphone on and off (just the screen), the ToolbarItems will disappear
             //Probably has something to do with TabbedPage calling OnAppearing multiple times
+            //TODO: Fix issue with tabbed page:
             Device.BeginInvokeOnMainThread(() =>
             {
                 lock (ToolbarItemsLock)

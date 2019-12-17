@@ -46,14 +46,6 @@ namespace DLR_Data_App.Views.CurrentProject
             _sensor.Gps.StatusChanged -= OnGpsChange;
         }
 
-        private void ClearView(View element)
-        {
-            if (element is Entry entry)
-                entry.Text = "";
-            else if (element is Picker picker)
-                picker.SelectedIndex = -1;
-        }
-
         private void ProjectPage_Appearing(object sender, EventArgs e)
         {
             var newProject = Database.GetCurrentProject();
@@ -63,7 +55,7 @@ namespace DLR_Data_App.Views.CurrentProject
 
             UnlockedElements = new HashSet<FormElement>();
             Children.Clear();
-            UpdateView(newProject);
+            LoadPagesAndElements(newProject);
             foreach (var page in _pages)
             {
                 Children.Add(page);
@@ -80,23 +72,16 @@ namespace DLR_Data_App.Views.CurrentProject
         /// </summary>
         private void OnGpsChange(object sender, GpsEventArgs e)
         {
-            foreach (var label in Helpers.WalkElements(_pages).OfType<Label>().Where(l => l.StyleId != null))
+            foreach (var element in _formElements)
             {
-                if (label.StyleId.Contains("Lat"))
-                    Device.BeginInvokeOnMainThread(() => label.Text = e.Latitude.ToString(CultureInfo.CurrentCulture));
-
-                if (label.StyleId.Contains("Long"))
-                    Device.BeginInvokeOnMainThread(() => label.Text = e.Longitude.ToString(CultureInfo.CurrentCulture));
-
-                if (label.StyleId.Contains("Message"))
-                    Device.BeginInvokeOnMainThread(() => label.Text = e.Message.ToString(CultureInfo.CurrentCulture));
+                element.OnGpsChange(e);
             }
         }
 
         /// <summary>
         /// Updates view. Sets _pages and _formElements.
         /// </summary>
-        public void UpdateView(Project newProject)
+        public void LoadPagesAndElements(Project newProject)
         {
             // Get current project
             _workingProject = newProject;
@@ -125,12 +110,7 @@ namespace DLR_Data_App.Views.CurrentProject
                     pages.Add(content.Form);
                 }
             }
-            var initialVisibleElements = formElements.TakeUntilIncluding(f => f.Data.Required);
-            foreach (var element in initialVisibleElements)
-            {
-                UnlockedElements.Add(element);
-                element.Grid.IsVisible = true;
-            }
+            UnlockInitialVisibleElements(formElements);
             var lastRequiredElement = formElements.LastOrDefault(e => e.Data.Required);
             if (lastRequiredElement != null)
             {
@@ -138,8 +118,17 @@ namespace DLR_Data_App.Views.CurrentProject
             }
 
 
-           _pages = pages;
+            _pages = pages;
             _formElements = formElements.AsReadOnly();
+        }
+
+        private void UnlockInitialVisibleElements(IEnumerable<FormElement> formElements)
+        {
+            var initialVisibleElements = formElements.TakeUntilIncluding(f => f.Data.Required);
+            foreach (var element in initialVisibleElements)
+            {
+                UnlockElement(element);
+            }
         }
 
         private void LastRequiredElement_ValidContentChange(object sender, EventArgs _)
@@ -147,6 +136,19 @@ namespace DLR_Data_App.Views.CurrentProject
             var lastRequiredElement = (FormElement)sender;
             lastRequiredElement.ValidContentChange -= LastRequiredElement_ValidContentChange;
             DependencyService.Get<IToast>().ShortAlert(AppResources.pleaseSaveBeforeQuiting);
+        }
+
+        private void UnlockElement(FormElement element)
+        {
+            UnlockedElements.Add(element);
+            element.Grid.IsVisible = true;
+        }
+
+        private void LockElement(FormElement element)
+        {
+            UnlockedElements.Remove(element);
+            element.Grid.IsVisible = false;
+            element.Reset();
         }
 
         private void FormElement_InvalidContentChange(object sender, EventArgs _)
@@ -158,12 +160,7 @@ namespace DLR_Data_App.Views.CurrentProject
             {
                 foreach (var element in _formElements.SkipWhileIncluding(e => e != changedElement))
                 {
-                    UnlockedElements.Remove(element);
-                    element.Grid.IsVisible = false;
-                    foreach (var view in element.Grid.Children)
-                    {
-                        ClearView(view);
-                    }
+                    LockElement(element);
                 }
             }
             RefreshVisibilityOnUnlockedElements();
@@ -183,22 +180,9 @@ namespace DLR_Data_App.Views.CurrentProject
         Dictionary<string,string> GeatherVariables()
         {
             Dictionary<string, string> variables = new Dictionary<string, string>();
-            foreach (var view in Helpers.WalkElements(_pages))
+            foreach (var representation in _formElements.Select(e => e.GetRepresentation()))
             {
-                if (view is Entry entry)
-                {
-                    variables.Add(entry.StyleId, entry.Text ?? "0");
-                }
-                else if (view is Picker picker)
-                {
-                    //TODO: IndexOf does not respect actual backing values from odk, 
-                    //will result in problems if a picker is not using integer backing values starting from 0
-                    variables.Add(picker.StyleId, picker.Items.IndexOf(picker.SelectedItem as string ?? "").ToString());
-                }
-                else if (view is Label label && label.StyleId != null && label.StyleId.EndsWith("LocationData"))
-                {
-                    variables.Add(label.StyleId.Substring(0, label.StyleId.Length - "LocationData".Length), label.Text);
-                }
+                variables.Add(representation.Key, representation.Value);
             }
             return variables;
         }
@@ -219,8 +203,7 @@ namespace DLR_Data_App.Views.CurrentProject
                     var newlyUnlockedElements = _formElements.SkipWhileIncluding(e => e != changedElement).TakeUntilIncluding(e => e.Data.Required);
                     foreach (var element in newlyUnlockedElements)
                     {
-                        UnlockedElements.Add(element);
-                        element.Grid.IsVisible = true;
+                        UnlockElement(element);
                     }
                 }
             }
@@ -257,30 +240,17 @@ namespace DLR_Data_App.Views.CurrentProject
         /// <summary>
         /// Saves the user-supplied data.
         /// </summary>
-        private async void SaveClicked(object sender, EventArgs e)
+        private async void SaveClicked(object sender, EventArgs _)
         {
             if (await CheckActiveProject())
             {
                 var elementNameList = new List<string>();
                 var elementValueList = new List<string>();
 
-                foreach (var view in Helpers.WalkElements(_pages))
+                foreach (var representation in _formElements.Select(e => e.GetRepresentation()))
                 {
-                    if (view is Entry entry)
-                    {
-                        elementNameList.Add(entry.StyleId);
-                        elementValueList.Add(entry.Text ?? "0");
-                    }
-                    else if (view is Picker picker)
-                    {
-                        elementNameList.Add(picker.StyleId);
-                        elementValueList.Add(picker.SelectedItem as string ?? "0");
-                    }
-                    else if (view is Label label && label.StyleId != null && label.StyleId.EndsWith("LocationData"))
-                    {
-                        elementNameList.Add(label.StyleId.Substring(0, label.StyleId.Length - "LocationData".Length));
-                        elementValueList.Add(label.Text);
-                    }
+                    elementNameList.Add(representation.Key);
+                    elementValueList.Add(representation.Value);
                 }
 
                 var tableName = _workingProject.GetTableName();
@@ -290,7 +260,12 @@ namespace DLR_Data_App.Views.CurrentProject
                 if (status)
                 {
                     message = AppResources.successful;
-                    Helpers.WalkElements(_pages, ClearView);
+                    foreach (var element in _formElements)
+                    {
+                        element.Reset();
+                        LockElement(element);
+                    }
+                    UnlockInitialVisibleElements(_formElements);
                 }
                 else
                 {

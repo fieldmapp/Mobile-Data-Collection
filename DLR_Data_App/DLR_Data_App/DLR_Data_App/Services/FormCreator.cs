@@ -1,5 +1,6 @@
 ﻿using DLR_Data_App.Localizations;
 using DLR_Data_App.Models.ProjectModel;
+using DLR_Data_App.Services.Sensors;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -15,7 +16,7 @@ namespace DLR_Data_App.Services
         public ProjectFormElements Element;
         public Project CurrentProject;
         public Func<string, string, string, Task> DisplayAlertFunc;
-        
+
         public FormCreationParams(ProjectFormElements element, Project currentProject, Func<string, string, string, Task> displayAlertFunc)
         {
             Element = element;
@@ -31,7 +32,7 @@ namespace DLR_Data_App.Services
             Data = data;
             ShouldBeShownExpression = string.IsNullOrWhiteSpace(data.Relevance) ? null : OdkDataExtractor.GetBooleanExpression(data.Relevance);
         }
-        
+
         public Grid Grid { get; }
         public ProjectFormElements Data { get; }
         public event EventHandler ValidContentChange;
@@ -40,6 +41,107 @@ namespace DLR_Data_App.Services
 
         public void OnValidContentChange() => ValidContentChange?.Invoke(this, null);
         public void OnInvalidContentChange() => InvalidContentChange?.Invoke(this, null);
+
+        public static readonly DateTime InitialDate = new DateTime(1970, 1, 1);
+        public static readonly long InitialDateTicks = InitialDate.Ticks;
+        private IEnumerable<View> Children => Grid.Children;
+
+        public void Reset()
+        {
+            foreach (var child in Children)
+            {
+                if (child is Entry entry)
+                    entry.Text = "";
+                else if (child is Picker picker)
+                    picker.SelectedIndex = -1;
+                else if (child is DatePicker datePicker)
+                    datePicker.Date = InitialDate;
+                else if (child is Label label && label.StyleId != null && label.StyleId.EndsWith("LocationData"))
+                    label.Text = string.Empty;
+            }
+        }
+
+        public void OnGpsChange(GpsEventArgs e)
+        {
+            foreach (var label in Children.OfType<Label>().Where(l => l.StyleId != null))
+            {
+                if (label.StyleId.Contains("Lat"))
+                    Device.BeginInvokeOnMainThread(() => label.Text = e.Latitude.ToString(CultureInfo.CurrentCulture));
+
+                if (label.StyleId.Contains("Long"))
+                    Device.BeginInvokeOnMainThread(() => label.Text = e.Longitude.ToString(CultureInfo.CurrentCulture));
+
+                if (label.StyleId.Contains("Message"))
+                    Device.BeginInvokeOnMainThread(() => label.Text = e.Message.ToString(CultureInfo.CurrentCulture));
+            }
+        }
+
+        public KeyValuePair<string, string> GetRepresentation()
+        {
+            foreach (var child in Children)
+            {
+                if (child is Entry entry)
+                {
+                    return new KeyValuePair<string, string>(entry.StyleId, entry.Text ?? string.Empty);
+                }
+                else if (child is Picker picker)
+                {
+                    //TODO: IndexOf does not respect actual backing values from odk, 
+                    //will result in problems if a picker is not using integer backing values starting from 0
+                    return new KeyValuePair<string, string>(picker.StyleId, picker.Items.IndexOf(picker.SelectedItem as string ?? "").ToString());
+                }
+                else if (child is Label label && label.StyleId != null && label.StyleId.EndsWith("LocationData"))
+                {
+                    return new KeyValuePair<string, string>(label.StyleId.Substring(0, label.StyleId.Length - "LocationData".Length), label.Text);
+                }
+                else if (child is DatePicker datePicker)
+                {
+                    return new KeyValuePair<string, string>(datePicker.StyleId, datePicker.Date.Ticks.ToString());
+                }
+            }
+            throw new NotImplementedException("This FormElement has no identifiable type and thus no representation");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="projectData"></param>
+        /// <returns>Boolean indicating if this FormElement set something non initial to one of its views</returns>
+        public bool LoadContentFromProjectData(Dictionary<string,string> projectData)
+        {
+            foreach (var child in Children)
+            {
+                if (child is Entry entry)
+                {
+                    var savedData = projectData[entry.StyleId];
+                    entry.Text = savedData;
+                    return !string.IsNullOrWhiteSpace(savedData);
+                }
+                else if (child is Picker picker)
+                {
+                    var savedData = Convert.ToInt32(projectData[picker.StyleId]);
+                    picker.SelectedIndex = savedData;
+                    return savedData >= 0;
+                }
+                else if (child is Label label && label.StyleId != null && label.StyleId.EndsWith("LocationData"))
+                {
+                    var savedData = projectData[label.StyleId.Substring(0, label.StyleId.Length - "LocationData".Length)];
+                    label.Text = savedData;
+                    return !string.IsNullOrEmpty(savedData);
+                }
+                else if (child is DatePicker datePicker)
+                {
+                    var savedData = projectData[datePicker.StyleId];
+                    if (long.TryParse(savedData, out var ticks))
+                    {
+                        datePicker.Date = new DateTime(Convert.ToInt64(projectData[datePicker.StyleId]));
+                        return InitialDateTicks != ticks;
+                    }
+                    return false;
+                }
+            }
+            return false;
+        }
     }
 
     class FormContent
@@ -107,8 +209,7 @@ namespace DLR_Data_App.Services
         {
             var grid = CreateStandardBaseGrid(parms);
             var formElement = new FormElement(grid, parms.Element);
-
-            //TODO: Save and load dates
+            
             var datePicker = new DatePicker { StyleId = parms.Element.Name };
             datePicker.DateSelected += (a, b) =>
             {
@@ -120,7 +221,7 @@ namespace DLR_Data_App.Services
                 else
                     formElement.OnValidContentChange();
             };
-            datePicker.Date = new DateTime(1970,1,1);
+            datePicker.Date = FormElement.InitialDate;
             grid.Children.Add(datePicker, 0, 1);
             Grid.SetColumnSpan(datePicker, 2);
 
@@ -274,7 +375,7 @@ namespace DLR_Data_App.Services
                 StyleId = parms.Element.Name
             };
 
-            entry.TextChanged += (a,b) => formElement.OnValidContentChange();
+            entry.TextChanged += (a, b) => formElement.OnValidContentChange();
 
             grid.Children.Add(entry, 0, 1);
             Grid.SetColumnSpan(entry, 2);
