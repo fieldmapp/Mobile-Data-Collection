@@ -134,8 +134,10 @@ namespace DLR_Data_App.Services
                     var savedData = projectData[datePicker.StyleId];
                     if (long.TryParse(savedData, out var ticks))
                     {
-                        datePicker.Date = new DateTime(Convert.ToInt64(projectData[datePicker.StyleId]));
-                        return InitialDateTicks != ticks;
+                        var newDate = new DateTime(ticks);
+                        datePicker.Date = newDate;
+                        //TODO: Replace future check by using odk constraints
+                        return InitialDateTicks != ticks && newDate <= DateTime.UtcNow;
                     }
                     return false;
                 }
@@ -213,6 +215,7 @@ namespace DLR_Data_App.Services
             var datePicker = new DatePicker { StyleId = parms.Element.Name };
             datePicker.DateSelected += (a, b) =>
             {
+                //TODO: Replace by using odk constraints
                 if (b.NewDate > DateTime.UtcNow)
                 {
                     formElement.OnInvalidContentChange();
