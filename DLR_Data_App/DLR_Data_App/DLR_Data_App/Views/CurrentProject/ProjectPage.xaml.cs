@@ -72,7 +72,7 @@ namespace DLR_Data_App.Views.CurrentProject
         /// </summary>
         private void OnGpsChange(object sender, GpsEventArgs e)
         {
-            foreach (var element in _formElements)
+            foreach (var element in _formElements ?? Enumerable.Empty<FormElement>())
             {
                 element.OnGpsChange(e);
             }
