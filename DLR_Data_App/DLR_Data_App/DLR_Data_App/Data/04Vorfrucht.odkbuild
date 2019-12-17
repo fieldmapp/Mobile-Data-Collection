@@ -428,7 +428,7 @@
       },
       "defaultValue": "",
       "readOnly": false,
-      "required": true,
+      "required": false,
       "requiredText": { "1": "" },
       "relevance": "${preceedingCropFruitType}=5",
       "constraint": "",
