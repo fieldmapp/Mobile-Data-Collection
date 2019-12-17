@@ -8,7 +8,7 @@
         "1": "Location"
       },
       "hint": {
-        "0": "Durch Tippen auf [Speichern] werden die GPS-Koordinaten des aktuellen Standorts erfasst. Bitte Koordinaten nur speichern, wenn Sie sich an/auf dem Feld befinden, dessen Eigenschaften Sie erfassen wollen. Richten Sie Ihr Smartphone/Tablett vor dem Tippen auf Speichern so aus, als würden Sie ein Foto von dem Feld machen wollen. Dies ermöglicht uns anhand der Kompassdaten die Zuordnung Ihrer Eingaben zu dem Feld, auch wenn Sie nicht auf diesem stehen. Wenn Sie keine Koordinatenerfassung wünschen, deaktivieren Sie den GPS-Sensor Ihres Gerätes. Um mit der Beantwortung der Fragen fortzufahren, tippen Sie auf Speichern. Es wird daraufhin der Wert 0 sowohl für die geographische Breite, als Länge gespeichert.",
+        "0": "Durch Tippen auf [Speichern] werden die GPS-Koordinaten des aktuellen Standorts erfasst. Bitte Koordinaten nur speichern, wenn Sie sich an/auf dem Feld befinden, dessen Eigenschaften Sie erfassen wollen. Richten Sie Ihr Smartphone/Tablett vor dem Tippen auf Speichern so aus, als wÃ¼rden Sie ein Foto von dem Feld machen wollen. Dies ermÃ¶glicht uns anhand der Kompassdaten die Zuordnung Ihrer Eingaben zu dem Feld, auch wenn Sie nicht auf diesem stehen. Wenn Sie keine Koordinatenerfassung wÃ¼nschen, deaktivieren Sie den GPS-Sensor Ihres GerÃ¤tes. Um mit der Beantwortung der Fragen fortzufahren, tippen Sie auf Speichern. Es wird daraufhin der Wert 0 sowohl fÃ¼r die geographische Breite, als LÃ¤nge gespeichert.",
         "1": "Detects your location using the GPS satelites."
       },
       "defaultValue": "",
