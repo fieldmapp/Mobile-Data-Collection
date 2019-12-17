@@ -554,4 +554,7 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen f�
   <data name="selectedDateIsInFuture" xml:space="preserve">
     <value>Das ausgewählte Datum liegt in der Zukunft und ist deshalb ungültig.</value>
   </data>
+  <data name="projectSuccessfullyAdded" xml:space="preserve">
+    <value>Projekt wurde erfolgreich geladen.</value>
+  </data>
 </root>

@@ -829,6 +829,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Project was launched successfully. ähnelt.
+        /// </summary>
+        internal static string projectSuccessfullyAdded {
+            get {
+                return ResourceManager.GetString("projectSuccessfullyAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Question {0}/{1} Id {2} ähnelt.
         /// </summary>
         internal static string questionEntryFormat {
