@@ -120,8 +120,8 @@
     {
       "name": "wateringAreaSize",
       "label": {
-        "0": "Auf Fläche von ... ha",
-        "1": "On an area of ... ha"
+        "0": "Auf Fläche in ha",
+        "1": "On an area in ha"
       },
       "hint": {
         "0": "Geben Sie an, auf welche Fläche diese Wassermenge verteilt wurde.",
