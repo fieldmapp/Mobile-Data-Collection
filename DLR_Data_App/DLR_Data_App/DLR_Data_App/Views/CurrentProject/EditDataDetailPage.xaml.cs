@@ -72,18 +72,6 @@ namespace DLR_Data_App.Views.CurrentProject
             }
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            _sensor.Gps.StatusChanged += OnGpsChange;
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-            _sensor.Gps.StatusChanged -= OnGpsChange;
-        }
-
         protected override bool OnBackButtonPressed()
         {
             Navigation.PopAsync();
@@ -225,17 +213,6 @@ namespace DLR_Data_App.Views.CurrentProject
                 variables.Add(representation.Key, representation.Value);
             }
             return variables;
-        }
-
-        /// <summary>
-        /// Updates shown gps data.
-        /// </summary>
-        private void OnGpsChange(object sender, GpsEventArgs e)
-        {
-            foreach (var element in _formElements ?? Enumerable.Empty<FormElement>())
-            {
-                element.OnGpsChange(e);
-            }
         }
 
         private async void SaveClicked(object sender, EventArgs _)

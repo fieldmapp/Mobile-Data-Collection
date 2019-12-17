@@ -34,18 +34,6 @@ namespace DLR_Data_App.Views.CurrentProject
             Appearing += ProjectPage_Appearing;
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            _sensor.Gps.StatusChanged += OnGpsChange;
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-            _sensor.Gps.StatusChanged -= OnGpsChange;
-        }
-
         private void ProjectPage_Appearing(object sender, EventArgs e)
         {
             var newProject = Database.GetCurrentProject();
@@ -64,17 +52,6 @@ namespace DLR_Data_App.Views.CurrentProject
             if (_pages == null || _pages.Count == 0)
             {
                 (Application.Current as App).CurrentPage.DisplayAlert(AppResources.warning, AppResources.noactiveproject, AppResources.okay);
-            }
-        }
-
-        /// <summary>
-        /// Updates shown gps data.
-        /// </summary>
-        private void OnGpsChange(object sender, GpsEventArgs e)
-        {
-            foreach (var element in _formElements ?? Enumerable.Empty<FormElement>())
-            {
-                element.OnGpsChange(e);
             }
         }
 

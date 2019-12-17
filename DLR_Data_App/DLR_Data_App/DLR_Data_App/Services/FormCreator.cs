@@ -26,11 +26,12 @@ namespace DLR_Data_App.Services
     }
     class FormElement
     {
-        public FormElement(Grid grid, ProjectFormElements data)
+        public FormElement(Grid grid, ProjectFormElements data, string type)
         {
             Grid = grid;
             Data = data;
             ShouldBeShownExpression = string.IsNullOrWhiteSpace(data.Relevance) ? null : OdkDataExtractor.GetBooleanExpression(data.Relevance);
+            Type = type;
         }
 
         public Grid Grid { get; }
@@ -38,6 +39,7 @@ namespace DLR_Data_App.Services
         public event EventHandler ValidContentChange;
         public event EventHandler InvalidContentChange;
         public OdkBooleanExpresion ShouldBeShownExpression { get; }
+        public readonly string Type;
 
         public void OnValidContentChange() => ValidContentChange?.Invoke(this, null);
         public void OnInvalidContentChange() => InvalidContentChange?.Invoke(this, null);
@@ -51,56 +53,38 @@ namespace DLR_Data_App.Services
             foreach (var child in Children)
             {
                 if (child is Entry entry)
-                    entry.Text = "";
+                    entry.Text = string.Empty;
                 else if (child is Picker picker)
                     picker.SelectedIndex = -1;
                 else if (child is DatePicker datePicker)
                     datePicker.Date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-                else if (child is Label label && label.StyleId != null && label.StyleId.EndsWith("LocationData"))
+                else if (child is Label label && label.StyleId != null)
                     label.Text = string.Empty;
-            }
-        }
-
-        public void OnGpsChange(GpsEventArgs e)
-        {
-            foreach (var label in Children.OfType<Label>().Where(l => l.StyleId != null))
-            {
-                if (label.StyleId.Contains("Lat"))
-                    Device.BeginInvokeOnMainThread(() => label.Text = e.Latitude.ToString(CultureInfo.CurrentCulture));
-
-                if (label.StyleId.Contains("Long"))
-                    Device.BeginInvokeOnMainThread(() => label.Text = e.Longitude.ToString(CultureInfo.CurrentCulture));
-
-                if (label.StyleId.Contains("Message"))
-                    Device.BeginInvokeOnMainThread(() => label.Text = e.Message.ToString(CultureInfo.CurrentCulture));
             }
         }
 
         public KeyValuePair<string, string> GetRepresentation()
         {
-            foreach (var child in Children)
+            switch (Type)
             {
-                if (child is Entry entry)
-                {
-                    return new KeyValuePair<string, string>(entry.StyleId, entry.Text ?? string.Empty);
-                }
-                else if (child is Picker picker)
-                {
-                    //TODO: IndexOf does not respect actual backing values from odk, 
-                    //will result in problems if a picker is not using integer backing values starting from 0
-                    return new KeyValuePair<string, string>(picker.StyleId, picker.Items.IndexOf(picker.SelectedItem as string ?? "").ToString());
-                }
-                else if (child is Label label && label.StyleId != null && label.StyleId.EndsWith("LocationData"))
-                {
-                    return new KeyValuePair<string, string>(label.StyleId.Substring(0, label.StyleId.Length - "LocationData".Length), label.Text);
-                }
-                else if (child is DatePicker datePicker)
-                {
+                case "inputText":
+                case "inputNumeric":
+                    var textEntry = Children.OfType<Entry>().First();
+                    return new KeyValuePair<string, string>(textEntry.StyleId, textEntry.Text ?? string.Empty);
+                case "inputSelectOne":
+                    var picker = Children.OfType<Picker>().First();
+                    return new KeyValuePair<string, string>(picker.StyleId, picker.SelectedIndex.ToString());
+                case "inputDate":
+                    var datePicker = Children.OfType<DatePicker>().First();
                     return new KeyValuePair<string, string>(datePicker.StyleId, Grid.IsVisible ? datePicker.Date.Ticks.ToString() : EmptyDateTicks.ToString());
-                }
+                case "inputLocation":
+                case "compass":
+                    var dataLabel = Children.OfType<Label>().Where(l => l.StyleId != null).First();
+                    return new KeyValuePair<string, string>(dataLabel.StyleId, dataLabel.Text);
+                default:
+                    //throw new NotImplementedException("This FormElement has no identifiable type and thus no representation");
+                    return new KeyValuePair<string, string>(App.RandomProvider.Next().ToString(), string.Empty);
             }
-            return new KeyValuePair<string, string>(App.RandomProvider.Next().ToString(), string.Empty);
-            //throw new NotImplementedException("This FormElement has no identifiable type and thus no representation");
         }
 
         /// <summary>
@@ -108,30 +92,23 @@ namespace DLR_Data_App.Services
         /// </summary>
         /// <param name="projectData"></param>
         /// <returns>Boolean indicating if this FormElement set something non initial to one of its views</returns>
-        public bool LoadContentFromProjectData(Dictionary<string,string> projectData)
+        public bool LoadContentFromProjectData(Dictionary<string, string> projectData)
         {
-            foreach (var child in Children)
+            switch (Type)
             {
-                if (child is Entry entry)
-                {
-                    var savedData = projectData[entry.StyleId];
-                    entry.Text = savedData;
-                    return !string.IsNullOrWhiteSpace(savedData);
-                }
-                else if (child is Picker picker)
-                {
-                    var savedData = Convert.ToInt32(projectData[picker.StyleId]);
-                    picker.SelectedIndex = savedData;
-                    return savedData >= 0;
-                }
-                else if (child is Label label && label.StyleId != null && label.StyleId.EndsWith("LocationData"))
-                {
-                    var savedData = projectData[label.StyleId.Substring(0, label.StyleId.Length - "LocationData".Length)];
-                    label.Text = savedData;
-                    return !string.IsNullOrEmpty(savedData);
-                }
-                else if (child is DatePicker datePicker)
-                {
+                case "inputText":
+                case "inputNumeric":
+                    var textEntry = Children.OfType<Entry>().First();
+                    var savedText = projectData[textEntry.StyleId];
+                    textEntry.Text = savedText;
+                    return !string.IsNullOrEmpty(savedText);
+                case "inputSelectOne":
+                    var picker = Children.OfType<Picker>().First();
+                    var savedIndex = Convert.ToInt32(projectData[picker.StyleId]);
+                    picker.SelectedIndex = savedIndex;
+                    return savedIndex >= 0;
+                case "inputDate":
+                    var datePicker = Children.OfType<DatePicker>().First();
                     var savedData = projectData[datePicker.StyleId];
                     if (long.TryParse(savedData, out var ticks))
                     {
@@ -141,9 +118,16 @@ namespace DLR_Data_App.Services
                         return EmptyDateTicks != ticks && newDate <= DateTime.UtcNow;
                     }
                     return false;
-                }
+                case "inputLocation":
+                case "compass":
+                    var dataLabel = Children.OfType<Label>().Where(l => l.StyleId != null).First();
+                    savedText = projectData[dataLabel.StyleId];
+                    dataLabel.Text = savedText;
+                    return !string.IsNullOrEmpty(savedText);
+                default:
+                    //throw new NotImplementedException("This FormElement has no identifiable type and thus no representation");
+                    return false;
             }
-            return false;
         }
     }
 
@@ -180,7 +164,7 @@ namespace DLR_Data_App.Services
         {
             //TODO: save and load (conflicts with location?)
             var grid = CreateStandardBaseGrid(arg);
-            var formElement = new FormElement(grid, arg.Element);
+            var formElement = new FormElement(grid, arg.Element, "compass");
 
             var currentCompassLabel = new Label { Text = AppResources.compass };
             var currentCompassDataLabel = new Label();
@@ -189,7 +173,7 @@ namespace DLR_Data_App.Services
             var saveButton = new Button { Text = AppResources.save };
 
             var savedCompassLabel = new Label { Text = AppResources.saveddata };
-            var savedCompassDataLabel = new Label();
+            var savedCompassDataLabel = new Label { StyleId = arg.Element.Name };
 
             saveButton.Clicked += (_, b) =>
             {
@@ -231,19 +215,18 @@ namespace DLR_Data_App.Services
 
         private static FormElement CreateUnknownChecker(FormCreationParams parms)
         {
-            return new FormElement(new Grid(), parms.Element);
+            return new FormElement(new Grid(), parms.Element, "unknown");
         }
 
         private static FormElement CreateRuler(FormCreationParams parms)
         {
-            return new FormElement(new Grid(), parms.Element);
+            return new FormElement(new Grid(), parms.Element, "propRuler");
         }
-
-
+        
         private static FormElement CreateDateSelector(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var formElement = new FormElement(grid, parms.Element);
+            var formElement = new FormElement(grid, parms.Element, "inputDate");
             
             var datePicker = new DatePicker { StyleId = parms.Element.Name };
             
@@ -268,30 +251,25 @@ namespace DLR_Data_App.Services
         private static FormElement CreateLocationSelector(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var formElement = new FormElement(grid, parms.Element);
+            var formElement = new FormElement(grid, parms.Element, "inputLocation");
 
             var labelLat = new Label { Text = "Latitude" };
 
-            var labelLatData = new Label()
-            {
-                Text = Sensor.Instance.Gps.Latitude.ToString(CultureInfo.CurrentCulture),
-                StyleId = parms.Element.Name + "Lat"
-            };
+            var labelLatData = new Label() { Text = Sensor.Instance.Gps.Latitude.ToString(CultureInfo.CurrentCulture) };
 
             var labelLong = new Label { Text = "Longitude" };
 
-            var labelLongData = new Label()
-            {
-                Text = Sensor.Instance.Gps.Longitude.ToString(CultureInfo.CurrentCulture),
-                StyleId = parms.Element.Name + "Long"
-            };
+            var labelLongData = new Label() { Text = Sensor.Instance.Gps.Longitude.ToString(CultureInfo.CurrentCulture) };
 
             var labelMessage = new Label { Text = AppResources.message };
 
-            var labelMessageData = new Label()
+            var labelMessageData = new Label() { Text = Sensor.Instance.Gps.Message };
+
+            Sensor.Instance.Gps.StatusChanged += (sender, args) =>
             {
-                Text = Sensor.Instance.Gps.Message,
-                StyleId = parms.Element.Name + "Message"
+                labelLatData.Text = args.Latitude.ToString();
+                labelLongData.Text = args.Longitude.ToString();
+                labelMessage.Text = args.Message;
             };
 
             var saveButton = new Button { Text = AppResources.save };
@@ -300,8 +278,8 @@ namespace DLR_Data_App.Services
             var savedLocation = new Label { Text = AppResources.saveddata };
             var savedLocationData = new Label
             {
-                Text = "",
-                StyleId = parms.Element.Name + "LocationData"
+                Text = string.Empty,
+                StyleId = parms.Element.Name
             };
 
             saveButton.Clicked += (sender, args) => savedLocationData.Text = $"Lat:{labelLongData.Text} Long:{labelLatData.Text}";
@@ -309,8 +287,7 @@ namespace DLR_Data_App.Services
 
             skipButton.Clicked += (sender, args) => savedLocationData.Text = $"Lat:0 Long:0";
             skipButton.Clicked += (a, b) => formElement.OnValidContentChange();
-
-
+            
             grid.Children.Add(labelLat, 0, 1);
             grid.Children.Add(labelLatData, 1, 1);
             grid.Children.Add(labelLong, 0, 2);
@@ -328,7 +305,7 @@ namespace DLR_Data_App.Services
         private static FormElement CreateNumericInput(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var formElement = new FormElement(grid, parms.Element);
+            var formElement = new FormElement(grid, parms.Element, "inputNumeric");
 
             var placeholder = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
             if (placeholder == "Unable to parse language from json")
@@ -361,7 +338,7 @@ namespace DLR_Data_App.Services
         private static FormElement CreatePicker(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var formElement = new FormElement(grid, parms.Element);
+            var formElement = new FormElement(grid, parms.Element, "inputSelectOne");
 
             var optionsList = new List<string>();
             var options = Parser.ParseOptionsFromJson(parms.Element.Options);
@@ -397,7 +374,7 @@ namespace DLR_Data_App.Services
         private static FormElement CreateTextInput(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var formElement = new FormElement(grid, parms.Element);
+            var formElement = new FormElement(grid, parms.Element, "inputText");
 
             var placeholder = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
             if (placeholder == "Unable to parse language from json")
