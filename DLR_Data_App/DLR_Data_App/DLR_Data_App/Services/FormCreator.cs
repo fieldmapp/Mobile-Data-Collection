@@ -111,6 +111,7 @@ namespace DLR_Data_App.Services
             //TODO: Save and load dates
             var datePicker = new DatePicker { StyleId = parms.Element.Name };
             datePicker.DateSelected += (a,b) => formElement.OnValidContentChange();
+            datePicker.Date = new DateTime(1970,1,1);
             grid.Children.Add(datePicker, 0, 1);
             Grid.SetColumnSpan(datePicker, 2);
 
@@ -147,6 +148,7 @@ namespace DLR_Data_App.Services
             };
 
             var saveButton = new Button { Text = AppResources.save };
+            var skipButton = new Button { Text = AppResources.skip };
 
             var savedLocation = new Label { Text = AppResources.saveddata };
             var savedLocationData = new Label
@@ -158,14 +160,18 @@ namespace DLR_Data_App.Services
             saveButton.Clicked += (sender, args) => savedLocationData.Text = $"Lat:{labelLongData.Text} Long:{labelLatData.Text}";
             saveButton.Clicked += (a, b) => formElement.OnValidContentChange();
 
+            skipButton.Clicked += (sender, args) => savedLocationData.Text = $"Lat:0 Long:0";
+            skipButton.Clicked += (a, b) => formElement.OnValidContentChange();
+
+
             grid.Children.Add(labelLat, 0, 1);
             grid.Children.Add(labelLatData, 1, 1);
             grid.Children.Add(labelLong, 0, 2);
             grid.Children.Add(labelLongData, 1, 2);
             grid.Children.Add(labelMessage, 0, 3);
             grid.Children.Add(labelMessageData, 1, 3);
-            grid.Children.Add(saveButton, 0, 4);
-            Grid.SetColumnSpan(saveButton, 2);
+            grid.Children.Add(skipButton, 0, 4);
+            grid.Children.Add(saveButton, 1, 4);
             grid.Children.Add(savedLocation, 0, 5);
             grid.Children.Add(savedLocationData, 1, 5);
 
