@@ -405,21 +405,28 @@ namespace DLR_Data_App.Services
             // walk through list of elements and generate form containing elements
             foreach (var element in form.ElementList)
             {
-                IEnumerable<char> findSpecialType(string name) => name.SkipWhile(c => c != '{').Skip(1).TakeWhile(c => c != '}');
+                IEnumerable<char> findSpecialType(string name) => name.SkipWhileIncluding(c => c != '{').TakeWhile(c => c != '}');
 
                 var formCreationParams = new FormCreationParams(element, currentProject, displayAlert);
                 FormElement formElement = null;
 
-                if (element.Type == "inputText" && element.Name != null && findSpecialType(element.Name).Any())
+                bool specialType = false;
+                if (element.Label != null)
                 {
-                    //Special element
-                    var specialElementType = new string(findSpecialType(element.Name).ToArray());
-                    if (SpecialTypeToViewCreator.TryGetValue(specialElementType, out var viewCreator))
+                    var translatedLabel = Parser.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages);
+                    if (translatedLabel != null && findSpecialType(translatedLabel).Any())
                     {
-                        formElement = viewCreator(formCreationParams);
+                        //Special element
+                        var specialElementType = new string(findSpecialType(translatedLabel).ToArray());
+                        if (SpecialTypeToViewCreator.TryGetValue(specialElementType, out var viewCreator))
+                        {
+                            specialType = true;
+                            formElement = viewCreator(formCreationParams);
+                        }
                     }
                 }
-                else
+                
+                if (!specialType)
                 {
                     if (TypeToViewCreator.TryGetValue(element.Type, out var viewCreator))
                     {
