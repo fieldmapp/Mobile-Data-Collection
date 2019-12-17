@@ -375,7 +375,13 @@ namespace DLR_Data_App.Services
                 StyleId = parms.Element.Name
             };
 
-            entry.TextChanged += (a, b) => formElement.OnValidContentChange();
+            entry.TextChanged += (a, b) =>
+            {
+                if (string.IsNullOrEmpty(b.NewTextValue))
+                    formElement.OnInvalidContentChange();
+                else
+                    formElement.OnValidContentChange();
+            };
 
             grid.Children.Add(entry, 0, 1);
             Grid.SetColumnSpan(entry, 2);
