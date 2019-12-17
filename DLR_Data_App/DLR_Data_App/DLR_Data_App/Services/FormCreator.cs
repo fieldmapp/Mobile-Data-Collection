@@ -42,8 +42,8 @@ namespace DLR_Data_App.Services
         public void OnValidContentChange() => ValidContentChange?.Invoke(this, null);
         public void OnInvalidContentChange() => InvalidContentChange?.Invoke(this, null);
 
-        public static readonly DateTime InitialDate = new DateTime(1970, 1, 1);
-        public static readonly long InitialDateTicks = InitialDate.Ticks;
+        private static readonly DateTime EmptyDate = new DateTime(1970, 1, 1);
+        private static readonly long EmptyDateTicks = EmptyDate.Ticks;
         private IEnumerable<View> Children => Grid.Children;
 
         public void Reset()
@@ -55,7 +55,7 @@ namespace DLR_Data_App.Services
                 else if (child is Picker picker)
                     picker.SelectedIndex = -1;
                 else if (child is DatePicker datePicker)
-                    datePicker.Date = InitialDate;
+                    datePicker.Date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
                 else if (child is Label label && label.StyleId != null && label.StyleId.EndsWith("LocationData"))
                     label.Text = string.Empty;
             }
@@ -96,7 +96,7 @@ namespace DLR_Data_App.Services
                 }
                 else if (child is DatePicker datePicker)
                 {
-                    return new KeyValuePair<string, string>(datePicker.StyleId, datePicker.Date.Ticks.ToString());
+                    return new KeyValuePair<string, string>(datePicker.StyleId, Grid.IsVisible ? datePicker.Date.Ticks.ToString() : EmptyDateTicks.ToString());
                 }
             }
             return new KeyValuePair<string, string>(App.RandomProvider.Next().ToString(), string.Empty);
@@ -138,7 +138,7 @@ namespace DLR_Data_App.Services
                         var newDate = new DateTime(ticks);
                         datePicker.Date = newDate;
                         //TODO: Replace future check by using odk constraints
-                        return InitialDateTicks != ticks && newDate <= DateTime.UtcNow;
+                        return EmptyDateTicks != ticks && newDate <= DateTime.UtcNow;
                     }
                     return false;
                 }
@@ -242,10 +242,11 @@ namespace DLR_Data_App.Services
             var formElement = new FormElement(grid, parms.Element);
             
             var datePicker = new DatePicker { StyleId = parms.Element.Name };
-            datePicker.DateSelected += (a, b) =>
+            
+            datePicker.Unfocused += (a, b) =>
             {
                 //TODO: Replace by using odk constraints
-                if (b.NewDate > DateTime.UtcNow)
+                if (datePicker.Date > DateTime.UtcNow)
                 {
                     formElement.OnInvalidContentChange();
                     parms.DisplayAlertFunc(AppResources.error, AppResources.selectedDateIsInFuture, AppResources.ok);
@@ -253,7 +254,7 @@ namespace DLR_Data_App.Services
                 else
                     formElement.OnValidContentChange();
             };
-            datePicker.Date = FormElement.InitialDate;
+            datePicker.Date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             grid.Children.Add(datePicker, 0, 1);
             Grid.SetColumnSpan(datePicker, 2);
 
