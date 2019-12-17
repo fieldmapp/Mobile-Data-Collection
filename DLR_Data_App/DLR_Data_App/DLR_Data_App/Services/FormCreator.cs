@@ -99,7 +99,8 @@ namespace DLR_Data_App.Services
                     return new KeyValuePair<string, string>(datePicker.StyleId, datePicker.Date.Ticks.ToString());
                 }
             }
-            throw new NotImplementedException("This FormElement has no identifiable type and thus no representation");
+            return new KeyValuePair<string, string>(App.RandomProvider.Next().ToString(), string.Empty);
+            //throw new NotImplementedException("This FormElement has no identifiable type and thus no representation");
         }
 
         /// <summary>
@@ -171,8 +172,36 @@ namespace DLR_Data_App.Services
         private static Dictionary<string, Func<FormCreationParams, FormElement>> SpecialTypeToViewCreator = new Dictionary<string, Func<FormCreationParams, FormElement>>
         {
             { "propRuler", CreateRuler },
-            { "unknown", CreateUnknownChecker }
+            { "unknown", CreateUnknownChecker },
+            { "compass", CreateCompass }
         };
+
+        private static FormElement CreateCompass(FormCreationParams arg)
+        {
+            //TODO: save and load (conflicts with location?)
+            var grid = CreateStandardBaseGrid(arg);
+            var formElement = new FormElement(grid, arg.Element);
+
+            var currentCompassLabel = new Label { Text = AppResources.compass };
+            var currentCompassDataLabel = new Label();
+            Sensor.Instance.Compass.ReadingChanged += (_,eventArgs) => currentCompassDataLabel.Text = ((int)eventArgs.Reading.HeadingMagneticNorth).ToString();
+
+            var saveButton = new Button { Text = AppResources.save };
+
+            var savedCompassLabel = new Label { Text = AppResources.saveddata };
+            var savedCompassDataLabel = new Label();
+
+            saveButton.Clicked += (_, b) => savedCompassDataLabel.Text = currentCompassDataLabel.Text;
+
+            grid.Children.Add(currentCompassLabel, 0, 1);
+            grid.Children.Add(currentCompassDataLabel, 1, 1);
+            grid.Children.Add(saveButton, 0, 2);
+            Grid.SetColumnSpan(saveButton, 2);
+            grid.Children.Add(savedCompassLabel, 0, 3);
+            grid.Children.Add(savedCompassDataLabel, 1, 3);
+
+            return formElement;
+        }
 
         private static Grid CreateStandardBaseGrid(FormCreationParams parms)
         {
