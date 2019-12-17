@@ -171,9 +171,18 @@ namespace DLR_Data_App.Views.CurrentProject
             foreach (var element in UnlockedElements.Where(e => e.ShouldBeShownExpression != null))
             {
                 if (element.ShouldBeShownExpression.Evaluate(GeatherVariables()))
+                {
                     element.Grid.IsVisible = true;
+                }
                 else
-                    element.Grid.IsVisible = false;
+                {
+                    var wasVisible = element.Grid.IsVisible;
+                    if (wasVisible)
+                    {
+                        element.Grid.IsVisible = false;
+                        element.Reset();
+                    }
+                }
             }
         }
 
