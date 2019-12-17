@@ -128,9 +128,22 @@ namespace DLR_Data_App.Views.CurrentProject
             {
                 element.Grid.IsVisible = true;
             }
+            var lastRequiredElement = formElements.LastOrDefault(e => e.Data.Required);
+            if (lastRequiredElement != null)
+            {
+                lastRequiredElement.ValidContentChange += LastRequiredElement_ValidContentChange;
+            }
 
-            _pages = pages;
+
+           _pages = pages;
             _formElements = formElements.AsReadOnly();
+        }
+
+        private void LastRequiredElement_ValidContentChange(object sender, EventArgs _)
+        {
+            var lastRequiredElement = (FormElement)sender;
+            lastRequiredElement.ValidContentChange -= LastRequiredElement_ValidContentChange;
+            DependencyService.Get<IToast>().ShortAlert(AppResources.pleaseSaveBeforeQuiting);
         }
 
         private void FormElement_InvalidContentChange(object sender, EventArgs _)
@@ -175,7 +188,9 @@ namespace DLR_Data_App.Views.CurrentProject
                 }
                 else if (view is Picker picker)
                 {
-                    variables.Add(picker.StyleId, picker.SelectedItem as string ?? "");
+                    //TODO: IndexOf does not respect actual backing values from odk, 
+                    //will result in problems if a picker is not using integer backing values starting from 0
+                    variables.Add(picker.StyleId, picker.Items.IndexOf(picker.SelectedItem as string ?? "").ToString());
                 }
                 else if (view is Label label && label.StyleId != null && label.StyleId.EndsWith("LocationData"))
                 {
@@ -198,7 +213,7 @@ namespace DLR_Data_App.Views.CurrentProject
                 if (currentlyRequiredElement == changedElement)
                 {
                     //Show all questions until (including) the next required one
-                    var newlyUnlockedElements = _formElements.SkipWhile(e => e.Grid.IsVisible).TakeUntilIncluding(e => e.Data.Required);
+                    var newlyUnlockedElements = _formElements.SkipWhileIncluding(e => e != changedElement).TakeUntilIncluding(e => e.Data.Required);
                     foreach (var element in newlyUnlockedElements)
                     {
                         UnlockedElements.Add(element);
