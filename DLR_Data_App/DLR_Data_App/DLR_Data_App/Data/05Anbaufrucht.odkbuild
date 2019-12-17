@@ -415,6 +415,152 @@
       "length": false,
       "metadata": {},
       "type": "inputText"
+    },
+    {
+      "name": "cultivatedFruitUnknown",
+      "label": {
+        "0": "Aktuelle Anbausorte",
+        "1": "Cultivated fruit detail"
+      },
+      "hint": {
+        "0": "Sorte der Feldfrucht eingeben.",
+        "1": "Select cultivated fruit"
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": { "1": "" },
+      "relevance": "${cultivatedFruitType}=5",
+      "constraint": "",
+      "invalidText": { "1": "" },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Weizen",
+            "1": "Wheat"
+          },
+          "cascade": [],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Roggen",
+            "1": "Rye"
+          },
+          "cascade": [],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "Gerste",
+            "1": "Barley"
+          },
+          "cascade": [],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "Hafer",
+            "1": "Oat"
+          },
+          "cascade": [],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "Triticale",
+            "1": "Triticale"
+          },
+          "cascade": [],
+          "val": "4"
+        },
+        {
+          "text": {
+            "0": "Mais",
+            "1": "Corn"
+          },
+          "cascade": [],
+          "val": "5"
+        },
+        {
+          "text": {
+            "0": "Erbsen",
+            "1": "Pea"
+          },
+          "cascade": [],
+          "val": "6"
+        },
+        {
+          "text": {
+            "0": "Ackerbohne",
+            "1": "Field bean"
+          },
+          "cascade": [],
+          "val": "7"
+        },
+        {
+          "text": {
+            "0": "Süßlupine",
+            "1": "Sweet lupins"
+          },
+          "cascade": [],
+          "val": "8"
+        },
+        {
+          "text": {
+            "0": "Sojabohne",
+            "1": "Soybean"
+          },
+          "cascade": [],
+          "val": "9"
+        },
+        {
+          "text": {
+            "0": "Kartoffel",
+            "1": "Potato"
+          },
+          "cascade": [],
+          "val": "10"
+        },
+        {
+          "text": {
+            "0": "Zuckerrübe",
+            "1": "Sugar beet"
+          },
+          "cascade": [],
+          "val": "11"
+        },
+        {
+          "text": {
+            "0": "Raps",
+            "1": "Oilseed rape"
+          },
+          "cascade": [],
+          "val": "12"
+        },
+        {
+          "text": {
+            "0": "Leinsamen",
+            "1": "Flaxseed"
+          },
+          "cascade": [],
+          "val": "13"
+        },
+        {
+          "text": {
+            "0": "Sonnenblume",
+            "1": "Sunflower"
+          },
+          "cascade": [],
+          "val": "14"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {},
+      "type": "inputSelectOne"
     }
   ],
   "metadata": {
