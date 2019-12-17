@@ -45,19 +45,95 @@
     },
     {
       "name": "reasonDamage",
+      "label": { "0": "Ursache" },
+      "hint": { "0": "Wählen Sie aus dem Auswahlmenü eine Ursache für den Schaden am Bestand aus. Für den Fall, dass die aktuelle Ursache nicht in der Auswahl enthalten ist, geben Sie diese bitte unter „Sonstiges“ ein." },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {},
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {},
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Sturm",
+            "1": "Storm"
+          },
+          "cascade": [],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Hagel",
+            "1": "Hail"
+          },
+          "cascade": [],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "Hochwasser",
+            "1": "Flood"
+          },
+          "cascade": [],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "Tierplage",
+            "1": "Plague"
+          },
+          "cascade": [],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "Feuer",
+            "1": "Fire"
+          },
+          "cascade": [],
+          "val": "4"
+        },
+        {
+          "text": {
+            "0": "Überdüngung",
+            "1": "Overfertilisation"
+          },
+          "cascade": [],
+          "val": "5"
+        },
+        {
+          "text": {
+            "0": "Sonstiges",
+            "1": "Other"
+          },
+          "cascade": [],
+          "val": "6"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {},
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "reasonDamageOther",
       "label": {
         "0": "Ursache",
         "1": "Cause of the damage"
       },
       "hint": {
-        "0": "Wählen Sie aus dem Auswahlmenü eine Ursache für den Schaden am Bestand aus. Für den Fall, dass die aktuelle Ursache nicht in der Auswahl enthalten ist, geben Sie diese bitte unter „Sonstiges“ ein.",
+        "0": "",
         "1": ""
       },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
       "requiredText": { "1": "" },
-      "relevance": "${stockDamaged}=0",
+      "relevance": "${stockDamaged}=0 and ${reasonDamage}=6",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
