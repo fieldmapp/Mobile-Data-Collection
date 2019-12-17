@@ -18,7 +18,7 @@ namespace DLR_Data_App.Views.CurrentProject
     public partial class ProjectPage
     {
         private readonly ProjectViewModel _viewModel = new ProjectViewModel();
-        private Project _workingProject = Database.GetCurrentProject();
+        private Project _workingProject;
         private List<ContentPage> _pages;
         private Project _projectLastCheck;
         private IReadOnlyList<FormElement> _formElements;
@@ -56,12 +56,13 @@ namespace DLR_Data_App.Views.CurrentProject
 
         private void ProjectPage_Appearing(object sender, EventArgs e)
         {
-            if (_projectLastCheck?.Id == _workingProject?.Id)
+            var newProject = Database.GetCurrentProject();
+            if (_projectLastCheck?.Id == newProject?.Id)
                 return;
-            _projectLastCheck = _workingProject;
+            _projectLastCheck = newProject;
 
             Children.Clear();
-            UpdateView();
+            UpdateView(newProject);
             foreach (var page in _pages)
             {
                 Children.Add(page);
@@ -94,10 +95,10 @@ namespace DLR_Data_App.Views.CurrentProject
         /// <summary>
         /// Updates view. Sets _pages and _formElements.
         /// </summary>
-        public void UpdateView()
+        public void UpdateView(Project newProject)
         {
             // Get current project
-            _workingProject = Database.GetCurrentProject();
+            _workingProject = newProject;
             var pages = new List<ContentPage>();
             var formElements = new List<FormElement>();
 
