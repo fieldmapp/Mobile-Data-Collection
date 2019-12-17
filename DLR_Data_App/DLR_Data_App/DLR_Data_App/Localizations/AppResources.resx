@@ -210,6 +210,9 @@
   <data name="edithelp" xml:space="preserve">
     <value>Please select a date and time to select your dataset you want to edit. In the following list all datasets are listed, while the matching dataset to the time is selected. Tip on the dataset of your choise to edit it.</value>
   </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
+  </data>
   <data name="evaluation" xml:space="preserve">
     <value>Evaluation</value>
   </data>
@@ -487,6 +490,9 @@ Consent of the data subject means any freely given, specific, informed and unamb
   </data>
   <data name="selectdate" xml:space="preserve">
     <value>Select date</value>
+  </data>
+  <data name="selectedDateIsInFuture" xml:space="preserve">
+    <value>Your selected date lies in the future and is thus invalid.</value>
   </data>
   <data name="selectform" xml:space="preserve">
     <value>Select Form</value>

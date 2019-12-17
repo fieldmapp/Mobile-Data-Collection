@@ -340,6 +340,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
+        /// </summary>
+        internal static string error {
+            get {
+                return ResourceManager.GetString("error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Evaluation ähnelt.
         /// </summary>
         internal static string evaluation {
@@ -951,6 +960,15 @@ namespace DLR_Data_App.Localizations {
         internal static string selectdate {
             get {
                 return ResourceManager.GetString("selectdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Your selected date lies in the future and is thus invalid. ähnelt.
+        /// </summary>
+        internal static string selectedDateIsInFuture {
+            get {
+                return ResourceManager.GetString("selectedDateIsInFuture", resourceCulture);
             }
         }
         

@@ -110,7 +110,16 @@ namespace DLR_Data_App.Services
 
             //TODO: Save and load dates
             var datePicker = new DatePicker { StyleId = parms.Element.Name };
-            datePicker.DateSelected += (a,b) => formElement.OnValidContentChange();
+            datePicker.DateSelected += (a, b) =>
+            {
+                if (b.NewDate > DateTime.UtcNow)
+                {
+                    formElement.OnInvalidContentChange();
+                    parms.DisplayAlertFunc(AppResources.error, AppResources.selectedDateIsInFuture, AppResources.ok);
+                }
+                else
+                    formElement.OnValidContentChange();
+            };
             datePicker.Date = new DateTime(1970,1,1);
             grid.Children.Add(datePicker, 0, 1);
             Grid.SetColumnSpan(datePicker, 2);

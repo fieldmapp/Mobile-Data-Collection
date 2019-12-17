@@ -548,4 +548,10 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen f�
   <data name="pleaseSaveBeforeQuiting" xml:space="preserve">
     <value>Vor dem Beenden bitte speichern</value>
   </data>
+  <data name="error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="selectedDateIsInFuture" xml:space="preserve">
+    <value>Das ausgewählte Datum liegt in der Zukunft und ist deshalb ungültig.</value>
+  </data>
 </root>
