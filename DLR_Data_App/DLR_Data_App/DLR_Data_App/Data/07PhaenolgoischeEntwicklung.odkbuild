@@ -361,7 +361,7 @@
         "1": "Fractional vegetation cover"
       },
       "hint": {
-        "0": "Wählen sie eine für die Umgebung repräsentative Fläche von ca. 1 m x 1m aus. Schauen sie senkrecht auf diese Fläche. Schätzen Sie nun für diese Fläche den Anteil des Bodens, der durch Pflanzen bedeckt ist. Tragen Sie Ihre Schätzung hier ein."
+        "0": "Wählen sie eine für die Umgebung repräsentative Fläche von ca. 1 m x 1m aus. Schauen sie senkrecht auf diese Fläche. Schätzen Sie nun für diese Fläche den Anteil des Bodens, der durch Pflanzen bedeckt ist. Tragen Sie Ihre Schätzung hier ein.",
         "1": ""
       },
       "defaultValue": "",

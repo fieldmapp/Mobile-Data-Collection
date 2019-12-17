@@ -79,11 +79,11 @@
         "0": "Geben Sie unter „Düngemittelart“ den Namen des Düngemittels ein, das ausgebracht wurde. Falls Sie diesen nicht wissen, können Sie auch eine kategorische Angabe wie „Mineraldünger“, „anorganischer Dünger“, „organischer Dünger“, „Gülle“, „Stallmist“ oder „Klärschlamm“ machen.",
         "1": ""
       },
-      "defaultValue": "${fertilizerUsed}=0",
+      "defaultValue": "",
       "readOnly": false,
       "required": false,
       "requiredText": { "1": "" },
-      "relevance": "",
+      "relevance": "${fertilizerUsed}=0",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",

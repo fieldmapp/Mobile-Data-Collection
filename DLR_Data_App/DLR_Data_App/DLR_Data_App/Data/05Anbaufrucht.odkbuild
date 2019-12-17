@@ -102,7 +102,7 @@
       "type": "inputSelectOne"
     },
     {
-      "name": "cultivatedFruitFruitType",
+      "name": "cultivatedFruitType",
       "label": {
         "0": "Aktuelle Pflanzenkategorie",
         "1": "Current crop detail"
@@ -181,7 +181,7 @@
       "readOnly": false,
       "required": false,
       "requiredText": { "1": "" },
-      "relevance": "${cultivatedFruitFruitType}=0",
+      "relevance": "${cultivatedFruitType}=0",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
@@ -255,8 +255,8 @@
       "readOnly": false,
       "required": false,
       "requiredText": { "1": "" },
-      "relevance": "",
-      "constraint": "${cultivatedFruitFruitType}=1",
+      "relevance": "${cultivatedFruitType}=1",
+      "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
       "options": [
@@ -313,7 +313,7 @@
       "readOnly": false,
       "required": false,
       "requiredText": { "1": "" },
-      "relevance": "${cultivatedFruitFruitType}=2",
+      "relevance": "${cultivatedFruitType}=2",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
@@ -351,11 +351,11 @@
         "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
         "1": ""
       },
-      "defaultValue": "${cultivatedFruitFruitType}=3",
+      "defaultValue": "",
       "readOnly": false,
       "required": false,
       "requiredText": { "1": "" },
-      "relevance": "",
+      "relevance": "${cultivatedFruitType}=3",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
@@ -405,7 +405,7 @@
       "readOnly": false,
       "required": false,
       "requiredText": { "1": "" },
-      "relevance": "${cultivatedFruitFruitType}=4",
+      "relevance": "${cultivatedFruitType}=4",
       "constraint": "",
       "invalidText": {
         "0": "",

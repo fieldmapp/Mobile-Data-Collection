@@ -44,7 +44,7 @@
       "calculate": "",
       "length": false,
       "metadata": {},
-      "type": "inputText"
+      "type": "inputNumeric"
     },
     {
       "name": "distancePlantRows",
@@ -66,7 +66,7 @@
       "calculate": "",
       "length": false,
       "metadata": {},
-      "type": "inputText"
+      "type": "inputNumeric"
     },
     {
       "name": "amoutSowing",
