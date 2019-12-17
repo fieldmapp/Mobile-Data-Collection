@@ -19,6 +19,7 @@ namespace DLR_Data_App.Views.CurrentProject
         //TODO: Merge EditDataDetailPage and ProjectPage
 
         private readonly Project _workingProject = Database.GetCurrentProject();
+        private int _id;
         private readonly Sensor _sensor = Sensor.Instance;
         private List<ContentPage> _pages;
         HashSet<FormElement> UnlockedElements;
@@ -30,6 +31,11 @@ namespace DLR_Data_App.Views.CurrentProject
 
             if (_workingProject == null)
                 throw new Exception();
+
+            var translatedProject = Helpers.TranslateProjectDetails(_workingProject);
+            Title = translatedProject.Title;
+
+            _id = Convert.ToInt32(projectData["Id"]);
 
             UnlockedElements = new HashSet<FormElement>();
             Children.Clear();
