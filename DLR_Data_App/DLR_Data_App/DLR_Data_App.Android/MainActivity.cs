@@ -76,7 +76,10 @@ namespace com.DLR.DLR_Data_App.Droid
             // Workaround for ToolbarItems not apearing on android (https://github.com/xamarin/Xamarin.Forms/issues/2118)
             Task.Run(() =>
             {
-                var currentPage = (App.Current as App).CurrentPage;
+                var currentPage = (App.Current as App)?.CurrentPage;
+                if (currentPage == null)
+                    return;
+
                 var items = currentPage.ToolbarItems.ToList();
 
                 if (LastPage != null)

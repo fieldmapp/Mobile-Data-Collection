@@ -159,13 +159,16 @@ namespace DLR_Data_App.Services
             };
         }
 
-        public List<SurveyMenuItem> LoadSurveyMenuItems()
+        public SurveyData LoadSurveyData()
         {
-            return new List<SurveyMenuItem>()
+            return new SurveyData
             {
-                new SurveyMenuItem("DoubleSlider", "Bedeckungsgrade", 4, new List<int>{3,4}),
-                new SurveyMenuItem("ImageChecker", "Sortenerkennung", 2, new List<int>{2}),
-                new SurveyMenuItem("Stadium", "Wuchsstadien", 6,  new List<int>{1})
+                SurveyId = "fieldcampagnesurvey", SurveyMenuItems = new List<SurveyMenuItem>()
+                {
+                    new SurveyMenuItem("DoubleSlider", "Bedeckungsgrade", 4, new List<int> { 3, 4 }),
+                    new SurveyMenuItem("ImageChecker", "Sortenerkennung", 2, new List<int> { 2 }),
+                    new SurveyMenuItem("Stadium", "Wuchsstadien", 6, new List<int> { 1 })
+                }
             };
         }
 

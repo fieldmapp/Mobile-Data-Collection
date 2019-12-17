@@ -61,6 +61,7 @@ namespace DLR_Data_App.Views.CurrentProject
                 return;
             _projectLastCheck = newProject;
 
+            UnlockedElements = new HashSet<FormElement>();
             Children.Clear();
             UpdateView(newProject);
             foreach (var page in _pages)
@@ -127,6 +128,7 @@ namespace DLR_Data_App.Views.CurrentProject
             var initialVisibleElements = formElements.TakeUntilIncluding(f => f.Data.Required);
             foreach (var element in initialVisibleElements)
             {
+                UnlockedElements.Add(element);
                 element.Grid.IsVisible = true;
             }
             var lastRequiredElement = formElements.LastOrDefault(e => e.Data.Required);
@@ -169,9 +171,9 @@ namespace DLR_Data_App.Views.CurrentProject
 
         private void RefreshVisibilityOnUnlockedElements()
         {
-            foreach (var element in UnlockedElements)
+            foreach (var element in UnlockedElements.Where(e => e.ShouldBeShownExpression != null))
             {
-                if (element.ShouldBeShownExpression?.Evaluate(GeatherVariables()) ?? true)
+                if (element.ShouldBeShownExpression.Evaluate(GeatherVariables()))
                     element.Grid.IsVisible = true;
                 else
                     element.Grid.IsVisible = false;
@@ -201,7 +203,7 @@ namespace DLR_Data_App.Views.CurrentProject
             return variables;
         }
 
-        HashSet<FormElement> UnlockedElements = new HashSet<FormElement>();
+        HashSet<FormElement> UnlockedElements;
 
         private void FormElement_ValidContentChange(object sender, EventArgs _)
         {

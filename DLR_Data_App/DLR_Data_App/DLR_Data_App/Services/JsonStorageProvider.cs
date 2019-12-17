@@ -52,9 +52,9 @@ namespace DLR_Data_App.Services
             return DeserializeFromAsset<Dictionary<string, List<IQuestionContent>>>("questions");
         }
 
-        public List<SurveyMenuItem> LoadSurveyMenuItems()
+        public SurveyData LoadSurveyData()
         {
-            return DeserializeFromAsset<List<SurveyMenuItem>>("surveys");
+            return DeserializeFromAsset<SurveyData>("surveys");
         }
 
         public void SaveAnswers(SurveyResults results)

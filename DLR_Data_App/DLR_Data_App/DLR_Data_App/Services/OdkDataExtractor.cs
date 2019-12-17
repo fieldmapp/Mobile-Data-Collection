@@ -9,19 +9,37 @@ namespace DLR_Data_App.Services
 {
     class OdkBooleanExpresion
     {
+        public static readonly string[,] OdkReplacementStrings = new string[,]
+        {
+            { "mod", "%" },
+            { "div", "/" },
+            { "true()", "true" },
+            { "false()", "false" },
+            { "sin(", "Sin(" },
+            { "cos(", "Cos(" },
+            { "tan(", "Tan(" },
+            { "asin(", "Asin(" },
+            { "acos(", "Acos(" },
+            { "atan(", "Atan(" },
+            { "abs(", "Abs(" },
+            { "log(","Log(" },
+            { "log10(", "Log10(" },
+            { "sqrt(", "Sqrt(" },
+            { "round(", "Round(" },
+            { "int(", "Truncate(" },
+            { "pow(", "Pow(" },
+            { "exp(", "Exp(" },
+            { "exp10(", "Pow(10," },
+            { "${", string.Empty },
+            { "}", string.Empty },
+        };
         public OdkBooleanExpresion(string odkExpression)
         {
-            //make expression compatible with ncalc, found mostly by trial and error
-            odkExpression = odkExpression.Replace("mod", "%");
-            odkExpression = odkExpression.Replace("div", "/");
-            odkExpression = odkExpression.Replace("true()", "true");
-            odkExpression = odkExpression.Replace("false()", "false");
-            odkExpression = odkExpression.Replace("sin(", "Sin(");
-            odkExpression = odkExpression.Replace("cos(", "Cos(");
-
-            odkExpression = odkExpression.Replace("${", string.Empty);
-            odkExpression = odkExpression.Replace("}", string.Empty);
-
+            int replacementStringCount = OdkReplacementStrings.GetLength(0);
+            for (int i = 0; i < replacementStringCount; i++)
+            {
+                odkExpression = odkExpression.Replace(OdkReplacementStrings[i, 0], OdkReplacementStrings[i, 1]);
+            }
             Expression = new Expression(odkExpression);
             Expression.EvaluateFunction += Expression_EvaluateFunction;
         }
@@ -36,6 +54,10 @@ namespace DLR_Data_App.Services
             else if (name == "random")
             {
                 args.Result = App.RandomProvider.Next();
+            }
+            else if (name == "pi")
+            {
+                args.Result = Math.PI;
             }
         }
 

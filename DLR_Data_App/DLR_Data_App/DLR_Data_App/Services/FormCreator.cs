@@ -199,7 +199,7 @@ namespace DLR_Data_App.Services
 
             entry.TextChanged += (a, b) =>
             {
-                if (!string.IsNullOrWhiteSpace(b.NewTextValue) && Single.TryParse(b.NewTextValue, out var decimalInput) && range.IsValidDecimalInput(decimalInput))
+                if (!string.IsNullOrWhiteSpace(b.NewTextValue) && float.TryParse(b.NewTextValue, out var decimalInput) && range.IsValidDecimalInput(decimalInput))
                     formElement.OnValidContentChange();
                 else
                     formElement.OnInvalidContentChange();

@@ -14,9 +14,9 @@ namespace DLR_Data_App
         public static string FolderLocation = string.Empty;
         public static Random RandomProvider = new Random();
         public static User CurrentUser;
-        public NavigationPage Navigation => (MainPage as MasterDetailPage).Detail as NavigationPage;
+        public NavigationPage Navigation => (MainPage as MasterDetailPage)?.Detail as NavigationPage;
         public IStorageProvider StorageProvider;
-        public Page CurrentPage => Navigation.CurrentPage;
+        public Page CurrentPage => Navigation?.CurrentPage;
         
         /// <summary>
         /// Constructor with database support
