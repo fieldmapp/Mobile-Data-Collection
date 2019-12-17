@@ -142,7 +142,7 @@ namespace DLR_Data_App.Services
         public static OdkRange GetRangeFromJsonString(string jsonRangeString)
         {
             var range = new OdkRange();
-            if (jsonRangeString.Equals("false", StringComparison.InvariantCultureIgnoreCase))
+            if (jsonRangeString == null || jsonRangeString.Equals("false", StringComparison.InvariantCultureIgnoreCase))
                 return range;
 
             var jsonRangeObject = JObject.Parse(jsonRangeString);
