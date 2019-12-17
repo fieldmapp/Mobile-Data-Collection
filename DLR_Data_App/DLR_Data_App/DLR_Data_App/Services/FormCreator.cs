@@ -184,14 +184,18 @@ namespace DLR_Data_App.Services
 
             var currentCompassLabel = new Label { Text = AppResources.compass };
             var currentCompassDataLabel = new Label();
-            Sensor.Instance.Compass.ReadingChanged += (_,eventArgs) => currentCompassDataLabel.Text = ((int)eventArgs.Reading.HeadingMagneticNorth).ToString();
+            Sensor.Instance.Compass.ReadingChanged += (_,eventArgs) => currentCompassDataLabel.Text = ((int)eventArgs.Reading.HeadingMagneticNorth).ToString() + " °";
 
             var saveButton = new Button { Text = AppResources.save };
 
             var savedCompassLabel = new Label { Text = AppResources.saveddata };
             var savedCompassDataLabel = new Label();
 
-            saveButton.Clicked += (_, b) => savedCompassDataLabel.Text = currentCompassDataLabel.Text;
+            saveButton.Clicked += (_, b) =>
+            {
+                savedCompassDataLabel.Text = currentCompassDataLabel.Text;
+                formElement.OnValidContentChange();
+            };
 
             grid.Children.Add(currentCompassLabel, 0, 1);
             grid.Children.Add(currentCompassDataLabel, 1, 1);
