@@ -177,8 +177,11 @@ namespace DLR_Data_App.Services
 
             saveButton.Clicked += (_, b) =>
             {
-                savedCompassDataLabel.Text = currentCompassDataLabel.Text;
-                formElement.OnValidContentChange();
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    savedCompassDataLabel.Text = currentCompassDataLabel.Text;
+                    formElement.OnValidContentChange();
+                });
             };
 
             grid.Children.Add(currentCompassLabel, 0, 1);
@@ -267,9 +270,12 @@ namespace DLR_Data_App.Services
 
             Sensor.Instance.Gps.StatusChanged += (sender, args) =>
             {
-                labelLatData.Text = args.Latitude.ToString();
-                labelLongData.Text = args.Longitude.ToString();
-                labelMessage.Text = args.Message;
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    labelLatData.Text = args.Latitude.ToString();
+                    labelLongData.Text = args.Longitude.ToString();
+                    labelMessage.Text = args.Message;
+                });
             };
 
             var saveButton = new Button { Text = AppResources.save };
