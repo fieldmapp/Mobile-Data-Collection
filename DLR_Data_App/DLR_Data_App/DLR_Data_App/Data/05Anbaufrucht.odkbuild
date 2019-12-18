@@ -5,11 +5,11 @@
       "name": "cultivatedFruit",
       "label": {
         "0": "Aktuelle Bepflanzungsart",
-        "1": "Cultivated fruit"
+        "1": "Planting type"
       },
       "hint": {
-        "0": "Anbaukultur auswählen",
-        "1": "Select cultivated fruit"
+        "0": "Art der Bepflanzung für die aktuelle Anbauperiode aus dem Menü durch Antippen auswählen.",
+        "1": "Select the planting type of the current cultivation period from the menu."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -54,12 +54,12 @@
     {
       "name": "cultivatedFruitCultivation",
       "label": {
-        "0": "Aktuelle Bepflanzungsart",
+        "0": "Aktueller Anbautyp",
         "1": "Cultivation type"
       },
       "hint": {
-        "0": "Anbauart auswählen",
-        "1": "Select cultivation type"
+        "0": "Art des Anbaus entsprechend des Saatzeitpunktes für die aktuelle Anbauperiode (d.h. meist das letzte oder aktuelle Jahr) aus dem Menü durch Antippen auswählen.",
+        "1": "Select the cultivation type according to the sowing time (i.e., mostly in the past or current year) of the currently grown cultivar from the menu."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -105,11 +105,11 @@
       "name": "cultivatedFruitType",
       "label": {
         "0": "Aktuelle Pflanzenkategorie",
-        "1": "Current crop detail"
+        "1": "Plant category"
       },
       "hint": {
-        "0": "Kategorie, der die Feldfruchtsorte zuzuordnen ist, aus dem Menü durch Antippen auswählen.",
-        "1": "Determine plant"
+        "0": "Kategorie, der die Feldfruchtsorte zu zuordnen ist, aus dem Menü durch Antippen auswählen.",
+        "1": "Select (from the menu) the category to which the currently grown crop belongs."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -171,11 +171,11 @@
       "name": "cultivatedFruitCereals",
       "label": {
         "0": "Aktuelle Anbausorte",
-        "1": "Preceeding crop"
+        "1": "Crop type"
       },
       "hint": {
-        "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
-        "1": ""
+        "0": "Sorte der Feldfrucht der aktuellen Anbauperiode aus dem Menü durch Antippen auswählen.",
+        "1": "Select the currently grown crop type from the menu."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -245,11 +245,11 @@
       "name": "cultivatedFruitLegumes",
       "label": {
         "0": "Aktuelle Anbausorte",
-        "1": "Current crop"
+        "1": "Crop type"
       },
       "hint": {
-        "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
-        "1": ""
+        "0": "Sorte der Feldfrucht der aktuellen Anbauperiode aus dem Menü durch Antippen auswählen.",
+        "1": "Select the currently grown crop type from the menu."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -303,11 +303,11 @@
       "name": "cultivatedFruitRootCrops",
       "label": {
         "0": "Aktuelle Anbausorte",
-        "1": "Current crop"
+        "1": "Crop type"
       },
       "hint": {
-        "0": "Kategorie, der die Feldfruchtsorte zuzuordnen ist, aus dem Menü durch Antippen auswählen.",
-        "1": ""
+        "0": "Sorte der Feldfrucht der aktuellen Anbauperiode aus dem Menü durch Antippen auswählen.",
+        "1": "Select the currently grown crop type from the menu."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -345,11 +345,11 @@
       "name": "cultivatedFruitOilSeeds",
       "label": {
         "0": "Aktuelle Anbausorte",
-        "1": "Current crop"
+        "1": "Crop type"
       },
       "hint": {
-        "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
-        "1": ""
+        "0": "Sorte der Feldfrucht der aktuellen Anbauperiode aus dem Menü durch Antippen auswählen.",
+        "1": "Select the currently grown crop type from the menu."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -395,11 +395,11 @@
       "name": "cultivatedFruitOther",
       "label": {
         "0": "Aktuelle Anbausorte",
-        "1": "Current crop"
+        "1": "Crop type"
       },
       "hint": {
-        "0": "Sorte der Feldfrucht eingeben.",
-        "1": ""
+        "0": "Sorte der Feldfrucht der aktuellen Anbauperiode aus dem Menü durch Antippen auswählen.",
+        "1": "Select the currently grown crop type from the menu."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -420,11 +420,11 @@
       "name": "cultivatedFruitUnknown",
       "label": {
         "0": "Aktuelle Anbausorte",
-        "1": "Cultivated fruit detail"
+        "1": "Crop type"
       },
       "hint": {
-        "0": "Sorte der Feldfrucht eingeben.",
-        "1": "Select cultivated fruit"
+        "0": "Sorte der Feldfrucht der aktuellen Anbauperiode eingeben.",
+        "1": "Enter the currently grown crop type."
       },
       "defaultValue": "",
       "readOnly": false,

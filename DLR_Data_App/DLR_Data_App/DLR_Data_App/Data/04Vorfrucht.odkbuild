@@ -5,11 +5,11 @@
       "name": "preceedingCrop",
       "label": {
         "0": "Vorfrucht: Bepflanzungsart",
-        "1": "Preceeding crop"
+        "1": "Previous crop: Planting type"
       },
       "hint": {
-        "0": "Art der Bepflanzung in der vorherigen Anbauperiode (dh. meistens dem vorangegangenen Jahr) aus dem Menü durch Antippen auswählen.",
-        "1": "Enter plant culture"
+        "0": "Art der Bepflanzung in der vorherigen Anbauperiode (d.h. meistens dem vorangegangenen Jahr) aus dem Menü durch Antippen auswählen.",
+        "1": "Select (from the menu) the planting type of the previous cultivation period (i.e., mostly the previous year)."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -55,11 +55,11 @@
       "name": "preceedingCropCultivation",
       "label": {
         "0": "Vorfrucht: Anbautyp",
-        "1": "Preceeding crop cultivation"
+        "1": "Previous crop: Cultivation type"
       },
       "hint": {
-        "0": "Art des Anbaus entsprechend des Saatzeitpunktes in der vorherigen Anbauperiode (dh. meistens dem vorangegangenen Jahr) aus dem Menü durch Antippen auswählen.",
-        "1": "Enter preceeding crop cultivation"
+        "0": "Art des Anbaus entsprechend des Saatzeitpunktes in der vorherigen Anbauperiode (d.h. meistens im vorletzten oder letzten Jahr) aus dem Menü durch Antippen auswählen.",
+        "1": "Select the cultivation type according to the sowing time of the cultivar that was grown during the previous cultivation period (i.e., mostly the second last or previous year)."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -105,11 +105,11 @@
       "name": "preceedingCropFruitType",
       "label": {
         "0": "Vorfrucht: Pflanzenkategorie",
-        "1": "Preceeding crop detail"
+        "1": "Previous crop: Plant category"
       },
       "hint": {
         "0": "Kategorie, der die Feldfruchtsorte zuzuordnen ist, aus dem Menü durch Antippen auswählen.",
-        "1": "Determine plant"
+        "1": "Select (from the menu) the plant category of the crop that was grown in the previous growing period."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -171,11 +171,11 @@
       "name": "preceedingCropCereals",
       "label": {
         "0": "Vorfrucht: Sorte",
-        "1": "Preceeding crop"
+        "1": "Previous crop: Crop type"
       },
       "hint": {
         "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
-        "1": ""
+        "1": "Select (from the menu) the crop type that was grown in the previous growing period."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -245,11 +245,11 @@
       "name": "preceedingCropLegumes",
       "label": {
         "0": "Vorfrucht: Sorte",
-        "1": "Preceeding crop"
+        "1": "Previous crop: Crop type"
       },
       "hint": {
         "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
-        "1": ""
+        "1": "Select (from the menu) the crop type that was grown in the previous growing period."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -303,11 +303,11 @@
       "name": "preceedingCropRootCrops",
       "label": {
         "0": "Vorfrucht: Sorte",
-        "1": "Preceeding crop"
+        "1": "Previous crop: Crop type"
       },
       "hint": {
-        "0": "Kategorie, der die Feldfruchtsorte zuzuordnen ist, aus dem Menü durch Antippen auswählen.",
-        "1": ""
+        "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
+        "1": "Select (from the menu) the crop type that was grown in the previous growing period."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -345,11 +345,11 @@
       "name": "preceedingCropOilSeeds",
       "label": {
         "0": "Vorfrucht: Sorte",
-        "1": "Preceeding crop"
+        "1": "Previous crop: Crop type"
       },
       "hint": {
         "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
-        "1": ""
+        "1": "Select (from the menu) the crop type that was grown in the previous growing period."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -395,11 +395,11 @@
       "name": "preceedingCropOther",
       "label": {
         "0": "Vorfrucht: Sorte",
-        "1": "Preceeding crop"
+        "1": "Previous crop: Crop type"
       },
       "hint": {
-        "0": "Sorte der Feldfrucht eingeben.",
-        "1": ""
+        "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
+        "1": "Select (from the menu) the crop type that was grown in the previous growing period."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -420,11 +420,11 @@
       "name": "preceedingCropUnknown",
       "label": {
         "0": "Vorfrucht: Sorte",
-        "1": "Preceeding crop"
+        "1": "Previous crop: Crop type"
       },
       "hint": {
         "0": "Sorte der Feldfrucht eingeben.",
-        "1": ""
+        "1": "Enter the crop type that was grown in the previous growing period."
       },
       "defaultValue": "",
       "readOnly": false,

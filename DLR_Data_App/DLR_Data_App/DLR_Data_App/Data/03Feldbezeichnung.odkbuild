@@ -9,7 +9,7 @@
       },
       "hint": {
         "0": "Geben Sie die Bezeichnung des Feldes unter Nennung des bewirtschaftenden Betriebes an, durch den der Feldname festgelegt wurde.",
-        "1": "Name of the field"
+        "1": "Please provide the name of the field. Further add the name of the agricultural company that assigned the name."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -34,7 +34,7 @@
       },
       "hint": {
         "0": "Geben Sie die Nummer des Feldes an, die durch den bewirtschaftenden Betrieb vergeben wurde.",
-        "1":  ""
+        "1": "Please fill in the number of the field assigned by the agricultural company."
       },
       "defaultValue": "0",
       "readOnly": false,

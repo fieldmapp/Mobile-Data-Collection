@@ -45,13 +45,19 @@
     },
     {
       "name": "reasonDamage",
-      "label": { "0": "Ursache" },
-      "hint": { "0": "Wählen Sie aus dem Auswahlmenü eine Ursache für den Schaden am Bestand aus. Für den Fall, dass die aktuelle Ursache nicht in der Auswahl enthalten ist, geben Sie diese bitte unter „Sonstiges“ ein." },
+      "label": {
+        "0": "Ursache",
+        "1": "Reason of Damage"
+      },
+      "hint": {
+        "0": "Wählen Sie aus dem Auswahlmenü eine Ursache für den Schaden am Bestand aus. Für den Fall, dass die aktuelle Ursache nicht in der Auswahl enthalten ist, geben Sie diese bitte unter „Sonstiges“ ein.",
+        "1": "Select a reason for the apparent damage of the crop from the menu. In case, the reason is not listed in the menu, please choose “Others” and enter the reason in the input field."
+      },
       "defaultValue": "",
       "readOnly": false,
       "required": false,
       "requiredText": {},
-      "relevance": "",
+      "relevance": "${stockDamaged}=0",
       "constraint": "",
       "invalidText": {},
       "calculate": "",
@@ -145,11 +151,11 @@
       "name": "damageDateStart",
       "label": {
         "0": "Beginn des Schädigungseintritts",
-        "1": "Start of hazard"
+        "1": "Begin of damage"
       },
       "hint": {
-        "0": "Durch Tippen auf das Datum, erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, zu dem die Schädigung eingetreten ist und bestätigen Sie Ihre Auswahl mit Tippen auf [OK].",
-        "1": ""
+        "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, zu dem die Schädigung eingetreten ist und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+        "1": "A calendar appears, if you click on the date. Select the date when the damage on the crops began to appear and confirm your selection by clicking on [OKAY]."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -171,8 +177,8 @@
         "1": "End of hazard"
       },
       "hint": {
-        "0": "Durch Tippen auf das Datum, erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, ab dem die Ausweitung der Schädigung beendet war und bestätigen Sie Ihre Auswahl mit Tippen auf [OK].",
-        "1": ""
+        "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, ab dem die Ausweitung der Schädigung beendet war und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+        "1": "A calendar appears, if you click on the date. Select the date when the expansion of the damaged crop area stopped and confirm your selection by clicking on [OKAY]."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -191,11 +197,11 @@
       "name": "damagePercentage",
       "label": {
         "0": "Geschädigte Fläche in %",
-        "1": "Affected area in percent"
+        "1": "Affected area in %"
       },
       "hint": {
-        "0": "Schätzen Sie den Anteil der Fläche am Feld, die von der Schädigung betroffen ist und tragen Sie diesen Wert als Prozentangabe unter „Geschädigte Fläche in %“ ein.",
-        "1": ""
+        "0": "Schätzen Sie den Anteil der Fläche am Feld, die von der Schädigung betroffen ist und tragen Sie diesen Wert als Prozentangabe hier ein.",
+        "1": "Estimate the fraction of the field that is affected by the damage and enter the percentage (a value between 0 and 100 without percent sign) in the input field “Affected area in %”."
       },
       "defaultValue": "",
       "readOnly": false,

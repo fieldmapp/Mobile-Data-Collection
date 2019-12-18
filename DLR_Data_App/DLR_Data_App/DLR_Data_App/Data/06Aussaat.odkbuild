@@ -8,8 +8,8 @@
         "1": "Date"
       },
       "hint": {
-        "0": "Durch Tippen auf das Datum, erscheint ein Kalender. Wählen Sie aus diesem das Datum der Aussaat aus und bestätigen Sie Ihre Auswahl mit Tippen auf [OK].",
-        "1": ""
+        "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum der Aussaat aus und bestätigen Sie Ihre Auswahl mit Tippen auf [OK].",
+        "1": "A calendar appears, if you click on the date 01.01.1970. Select the sowing time of the currently grown crop in the calendar and confirm your selection by clicking on [OKAY]."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -31,8 +31,8 @@
         "1": "Alignment of plant rows{compass}"
       },
       "hint": {
-        "0": "Messen (oder schätze) Sie den geringsten Abstand zweier benachbarter Pflanzreihen und tragen Sie diesen als Zentimeterwert in die dafür vorgesehene Spalte ein.",
-        "1": ""
+        "0": "Messen (oder schätzen) Sie den geringsten Abstand zweier benachbarter Pflanzreihen und tragen Sie diesen als Zentimeterwert in die dafür vorgesehene Spalte ein.",
+        "1": "Measure (or estimate) the smallest distance between two neighboring planting rows in centimeters and enter the value."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -72,11 +72,11 @@
       "name": "amoutSowing",
       "label": {
         "0": "Anzahl der Pflanzen",
-        "1": "Amout of sowed plants"
+        "1": "Seed rate"
       },
       "hint": {
-        "0": "Wählen Sie sich ein Teilstück einer Pflanzreihe aus. Zählen Sie auf diesem Teilstück alle Pflanzen und tragen Sie den Wert ein.",
-        "1": ""
+        "0": "Wählen Sie sich ein Teilstück einer Pflanzreihe aus. Zählen Sie auf diesem Teilstück alle Pflanzen und tragen Sie den Wert hier ein.",
+        "1": "Select a segment of the planting row. Count the number of plants growing on this planting row segment and enter the value here."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -110,8 +110,8 @@
         "1": "per cm plant row"
       },
       "hint": {
-        "0": "Messen (oder schätze) Sie nun die Länge des Teilstücks der Pflanzreihe, auf dem Sie die Anzahl der Pflanzen bestimmt haben und tragen Sie die Länge ein.",
-        "1": ""
+        "0": "Messen (oder schätzen) Sie nun die Länge des Teilstücks der Pflanzreihe, auf dem Sie die Anzahl der Pflanzen bestimmt haben und tragen Sie die Länge ein.",
+        "1": "Measure (or estimate) the length of the planting row segment for which you determined the number of plants. Enter the value in centimeters here."
       },
       "defaultValue": "",
       "readOnly": false,

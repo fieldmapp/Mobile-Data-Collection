@@ -44,8 +44,8 @@
         "1": "Start of irrigation"
       },
       "hint": {
-        "0": "Durch Tippen auf das Datum, erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem mit der Bewässerung des Feldes begonnen wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OK].",
-        "1": ""
+        "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem mit der Bewässerung des Feldes begonnen wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+        "1": "A calendar appears, if you click on the date. Select the date in the calendar when irrigation of the field was started and confirm your selection by clicking on [OKAY]."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -67,8 +67,8 @@
         "1": "End of irrigation"
       },
       "hint": {
-        "0": "Durch Tippen auf das Datum, erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem das Feld letztmalig bewässert wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OK].",
-        "1": ""
+        "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem das Feld letztmalig bewässert wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+        "1": "A calendar appears, if you click on the date. Select the date in the calendar when irrigation of the field was stopped and confirm your selection by clicking on [OKAY]."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -87,10 +87,11 @@
       "name": "wateringAmmount",
       "label": {
         "0": "Bewässerungsmenge in Litern pro Tag",
-        "1": "Liter per day"
+        "1": "Amout of irrigation in liters per day"
       },
       "hint": {
-        "0": "Geben Sie den gemessenen bzw. geschätzten Wert der Wassermenge in Litern an, die pro Tag auf das Feld aufgebracht wurde."
+        "0": "Geben Sie den gemessenen bzw. geschätzten Wert der Wassermenge in Litern an, die pro Tag auf das Feld aufgebracht wurde.",
+        "1": "Enter the measured or estimated amount of water that was utilized on average per day to irrigate the entire field or a certain area of the field."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -120,12 +121,12 @@
     {
       "name": "wateringAreaSize",
       "label": {
-        "0": "Auf Fläche in ha",
-        "1": "On an area in ha"
+        "0": "Bewässerte Fläche in ha",
+        "1": "Irrigated area in ha"
       },
       "hint": {
         "0": "Geben Sie an, auf welche Fläche diese Wassermenge verteilt wurde.",
-        "1": ""
+        "1": "Enter the size of the area (in hectare) that was irrigated in the field “Irrigated area in ha”."
       },
       "defaultValue": "",
       "readOnly": false,

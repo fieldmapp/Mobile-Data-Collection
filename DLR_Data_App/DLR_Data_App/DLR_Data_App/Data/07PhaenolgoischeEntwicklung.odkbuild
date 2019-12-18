@@ -227,7 +227,7 @@
       "readOnly": false,
       "required": true,
       "requiredText": { "1": "" },
-      "relevance": "${avgPhenologicalStadium}>=${minPhenologicalStadium}",
+      "relevance": "${avgPhenologicalStadium}>=${minPhenologicalStadium} or ${avgPhenologicalStadium}=10 or ${minPhenologicalStadium}=10",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
@@ -326,14 +326,14 @@
         "1": "Plant height in cm"
       },
       "hint": {
-        "0": "Messen (oder schätze) Sie die Höhe der Pflanzen und tragen Sie die Höhe als cm-Wert ein.",
-        "1": ""
+        "0": "Messen (oder schätze) Sie die Höhe der Pflanzen und tragen Sie die Höhe in Zentimetern ein.",
+        "1": "Measure (or estimate) the plant height as the vertical distance from the soil surface to the top of canopy in centimeters and enter the value here."
       },
       "defaultValue": "",
       "readOnly": false,
       "required": true,
       "requiredText": { "1": "" },
-      "relevance": "${avgPhenologicalStadium}<=${maxPhenologicalStadium}",
+      "relevance": "${avgPhenologicalStadium}<=${maxPhenologicalStadium} or ${avgPhenologicalStadium}=10 or ${maxPhenologicalStadium}=10",
       "constraint": "",
       "invalidText": { "1": "" },
       "calculate": "",
@@ -361,8 +361,8 @@
         "1": "Fractional vegetation cover"
       },
       "hint": {
-        "0": "Wählen sie eine für die Umgebung repräsentative Fläche von ca. 1 m x 1m aus. Schauen sie senkrecht auf diese Fläche. Schätzen Sie nun für diese Fläche den Anteil des Bodens, der durch Pflanzen bedeckt ist. Tragen Sie Ihre Schätzung hier ein.",
-        "1": ""
+        "0": "Wählen sie eine für die Umgebung repräsentative Fläche von ca. 1\u00A0m\u00A0x\u00A01\u00A0m aus. Schauen sie senkrecht auf diese Fläche. Schätzen Sie nun für diese Fläche den Anteil des Bodens, der durch Pflanzen bedeckt ist. Tragen Sie Ihre Schätzung hier ein.",
+        "1": "Select an area of 1\u00A0m\u00A0x\u00A01\u00A0m on the field that is representative for its surrounding. Look on the selected area in nadir view and estimate the fraction of the surface area that is covered by plants. Enter your estimated value as percentage in the field “Fractional vegetation cover”."
       },
       "defaultValue": "",
       "readOnly": false,
@@ -393,11 +393,11 @@
       "name": "percentGreenPlants",
       "label": {
         "0": "Prozentualer Anteil grüner Pflanzenbestandteile am gesamten Pflanzenmaterial",
-        "1": "Proportion of green plant material on all plants"
+        "1": "Proportion of vital plant material"
       },
       "hint": {
         "0": "Wählen sie eine für die Umgebung repräsentative Fläche von ca. 1\u00A0m\u00A0x\u00A01\u00A0m aus. Schauen sie senkrecht auf diese Fläche. Schätzen Sie nun für diese Fläche den Anteil des grünen Pflanzenmaterial am gesamten sichtbaren Pflanzenmaterial. Tragen Sie Ihre Schätzung hier ein.",
-        "1": ""
+        "1": "Select an area of 1\u00A0m\u00A0x\u00A01\u00A0m on the field that is representative for its surrounding. Look on the selected area in nadir view and estimate the fraction of vital (green) vegetation on the whole plant material (senescent and vital) that you see. Enter your estimated value as percentage (a value between 0 and 100 without percent sign) here."
       },
       "defaultValue": "",
       "readOnly": false,
