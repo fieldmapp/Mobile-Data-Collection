@@ -16,9 +16,11 @@ namespace DLR_Data_App.Services
         public ProjectFormElements Element;
         public Project CurrentProject;
         public Func<string, string, string, Task> DisplayAlertFunc;
+        public string Type;
 
-        public FormCreationParams(ProjectFormElements element, Project currentProject, Func<string, string, string, Task> displayAlertFunc)
+        public FormCreationParams(string type, ProjectFormElements element, Project currentProject, Func<string, string, string, Task> displayAlertFunc)
         {
+            Type = type;
             Element = element;
             CurrentProject = currentProject;
             DisplayAlertFunc = displayAlertFunc;
@@ -125,7 +127,6 @@ namespace DLR_Data_App.Services
                     dataLabel.Text = savedText;
                     return !string.IsNullOrEmpty(savedText);
                 default:
-                    //throw new NotImplementedException("This FormElement has no identifiable type and thus no representation");
                     return false;
             }
         }
@@ -155,16 +156,13 @@ namespace DLR_Data_App.Services
 
         private static Dictionary<string, Func<FormCreationParams, FormElement>> SpecialTypeToViewCreator = new Dictionary<string, Func<FormCreationParams, FormElement>>
         {
-            { "propRuler", CreateRuler },
-            { "unknown", CreateUnknownChecker },
             { "compass", CreateCompass }
         };
 
         private static FormElement CreateCompass(FormCreationParams arg)
         {
-            //TODO: save and load (conflicts with location?)
             var grid = CreateStandardBaseGrid(arg);
-            var formElement = new FormElement(grid, arg.Element, "compass");
+            var formElement = new FormElement(grid, arg.Element, arg.Type);
 
             var currentCompassLabel = new Label { Text = AppResources.compass };
             var currentCompassDataLabel = new Label();
@@ -215,21 +213,11 @@ namespace DLR_Data_App.Services
             }
             return grid;
         }
-
-        private static FormElement CreateUnknownChecker(FormCreationParams parms)
-        {
-            return new FormElement(new Grid(), parms.Element, "unknown");
-        }
-
-        private static FormElement CreateRuler(FormCreationParams parms)
-        {
-            return new FormElement(new Grid(), parms.Element, "propRuler");
-        }
         
         private static FormElement CreateDateSelector(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var formElement = new FormElement(grid, parms.Element, "inputDate");
+            var formElement = new FormElement(grid, parms.Element, parms.Type);
             
             var datePicker = new DatePicker { StyleId = parms.Element.Name };
             
@@ -254,7 +242,7 @@ namespace DLR_Data_App.Services
         private static FormElement CreateLocationSelector(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var formElement = new FormElement(grid, parms.Element, "inputLocation");
+            var formElement = new FormElement(grid, parms.Element, parms.Type);
 
             var labelLat = new Label { Text = "Latitude" };
 
@@ -311,7 +299,7 @@ namespace DLR_Data_App.Services
         private static FormElement CreateNumericInput(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var formElement = new FormElement(grid, parms.Element, "inputNumeric");
+            var formElement = new FormElement(grid, parms.Element, parms.Type);
 
             var placeholder = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
             if (placeholder == "Unable to parse language from json")
@@ -344,7 +332,7 @@ namespace DLR_Data_App.Services
         private static FormElement CreatePicker(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var formElement = new FormElement(grid, parms.Element, "inputSelectOne");
+            var formElement = new FormElement(grid, parms.Element, parms.Type);
 
             var optionsList = new List<string>();
             var options = Parser.ParseOptionsFromJson(parms.Element.Options);
@@ -380,7 +368,7 @@ namespace DLR_Data_App.Services
         private static FormElement CreateTextInput(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var formElement = new FormElement(grid, parms.Element, "inputText");
+            var formElement = new FormElement(grid, parms.Element, parms.Type);
 
             var placeholder = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
             if (placeholder == "Unable to parse language from json")
@@ -424,7 +412,6 @@ namespace DLR_Data_App.Services
             {
                 IEnumerable<char> findSpecialType(string name) => name.SkipWhileIncluding(c => c != '{').TakeWhile(c => c != '}');
 
-                var formCreationParams = new FormCreationParams(element, currentProject, displayAlert);
                 FormElement formElement = null;
 
                 bool specialType = false;
@@ -437,6 +424,7 @@ namespace DLR_Data_App.Services
                         var specialElementType = new string(findSpecialType(translatedLabel).ToArray());
                         if (SpecialTypeToViewCreator.TryGetValue(specialElementType, out var viewCreator))
                         {
+                            var formCreationParams = new FormCreationParams(specialElementType, element, currentProject, displayAlert);
                             specialType = true;
                             formElement = viewCreator(formCreationParams);
                         }
@@ -447,6 +435,7 @@ namespace DLR_Data_App.Services
                 {
                     if (TypeToViewCreator.TryGetValue(element.Type, out var viewCreator))
                     {
+                        var formCreationParams = new FormCreationParams(element.Type, element, currentProject, displayAlert);
                         formElement = viewCreator(formCreationParams);
                     }
                 }
