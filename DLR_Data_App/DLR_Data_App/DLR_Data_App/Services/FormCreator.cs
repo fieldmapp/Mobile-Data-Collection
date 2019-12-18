@@ -194,7 +194,15 @@ namespace DLR_Data_App.Services
 
         private static Grid CreateStandardBaseGrid(FormCreationParams parms)
         {
-            var elementNameLabel = new Label { Text = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages) };
+            var elementName = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
+            var indexOfOpeningCurlyBrace = elementName.IndexOf('{');
+            var indexOfClosingCurlyBrace = elementName.IndexOf('}');
+            if (indexOfOpeningCurlyBrace != -1 && indexOfClosingCurlyBrace != -1 && indexOfOpeningCurlyBrace < indexOfClosingCurlyBrace )
+            {
+                elementName = elementName.Remove(indexOfOpeningCurlyBrace, indexOfClosingCurlyBrace - indexOfOpeningCurlyBrace + 1);
+            }
+
+            var elementNameLabel = new Label { Text = elementName };
             var grid = new Grid { IsVisible = false };
             grid.Children.Add(elementNameLabel, 0, 0);
 
