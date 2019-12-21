@@ -39,17 +39,21 @@ namespace com.DLR.DLR_Data_App.Droid
 
             MessagingCenter.Subscribe<object, bool>(this, "ReloadToolbar", (sender, reload) =>
             {
-                if (reload)
+                lock (ToolbarLock)
                 {
-                    ReloadToolbar();
+                    if (reload)
+                    {
+                        ReloadToolbar();
+                    }
                 }
             });
 
             EnsureAppPermission(Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage, Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation);
         }
-
+        
         Page LastPage;
         object ToolbarItemsLock = new object();
+        object ToolbarLock = new object();
 
         private void ResetToolbarItems(Page page, List<ToolbarItem> toolbarItems)
         {

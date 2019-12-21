@@ -8,6 +8,7 @@ using DLR_Data_App.Views.Settings;
 using DLR_Data_App.Views.Survey;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,6 +19,7 @@ namespace DLR_Data_App.Views
     public partial class MainPage
     {
         private readonly Dictionary<MenuItemType, NavigationPage> _menuPages;
+        private SemaphoreSlim NavigationLock = new SemaphoreSlim(1);
 
         public MainPage(Dictionary<MenuItemType, NavigationPage> menuPages)
         {
@@ -47,6 +49,8 @@ namespace DLR_Data_App.Views
         /// <returns></returns>
         public async Task NavigateFromMenu(MenuItemType id)
         {
+            await NavigationLock.WaitAsync();
+
             if (id == MenuItemType.Logout)
             {
                 Application.Current.MainPage = new LoginPage();
@@ -60,12 +64,13 @@ namespace DLR_Data_App.Views
                 Detail = newPage;
 
                 if (Device.RuntimePlatform == Device.Android)
-                    await Task.Delay(100);
+                    await Task.Delay(200);
 
                 MessagingCenter.Send<object, bool>(this, "ReloadToolbar", true);
 
                 IsPresented = false;
             }
+            NavigationLock.Release();
         }
 
         DateTime LastBackButtonPress = DateTime.MinValue;
