@@ -557,4 +557,16 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen f�
   <data name="projectSuccessfullyAdded" xml:space="preserve">
     <value>Projekt wurde erfolgreich geladen.</value>
   </data>
+  <data name="select" xml:space="preserve">
+    <value>Auswählen</value>
+  </data>
+  <data name="fileselected" xml:space="preserve">
+    <value>Datei ausgewählt</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
 </root>

@@ -557,4 +557,16 @@ Consent of the data subject means any freely given, specific, informed and unamb
   <data name="zippicker" xml:space="preserve">
     <value>Choose Zip Archive</value>
   </data>
+  <data name="select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="fileselected" xml:space="preserve">
+    <value>File selected</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
 </root>

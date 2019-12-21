@@ -394,6 +394,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File selected ähnelt.
+        /// </summary>
+        internal static string fileselected {
+            get {
+                return ResourceManager.GetString("fileselected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die File is no Zip Archive ähnelt.
         /// </summary>
         internal static string filetypeerror {
@@ -654,6 +663,15 @@ namespace DLR_Data_App.Localizations {
         internal static string next {
             get {
                 return ResourceManager.GetString("next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No ähnelt.
+        /// </summary>
+        internal static string no {
+            get {
+                return ResourceManager.GetString("no", resourceCulture);
             }
         }
         
@@ -964,6 +982,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select ähnelt.
+        /// </summary>
+        internal static string select {
+            get {
+                return ResourceManager.GetString("select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Select date ähnelt.
         /// </summary>
         internal static string selectdate {
@@ -1149,6 +1176,15 @@ namespace DLR_Data_App.Localizations {
         internal static string wrongentry {
             get {
                 return ResourceManager.GetString("wrongentry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Yes ähnelt.
+        /// </summary>
+        internal static string yes {
+            get {
+                return ResourceManager.GetString("yes", resourceCulture);
             }
         }
         

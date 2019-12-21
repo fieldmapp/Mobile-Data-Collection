@@ -148,6 +148,28 @@
       "type": "inputText"
     },
     {
+      "name": "imageDamge",
+      "label": {
+        "0": "Foto",
+        "1": "Image of damage"
+      },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {},
+      "relevance": "${stockDamaged}=0",
+      "constraint": "",
+      "invalidText": {},
+      "calculate": "",
+      "kind": "Image",
+      "metadata": {},
+      "type": "inputMedia"
+    },
+    {
       "name": "damageDateStart",
       "label": {
         "0": "Beginn des Schädigungseintritts",

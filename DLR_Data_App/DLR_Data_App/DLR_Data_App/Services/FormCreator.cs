@@ -1,6 +1,8 @@
-﻿using DLR_Data_App.Localizations;
+﻿using DLR_Data_App.Controls;
+using DLR_Data_App.Localizations;
 using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Services.Sensors;
+using Plugin.FilePicker;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -83,6 +85,9 @@ namespace DLR_Data_App.Services
                 case "compass":
                     var dataLabel = Children.OfType<Label>().Where(l => l.StyleId != null).First();
                     return new KeyValuePair<string, string>(dataLabel.StyleId, dataLabel.Text);
+                case "inputMedia":
+                    var mediaHolder = Children.OfType<DataHolder>().First();
+                    return new KeyValuePair<string, string>(mediaHolder.StyleId, mediaHolder.Data);
                 default:
                     //throw new NotImplementedException("This FormElement has no identifiable type and thus no representation");
                     return new KeyValuePair<string, string>(App.RandomProvider.Next().ToString(), string.Empty);
@@ -126,6 +131,11 @@ namespace DLR_Data_App.Services
                     savedText = projectData[dataLabel.StyleId];
                     dataLabel.Text = savedText;
                     return !string.IsNullOrEmpty(savedText);
+                case "inputMedia":
+                    var dataHolder = Children.OfType<DataHolder>().First();
+                    savedText = projectData[dataHolder.StyleId];
+                    dataHolder.Data = savedText;
+                    return !string.IsNullOrEmpty(savedText);
                 default:
                     return false;
             }
@@ -151,7 +161,8 @@ namespace DLR_Data_App.Services
             { "inputSelectOne", CreatePicker },
             { "inputNumeric", CreateNumericInput },
             { "inputLocation", CreateLocationSelector },
-            { "inputDate", CreateDateSelector }
+            { "inputDate", CreateDateSelector },
+            { "inputMedia", CreateMediaSelector }
         };
 
         private static Dictionary<string, Func<FormCreationParams, FormElement>> SpecialTypeToViewCreator = new Dictionary<string, Func<FormCreationParams, FormElement>>
@@ -221,7 +232,35 @@ namespace DLR_Data_App.Services
             }
             return grid;
         }
-        
+
+
+        private static FormElement CreateMediaSelector(FormCreationParams parms)
+        {
+            var grid = CreateStandardBaseGrid(parms);
+            var formElement = new FormElement(grid, parms.Element, parms.Type);
+
+            var pickFileButton = new Button { Text = AppResources.select };
+            var fileSelectedLabel = new Label { Text = AppResources.fileselected };
+            //HACK: bad way to store an image. blob would be better
+            var dataHolder = new DataHolder { StyleId = parms.Element.Name };
+            pickFileButton.Clicked += async (a, b) =>
+            {
+                var file = await CrossFilePicker.Current.PickFile();
+                if (file == null)
+                    formElement.OnInvalidContentChange();
+                dataHolder.Data = Encoding.UTF8.GetString(file.DataArray);
+                var length = dataHolder.Data.Length;
+                formElement.OnValidContentChange();
+            };
+
+            grid.Children.Add(pickFileButton, 0, 1);
+            Grid.SetColumnSpan(pickFileButton, 2);
+            grid.Children.Add(fileSelectedLabel, 0, 2);
+            grid.Children.Add(dataHolder, 1, 2);
+            return formElement;
+        }
+
+
         private static FormElement CreateDateSelector(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
