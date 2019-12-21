@@ -70,6 +70,7 @@ namespace DLR_Data_App.Views.CurrentProject
             {
                 UnlockElement(initialVisibleElement);
             }
+            RefreshVisibilityOnUnlockedElements();
         }
 
         protected override bool OnBackButtonPressed()
