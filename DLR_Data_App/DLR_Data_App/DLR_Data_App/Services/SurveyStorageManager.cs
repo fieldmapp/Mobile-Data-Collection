@@ -60,18 +60,32 @@ namespace DLR_Data_App.Services
         {
             UserId = userId;
             Translations = StorageProvider.LoadTranslations();
+            LoadTranslatedQuestions();
+            Answers = LoadAnswerToContinue();
+            LoadTranslatedSurveyMenuItems();
+        }
+
+        private static void LoadTranslatedSurveyMenuItems()
+        {
+            SurveyData surveyData = StorageProvider.LoadSurveyData();
+            CurrentSurveyId = surveyData.SurveyId;
+            SurveyMenuItems.Clear();
+            foreach (var item in surveyData.SurveyMenuItems)
+            {
+                SurveyMenuItems.Add(item);
+            }
+            foreach (var surveyMenuItem in SurveyMenuItems)
+            {
+                surveyMenuItem.ChapterName = Helpers.GetCurrentLanguageTranslation(Translations, surveyMenuItem.ChapterName);
+            }
+        }
+
+        private static void LoadTranslatedQuestions()
+        {
             Questions = StorageProvider.LoadQuestions();
             foreach (var question in Questions.SelectMany(q => q.Value))
             {
                 question.Translate(Translations);
-            }
-            Answers = LoadAnswerToContinue();
-            SurveyData surveyData = StorageProvider.LoadSurveyData();
-            CurrentSurveyId = surveyData.SurveyId;
-            SurveyMenuItems = new ObservableCollection<SurveyMenuItem>(surveyData.SurveyMenuItems);
-            foreach (var surveyMenuItem in SurveyMenuItems)
-            {
-                surveyMenuItem.ChapterName = Helpers.GetCurrentLanguageTranslation(Translations, surveyMenuItem.ChapterName);
             }
         }
 
@@ -128,11 +142,7 @@ namespace DLR_Data_App.Services
         public static void ResetSavedAnswers()
         {
             Answers = new Dictionary<string, List<IUserAnswer>>();
-            SurveyMenuItems.Clear();
-            foreach (var item in StorageProvider.LoadSurveyData().SurveyMenuItems)
-            {
-                SurveyMenuItems.Add(item);
-            }
+            LoadTranslatedSurveyMenuItems();
             SaveAnswers();
         }
 
