@@ -51,6 +51,8 @@ namespace DLR_Data_App.Services
 
         private static DateTime? ContinuedAnswersDateTime;
 
+        public static int ProjectsFilledSinceLastSurveyCompletion = 0;
+
         /// <summary>
         /// Initializes the DatabankCommunication
         /// </summary>
@@ -73,11 +75,17 @@ namespace DLR_Data_App.Services
             }
         }
 
+        public static DateTime GetLastCompletedSurveyDate()
+        {
+            var answers = StorageProvider.LoadAnswers(UserId);
+            return answers.Results.Any() ? answers.Results.Max(e => e.TimeStamp) : DateTime.MinValue;
+        }
+
         private static Dictionary<string, List<IUserAnswer>> LoadAnswerToContinue()
         {
             var answers = StorageProvider.LoadAnswers(UserId);
             var answersToContinue = answers.Results.FirstOrDefault(r => Math.Abs((r.TimeStamp - DateTime.UtcNow).TotalMinutes) < MaxMinutesToContinueSurvey);
-
+            ProjectsFilledSinceLastSurveyCompletion = answers.ProjectsFilledSinceLastSurveyCompletion;
             if (answersToContinue == null)
             {
                 ContinuedAnswersDateTime = null;
@@ -97,6 +105,7 @@ namespace DLR_Data_App.Services
         public static void SaveAnswers()
         {
             var savedAnswers = StorageProvider.LoadAnswers(UserId);
+            savedAnswers.ProjectsFilledSinceLastSurveyCompletion = ProjectsFilledSinceLastSurveyCompletion;
             var currentAnswer = savedAnswers.Results.FirstOrDefault(r => r.TimeStamp == ContinuedAnswersDateTime);
             var now = DateTime.UtcNow;
             ContinuedAnswersDateTime = now;

@@ -8,6 +8,7 @@ namespace DLR_Data_App.Models.Survey
     {
         public string UserId { get; set; }
         public List<SurveyResult> Results { get; set; } = new List<SurveyResult>();
+        public int ProjectsFilledSinceLastSurveyCompletion = 0;
     }
 
     public class SurveyResult

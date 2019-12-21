@@ -90,7 +90,7 @@ namespace DLR_Data_App.Services
                                     var controlKey = control.Key;
                                     var controlValue = control.Value;
                                     bool result;
-
+                
                                     switch (controlKey)
                                     {
                                         case "name":
@@ -154,21 +154,21 @@ namespace DLR_Data_App.Services
                                 }
                                 form.ElementList.Add(projectFormElements);
                             }
-
+                
                             break;
                         }
-
+                
                     // Project json file
                     case "metadata":
                         {
                             ProjectFormMetadata projectFormMetadata = new ProjectFormMetadata();
-
+                
                             // parsing the metadata of the form
                             foreach (KeyValuePair<string, JToken> metadata in (JObject)value)
                             {
                                 var metadataKey = metadata.Key;
                                 var metadataValue = metadata.Value;
-
+                
                                 switch (metadataKey)
                                 {
                                     case "version":
@@ -195,17 +195,19 @@ namespace DLR_Data_App.Services
                                         break;
                                 }
                             }
-
+                
                             form.Metadata = projectFormMetadata;
                             break;
                         }
-
+                
                     // Title of form
                     case "title":
                         form.Title = value.ToString();
                         break;
-
                     // Project Information Elements
+                    case "SurveyId":
+                        form.SurveyId = value.ToString();
+                        break;
                     case "Project":
                         project.Title = value.ToString();
                         break;

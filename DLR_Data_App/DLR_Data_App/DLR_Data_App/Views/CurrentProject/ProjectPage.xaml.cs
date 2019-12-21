@@ -17,6 +17,9 @@ namespace DLR_Data_App.Views.CurrentProject
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProjectPage
     {
+        const int MaxDaysSinceLastSurveyCompletion = 45;
+        const int MaxProjectsFilledPerSurvey = 10;
+
         private readonly ProjectViewModel _viewModel = new ProjectViewModel();
         private Project _workingProject;
         private List<ContentPage> _pages;
@@ -37,10 +40,16 @@ namespace DLR_Data_App.Views.CurrentProject
         private void ProjectPage_Appearing(object sender, EventArgs e)
         {
             var newProject = Database.GetCurrentProject();
+
+            if (newProject != null)
+            {
+                CheckForSurveyCompletionNeeded();
+            }
+
             if (_projectLastCheck?.Id == newProject?.Id)
                 return;
             _projectLastCheck = newProject;
-
+            
             UnlockedElements = new HashSet<FormElement>();
             Children.Clear();
             LoadPagesAndElements(newProject);
@@ -52,6 +61,19 @@ namespace DLR_Data_App.Views.CurrentProject
             if (_pages == null || _pages.Count == 0)
             {
                 (Application.Current as App).CurrentPage.DisplayAlert(AppResources.warning, AppResources.noactiveproject, AppResources.okay);
+            }            
+        }
+
+        private static void CheckForSurveyCompletionNeeded()
+        {
+            var lastAnsweredSurveyDate = SurveyStorageManager.GetLastCompletedSurveyDate();
+            if ((DateTime.UtcNow - lastAnsweredSurveyDate).TotalDays > MaxDaysSinceLastSurveyCompletion
+                || SurveyStorageManager.ProjectsFilledSinceLastSurveyCompletion > MaxProjectsFilledPerSurvey)
+            {
+                DependencyService.Get<IToast>().LongAlert(AppResources.pleaseCompleteProfiling);
+
+                if (Application.Current.MainPage is MainPage mainPage)
+                    _ = mainPage.NavigateFromMenu(MenuItemType.Profiling);
             }
         }
 
@@ -245,6 +267,9 @@ namespace DLR_Data_App.Views.CurrentProject
                 var tableName = _workingProject.GetTableName();
                 var status = Database.InsertCustomValues(tableName, elementNameList, elementValueList);
 
+                SurveyStorageManager.ProjectsFilledSinceLastSurveyCompletion++;
+                SurveyStorageManager.SaveAnswers();
+
                 string message;
                 if (status)
                 {
@@ -262,6 +287,7 @@ namespace DLR_Data_App.Views.CurrentProject
                 }
 
                 await DisplayAlert(AppResources.save, message, AppResources.okay);
+                CheckForSurveyCompletionNeeded();
             }
         }
     }

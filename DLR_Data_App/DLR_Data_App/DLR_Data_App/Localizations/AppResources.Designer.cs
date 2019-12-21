@@ -748,6 +748,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please complete the profiling. ähnelt.
+        /// </summary>
+        internal static string pleaseCompleteProfiling {
+            get {
+                return ResourceManager.GetString("pleaseCompleteProfiling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Please make a selection ähnelt.
         /// </summary>
         internal static string pleaseMakeSelection {

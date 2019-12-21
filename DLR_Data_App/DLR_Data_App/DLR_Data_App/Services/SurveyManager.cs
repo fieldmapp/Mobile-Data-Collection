@@ -101,6 +101,11 @@ namespace DLR_Data_App.Services
                 .Select(id => SurveyStorageManager.LoadQuestionById("Introspection", id)).FirstOrDefault();
             if (newIntrospectionQuestion == null)
             {
+                if (!SurveyStorageManager.SurveyMenuItems.Any(s => s.AnswersNeeded > s.AnswersGiven))
+                {
+                    SurveyStorageManager.ProjectsFilledSinceLastSurveyCompletion = 0;
+                    SurveyStorageManager.SaveAnswers();
+                }
                 ShowEvaluationPage();
                 return;
             }

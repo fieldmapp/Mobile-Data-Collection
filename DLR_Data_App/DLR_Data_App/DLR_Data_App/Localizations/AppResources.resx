@@ -569,4 +569,7 @@ Consent of the data subject means any freely given, specific, informed and unamb
   <data name="yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="pleaseCompleteProfiling" xml:space="preserve">
+    <value>Please complete the profiling.</value>
+  </data>
 </root>
