@@ -248,7 +248,7 @@ namespace DLR_Data_App.Services
                 var file = await CrossFilePicker.Current.PickFile();
                 if (file == null)
                     formElement.OnInvalidContentChange();
-                dataHolder.Data = Encoding.UTF8.GetString(file.DataArray);
+                dataHolder.Data = Convert.ToBase64String(file.DataArray);
                 var length = dataHolder.Data.Length;
                 formElement.OnValidContentChange();
             };
