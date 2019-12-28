@@ -54,7 +54,7 @@ namespace DLR_Data_App.Services
         public static int ProjectsFilledSinceLastSurveyCompletion = 0;
 
         /// <summary>
-        /// Initializes the DatabankCommunication
+        /// Initializes the <see cref="SurveyStorageManager"/>
         /// </summary>
         public static void Initilize(string userId)
         {
@@ -89,6 +89,10 @@ namespace DLR_Data_App.Services
             }
         }
 
+        /// <summary>
+        /// Looks for the last completed survey and returns its date
+        /// </summary>
+        /// <returns><see cref="DateTime"/> of newest answered survey</returns>
         public static DateTime GetLastCompletedSurveyDate()
         {
             var answers = StorageProvider.LoadAnswers(UserId);
@@ -291,7 +295,7 @@ namespace DLR_Data_App.Services
         }
 
         /// <summary>
-        /// Adds an IUserAnswer object to the right list
+        /// Adds an IUserAnswer object to the corresponding list
         /// </summary>
         public static void AddAnswer(string surveyId, IUserAnswer answer)
         {
@@ -300,6 +304,9 @@ namespace DLR_Data_App.Services
             Answers[surveyId].Add(answer);
         }
 
+        /// <summary>
+        /// Exports the answers using the provided <see cref="StorageProvider"/>
+        /// </summary>
         public static void ExportAnswers() => StorageProvider.ExportAnswers(StorageProvider.LoadAnswers(UserId));
     }
 }

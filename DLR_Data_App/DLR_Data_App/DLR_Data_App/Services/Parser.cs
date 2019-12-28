@@ -77,10 +77,9 @@ namespace DLR_Data_App.Services
 
                 switch (key)
                 {
-                    // Form odkbuild file
+                    //Form odkbuild file
                     case "controls":
                         {
-                            // parsing the elements of a form
                             foreach (var jToken in value)
                             {
                                 var controlElement = (JObject)jToken;
@@ -163,7 +162,6 @@ namespace DLR_Data_App.Services
                         {
                             ProjectFormMetadata projectFormMetadata = new ProjectFormMetadata();
                 
-                            // parsing the metadata of the form
                             foreach (KeyValuePair<string, JToken> metadata in (JObject)value)
                             {
                                 var metadataKey = metadata.Key;
@@ -200,11 +198,9 @@ namespace DLR_Data_App.Services
                             break;
                         }
                 
-                    // Title of form
                     case "title":
                         form.Title = value.ToString();
                         break;
-                    // Project Information Elements
                     case "SurveyId":
                         form.SurveyId = value.ToString();
                         break;
