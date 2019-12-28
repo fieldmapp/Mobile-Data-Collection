@@ -10,6 +10,9 @@ using Xamarin.Forms;
 
 namespace DLR_Data_App.Controls
 {
+    /// <summary>
+    /// An ImageButton which, when hold long enough, will open an <see cref="ImageDetailPage"/> .
+    /// </summary>
     class DetailImage : ImageButton
     {
         static readonly TimeSpan LongPressThreshold = TimeSpan.FromMilliseconds(500);

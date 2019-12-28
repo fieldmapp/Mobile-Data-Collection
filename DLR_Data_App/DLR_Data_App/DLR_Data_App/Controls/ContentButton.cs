@@ -8,6 +8,9 @@ using Xamarin.Forms;
 
 namespace DLR_Data_App.Controls
 {
+    /// <summary>
+    /// View which works like a button but can have other views as children.
+    /// </summary>
     public class ContentButton : ContentView
     {
         private readonly TapGestureRecognizer elementClicked;
@@ -24,14 +27,14 @@ namespace DLR_Data_App.Controls
             if (child is View childview)
             {
                 childview.GestureRecognizers.Add(elementClicked);
-                childview.GestureRecognizers.Add(new TapGestureRecognizer() {
-                    Command = new Command(() => {childview.BackgroundColor = Color.LightGray; })
+                childview.GestureRecognizers.Add(new TapGestureRecognizer()
+                {
+                    Command = new Command(() => { childview.BackgroundColor = Color.LightGray; })
                 });
             }
         }
 
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand),
-            typeof(ContentButton), null, BindingMode.Default, null, CommandPropertyChanged);
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(ContentButton), null, BindingMode.Default, null, CommandPropertyChanged);
 
         private static void CommandPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {

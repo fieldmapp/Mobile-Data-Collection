@@ -8,6 +8,9 @@ using Xamarin.Forms.Internals;
 
 namespace DLR_Data_App.Controls
 {
+    /// <summary>
+    /// View containing an image which can be interacted on with pinch, pan and doube taps.
+    /// </summary>
     public class ImageInspectionContainer : ContentView
     {
         private double _startScale, _currentScale;

@@ -170,6 +170,12 @@ namespace DLR_Data_App.Services
         /// <returns>Unique table name for the given project.</returns>
         public static string GetTableName(this Project project) => Parser.GetEnglishStringFromJsonList(project.Title, project.Languages) + "_" + project.Id;
 
+        /// <summary>
+        /// Performs a lookup for the english translation for a given translationKey. Used by surveys.
+        /// </summary>
+        /// <param name="translations">Dictionary containing translations for keys</param>
+        /// <param name="translationKey">Key to lookup</param>
+        /// <returns>Translation or the string "translation missing" if there is no english translation</returns>
         public static string GetEnglishTranslation(Dictionary<string,string> translations, string translationKey)
         {
             const string englishLanguageExtension = "English";
@@ -181,6 +187,13 @@ namespace DLR_Data_App.Services
             return translation;
         }
 
+        /// <summary>
+        /// Performs a lookup for the system languages translation for a given translationKey. 
+        /// Falls back to <see cref="GetEnglishTranslation"/> if there is no translation in the current language. Used by surveys.
+        /// </summary>
+        /// <param name="translations">Dictionary containing translations for keys</param>
+        /// <param name="translationKey">Key to lookup</param>
+        /// <returns>Translation or the string "translation missing" if there is neither a translation in the current language nor in english</returns>
         public static string GetCurrentLanguageTranslation(Dictionary<string, string> translations, string translationKey)
         {
             string currentLanguageExtension = CultureInfo.CurrentUICulture.EnglishName;
@@ -197,6 +210,13 @@ namespace DLR_Data_App.Services
             return translation;
         }
 
+        /// <summary>
+        /// Extension Method providing the IndexOf method for <see cref="IReadOnlyList{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of <see cref="IReadOnlyList{T}"/></typeparam>
+        /// <param name="list">List in which the given element will be searched for</param>
+        /// <param name="element">Element which wil be looked for</param>
+        /// <returns>Index of element in list or (if the element is not in list) -1.</returns>
         public static int IndexOf<T>(this IReadOnlyList<T> list, T element)
         {
             var listCount = list.Count;
@@ -208,6 +228,13 @@ namespace DLR_Data_App.Services
             return -1;
         }
 
+        /// <summary>
+        /// Returns elements from a sequence as long as a specified condition is false and one after that.
+        /// </summary>
+        /// <typeparam name="T">The type of the element of source.</typeparam>
+        /// <param name="list">A sequence to return elements from</param>
+        /// <param name="predicate">A function to test each element for a condition</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> that contains the elements from the input sequence that occur before and including the element at which the test passes.</returns>
         public static IEnumerable<T> TakeUntilIncluding<T>(this IEnumerable<T> list, Func<T, bool> predicate)
         {
             foreach (T el in list)
@@ -218,6 +245,13 @@ namespace DLR_Data_App.Services
             }
         }
 
+        /// <summary>
+        /// Bypasses elements in a sequence as long as a specified condition is true, skips one and then returns the remaining elements.
+        /// </summary>
+        /// <typeparam name="T">The type of the elements of source</typeparam>
+        /// <param name="list">An <see cref="IEnumerable{T}"/> to return elements from</param>
+        /// <param name="predicate">A function to test each element for a condition</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> that contains the elements from the input sequence starting one after the first element in the linear series that does not pass the test specified by predicate</returns>
         public static IEnumerable<T> SkipWhileIncluding<T>(this IEnumerable<T> list, Func<T, bool> predicate)
         {
             bool yielding = false;

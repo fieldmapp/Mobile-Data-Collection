@@ -13,6 +13,9 @@ using Xamarin.Forms;
 
 namespace DLR_Data_App.Services
 {
+    /// <summary>
+    /// Class containing the parameters passed to a view creator.
+    /// </summary>
     class FormCreationParams
     {
         public ProjectFormElements Element;
@@ -28,6 +31,10 @@ namespace DLR_Data_App.Services
             DisplayAlertFunc = displayAlertFunc;
         }
     }
+
+    /// <summary>
+    /// Class representing every part of a displayed element in a form.
+    /// </summary>
     class FormElement
     {
         public FormElement(Grid grid, ProjectFormElements data, string type)
@@ -52,6 +59,9 @@ namespace DLR_Data_App.Services
         private static readonly long EmptyDateTicks = EmptyDate.Ticks;
         private IEnumerable<View> Children => Grid.Children;
 
+        /// <summary>
+        /// Sets the grids content to the default value
+        /// </summary>
         public void Reset()
         {
             foreach (var child in Children)
@@ -67,6 +77,10 @@ namespace DLR_Data_App.Services
             }
         }
 
+        /// <summary>
+        /// Retrieves a representation for this element
+        /// </summary>
+        /// <returns>Pair containing 1. the name and 2. the content of the element.</returns>
         public KeyValuePair<string, string> GetRepresentation()
         {
             switch (Type)
@@ -95,10 +109,10 @@ namespace DLR_Data_App.Services
         }
 
         /// <summary>
-        /// 
+        /// Sets grids content based on the given projetData
         /// </summary>
-        /// <param name="projectData"></param>
-        /// <returns>Boolean indicating if this FormElement set something non initial to one of its views</returns>
+        /// <param name="projectData">Dictionary matching an elements name and its content</param>
+        /// <returns><see cref="Boolean"/> indicating if this FormElement set something non initial to one of its views</returns>
         public bool LoadContentFromProjectData(Dictionary<string, string> projectData)
         {
             switch (Type)
@@ -142,6 +156,9 @@ namespace DLR_Data_App.Services
         }
     }
 
+    /// <summary>
+    /// Class containing a single form page and its elements
+    /// </summary>
     class FormContent
     {
         public FormContent(ContentPage form, IReadOnlyList<FormElement> elements)
@@ -153,6 +170,10 @@ namespace DLR_Data_App.Services
         public ContentPage Form { get; }
         public IReadOnlyList<FormElement> Elements { get; }
     }
+
+    /// <summary>
+    /// Static class providing functions to create a forms pages and elements.
+    /// </summary>
     static class FormCreator
     {
         private static Dictionary<string, Func<FormCreationParams, FormElement>> TypeToViewCreator = new Dictionary<string, Func<FormCreationParams, FormElement>>()
@@ -444,6 +465,13 @@ namespace DLR_Data_App.Services
             return formElement;
         }
 
+        /// <summary>
+        /// Generates a single form page and its elements.
+        /// </summary>
+        /// <param name="form">Information of current form</param>
+        /// <param name="currentProject">Information of current project</param>
+        /// <param name="displayAlert">Async function which will display an alert.</param>
+        /// <returns></returns>
         public static FormContent GenerateForm(ProjectForm form, Project currentProject, Func<string, string, string, Task> displayAlert)
         {
             var contentPage = new ContentPage();
@@ -454,7 +482,7 @@ namespace DLR_Data_App.Services
             contentPage.Padding = new Thickness(10, 10, 10, 10);
 
             contentPage.Title = form.Title;
-            // walk through list of elements and generate form containing elements
+            //walk through list of elements and generate form containing elements
             foreach (var element in form.ElementList)
             {
                 IEnumerable<char> findSpecialType(string name) => name.SkipWhileIncluding(c => c != '{').TakeWhile(c => c != '}');

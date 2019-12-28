@@ -12,6 +12,9 @@ using Xamarin.Forms.Xaml;
 
 namespace DLR_Data_App.Controls
 {
+    /// <summary>
+    /// View which works like a picker, but without using popups. Works best when the children implements the <see cref="IInlinePickerElement"/> interface.
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class InlinePicker : ContentView
     {

@@ -8,6 +8,9 @@ using Xamarin.Forms;
 
 namespace DLR_Data_App.Services
 {
+    /// <summary>
+    /// Child of <see cref="DefaultContractResolver"/> which, when used, will prevent the serialization of elements where declaring type is a <see cref="BindableObject"/>.
+    /// </summary>
     class IgnoreBindableObjectContractResolver : DefaultContractResolver
     {
         public static readonly IgnoreBindableObjectContractResolver Instance = new IgnoreBindableObjectContractResolver();

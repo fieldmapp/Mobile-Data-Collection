@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 namespace DLR_Data_App.Controls
 {
     /// <summary>  
-    /// Custom RadioButton control  
+    /// View which represents a RadioButton.
     /// </summary>  
     [XamlCompilation(XamlCompilationOptions.Compile)]
 

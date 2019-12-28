@@ -6,6 +6,9 @@ using Xamarin.Forms;
 
 namespace DLR_Data_App.Controls
 {
+    /// <summary>
+    /// Label which has an additional Data property. The labels text will reflect weather or not the Data is null or empty.
+    /// </summary>
     class DataHolder : Label
     {
         private string _data = string.Empty;

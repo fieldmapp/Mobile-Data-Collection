@@ -31,18 +31,39 @@ namespace DLR_Data_App.Services
             return safeName;
         }
 
+        /// <summary>
+        /// Creates a new <see cref="SQLiteConnection"/>, based on the file with path <see cref="App.DatabaseLocation"/>
+        /// </summary>
+        /// <returns><see cref="SQLiteConnection"/> which should be closed and disposed after use</returns>
         public static SQLiteConnection CreateConnection() => new SQLiteConnection(App.DatabaseLocation);
 
+        /// <summary>
+        /// Opens a SQL transaction. 
+        /// Use <see cref="RollbackChanges"/> to rollback everything done from this point. 
+        /// Use <see cref="CommitChanges(string, SQLiteConnection)"/> to save everything done from this point.
+        /// </summary>
+        /// <param name="conn">An active <see cref="SQLiteConnection"/></param>
+        /// <returns><see cref="String"/> which representates the transaction point.</returns>
         public static string SaveTransactionPoint(SQLiteConnection conn)
         {
             return conn.SaveTransactionPoint();
         }
 
+        /// <summary>
+        /// Undoes everything done from transaction represented by given <see cref="String"/> transactionPointName on given <see cref="SQLiteConnection"/> conn.
+        /// </summary>
+        /// <param name="transactionPointName"><see cref="String"/> which representates the transaction point</param>
+        /// <param name="conn">Active <see cref="SQLiteConnection"/></param>
         public static void RollbackChanges(string transactionPointName, SQLiteConnection conn)
         {
             conn.RollbackTo(transactionPointName);
         }
 
+        /// <summary>
+        /// Saves everything done from transaction represented by given <see cref="String"/> transactionPointName on given <see cref="SQLiteConnection"/> conn.
+        /// </summary>
+        /// <param name="transactionPointName"><see cref="String"/> which representates the transaction point</param>
+        /// <param name="conn">Active <see cref="SQLiteConnection"/></param>
         public static void CommitChanges(string transactionPointName, SQLiteConnection conn)
         {
             conn.Release(transactionPointName);
