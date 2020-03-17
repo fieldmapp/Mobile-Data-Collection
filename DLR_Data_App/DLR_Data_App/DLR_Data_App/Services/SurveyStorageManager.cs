@@ -15,10 +15,6 @@ namespace DLR_Data_App.Services
     public static class SurveyStorageManager
     {
         private const double MaxMinutesToContinueSurvey = 5;
-        /// <summary>
-        /// Used to create a randum number
-        /// </summary>
-        private static Random RandomNumber = new Random();
 
         /// <summary>
         /// Dictionary containng all lists to save the questions
@@ -248,7 +244,7 @@ namespace DLR_Data_App.Services
             }
             if (listAvailableQuestion.Count > 0)
             {
-                return listAvailableQuestion[RandomNumber.Next(listAvailableQuestion.Count)]; /// return random question
+                return listAvailableQuestion[App.RandomProvider.Next(listAvailableQuestion.Count)]; /// return random question
             }
             if (difficulty == 1 || !lowerDifficultyOk)
             {
