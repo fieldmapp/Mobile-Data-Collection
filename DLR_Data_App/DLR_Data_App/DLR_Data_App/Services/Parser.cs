@@ -202,7 +202,7 @@ namespace DLR_Data_App.Services
                         form.Title = value.ToString();
                         break;
                     case "SurveyId":
-                        form.SurveyId = value.ToString();
+                        project.SurveyId = value.ToString();
                         break;
                     case "Project":
                         project.Title = value.ToString();

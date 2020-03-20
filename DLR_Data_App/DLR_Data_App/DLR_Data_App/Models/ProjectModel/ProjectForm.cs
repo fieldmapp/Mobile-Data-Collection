@@ -15,9 +15,7 @@ namespace DLR_Data_App.Models.ProjectModel
         public string Title { get; set; }
 
         public int ProjectId { get; set; }
-
-        public string SurveyId { get; set; }
-
+        
         [Ignore]
         public List<ProjectFormElements> ElementList { get; set; }
 
