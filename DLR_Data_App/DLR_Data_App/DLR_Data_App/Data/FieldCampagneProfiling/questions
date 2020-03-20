@@ -1,0 +1,1132 @@
+{
+  "ImageChecker": [
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
+      "InternId": 1,
+      "Difficulty": 1,
+      "QuestionText": "whereWheat",
+      "Image1Correct": 0,
+      "Image2Correct": 1,
+      "Image3Correct": 0,
+      "Image4Correct": 0,
+      "Image1Source": "ImageChecker_one_question1_picture1.png",
+      "Image2Source": "ImageChecker_one_question1_picture2.png",
+      "Image3Source": "ImageChecker_one_question1_picture3.png",
+      "Image4Source": "ImageChecker_one_question1_picture4.png"
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
+      "InternId": 2,
+      "Difficulty": 1,
+      "QuestionText": "whereRape",
+      "Image1Correct": 0,
+      "Image2Correct": 1,
+      "Image3Correct": 1,
+      "Image4Correct": 0,
+      "Image1Source": "ImageChecker_one_question2_picture1.png",
+      "Image2Source": "ImageChecker_one_question2_picture2.png",
+      "Image3Source": "ImageChecker_one_question2_picture3.png",
+      "Image4Source": "ImageChecker_one_question2_picture4.png"
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
+      "InternId": 3,
+      "Difficulty": 2,
+      "QuestionText": "whereRape",
+      "Image1Correct": 1,
+      "Image2Correct": 1,
+      "Image3Correct": 1,
+      "Image4Correct": 0,
+      "Image1Source": "ImageChecker_two_question3_picture1.png",
+      "Image2Source": "ImageChecker_two_question3_picture2.png",
+      "Image3Source": "ImageChecker_two_question3_picture3.png",
+      "Image4Source": "ImageChecker_two_question3_picture4.png"
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
+      "InternId": 4,
+      "Difficulty": 2,
+      "QuestionText": "whereWheat",
+      "Image1Correct": 0,
+      "Image2Correct": 0,
+      "Image3Correct": 1,
+      "Image4Correct": 0,
+      "Image1Source": "ImageChecker_two_question4_picture1.png",
+      "Image2Source": "ImageChecker_two_question4_picture2.png",
+      "Image3Source": "ImageChecker_two_question4_picture3.png",
+      "Image4Source": "ImageChecker_two_question4_picture4.png"
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
+      "InternId": 5,
+      "Difficulty": 3,
+      "QuestionText": "wherePotato",
+      "Image1Correct": 1,
+      "Image2Correct": 0,
+      "Image3Correct": 1,
+      "Image4Correct": 0,
+      "Image1Source": "ImageChecker_three_question5_picture1.png",
+      "Image2Source": "ImageChecker_three_question5_picture2.png",
+      "Image3Source": "ImageChecker_three_question5_picture3.png",
+      "Image4Source": "ImageChecker_three_question5_picture4.png"
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
+      "InternId": 6,
+      "Difficulty": 3,
+      "QuestionText": "whereBarley",
+      "Image1Correct": 0,
+      "Image2Correct": 0,
+      "Image3Correct": 1,
+      "Image4Correct": 0,
+      "Image1Source": "ImageChecker_three_question6_picture1.png",
+      "Image2Source": "ImageChecker_three_question6_picture2.png",
+      "Image3Source": "ImageChecker_three_question6_picture3.png",
+      "Image4Source": "ImageChecker_three_question6_picture4.png"
+    }
+  ],
+  "DoubleSlider": [
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "InternId": 1,
+      "QuestionText": "estimateSoilCoverage",
+      "PictureAddress": "DoubleSlider_one_question1.png",
+      "CorrectAnswerA": 60,
+      "CorrectAnswerB": 23,
+      "Difficulty": 1
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "InternId": 2,
+      "QuestionText": "estimateSoilCoverage",
+      "PictureAddress": "DoubleSlider_one_question2.png",
+      "CorrectAnswerA": 43,
+      "CorrectAnswerB": 99,
+      "Difficulty": 1
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "InternId": 3,
+      "QuestionText": "estimateSoilCoverage",
+      "PictureAddress": "DoubleSlider_one_question3.png",
+      "CorrectAnswerA": 12,
+      "CorrectAnswerB": 3,
+      "Difficulty": 1
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "InternId": 4,
+      "QuestionText": "estimateSoilCoverage",
+      "PictureAddress": "DoubleSlider_one_question4.png",
+      "CorrectAnswerA": 90,
+      "CorrectAnswerB": 1,
+      "Difficulty": 1
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "InternId": 5,
+      "QuestionText": "estimateSoilCoverage",
+      "PictureAddress": "DoubleSlider_two_question1.png",
+      "CorrectAnswerA": 7,
+      "CorrectAnswerB": 96,
+      "Difficulty": 2
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "InternId": 6,
+      "QuestionText": "estimateSoilCoverage",
+      "PictureAddress": "DoubleSlider_two_question2.png",
+      "CorrectAnswerA": 49,
+      "CorrectAnswerB": 91,
+      "Difficulty": 2
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "InternId": 7,
+      "QuestionText": "estimateSoilCoverage",
+      "PictureAddress": "DoubleSlider_two_question3.png",
+      "CorrectAnswerA": 12,
+      "CorrectAnswerB": 3,
+      "Difficulty": 2
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "InternId": 8,
+      "QuestionText": "estimateSoilCoverage",
+      "PictureAddress": "DoubleSlider_two_question4.png",
+      "CorrectAnswerA": 64,
+      "CorrectAnswerB": 94,
+      "Difficulty": 2
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "InternId": 9,
+      "QuestionText": "estimateSoilCoverage",
+      "PictureAddress": "DoubleSlider_three_question1.png",
+      "CorrectAnswerA": 42,
+      "CorrectAnswerB": 87,
+      "Difficulty": 3
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "InternId": 10,
+      "QuestionText": "estimateSoilCoverage",
+      "PictureAddress": "DoubleSlider_three_question2.png",
+      "CorrectAnswerA": 6,
+      "CorrectAnswerB": 0,
+      "Difficulty": 3
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "InternId": 11,
+      "QuestionText": "estimateSoilCoverage",
+      "PictureAddress": "DoubleSlider_three_question3.png",
+      "CorrectAnswerA": 80,
+      "CorrectAnswerB": 5,
+      "Difficulty": 3
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "InternId": 12,
+      "QuestionText": "estimateSoilCoverage",
+      "PictureAddress": "DoubleSlider_three_question4.png",
+      "CorrectAnswerA": 76,
+      "CorrectAnswerB": 99,
+      "Difficulty": 3
+    }
+  ],
+  "Stadium": [
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 1,
+      "Image": "Stadium_one_question1.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumLeafDevelopment",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumTiltering",
+          "ImageSource": "stadium_bestockung.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 3
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "potato",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "corn",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "sugarBeet",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "C",
+      "CorrectAnswerStadium": 1,
+      "Difficulty": 1
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 2,
+      "Image": "Stadium_one_question2.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumLeafDevelopment",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumTiltering",
+          "ImageSource": "stadium_bestockung.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 3
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "potato",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "corn",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "sugarBeet",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "D",
+      "CorrectAnswerStadium": 1,
+      "Difficulty": 1
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 3,
+      "Image": "Stadium_one_question3.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumLeafDevelopment",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumTiltering",
+          "ImageSource": "stadium_bestockung.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 3
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "potato",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "corn",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "sugarBeet",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "B",
+      "CorrectAnswerStadium": 1,
+      "Difficulty": 1
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 4,
+      "Image": "Stadium_one_question4.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumLeafDevelopment",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumTiltering",
+          "ImageSource": "stadium_bestockung.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 3
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "potato",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "corn",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "sugarBeet",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "A",
+      "CorrectAnswerStadium": 1,
+      "Difficulty": 1
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 5,
+      "Image": "Stadium_one_question5.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumLeafDevelopment",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumTiltering",
+          "ImageSource": "stadium_bestockung.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 3
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "potato",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "corn",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "sugarBeet",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "C",
+      "CorrectAnswerStadium": 3,
+      "Difficulty": 1
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 6,
+      "Image": "Stadium_one_question6.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumLeafDevelopment",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumTiltering",
+          "ImageSource": "stadium_bestockung.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 3
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "potato",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "corn",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "sugarBeet",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "C",
+      "CorrectAnswerStadium": 2,
+      "Difficulty": 1
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 7,
+      "Image": "Stadium_two_question1.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumLeafDevelopment",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumShootDevelopmentMainStem",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumBooting",
+          "ImageSource": "stadium_ahrenrispenschwellen.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "stadiumInfloresceneEmergence",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 4
+        },
+        {
+          "StadiumName": "flowering",
+          "ImageSource": "bluete.png",
+          "InternNumber": 5
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "barley",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "potato",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "rape",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "B",
+      "CorrectAnswerStadium": 5,
+      "Difficulty": 2
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 8,
+      "Image": "Stadium_two_question2.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumLeafDevelopment",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumShootDevelopmentMainStem",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumBooting",
+          "ImageSource": "stadium_ahrenrispenschwellen.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "stadiumInfloresceneEmergence",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 4
+        },
+        {
+          "StadiumName": "flowering",
+          "ImageSource": "bluete.png",
+          "InternNumber": 5
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "barley",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "potato",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "rape",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "C",
+      "CorrectAnswerStadium": 4,
+      "Difficulty": 2
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 9,
+      "Image": "Stadium_two_question3.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumLeafDevelopment",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumShootDevelopmentMainStem",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumBooting",
+          "ImageSource": "stadium_ahrenrispenschwellen.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "stadiumInfloresceneEmergence",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 4
+        },
+        {
+          "StadiumName": "flowering",
+          "ImageSource": "bluete.png",
+          "InternNumber": 5
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "barley",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "potato",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "rape",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "D",
+      "CorrectAnswerStadium": 5,
+      "Difficulty": 2
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 10,
+      "Image": "Stadium_two_question4.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumLeafDevelopment",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumShootDevelopmentMainStem",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumBooting",
+          "ImageSource": "stadium_ahrenrispenschwellen.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "stadiumInfloresceneEmergence",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 4
+        },
+        {
+          "StadiumName": "flowering",
+          "ImageSource": "bluete.png",
+          "InternNumber": 5
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "barley",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "potato",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "rape",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "B",
+      "CorrectAnswerStadium": 1,
+      "Difficulty": 2
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 11,
+      "Image": "Stadium_two_question5.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumLeafDevelopment",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumShootDevelopmentMainStem",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumBooting",
+          "ImageSource": "stadium_ahrenrispenschwellen.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "stadiumInfloresceneEmergence",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 4
+        },
+        {
+          "StadiumName": "flowering",
+          "ImageSource": "bluete.png",
+          "InternNumber": 5
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "barley",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "potato",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "rape",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "D",
+      "CorrectAnswerStadium": 2,
+      "Difficulty": 2
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 12,
+      "Image": "Stadium_two_question6.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumLeafDevelopment",
+          "ImageSource": "stadium_blattentwicklung.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumShootDevelopmentMainStem",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumBooting",
+          "ImageSource": "stadium_ahrenrispenschwellen.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "stadiumInfloresceneEmergence",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 4
+        },
+        {
+          "StadiumName": "flowering",
+          "ImageSource": "bluete.png",
+          "InternNumber": 5
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "barley",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "potato",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "rape",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "D"
+        }
+      ],
+      "CorrectAnswerFruitType": "A",
+      "CorrectAnswerStadium": 3,
+      "Difficulty": 2
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 13,
+      "Image": "Stadium_three_question1.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
+          "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumInfloresceneEmergence",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "stadiumFruitDevelopment",
+          "ImageSource": "bluete.png",
+          "InternNumber": 4
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "potato",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "corn",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "rape",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "D"
+        },
+        {
+          "Name": "sugarBeet",
+          "InternLetter": "E"
+        }
+      ],
+      "CorrectAnswerFruitType": "E",
+      "CorrectAnswerStadium": 2,
+      "Difficulty": 3
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 14,
+      "Image": "Stadium_three_question2.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
+          "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumInfloresceneEmergence",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "stadiumFruitDevelopment",
+          "ImageSource": "bluete.png",
+          "InternNumber": 4
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "potato",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "corn",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "rape",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "D"
+        },
+        {
+          "Name": "sugarBeet",
+          "InternLetter": "E"
+        }
+      ],
+      "CorrectAnswerFruitType": "D",
+      "CorrectAnswerStadium": 4,
+      "Difficulty": 3
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 15,
+      "Image": "Stadium_three_question3.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
+          "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumInfloresceneEmergence",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "stadiumFruitDevelopment",
+          "ImageSource": "bluete.png",
+          "InternNumber": 4
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "potato",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "corn",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "rape",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "D"
+        },
+        {
+          "Name": "sugarBeet",
+          "InternLetter": "E"
+        }
+      ],
+      "CorrectAnswerFruitType": "B",
+      "CorrectAnswerStadium": 3,
+      "Difficulty": 3
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 16,
+      "Image": "Stadium_three_question4.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
+          "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumInfloresceneEmergence",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "stadiumFruitDevelopment",
+          "ImageSource": "bluete.png",
+          "InternNumber": 4
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "potato",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "corn",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "rape",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "D"
+        },
+        {
+          "Name": "sugarBeet",
+          "InternLetter": "E"
+        }
+      ],
+      "CorrectAnswerFruitType": "A",
+      "CorrectAnswerStadium": 3,
+      "Difficulty": 3
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 17,
+      "Image": "Stadium_three_question5.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
+          "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumInfloresceneEmergence",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "stadiumFruitDevelopment",
+          "ImageSource": "bluete.png",
+          "InternNumber": 4
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "potato",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "corn",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "rape",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "D"
+        },
+        {
+          "Name": "sugarBeet",
+          "InternLetter": "E"
+        }
+      ],
+      "CorrectAnswerFruitType": "C",
+      "CorrectAnswerStadium": 4,
+      "Difficulty": 3
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "InternId": 18,
+      "Image": "Stadium_three_question6.png",
+      "QuestionText": "assignPlantAndStadium",
+      "Stadiums": [
+        {
+          "StadiumName": "stadiumShootDevelopmentLenghtGrow",
+          "ImageSource": "stadium_laengenwachstumschossen.png",
+          "InternNumber": 1
+        },
+        {
+          "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
+          "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+          "InternNumber": 2
+        },
+        {
+          "StadiumName": "stadiumInfloresceneEmergence",
+          "ImageSource": "stadium_entwicklungbluetenanlage.png",
+          "InternNumber": 3
+        },
+        {
+          "StadiumName": "stadiumFruitDevelopment",
+          "ImageSource": "bluete.png",
+          "InternNumber": 4
+        }
+      ],
+      "Plants": [
+        {
+          "Name": "potato",
+          "InternLetter": "A"
+        },
+        {
+          "Name": "corn",
+          "InternLetter": "B"
+        },
+        {
+          "Name": "rape",
+          "InternLetter": "C"
+        },
+        {
+          "Name": "wheat",
+          "InternLetter": "D"
+        },
+        {
+          "Name": "sugarBeet",
+          "InternLetter": "E"
+        }
+      ],
+      "CorrectAnswerFruitType": "D",
+      "CorrectAnswerStadium": 1,
+      "Difficulty": 3
+    }
+  ],
+  "Introspection": [
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionIntrospectionPage, DLR_Data_App",
+      "InternId": 1,
+      "QuestionText": "selfEvaluationCrop",
+      "Difficulty": -1
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionIntrospectionPage, DLR_Data_App",
+      "InternId": 2,
+      "QuestionText": "selfEvaluationStadium",
+      "Difficulty": -1
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionIntrospectionPage, DLR_Data_App",
+      "InternId": 3,
+      "QuestionText": "selfEvaluationCoverage",
+      "Difficulty": -1
+    },
+    {
+      "$type": "DLR_Data_App.Models.Survey.QuestionIntrospectionPage, DLR_Data_App",
+      "InternId": 4,
+      "QuestionText": "selfEvaluationGreenCoverage",
+      "Difficulty": -1
+    }
+  ]
+}
