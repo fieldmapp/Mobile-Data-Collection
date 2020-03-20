@@ -1,5 +1,5 @@
 ﻿//Main contributors: Maximilian Enderling, Maya Koehnen
-using DLR_Data_App.Models.Survey;
+using DLR_Data_App.Models.Profiling;
 using System;
 using System.Collections;
 using System.Collections.Generic;

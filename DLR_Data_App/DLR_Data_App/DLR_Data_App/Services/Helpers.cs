@@ -171,7 +171,7 @@ namespace DLR_Data_App.Services
         public static string GetTableName(this Project project) => Parser.GetEnglishStringFromJsonList(project.Title, project.Languages) + "_" + project.Id;
 
         /// <summary>
-        /// Performs a lookup for the english translation for a given translationKey. Used by surveys.
+        /// Performs a lookup for the english translation for a given translationKey. Used by profilings.
         /// </summary>
         /// <param name="translations">Dictionary containing translations for keys</param>
         /// <param name="translationKey">Key to lookup</param>
@@ -189,7 +189,7 @@ namespace DLR_Data_App.Services
 
         /// <summary>
         /// Performs a lookup for the system languages translation for a given translationKey. 
-        /// Falls back to <see cref="GetEnglishTranslation"/> if there is no translation in the current language. Used by surveys.
+        /// Falls back to <see cref="GetEnglishTranslation"/> if there is no translation in the current language. Used by profilings.
         /// </summary>
         /// <param name="translations">Dictionary containing translations for keys</param>
         /// <param name="translationKey">Key to lookup</param>

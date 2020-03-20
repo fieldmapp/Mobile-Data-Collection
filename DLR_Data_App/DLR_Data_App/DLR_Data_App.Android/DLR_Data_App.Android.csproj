@@ -86,7 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\questions" />
-    <AndroidAsset Include="Assets\surveys" />
+    <None Include="Assets\profilings" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />

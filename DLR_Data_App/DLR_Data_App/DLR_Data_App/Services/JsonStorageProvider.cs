@@ -1,4 +1,4 @@
-﻿using DLR_Data_App.Models.Survey;
+﻿using DLR_Data_App.Models.Profiling;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -24,7 +24,7 @@ namespace DLR_Data_App.Services
             };
         }
 
-        public SurveyResults LoadAnswers(string userId)
+        public ProfilingResults LoadAnswers(string userId)
         {
             var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             path = Path.Combine(path, "answers_" + userId);
@@ -32,10 +32,10 @@ namespace DLR_Data_App.Services
             using (var storageStream = StorageAccessProvider.OpenFileRead(path))
             {
                 if (storageStream.Length == 0)
-                    return new SurveyResults() { UserId = userId, Results = new List<SurveyResult>() };
+                    return new ProfilingResults() { UserId = userId, Results = new List<ProfilingResult>() };
                 using (var streamReader = new StreamReader(storageStream))
                 using (var jsonReader = new JsonTextReader(streamReader))
-                    return JsonSerializer.Deserialize<SurveyResults>(jsonReader);
+                    return JsonSerializer.Deserialize<ProfilingResults>(jsonReader);
             }
         }
 
@@ -52,12 +52,12 @@ namespace DLR_Data_App.Services
             return DeserializeFromAsset<Dictionary<string, List<IQuestionContent>>>("questions");
         }
 
-        public SurveyData LoadSurveyData()
+        public ProfilingData LoadProfilingData()
         {
-            return DeserializeFromAsset<SurveyData>("surveys");
+            return DeserializeFromAsset<ProfilingData>("profilings");
         }
 
-        public void SaveAnswers(SurveyResults results)
+        public void SaveAnswers(ProfilingResults results)
         {
             var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             path = Path.Combine(path, "answers_" + results.UserId);
@@ -68,7 +68,7 @@ namespace DLR_Data_App.Services
                 JsonSerializer.Serialize(jsonWriter, results);
         }
 
-        public void ExportAnswers(SurveyResults results)
+        public void ExportAnswers(ProfilingResults results)
         {
             var path = $"dlr_answers_{results.UserId}.txt";
 

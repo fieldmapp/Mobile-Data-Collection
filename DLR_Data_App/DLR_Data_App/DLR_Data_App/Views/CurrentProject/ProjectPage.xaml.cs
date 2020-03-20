@@ -17,8 +17,8 @@ namespace DLR_Data_App.Views.CurrentProject
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProjectPage
     {
-        const int MaxDaysSinceLastSurveyCompletion = 45;
-        const int MaxProjectsFilledPerSurvey = 10;
+        const int MaxDaysSinceLastProfilingCompletion = 45;
+        const int MaxProjectsFilledPerProfiling = 10;
 
         private readonly ProjectViewModel _viewModel = new ProjectViewModel();
         private Project _workingProject;
@@ -43,7 +43,7 @@ namespace DLR_Data_App.Views.CurrentProject
 
             if (newProject != null)
             {
-                CheckForSurveyCompletionNeeded();
+                CheckForProfilingCompletionNeeded();
             }
 
             if (_projectLastCheck?.Id == newProject?.Id)
@@ -64,11 +64,11 @@ namespace DLR_Data_App.Views.CurrentProject
             }            
         }
 
-        private static void CheckForSurveyCompletionNeeded()
+        private static void CheckForProfilingCompletionNeeded()
         {
-            var lastAnsweredSurveyDate = SurveyStorageManager.GetLastCompletedSurveyDate();
-            if ((DateTime.UtcNow - lastAnsweredSurveyDate).TotalDays > MaxDaysSinceLastSurveyCompletion
-                || SurveyStorageManager.ProjectsFilledSinceLastSurveyCompletion > MaxProjectsFilledPerSurvey)
+            var lastAnsweredProfilingDate = ProfilingStorageManager.GetLastCompletedProfilingDate();
+            if ((DateTime.UtcNow - lastAnsweredProfilingDate).TotalDays > MaxDaysSinceLastProfilingCompletion
+                || ProfilingStorageManager.ProjectsFilledSinceLastProfilingCompletion > MaxProjectsFilledPerProfiling)
             {
                 DependencyService.Get<IToast>().LongAlert(AppResources.pleaseCompleteProfiling);
 
@@ -267,8 +267,8 @@ namespace DLR_Data_App.Views.CurrentProject
                 var tableName = _workingProject.GetTableName();
                 var status = Database.InsertCustomValues(tableName, elementNameList, elementValueList);
 
-                SurveyStorageManager.ProjectsFilledSinceLastSurveyCompletion++;
-                SurveyStorageManager.SaveAnswers();
+                ProfilingStorageManager.ProjectsFilledSinceLastProfilingCompletion++;
+                ProfilingStorageManager.SaveAnswers();
 
                 string message;
                 if (status)
@@ -287,7 +287,7 @@ namespace DLR_Data_App.Views.CurrentProject
                 }
 
                 await DisplayAlert(AppResources.save, message, AppResources.okay);
-                CheckForSurveyCompletionNeeded();
+                CheckForProfilingCompletionNeeded();
             }
         }
     }

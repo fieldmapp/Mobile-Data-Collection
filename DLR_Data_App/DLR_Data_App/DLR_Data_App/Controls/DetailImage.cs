@@ -1,6 +1,6 @@
 ﻿//Main contributors: Maximilian Enderling
 using DLR_Data_App.Services;
-using DLR_Data_App.Views.Survey;
+using DLR_Data_App.Views.Profiling;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

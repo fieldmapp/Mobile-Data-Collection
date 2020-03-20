@@ -270,9 +270,9 @@ namespace DLR_Data_App.Localizations {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Delete saved answers ähnelt.
         /// </summary>
-        internal static string deleteSavedAnswersSurvey {
+        internal static string deleteSavedAnswersProfiling {
             get {
-                return ResourceManager.GetString("deleteSavedAnswersSurvey", resourceCulture);
+                return ResourceManager.GetString("deleteSavedAnswersProfiling", resourceCulture);
             }
         }
         
@@ -360,9 +360,9 @@ namespace DLR_Data_App.Localizations {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Export saved answers ähnelt.
         /// </summary>
-        internal static string exportAnswersSurvey {
+        internal static string exportAnswersProfiling {
             get {
-                return ResourceManager.GetString("exportAnswersSurvey", resourceCulture);
+                return ResourceManager.GetString("exportAnswersProfiling", resourceCulture);
             }
         }
         

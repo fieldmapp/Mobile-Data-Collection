@@ -31,7 +31,7 @@ namespace DLR_Data_App.Models.ProjectModel
         // select project as current project
         public bool CurrentProject { get; set; }
 
-        public string SurveyId { get; set; }
+        public string ProfilingId { get; set; }
 
         // List of forms
         [Ignore]

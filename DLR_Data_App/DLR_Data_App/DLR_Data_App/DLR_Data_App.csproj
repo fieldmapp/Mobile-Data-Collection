@@ -57,8 +57,8 @@
     <Compile Update="Views\Settings\ProfilelistPage.xaml.cs">
       <DependentUpon>ProfileListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Survey\SurveyListPage.xaml.cs">
-      <DependentUpon>SurveyListPage.xaml</DependentUpon>
+    <Compile Update="Views\Profiling\ProfilingListPage.xaml.cs">
+      <DependentUpon>ProfilingListPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -111,34 +111,34 @@
     <EmbeddedResource Update="Views\SplashScreenPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Survey\DoubleSliderPage.xaml">
+    <EmbeddedResource Update="Views\Profiling\DoubleSliderPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Survey\EvaluationDetailsPage.xaml">
+    <EmbeddedResource Update="Views\Profiling\EvaluationDetailsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Survey\EvaluationMainPage.xaml">
+    <EmbeddedResource Update="Views\Profiling\EvaluationMainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Survey\EvaluationPage.xaml">
+    <EmbeddedResource Update="Views\Profiling\EvaluationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Survey\ImageCheckerPage.xaml">
+    <EmbeddedResource Update="Views\Profiling\ImageCheckerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Survey\ImageDetailPage.xaml">
+    <EmbeddedResource Update="Views\Profiling\ImageDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Survey\IntrospectionPage.xaml">
+    <EmbeddedResource Update="Views\Profiling\IntrospectionPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Survey\LoadingPage.xaml">
+    <EmbeddedResource Update="Views\Profiling\LoadingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Survey\SurveyListPage.xaml">
+    <EmbeddedResource Update="Views\Profiling\ProfilingListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Survey\StadiumPage.xaml">
+    <EmbeddedResource Update="Views\Profiling\StadiumPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

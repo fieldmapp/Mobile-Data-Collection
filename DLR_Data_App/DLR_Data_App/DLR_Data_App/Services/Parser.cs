@@ -201,8 +201,8 @@ namespace DLR_Data_App.Services
                     case "title":
                         form.Title = value.ToString();
                         break;
-                    case "SurveyId":
-                        project.SurveyId = value.ToString();
+                    case "ProfilingId":
+                        project.ProfilingId = value.ToString();
                         break;
                     case "Project":
                         project.Title = value.ToString();

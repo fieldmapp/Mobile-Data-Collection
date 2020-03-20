@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Main contributors: Henning Woydt-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DLR_Data_App.Views.Profiling.ImageCheckerPage"
+             xmlns:controls="clr-namespace:DLR_Data_App.Controls"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             Title="{res:Translate profiling}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Button">White</Color>
+            <Color x:Key="TextColor">Gray</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Margin="0"
+                 Padding="10">
+        <Label x:Name="HeaderText"
+               Text="{Binding Header}"
+               FontSize="Medium"
+               HorizontalTextAlignment="Center"
+               Margin="0,0,0,10"/>
+        <Label x:Name="Frage"
+               HorizontalTextAlignment="Center"
+               Text="{Binding QuestionItem.QuestionText}"
+               FontSize="Medium"
+               Margin="0,0,0,10"/>
+        <Grid ColumnSpacing="10"
+              RowSpacing="10"
+              VerticalOptions="StartAndExpand" 
+              HorizontalOptions="CenterAndExpand">
+        <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <controls:DetailImage x:Name="PictureA"
+                         Source="{Binding QuestionItem.Image1Source}"
+                         HeightRequest="160"
+                         WidthRequest="160"
+                         HorizontalOptions="Center"
+                         VerticalOptions="CenterAndExpand"
+                         IsEnabled="true"
+                         ShortPress="Picture_ShortPress"
+                         BorderColor="White"
+                         BorderWidth="5"/>
+            <controls:DetailImage x:Name="PictureB"
+                         Source="{Binding QuestionItem.Image2Source}"
+                         Grid.Column="1"
+                         HeightRequest="160"
+                         WidthRequest="160"
+                         HorizontalOptions="Center"
+                         VerticalOptions="CenterAndExpand"
+                         IsEnabled="true"
+                         ShortPress="Picture_ShortPress"
+                         BorderColor="White"
+                         BorderWidth="5"/>
+            <controls:DetailImage x:Name="PictureC"
+                         Source="{Binding QuestionItem.Image3Source}"
+                         Grid.Row="1" 
+                         HeightRequest="160"
+                         WidthRequest="160"
+                         HorizontalOptions="Center"
+                         VerticalOptions="CenterAndExpand"
+                         IsEnabled="true"
+                         ShortPress="Picture_ShortPress"
+                         BorderColor="White"
+                         BorderWidth="5"/>
+            <controls:DetailImage x:Name="PictureD"
+                         Source="{Binding QuestionItem.Image4Source}"
+                         Grid.Row="1"
+                         Grid.Column="1"
+                         HeightRequest="160"
+                         WidthRequest="160"
+                         HorizontalOptions="Center"
+                         VerticalOptions="CenterAndExpand"
+                         IsEnabled="true"
+                         ShortPress="Picture_ShortPress"
+                         BorderColor="White"
+                         BorderWidth="5"/>
+        </Grid>
+        <Grid HorizontalOptions="CenterAndExpand" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" HorizontalOptions="EndAndExpand" Source="lupe.png" HeightRequest="10"/>
+            <Label Grid.Column="1" HorizontalOptions="StartAndExpand" 
+                       Text="{res:Translate holdImageToEnlarge}" FontSize="Micro"/>
+        </Grid>
+        <Grid VerticalOptions="EndAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="EvalButton" Text="{res:Translate evaluation}" FontSize="Medium"
+                    BackgroundColor="{StaticResource Button}"
+                    TextColor="{Binding EvaluationTextColor}"
+                    Clicked="OnAuswertungButtonClicked"/>
+            <Button Grid.Column="1"
+                    Text="{res:Translate next}" FontSize="Medium"
+                    BackgroundColor="{StaticResource Button}"
+                    TextColor="{StaticResource TextColor}"
+                    Clicked="OnWeiterButtonClicked"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>

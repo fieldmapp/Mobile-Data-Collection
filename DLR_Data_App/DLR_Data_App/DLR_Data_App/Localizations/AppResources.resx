@@ -186,7 +186,7 @@
   <data name="degrees" xml:space="preserve">
     <value>Degrees</value>
   </data>
-  <data name="deleteSavedAnswersSurvey" xml:space="preserve">
+  <data name="deleteSavedAnswersProfiling" xml:space="preserve">
     <value>Delete saved answers</value>
   </data>
   <data name="description" xml:space="preserve">
@@ -216,7 +216,7 @@
   <data name="evaluation" xml:space="preserve">
     <value>Evaluation</value>
   </data>
-  <data name="exportAnswersSurvey" xml:space="preserve">
+  <data name="exportAnswersProfiling" xml:space="preserve">
     <value>Export saved answers</value>
   </data>
   <data name="exportdatabase" xml:space="preserve">

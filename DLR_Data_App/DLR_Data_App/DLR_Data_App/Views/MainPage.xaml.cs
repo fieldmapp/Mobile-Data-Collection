@@ -5,7 +5,7 @@ using DLR_Data_App.Views.CurrentProject;
 using DLR_Data_App.Views.Login;
 using DLR_Data_App.Views.ProjectList;
 using DLR_Data_App.Views.Settings;
-using DLR_Data_App.Views.Survey;
+using DLR_Data_App.Views.Profiling;
 using System;
 using System.Collections.Generic;
 using System.Threading;

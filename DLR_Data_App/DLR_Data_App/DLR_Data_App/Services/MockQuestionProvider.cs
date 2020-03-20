@@ -1,4 +1,4 @@
-﻿using DLR_Data_App.Models.Survey;
+﻿using DLR_Data_App.Models.Profiling;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +9,15 @@ namespace DLR_Data_App.Services
     public class MockQuestionProvider : IStorageProvider
     {
         /// <summary>
-        /// Creates a List with the deafult SurveymenuItems and retuns this list
+        /// Creates a List with the deafult ProfilingmenuItems and retuns this list
         /// </summary>
-        public static List<SurveyMenuItem> GenerateSurveyMenuItems()
+        public static List<ProfilingMenuItem> GenerateProfilingMenuItems()
         {
-            return new List<SurveyMenuItem>()
+            return new List<ProfilingMenuItem>()
             {
-                new SurveyMenuItem("DoubleSlider", "Bedeckungsgrade", 4, new List<int>{3,4}),
-                new SurveyMenuItem("ImageChecker", "Sortenerkennung", 2, new List<int>{2}),
-                new SurveyMenuItem("Stadium", "Wuchsstadien", 6,  new List<int>{1})
+                new ProfilingMenuItem("DoubleSlider", "Bedeckungsgrade", 4, new List<int>{3,4}),
+                new ProfilingMenuItem("ImageChecker", "Sortenerkennung", 2, new List<int>{2}),
+                new ProfilingMenuItem("Stadium", "Wuchsstadien", 6,  new List<int>{1})
             };
         }
 
@@ -159,22 +159,22 @@ namespace DLR_Data_App.Services
             };
         }
 
-        public SurveyData LoadSurveyData()
+        public ProfilingData LoadProfilingData()
         {
-            return new SurveyData
+            return new ProfilingData
             {
-                SurveyId = "fieldcampagnesurvey", SurveyMenuItems = new List<SurveyMenuItem>()
+                ProfilingId = "fieldcampagneprofiling", ProfilingMenuItems = new List<ProfilingMenuItem>()
                 {
-                    new SurveyMenuItem("DoubleSlider", "Bedeckungsgrade", 4, new List<int> { 3, 4 }),
-                    new SurveyMenuItem("ImageChecker", "Sortenerkennung", 2, new List<int> { 2 }),
-                    new SurveyMenuItem("Stadium", "Wuchsstadien", 6, new List<int> { 1 })
+                    new ProfilingMenuItem("DoubleSlider", "Bedeckungsgrade", 4, new List<int> { 3, 4 }),
+                    new ProfilingMenuItem("ImageChecker", "Sortenerkennung", 2, new List<int> { 2 }),
+                    new ProfilingMenuItem("Stadium", "Wuchsstadien", 6, new List<int> { 1 })
                 }
             };
         }
 
-        public void SaveAnswers(SurveyResults results) { }
+        public void SaveAnswers(ProfilingResults results) { }
 
-        public SurveyResults LoadAnswers(string username)
+        public ProfilingResults LoadAnswers(string username)
         {
             var answers = new Dictionary<string, List<IUserAnswer>>
             {
@@ -202,11 +202,11 @@ namespace DLR_Data_App.Services
                     new AnswerStadiumPage(2,"A",2)
                 }
             };
-            var surveyResult = new SurveyResult() { TimeStamp = DateTime.UtcNow, UserAnswers = answers };
-            return new SurveyResults() { UserId = username, Results = new List<SurveyResult>() { surveyResult } };
+            var profilingResult = new ProfilingResult() { TimeStamp = DateTime.UtcNow, UserAnswers = answers };
+            return new ProfilingResults() { UserId = username, Results = new List<ProfilingResult>() { profilingResult } };
         }
 
-        public void ExportAnswers(SurveyResults results) { }
+        public void ExportAnswers(ProfilingResults results) { }
 
         public void ExportDatabase(string content) { }
 

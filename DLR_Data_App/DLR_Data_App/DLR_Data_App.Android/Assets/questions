@@ -1,7 +1,7 @@
 {
   "ImageChecker": [
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionImageCheckerPage, DLR_Data_App",
       "InternId": 1,
       "Difficulty": 1,
       "QuestionText": "whereWheat",
@@ -15,7 +15,7 @@
       "Image4Source": "ImageChecker_one_question1_picture4.png"
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionImageCheckerPage, DLR_Data_App",
       "InternId": 2,
       "Difficulty": 1,
       "QuestionText": "whereRape",
@@ -29,7 +29,7 @@
       "Image4Source": "ImageChecker_one_question2_picture4.png"
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionImageCheckerPage, DLR_Data_App",
       "InternId": 3,
       "Difficulty": 2,
       "QuestionText": "whereRape",
@@ -43,7 +43,7 @@
       "Image4Source": "ImageChecker_two_question3_picture4.png"
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionImageCheckerPage, DLR_Data_App",
       "InternId": 4,
       "Difficulty": 2,
       "QuestionText": "whereWheat",
@@ -57,7 +57,7 @@
       "Image4Source": "ImageChecker_two_question4_picture4.png"
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionImageCheckerPage, DLR_Data_App",
       "InternId": 5,
       "Difficulty": 3,
       "QuestionText": "wherePotato",
@@ -71,7 +71,7 @@
       "Image4Source": "ImageChecker_three_question5_picture4.png"
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionImageCheckerPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionImageCheckerPage, DLR_Data_App",
       "InternId": 6,
       "Difficulty": 3,
       "QuestionText": "whereBarley",
@@ -87,7 +87,7 @@
   ],
   "DoubleSlider": [
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 1,
       "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_one_question1.png",
@@ -96,7 +96,7 @@
       "Difficulty": 1
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 2,
       "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_one_question2.png",
@@ -105,7 +105,7 @@
       "Difficulty": 1
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 3,
       "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_one_question3.png",
@@ -114,7 +114,7 @@
       "Difficulty": 1
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 4,
       "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_one_question4.png",
@@ -123,7 +123,7 @@
       "Difficulty": 1
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 5,
       "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_two_question1.png",
@@ -132,7 +132,7 @@
       "Difficulty": 2
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 6,
       "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_two_question2.png",
@@ -141,7 +141,7 @@
       "Difficulty": 2
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 7,
       "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_two_question3.png",
@@ -150,7 +150,7 @@
       "Difficulty": 2
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 8,
       "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_two_question4.png",
@@ -159,7 +159,7 @@
       "Difficulty": 2
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 9,
       "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_three_question1.png",
@@ -168,7 +168,7 @@
       "Difficulty": 3
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 10,
       "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_three_question2.png",
@@ -177,7 +177,7 @@
       "Difficulty": 3
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 11,
       "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_three_question3.png",
@@ -186,7 +186,7 @@
       "Difficulty": 3
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionDoubleSliderPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionDoubleSliderPage, DLR_Data_App",
       "InternId": 12,
       "QuestionText": "estimateSoilCoverage",
       "PictureAddress": "DoubleSlider_three_question4.png",
@@ -197,7 +197,7 @@
   ],
   "Stadium": [
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 1,
       "Image": "Stadium_one_question1.png",
       "QuestionText": "assignPlantAndStadium",
@@ -241,7 +241,7 @@
       "Difficulty": 1
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 2,
       "Image": "Stadium_one_question2.png",
       "QuestionText": "assignPlantAndStadium",
@@ -285,7 +285,7 @@
       "Difficulty": 1
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 3,
       "Image": "Stadium_one_question3.png",
       "QuestionText": "assignPlantAndStadium",
@@ -329,7 +329,7 @@
       "Difficulty": 1
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 4,
       "Image": "Stadium_one_question4.png",
       "QuestionText": "assignPlantAndStadium",
@@ -373,7 +373,7 @@
       "Difficulty": 1
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 5,
       "Image": "Stadium_one_question5.png",
       "QuestionText": "assignPlantAndStadium",
@@ -417,7 +417,7 @@
       "Difficulty": 1
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 6,
       "Image": "Stadium_one_question6.png",
       "QuestionText": "assignPlantAndStadium",
@@ -461,7 +461,7 @@
       "Difficulty": 1
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 7,
       "Image": "Stadium_two_question1.png",
       "QuestionText": "assignPlantAndStadium",
@@ -515,7 +515,7 @@
       "Difficulty": 2
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 8,
       "Image": "Stadium_two_question2.png",
       "QuestionText": "assignPlantAndStadium",
@@ -569,7 +569,7 @@
       "Difficulty": 2
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 9,
       "Image": "Stadium_two_question3.png",
       "QuestionText": "assignPlantAndStadium",
@@ -623,7 +623,7 @@
       "Difficulty": 2
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 10,
       "Image": "Stadium_two_question4.png",
       "QuestionText": "assignPlantAndStadium",
@@ -677,7 +677,7 @@
       "Difficulty": 2
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 11,
       "Image": "Stadium_two_question5.png",
       "QuestionText": "assignPlantAndStadium",
@@ -731,7 +731,7 @@
       "Difficulty": 2
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 12,
       "Image": "Stadium_two_question6.png",
       "QuestionText": "assignPlantAndStadium",
@@ -785,7 +785,7 @@
       "Difficulty": 2
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 13,
       "Image": "Stadium_three_question1.png",
       "QuestionText": "assignPlantAndStadium",
@@ -838,7 +838,7 @@
       "Difficulty": 3
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 14,
       "Image": "Stadium_three_question2.png",
       "QuestionText": "assignPlantAndStadium",
@@ -891,7 +891,7 @@
       "Difficulty": 3
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 15,
       "Image": "Stadium_three_question3.png",
       "QuestionText": "assignPlantAndStadium",
@@ -944,7 +944,7 @@
       "Difficulty": 3
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 16,
       "Image": "Stadium_three_question4.png",
       "QuestionText": "assignPlantAndStadium",
@@ -997,7 +997,7 @@
       "Difficulty": 3
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 17,
       "Image": "Stadium_three_question5.png",
       "QuestionText": "assignPlantAndStadium",
@@ -1050,7 +1050,7 @@
       "Difficulty": 3
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionStadiumPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionStadiumPage, DLR_Data_App",
       "InternId": 18,
       "Image": "Stadium_three_question6.png",
       "QuestionText": "assignPlantAndStadium",
@@ -1105,25 +1105,25 @@
   ],
   "Introspection": [
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionIntrospectionPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionIntrospectionPage, DLR_Data_App",
       "InternId": 1,
       "QuestionText": "selfEvaluationCrop",
       "Difficulty": -1
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionIntrospectionPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionIntrospectionPage, DLR_Data_App",
       "InternId": 2,
       "QuestionText": "selfEvaluationStadium",
       "Difficulty": -1
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionIntrospectionPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionIntrospectionPage, DLR_Data_App",
       "InternId": 3,
       "QuestionText": "selfEvaluationCoverage",
       "Difficulty": -1
     },
     {
-      "$type": "DLR_Data_App.Models.Survey.QuestionIntrospectionPage, DLR_Data_App",
+      "$type": "DLR_Data_App.Models.Profiling.QuestionIntrospectionPage, DLR_Data_App",
       "InternId": 4,
       "QuestionText": "selfEvaluationGreenCoverage",
       "Difficulty": -1

@@ -497,10 +497,10 @@ Einwilligung ist jede von der betroffenen Person freiwillig für den bestimmten 
   <data name="completeSelectionToAdvance" xml:space="preserve">
     <value>Bitte verfollständigen Sie Ihre Auswahl um fortzufahren.</value>
   </data>
-  <data name="deleteSavedAnswersSurvey" xml:space="preserve">
+  <data name="deleteSavedAnswersProfiling" xml:space="preserve">
     <value>Gespeicherte Antworten löschen</value>
   </data>
-  <data name="exportAnswersSurvey" xml:space="preserve">
+  <data name="exportAnswersProfiling" xml:space="preserve">
     <value>Antworten exportieren</value>
   </data>
   <data name="hint" xml:space="preserve">

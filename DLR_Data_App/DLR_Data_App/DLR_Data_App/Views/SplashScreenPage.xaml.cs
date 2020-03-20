@@ -5,7 +5,7 @@ using DLR_Data_App.Views.CurrentProject;
 using DLR_Data_App.Views.Login;
 using DLR_Data_App.Views.ProjectList;
 using DLR_Data_App.Views.Settings;
-using DLR_Data_App.Views.Survey;
+using DLR_Data_App.Views.Profiling;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +56,7 @@ namespace DLR_Data_App.Views
             {
                 { MenuItemType.CurrentProject, new NavigationPage(new ProjectPage()) },
                 { MenuItemType.Projects, new NavigationPage(new ProjectListPage()) },
-                { MenuItemType.Profiling, new NavigationPage(new SurveyListPage()) },
+                { MenuItemType.Profiling, new NavigationPage(new ProfilingListPage()) },
                 { MenuItemType.Sensortest, new NavigationPage(new SensorTestPage()) },
                 { MenuItemType.Settings, new NavigationPage(new SettingsPage()) },
                 { MenuItemType.About, new NavigationPage(new AboutPage()) }
