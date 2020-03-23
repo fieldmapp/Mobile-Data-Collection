@@ -10,7 +10,6 @@ namespace DLR_Data_App.Models.Profiling
 {
     public class ProfilingData
     {
-
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
@@ -26,11 +25,27 @@ namespace DLR_Data_App.Models.Profiling
         // Available languages
         public string Languages { get; set; }
 
-        public string QuestionsJson { get; set; }
-
-        public string ProfilingStagesJson { get; set; }
-
         public string ProfilingId { get; set; }
+
+        [JsonIgnore]
+        public string TranslationsJson
+        {
+            get => JsonTranslator.GetJson(Translations);
+            set => Translations = JsonTranslator.GetFromJson<Dictionary<string, string>>(value);
+        }
+
+        [SQLite.Ignore]
+        public Dictionary<string, string> Translations { get; set; }
+
+        [JsonIgnore]
+        public string QuestionsJson
+        {
+            get => JsonTranslator.GetJson(Questions);
+            set => Questions = JsonTranslator.GetFromJson<Dictionary<string, List<IQuestionContent>>>(value);
+        }
+
+        [SQLite.Ignore]
+        public Dictionary<string, List<IQuestionContent>> Questions { get; set; }
 
         [JsonIgnore]
         public string ProfilingMenuItemsJson
