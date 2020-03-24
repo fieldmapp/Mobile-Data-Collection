@@ -109,19 +109,19 @@ namespace DLR_Data_App.Services
         /// <returns>New project with details in correct language (or with hints that the detail is missing)</returns>
         public static Project TranslateProjectDetails(Project project)
         {
-            var authors = Parser.GetCurrentLanguageStringFromJsonList(project.Authors, project.Languages);
+            var authors = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(project.Authors, project.Languages);
             if (authors == "Unable to parse language from json")
             {
                 authors = AppResources.noauthor;
             }
 
-            var title = Parser.GetCurrentLanguageStringFromJsonList(project.Title, project.Languages);
+            var title = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(project.Title, project.Languages);
             if (title == "Unable to parse language from json")
             {
                 title = AppResources.notitle;
             }
 
-            var description = Parser.GetCurrentLanguageStringFromJsonList(project.Description, project.Languages);
+            var description = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(project.Description, project.Languages);
             if (description == "Unable to parse language from json")
             {
                 description = AppResources.nodescription;
@@ -168,7 +168,7 @@ namespace DLR_Data_App.Services
         /// </summary>
         /// <param name="project">Project of which the table name should be retured.</param>
         /// <returns>Unique table name for the given project.</returns>
-        public static string GetTableName(this Project project) => Parser.GetEnglishStringFromJsonList(project.Title, project.Languages) + "_" + project.Id;
+        public static string GetTableName(this Project project) => OdkDataExtractor.GetEnglishStringFromJsonList(project.Title, project.Languages) + "_" + project.Id;
 
         /// <summary>
         /// Performs a lookup for the english translation for a given translationKey. Used by profilings.

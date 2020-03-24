@@ -26,7 +26,7 @@ namespace DLR_Data_App.Services
             _workingProject = new Project();
 
             // parsing form files
-            Parser parser = new Parser(ref _workingProject);
+            ProjectParser parser = new ProjectParser(ref _workingProject);
 
             // check if parsing failed
             if (!await parser.ParseZip(_zipFile, Path.Combine(App.FolderLocation, "unzip")))

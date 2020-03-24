@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Text;
 
 namespace DLR_Data_App.Services
@@ -223,6 +224,131 @@ namespace DLR_Data_App.Services
         public static OdkBooleanExpresion GetBooleanExpression(string odkExpression)
         {
             return new OdkBooleanExpresion(odkExpression);
+        }
+
+        /// <summary>
+        /// Selects an english string from a JSON list.
+        /// </summary>
+        /// <param name="jsonList">JSON string, containing the wanted string in multiple languages</param>
+        /// <param name="languageList">List of available languages</param>
+        /// <returns>String in english language</returns>
+        public static string GetEnglishStringFromJsonList(string jsonList, string languageList)
+        {
+            var currentLanguage = CultureInfo.GetCultureInfo("en-GB").EnglishName;
+            string result = null;
+            var temp = "0";
+
+            try
+            {
+                // check which languages are available
+                var languageObjects = JObject.Parse(languageList); // parse as object  
+                foreach (var app in languageObjects)
+                {
+                    var key = app.Key;
+                    var value = app.Value.ToString();
+
+                    // if local language matches available language store key in result
+                    if (!currentLanguage.Contains(value)) continue;
+                    temp = key;
+                    break;
+                }
+
+                // get string from json list in the correct language
+                var translationObjects = JObject.Parse(jsonList); // parse as object  
+                foreach (var app in languageObjects)
+                {
+                    var key = app.Key;
+                    var value = app.Value.ToString();
+
+                    // if key is found set matching string as result
+                    if (key != temp) continue;
+                    result = value;
+                    break;
+                }
+                if (result == null)
+                {
+                    //just pick first available translation
+                    var languagesEnumerator = languageObjects.GetEnumerator();
+                    languagesEnumerator.MoveNext();
+                    return languagesEnumerator.Current.Key;
+                }
+            }
+            catch (Exception)
+            {
+                result = "Error in JSON file";
+            }
+
+            return result ?? "Unable to parse language from json";
+        }
+
+        public static string GetCurrentLanguageCodeFromJsonList(string languageList)
+        {
+            try
+            {
+                var currentLanguage = CultureInfo.CurrentUICulture.EnglishName;
+                // check which languages are available
+                var languageObjects = JObject.Parse(languageList); // parse as object 
+                string languageCode = null;
+                foreach (var app in languageObjects)
+                {
+                    var key = app.Key;
+                    var value = app.Value.ToString();
+
+                    // if local language matches available language store key in result
+                    if (!currentLanguage.Contains(value)) continue;
+                    languageCode = key;
+                    break;
+                }
+                if (languageCode == null)
+                {
+                    //just pick first available translation
+                    var languagesEnumerator = languageObjects.GetEnumerator();
+                    languagesEnumerator.MoveNext();
+                    return languagesEnumerator.Current.Key;
+                }
+                return languageCode;
+            }
+            catch (Exception)
+            {
+                return "Error in JSON file";
+            }
+        }
+
+        /// <summary>
+        /// Selects a string in the runtime systems language from a JSON list. 
+        /// </summary>
+        /// <param name="jsonList">JSON string, containing the wanted string in multiple languages</param>
+        /// <param name="languageList">List of available languages</param>
+        /// <returns>String in the runtime systems language</returns>
+        public static string GetCurrentLanguageStringFromJsonList(string jsonList, string languageList)
+        {
+            // get current language
+            var result = "Unable to parse language from json";
+            var temp = "0";
+
+            try
+            {
+                var languageCode = GetCurrentLanguageCodeFromJsonList(languageList);
+
+                // get string from json list in the correct language
+                var objects = JObject.Parse(jsonList); // parse as object  
+                foreach (var app in objects)
+                {
+                    var key = app.Key;
+                    var value = app.Value.ToString();
+
+                    // if key is found set matching string as result
+                    if (key != temp) continue;
+                    result = value;
+                    break;
+                }
+            }
+            catch (Exception)
+            {
+                result = "Error in JSON file";
+            }
+
+            return result;
         }
     }
 }

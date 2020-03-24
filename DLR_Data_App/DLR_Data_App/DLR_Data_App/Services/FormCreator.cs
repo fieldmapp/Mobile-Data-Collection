@@ -226,7 +226,7 @@ namespace DLR_Data_App.Services
 
         private static Grid CreateStandardBaseGrid(FormCreationParams parms)
         {
-            var elementName = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
+            var elementName = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
             var indexOfOpeningCurlyBrace = elementName.IndexOf('{');
             var indexOfClosingCurlyBrace = elementName.IndexOf('}');
             if (indexOfOpeningCurlyBrace != -1 && indexOfClosingCurlyBrace != -1 && indexOfOpeningCurlyBrace < indexOfClosingCurlyBrace )
@@ -238,7 +238,7 @@ namespace DLR_Data_App.Services
             var grid = new Grid { IsVisible = false };
             grid.Children.Add(elementNameLabel, 0, 0);
 
-            var hintText = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Hint, parms.CurrentProject.Languages);
+            var hintText = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(parms.Element.Hint, parms.CurrentProject.Languages);
 
             if (hintText != "Unable to parse language from json" && !string.IsNullOrWhiteSpace(hintText))
             {
@@ -369,7 +369,7 @@ namespace DLR_Data_App.Services
             var grid = CreateStandardBaseGrid(parms);
             var formElement = new FormElement(grid, parms.Element, parms.Type);
 
-            var placeholder = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
+            var placeholder = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
             if (placeholder == "Unable to parse language from json")
             {
                 placeholder = "";
@@ -403,13 +403,13 @@ namespace DLR_Data_App.Services
             var formElement = new FormElement(grid, parms.Element, parms.Type);
 
             var optionsList = new List<string>();
-            var options = Parser.ParseOptionsFromJson(parms.Element.Options);
-            var title = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
+            var options = ProjectParser.ParseOptionsFromJson(parms.Element.Options);
+            var title = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
             if (title == "Unable to parse language from json")
             {
                 title = AppResources.notitle;
             }
-            var currentLanguageCode = Parser.GetCurrentLanguageCodeFromJsonList(parms.CurrentProject.Languages);
+            var currentLanguageCode = OdkDataExtractor.GetCurrentLanguageCodeFromJsonList(parms.CurrentProject.Languages);
             foreach (var option in options)
             {
                 option.Text.TryGetValue(currentLanguageCode, out var value);
@@ -438,7 +438,7 @@ namespace DLR_Data_App.Services
             var grid = CreateStandardBaseGrid(parms);
             var formElement = new FormElement(grid, parms.Element, parms.Type);
 
-            var placeholder = Parser.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
+            var placeholder = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
             if (placeholder == "Unable to parse language from json")
             {
                 placeholder = "";
@@ -492,7 +492,7 @@ namespace DLR_Data_App.Services
                 bool specialType = false;
                 if (element.Label != null)
                 {
-                    var translatedLabel = Parser.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages);
+                    var translatedLabel = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages);
                     if (translatedLabel != null && findSpecialType(translatedLabel).Any())
                     {
                         //Special element
