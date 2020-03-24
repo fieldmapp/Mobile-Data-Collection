@@ -35,12 +35,14 @@ namespace DLR_Data_App.Views.ProjectList
                 {
                     LblZipPath.Text = File.FileName;
                     _fileCopyPath = Path.Combine(App.FolderLocation, "Data.zip");
-                    var dataArray = File.GetStream();
-                    System.IO.File.Delete(_fileCopyPath);
-
-                    using (var fileCopy = System.IO.File.Create(_fileCopyPath))
+                    using (var dataArray = File.GetStream())
                     {
-                        dataArray.CopyTo(fileCopy);
+                        System.IO.File.Delete(_fileCopyPath);
+
+                        using (var fileCopy = System.IO.File.Create(_fileCopyPath))
+                        {
+                            dataArray.CopyTo(fileCopy);
+                        }
                     }
                 }
                 else
