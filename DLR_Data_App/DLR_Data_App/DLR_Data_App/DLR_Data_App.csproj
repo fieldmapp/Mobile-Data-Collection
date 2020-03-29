@@ -45,6 +45,15 @@
     <Compile Update="Views\Login\NewProfilePage.xaml.cs">
       <DependentUpon>NewProfilePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\ProfilingList\NewProfilingPage.xaml.cs">
+      <DependentUpon>NewProfilingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ProfilingList\ProfilingDetailPage.xaml.cs">
+      <DependentUpon>ProfilingDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ProfilingList\ProfilingListPage.xaml.cs">
+      <DependentUpon>ProfilingListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ProjectList\ProjectDetailPage.xaml.cs">
       <DependentUpon>ProjectDetailPage.xaml</DependentUpon>
     </Compile>
@@ -57,8 +66,8 @@
     <Compile Update="Views\Settings\ProfilelistPage.xaml.cs">
       <DependentUpon>ProfileListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Profiling\ProfilingListPage.xaml.cs">
-      <DependentUpon>ProfilingListPage.xaml</DependentUpon>
+    <Compile Update="Views\Profiling\CurrentProfilingPage.xaml.cs">
+      <DependentUpon>CurrentProfilingPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -135,7 +144,7 @@
     <EmbeddedResource Update="Views\Profiling\LoadingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Profiling\ProfilingListPage.xaml">
+    <EmbeddedResource Update="Views\Profiling\CurrentProfilingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Profiling\StadiumPage.xaml">

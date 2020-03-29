@@ -12,25 +12,45 @@ using Xamarin.Forms;
 
 namespace DLR_Data_App.Views.Profiling
 {
-    public partial class ProfilingListPage : ContentPage
+    public partial class CurrentProfilingPage : ContentPage
     {
+        string CurrentProfilingId;
+
         /// Constructor for the MainPage
-        public ProfilingListPage()
+        public CurrentProfilingPage()
         {
             InitializeComponent();
 
             ProfilingManager.Initialize(App.CurrentUser.Id.ToString());
-            
+
             MenuList.ItemsSource = ProfilingStorageManager.ProfilingMenuItems;
         }
+
         /// Defining the Event for the click on an element in the ListView
         private void MenuList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (!(e.Item is ProfilingMenuItem selectedItem))
                 throw new NotImplementedException();
             ProfilingMenuItem tapped = (ProfilingMenuItem)e.Item;
-            ///Navigate to the clicked element in the list
+            //Navigate to the clicked element in the list
             ProfilingManager.StartProfiling(tapped);
+        }
+
+        protected override void OnAppearing()
+        {
+            var currentProfiling = Database.GetCurrentProfiling();
+            if (currentProfiling == null)
+            {
+                _ = (Application.Current.MainPage as MainPage).NavigateFromMenu(Models.MenuItemType.ProfilingList);
+                return;
+            }
+
+            if (CurrentProfilingId != currentProfiling.ProfilingId)
+            {
+                CurrentProfilingId = currentProfiling.ProfilingId;
+                ProfilingStorageManager.SetProfiling(currentProfiling);
+            }
+            base.OnAppearing();
         }
 
         private void HintClicked(object sender, EventArgs e)
@@ -49,11 +69,13 @@ namespace DLR_Data_App.Views.Profiling
 
         private void ExportAnwersClicked(object sender, EventArgs e)
         {
+            throw new NotImplementedException();
             ProfilingStorageManager.ExportAnswers();
         }
 
         private void DeleteAnswersClicked(object sender, EventArgs e)
         {
+            throw new NotImplementedException();
             ProfilingStorageManager.ResetSavedAnswers();
         }
     }

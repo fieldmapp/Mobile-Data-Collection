@@ -73,7 +73,7 @@ namespace DLR_Data_App.Views.CurrentProject
                 DependencyService.Get<IToast>().LongAlert(AppResources.pleaseCompleteProfiling);
 
                 if (Application.Current.MainPage is MainPage mainPage)
-                    _ = mainPage.NavigateFromMenu(MenuItemType.Profiling);
+                    _ = mainPage.NavigateFromMenu(MenuItemType.ProfilingList);
             }
         }
 

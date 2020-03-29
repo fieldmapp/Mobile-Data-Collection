@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using DLR_Data_App.Models;
+using DLR_Data_App.Models.Profiling;
 using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Models.ProjectModel.DatabaseConnectors;
 using SQLite;
@@ -248,6 +249,71 @@ namespace DLR_Data_App.Services
             // remove project
             conn.Delete(project);
         }
+
+        public static void DeleteProfiling(ProfilingData profiling)
+        {
+            using (var conn = CreateConnection())
+            {
+                DeleteProfiling(profiling, conn);
+            }
+        }
+
+        /// <summary>
+        /// Deletes all data from the database which are belonging to a specific project.
+        /// </summary>
+        /// <param name="project">Project of which all data should be deleted</param>
+        public static void DeleteProfiling(ProfilingData project, SQLiteConnection conn)
+        {
+            conn.Delete(project);
+        }
+
+        public static bool InsertProfiling(ref ProfilingData profiling)
+        {
+            using (var conn = CreateConnection())
+            {
+                return InsertProfiling(ref profiling, conn);
+            }
+        }
+
+        public static bool InsertProfiling(ref ProfilingData newProfiling, SQLiteConnection conn)
+        {
+            var profilingList = ReadProfilings(conn);
+            var newProfilingId = newProfiling.ProfilingId;
+
+            if (profilingList.Any(p => p.ProfilingId == newProfilingId))
+                return false;
+
+            return Insert(ref newProfiling, conn);
+        }
+
+        /// <summary>
+        /// Reads all projects from the database.
+        /// </summary>
+        /// <returns>List of all projects in database</returns>
+        public static List<ProfilingData> ReadProfilings()
+        {
+            // database will be closed after leaving the using statement
+            using (var conn = CreateConnection())
+            {
+                return ReadProfilings(conn);
+            }
+        }
+
+        /// <summary>
+        /// Reads all projects from the database.
+        /// </summary>
+        /// <returns>List of all projects in database</returns>
+        public static List<ProfilingData> ReadProfilings(SQLiteConnection conn)
+        {
+            // if table doesn't exist create a new one
+            conn.CreateTable<ProfilingData>();
+
+            // get content of table
+            var projectList = conn.Table<ProfilingData>().ToList();
+
+            return projectList;
+        }
+
 
         /// <summary>
         /// Stores project in database.
@@ -637,6 +703,65 @@ namespace DLR_Data_App.Services
             }
         }
 
+        public static bool SetCurrentProfiling(ProfilingData profiling, SQLiteConnection conn)
+        {
+            bool result;
+            var previousProfiling = GetCurrentProfiling(conn);
+
+            // Get current project and deselect it
+            if (previousProfiling != null)
+            {
+                previousProfiling.IsCurrentProfiling = false;
+                Update(ref previousProfiling, conn);
+            }
+
+            // Set new current project
+            profiling.IsCurrentProfiling = true;
+            result = Update(ref profiling, conn);
+
+            return result;
+        }
+        
+        public static bool SetCurrentProfiling(ProfilingData profiling)
+        {
+            using (var conn = CreateConnection())
+            {
+                return SetCurrentProfiling(profiling, conn);
+            }
+        }
+
+        public static ProfilingData GetCurrentProfiling(SQLiteConnection conn)
+        {
+            return ReadProfilings(conn).Find(p => p.IsCurrentProfiling);
+        }
+        
+        public static ProfilingData GetCurrentProfiling()
+        {
+            using (var conn = CreateConnection())
+            {
+                return GetCurrentProfiling(conn);
+            }
+        }
+        
+        public static bool SetCurrentProject(Project project, SQLiteConnection conn)
+        {
+            bool result;
+            var oldCurrentProject = GetCurrentProject(conn);
+
+            // Get current project and deselect it
+            if (oldCurrentProject != null)
+            {
+                oldCurrentProject.CurrentProject = false;
+                Update(ref oldCurrentProject, conn);
+            }
+
+            // Set new current project
+            project.CurrentProject = true;
+            result = Update(ref project, conn);
+
+            return result;
+        }
+
         /// <summary>
         /// Set a project as current project. Will unset previous selected project.
         /// </summary>
@@ -644,21 +769,15 @@ namespace DLR_Data_App.Services
         /// <returns>True if switching of current project was successful</returns>
         public static bool SetCurrentProject(Project project)
         {
-            bool result;
-            var oldCurrentProject = GetCurrentProject();
-
-            // Get current project and deselect it
-            if (oldCurrentProject != null)
+            using (var conn = CreateConnection())
             {
-                oldCurrentProject.CurrentProject = false;
-                Update(ref oldCurrentProject);
+                return SetCurrentProject(project, conn);
             }
+        }
 
-            // Set new current project
-            project.CurrentProject = true;
-            result = Update(ref project);
-
-            return result;
+        public static Project GetCurrentProject(SQLiteConnection conn)
+        {
+            return ReadProjects(conn).Find(project => project.CurrentProject);
         }
 
         /// <summary>
@@ -667,7 +786,10 @@ namespace DLR_Data_App.Services
         /// <returns>Project which has CurrentProject set to true</returns>
         public static Project GetCurrentProject()
         {
-            return ReadProjects().Find(project => project.CurrentProject);
+            using (var conn = CreateConnection())
+            {
+                return GetCurrentProject(conn);
+            }
         }
     }
 }

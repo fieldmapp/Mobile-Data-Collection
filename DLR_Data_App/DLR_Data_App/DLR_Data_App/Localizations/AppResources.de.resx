@@ -572,4 +572,16 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen f�
   <data name="pleaseCompleteProfiling" xml:space="preserve">
     <value>Bitte erst das Profiling abschließen.</value>
   </data>
+  <data name="newprofiling" xml:space="preserve">
+    <value>Neues Profiling</value>
+  </data>
+  <data name="removeprofiling" xml:space="preserve">
+    <value>Profiling löschen</value>
+  </data>
+  <data name="setascurrentprofiling" xml:space="preserve">
+    <value>Als aktuelles Profiling auswählen</value>
+  </data>
+  <data name="removeprofilingwarning" xml:space="preserve">
+    <value>Wollen Sie das Profiling löschen?</value>
+  </data>
 </root>

@@ -8,7 +8,8 @@
         Settings,
         About,
         Logout,
-        Profiling
+        ProfilingList,
+        CurrentProfiling
     }
     public class HomeMenuItem
     {

@@ -3,7 +3,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DLR_Data_App.Views.Profiling"
-             x:Class="DLR_Data_App.Views.Profiling.ProfilingListPage"
+             x:Class="DLR_Data_App.Views.Profiling.CurrentProfilingPage"
              xmlns:res="clr-namespace:DLR_Data_App.Localizations"
              Title="{res:Translate profiling}">
 <!--This is the Frontend representation of the Main Page. It consists of an ListView containing all question 

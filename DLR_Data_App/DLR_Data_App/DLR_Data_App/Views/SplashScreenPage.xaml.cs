@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using DLR_Data_App.Views.ProfilingList;
 
 namespace DLR_Data_App.Views
 {
@@ -56,7 +57,8 @@ namespace DLR_Data_App.Views
             {
                 { MenuItemType.CurrentProject, new NavigationPage(new ProjectPage()) },
                 { MenuItemType.Projects, new NavigationPage(new ProjectListPage()) },
-                { MenuItemType.Profiling, new NavigationPage(new ProfilingListPage()) },
+                { MenuItemType.ProfilingList, new NavigationPage(new ProfilingListPage()) },
+                { MenuItemType.CurrentProfiling, new NavigationPage(new CurrentProfilingPage()) },
                 { MenuItemType.Sensortest, new NavigationPage(new SensorTestPage()) },
                 { MenuItemType.Settings, new NavigationPage(new SettingsPage()) },
                 { MenuItemType.About, new NavigationPage(new AboutPage()) }

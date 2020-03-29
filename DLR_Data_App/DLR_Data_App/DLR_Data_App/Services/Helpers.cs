@@ -11,6 +11,7 @@ using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 using System.Linq;
 using System.Globalization;
+using System.Collections.ObjectModel;
 
 namespace DLR_Data_App.Services
 {
@@ -259,6 +260,15 @@ namespace DLR_Data_App.Services
             {
                 if (yielding) yield return element;
                 if (!yielding && !predicate(element)) yielding = true;
+            }
+        }
+
+        public static void SetTo<T>(this ObservableCollection<T> observableCollection, IEnumerable<T> newContent)
+        {
+            observableCollection.Clear();
+            foreach (var item in newContent)
+            {
+                observableCollection.Add(item);
             }
         }
     }

@@ -30,6 +30,7 @@ namespace DLR_Data_App.Views
 
             MasterBehavior = MasterBehavior.Popover;
             
+            //TODO: check if unsubscribe is needed
             MessagingCenter.Subscribe<EventArgs>(this, "OpenMasterMenu", args => IsPresented = true);
 
             Appearing += MainPage_Appearing;

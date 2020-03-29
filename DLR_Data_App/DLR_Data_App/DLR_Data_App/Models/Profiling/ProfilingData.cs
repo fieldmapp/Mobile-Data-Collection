@@ -28,6 +28,9 @@ namespace DLR_Data_App.Models.Profiling
         public string ProfilingId { get; set; }
 
         [JsonIgnore]
+        public bool IsCurrentProfiling { get; set; }
+
+        [JsonIgnore]
         public string TranslationsJson
         {
             get => JsonTranslator.GetJson(Translations);

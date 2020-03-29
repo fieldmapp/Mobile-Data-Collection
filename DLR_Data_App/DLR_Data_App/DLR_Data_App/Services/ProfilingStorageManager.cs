@@ -38,7 +38,9 @@ namespace DLR_Data_App.Services
         /// </summary>
         private static IStorageProvider StorageProvider => (Application.Current as App).StorageProvider;
 
-        private static string CurrentProfilingId;
+        private static string CurrentProfilingId => CurrentProfiling.ProfilingId;
+
+        private static ProfilingData CurrentProfiling;
 
         /// <summary>
         /// The name of the user currently logged into the app
@@ -55,30 +57,31 @@ namespace DLR_Data_App.Services
         public static void Initilize(string userId)
         {
             UserId = userId;
-            Translations = StorageProvider.LoadTranslations();
-            LoadTranslatedQuestions();
-            Answers = LoadAnswerToContinue();
-            LoadTranslatedProfilingMenuItems();
         }
 
-        private static void LoadTranslatedProfilingMenuItems()
+        public static void SetProfiling(ProfilingData profiling)
         {
-            ProfilingData profilingData = StorageProvider.LoadProfilingData();
-            CurrentProfilingId = profilingData.ProfilingId;
-            ProfilingMenuItems.Clear();
-            foreach (var item in profilingData.ProfilingMenuItems)
-            {
-                ProfilingMenuItems.Add(item);
-            }
+            CurrentProfiling = profiling;
+            if (CurrentProfiling == null)
+                return;
+
+            Translations = CurrentProfiling.Translations;
+
+            LoadTranslatedProfilingMenuItems();
+
+            //TODO
+            //Answers = LoadAnswerToContinue();
+            ProfilingMenuItems.SetTo(profiling.ProfilingMenuItems);
             foreach (var profilingMenuItem in ProfilingMenuItems)
             {
                 profilingMenuItem.ChapterName = Helpers.GetCurrentLanguageTranslation(Translations, profilingMenuItem.ChapterName);
             }
+
         }
 
-        private static void LoadTranslatedQuestions()
+        private static void LoadTranslatedProfilingMenuItems()
         {
-            Questions = StorageProvider.LoadQuestions();
+            Questions = CurrentProfiling.Questions;
             foreach (var question in Questions.SelectMany(q => q.Value))
             {
                 question.Translate(Translations);
@@ -91,25 +94,30 @@ namespace DLR_Data_App.Services
         /// <returns><see cref="DateTime"/> of newest answered profiling</returns>
         public static DateTime GetLastCompletedProfilingDate()
         {
-            var answers = StorageProvider.LoadAnswers(UserId);
-            return answers.Results.Any() ? answers.Results.Max(e => e.TimeStamp) : DateTime.MinValue;
+            //TODO
+            return new DateTime();
+            //var answers = Database.LoadAnswers(UserId);
+            //return answers.Results.Any() ? answers.Results.Max(e => e.TimeStamp) : DateTime.MinValue;
         }
 
         private static Dictionary<string, List<IUserAnswer>> LoadAnswerToContinue()
         {
-            var answers = StorageProvider.LoadAnswers(UserId);
-            var answersToContinue = answers.Results.FirstOrDefault(r => Math.Abs((r.TimeStamp - DateTime.UtcNow).TotalMinutes) < MaxMinutesToContinueProfiling);
-            ProjectsFilledSinceLastProfilingCompletion = answers.ProjectsFilledSinceLastProfilingCompletion;
-            if (answersToContinue == null)
-            {
-                ContinuedAnswersDateTime = null;
-                return new Dictionary<string, List<IUserAnswer>>();
-            }
-            else
-            {
-                ContinuedAnswersDateTime = answersToContinue.TimeStamp;
-                return answersToContinue.UserAnswers;
-            }
+            //TODO
+            return new Dictionary<string, List<IUserAnswer>>();
+            //throw new NotImplementedException();
+            //var answers = StorageProvider.LoadAnswers(UserId);
+            //var answersToContinue = answers.Results.FirstOrDefault(r => Math.Abs((r.TimeStamp - DateTime.UtcNow).TotalMinutes) < MaxMinutesToContinueProfiling);
+            //ProjectsFilledSinceLastProfilingCompletion = answers.ProjectsFilledSinceLastProfilingCompletion;
+            //if (answersToContinue == null)
+            //{
+            //    ContinuedAnswersDateTime = null;
+            //    return new Dictionary<string, List<IUserAnswer>>();
+            //}
+            //else
+            //{
+            //    ContinuedAnswersDateTime = answersToContinue.TimeStamp;
+            //    return answersToContinue.UserAnswers;
+            //}
         }
 
         /// <summary>
@@ -118,22 +126,24 @@ namespace DLR_Data_App.Services
         /// </summary>
         public static void SaveAnswers()
         {
-            var savedAnswers = StorageProvider.LoadAnswers(UserId);
-            savedAnswers.ProjectsFilledSinceLastProfilingCompletion = ProjectsFilledSinceLastProfilingCompletion;
-            var currentAnswer = savedAnswers.Results.FirstOrDefault(r => r.TimeStamp == ContinuedAnswersDateTime);
-            var now = DateTime.UtcNow;
-            ContinuedAnswersDateTime = now;
-            if (currentAnswer == null)
-            {
-                currentAnswer = new ProfilingResult() { TimeStamp = now, UserAnswers = Answers };
-                savedAnswers.Results.Add(currentAnswer);
-            }
-            else
-            {
-                currentAnswer.TimeStamp = now;
-                currentAnswer.UserAnswers = Answers;
-            }
-            StorageProvider.SaveAnswers(savedAnswers);
+            //TODO
+            return;
+            //var savedAnswers = StorageProvider.LoadAnswers(UserId);
+            //savedAnswers.ProjectsFilledSinceLastProfilingCompletion = ProjectsFilledSinceLastProfilingCompletion;
+            //var currentAnswer = savedAnswers.Results.FirstOrDefault(r => r.TimeStamp == ContinuedAnswersDateTime);
+            //var now = DateTime.UtcNow;
+            //ContinuedAnswersDateTime = now;
+            //if (currentAnswer == null)
+            //{
+            //    currentAnswer = new ProfilingResult() { TimeStamp = now, UserAnswers = Answers };
+            //    savedAnswers.Results.Add(currentAnswer);
+            //}
+            //else
+            //{
+            //    currentAnswer.TimeStamp = now;
+            //    currentAnswer.UserAnswers = Answers;
+            //}
+            //StorageProvider.SaveAnswers(savedAnswers);
         }
 
         /// <summary>
@@ -141,9 +151,11 @@ namespace DLR_Data_App.Services
         /// </summary>
         public static void ResetSavedAnswers()
         {
-            Answers = new Dictionary<string, List<IUserAnswer>>();
-            LoadTranslatedProfilingMenuItems();
-            SaveAnswers();
+            //TODO
+            return;
+            //Answers = new Dictionary<string, List<IUserAnswer>>();
+            //LoadTranslatedProfilingMenuItems();
+            //SaveAnswers();
         }
 
         /// <summary>
@@ -303,6 +315,12 @@ namespace DLR_Data_App.Services
         /// <summary>
         /// Exports the answers using the provided <see cref="StorageProvider"/>
         /// </summary>
-        public static void ExportAnswers() => StorageProvider.ExportAnswers(StorageProvider.LoadAnswers(UserId));
+
+        public static void ExportAnswers()
+        {
+            //TODO
+            return;
+            //StorageProvider.ExportAnswers(StorageProvider.LoadAnswers(UserId));
+        }
     }
 }

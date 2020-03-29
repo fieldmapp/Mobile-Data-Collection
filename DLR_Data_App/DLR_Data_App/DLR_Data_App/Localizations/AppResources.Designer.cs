@@ -649,6 +649,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New profiling ähnelt.
+        /// </summary>
+        internal static string newprofiling {
+            get {
+                return ResourceManager.GetString("newprofiling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die New Project ähnelt.
         /// </summary>
         internal static string newproject {
@@ -937,6 +946,24 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remove profiling ähnelt.
+        /// </summary>
+        internal static string removeprofiling {
+            get {
+                return ResourceManager.GetString("removeprofiling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Do you want to remove the profiling? ähnelt.
+        /// </summary>
+        internal static string removeprofilingwarning {
+            get {
+                return ResourceManager.GetString("removeprofilingwarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Remove project ähnelt.
         /// </summary>
         internal static string removeproject {
@@ -1059,6 +1086,15 @@ namespace DLR_Data_App.Localizations {
         internal static string sensortest {
             get {
                 return ResourceManager.GetString("sensortest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Set as current profiling ähnelt.
+        /// </summary>
+        internal static string setascurrentprofiling {
+            get {
+                return ResourceManager.GetString("setascurrentprofiling", resourceCulture);
             }
         }
         
