@@ -29,7 +29,7 @@ namespace DLR_Data_App.Services
 
             // Get files
             var unzipContent = Directory.GetFiles(unzipFolder);
-            var profilingJsonPath = unzipContent.FirstOrDefault(f => f.EndsWith(Path.PathSeparator + ProfilingJsonFileName));
+            var profilingJsonPath = unzipContent.FirstOrDefault(f => f.EndsWith(Path.DirectorySeparatorChar + ProfilingJsonFileName));
             if (profilingJsonPath == null)
             {
                 return null;

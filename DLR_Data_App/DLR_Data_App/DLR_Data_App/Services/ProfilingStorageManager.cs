@@ -19,14 +19,14 @@ namespace DLR_Data_App.Services
         /// <summary>
         /// Dictionary containng all lists to save the questions
         /// </summary>
-        private static Dictionary<string, List<IQuestionContent>> Questions = new Dictionary<string, List<IQuestionContent>>();
+        private static Dictionary<string, List<IQuestionContent>> TranslatedQuestions = new Dictionary<string, List<IQuestionContent>>();
 
         /// <summary>
         /// Dictionary containing all lists to save the answers. The order of each List is crucial to determine streak and should not be changed ever
         /// </summary>
-        private static Dictionary<string, List<IUserAnswer>> Answers = new Dictionary<string, List<IUserAnswer>>();
+        private static Dictionary<string, List<IUserAnswer>> Answers => Result.UserAnswers;
 
-        private static Dictionary<string, string> Translations = new Dictionary<string, string>();
+        private static Dictionary<string, string> Translations => CurrentProfiling.Translations;
 
         /// <summary>
         /// List containing all ProfilingMenuItems, which contain all relevant information over the different profiling types
@@ -42,19 +42,19 @@ namespace DLR_Data_App.Services
 
         private static ProfilingData CurrentProfiling;
 
+        private static ProfilingResult Result;
+
         /// <summary>
         /// The name of the user currently logged into the app
         /// </summary>
-        private static string UserId;
-
-        private static DateTime? ContinuedAnswersDateTime;
+        private static int UserId;
 
         public static int ProjectsFilledSinceLastProfilingCompletion = 0;
 
         /// <summary>
         /// Initializes the <see cref="ProfilingStorageManager"/>
         /// </summary>
-        public static void Initilize(string userId)
+        public static void Initilize(int userId)
         {
             UserId = userId;
         }
@@ -65,12 +65,28 @@ namespace DLR_Data_App.Services
             if (CurrentProfiling == null)
                 return;
 
-            Translations = CurrentProfiling.Translations;
-
             LoadTranslatedProfilingMenuItems();
+            
+            Result = LoadAnswerToContinue();
 
-            //TODO
-            //Answers = LoadAnswerToContinue();
+            foreach (var subProfilingAnswers in Result.UserAnswers)
+            {
+                var subProfilingId = subProfilingAnswers.Key;
+                var subProfiling = profiling.ProfilingMenuItems.First(p => p.Id == subProfilingId);
+                foreach (var answer in subProfilingAnswers.Value)
+                {
+                    subProfiling.ApplyAnswer(answer);
+                }
+            }
+
+            foreach (var subProfilingQuestions in TranslatedQuestions)
+            {
+                var subProfilingId = subProfilingQuestions.Key;
+                var subProfiling = profiling.ProfilingMenuItems.FirstOrDefault(p => p.Id == subProfilingId);
+                if (subProfiling != null)
+                    subProfiling.SetQuestions(subProfilingQuestions.Value);
+            }
+
             ProfilingMenuItems.SetTo(profiling.ProfilingMenuItems);
             foreach (var profilingMenuItem in ProfilingMenuItems)
             {
@@ -81,8 +97,8 @@ namespace DLR_Data_App.Services
 
         private static void LoadTranslatedProfilingMenuItems()
         {
-            Questions = CurrentProfiling.Questions;
-            foreach (var question in Questions.SelectMany(q => q.Value))
+            TranslatedQuestions = CurrentProfiling.Questions;
+            foreach (var question in TranslatedQuestions.SelectMany(q => q.Value))
             {
                 question.Translate(Translations);
             }
@@ -94,56 +110,34 @@ namespace DLR_Data_App.Services
         /// <returns><see cref="DateTime"/> of newest answered profiling</returns>
         public static DateTime GetLastCompletedProfilingDate()
         {
-            //TODO
-            return new DateTime();
-            //var answers = Database.LoadAnswers(UserId);
-            //return answers.Results.Any() ? answers.Results.Max(e => e.TimeStamp) : DateTime.MinValue;
+            var results = Database.ReadProfilingResults().Where(r => r.UserId == UserId);
+            return results.Any() ? results.Max(e => e.TimeStamp) : DateTime.MinValue;
         }
 
-        private static Dictionary<string, List<IUserAnswer>> LoadAnswerToContinue()
+        private static ProfilingResult LoadAnswerToContinue()
         {
-            //TODO
-            return new Dictionary<string, List<IUserAnswer>>();
-            //throw new NotImplementedException();
-            //var answers = StorageProvider.LoadAnswers(UserId);
-            //var answersToContinue = answers.Results.FirstOrDefault(r => Math.Abs((r.TimeStamp - DateTime.UtcNow).TotalMinutes) < MaxMinutesToContinueProfiling);
-            //ProjectsFilledSinceLastProfilingCompletion = answers.ProjectsFilledSinceLastProfilingCompletion;
-            //if (answersToContinue == null)
-            //{
-            //    ContinuedAnswersDateTime = null;
-            //    return new Dictionary<string, List<IUserAnswer>>();
-            //}
-            //else
-            //{
-            //    ContinuedAnswersDateTime = answersToContinue.TimeStamp;
-            //    return answersToContinue.UserAnswers;
-            //}
+            var savedProfilings = Database.ReadProfilingResults();
+            var currentProfiling = savedProfilings.FirstOrDefault(r => r.UserId == UserId && Math.Abs((r.TimeStamp - DateTime.UtcNow).TotalMinutes) < MaxMinutesToContinueProfiling);
+            if (currentProfiling == null)
+            {
+                currentProfiling = new ProfilingResult
+                {
+                    ProfilingId = CurrentProfilingId,
+                    UserAnswers = new Dictionary<string, List<IUserAnswer>>(),
+                    UserId = UserId
+                };
+            }
+            return currentProfiling;
         }
 
         /// <summary>
         /// Saves all answers.
         /// This will override old saved data!
         /// </summary>
-        public static void SaveAnswers()
+        public static void SaveCurrentAnswer()
         {
-            //TODO
-            return;
-            //var savedAnswers = StorageProvider.LoadAnswers(UserId);
-            //savedAnswers.ProjectsFilledSinceLastProfilingCompletion = ProjectsFilledSinceLastProfilingCompletion;
-            //var currentAnswer = savedAnswers.Results.FirstOrDefault(r => r.TimeStamp == ContinuedAnswersDateTime);
-            //var now = DateTime.UtcNow;
-            //ContinuedAnswersDateTime = now;
-            //if (currentAnswer == null)
-            //{
-            //    currentAnswer = new ProfilingResult() { TimeStamp = now, UserAnswers = Answers };
-            //    savedAnswers.Results.Add(currentAnswer);
-            //}
-            //else
-            //{
-            //    currentAnswer.TimeStamp = now;
-            //    currentAnswer.UserAnswers = Answers;
-            //}
-            //StorageProvider.SaveAnswers(savedAnswers);
+            Result.TimeStamp = DateTime.UtcNow;
+            Database.SetOrUpdateProfilingAnswer(Result);
         }
 
         /// <summary>
@@ -167,7 +161,7 @@ namespace DLR_Data_App.Services
             string data = "," + DateTime.Now.ToString("yyyy MM dd"); /// contains the data
 
             /// write all Introspection Answers in one line
-            foreach (QuestionIntrospectionPage question in Questions["Introspection"].OrderBy(o => o.InternId))
+            foreach (QuestionIntrospectionPage question in TranslatedQuestions["Introspection"].OrderBy(o => o.InternId))
             {
                 explanation += ",SelectedAnswerQuestion" + question.InternId;
                 if (DoesAnswersExists("Introspection", question.InternId))
@@ -182,7 +176,7 @@ namespace DLR_Data_App.Services
                 }
             }
             /// write all ImageChecker Answers in one line
-            foreach (QuestionImageCheckerPage question in Questions["ImageChecker"].OrderBy(o => o.InternId))
+            foreach (QuestionImageCheckerPage question in TranslatedQuestions["ImageChecker"].OrderBy(o => o.InternId))
             {
                 explanation += ",DifficultyQuestion" + question.InternId + ",Img1SelQuestion" + question.InternId + ",Img2SelQuestion" + question.InternId + ",Img3SelQuestion" + question.InternId + ",Img4SelQuestion" + question.InternId;
                 if (DoesAnswersExists("ImageChecker", question.InternId))
@@ -197,7 +191,7 @@ namespace DLR_Data_App.Services
                 }
             }
             /// write all Stadium Answers in one line
-            foreach (QuestionStadiumPage question in Questions["Stadium"].OrderBy(o => o.InternId))
+            foreach (QuestionStadiumPage question in TranslatedQuestions["Stadium"].OrderBy(o => o.InternId))
             {
                 explanation += ",DifficultyQuestion" + question.InternId + ",StadiumQuestion" + question.InternId + ",FruitTypeQuestion" + question.InternId;
                 if (DoesAnswersExists("Stadium", question.InternId))
@@ -212,7 +206,7 @@ namespace DLR_Data_App.Services
                 }
             }
             /// write all DoubleSlider Answers in one line
-            foreach (QuestionDoubleSliderPage question in Questions["DoubleSlider"].OrderBy(o => o.InternId))
+            foreach (QuestionDoubleSliderPage question in TranslatedQuestions["DoubleSlider"].OrderBy(o => o.InternId))
             {
                 explanation += ",DifficultyQuestion" + question.InternId + ",ResAQuestion" + question.InternId + ",ResBQuestion" + question.InternId;
                 if (DoesAnswersExists("DoubleSlider", question.InternId))
@@ -241,7 +235,7 @@ namespace DLR_Data_App.Services
         /// </summary>
         public static IQuestionContent GetQuestion(string profilingId, int difficulty, bool lowerDifficultyOk = true)
         {
-            var listQuestions = Questions[profilingId]; /// list containing all questions
+            var listQuestions = TranslatedQuestions[profilingId]; /// list containing all questions
             List<IQuestionContent> listAvailableQuestion = new List<IQuestionContent>(); /// list containing all available question
             foreach(IQuestionContent question in listQuestions)
             { 
@@ -271,7 +265,7 @@ namespace DLR_Data_App.Services
         /// <summary>
         /// Returns the specific Question with the matching id from the list
         /// </summary>
-        public static IQuestionContent LoadQuestionById(string profilingId, int id) => Questions[profilingId].FirstOrDefault(q => q.InternId == id);
+        public static IQuestionContent LoadQuestionById(string profilingId, int id) => TranslatedQuestions[profilingId].FirstOrDefault(q => q.InternId == id);
 
         /// <summary>
         /// Returns the specific Answer with the matching id from the list
@@ -290,7 +284,7 @@ namespace DLR_Data_App.Services
         /// </summary>
         /// <param name="profilingId">ProfilingId to search</param>
         /// <returns>List containing all Ansers matching ProfilingId. Never null</returns>
-        public static List<IQuestionContent> GetAllQuestions(string profilingId) => Questions.TryGetValue(profilingId, out var value) ? value : new List<IQuestionContent>();
+        public static List<IQuestionContent> GetAllQuestions(string profilingId) => TranslatedQuestions.TryGetValue(profilingId, out var value) ? value : new List<IQuestionContent>();
 
         /// <summary>
         /// Searches for a corrosponding answer object and returns true if found, else it will return false
@@ -318,9 +312,7 @@ namespace DLR_Data_App.Services
 
         public static void ExportAnswers()
         {
-            //TODO
-            return;
-            //StorageProvider.ExportAnswers(StorageProvider.LoadAnswers(UserId));
+            StorageProvider.ExportAnswers(new ProfilingResults { Results = Database.ReadProfilingResults().Where(p => p.UserId == UserId).ToList() });
         }
     }
 }

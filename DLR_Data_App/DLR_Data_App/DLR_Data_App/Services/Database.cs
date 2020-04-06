@@ -166,6 +166,7 @@ namespace DLR_Data_App.Services
         /// <returns>Status of deleting data</returns>
         public static bool Delete<T>(ref T data, SQLiteConnection conn)
         {
+            conn.CreateTable<T>();
             int resultDelete;
             // Update data into table
             resultDelete = conn.Delete(data);
@@ -257,14 +258,11 @@ namespace DLR_Data_App.Services
                 DeleteProfiling(profiling, conn);
             }
         }
-
-        /// <summary>
-        /// Deletes all data from the database which are belonging to a specific project.
-        /// </summary>
-        /// <param name="project">Project of which all data should be deleted</param>
-        public static void DeleteProfiling(ProfilingData project, SQLiteConnection conn)
+        
+        public static void DeleteProfiling(ProfilingData profiling, SQLiteConnection conn)
         {
-            conn.Delete(project);
+            conn.Delete(profiling);
+            conn.Execute($"DELETE FROM {nameof(ProfilingResult)} WHERE {nameof(ProfilingResult.ProfilingId)}={profiling.ProfilingId}");
         }
 
         public static bool InsertProfiling(ref ProfilingData profiling)
@@ -285,11 +283,7 @@ namespace DLR_Data_App.Services
 
             return Insert(ref newProfiling, conn);
         }
-
-        /// <summary>
-        /// Reads all projects from the database.
-        /// </summary>
-        /// <returns>List of all projects in database</returns>
+        
         public static List<ProfilingData> ReadProfilings()
         {
             // database will be closed after leaving the using statement
@@ -298,11 +292,7 @@ namespace DLR_Data_App.Services
                 return ReadProfilings(conn);
             }
         }
-
-        /// <summary>
-        /// Reads all projects from the database.
-        /// </summary>
-        /// <returns>List of all projects in database</returns>
+        
         public static List<ProfilingData> ReadProfilings(SQLiteConnection conn)
         {
             // if table doesn't exist create a new one
@@ -310,6 +300,26 @@ namespace DLR_Data_App.Services
 
             // get content of table
             var projectList = conn.Table<ProfilingData>().ToList();
+
+            return projectList;
+        }
+
+        public static List<ProfilingResult> ReadProfilingResults()
+        {
+            // database will be closed after leaving the using statement
+            using (var conn = CreateConnection())
+            {
+                return ReadProfilingResults(conn);
+            }
+        }
+
+        public static List<ProfilingResult> ReadProfilingResults(SQLiteConnection conn)
+        {
+            // if table doesn't exist create a new one
+            conn.CreateTable<ProfilingResult>();
+
+            // get content of table
+            var projectList = conn.Table<ProfilingResult>().ToList();
 
             return projectList;
         }
@@ -742,7 +752,29 @@ namespace DLR_Data_App.Services
                 return GetCurrentProfiling(conn);
             }
         }
-        
+
+        public static bool SetOrUpdateProfilingAnswer(ProfilingResult result)
+        {
+            using (var conn = CreateConnection())
+            {
+                return SetOrUpdateProfilingAnswer(result, conn);
+            }
+        }
+
+        public static bool SetOrUpdateProfilingAnswer(ProfilingResult result, SQLiteConnection conn)
+        {
+            if (result.ProfilingResultId < 0)
+            {
+                result.ProfilingResultId = 0;
+                return Insert(ref result, conn);
+            }
+            else
+            {
+                return Update(ref result, conn);
+            }
+        }
+
+
         public static bool SetCurrentProject(Project project, SQLiteConnection conn)
         {
             bool result;

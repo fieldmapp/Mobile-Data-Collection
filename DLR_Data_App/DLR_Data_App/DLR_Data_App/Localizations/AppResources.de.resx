@@ -584,4 +584,7 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen f√
   <data name="removeprofilingwarning" xml:space="preserve">
     <value>Wollen Sie das Profiling l√∂schen?</value>
   </data>
+  <data name="currentprofiling" xml:space="preserve">
+    <value>Aktuelles Profiling</value>
+  </data>
 </root>

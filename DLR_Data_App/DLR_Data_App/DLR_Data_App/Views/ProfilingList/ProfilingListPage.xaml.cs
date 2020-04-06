@@ -16,14 +16,14 @@ namespace DLR_Data_App.Views.ProfilingList
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfilingListPage
     {
-        private ObservableCollection<ProfilingData> Profilings;
+        public ObservableCollection<ProfilingData> Profilings { get; set; }
         private NewProfilingPage _newProfilingPage;
         
         public ProfilingListPage()
         {
             InitializeComponent();
 
-            new ProjectListViewModel();
+            Profilings = new ObservableCollection<ProfilingData>();
             BindingContext = this;
         }
 

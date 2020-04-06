@@ -112,6 +112,11 @@ namespace DLR_Data_App.Models.Profiling
             }
         }
 
+        public void SetQuestions(List<IQuestionContent> questions)
+        {
+            MaximumQuestionNumber = questions.Count;
+        }
+
         public ProfilingMenuItem(string id, string chapterName, int answersNeeded, List<int> introspectionQuestions)
         {
             Id = id;
@@ -119,12 +124,7 @@ namespace DLR_Data_App.Models.Profiling
             AnswersNeeded = answersNeeded;
             IntrospectionQuestion = introspectionQuestions;
             CurrentDifficulty = 1;
-            MaximumQuestionNumber = ProfilingStorageManager.GetAllQuestions(id).Count;
-            var answers = ProfilingStorageManager.GetAllAnswers(id);
-            AnswersGiven = answers.Count;
             PropertyChanged += ProfilingMenuItem_PropertyChanged;
-            foreach (var answer in answers)
-                ApplyAnswer(answer);
 
             var nspace = typeof(App).Namespace;
             ProfilingPageType = Type.GetType($"{nspace}.Views.Profiling.{id.ToString()}Page");

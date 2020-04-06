@@ -20,11 +20,6 @@ namespace DLR_Data_App.Services
         static NavigationPage Navigation => (Application.Current as App).Navigation;
         static ProfilingMenuItem CurrentProfiling;
 
-        public static void Initialize(string userId)
-        {
-            ProfilingStorageManager.Initilize(userId);
-        }
-
         public static IQuestionContent GetNextQuestion(ProfilingMenuItem profilingType)
         {
             var neededType = profilingType.QuestionType;
@@ -86,7 +81,7 @@ namespace DLR_Data_App.Services
             }
 
             ProfilingStorageManager.AddAnswer(CurrentProfiling.Id, profilingPage.AnswerItem);
-            ProfilingStorageManager.SaveAnswers();
+            ProfilingStorageManager.SaveCurrentAnswer();
             CurrentProfiling.AnswersGiven++;
             
             CurrentProfiling.ApplyAnswer(profilingPage.AnswerItem);
@@ -104,7 +99,7 @@ namespace DLR_Data_App.Services
                 if (!ProfilingStorageManager.ProfilingMenuItems.Any(s => s.AnswersNeeded > s.AnswersGiven))
                 {
                     ProfilingStorageManager.ProjectsFilledSinceLastProfilingCompletion = 0;
-                    ProfilingStorageManager.SaveAnswers();
+                    ProfilingStorageManager.SaveCurrentAnswer();
                 }
                 ShowEvaluationPage();
                 return;
@@ -126,7 +121,7 @@ namespace DLR_Data_App.Services
                 return;
             }
             ProfilingStorageManager.AddAnswer("Introspection", introspectionPage.AnswerItem);
-            ProfilingStorageManager.SaveAnswers();
+            ProfilingStorageManager.SaveCurrentAnswer();
             ShowNextIntrospectionPage();
         }
 
@@ -137,7 +132,7 @@ namespace DLR_Data_App.Services
             evaluationPage.PageFinished += EvaluationPage_PageFinished;
             _ = Navigation.PushPage(evaluationPage);
             CurrentProfiling = null;
-            ProfilingStorageManager.SaveAnswers();
+            ProfilingStorageManager.SaveCurrentAnswer();
             ProfilingStorageManager.CreateCSV();
         }
 

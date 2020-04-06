@@ -241,6 +241,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Current profiling ähnelt.
+        /// </summary>
+        internal static string currentprofiling {
+            get {
+                return ResourceManager.GetString("currentprofiling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Current project ähnelt.
         /// </summary>
         internal static string currentproject {

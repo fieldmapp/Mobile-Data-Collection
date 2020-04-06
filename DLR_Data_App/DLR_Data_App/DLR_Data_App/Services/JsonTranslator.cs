@@ -34,8 +34,11 @@ namespace DLR_Data_App.Services
             }
         }
 
-        public static T GetFromJson<T>(string json)
+        public static T GetFromJson<T>(string json) where T:new()
         {
+            if (json == null)
+                return new T();
+
             using (var stringReader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(stringReader))
                 return JsonSerializer.Deserialize<T>(jsonReader);

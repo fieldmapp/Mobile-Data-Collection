@@ -21,7 +21,7 @@ namespace DLR_Data_App.Views.Profiling
         {
             InitializeComponent();
 
-            ProfilingManager.Initialize(App.CurrentUser.Id.ToString());
+            ProfilingStorageManager.Initilize(App.CurrentUser.Id);
 
             MenuList.ItemsSource = ProfilingStorageManager.ProfilingMenuItems;
         }
@@ -69,13 +69,11 @@ namespace DLR_Data_App.Views.Profiling
 
         private void ExportAnwersClicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
             ProfilingStorageManager.ExportAnswers();
         }
 
         private void DeleteAnswersClicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
             ProfilingStorageManager.ResetSavedAnswers();
         }
     }
