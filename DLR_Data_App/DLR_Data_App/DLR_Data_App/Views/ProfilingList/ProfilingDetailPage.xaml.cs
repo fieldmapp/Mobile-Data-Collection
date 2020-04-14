@@ -43,8 +43,7 @@ namespace DLR_Data_App.Views.ProfilingList
             Database.SetCurrentProfiling(InspectedProfiling);
 
             // Navigate to current project
-            if (Application.Current.MainPage is MainPage mainPage)
-                await mainPage.NavigateFromMenu(MenuItemType.CurrentProfiling);
+            await App.CurrentMainPage.NavigateFromMenu(MenuItemType.CurrentProfiling);
         }
 
         /// <summary>

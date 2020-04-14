@@ -41,7 +41,7 @@ namespace DLR_Data_App.Views.Profiling
             var currentProfiling = Database.GetCurrentProfiling();
             if (currentProfiling == null)
             {
-                _ = (Application.Current.MainPage as MainPage).NavigateFromMenu(Models.MenuItemType.ProfilingList);
+                _ = App.CurrentMainPage.NavigateFromMenu(Models.MenuItemType.ProfilingList);
                 return;
             }
 

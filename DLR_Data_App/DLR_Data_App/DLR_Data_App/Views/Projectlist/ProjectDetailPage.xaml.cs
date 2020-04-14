@@ -48,8 +48,7 @@ namespace DLR_Data_App.Views.ProjectList
             Database.SetCurrentProject(_workingProject);
 
             // Navigate to current project
-            if (Application.Current.MainPage is MainPage mainPage)
-                await mainPage.NavigateFromMenu(MenuItemType.CurrentProject);
+            await App.CurrentMainPage.NavigateFromMenu(MenuItemType.CurrentProject);
         }
 
         /// <summary>

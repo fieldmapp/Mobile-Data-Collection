@@ -13,6 +13,7 @@ namespace DLR_Data_App
         public static string DatabaseLocation = string.Empty;
         public static string FolderLocation = string.Empty;
         public static ThreadSafeRandom RandomProvider = new ThreadSafeRandom();
+        public static Views.MainPage CurrentMainPage => (Current.MainPage as Views.MainPage);
         public static User CurrentUser;
         public NavigationPage Navigation => (MainPage as MasterDetailPage)?.Detail as NavigationPage;
         public IStorageProvider StorageProvider;

@@ -45,8 +45,7 @@ namespace DLR_Data_App.Views.CurrentProject
             {
                 DependencyService.Get<IToast>().LongAlert(AppResources.noactiveproject);
 
-                if (Application.Current.MainPage is MainPage mainPage)
-                    await mainPage.NavigateFromMenu(MenuItemType.Projects);
+                await App.CurrentMainPage.NavigateFromMenu(MenuItemType.Projects);
                 return;
             }
 
@@ -70,7 +69,7 @@ namespace DLR_Data_App.Views.CurrentProject
         {
             if (!ProfilingStorageManager.IsProfilingModuleLoaded(project.ProfilingId))
             {
-                var profilingList = await (Application.Current.MainPage as MainPage).NavigateFromMenu(MenuItemType.ProfilingList);
+                var profilingList = await App.CurrentMainPage.NavigateFromMenu(MenuItemType.ProfilingList);
 
                 await profilingList.DisplayAlert(AppResources.error,
                     string.Format(AppResources.profilingModuleMissing, project.ProfilingId),
@@ -84,8 +83,7 @@ namespace DLR_Data_App.Views.CurrentProject
             {
                 DependencyService.Get<IToast>().LongAlert(AppResources.pleaseCompleteProfiling);
 
-                if (Application.Current.MainPage is MainPage mainPage)
-                    await mainPage.NavigateFromMenu(MenuItemType.ProfilingList);
+                await App.CurrentMainPage.NavigateFromMenu(MenuItemType.ProfilingList);
             }
         }
 
