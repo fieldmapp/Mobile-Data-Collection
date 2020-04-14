@@ -47,15 +47,15 @@ namespace DLR_Data_App.Views
         /// Navigate to selected page
         /// </summary>
         /// <param name="id">Selected page</param>
-        /// <returns></returns>
-        public async Task NavigateFromMenu(MenuItemType id)
+        public async Task<Page> NavigateFromMenu(MenuItemType id)
         {
             await NavigationLock.WaitAsync();
 
             if (id == MenuItemType.Logout)
             {
-                Application.Current.MainPage = new LoginPage();
-                return;
+                var loginPage = new LoginPage();
+                Application.Current.MainPage = loginPage;
+                return loginPage;
             }
 
             var newPage = _menuPages[id];
@@ -68,10 +68,11 @@ namespace DLR_Data_App.Views
                     await Task.Delay(200);
 
                 MessagingCenter.Send<object, bool>(this, "ReloadToolbar", true);
-
-                IsPresented = false;
             }
+
+            IsPresented = false;
             NavigationLock.Release();
+            return newPage;
         }
 
         DateTime LastBackButtonPress = DateTime.MinValue;

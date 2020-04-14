@@ -30,12 +30,12 @@ namespace DLR_Data_App.Views
 
             ListViewMenu.ItemsSource = menuItems;
 
-            ListViewMenu.ItemSelected += async (sender, e) =>
+            ListViewMenu.ItemTapped += async (sender, e) =>
             {
-                if (e.SelectedItem == null)
+                if (e.Item == null)
                     return;
 
-                var id = ((HomeMenuItem)e.SelectedItem).Id;
+                var id = ((HomeMenuItem)e.Item).Id;
                 await (Application.Current.MainPage as MainPage).NavigateFromMenu(id);
             };
         }
