@@ -37,13 +37,13 @@ namespace DLR_Data_App.Views.CurrentProject
             Appearing += ProjectPage_Appearing;
         }
 
-        private void ProjectPage_Appearing(object sender, EventArgs e)
+        private async void ProjectPage_Appearing(object sender, EventArgs e)
         {
             var newProject = Database.GetCurrentProject();
 
             if (newProject != null)
             {
-                CheckForProfilingCompletionNeeded();
+                await CheckForProfilingCompletionNeeded(newProject);
             }
 
             if (_projectLastCheck?.Id == newProject?.Id)
@@ -60,20 +60,31 @@ namespace DLR_Data_App.Views.CurrentProject
 
             if (_pages == null || _pages.Count == 0)
             {
-                (Application.Current as App).CurrentPage.DisplayAlert(AppResources.warning, AppResources.noactiveproject, AppResources.okay);
+                await (Application.Current as App).CurrentPage.DisplayAlert(AppResources.warning, AppResources.noactiveproject, AppResources.okay);
             }            
         }
 
-        private static void CheckForProfilingCompletionNeeded()
+        private async Task CheckForProfilingCompletionNeeded(Project project)
         {
-            var lastAnsweredProfilingDate = ProfilingStorageManager.GetLastCompletedProfilingDate();
+            if (!ProfilingStorageManager.IsProfilingModuleLoaded(project.ProfilingId))
+            {
+                var profilingList = 
+                    await (Application.Current.MainPage as MainPage).NavigateFromMenu(MenuItemType.ProfilingList);
+
+                await profilingList.DisplayAlert(AppResources.error,
+                    string.Format(AppResources.profilingModuleMissing, project.ProfilingId),
+                    AppResources.ok);
+                return;
+            }
+
+            var lastAnsweredProfilingDate = ProfilingStorageManager.GetLastCompletedProfilingDate(project.ProfilingId);
             if ((DateTime.UtcNow - lastAnsweredProfilingDate).TotalDays > MaxDaysSinceLastProfilingCompletion
                 || ProfilingStorageManager.ProjectsFilledSinceLastProfilingCompletion > MaxProjectsFilledPerProfiling)
             {
                 DependencyService.Get<IToast>().LongAlert(AppResources.pleaseCompleteProfiling);
 
                 if (Application.Current.MainPage is MainPage mainPage)
-                    _ = mainPage.NavigateFromMenu(MenuItemType.ProfilingList);
+                    await mainPage.NavigateFromMenu(MenuItemType.ProfilingList);
             }
         }
 
@@ -287,7 +298,7 @@ namespace DLR_Data_App.Views.CurrentProject
                 }
 
                 await DisplayAlert(AppResources.save, message, AppResources.okay);
-                CheckForProfilingCompletionNeeded();
+                await CheckForProfilingCompletionNeeded(_workingProject);
             }
         }
     }

@@ -587,4 +587,7 @@ Consent of the data subject means any freely given, specific, informed and unamb
   <data name="currentprofiling" xml:space="preserve">
     <value>Current profiling</value>
   </data>
+  <data name="profilingModuleMissing" xml:space="preserve">
+    <value>You are missing the profiling module {0} required for this project.</value>
+  </data>
 </root>

@@ -108,9 +108,18 @@ namespace DLR_Data_App.Services
         /// Looks for the last completed profiling and returns its date
         /// </summary>
         /// <returns><see cref="DateTime"/> of newest answered profiling</returns>
-        public static DateTime GetLastCompletedProfilingDate()
+        public static bool IsProfilingModuleLoaded(string profilingId)
         {
-            var results = Database.ReadProfilingResults().Where(r => r.UserId == UserId);
+            return Database.ReadProfilings().Any(r => r.ProfilingId == profilingId);
+        }
+
+        /// <summary>
+        /// Looks for the last completed profiling and returns its date
+        /// </summary>
+        /// <returns><see cref="DateTime"/> of newest answered profiling</returns>
+        public static DateTime GetLastCompletedProfilingDate(string profilingId)
+        {
+            var results = Database.ReadProfilingResults().Where(r => r.UserId == UserId && r.ProfilingId == profilingId);
             return results.Any() ? results.Max(e => e.TimeStamp) : DateTime.MinValue;
         }
 

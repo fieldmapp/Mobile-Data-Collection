@@ -587,4 +587,7 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen f�
   <data name="currentprofiling" xml:space="preserve">
     <value>Aktuelles Profiling</value>
   </data>
+  <data name="profilingModuleMissing" xml:space="preserve">
+    <value>Das Profiling Modul {0} felt, wird aber für dieses Projekt benötigt.</value>
+  </data>
 </root>

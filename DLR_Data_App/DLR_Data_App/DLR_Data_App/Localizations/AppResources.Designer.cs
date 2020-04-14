@@ -847,6 +847,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You are missing the profiling module {0} required for this project. ähnelt.
+        /// </summary>
+        internal static string profilingModuleMissing {
+            get {
+                return ResourceManager.GetString("profilingModuleMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Here you can see your results in the different difficulties ähnelt.
         /// </summary>
         internal static string profilingResultsDifferentDifficulties {

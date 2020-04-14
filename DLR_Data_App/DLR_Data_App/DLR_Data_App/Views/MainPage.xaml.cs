@@ -47,6 +47,7 @@ namespace DLR_Data_App.Views
         /// Navigate to selected page
         /// </summary>
         /// <param name="id">Selected page</param>
+        /// <returns><see cref="Page"/> which is displayed after this method is finished</returns>
         public async Task<Page> NavigateFromMenu(MenuItemType id)
         {
             await NavigationLock.WaitAsync();
