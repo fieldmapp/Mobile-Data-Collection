@@ -82,7 +82,6 @@ namespace DLR_Data_App.Services
 
             ProfilingStorageManager.AddAnswer(CurrentProfiling.Id, profilingPage.AnswerItem);
             ProfilingStorageManager.SaveCurrentAnswer();
-            CurrentProfiling.AnswersGiven++;
             
             CurrentProfiling.ApplyAnswer(profilingPage.AnswerItem);
             ShowNewProfilingPage();

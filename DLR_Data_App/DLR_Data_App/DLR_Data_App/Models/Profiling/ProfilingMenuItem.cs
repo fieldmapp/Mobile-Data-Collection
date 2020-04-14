@@ -95,6 +95,8 @@ namespace DLR_Data_App.Models.Profiling
         
         public void ApplyAnswer(IUserAnswer answerItem)
         {
+            AnswersGiven++;
+
             bool answerRight = answerItem.EvaluateScore() > .85f;
             if (answerRight)
                 Streak = Streak <= 0 ? 1 : Streak + 1;
