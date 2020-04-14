@@ -72,7 +72,9 @@ namespace DLR_Data_App.Services
             foreach (var subProfilingAnswers in Result.UserAnswers)
             {
                 var subProfilingId = subProfilingAnswers.Key;
-                var subProfiling = profiling.ProfilingMenuItems.First(p => p.Id == subProfilingId);
+                var subProfiling = profiling.ProfilingMenuItems.FirstOrDefault(p => p.Id == subProfilingId);
+                if (subProfiling == null)
+                    continue;
                 foreach (var answer in subProfilingAnswers.Value)
                 {
                     subProfiling.ApplyAnswer(answer);
