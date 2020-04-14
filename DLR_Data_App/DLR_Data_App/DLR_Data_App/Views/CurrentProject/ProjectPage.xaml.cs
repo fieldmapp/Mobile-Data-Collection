@@ -41,12 +41,19 @@ namespace DLR_Data_App.Views.CurrentProject
         {
             var newProject = Database.GetCurrentProject();
 
-            if (newProject != null)
+            if (newProject == null)
             {
-                await CheckForProfilingCompletionNeeded(newProject);
+                DependencyService.Get<IToast>().LongAlert(AppResources.noactiveproject);
+
+                if (Application.Current.MainPage is MainPage mainPage)
+                    await mainPage.NavigateFromMenu(MenuItemType.Projects);
+                return;
             }
 
-            if (_projectLastCheck?.Id == newProject?.Id)
+
+            await CheckForProfilingCompletionNeeded(newProject);
+
+            if (_projectLastCheck?.Id == newProject.Id)
                 return;
             _projectLastCheck = newProject;
             
@@ -57,19 +64,13 @@ namespace DLR_Data_App.Views.CurrentProject
             {
                 Children.Add(page);
             }
-
-            if (_pages == null || _pages.Count == 0)
-            {
-                await (Application.Current as App).CurrentPage.DisplayAlert(AppResources.warning, AppResources.noactiveproject, AppResources.okay);
-            }            
         }
 
         private async Task CheckForProfilingCompletionNeeded(Project project)
         {
             if (!ProfilingStorageManager.IsProfilingModuleLoaded(project.ProfilingId))
             {
-                var profilingList = 
-                    await (Application.Current.MainPage as MainPage).NavigateFromMenu(MenuItemType.ProfilingList);
+                var profilingList = await (Application.Current.MainPage as MainPage).NavigateFromMenu(MenuItemType.ProfilingList);
 
                 await profilingList.DisplayAlert(AppResources.error,
                     string.Format(AppResources.profilingModuleMissing, project.ProfilingId),
