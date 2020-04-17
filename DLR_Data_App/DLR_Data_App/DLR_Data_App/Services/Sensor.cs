@@ -8,7 +8,8 @@ namespace DLR_Data_App.Services
     {
         public static Sensor Instance;
 
-        private SensorSpeed _speed = SensorSpeed.UI;
+        private readonly SensorSpeed _uiSensorSpeed = SensorSpeed.UI;
+        private readonly SensorSpeed _fastSensorSpeed = SensorSpeed.Fastest;
 
         public Sensors.Accelerometer Accelerometer;
         public Sensors.Barometer Barometer;
@@ -29,7 +30,7 @@ namespace DLR_Data_App.Services
                 {
                     try
                     {
-                        Xamarin.Essentials.Accelerometer.Start(_speed);
+                        Xamarin.Essentials.Accelerometer.Start(_fastSensorSpeed);
                     }
                     catch (FeatureNotSupportedException) { }
                 }
@@ -50,7 +51,7 @@ namespace DLR_Data_App.Services
                 {
                     try
                     {
-                        Xamarin.Essentials.Barometer.Start(_speed);
+                        Xamarin.Essentials.Barometer.Start(_uiSensorSpeed);
                     }
                     catch (FeatureNotSupportedException) { }
 
@@ -71,7 +72,7 @@ namespace DLR_Data_App.Services
                 {
                     try
                     {
-                        Xamarin.Essentials.Compass.Start(_speed);
+                        Xamarin.Essentials.Compass.Start(_uiSensorSpeed);
                     }
                     catch (FeatureNotSupportedException) { }
                 }
@@ -91,7 +92,7 @@ namespace DLR_Data_App.Services
                 {
                     try
                     {
-                        Xamarin.Essentials.Gyroscope.Start(_speed);
+                        Xamarin.Essentials.Gyroscope.Start(_uiSensorSpeed);
                     }
                     catch (FeatureNotSupportedException) { }
                 }
@@ -111,7 +112,7 @@ namespace DLR_Data_App.Services
                     return;
                 try
                 {
-                    Xamarin.Essentials.Magnetometer.Start(_speed);
+                    Xamarin.Essentials.Magnetometer.Start(_uiSensorSpeed);
                 }
                 catch (FeatureNotSupportedException) { }
             }
@@ -130,7 +131,7 @@ namespace DLR_Data_App.Services
                     return;
                 try
                 {
-                    Xamarin.Essentials.OrientationSensor.Start(_speed);
+                    Xamarin.Essentials.OrientationSensor.Start(_fastSensorSpeed);
                 }
                 catch (FeatureNotSupportedException) { }
             }

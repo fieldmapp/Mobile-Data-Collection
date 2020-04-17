@@ -37,9 +37,12 @@ namespace DLR_Data_App.Views
         private void OrientationSensor_ReadingChanged(object sender, Xamarin.Essentials.OrientationSensorChangedEventArgs e)
         {
             var eulerOrientation = _sensor.OrientationSensor.Orientation.ToEulerAngles();
-            LblXOrientationCurrent.Text = eulerOrientation.X.ToDegrees().ToString("N");
-            LblYOrientationCurrent.Text = eulerOrientation.Y.ToDegrees().ToString("N");
-            LblZOrientationCurrent.Text = eulerOrientation.Z.ToDegrees().ToString("N");
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                LblXOrientationCurrent.Text = eulerOrientation.X.ToDegrees().ToString("N");
+                LblYOrientationCurrent.Text = eulerOrientation.Y.ToDegrees().ToString("N");
+                LblZOrientationCurrent.Text = eulerOrientation.Z.ToDegrees().ToString("N");
+            });
         }
 
         protected override void OnDisappearing()
@@ -113,14 +116,25 @@ namespace DLR_Data_App.Views
             var partsOfOneSecond = MovementStopWatch.ElapsedMilliseconds / 1000d;
             MovementStopWatch.Restart();
 
-            LblXAccelerometerCurrent.Text = _sensor.Accelerometer.CurrentX.ToString("N");
-            LblYAccelerometerCurrent.Text = _sensor.Accelerometer.CurrentY.ToString("N");
-            LblZAccelerometerCurrent.Text = _sensor.Accelerometer.CurrentZ.ToString("N");
+            var currentX = _sensor.Accelerometer.CurrentX.ToString("N");
+            var currentY = _sensor.Accelerometer.CurrentY.ToString("N");
+            var currentZ = _sensor.Accelerometer.CurrentZ.ToString("N");
 
-            LblXAccelerometerMax.Text = _sensor.Accelerometer.MaxX.ToString("N");
-            LblYAccelerometerMax.Text = _sensor.Accelerometer.MaxY.ToString("N");
-            LblZAccelerometerMax.Text = _sensor.Accelerometer.MaxZ.ToString("N");
+            var maxX = _sensor.Accelerometer.MaxX.ToString("N");
+            var maxY = _sensor.Accelerometer.MaxY.ToString("N");
+            var maxZ = _sensor.Accelerometer.MaxZ.ToString("N");
 
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                LblXAccelerometerCurrent.Text = currentX;
+                LblYAccelerometerCurrent.Text = currentY;
+                LblZAccelerometerCurrent.Text = currentZ;
+
+                LblXAccelerometerMax.Text = maxX;
+                LblYAccelerometerMax.Text = maxY;
+                LblZAccelerometerMax.Text = maxZ;
+            });
+            
             if (InitStep < InitEnd)
             {
                 InitSteps[InitStep] = _sensor.Accelerometer.CurrentZ;
@@ -140,7 +154,8 @@ namespace DLR_Data_App.Views
                     Velocity += velocityChange * G * partsOfOneSecond;
 
                     MovementSum += Velocity * partsOfOneSecond;
-                    MovementZ.Text = MovementSum.ToString("N");
+                    var localMovementSum = MovementSum.ToString("N");
+                    Device.BeginInvokeOnMainThread(() => MovementZ.Text = localMovementSum);
                 }
             }
         }
