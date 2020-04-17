@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Numerics;
 using DLR_Data_App.Services;
 using DLR_Data_App.Services.Sensors;
 using Xamarin.Forms;
@@ -34,15 +35,21 @@ namespace DLR_Data_App.Views
             _sensor.OrientationSensor.ReadingChanged += OrientationSensor_ReadingChanged;
         }
 
+        int display2;
+
         private void OrientationSensor_ReadingChanged(object sender, Xamarin.Essentials.OrientationSensorChangedEventArgs e)
         {
-            var eulerOrientation = _sensor.OrientationSensor.Orientation.ToEulerAngles();
-            Device.BeginInvokeOnMainThread(() =>
+            display2++;
+            if (display2 > 10)
             {
-                LblXOrientationCurrent.Text = eulerOrientation.X.ToDegrees().ToString("N");
-                LblYOrientationCurrent.Text = eulerOrientation.Y.ToDegrees().ToString("N");
-                LblZOrientationCurrent.Text = eulerOrientation.Z.ToDegrees().ToString("N");
-            });
+                var eulerOrientation = _sensor.OrientationSensor.Orientation.ToEulerAngles();
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    LblXOrientationCurrent.Text = eulerOrientation.X.ToDegrees().ToString("N");
+                    LblYOrientationCurrent.Text = eulerOrientation.Y.ToDegrees().ToString("N");
+                    LblZOrientationCurrent.Text = eulerOrientation.Z.ToDegrees().ToString("N");
+                });
+            }
         }
 
         protected override void OnDisappearing()
@@ -103,8 +110,9 @@ namespace DLR_Data_App.Views
             LblYOrientationCurrent.Text = eulerOrientation.Y.ToDegrees().ToString("N");
             LblZOrientationCurrent.Text = eulerOrientation.Z.ToDegrees().ToString("N");
 
-            Velocity = 0;
-            MovementSum = 0;
+            Velocity = new Vector3();
+            MovedDistance = new Vector3();
+            InitStep = 0;
             MovementZ.Text = "0";
         }
 
@@ -113,7 +121,7 @@ namespace DLR_Data_App.Views
         /// </summary>
         public void OnAccelerometer_Change(object sender, EventArgs e)
         {
-            var partsOfOneSecond = MovementStopWatch.ElapsedMilliseconds / 1000d;
+            var partsOfOneSecond = MovementStopWatch.ElapsedMilliseconds / 1000f;
             MovementStopWatch.Restart();
 
             var currentX = _sensor.Accelerometer.CurrentX.ToString("N");
@@ -134,39 +142,75 @@ namespace DLR_Data_App.Views
                 LblYAccelerometerMax.Text = maxY;
                 LblZAccelerometerMax.Text = maxZ;
             });
-            
+
             if (InitStep < InitEnd)
             {
-                InitSteps[InitStep] = _sensor.Accelerometer.CurrentZ;
+                
+                InitSteps[InitStep] = Vector3.Transform(_sensor.Accelerometer.Current, _sensor.OrientationSensor.Orientation);
                 InitStep++;
             }
             else if (InitStep == InitEnd)
             {
-                ConstantAcceleration = InitSteps.Average();
-                AccelerationStandardVariance = Math.Abs(InitSteps.Average(s => s - ConstantAcceleration));
+                var sampleSum = Vector3.Zero;
+                for (int i = 0; i < InitEnd; i++)
+                {
+                    sampleSum += InitSteps[i];
+                }
+
+                ConstantAcceleration = sampleSum / InitEnd;
+                var sampleDerivationSum = Vector3.Zero;
+                for (int i = 0; i < InitEnd; i++)
+                {
+                    sampleDerivationSum += (InitSteps[i] - ConstantAcceleration).Abs();
+                }
+                AccelerationStandardVariance = sampleDerivationSum.PointwiseDoubleOperation(Math.Sqrt) / InitEnd;
                 InitStep++;
             }
             else
             {
-                var velocityChange = _sensor.Accelerometer.CurrentZ - ConstantAcceleration;
-                if (Math.Abs(velocityChange) > AccelerationStandardVariance * 2)
-                {
-                    Velocity += velocityChange * G * partsOfOneSecond;
+                var velocityChange = Vector3.Transform(_sensor.Accelerometer.Current, _sensor.OrientationSensor.Orientation) - ConstantAcceleration;
+                float xChange = velocityChange.X, 
+                    yChange = velocityChange.Y, 
+                    zChange = velocityChange.Z;
+                if (Math.Abs(xChange) < AccelerationStandardVariance.X)
+                    xChange = 0;
+                if (Math.Abs(yChange) < AccelerationStandardVariance.Y)
+                    yChange = 0;
+                if (Math.Abs(zChange) < AccelerationStandardVariance.Z)
+                    zChange = 0;
+                velocityChange = new Vector3(xChange, yChange, zChange);
 
-                    MovementSum += Velocity * partsOfOneSecond;
-                    var localMovementSum = MovementSum.ToString("N");
-                    Device.BeginInvokeOnMainThread(() => MovementZ.Text = localMovementSum);
+                Velocity += velocityChange * G * partsOfOneSecond;
+
+                MovedDistance += Velocity * partsOfOneSecond;
+
+                display++;
+                if (display > 10)
+                {
+                    display = 0;
+
+                    var localMovedXDistance = MovedDistance.X.ToString("N");
+                    var localMovedYDistance = MovedDistance.Y.ToString("N");
+                    var localMovedZDistance = MovedDistance.Z.ToString("N");
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        MovementX.Text = localMovedXDistance;
+                        MovementY.Text = localMovedYDistance;
+                        MovementZ.Text = localMovedZDistance;
+                    });
                 }
             }
         }
 
+        int display = 0;
+
         Stopwatch MovementStopWatch = Stopwatch.StartNew();
-        double Velocity = 0;
-        double MovementSum = 0;
-        const double G = 9.80665;
-        double[] InitSteps = new double[InitEnd];
-        double ConstantAcceleration;
-        double AccelerationStandardVariance;
+        Vector3 Velocity;
+        Vector3 MovedDistance;
+        const float G = 9.80665f;
+        Vector3[] InitSteps = new Vector3[InitEnd];
+        Vector3 ConstantAcceleration;
+        Vector3 AccelerationStandardVariance;
         int InitStep = 0;
         const int InitEnd = 1000;
 

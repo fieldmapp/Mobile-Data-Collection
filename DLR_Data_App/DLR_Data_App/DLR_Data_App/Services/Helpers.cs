@@ -323,5 +323,17 @@ namespace DLR_Data_App.Services
         {
             return (180 / (float)Math.PI) * radians;
         }
+
+        public static Vector3 PointwiseOperation(this Vector3 vec, Func<float, float> op)
+        {
+            return new Vector3(op(vec.X), op(vec.Y), op(vec.Z));
+        }
+
+        public static Vector3 PointwiseDoubleOperation(this Vector3 vec, Func<double, double> op)
+        {
+            return new Vector3((float)op(vec.X), (float)op(vec.Y), (float)op(vec.Z));
+        }
+
+        public static Vector3 Abs(this Vector3 vec) => vec.PointwiseOperation(Math.Abs);
     }
 }

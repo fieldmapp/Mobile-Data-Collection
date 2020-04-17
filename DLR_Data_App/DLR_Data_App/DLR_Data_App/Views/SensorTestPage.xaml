@@ -591,7 +591,7 @@
                            Grid.Row="0"
                            Grid.Column="0"/>
 
-                    <Label Text="Aktuell"
+                    <Label Text="{res:Translate current}"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
                            Grid.Row="1"
@@ -603,10 +603,38 @@
                            Grid.Row="1"
                            Grid.Column="2"/>
 
-                    <Label Text="Z:"
+                    <Label Text="X:"
                            VerticalOptions="Center" 
                            HorizontalOptions="Center"
                            Grid.Row="2"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="MovementX"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="2"
+                           Grid.Column="1"/>
+
+                    <Label Text="Y:"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="3"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="MovementY"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="3"
+                           Grid.Column="1"/>
+
+                    <Label Text="Z:"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="4"
                            Grid.Column="0"/>
 
                     <Label x:Name="MovementZ"
@@ -614,7 +642,7 @@
                            VerticalOptions="Center" 
                            HorizontalOptions="Center" 
                            FontSize="Large"
-                           Grid.Row="2"
+                           Grid.Row="4"
                            Grid.Column="1"/>
                 </Grid>
             </StackLayout>

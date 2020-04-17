@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using Xamarin.Essentials;
 
 
@@ -11,10 +12,11 @@ namespace DLR_Data_App.Services.Sensors
             add => Xamarin.Essentials.Accelerometer.ReadingChanged += value;
             remove => Xamarin.Essentials.Accelerometer.ReadingChanged -= value;
         }
-
-        public float CurrentX { get; set; }
-        public float CurrentY { get; set; }
-        public float CurrentZ { get; set; }
+        
+        public Vector3 Current { get; set; }
+        public float CurrentX { get; private set; }
+        public float CurrentY { get; private set; }
+        public float CurrentZ { get; private set; }
         public float MaxX { get; set; }
         public float MaxY { get; set; }
         public float MaxZ { get; set; }
@@ -34,6 +36,7 @@ namespace DLR_Data_App.Services.Sensors
             CurrentX = data.Acceleration.X;
             CurrentY = data.Acceleration.Y;
             CurrentZ = data.Acceleration.Z;
+            Current = new Vector3(CurrentX, CurrentY, CurrentZ);
 
             if (Math.Abs(CurrentX) > MaxX)
             {
@@ -59,6 +62,7 @@ namespace DLR_Data_App.Services.Sensors
             CurrentX = 0.0F;
             CurrentY = 0.0F;
             CurrentZ = 0.0F;
+            Current = new Vector3(CurrentX, CurrentY, CurrentZ);
             MaxX = 0.0F;
             MaxY = 0.0F;
             MaxZ = 0.0F;
