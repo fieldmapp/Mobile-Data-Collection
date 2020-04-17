@@ -590,4 +590,7 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen f�
   <data name="profilingModuleMissing" xml:space="preserve">
     <value>Das Profiling Modul {0} felt, wird aber für dieses Projekt benötigt.</value>
   </data>
+  <data name="orientationSensor" xml:space="preserve">
+    <value>Orientierungssensor</value>
+  </data>
 </root>

@@ -21,6 +21,7 @@ namespace DLR_Data_App.Views.Settings
             SwitchGps.IsToggled = Preferences.Get("gps", true);
             SwitchGyroscope.IsToggled = Preferences.Get("gyroscope", true);
             SwitchMagnetometer.IsToggled = Preferences.Get("magnetometer", true);
+            SwitchOrientationSensor.IsToggled = Preferences.Get("orientationsensor", true);
         }
 
         private void Switch_accelerometer_Toggled(object sender, ToggledEventArgs e)
@@ -51,6 +52,11 @@ namespace DLR_Data_App.Views.Settings
         private void Switch_magnetometer_Toggled(object sender, ToggledEventArgs e)
         {
             Preferences.Set("magnetometer", SwitchMagnetometer.IsToggled);
+        }
+
+        private void SwitchOrientationSensor_Toggled(object sender, ToggledEventArgs e)
+        {
+            Preferences.Set("orientationsensor", SwitchOrientationSensor.IsToggled);
         }
     }
 }

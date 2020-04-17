@@ -31,6 +31,15 @@ namespace DLR_Data_App.Views
             _sensor.Compass.ReadingChanged += OnCompass_Change;
             _sensor.Gyroscope.ReadingChanged += OnGyroscope_Change;
             _sensor.Magnetometer.ReadingChanged += OnMagnetometer_Change;
+            _sensor.OrientationSensor.ReadingChanged += OrientationSensor_ReadingChanged;
+        }
+
+        private void OrientationSensor_ReadingChanged(object sender, Xamarin.Essentials.OrientationSensorChangedEventArgs e)
+        {
+            var eulerOrientation = _sensor.OrientationSensor.Orientation.ToEulerAngles();
+            LblXOrientationCurrent.Text = eulerOrientation.X.ToDegrees().ToString("N");
+            LblYOrientationCurrent.Text = eulerOrientation.Y.ToDegrees().ToString("N");
+            LblZOrientationCurrent.Text = eulerOrientation.Z.ToDegrees().ToString("N");
         }
 
         protected override void OnDisappearing()
@@ -41,6 +50,7 @@ namespace DLR_Data_App.Views
             _sensor.Compass.ReadingChanged -= OnCompass_Change;
             _sensor.Gyroscope.ReadingChanged -= OnGyroscope_Change;
             _sensor.Magnetometer.ReadingChanged -= OnMagnetometer_Change;
+            _sensor.OrientationSensor.ReadingChanged -= OrientationSensor_ReadingChanged;
         }
 
         /// <summary>
@@ -53,6 +63,7 @@ namespace DLR_Data_App.Views
             _sensor.Compass.Reset();
             _sensor.Gyroscope.Reset();
             _sensor.Magnetometer.Reset();
+            _sensor.OrientationSensor.Reset();
 
             LblXAccelerometerCurrent.Text = _sensor.Accelerometer.CurrentX.ToString("N");
             LblYAccelerometerCurrent.Text = _sensor.Accelerometer.CurrentY.ToString("N");
@@ -83,6 +94,11 @@ namespace DLR_Data_App.Views
             LblXMagnetometerMax.Text = _sensor.Magnetometer.MaxX.ToString("N");
             LblYMagnetometerMax.Text = _sensor.Magnetometer.MaxY.ToString("N");
             LblZMagnetometerMax.Text = _sensor.Magnetometer.MaxZ.ToString("N");
+
+            var eulerOrientation = _sensor.OrientationSensor.Orientation.ToEulerAngles();
+            LblXOrientationCurrent.Text = eulerOrientation.X.ToDegrees().ToString("N");
+            LblYOrientationCurrent.Text = eulerOrientation.Y.ToDegrees().ToString("N");
+            LblZOrientationCurrent.Text = eulerOrientation.Z.ToDegrees().ToString("N");
 
             Velocity = 0;
             MovementSum = 0;

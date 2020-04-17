@@ -501,6 +501,76 @@
                            Grid.Column="2"/>
                 </Grid>
 
+                <Grid x:Name="GridOrientationSensor">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{res:Translate orientationSensor}"
+                           FontSize="Medium"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Start"
+                           Grid.ColumnSpan="3"
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+
+                    <Label Text="{res:Translate current}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="1"
+                           Grid.Column="1" />
+
+                    <Label Text="X:"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           Grid.Row="2"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="LblXOrientationCurrent"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="2"
+                           Grid.Column="1"/>
+
+                    <Label Text="Y:"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           Grid.Row="3"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="LblYOrientationCurrent"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="3"
+                           Grid.Column="1"/>
+
+                    <Label Text="Z:"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           Grid.Row="4"
+                           Grid.Column="0"/>
+
+                    <Label x:Name="LblZOrientationCurrent"
+                           Text="0.0"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           FontSize="Large"
+                           Grid.Row="4"
+                           Grid.Column="1"/>
+                </Grid>
+
                 <Grid x:Name="GridMovement">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />

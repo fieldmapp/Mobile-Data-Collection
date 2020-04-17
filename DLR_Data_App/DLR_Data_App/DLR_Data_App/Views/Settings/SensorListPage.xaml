@@ -23,6 +23,7 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
                 <Label Text="{res:Translate accelerometer}"
@@ -73,6 +74,14 @@
                         Toggled="Switch_magnetometer_Toggled"
                         Grid.Row="5"
                         Grid.Column="1" />
+                <Label Text="{res:Translate orientationSensor}"
+                       Grid.Row="6"
+                       Grid.Column="0"/>
+                <Switch x:Name="SwitchOrientationSensor"
+                        IsToggled="True"
+                        Toggled="SwitchOrientationSensor_Toggled"
+                        Grid.Row="6"
+                        Grid.Column="1"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

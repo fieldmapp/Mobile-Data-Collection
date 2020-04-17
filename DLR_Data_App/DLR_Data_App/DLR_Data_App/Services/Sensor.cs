@@ -16,6 +16,7 @@ namespace DLR_Data_App.Services
         public Sensors.Gps Gps;
         public Sensors.Gyroscope Gyroscope;
         public Sensors.Magnetometer Magnetometer;
+        public Sensors.OrientationSensor OrientationSensor;
 
         /// <summary>
         /// Checks for preference changes before opening the page.
@@ -106,7 +107,8 @@ namespace DLR_Data_App.Services
 
             if (Preferences.Get("magnetometer", true))
             {
-                if (Xamarin.Essentials.Magnetometer.IsMonitoring) return;
+                if (Xamarin.Essentials.Magnetometer.IsMonitoring)
+                    return;
                 try
                 {
                     Xamarin.Essentials.Magnetometer.Start(_speed);
@@ -121,6 +123,25 @@ namespace DLR_Data_App.Services
                 }
                 catch (FeatureNotSupportedException) { }
             }
+
+            if (Preferences.Get("orientationsensor", true))
+            {
+                if (Xamarin.Essentials.OrientationSensor.IsMonitoring)
+                    return;
+                try
+                {
+                    Xamarin.Essentials.OrientationSensor.Start(_speed);
+                }
+                catch (FeatureNotSupportedException) { }
+            }
+            else
+            {
+                try
+                {
+                    Xamarin.Essentials.OrientationSensor.Stop();
+                }
+                catch (FeatureNotSupportedException) { }
+            }
         }
 
         public Sensor()
@@ -131,6 +152,7 @@ namespace DLR_Data_App.Services
             Gps = new Sensors.Gps();
             Gyroscope = new Sensors.Gyroscope();
             Magnetometer = new Sensors.Magnetometer();
+            OrientationSensor = new Sensors.OrientationSensor();
 
             Init();
 
@@ -139,6 +161,7 @@ namespace DLR_Data_App.Services
             Xamarin.Essentials.Compass.ReadingChanged += Compass.Reading_Changed;
             Xamarin.Essentials.Gyroscope.ReadingChanged += Gyroscope.Reading_Changed;
             Xamarin.Essentials.Magnetometer.ReadingChanged += Magnetometer.Reading_Changed;
+            Xamarin.Essentials.OrientationSensor.ReadingChanged += OrientationSensor.Reading_Changed;
 
             UpdateGps();
         }

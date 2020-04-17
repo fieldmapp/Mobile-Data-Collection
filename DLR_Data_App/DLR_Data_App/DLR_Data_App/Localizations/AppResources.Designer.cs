@@ -766,6 +766,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Orientation sensor ähnelt.
+        /// </summary>
+        internal static string orientationSensor {
+            get {
+                return ResourceManager.GetString("orientationSensor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Please complete the profiling. ähnelt.
         /// </summary>
         internal static string pleaseCompleteProfiling {
