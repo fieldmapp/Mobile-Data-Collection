@@ -631,6 +631,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bewegung ähnelt.
+        /// </summary>
+        internal static string movement {
+            get {
+                return ResourceManager.GetString("movement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
         internal static string name {

@@ -593,4 +593,7 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen fÃ
   <data name="orientationSensor" xml:space="preserve">
     <value>Orientierungssensor</value>
   </data>
+  <data name="movement" xml:space="preserve">
+    <value>Movement</value>
+  </data>
 </root>

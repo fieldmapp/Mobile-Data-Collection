@@ -25,7 +25,8 @@ namespace DLR_Data_App.Views
                 new HomeMenuItem { Id = MenuItemType.Sensortest, Title=AppResources.sensortest },
                 new HomeMenuItem { Id = MenuItemType.Settings, Title=AppResources.settings },
                 new HomeMenuItem { Id = MenuItemType.About, Title=AppResources.about },
-                new HomeMenuItem { Id = MenuItemType.Logout, Title=AppResources.logout }
+                new HomeMenuItem { Id = MenuItemType.Logout, Title=AppResources.logout },
+                new HomeMenuItem { Id = MenuItemType.DistanceMeasuringDemo, Title=AppResources.movement }
             };
 
             ListViewMenu.ItemsSource = menuItems;

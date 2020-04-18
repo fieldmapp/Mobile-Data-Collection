@@ -9,7 +9,8 @@
         About,
         Logout,
         ProfilingList,
-        CurrentProfiling
+        CurrentProfiling,
+        DistanceMeasuringDemo
     }
     public class HomeMenuItem
     {
