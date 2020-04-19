@@ -44,13 +44,16 @@ namespace DLR_Data_App.Views
         private async void StartButton_Clicked(object sender, EventArgs e)
         {
             if (Started)
-                return;
-
-            Timekeeper.Start();
-            Sensor.Instance.Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
-            await Task.Delay(MeasuringDuration);
-            Sensor.Instance.Accelerometer.ReadingChanged -= Accelerometer_ReadingChanged;
-            var output = JsonTranslator.GetJson(DataPoints);
+            {
+                Sensor.Instance.Accelerometer.ReadingChanged -= Accelerometer_ReadingChanged;
+                var output = JsonTranslator.GetJson(DataPoints);
+            }
+            else
+            {
+                Started = true;
+                Timekeeper.Start();
+                Sensor.Instance.Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
+            }
         }
 
         private void Accelerometer_ReadingChanged(object sender, Xamarin.Essentials.AccelerometerChangedEventArgs e)
