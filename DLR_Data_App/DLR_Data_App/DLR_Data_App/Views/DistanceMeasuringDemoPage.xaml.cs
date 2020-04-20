@@ -16,21 +16,32 @@ namespace DLR_Data_App.Views
     public partial class DistanceMeasuringDemoPage : ContentPage
     {
         static readonly TimeSpan MeasuringDuration = TimeSpan.FromSeconds(10);
-        struct DataPoint
+        struct AccelerationDataPoint
         {
             public TimeSpan TimeStamp;
             public Vector3 Acceleration;
-            public Quaternion Orientation;
 
-            public DataPoint(TimeSpan timeStamp, Vector3 acceleration, Quaternion orientation)
+            public AccelerationDataPoint(TimeSpan timeStamp, Vector3 acceleration)
             {
                 TimeStamp = timeStamp;
                 Acceleration = acceleration;
-                Orientation = orientation;
             }
         }
 
-        List<DataPoint> DataPoints = new List<DataPoint>();
+        struct OrientationDataPoint
+        {
+            public TimeSpan TimeStamp;
+            public Quaternion Rotation;
+
+            public OrientationDataPoint(TimeSpan timeStamp, Quaternion rotation)
+            {
+                TimeStamp = timeStamp;
+                Rotation = rotation;
+            }
+        }
+
+        List<AccelerationDataPoint> AccelerometerDataPoints = new List<AccelerationDataPoint>();
+        List<OrientationDataPoint> OrientationDataPoints = new List<OrientationDataPoint>();
 
         Stopwatch Timekeeper = new Stopwatch();
 
@@ -41,24 +52,33 @@ namespace DLR_Data_App.Views
             InitializeComponent();
         }
 
-        private async void StartButton_Clicked(object sender, EventArgs e)
+        private void StartButton_Clicked(object sender, EventArgs e)
         {
             if (Started)
             {
+                Timekeeper.Stop();
+                Sensor.Instance.OrientationSensor.ReadingChanged -= OrientationSensor_ReadingChanged;
                 Sensor.Instance.Accelerometer.ReadingChanged -= Accelerometer_ReadingChanged;
-                var output = JsonTranslator.GetJson(DataPoints);
+                var accelerations = JsonTranslator.GetJson(AccelerometerDataPoints);
+                var orientations = JsonTranslator.GetJson(OrientationDataPoints);
             }
             else
             {
                 Started = true;
                 Timekeeper.Start();
+                Sensor.Instance.OrientationSensor.ReadingChanged += OrientationSensor_ReadingChanged;
                 Sensor.Instance.Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
             }
         }
 
+        private void OrientationSensor_ReadingChanged(object sender, Xamarin.Essentials.OrientationSensorChangedEventArgs e)
+        {
+            OrientationDataPoints.Add(new OrientationDataPoint(Timekeeper.Elapsed, e.Reading.Orientation));
+        }
+
         private void Accelerometer_ReadingChanged(object sender, Xamarin.Essentials.AccelerometerChangedEventArgs e)
         {
-            DataPoints.Add(new DataPoint(Timekeeper.Elapsed, e.Reading.Acceleration, Sensor.Instance.OrientationSensor.Orientation));
+            AccelerometerDataPoints.Add(new AccelerationDataPoint(Timekeeper.Elapsed, e.Reading.Acceleration));
         }
     }
 }
