@@ -12,26 +12,36 @@ namespace DatasetDisplayer
 {
     public class MainViewModel
     {
-        public struct DataPoint
+        public struct AccelerationDataPoint
         {
             public TimeSpan TimeStamp;
             public Vector3 Acceleration;
-            public Quaternion Orientation;
 
-            public DataPoint(TimeSpan timeStamp, Vector3 acceleration, Quaternion orientation)
+            public AccelerationDataPoint(TimeSpan timeStamp, Vector3 acceleration)
             {
                 TimeStamp = timeStamp;
                 Acceleration = acceleration;
-                Orientation = orientation;
             }
         }
 
-        public struct TransformedDataPoint
+        public struct OrientationDataPoint
+        {
+            public TimeSpan TimeStamp;
+            public Quaternion Rotation;
+
+            public OrientationDataPoint(TimeSpan timeStamp, Quaternion rotation)
+            {
+                TimeStamp = timeStamp;
+                Rotation = rotation;
+            }
+        }
+
+        public struct CombinedDataPoint
         {
             public TimeSpan TimeStamp;
             public Vector3 OrientatedAcceleration;
 
-            public TransformedDataPoint(TimeSpan timeStamp, Vector3 orientatedAcceleration)
+            public CombinedDataPoint(TimeSpan timeStamp, Vector3 orientatedAcceleration)
             {
                 TimeStamp = timeStamp;
                 OrientatedAcceleration = orientatedAcceleration;
@@ -53,16 +63,106 @@ namespace DatasetDisplayer
         public MainViewModel()
         {
             this.MyModel = new PlotModel { Title = "Example 1" };
-            var dataJson = File.ReadAllText("data.json");
-            var dataList = JsonTranslator.GetFromJson<List<DataPoint>>(dataJson);
-            var transformedDataList = dataList.Select(d => new TransformedDataPoint(d.TimeStamp, Vector3.Transform(d.Acceleration, d.Orientation))).ToList();
-            var velocities = CalculateVelocities(transformedDataList);
-            //AddAccelerationSeries(transformedDataList);
-            //AddVelocitySeries(transformedDataList);
+            var accelerationJson = File.ReadAllText("accelerationData.json");
+            var orientationJson = File.ReadAllText("orientationData.json");
+            var accelerations = JsonTranslator.GetFromJson<List<AccelerationDataPoint>>(accelerationJson);
+            var orientations = JsonTranslator.GetFromJson<List<OrientationDataPoint>>(orientationJson);
+            var orientedAccelerations = MatchOrientationAndAccelerations(accelerations, orientations);
+            var filteredAccelerations = ApplyRollingAverageToAcceleration(orientedAccelerations, 50);
+            var velocities = CalculateVelocities(filteredAccelerations);
+            //var filteredVelocities = ApplyRollingAverageToVelocities(velocities);
+            //AddAccelerationSeries(orientedAccelerations);
+            //AddAccelerationSeries(filteredAccelerations);
+            //AddVelocitySeries(velocities);
             AddDistanceSeries(velocities);
         }
 
-        private List<VelocityDataPoint> CalculateVelocities(List<TransformedDataPoint> transformedDataList)
+        private List<CombinedDataPoint> MatchOrientationAndAccelerations(List<AccelerationDataPoint> accelerations, List<OrientationDataPoint> orientations)
+        {
+            var result = new List<CombinedDataPoint>();
+            int skipped = 0;
+            for (int i = 0; i < accelerations.Count; i++)
+            {
+                var nearestSmallerOrientationIndex = -1;
+                for (int j = orientations.Count - 1; j >= 0; j--)
+                {
+                    if (accelerations[i].TimeStamp > orientations[j].TimeStamp)
+                    {
+                        nearestSmallerOrientationIndex = j;
+                        break;
+                    }
+                }
+                if (nearestSmallerOrientationIndex == -1)
+                {
+                    //what now?
+                    skipped++;
+                    continue;
+                }
+
+                if (nearestSmallerOrientationIndex == accelerations.Count - 1)
+                {
+                    result.Add(new CombinedDataPoint(accelerations[i].TimeStamp, Vector3.Transform(accelerations[i].Acceleration, orientations[accelerations.Count - 1].Rotation)));
+                    continue;
+                }
+
+                //lerp between orientations[nearestSmallerOrientationIndex] and orientations[nearestSmallerOrientationIndex + 1]
+                var durationBetweenOrientationFrames = (orientations[nearestSmallerOrientationIndex + 1].TimeStamp - orientations[nearestSmallerOrientationIndex].TimeStamp).TotalSeconds;
+                var durationToNextOrientationFrame = (orientations[nearestSmallerOrientationIndex + 1].TimeStamp - accelerations[i].TimeStamp).TotalSeconds;
+                var fractionToNextFrame = durationToNextOrientationFrame / durationBetweenOrientationFrames;
+                var lerpedRotation = Quaternion.Lerp(orientations[nearestSmallerOrientationIndex].Rotation, orientations[nearestSmallerOrientationIndex + 1].Rotation, (float)fractionToNextFrame);
+
+                result.Add(new CombinedDataPoint(accelerations[i].TimeStamp, Vector3.Transform(accelerations[i].Acceleration, lerpedRotation)));
+            }
+            return result;
+        }
+
+        private List<CombinedDataPoint> ApplyRollingAverageToAcceleration(List<CombinedDataPoint> accelerations, int halfWidth)
+        {
+            var result = new List<CombinedDataPoint>();
+            for (int i = 0; i < halfWidth; i++)
+            {
+                result.Add(accelerations[i]);
+            }
+            for (int i = halfWidth; i < accelerations.Count - halfWidth; i++)
+            {
+                var localSum = Vector3.Zero;
+                for (int j = -halfWidth; j < halfWidth; j++)
+                {
+                    localSum += accelerations[i + j].OrientatedAcceleration;
+                }
+                result.Add(new CombinedDataPoint(accelerations[i].TimeStamp, localSum / (halfWidth * 2f)));
+            }
+            for (int i = accelerations.Count - halfWidth; i < accelerations.Count; i++)
+            {
+                result.Add(accelerations[i]);
+            }
+            return result;
+        }
+
+        private List<VelocityDataPoint> ApplyRollingAverageToVelocities(List<VelocityDataPoint> velocities, int halfWidth)
+        {
+            var result = new List<VelocityDataPoint>();
+            for (int i = 0; i < halfWidth; i++)
+            {
+                result.Add(velocities[i]);
+            }
+            for (int i = halfWidth; i < velocities.Count - halfWidth; i++)
+            {
+                var localSum = Vector3.Zero;
+                for (int j = -halfWidth; j < halfWidth; j++)
+                {
+                    localSum += velocities[i + j].OrientatedVelocity;
+                }
+                result.Add(new VelocityDataPoint(velocities[i].TimeStamp, localSum / (halfWidth * 2f)));
+            }
+            for (int i = velocities.Count - halfWidth; i < velocities.Count; i++)
+            {
+                result.Add(velocities[i]);
+            }
+            return result;
+        }
+
+        private List<VelocityDataPoint> CalculateVelocities(List<CombinedDataPoint> transformedDataList)
         {
             var result = new List<VelocityDataPoint>();
             Vector3 Velocity = Vector3.Zero;
@@ -119,7 +219,7 @@ namespace DatasetDisplayer
             return result;
         }
 
-        private void AddAccelerationSeries(List<TransformedDataPoint> transformedDataList)
+        private void AddAccelerationSeries(List<CombinedDataPoint> transformedDataList)
         {
             var xSeries = new LineSeries();
             var ySeries = new LineSeries();
@@ -138,7 +238,7 @@ namespace DatasetDisplayer
         
         public PlotModel MyModel { get; private set; }
 
-        const int InitEnd = 555;
+        const int InitEnd = 1400;
 
         public void AddVelocitySeries(List<VelocityDataPoint> velocityDataPoints)
         {
@@ -148,11 +248,10 @@ namespace DatasetDisplayer
 
             for (int i = 0; i < velocityDataPoints.Count; i++)
             {
-                xSeries.Points.Add(new OxyPlot.DataPoint(velocityDataPoints[i].TimeStamp.TotalSeconds, velocityDataPoints[i].OrientatedVelocity.X));
-                ySeries.Points.Add(new OxyPlot.DataPoint(velocityDataPoints[i].TimeStamp.TotalSeconds, velocityDataPoints[i].OrientatedVelocity.Y));
-                zSeries.Points.Add(new OxyPlot.DataPoint(velocityDataPoints[i].TimeStamp.TotalSeconds, velocityDataPoints[i].OrientatedVelocity.Z));
+                xSeries.Points.Add(new DataPoint(velocityDataPoints[i].TimeStamp.TotalSeconds, velocityDataPoints[i].OrientatedVelocity.X));
+                ySeries.Points.Add(new DataPoint(velocityDataPoints[i].TimeStamp.TotalSeconds, velocityDataPoints[i].OrientatedVelocity.Y));
+                zSeries.Points.Add(new DataPoint(velocityDataPoints[i].TimeStamp.TotalSeconds, velocityDataPoints[i].OrientatedVelocity.Z));
             }
-            
             
             MyModel.Series.Add(xSeries);
             MyModel.Series.Add(ySeries);
