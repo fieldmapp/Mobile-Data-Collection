@@ -594,6 +594,15 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen fÃ
     <value>Orientierungssensor</value>
   </data>
   <data name="movement" xml:space="preserve">
-    <value>Movement</value>
+    <value>Bewegung</value>
+  </data>
+  <data name="calibrationpleasehold" xml:space="preserve">
+    <value>Kalibrierung. Bitte das GerÃ¤t still halten.</value>
+  </data>
+  <data name="finish" xml:space="preserve">
+    <value>Beenden</value>
+  </data>
+  <data name="start" xml:space="preserve">
+    <value>Start</value>
   </data>
 </root>

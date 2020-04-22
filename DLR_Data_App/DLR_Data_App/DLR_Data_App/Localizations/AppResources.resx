@@ -594,6 +594,15 @@ Consent of the data subject means any freely given, specific, informed and unamb
     <value>Orientation sensor</value>
   </data>
   <data name="movement" xml:space="preserve">
-    <value>Bewegung</value>
+    <value>Movement</value>
+  </data>
+  <data name="calibrationpleasehold" xml:space="preserve">
+    <value>Calibration. Please hold the device still</value>
+  </data>
+  <data name="finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="start" xml:space="preserve">
+    <value>Start</value>
   </data>
 </root>

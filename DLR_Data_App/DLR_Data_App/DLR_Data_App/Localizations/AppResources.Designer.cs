@@ -196,6 +196,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Calibration. Please hold the device still ähnelt.
+        /// </summary>
+        internal static string calibrationpleasehold {
+            get {
+                return ResourceManager.GetString("calibrationpleasehold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
         /// </summary>
         internal static string cancel {
@@ -421,6 +430,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Finish ähnelt.
+        /// </summary>
+        internal static string finish {
+            get {
+                return ResourceManager.GetString("finish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die General ähnelt.
         /// </summary>
         internal static string general {
@@ -631,7 +649,7 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Bewegung ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Movement ähnelt.
         /// </summary>
         internal static string movement {
             get {
@@ -1167,6 +1185,15 @@ namespace DLR_Data_App.Localizations {
         internal static string skip {
             get {
                 return ResourceManager.GetString("skip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Start ähnelt.
+        /// </summary>
+        internal static string start {
+            get {
+                return ResourceManager.GetString("start", resourceCulture);
             }
         }
         
