@@ -68,7 +68,8 @@ namespace DatasetDisplayer
             var accelerations = JsonTranslator.GetFromJson<List<AccelerationDataPoint>>(accelerationJson);
             var orientations = JsonTranslator.GetFromJson<List<OrientationDataPoint>>(orientationJson);
             var orientedAccelerations = MatchOrientationAndAccelerations(accelerations, orientations);
-            var filteredAccelerations = ApplyRollingAverageToAcceleration(orientedAccelerations, 50);
+            var calibratedAccelerations = CalibrateAccelerations(orientedAccelerations);
+            var filteredAccelerations = ApplyRollingAverageToAcceleration(calibratedAccelerations, 50);
             var velocities = CalculateVelocities(filteredAccelerations);
             //var filteredVelocities = ApplyRollingAverageToVelocities(velocities);
             //AddAccelerationSeries(orientedAccelerations);
@@ -162,12 +163,12 @@ namespace DatasetDisplayer
             return result;
         }
 
-        private List<VelocityDataPoint> CalculateVelocities(List<CombinedDataPoint> transformedDataList)
+        private List<CombinedDataPoint> CalibrateAccelerations(List<CombinedDataPoint> transformedDataList)
         {
-            var result = new List<VelocityDataPoint>();
+            var result = new List<CombinedDataPoint>();
+            //var result = new List<VelocityDataPoint>();
             Vector3 Velocity = Vector3.Zero;
             Vector3 MovedDistance = Vector3.Zero;
-            const float G = 9.80665f;
             Vector3[] InitSteps = new Vector3[InitEnd];
             Vector3 ConstantAcceleration = new Vector3();
             Vector3 AccelerationStandardVariance = new Vector3();
@@ -196,23 +197,19 @@ namespace DatasetDisplayer
                 }
                 if (i >= InitEnd)
                 {
-                    var velocityChange = transformedDataList[i].OrientatedAcceleration - ConstantAcceleration;
-                    float xChange = velocityChange.X,
-                        yChange = velocityChange.Y,
-                        zChange = velocityChange.Z;
-                    if (Math.Abs(xChange) < AccelerationStandardVariance.X)
-                        xChange = 0;
-                    if (Math.Abs(yChange) < AccelerationStandardVariance.Y)
-                        yChange = 0;
-                    if (Math.Abs(zChange) < AccelerationStandardVariance.Z)
-                        zChange = 0;
-                    velocityChange = new Vector3(xChange, yChange, zChange);
+                    var acceleration = transformedDataList[i].OrientatedAcceleration - ConstantAcceleration;
+                    float xAcceleration = acceleration.X,
+                        yAcceleration = acceleration.Y,
+                        zAcceleration = acceleration.Z;
+                    if (Math.Abs(xAcceleration) < AccelerationStandardVariance.X)
+                        xAcceleration = 0;
+                    if (Math.Abs(yAcceleration) < AccelerationStandardVariance.Y)
+                        yAcceleration = 0;
+                    if (Math.Abs(zAcceleration) < AccelerationStandardVariance.Z)
+                        zAcceleration = 0;
+                    acceleration = new Vector3(xAcceleration, yAcceleration, zAcceleration);
 
-                    var elapsedSeconds = (float)(transformedDataList[i].TimeStamp - transformedDataList[i - 1].TimeStamp).TotalSeconds;
-
-                    Velocity += velocityChange * G * elapsedSeconds;
-
-                    result.Add(new VelocityDataPoint(transformedDataList[i].TimeStamp, Velocity));
+                    result.Add(new CombinedDataPoint(transformedDataList[i].TimeStamp, acceleration));
                 }
             }
 
@@ -226,9 +223,9 @@ namespace DatasetDisplayer
             var zSeries = new LineSeries();
             foreach (var transformedDataPoint in transformedDataList)
             {
-                xSeries.Points.Add(new OxyPlot.DataPoint(transformedDataPoint.TimeStamp.TotalSeconds, transformedDataPoint.OrientatedAcceleration.X));
-                ySeries.Points.Add(new OxyPlot.DataPoint(transformedDataPoint.TimeStamp.TotalSeconds, transformedDataPoint.OrientatedAcceleration.Y));
-                zSeries.Points.Add(new OxyPlot.DataPoint(transformedDataPoint.TimeStamp.TotalSeconds, transformedDataPoint.OrientatedAcceleration.Z));
+                xSeries.Points.Add(new DataPoint(transformedDataPoint.TimeStamp.TotalSeconds, transformedDataPoint.OrientatedAcceleration.X));
+                ySeries.Points.Add(new DataPoint(transformedDataPoint.TimeStamp.TotalSeconds, transformedDataPoint.OrientatedAcceleration.Y));
+                zSeries.Points.Add(new DataPoint(transformedDataPoint.TimeStamp.TotalSeconds, transformedDataPoint.OrientatedAcceleration.Z));
             }
 
             MyModel.Series.Add(xSeries);
@@ -258,6 +255,24 @@ namespace DatasetDisplayer
             MyModel.Series.Add(zSeries);
         }
 
+        public List<VelocityDataPoint> CalculateVelocities(List<CombinedDataPoint> calibratedAccelerations)
+        {
+            var velocity = Vector3.Zero;
+            const float G = 9.80665f;
+            var result = new List<VelocityDataPoint>();
+
+            for (int i = 1; i < calibratedAccelerations.Count; i++)
+            {
+                var elapsedSeconds = (float)(calibratedAccelerations[i].TimeStamp - calibratedAccelerations[i - 1].TimeStamp).TotalSeconds;
+                
+                velocity += (calibratedAccelerations[i].OrientatedAcceleration + (calibratedAccelerations[i].OrientatedAcceleration - calibratedAccelerations[i - 1].OrientatedAcceleration).Abs() / 2f) * G * elapsedSeconds;
+                
+                result.Add(new VelocityDataPoint(calibratedAccelerations[i].TimeStamp, velocity));
+            }
+
+            return result;
+        }
+
         public void AddDistanceSeries(List<VelocityDataPoint> velocityDataPoints)
         {
             var xSeries = new LineSeries();
@@ -271,9 +286,9 @@ namespace DatasetDisplayer
                 var elapsedSeconds = (float)(velocityDataPoints[i].TimeStamp - velocityDataPoints[i - 1].TimeStamp).TotalSeconds;
                 Movement += velocityDataPoints[i].OrientatedVelocity * elapsedSeconds;
 
-                xSeries.Points.Add(new OxyPlot.DataPoint(velocityDataPoints[i].TimeStamp.TotalSeconds, Movement.X));
-                ySeries.Points.Add(new OxyPlot.DataPoint(velocityDataPoints[i].TimeStamp.TotalSeconds, Movement.Y));
-                zSeries.Points.Add(new OxyPlot.DataPoint(velocityDataPoints[i].TimeStamp.TotalSeconds, Movement.Z));
+                xSeries.Points.Add(new DataPoint(velocityDataPoints[i].TimeStamp.TotalSeconds, Movement.X));
+                ySeries.Points.Add(new DataPoint(velocityDataPoints[i].TimeStamp.TotalSeconds, Movement.Y));
+                zSeries.Points.Add(new DataPoint(velocityDataPoints[i].TimeStamp.TotalSeconds, Movement.Z));
             }
 
             MyModel.Series.Add(xSeries);
