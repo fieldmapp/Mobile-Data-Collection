@@ -68,10 +68,9 @@ namespace DatasetDisplayer
             var accelerations = JsonTranslator.GetFromJson<List<AccelerationDataPoint>>(accelerationJson);
             var orientations = JsonTranslator.GetFromJson<List<OrientationDataPoint>>(orientationJson);
             var orientedAccelerations = MatchOrientationAndAccelerations(accelerations, orientations);
-            var calibratedAccelerations = CalibrateAccelerations(orientedAccelerations);
-            var filteredAccelerations = ApplyRollingAverageToAcceleration(calibratedAccelerations, 50);
+            var calibratedAccelerations = CalibrateAccelerations(orientedAccelerations, 650);
+            var filteredAccelerations = ApplyRollingAverageToAcceleration(calibratedAccelerations, 10);
             var velocities = CalculateVelocities(filteredAccelerations);
-            //var filteredVelocities = ApplyRollingAverageToVelocities(velocities);
             //AddAccelerationSeries(orientedAccelerations);
             //AddAccelerationSeries(filteredAccelerations);
             //AddVelocitySeries(velocities);
@@ -163,51 +162,51 @@ namespace DatasetDisplayer
             return result;
         }
 
-        private List<CombinedDataPoint> CalibrateAccelerations(List<CombinedDataPoint> transformedDataList)
+        private List<CombinedDataPoint> CalibrateAccelerations(List<CombinedDataPoint> transformedDataList, int initEnd)
         {
             var result = new List<CombinedDataPoint>();
             //var result = new List<VelocityDataPoint>();
             Vector3 Velocity = Vector3.Zero;
             Vector3 MovedDistance = Vector3.Zero;
-            Vector3[] InitSteps = new Vector3[InitEnd];
+            Vector3[] InitSteps = new Vector3[initEnd];
             Vector3 ConstantAcceleration = new Vector3();
             Vector3 AccelerationStandardVariance = new Vector3();
 
             for (int i = 0; i < transformedDataList.Count; i++)
             {
-                if (i < InitEnd)
+                if (i < initEnd)
                 {
                     InitSteps[i] = transformedDataList[i].OrientatedAcceleration;
                 }
-                if (i == InitEnd)
+                if (i == initEnd)
                 {
                     var sampleSum = Vector3.Zero;
-                    for (int j = 0; j < InitEnd; j++)
+                    for (int j = 0; j < initEnd; j++)
                     {
                         sampleSum += InitSteps[j];
                     }
 
-                    ConstantAcceleration = sampleSum / InitEnd;
+                    ConstantAcceleration = sampleSum / initEnd;
                     var sampleDerivationSum = Vector3.Zero;
-                    for (int j = 0; j < InitEnd; j++)
+                    for (int j = 0; j < initEnd; j++)
                     {
                         sampleDerivationSum += (InitSteps[j] - ConstantAcceleration).Abs();
                     }
-                    AccelerationStandardVariance = sampleDerivationSum.PointwiseDoubleOperation(Math.Sqrt) / InitEnd;
+                    AccelerationStandardVariance = sampleDerivationSum.PointwiseDoubleOperation(Math.Sqrt) / initEnd;
                 }
-                if (i >= InitEnd)
+                if (i >= initEnd)
                 {
                     var acceleration = transformedDataList[i].OrientatedAcceleration - ConstantAcceleration;
-                    float xAcceleration = acceleration.X,
-                        yAcceleration = acceleration.Y,
-                        zAcceleration = acceleration.Z;
-                    if (Math.Abs(xAcceleration) < AccelerationStandardVariance.X)
-                        xAcceleration = 0;
-                    if (Math.Abs(yAcceleration) < AccelerationStandardVariance.Y)
-                        yAcceleration = 0;
-                    if (Math.Abs(zAcceleration) < AccelerationStandardVariance.Z)
-                        zAcceleration = 0;
-                    acceleration = new Vector3(xAcceleration, yAcceleration, zAcceleration);
+                    //float xAcceleration = acceleration.X,
+                    //    yAcceleration = acceleration.Y,
+                    //    zAcceleration = acceleration.Z;
+                    //if (Math.Abs(xAcceleration) < AccelerationStandardVariance.X)
+                    //    xAcceleration = 0;
+                    //if (Math.Abs(yAcceleration) < AccelerationStandardVariance.Y)
+                    //    yAcceleration = 0;
+                    //if (Math.Abs(zAcceleration) < AccelerationStandardVariance.Z)
+                    //    zAcceleration = 0;
+                    //acceleration = new Vector3(xAcceleration, yAcceleration, zAcceleration);
 
                     result.Add(new CombinedDataPoint(transformedDataList[i].TimeStamp, acceleration));
                 }
@@ -234,8 +233,6 @@ namespace DatasetDisplayer
         }
         
         public PlotModel MyModel { get; private set; }
-
-        const int InitEnd = 1400;
 
         public void AddVelocitySeries(List<VelocityDataPoint> velocityDataPoints)
         {
