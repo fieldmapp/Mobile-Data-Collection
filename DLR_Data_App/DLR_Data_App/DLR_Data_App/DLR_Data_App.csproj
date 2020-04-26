@@ -42,6 +42,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Views\GaitTrackingMeasuringDemoPage.xaml.cs">
+      <DependentUpon>GaitTrackingMeasuringDemoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Login\NewProfilePage.xaml.cs">
       <DependentUpon>NewProfilePage.xaml</DependentUpon>
     </Compile>

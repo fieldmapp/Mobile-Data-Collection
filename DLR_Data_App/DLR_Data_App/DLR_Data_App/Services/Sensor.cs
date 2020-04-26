@@ -92,7 +92,7 @@ namespace DLR_Data_App.Services
                 {
                     try
                     {
-                        Xamarin.Essentials.Gyroscope.Start(_uiSensorSpeed);
+                        Xamarin.Essentials.Gyroscope.Start(_fastSensorSpeed);
                     }
                     catch (FeatureNotSupportedException) { }
                 }
@@ -112,7 +112,7 @@ namespace DLR_Data_App.Services
                     return;
                 try
                 {
-                    Xamarin.Essentials.Magnetometer.Start(_uiSensorSpeed);
+                    Xamarin.Essentials.Magnetometer.Start(_fastSensorSpeed);
                 }
                 catch (FeatureNotSupportedException) { }
             }

@@ -35,13 +35,14 @@ namespace DLR_Data_App.Views
             _sensor.OrientationSensor.ReadingChanged += OrientationSensor_ReadingChanged;
         }
 
-        int display2;
+        int DisplayOrientationSensorCounter;
 
         private void OrientationSensor_ReadingChanged(object sender, Xamarin.Essentials.OrientationSensorChangedEventArgs e)
         {
-            display2++;
-            if (display2 > 10)
+            DisplayOrientationSensorCounter++;
+            if (DisplayOrientationSensorCounter > 10)
             {
+                DisplayOrientationSensorCounter = 0;
                 var eulerOrientation = _sensor.OrientationSensor.Orientation.ToEulerAngles();
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -109,21 +110,15 @@ namespace DLR_Data_App.Views
             LblXOrientationCurrent.Text = eulerOrientation.X.ToDegrees().ToString("N");
             LblYOrientationCurrent.Text = eulerOrientation.Y.ToDegrees().ToString("N");
             LblZOrientationCurrent.Text = eulerOrientation.Z.ToDegrees().ToString("N");
-
-            Velocity = new Vector3();
-            MovedDistance = new Vector3();
-            InitStep = 0;
-            MovementZ.Text = "0";
         }
+
+        int AccelerometerDisplayCounter;
 
         /// <summary>
         /// Updates acceleration values
         /// </summary>
         public void OnAccelerometer_Change(object sender, EventArgs e)
         {
-            var partsOfOneSecond = MovementStopWatch.ElapsedMilliseconds / 1000f;
-            MovementStopWatch.Restart();
-
             var currentX = _sensor.Accelerometer.CurrentX.ToString("N");
             var currentY = _sensor.Accelerometer.CurrentY.ToString("N");
             var currentZ = _sensor.Accelerometer.CurrentZ.ToString("N");
@@ -132,87 +127,22 @@ namespace DLR_Data_App.Views
             var maxY = _sensor.Accelerometer.MaxY.ToString("N");
             var maxZ = _sensor.Accelerometer.MaxZ.ToString("N");
 
-            Device.BeginInvokeOnMainThread(() =>
+            AccelerometerDisplayCounter++;
+            if (AccelerometerDisplayCounter > 10)
             {
-                LblXAccelerometerCurrent.Text = currentX;
-                LblYAccelerometerCurrent.Text = currentY;
-                LblZAccelerometerCurrent.Text = currentZ;
-
-                LblXAccelerometerMax.Text = maxX;
-                LblYAccelerometerMax.Text = maxY;
-                LblZAccelerometerMax.Text = maxZ;
-            });
-
-            if (InitStep < InitEnd)
-            {
-                
-                InitSteps[InitStep] = Vector3.Transform(_sensor.Accelerometer.Current, _sensor.OrientationSensor.Orientation);
-                InitStep++;
-            }
-            else if (InitStep == InitEnd)
-            {
-                var sampleSum = Vector3.Zero;
-                for (int i = 0; i < InitEnd; i++)
+                AccelerometerDisplayCounter = 0;
+                Device.BeginInvokeOnMainThread(() =>
                 {
-                    sampleSum += InitSteps[i];
-                }
+                    LblXAccelerometerCurrent.Text = currentX;
+                    LblYAccelerometerCurrent.Text = currentY;
+                    LblZAccelerometerCurrent.Text = currentZ;
 
-                ConstantAcceleration = sampleSum / InitEnd;
-                var sampleDerivationSum = Vector3.Zero;
-                for (int i = 0; i < InitEnd; i++)
-                {
-                    sampleDerivationSum += (InitSteps[i] - ConstantAcceleration).Abs();
-                }
-                AccelerationStandardVariance = sampleDerivationSum.PointwiseDoubleOperation(Math.Sqrt) / InitEnd;
-                InitStep++;
-            }
-            else
-            {
-                var velocityChange = Vector3.Transform(_sensor.Accelerometer.Current, _sensor.OrientationSensor.Orientation) - ConstantAcceleration;
-                float xChange = velocityChange.X, 
-                    yChange = velocityChange.Y, 
-                    zChange = velocityChange.Z;
-                if (Math.Abs(xChange) < AccelerationStandardVariance.X)
-                    xChange = 0;
-                if (Math.Abs(yChange) < AccelerationStandardVariance.Y)
-                    yChange = 0;
-                if (Math.Abs(zChange) < AccelerationStandardVariance.Z)
-                    zChange = 0;
-                velocityChange = new Vector3(xChange, yChange, zChange);
-
-                Velocity += velocityChange * G * partsOfOneSecond;
-
-                MovedDistance += Velocity * partsOfOneSecond;
-
-                display++;
-                if (display > 10)
-                {
-                    display = 0;
-
-                    var localMovedXDistance = MovedDistance.X.ToString("N");
-                    var localMovedYDistance = MovedDistance.Y.ToString("N");
-                    var localMovedZDistance = MovedDistance.Z.ToString("N");
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        MovementX.Text = localMovedXDistance;
-                        MovementY.Text = localMovedYDistance;
-                        MovementZ.Text = localMovedZDistance;
-                    });
-                }
+                    LblXAccelerometerMax.Text = maxX;
+                    LblYAccelerometerMax.Text = maxY;
+                    LblZAccelerometerMax.Text = maxZ;
+                });
             }
         }
-
-        int display = 0;
-
-        Stopwatch MovementStopWatch = Stopwatch.StartNew();
-        Vector3 Velocity;
-        Vector3 MovedDistance;
-        const float G = 9.80665f;
-        Vector3[] InitSteps = new Vector3[InitEnd];
-        Vector3 ConstantAcceleration;
-        Vector3 AccelerationStandardVariance;
-        int InitStep = 0;
-        const int InitEnd = 1000;
 
         /// <summary>
         /// Updates barometer values
@@ -248,32 +178,52 @@ namespace DLR_Data_App.Views
             });
         }
 
+        int GyroscopeDisplayCounter;
+
         /// <summary>
         /// Updates gyroscope values.
         /// </summary>
         public void OnGyroscope_Change(object sender, EventArgs e)
         {
-            LblXGyroscopeCurrent.Text = _sensor.Gyroscope.CurrentX.ToString("N");
-            LblYGyroscopeCurrent.Text = _sensor.Gyroscope.CurrentY.ToString("N");
-            LblZGyroscopeCurrent.Text = _sensor.Gyroscope.CurrentZ.ToString("N");
+            GyroscopeDisplayCounter++;
+            if (GyroscopeDisplayCounter > 10)
+            {
+                GyroscopeDisplayCounter = 0;
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    LblXGyroscopeCurrent.Text = _sensor.Gyroscope.CurrentX.ToString("N");
+                    LblYGyroscopeCurrent.Text = _sensor.Gyroscope.CurrentY.ToString("N");
+                    LblZGyroscopeCurrent.Text = _sensor.Gyroscope.CurrentZ.ToString("N");
 
-            LblXGyroscopeMax.Text = _sensor.Gyroscope.MaxX.ToString("N");
-            LblYGyroscopeMax.Text = _sensor.Gyroscope.MaxY.ToString("N");
-            LblZGyroscopeMax.Text = _sensor.Gyroscope.MaxZ.ToString("N");
+                    LblXGyroscopeMax.Text = _sensor.Gyroscope.MaxX.ToString("N");
+                    LblYGyroscopeMax.Text = _sensor.Gyroscope.MaxY.ToString("N");
+                    LblZGyroscopeMax.Text = _sensor.Gyroscope.MaxZ.ToString("N");
+                });
+            }
         }
 
+        int MagnetometerDisplayCounter;
         /// <summary>
         /// Updates magnetometer values.
         /// </summary>
         public void OnMagnetometer_Change(object sender, EventArgs e)
         {
-            LblXMagnetometerCurrent.Text = _sensor.Magnetometer.CurrentX.ToString("N");
-            LblYMagnetometerCurrent.Text = _sensor.Magnetometer.CurrentY.ToString("N");
-            LblZMagnetometerCurrent.Text = _sensor.Magnetometer.CurrentZ.ToString("N");
+            MagnetometerDisplayCounter++;
 
-            LblXMagnetometerMax.Text = _sensor.Magnetometer.MaxX.ToString("N");
-            LblYMagnetometerMax.Text = _sensor.Magnetometer.MaxY.ToString("N");
-            LblZMagnetometerMax.Text = _sensor.Magnetometer.MaxZ.ToString("N");
+            if (MagnetometerDisplayCounter > 10)
+            {
+                MagnetometerDisplayCounter = 0;
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    LblXMagnetometerCurrent.Text = _sensor.Magnetometer.CurrentX.ToString("N");
+                    LblYMagnetometerCurrent.Text = _sensor.Magnetometer.CurrentY.ToString("N");
+                    LblZMagnetometerCurrent.Text = _sensor.Magnetometer.CurrentZ.ToString("N");
+
+                    LblXMagnetometerMax.Text = _sensor.Magnetometer.MaxX.ToString("N");
+                    LblYMagnetometerMax.Text = _sensor.Magnetometer.MaxY.ToString("N");
+                    LblZMagnetometerMax.Text = _sensor.Magnetometer.MaxZ.ToString("N");
+                });
+            }
         }
     }
 }
