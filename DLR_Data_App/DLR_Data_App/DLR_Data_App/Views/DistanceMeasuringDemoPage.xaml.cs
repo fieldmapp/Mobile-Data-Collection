@@ -126,7 +126,6 @@ namespace DLR_Data_App.Views
             {
                 var elapsedSeconds = (float)(velocityDataPoints[i].TimeStamp - velocityDataPoints[i - 1].TimeStamp).TotalSeconds;
                 Movement += velocityDataPoints[i].OrientatedVelocity * elapsedSeconds;
-                
             }
             return Movement;
         }
@@ -163,9 +162,9 @@ namespace DLR_Data_App.Views
                     continue;
                 }
 
-                if (nearestSmallerOrientationIndex == accelerations.Count - 1)
+                if (nearestSmallerOrientationIndex == orientations.Count - 1)
                 {
-                    result.Add(new CombinedDataPoint(accelerations[i].TimeStamp, Vector3.Transform(accelerations[i].Acceleration, orientations[accelerations.Count - 1].Rotation)));
+                    result.Add(new CombinedDataPoint(accelerations[i].TimeStamp, Vector3.Transform(accelerations[i].Acceleration, orientations[orientations.Count - 1].Rotation)));
                     continue;
                 }
 
