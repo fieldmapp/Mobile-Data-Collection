@@ -116,6 +116,10 @@
     <Folder Include="Resources\drawable-xxxhdpi\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AndroidVoskBinding\AndroidVoskBinding.csproj">
+      <Project>{f93735e3-228c-4dc6-bd7f-242786284489}</Project>
+      <Name>AndroidVoskBinding</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DLR_Data_App\DLR_Data_App.csproj">
       <Project>{8D4418A5-EFC0-4FEC-A4EE-88A26F42945A}</Project>
       <Name>DLR_Data_App</Name>
