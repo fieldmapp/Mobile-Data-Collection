@@ -7,7 +7,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -81,23 +81,46 @@ namespace DLR_Data_App.Views
         {
             if (Started)
             {
-                Timekeeper.Stop();
-                Sensor.Instance.OrientationSensor.ReadingChanged -= OrientationSensor_ReadingChanged;
-                Sensor.Instance.Accelerometer.ReadingChanged -= Accelerometer_ReadingChanged;
+                try
+                {
+                    Timekeeper.Stop();
+                    Sensor.Instance.OrientationSensor.ReadingChanged -= OrientationSensor_ReadingChanged;
+                    Sensor.Instance.Accelerometer.ReadingChanged -= Accelerometer_ReadingChanged;
+                    if (AccelerometerDataPoints.Count == 0 && OrientationDataPoints.Count != 0)
+                    {
+                        await DisplayAlert(AppResources.hint, "Es wurden keine Beschleunigungsdaten gesammelt.", AppResources.ok);
+                        return;
+                    }
+                    if (OrientationDataPoints.Count == 0 && AccelerometerDataPoints.Count != 0)
+                    {
+                        await DisplayAlert(AppResources.hint, "Es wurden keine Orientierungsdaten gesammelt.", AppResources.ok);
+                        return;
+                    }
+                    if (OrientationDataPoints.Count == 0 && AccelerometerDataPoints.Count == 0)
+                    {
+                        await DisplayAlert(AppResources.hint, "Es wurden weder Orientierungsdaten noch Beschleunigungsdaten gesammelt.", AppResources.ok);
+                        return;
+                    }
 
-                var orientedAccelerations = MatchOrientationAndAccelerations(AccelerometerDataPoints, OrientationDataPoints);
-                var calibratedAccelerations = CalibrateAccelerations(orientedAccelerations, 650);
-                var filteredAccelerations = ApplyRollingAverageToAcceleration(calibratedAccelerations, 10);
-                var velocities = CalculateVelocities(filteredAccelerations);
-                var traveledDistance = GetFinalDistance(velocities);
-                CenterText.Text = traveledDistance.ToString();
-                CenterText.IsVisible = true;
-                AccelerometerDataPoints = new List<AccelerationDataPoint>();
-                OrientationDataPoints = new List<OrientationDataPoint>();
-                StartButton.Text = AppResources.start;
-                Started = false;
-                Layout.BackgroundColor = Color.White;
-                Timekeeper.Reset();
+                    var orientedAccelerations = MatchOrientationAndAccelerations(AccelerometerDataPoints, OrientationDataPoints);
+                    var calibratedAccelerations = CalibrateAccelerations(orientedAccelerations, 650);
+                    var filteredAccelerations = ApplyRollingAverageToAcceleration(calibratedAccelerations, 10);
+                    var velocities = CalculateVelocities(filteredAccelerations);
+                    var traveledDistance = GetFinalDistance(velocities);
+                    CenterText.Text = traveledDistance.ToString();
+                    CenterText.IsVisible = true;
+                    AccelerometerDataPoints = new List<AccelerationDataPoint>();
+                    OrientationDataPoints = new List<OrientationDataPoint>();
+                    StartButton.Text = AppResources.start;
+                    Started = false;
+                    Layout.BackgroundColor = Color.White;
+                    Timekeeper.Reset();
+                }
+                catch (Exception ex)
+                {
+                    await Clipboard.SetTextAsync(ex.ToString());
+                    await DisplayAlert(AppResources.hint, "Fehler wurde in Zwischenablage kopiert.", AppResources.ok);
+                }
             }
             else
             {
@@ -181,6 +204,9 @@ namespace DLR_Data_App.Views
 
         private List<CombinedDataPoint> ApplyRollingAverageToAcceleration(List<CombinedDataPoint> accelerations, int halfWidth)
         {
+            if (accelerations.Count < halfWidth * 2)
+                return accelerations;
+
             var result = new List<CombinedDataPoint>();
             for (int i = 0; i < halfWidth; i++)
             {
