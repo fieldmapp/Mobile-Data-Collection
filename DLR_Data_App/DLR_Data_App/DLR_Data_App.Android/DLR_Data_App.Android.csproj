@@ -83,10 +83,12 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AndroidToast.cs" />
+    <Compile Include="AndroidSpeechRecognizer.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\questions" />
-    <None Include="Assets\profilings" />
+    <AndroidAsset Include="Assets\profilings" />
+    <AndroidAsset Include="Assets\voskModelDe.zip" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />

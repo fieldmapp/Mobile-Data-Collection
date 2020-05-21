@@ -51,6 +51,8 @@ namespace DLR_Data_App.Views
 
         void CreateNeededRessources()
         {
+            DependencyService.Get<ISpeechRecognizer>().Start();
+
             Sensor.Instance = new Sensor();
 
             MenuItems = new Dictionary<MenuItemType, NavigationPage>

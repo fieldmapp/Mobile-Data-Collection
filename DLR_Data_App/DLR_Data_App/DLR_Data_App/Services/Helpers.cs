@@ -59,48 +59,54 @@ namespace DLR_Data_App.Services
             try
             {
                 var fileStreamIn = new FileStream(zipFilePath, FileMode.Open, FileAccess.Read);
-                var zipInStream = new ZipInputStream(fileStreamIn);
-                var entry = zipInStream.GetNextEntry();
-                if (Directory.Exists(unzipFolderPath))
-                    Directory.Delete(unzipFolderPath, true);
-
-                while (entry != null && entry.CanDecompress)
-                {
-                    var outputFile = unzipFolderPath + @"/" + entry.Name;
-                    var outputDirectory = Path.GetDirectoryName(outputFile);
-
-                    if (outputDirectory != null)
-                    {
-                        if (!Directory.Exists(outputDirectory))
-                            Directory.CreateDirectory(outputDirectory);
-                    }
-                    else
-                    {
-                        return false;
-                    }
-
-                    if (entry.IsFile)
-                    {
-                        var fileStreamOut = new FileStream(outputFile, FileMode.Create, FileAccess.Write);
-                        int size;
-                        byte[] buffer = new byte[4096];
-                        do
-                        {
-                            size = await zipInStream.ReadAsync(buffer, 0, buffer.Length);
-                            await fileStreamOut.WriteAsync(buffer, 0, size);
-                        } while (size > 0);
-                        fileStreamOut.Close();
-                    }
-
-                    entry = zipInStream.GetNextEntry();
-                }
-                zipInStream.Close();
+                await UnzipFileAsync(fileStreamIn, unzipFolderPath);
                 fileStreamIn.Close();
+                return true;
             }
             catch (Exception)
             {
                 return false;
             }
+        }
+
+        public static async Task<bool> UnzipFileAsync(Stream fileStreamIn, string unzipFolderPath)
+        {
+            var zipInStream = new ZipInputStream(fileStreamIn);
+            var entry = zipInStream.GetNextEntry();
+            if (Directory.Exists(unzipFolderPath))
+                Directory.Delete(unzipFolderPath, true);
+
+            while (entry != null && entry.CanDecompress)
+            {
+                var outputFile = unzipFolderPath + @"/" + entry.Name;
+                var outputDirectory = Path.GetDirectoryName(outputFile);
+
+                if (outputDirectory != null)
+                {
+                    if (!Directory.Exists(outputDirectory))
+                        Directory.CreateDirectory(outputDirectory);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (entry.IsFile)
+                {
+                    var fileStreamOut = new FileStream(outputFile, FileMode.Create, FileAccess.Write);
+                    int size;
+                    byte[] buffer = new byte[4096];
+                    do
+                    {
+                        size = await zipInStream.ReadAsync(buffer, 0, buffer.Length);
+                        await fileStreamOut.WriteAsync(buffer, 0, size);
+                    } while (size > 0);
+                    fileStreamOut.Close();
+                }
+
+                entry = zipInStream.GetNextEntry();
+            }
+            zipInStream.Close();
             return true;
         }
 
