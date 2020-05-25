@@ -11,6 +11,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using DLR_Data_App;
 using DLR_Data_App.Services;
+using Java.Lang;
 using Xamarin.Forms;
 
 namespace com.DLR.DLR_Data_App.Droid
@@ -24,6 +25,8 @@ namespace com.DLR.DLR_Data_App.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             Xamarin.Essentials.Platform.Init(Application);
+
+            JavaSystem.LoadLibrary("kaldi_jni");
 
             base.OnCreate(savedInstanceState);
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
