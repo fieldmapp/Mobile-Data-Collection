@@ -8,12 +8,14 @@
     <ContentPage.Content>
         <StackLayout HorizontalOptions="CenterAndExpand"
                      VerticalOptions="CenterAndExpand">
-            <Label HorizontalOptions="CenterAndExpand"
-                   VerticalOptions="EndAndExpand"
-                   HorizontalTextAlignment="Center"
-                   VerticalTextAlignment="End"
-                   x:Name="RecognizedStringLabel"
-                   FontSize="Medium"/>
+            <ScrollView>
+                <Label HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="EndAndExpand"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="End"
+                       x:Name="RecognizedStringLabel"
+                       FontSize="Medium"/>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
