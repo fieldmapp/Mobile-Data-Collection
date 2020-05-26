@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DLR_Data_App.Services
 {
-    static class JsonTranslator
+    public static class JsonTranslator
     {
         /// <summary>
         /// Shared JsonSerializer. Is threadsafe, see https://www.newtonsoft.com/json/help/html/JsonNetVsDotNetSerializers.htm

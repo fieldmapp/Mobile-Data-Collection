@@ -15,40 +15,41 @@ using DLR_Data_App.Services;
 using Xamarin.Forms;
 using System.IO;
 using System.Threading.Tasks;
+using DLR_Data_App.Models;
 
 [assembly: Dependency(typeof(com.DLR.DLR_Data_App.Droid.AndroidSpeechRecognizer))]
 namespace com.DLR.DLR_Data_App.Droid
 {
-    class AndroidSpeechRecognizer : ISpeechRecognizer
+    class AndroidSpeechRecognizer : Java.Lang.Object, IRecognitionListener, ISpeechRecognizer
     {
-        class KaldiListener : Java.Lang.Object, IRecognitionListener
+        class PartialResult
         {
+            public string partial;
+        }
 
-            public void OnError(Java.Lang.Exception ex) { }
+        class Result
+        {
+            public string text;
+            public List<ResultPart> result;
+        }
 
-            public void OnPartialResult(string p0)
-            {
-
-            }
-
-            public void OnResult(string p0)
-            {
-
-            }
-
-            public void OnTimeout()
-            {
-
-            }
+        class ResultPart
+        {
+            public float conf;
+            public float end;
+            public float start;
+            public string word;
         }
 
         const string ModelFolderName = "voskModel";
         const string FinishedFileName = "finished";
         const string VoskModelFileName = "voskModelDe.zip";
-
-        KaldiListener Listener = new KaldiListener();
         Org.Kaldi.SpeechRecognizer KaldiRecognizer;
         bool ShouldBeRunning = false;
+
+        public event EventHandler<VoiceRecognitionPartialResult> PartialResultRecognized;
+        public event EventHandler<VoiceRecognitionResult> ResultRecognized;
+
         public AndroidSpeechRecognizer()
         {
             Initialize();
@@ -69,20 +70,31 @@ namespace com.DLR.DLR_Data_App.Droid
                 }
             }
 
-            try
+            var model = new Model(targetDir);
+            KaldiRecognizer = new SpeechRecognizer(model);
+            KaldiRecognizer.AddListener(this);
+            if (ShouldBeRunning)
             {
-                var model = new Model(targetDir);
-                KaldiRecognizer = new Org.Kaldi.SpeechRecognizer(model);
-                KaldiRecognizer.AddListener(Listener);
-                if (ShouldBeRunning)
-                {
-                    KaldiRecognizer.StartListening();
-                }
+                KaldiRecognizer.StartListening();
             }
-            catch (System.Exception ex)
-            {
-                throw;
-            }
+        }
+        public void OnError(Java.Lang.Exception ex) { }
+
+        public void OnPartialResult(string p0)
+        {
+            var partialResult = JsonTranslator.GetFromJson<PartialResult>(p0);
+            PartialResultRecognized?.Invoke(this, new VoiceRecognitionPartialResult(partialResult.partial));
+        }
+
+        public void OnResult(string p0)
+        {
+            var result = JsonTranslator.GetFromJson<Result>(p0);
+            ResultRecognized?.Invoke(this, new VoiceRecognitionResult(result.text));
+        }
+
+        public void OnTimeout()
+        {
+
         }
 
         public void Start()
