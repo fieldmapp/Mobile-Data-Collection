@@ -83,13 +83,15 @@ namespace com.DLR.DLR_Data_App.Droid
         public void OnPartialResult(string p0)
         {
             var partialResult = JsonTranslator.GetFromJson<PartialResult>(p0);
-            PartialResultRecognized?.Invoke(this, new VoiceRecognitionPartialResult(partialResult.partial));
+            if (!string.IsNullOrWhiteSpace(partialResult.partial))
+                PartialResultRecognized?.Invoke(this, new VoiceRecognitionPartialResult(partialResult.partial));
         }
 
         public void OnResult(string p0)
         {
             var result = JsonTranslator.GetFromJson<Result>(p0);
-            ResultRecognized?.Invoke(this, new VoiceRecognitionResult(result.text));
+            if (!string.IsNullOrWhiteSpace(result.text))
+                ResultRecognized?.Invoke(this, new VoiceRecognitionResult(result.text));
         }
 
         public void OnTimeout()
