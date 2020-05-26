@@ -605,4 +605,7 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen fÃ
   <data name="start" xml:space="preserve">
     <value>Start</value>
   </data>
+  <data name="voicerecognition" xml:space="preserve">
+    <value>Spracherkennung</value>
+  </data>
 </root>

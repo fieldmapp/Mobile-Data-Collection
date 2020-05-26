@@ -64,7 +64,8 @@ namespace DLR_Data_App.Views
                 { MenuItemType.Sensortest, new NavigationPage(new SensorTestPage()) },
                 { MenuItemType.Settings, new NavigationPage(new SettingsPage()) },
                 { MenuItemType.About, new NavigationPage(new AboutPage()) },
-                { MenuItemType.DistanceMeasuringDemo, new NavigationPage(new DistanceMeasuringDemoPage()) }
+                { MenuItemType.DistanceMeasuringDemo, new NavigationPage(new DistanceMeasuringDemoPage()) },
+                { MenuItemType.VoiceRecognitionDemo, new NavigationPage(new VoiceRecognitionDemoPage()) }
             };
         }
     }
