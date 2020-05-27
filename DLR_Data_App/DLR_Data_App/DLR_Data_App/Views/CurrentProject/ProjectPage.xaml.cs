@@ -280,8 +280,11 @@ namespace DLR_Data_App.Views.CurrentProject
                 var tableName = _workingProject.GetTableName();
                 var status = Database.InsertCustomValues(tableName, elementNameList, elementValueList);
 
-                ProfilingStorageManager.ProjectsFilledSinceLastProfilingCompletion++;
-                ProfilingStorageManager.SaveCurrentAnswer();
+                if (!string.IsNullOrWhiteSpace(_workingProject.ProfilingId))
+                {
+                    ProfilingStorageManager.ProjectsFilledSinceLastProfilingCompletion++;
+                    ProfilingStorageManager.SaveCurrentAnswer();
+                }
 
                 string message;
                 if (status)
