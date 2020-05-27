@@ -67,6 +67,9 @@ namespace DLR_Data_App.Views.CurrentProject
 
         private async Task CheckForProfilingCompletionNeeded(Project project)
         {
+            if (string.IsNullOrWhiteSpace(project.ProfilingId))
+                return;
+
             if (!ProfilingStorageManager.IsProfilingModuleLoaded(project.ProfilingId))
             {
                 var profilingList = await App.CurrentMainPage.NavigateFromMenu(MenuItemType.ProfilingList);
