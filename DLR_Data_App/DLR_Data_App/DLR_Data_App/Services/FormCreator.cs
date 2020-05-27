@@ -251,9 +251,15 @@ namespace DLR_Data_App.Services
                 elementName = elementName.Remove(indexOfOpeningCurlyBrace, indexOfClosingCurlyBrace - indexOfOpeningCurlyBrace + 1);
             }
 
-            var elementNameLabel = new Label { Text = elementName };
+            var elementNameLabel = new Label { 
+                Text = elementName, 
+                HorizontalOptions = LayoutOptions.Center,
+                HorizontalTextAlignment = TextAlignment.Center,
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label))
+            };
             var grid = new Grid { IsVisible = false };
             grid.Children.Add(elementNameLabel, 0, 0);
+            Grid.SetRowSpan(elementNameLabel, 2);
 
             var hintText = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(parms.Element.Hint, parms.CurrentProject.Languages);
 
