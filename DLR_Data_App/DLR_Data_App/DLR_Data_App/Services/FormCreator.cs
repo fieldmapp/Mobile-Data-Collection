@@ -74,6 +74,8 @@ namespace DLR_Data_App.Services
                     datePicker.Date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
                 else if (child is Label label && label.StyleId != null)
                     label.Text = string.Empty;
+                else if (child is TimePicker timePicker)
+                    timePicker.Time = TimeSpan.Zero;
             }
         }
 
@@ -93,8 +95,16 @@ namespace DLR_Data_App.Services
                     var picker = Children.OfType<Picker>().First();
                     return new KeyValuePair<string, string>(picker.StyleId, picker.SelectedIndex.ToString());
                 case "inputDate":
-                    var datePicker = Children.OfType<DatePicker>().First();
-                    return new KeyValuePair<string, string>(datePicker.StyleId, Grid.IsVisible ? datePicker.Date.Ticks.ToString() : EmptyDateTicks.ToString());
+                    if (!Grid.IsVisible)
+                        return new KeyValuePair<string, string>(Data.Name, EmptyDateTicks.ToString());
+                    
+                    long ticks = 0;
+                    var datePicker = Children.OfType<DatePicker>().FirstOrDefault();
+                    ticks += datePicker?.Date.Ticks ?? 0;
+                    var timePicker = Children.OfType<TimePicker>().FirstOrDefault();
+                    ticks += timePicker?.Time.Ticks ?? 0;
+                    
+                    return new KeyValuePair<string, string>(datePicker.StyleId, ticks.ToString());
                 case "inputLocation":
                 case "compass":
                     var dataLabel = Children.OfType<Label>().Where(l => l.StyleId != null).First();
@@ -112,7 +122,7 @@ namespace DLR_Data_App.Services
         /// Sets grids content based on the given projetData
         /// </summary>
         /// <param name="projectData">Dictionary matching an elements name and its content</param>
-        /// <returns><see cref="Boolean"/> indicating if this FormElement set something non initial to one of its views</returns>
+        /// <returns><see cref="Boolean"/> indicating if this FormElement is set to a value which is making it valid</returns>
         public bool LoadContentFromProjectData(Dictionary<string, string> projectData)
         {
             switch (Type)
@@ -129,14 +139,21 @@ namespace DLR_Data_App.Services
                     picker.SelectedIndex = savedIndex;
                     return savedIndex >= 0;
                 case "inputDate":
-                    var datePicker = Children.OfType<DatePicker>().First();
-                    var savedData = projectData[datePicker.StyleId];
+                    var datePicker = Children.OfType<DatePicker>().FirstOrDefault();
+                    var timePicker = Children.OfType<TimePicker>().FirstOrDefault();
+                    var savedData = projectData[Data.Name];
                     if (long.TryParse(savedData, out var ticks))
                     {
                         var newDate = new DateTime(ticks);
-                        datePicker.Date = newDate;
+                        
+                        if (datePicker != null)
+                            datePicker.Date = newDate - newDate.TimeOfDay;
+                        if (timePicker != null)
+                            timePicker.Time = newDate.TimeOfDay;
+
                         //TODO: Replace future check by using odk constraints
-                        return EmptyDateTicks != ticks && newDate <= DateTime.UtcNow;
+                        return (datePicker == null || (EmptyDateTicks != datePicker?.Date.Ticks && newDate <= DateTime.UtcNow))
+                            && (timePicker == null || timePicker.Time != TimeSpan.Zero);
                     }
                     return false;
                 case "inputLocation":
@@ -287,22 +304,41 @@ namespace DLR_Data_App.Services
             var grid = CreateStandardBaseGrid(parms);
             var formElement = new FormElement(grid, parms.Element, parms.Type);
             
+            TimePicker timePicker = null;
             var datePicker = new DatePicker { StyleId = parms.Element.Name };
-            
+
+            void onContentChange()
+            {
+                if (datePicker.Date > DateTime.UtcNow || (timePicker != null && timePicker.Time == TimeSpan.Zero))
+                    formElement.OnInvalidContentChange();
+                else
+                    formElement.OnValidContentChange();
+            }
+
             datePicker.Unfocused += (a, b) =>
             {
                 //TODO: Replace by using odk constraints
                 if (datePicker.Date > DateTime.UtcNow)
-                {
-                    formElement.OnInvalidContentChange();
                     parms.DisplayAlertFunc(AppResources.error, AppResources.selectedDateIsInFuture, AppResources.ok);
-                }
-                else
-                    formElement.OnValidContentChange();
+
+                onContentChange();
             };
             datePicker.Date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+
             grid.Children.Add(datePicker, 0, 1);
             Grid.SetColumnSpan(datePicker, 2);
+
+            if (parms.Element.Kind == "Full Date and Time")
+            {
+                timePicker = new TimePicker { StyleId = parms.Element.Name };
+                timePicker.Unfocused += (a, b) =>
+                {
+                    onContentChange();
+                };
+                timePicker.Time = TimeSpan.Zero;
+                grid.Children.Add(timePicker, 0, 2);
+                Grid.SetColumnSpan(timePicker, 2);
+            }
 
             return formElement;
         }
