@@ -18,11 +18,12 @@ namespace DLR_Data_App.Views
         public VoiceRecognitionDemoPage()
         {
             InitializeComponent();
-            var preKeywords = new string[] { "Rechts", "Vorn", "Links", "Position", "Start", "Stopp" };
-            var keywords = new string[] { "Hang Süd", "Hang Nord", "Vernässung", "Nassstelle", "Trockenstress", "Sandlinse", "Waldrand", "Hanglage", "Kuppe", "Verdichtungen" };
-            Keywords.Add("Vorgewende");
-            Keywords.AddRange(preKeywords.SelectMany(pre => keywords.Select(k => pre + " " + k)));
-            Keywords.AddRange(keywords);
+            Keywords.AddRange(new[]
+            {
+                "Anfang", "Ende", "Abbrechen", "Kuppe", "Verdichtungen", "Hang", "Sandlinse", "Vernässung", "Trockenstress", "Mäusefraß", "Wildschaden", "Vorgewende", "Waldrand",
+                "Links fünf Meter", "Links zehn Meter", "Links fünfzehn Meter", "Links zwanzig Meter",
+                "Rechts fünf Meter", "Rechts zehn Meter", "Rechts fünfzehn Meter", "Rechts zwanzig Meter"
+            });
         }
 
         string SafeString = string.Empty;
