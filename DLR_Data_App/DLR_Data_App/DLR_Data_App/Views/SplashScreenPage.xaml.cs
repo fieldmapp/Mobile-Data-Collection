@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using DLR_Data_App.Views.ProfilingList;
+using System.Runtime.CompilerServices;
+using System.Reflection;
 
 namespace DLR_Data_App.Views
 {
@@ -36,7 +38,7 @@ namespace DLR_Data_App.Views
         {
             Appearing -= SplashScreenPage_Appearing;
 
-            var builderTask = Task.Run(() => CreateNeededRessources());
+            var builderTask = CreateNeededRessources();
             var displayPrivacyPolicyTask = ShouldDisplayPrivacyPolicy ? DisplayAlert(AppResources.privacypolicy, AppResources.privacytext1, AppResources.accept, AppResources.decline) : Task.FromResult(true);
 
             var answer = await displayPrivacyPolicyTask;
@@ -46,27 +48,25 @@ namespace DLR_Data_App.Views
                 return;
             }
             await builderTask;
-            Application.Current.MainPage = new MainPage(MenuItems);
+            Application.Current.MainPage = new MainPage();
         }
 
-        void CreateNeededRessources()
+        Task CreateNeededRessources()
         {
-            DependencyService.Get<ISpeechRecognizer>().Start();
+            //altered from https://stackoverflow.com/a/28791265/8512719#
 
-            Sensor.Instance = new Sensor();
+            var tasksToDo = typeof(SplashScreenPage).Assembly.GetTypes()
+                .SelectMany(t => t.GetRuntimeMethods())
+                .Where(m => m.IsStatic && m.GetCustomAttribute<OnSplashScreenLoadAttribute>() != null)
+                .Select(m => new Task(() => m.Invoke(null, null)))
+                .ToList();
 
-            MenuItems = new Dictionary<MenuItemType, NavigationPage>
+            foreach (var task in tasksToDo)
             {
-                { MenuItemType.CurrentProject, new NavigationPage(new ProjectPage()) },
-                { MenuItemType.Projects, new NavigationPage(new ProjectListPage()) },
-                { MenuItemType.ProfilingList, new NavigationPage(new ProfilingListPage()) },
-                { MenuItemType.CurrentProfiling, new NavigationPage(new CurrentProfilingPage()) },
-                { MenuItemType.Sensortest, new NavigationPage(new SensorTestPage()) },
-                { MenuItemType.Settings, new NavigationPage(new SettingsPage()) },
-                { MenuItemType.About, new NavigationPage(new AboutPage()) },
-                { MenuItemType.DistanceMeasuringDemo, new NavigationPage(new DistanceMeasuringDemoPage()) },
-                { MenuItemType.VoiceRecognitionDemo, new NavigationPage(new VoiceRecognitionDemoPage()) }
-            };
+                task.Start();
+            }
+
+            return Task.WhenAll(tasksToDo);
         }
     }
 }

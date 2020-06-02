@@ -12,19 +12,38 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using DLR_Data_App.Views.ProfilingList;
 
 namespace DLR_Data_App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage
     {
+        private static Dictionary<MenuItemType, NavigationPage> LoadedMenuPages;
         private readonly Dictionary<MenuItemType, NavigationPage> _menuPages;
         private SemaphoreSlim NavigationLock = new SemaphoreSlim(1);
 
-        public MainPage(Dictionary<MenuItemType, NavigationPage> menuPages)
+        [OnSplashScreenLoad]
+        static void OnSplashscreenLoad()
+        {
+            LoadedMenuPages = new Dictionary<MenuItemType, NavigationPage>
+            {
+                { MenuItemType.CurrentProject, new NavigationPage(new ProjectPage()) },
+                { MenuItemType.Projects, new NavigationPage(new ProjectListPage()) },
+                { MenuItemType.ProfilingList, new NavigationPage(new ProfilingListPage()) },
+                { MenuItemType.CurrentProfiling, new NavigationPage(new CurrentProfilingPage()) },
+                { MenuItemType.Sensortest, new NavigationPage(new SensorTestPage()) },
+                { MenuItemType.Settings, new NavigationPage(new SettingsPage()) },
+                { MenuItemType.About, new NavigationPage(new AboutPage()) },
+                { MenuItemType.DistanceMeasuringDemo, new NavigationPage(new DistanceMeasuringDemoPage()) },
+                { MenuItemType.VoiceRecognitionDemo, new NavigationPage(new VoiceRecognitionDemoPage()) }
+            };
+        }
+
+        public MainPage()
         {
             InitializeComponent();
-            _menuPages = menuPages;
+            _menuPages = LoadedMenuPages;
 
             Detail = _menuPages[MenuItemType.Projects];
 

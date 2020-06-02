@@ -6,6 +6,13 @@ namespace DLR_Data_App.Services
 {
     public class Sensor
     {
+        [OnSplashScreenLoad]
+        static void OnSplashscreenLoad()
+        {
+            Sensor.Instance = new Sensor();
+        }
+
+
         public static Sensor Instance;
 
         private readonly SensorSpeed _uiSensorSpeed = SensorSpeed.UI;

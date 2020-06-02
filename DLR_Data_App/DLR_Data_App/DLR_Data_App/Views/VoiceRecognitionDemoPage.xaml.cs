@@ -28,6 +28,12 @@ namespace DLR_Data_App.Views
 
         string SafeString = string.Empty;
 
+        [OnSplashScreenLoad]
+        static void OnSplashScreenLoad()
+        {
+            DependencyService.Get<ISpeechRecognizer>().Start();
+        }
+
         protected override void OnAppearing()
         {
             SafeString = string.Empty;
