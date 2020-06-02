@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Android;
 using Android.App;
 using Android.Content.PM;
+using Android.Content.Res;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
@@ -138,25 +139,20 @@ namespace com.DLR.DLR_Data_App.Droid
             }
         }
 
+        const int BackButtonId = 16908332;
+
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            // check if the current item id 
-            // is equals to the back button id
-            if (item.ItemId == 16908332)
+            if (item.ItemId == BackButtonId)
             {
-                // retrieve the current xamarin forms page instance
-                var currentpage = (Xamarin.Forms.Application.Current as App).Navigation.CurrentPage;
-                if (!currentpage.SendBackButtonPressed())
-                {
-                    if (base.OnOptionsItemSelected(item))
-                        return true;
-                    else
-                        //Hack:
-                        //Assume the NavigationStack of MainPage.Detail is of height 1 (only root in stack)
-                        //Use MessagingCenter to open the Master menu
-                        //We need to override OnBackButtonPressed in every non-root Page to return true though
-                        MessagingCenter.Send(EventArgs.Empty, "OpenMasterMenu");
-                }
+                var navigationPage = (Xamarin.Forms.Application.Current as App).Navigation;
+                var currentPage = navigationPage.CurrentPage;
+                if (navigationPage.Navigation.NavigationStack.Count == 1)
+                    MessagingCenter.Send(EventArgs.Empty, "OpenMasterMenu");
+                else if (!currentPage.GetType().Overrides(typeof(Page).GetMethod("OnBackButtonPressed", System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.IgnoreReturn | System.Reflection.BindingFlags.Instance)))
+                    navigationPage.Navigation.PopAsync();
+                else if (!currentPage.SendBackButtonPressed())
+                    return base.OnOptionsItemSelected(item);
                 return false;
             }
             else
