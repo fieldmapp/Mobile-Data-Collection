@@ -109,13 +109,13 @@ namespace DLR_Data_App.Views
                 else
                 {
                     if ((DateTime.UtcNow - LastBackButtonPress).TotalSeconds < 3)
-                        return base.OnBackButtonPressed();
+                        DependencyService.Get<IAppCloser>().CloseApp();
                     else
                     {
                         LastBackButtonPress = DateTime.UtcNow;
                         DependencyService.Get<IToast>().ShortAlert(AppResources.appclosewarning);
-                        return true;
                     }
+                    return true;
                 }
             }
             else
