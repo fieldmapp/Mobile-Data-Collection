@@ -55,11 +55,5 @@ namespace DLR_Data_App.Views.Settings
                 await DisplayAlert(AppResources.removeaccount, AppResources.removeaccountfailure, AppResources.accept);
             }
         }
-
-        protected override bool OnBackButtonPressed()
-        {
-            Navigation.PopAsync();
-            return true;
-        }
     }
 }

@@ -87,11 +87,5 @@ namespace DLR_Data_App.Views.ProfilingList
         {
             await Navigation.PopModalAsync();
         }
-
-        protected override bool OnBackButtonPressed()
-        {
-            Navigation.PopModalAsync();
-            return true;
-        }
     }
 }

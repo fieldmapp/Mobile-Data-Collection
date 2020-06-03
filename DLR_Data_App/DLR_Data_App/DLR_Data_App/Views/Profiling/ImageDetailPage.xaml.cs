@@ -18,11 +18,5 @@ namespace DLR_Data_App.Views.Profiling
             InitializeComponent();
             Image.Source = imageSource;
 		}
-
-        protected override bool OnBackButtonPressed()
-        {
-            Navigation.PopAsync();
-            return true;
-        }
     }
 }

@@ -74,12 +74,6 @@ namespace DLR_Data_App.Views.CurrentProject
             RefreshVisibilityOnUnlockedElements();
         }
 
-        protected override bool OnBackButtonPressed()
-        {
-            Navigation.PopAsync();
-            return true;
-        }
-
         /// <summary>
         /// Updates view. Sets _pages and _formElements.
         /// </summary>

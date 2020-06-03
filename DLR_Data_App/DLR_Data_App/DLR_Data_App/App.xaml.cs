@@ -4,6 +4,7 @@ using DLR_Data_App.Models;
 using DLR_Data_App.Services;
 using Xamarin.Forms;
 using System;
+using DLR_Data_App.Views;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace DLR_Data_App
@@ -18,6 +19,7 @@ namespace DLR_Data_App
         public NavigationPage Navigation => (MainPage as MasterDetailPage)?.Detail as NavigationPage;
         public IStorageProvider StorageProvider;
         public Page CurrentPage => Navigation?.CurrentPage;
+        public new MainPage MainPage => base.MainPage as MainPage;
         
         /// <summary>
         /// Constructor with database support
@@ -34,7 +36,7 @@ namespace DLR_Data_App
             FolderLocation = folderPath;
             DatabaseLocation = databaseLocation;
             
-            MainPage = new LoginPage();
+            base.MainPage = new LoginPage();
         }
 
         protected override void OnStart()

@@ -40,11 +40,5 @@ namespace DLR_Data_App.Views.CurrentProject
             }
             _ = this.PushPage(new EditDataDetailPage(projectData));
         }
-
-        protected override bool OnBackButtonPressed()
-        {
-            Navigation.PopAsync();
-            return true;
-        }
     }
 }

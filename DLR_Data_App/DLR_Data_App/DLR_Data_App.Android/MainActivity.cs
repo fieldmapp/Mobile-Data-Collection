@@ -7,6 +7,7 @@ using Android;
 using Android.App;
 using Android.Content.PM;
 using Android.Content.Res;
+using Android.Hardware;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
@@ -145,13 +146,7 @@ namespace com.DLR.DLR_Data_App.Droid
         {
             if (item.ItemId == BackButtonId)
             {
-                var navigationPage = (Xamarin.Forms.Application.Current as App).Navigation;
-                var currentPage = navigationPage.CurrentPage;
-                if (navigationPage.Navigation.NavigationStack.Count == 1)
-                    MessagingCenter.Send(EventArgs.Empty, "OpenMasterMenu");
-                else if (!currentPage.GetType().Overrides(typeof(Page).GetMethod("OnBackButtonPressed", System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.IgnoreReturn | System.Reflection.BindingFlags.Instance)))
-                    navigationPage.Navigation.PopAsync();
-                else if (!currentPage.SendBackButtonPressed())
+                if (!BackButtonPress())
                     return base.OnOptionsItemSelected(item);
                 return false;
             }
@@ -161,6 +156,32 @@ namespace com.DLR.DLR_Data_App.Droid
                 //click, pass the event to the base
                 return base.OnOptionsItemSelected(item);
             }
+        }
+
+        bool BackButtonPress()
+        {
+            var navigationPage = (Xamarin.Forms.Application.Current as App).Navigation;
+            var currentPage = navigationPage.CurrentPage;
+            var mainPage = (Xamarin.Forms.Application.Current as App).MainPage;
+
+            bool onBackButtonPressedOverwritten = currentPage.GetType().Overrides(typeof(Page).GetMethod("OnBackButtonPressed", System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.IgnoreReturn | System.Reflection.BindingFlags.Instance));
+            if (onBackButtonPressedOverwritten)
+                return currentPage.SendBackButtonPressed();
+            else if (navigationPage.Navigation.ModalStack.Count > 0)
+                navigationPage.Navigation.PopModalAsync();
+            else if (navigationPage.Navigation.NavigationStack.Count > 1)
+                navigationPage.Navigation.PopAsync();
+            else
+                return mainPage.SendBackButtonPressed();
+            return true;
+        }
+
+        public override void OnBackPressed()
+        {
+            if ((Xamarin.Forms.Application.Current as App).MainPage == null)
+                base.OnBackPressed();
+            else
+                BackButtonPress();
         }
     }
 }

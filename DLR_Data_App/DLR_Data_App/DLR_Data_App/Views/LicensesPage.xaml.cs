@@ -16,11 +16,5 @@ namespace DLR_Data_App.Views
 		{
 			InitializeComponent ();
 		}
-
-        protected override bool OnBackButtonPressed()
-        {
-            Navigation.PopAsync();
-            return true;
-        }
     }
 }

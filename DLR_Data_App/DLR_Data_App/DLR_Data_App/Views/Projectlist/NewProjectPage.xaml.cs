@@ -88,11 +88,5 @@ namespace DLR_Data_App.Views.ProjectList
         {
             await Navigation.PopModalAsync();
         }
-
-        protected override bool OnBackButtonPressed()
-        {
-            Navigation.PopModalAsync();
-            return true;
-        }
     }
 }
