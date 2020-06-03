@@ -47,12 +47,14 @@ namespace com.DLR.DLR_Data_App.Droid
         Org.Kaldi.SpeechRecognizer KaldiRecognizer;
         bool ShouldBeRunning = false;
 
+        public Task LoadTask { get; }
+
         public event EventHandler<VoiceRecognitionPartialResult> PartialResultRecognized;
         public event EventHandler<VoiceRecognitionResult> ResultRecognized;
 
         public AndroidSpeechRecognizer()
         {
-            Initialize();
+            LoadTask = Initialize();
         }
 
         public async Task Initialize()

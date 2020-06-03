@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DLR_Data_App.Services
 {
@@ -11,5 +12,6 @@ namespace DLR_Data_App.Services
         event EventHandler<VoiceRecognitionResult> ResultRecognized;
         void Start();
         void Stop();
+        Task LoadTask { get; }
     }
 }

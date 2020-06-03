@@ -937,6 +937,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ready ähnelt.
+        /// </summary>
+        internal static string ready {
+            get {
+                return ResourceManager.GetString("ready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Remember login ähnelt.
         /// </summary>
         internal static string rememberlogin {

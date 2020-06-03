@@ -608,4 +608,7 @@ Consent of the data subject means any freely given, specific, informed and unamb
   <data name="voicerecognition" xml:space="preserve">
     <value>Voice recognition</value>
   </data>
+  <data name="ready" xml:space="preserve">
+    <value>Ready</value>
+  </data>
 </root>

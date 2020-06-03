@@ -1,9 +1,11 @@
-﻿using DLR_Data_App.Models;
+﻿using DLR_Data_App.Localizations;
+using DLR_Data_App.Models;
 using DLR_Data_App.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -34,8 +36,20 @@ namespace DLR_Data_App.Views
             DependencyService.Get<ISpeechRecognizer>().Start();
         }
 
+        CancellationTokenSource ShowReadyCancelationTokenSource;
+        async Task DisplayReady(CancellationToken cancelationToken)
+        {
+            await DependencyService.Get<ISpeechRecognizer>().LoadTask;
+            if (cancelationToken.IsCancellationRequested)
+                return;
+            RecognizedStringLabel.Text = SafeString = Environment.NewLine + Environment.NewLine + AppResources.ready;
+        }
+
+        Task ShowReadyTask;
         protected override void OnAppearing()
         {
+            ShowReadyCancelationTokenSource = new CancellationTokenSource();
+            ShowReadyTask = DisplayReady(ShowReadyCancelationTokenSource.Token);
             SafeString = string.Empty;
             var speechRecognizer = DependencyService.Get<ISpeechRecognizer>();
             speechRecognizer.PartialResultRecognized += SpeechRecognizer_PartialResultRecognized;
@@ -56,6 +70,7 @@ namespace DLR_Data_App.Views
 
         protected override void OnDisappearing()
         {
+            ShowReadyCancelationTokenSource.Cancel();
             var speechRecognizer = DependencyService.Get<ISpeechRecognizer>();
             speechRecognizer.PartialResultRecognized -= SpeechRecognizer_PartialResultRecognized;
             speechRecognizer.ResultRecognized -= SpeechRecognizer_ResultRecognized;
