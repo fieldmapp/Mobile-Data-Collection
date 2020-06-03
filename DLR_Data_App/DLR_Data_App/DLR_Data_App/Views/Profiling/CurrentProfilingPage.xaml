@@ -59,7 +59,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="{res:Translate deleteSavedAnswersProfiling}" Clicked="DeleteAnswersClicked"/>
         <Button Text="{res:Translate exportAnswersProfiling}" Clicked="ExportAnwersClicked"/>
         <!--Button to navigate to the evaluation main page-->
         <Button Text="{res:Translate evaluation}" Clicked="EvaluationClicked"/>

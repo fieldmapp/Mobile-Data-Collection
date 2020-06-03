@@ -71,11 +71,6 @@ namespace DLR_Data_App.Views.Profiling
         {
             ProfilingStorageManager.ExportAnswers();
         }
-
-        private void DeleteAnswersClicked(object sender, EventArgs e)
-        {
-            ProfilingStorageManager.ResetSavedAnswers();
-        }
     }
 }
 

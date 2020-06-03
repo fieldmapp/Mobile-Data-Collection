@@ -152,18 +152,6 @@ namespace DLR_Data_App.Services
         }
 
         /// <summary>
-        /// Resets all Answer Txt
-        /// </summary>
-        public static void ResetSavedAnswers()
-        {
-            //TODO
-            return;
-            //Answers = new Dictionary<string, List<IUserAnswer>>();
-            //LoadTranslatedProfilingMenuItems();
-            //SaveAnswers();
-        }
-
-        /// <summary>
         /// Creates Answers.csv with all Answers in one line 
         /// </summary>
         public static void CreateCSV()
