@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Android;
 using Android.App;
@@ -42,23 +43,24 @@ namespace com.DLR.DLR_Data_App.Droid
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
 
-            MessagingCenter.Subscribe<object, bool>(this, "ReloadToolbar", (sender, reload) =>
+            MessagingCenter.Subscribe<object, bool>(this, "ReloadToolbar", async (sender, reload) =>
             {
-                lock (ToolbarLock)
+                await ToolbarLock.WaitAsync();
                 {
                     if (reload)
                     {
                         ReloadToolbar();
                     }
                 }
+                ToolbarLock.Release();
             });
 
             EnsureAppPermission(Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage, Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation, Manifest.Permission.RecordAudio);
         }
         
         Page LastPage;
-        object ToolbarItemsLock = new object();
-        object ToolbarLock = new object();
+        Semaphore ToolbarItemsLock = new Semaphore(1, 1);
+        SemaphoreSlim ToolbarLock = new SemaphoreSlim(1);
 
         private void ResetToolbarItems(Page page, List<ToolbarItem> toolbarItems)
         {
@@ -67,7 +69,7 @@ namespace com.DLR.DLR_Data_App.Droid
             //TODO: Fix issue with tabbed page:
             Device.BeginInvokeOnMainThread(() =>
             {
-                lock (ToolbarItemsLock)
+                ToolbarItemsLock.WaitOne();
                 {
                     page.ToolbarItems.Clear();
                     foreach (var item in toolbarItems)
@@ -75,6 +77,7 @@ namespace com.DLR.DLR_Data_App.Droid
                         page.ToolbarItems.Add(item);
                     }
                 }
+                ToolbarItemsLock.Release();
             });
         }
 
