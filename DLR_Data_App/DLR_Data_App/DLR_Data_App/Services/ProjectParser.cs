@@ -152,6 +152,9 @@ namespace DLR_Data_App.Services
                                         case "kind":
                                             projectFormElements.Kind = controlValue.ToString();
                                             break;
+                                        case "length":
+                                            projectFormElements.Length = controlValue.ToString();
+                                            break;
                                     }
                                 }
                                 form.ElementList.Add(projectFormElements);

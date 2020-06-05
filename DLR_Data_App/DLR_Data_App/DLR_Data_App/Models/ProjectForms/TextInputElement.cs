@@ -1,4 +1,5 @@
 ﻿using DLR_Data_App.Models.ProjectModel;
+using DLR_Data_App.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,11 +9,15 @@ namespace DLR_Data_App.Models.ProjectForms
 {
     class TextInputElement : FormElement
     {
-        public TextInputElement(Grid grid, ProjectFormElements data, string type) : base(grid, data, type) { }
+        public TextInputElement(Grid grid, ProjectFormElements data, string type) : base(grid, data, type) 
+        {
+            LengthRange = OdkDataExtractor.GetRangeFromJsonString(data.Length, true, true);
+        }
 
+        public OdkRange LengthRange;
         public Entry Entry;
 
-        public override bool IsValid => !string.IsNullOrEmpty(Entry.Text) && base.IsValid;
+        public override bool IsValid => !string.IsNullOrEmpty(Entry.Text) && LengthRange.IsValidIntegerInput(Entry.Text.Length) && base.IsValid;
 
         public override string GetRepresentationValue() => Entry.Text;
 

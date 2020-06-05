@@ -31,5 +31,6 @@ namespace DLR_Data_App.Models.ProjectModel
         public string Type { get; set; }
         public string Range { get; set; }
         public string Kind { get; set; }
+        public string Length { get; set; }
     }
 }

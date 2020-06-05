@@ -183,7 +183,7 @@ namespace DLR_Data_App.Services
         /// </summary>
         /// <param name="jsonRangeString"><see cref="string"/> in json format, like produced from odk build in the range field</param>
         /// <returns><see cref="OdkRange"/> which represents a range</returns>
-        public static OdkRange GetRangeFromJsonString(string jsonRangeString)
+        public static OdkRange GetRangeFromJsonString(string jsonRangeString, bool? minInclusive = null, bool? maxInclusive = null)
         {
             var range = new OdkRange();
             if (jsonRangeString == null || jsonRangeString.Equals("false", StringComparison.InvariantCultureIgnoreCase))
@@ -211,6 +211,12 @@ namespace DLR_Data_App.Services
                         break;
                 }
             }
+
+            if (minInclusive != null)
+                range.MinInclusive = minInclusive.Value;
+            if (maxInclusive != null)
+                range.MaxInclusive = maxInclusive.Value;
+
             return range;
         }
 
