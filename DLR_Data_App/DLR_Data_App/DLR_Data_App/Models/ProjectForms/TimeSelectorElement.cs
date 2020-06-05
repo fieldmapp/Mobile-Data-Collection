@@ -1,4 +1,5 @@
 ﻿using DLR_Data_App.Models.ProjectModel;
+using DLR_Data_App.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,31 +11,36 @@ namespace DLR_Data_App.Models.ProjectForms
     {
         private static readonly DateTime EmptyDate = new DateTime(1970, 1, 1);
         private static readonly long EmptyDateTicks = EmptyDate.Ticks;
-        public TimeSelectorElement(Grid grid, ProjectFormElements data, string type) : base(grid, data, type) { }
+        public TimeSelectorElement(Grid grid, ProjectFormElements data, string type) : base(grid, data, type) 
+        {
+            ValidRange = OdkDataExtractor.GetRangeFromJsonString(data.Range, DateTime.Parse);
+        }
 
         public DatePicker DatePicker;
         public TimePicker TimePicker;
+        private OdkRange<DateTime> ValidRange;
 
-        public override bool IsValid => (DatePicker == null || (EmptyDateTicks != DatePicker.Date.Ticks))
-                                     && (TimePicker == null || TimePicker.Time != TimeSpan.Zero) && base.IsValid;
+        public override bool IsValid => EmptyDateTicks != DatePicker.Date.Ticks
+                                     && (TimePicker == null || TimePicker.Time != TimeSpan.Zero)
+                                     && ValidRange.IsValidInput(GetCombinedDateTime())
+                                     && base.IsValid;
 
-        public override string GetRepresentationValue()
+        private DateTime GetCombinedDateTime()
         {
-            long ticks = 0;
-            if (DatePicker != null)
-                ticks += DatePicker.Date.Ticks;
+            var result = DatePicker.Date;
             if (TimePicker != null)
-                ticks += TimePicker.Time.Ticks;
-            return ticks.ToString();
+                result += TimePicker.Time;
+            return result;
         }
+
+        public override string GetRepresentationValue() => GetCombinedDateTime().Ticks.ToString();
 
         public override void LoadFromSavedRepresentation(string representation)
         {
             if (long.TryParse(representation, out long ticks))
             {
                 var savedDateTime = new DateTime(ticks);
-                if (DatePicker != null)
-                    DatePicker.Date = savedDateTime - savedDateTime.TimeOfDay;
+                DatePicker.Date = savedDateTime - savedDateTime.TimeOfDay;
                 if (TimePicker != null)
                     TimePicker.Time = savedDateTime.TimeOfDay;
             }
@@ -44,8 +50,7 @@ namespace DLR_Data_App.Models.ProjectForms
         {
             if (TimePicker != null)
                 TimePicker.Time = TimeSpan.Zero;
-            if (DatePicker != null)
-                DatePicker.Date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            DatePicker.Date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
         }
     }
 }
