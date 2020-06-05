@@ -11,14 +11,14 @@ namespace DLR_Data_App.Models.ProjectForms
     {
         public NumericInputElement(Grid grid, ProjectFormElements data, string type) : base(grid, data, type)
         {
-            ValidRange = OdkDataExtractor.GetRangeFromJsonString(Data.Range);
+            ValidRange = OdkDataExtractor.GetRangeFromJsonString(Data.Range, Convert.ToInt32);
         }
 
         public Entry Entry;
 
-        private readonly OdkRange ValidRange;
+        private readonly OdkRange<int> ValidRange;
 
-        public override bool IsValid => !string.IsNullOrWhiteSpace(Entry.Text) && float.TryParse(Entry.Text, out var decimalInput) && ValidRange.IsValidDecimalInput(decimalInput) && base.IsValid;
+        public override bool IsValid => !string.IsNullOrWhiteSpace(Entry.Text) && int.TryParse(Entry.Text, out var decimalInput) && ValidRange.IsValidInput(decimalInput) && base.IsValid;
 
         public override string GetRepresentationValue() => Entry.Text;
 

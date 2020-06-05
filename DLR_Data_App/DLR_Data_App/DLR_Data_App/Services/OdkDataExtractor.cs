@@ -99,13 +99,13 @@ namespace DLR_Data_App.Services
     /// <summary>
     /// Struct representing a range with min and max and methods to check if a given number is in the range.
     /// </summary>
-    struct OdkRange
+    struct OdkRange<T> where T : struct, IComparable<T>
     {
         public bool MinInclusive;
         public bool MaxInclusive;
 
-        public float? Min;
-        public float? Max;
+        public T? Min;
+        public T? Max;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OdkRange"/> struct, using the specified borders
@@ -114,7 +114,7 @@ namespace DLR_Data_App.Services
         /// <param name="minInclusive">Determines if the minimum is part of the range</param>
         /// <param name="max">Maximum of the range</param>
         /// <param name="maxInclusive">Determines if the maximum is part of the range</param>
-        public OdkRange(float min, bool minInclusive, float max, bool maxInclusive)
+        public OdkRange(T min, bool minInclusive, T max, bool maxInclusive)
         {
             MinInclusive = minInclusive;
             MaxInclusive = maxInclusive;
@@ -127,46 +127,20 @@ namespace DLR_Data_App.Services
         /// </summary>
         /// <param name="input">Input for which should be checked if it lies in the range</param>
         /// <returns><see cref="bool"/> indicating weather or not the input lies in the range</returns>
-        public bool IsValidDecimalInput(float input)
+        public bool IsValidInput(T input)
         {
             if (Min.HasValue)
             {
-                if (MinInclusive && Min > input)
+                if (MinInclusive && Min.Value.IsGreaterThan(input))
                     return false;
-                if (!MinInclusive && Min >= input)
+                if (!MinInclusive && Min.Value.IsGreaterThanOrEquals(input))
                     return false;
             }
             if (Max.HasValue)
             {
-                if (MaxInclusive && Max < input)
+                if (MaxInclusive && Max.Value.IsLessThan(input))
                     return false;
-                if (!MaxInclusive && Max <= input)
-                    return false;
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Checks if the given input is in the range repesented by this instance of <see cref="OdkRange"/>
-        /// </summary>
-        /// <param name="input">Input for which should be checked if it lies in the range</param>
-        /// <returns><see cref="bool"/> indicating weather or not the input lies in the range</returns>
-        public bool IsValidIntegerInput(int input)
-        {
-            if (Min.HasValue)
-            {
-                var minInt = Math.Round(Min.Value);
-                if (MinInclusive && minInt > input)
-                    return false;
-                if (!MinInclusive && minInt >= input)
-                    return false;
-            }
-            if (Max.HasValue)
-            {
-                var maxInt = Math.Round(Max.Value);
-                if (MaxInclusive && maxInt < input)
-                    return false;
-                if (!MaxInclusive && maxInt <= input)
+                if (!MaxInclusive && Max.Value.IsLessThanOrEquals(input))
                     return false;
             }
             return true;
@@ -183,9 +157,9 @@ namespace DLR_Data_App.Services
         /// </summary>
         /// <param name="jsonRangeString"><see cref="string"/> in json format, like produced from odk build in the range field</param>
         /// <returns><see cref="OdkRange"/> which represents a range</returns>
-        public static OdkRange GetRangeFromJsonString(string jsonRangeString, bool? minInclusive = null, bool? maxInclusive = null)
+        public static OdkRange<T> GetRangeFromJsonString<T>(string jsonRangeString, Func<string,T> conversion, bool? minInclusive = null, bool? maxInclusive = null) where T:struct,IComparable<T>
         {
-            var range = new OdkRange();
+            var range = new OdkRange<T>();
             if (jsonRangeString == null || jsonRangeString.Equals("false", StringComparison.InvariantCultureIgnoreCase))
                 return range;
 
@@ -197,11 +171,11 @@ namespace DLR_Data_App.Services
                 {
                     case "min":
                         if (!string.IsNullOrWhiteSpace(detailValue))
-                            range.Min = Convert.ToInt32(detailValue);
+                            range.Min = conversion(detailValue);
                         break;
                     case "max":
                         if (!string.IsNullOrWhiteSpace(detailValue))
-                            range.Max = Convert.ToInt32(detailValue);
+                            range.Max = conversion(detailValue);
                         break;
                     case "minInclusive":
                         range.MinInclusive = Convert.ToBoolean(detailValue);

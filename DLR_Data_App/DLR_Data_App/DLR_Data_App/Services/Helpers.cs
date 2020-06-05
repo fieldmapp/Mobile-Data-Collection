@@ -447,5 +447,25 @@ namespace DLR_Data_App.Services
             }
             return false;
         }
+
+        public static bool IsGreaterThan<T>(this T value, T other) where T : IComparable<T>
+        {
+            return value.CompareTo(other) > 0;
+        }
+
+        public static bool IsLessThan<T>(this T value, T other) where T : IComparable<T>
+        {
+            return value.CompareTo(other) < 0;
+        }
+
+        public static bool IsGreaterThanOrEquals<T>(this T value, T other) where T : IComparable<T>
+        {
+            return value.CompareTo(other) >= 0;
+        }
+
+        public static bool IsLessThanOrEquals<T>(this T value, T other) where T : IComparable<T>
+        {
+            return value.CompareTo(other) <= 0;
+        }
     }
 }

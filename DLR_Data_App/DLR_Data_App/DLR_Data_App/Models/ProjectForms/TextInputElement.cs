@@ -11,13 +11,13 @@ namespace DLR_Data_App.Models.ProjectForms
     {
         public TextInputElement(Grid grid, ProjectFormElements data, string type) : base(grid, data, type) 
         {
-            LengthRange = OdkDataExtractor.GetRangeFromJsonString(data.Length, true, true);
+            LengthRange = OdkDataExtractor.GetRangeFromJsonString(data.Length, Convert.ToInt32, true, true);
         }
 
-        public OdkRange LengthRange;
+        public OdkRange<int> LengthRange;
         public Entry Entry;
 
-        public override bool IsValid => !string.IsNullOrEmpty(Entry.Text) && LengthRange.IsValidIntegerInput(Entry.Text.Length) && base.IsValid;
+        public override bool IsValid => !string.IsNullOrEmpty(Entry.Text) && LengthRange.IsValidInput(Entry.Text.Length) && base.IsValid;
 
         public override string GetRepresentationValue() => Entry.Text;
 
