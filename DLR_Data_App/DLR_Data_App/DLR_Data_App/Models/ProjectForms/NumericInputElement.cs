@@ -18,7 +18,7 @@ namespace DLR_Data_App.Models.ProjectForms
 
         private readonly OdkRange ValidRange;
 
-        public override bool IsValid => !string.IsNullOrWhiteSpace(Entry.Text) && float.TryParse(Entry.Text, out var decimalInput) && ValidRange.IsValidDecimalInput(decimalInput);
+        public override bool IsValid => !string.IsNullOrWhiteSpace(Entry.Text) && float.TryParse(Entry.Text, out var decimalInput) && ValidRange.IsValidDecimalInput(decimalInput) && base.IsValid;
 
         public override string GetRepresentationValue() => Entry.Text;
 

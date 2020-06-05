@@ -12,7 +12,7 @@ namespace DLR_Data_App.Models.ProjectForms
 
         public Picker Picker;
 
-        public override bool IsValid => Picker.SelectedIndex >= 0;
+        public override bool IsValid => Picker.SelectedIndex >= 0 && base.IsValid;
 
         public override string GetRepresentationValue() => Picker.SelectedIndex.ToString();
 

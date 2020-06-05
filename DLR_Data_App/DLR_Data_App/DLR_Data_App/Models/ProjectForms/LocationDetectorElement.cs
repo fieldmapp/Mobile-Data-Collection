@@ -12,7 +12,7 @@ namespace DLR_Data_App.Models.ProjectForms
 
         public Label SavedLocationLabel;
 
-        public override bool IsValid => !string.IsNullOrEmpty(SavedLocationLabel.Text);
+        public override bool IsValid => !string.IsNullOrEmpty(SavedLocationLabel.Text) && base.IsValid;
 
         public override string GetRepresentationValue() => SavedLocationLabel.Text;
 

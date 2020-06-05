@@ -13,11 +13,30 @@ namespace DLR_Data_App.Models.ProjectForms
     /// </summary>
     abstract class FormElement
     {
+        const string ThisOdkElement = "thisodkelement";
         public FormElement(Grid grid, ProjectFormElements data, string type)
         {
             Grid = grid;
             Data = data;
             ShouldBeShownExpression = string.IsNullOrWhiteSpace(data.Relevance) ? null : OdkDataExtractor.GetBooleanExpression(data.Relevance);
+            if (!string.IsNullOrWhiteSpace(data.Constraint))
+            {
+                StringBuilder modifiedConstraintString = new StringBuilder();
+                bool lastCharWasDigit = false;
+                for (int i = 0; i < data.Constraint.Length; i++)
+                {
+                    if (!lastCharWasDigit && data.Constraint[i] == '.')
+                    {
+                        modifiedConstraintString.Append(ThisOdkElement);
+                    }
+                    else
+                    {
+                        modifiedConstraintString.Append(data.Constraint[i]);
+                    }
+                    lastCharWasDigit = char.IsDigit(data.Constraint, i);
+                }
+                ConstraintExpression = OdkDataExtractor.GetBooleanExpression(modifiedConstraintString.ToString());
+            }
             Type = type;
         }
 
@@ -26,7 +45,11 @@ namespace DLR_Data_App.Models.ProjectForms
         public event EventHandler ValidContentChange;
         public event EventHandler InvalidContentChange;
         public OdkBooleanExpresion ShouldBeShownExpression { get; }
-        public abstract bool IsValid { get; }
+        public OdkBooleanExpresion ConstraintExpression { get; }
+        public virtual bool IsValid { get =>
+                ConstraintExpression == null ||
+                ConstraintExpression.Evaluate(new Dictionary<string, string> { { ThisOdkElement, GetRepresentationValue() } }); 
+        }
         public readonly string Type;
 
         public void OnContentChange()

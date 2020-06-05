@@ -12,7 +12,7 @@ namespace DLR_Data_App.Models.ProjectForms
 
         public Entry Entry;
 
-        public override bool IsValid => !string.IsNullOrEmpty(Entry.Text);
+        public override bool IsValid => !string.IsNullOrEmpty(Entry.Text) && base.IsValid;
 
         public override string GetRepresentationValue() => Entry.Text;
 

@@ -1,355 +1,383 @@
 {
-  "title": "Düngung",
-  "controls": [
-    {
-      "name": "fertilizerUsed",
-      "label": {
-        "0": "Wurde Dünger im laufenden Anbauzyklus aufgebracht?",
-        "1": "Has fertilizer been applied to this cultivar?"
-      },
-      "hint": {
-        "0": "",
-        "1": ""
-      },
-      "defaultValue": "1",
-      "readOnly": false,
-      "required": true,
-      "requiredText": {
-        "0": "",
-        "1": ""
-      },
-      "relevance": "",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "options": [
-        {
-          "text": {
-            "0": "Ja",
-            "1": "Yes"
-          },
-          "cascade": [],
-          "val": "0"
-        },
-        {
-          "text": {
-            "0": "Nein",
-            "1": "No"
-          },
-          "cascade": [],
-          "val": "1"
+    "title": "Düngung",
+    "controls": [{
+            "name": "fertilizerUsed",
+            "label": {
+                "0": "Wurde Dünger im laufenden Anbauzyklus aufgebracht?",
+                "1": "Has fertilizer been applied to this cultivar?"
+            },
+            "hint": {
+                "0": "",
+                "1": ""
+            },
+            "defaultValue": "1",
+            "readOnly": false,
+            "required": true,
+            "requiredText": {
+                "0": "",
+                "1": ""
+            },
+            "relevance": "",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "options": [{
+                    "text": {
+                        "0": "Ja",
+                        "1": "Yes"
+                    },
+                    "cascade": [],
+                    "val": "0"
+                }, {
+                    "text": {
+                        "0": "Nein",
+                        "1": "No"
+                    },
+                    "cascade": [],
+                    "val": "1"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {},
+            "type": "inputSelectOne"
+        }, {
+            "name": "fertilizerUseDate1",
+            "label": {
+                "0": "Datum der Düngung",
+                "1": "Date of fertilization"
+            },
+            "hint": {
+                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem gedüngt wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+                "1": "A calendar appears, if you click on the date 01.01.1970. Select the date in the calendar when the field was fertilized and confirm your selection by clicking on [OKAY]."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${fertilizerUsed}=0",
+            "constraint": ".<now()",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": false,
+            "kind": "Full Date",
+            "metadata": {},
+            "type": "inputDate"
+        }, {
+            "name": "fertilizerKind1",
+            "label": {
+                "0": "Düngemittelart",
+                "1": "Type of fertilizer"
+            },
+            "hint": {
+                "0": "Geben Sie unter „Düngemittelart“ den Namen des Düngemittels ein, das ausgebracht wurde. Falls Sie diesen nicht wissen, können Sie auch eine kategorische Angabe wie „Mineraldünger“, „anorganischer Dünger“, „organischer Dünger“, „Gülle“, „Stallmist“ oder „Klärschlamm“ machen.",
+                "1": "Enter the type of fertilizer that was applied. In case you do not know the type you can also enter a category like “mineral fertilizer”, “inorganic fertilizer”, “organic fertilizer”, “liquid manure”, “dung” or “sludge”."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${fertilizerUsed}=0",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "length": false,
+            "metadata": {},
+            "type": "inputText"
+        }, {
+            "name": "fertilizerAmount1",
+            "label": {
+                "0": "Menge pro Anbaufläche in kg/ha",
+                "1": "Amount of fertilizer per acerage in kg/ha"
+            },
+            "hint": {
+                "0": "Geben Sie unter die Menge des pro Fläche ausgebrachten Düngemittels ein.",
+                "1": "Enter the amount of fertilizer that was distributed over a certain area of the field."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${fertilizerUsed}=0",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": false,
+            "appearance": "Textbox",
+            "kind": "Integer",
+            "selectRange": {
+                "min": "1",
+                "max": "10"
+            },
+            "selectStep": "1",
+            "sliderTicks": true,
+            "metadata": {},
+            "type": "inputNumeric"
+        }, {
+            "name": "additionalFertilizerInfo1",
+            "label": {
+                "0": "Weitere Angaben?",
+                "1": "Additional data?"
+            },
+            "hint": {},
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {},
+            "relevance": "${fertilizerUsed}=0",
+            "constraint": "",
+            "invalidText": {},
+            "calculate": "",
+            "options": [{
+                    "text": {
+                        "0": "Ja"
+                    },
+                    "cascade": [],
+                    "val": "0"
+                }, {
+                    "text": {
+                        "0": "Nein"
+                    },
+                    "cascade": [],
+                    "val": "1"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {},
+            "type": "inputSelectOne"
+        }, {
+            "name": "fertilizerUseDate2",
+            "label": {
+                "0": "Datum der Düngung",
+                "1": "Date of fertilization"
+            },
+            "hint": {
+                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem gedüngt wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+                "1": "A calendar appears, if you click on the date 01.01.1970. Select the date in the calendar when the field was fertilized and confirm your selection by clicking on [OKAY]."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${additionalFertilizerInfo1}=0",
+            "constraint": ".<now()",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": false,
+            "kind": "Full Date",
+            "metadata": {},
+            "type": "inputDate"
+        }, {
+            "name": "fertilizerKind2",
+            "label": {
+                "0": "Düngemittelart",
+                "1": "Type of fertilizer"
+            },
+            "hint": {
+                "0": "Geben Sie unter „Düngemittelart“ den Namen des Düngemittels ein, das ausgebracht wurde. Falls Sie diesen nicht wissen, können Sie auch eine kategorische Angabe wie „Mineraldünger“, „anorganischer Dünger“, „organischer Dünger“, „Gülle“, „Stallmist“ oder „Klärschlamm“ machen.",
+                "1": "Enter the type of fertilizer that was applied. In case you do not know the type you can also enter a category like “mineral fertilizer”, “inorganic fertilizer”, “organic fertilizer”, “liquid manure”, “dung” or “sludge”."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${additionalFertilizerInfo1}=0",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "length": false,
+            "metadata": {},
+            "type": "inputText"
+        }, {
+            "name": "fertilizerAmount2",
+            "label": {
+                "0": "Menge pro Anbaufläche in kg/ha",
+                "1": "Amount of fertilizer per acerage in kg/ha"
+            },
+            "hint": {
+                "0": "Geben Sie unter die Menge des pro Fläche ausgebrachten Düngemittels ein.",
+                "1": "Enter the amount of fertilizer that was distributed over a certain area of the field."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${additionalFertilizerInfo1}=0",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": false,
+            "appearance": "Textbox",
+            "kind": "Integer",
+            "selectRange": {
+                "min": "1",
+                "max": "10"
+            },
+            "selectStep": "1",
+            "sliderTicks": true,
+            "metadata": {},
+            "type": "inputNumeric"
+        }, {
+            "name": "additionalFertilizerInfo2",
+            "label": {
+                "0": "Weitere Angaben?",
+                "1": "Additional data?"
+            },
+            "hint": {},
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {},
+            "relevance": "${additionalFertilizerInfo1}=0",
+            "constraint": "",
+            "invalidText": {},
+            "calculate": "",
+            "options": [{
+                    "text": {
+                        "0": "Ja"
+                    },
+                    "cascade": [],
+                    "val": "0"
+                }, {
+                    "text": {
+                        "0": "Nein"
+                    },
+                    "cascade": [],
+                    "val": "1"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {},
+            "type": "inputSelectOne"
+        }, {
+            "name": "fertilizerUseDate3",
+            "label": {
+                "0": "Datum der Düngung",
+                "1": "Date of fertilization"
+            },
+            "hint": {
+                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem gedüngt wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+                "1": "A calendar appears, if you click on the date 01.01.1970. Select the date in the calendar when the field was fertilized and confirm your selection by clicking on [OKAY]."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${additionalFertilizerInfo2}=0",
+            "constraint": ".<now()",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": false,
+            "kind": "Full Date",
+            "metadata": {},
+            "type": "inputDate"
+        }, {
+            "name": "fertilizerKind3",
+            "label": {
+                "0": "Düngemittelart",
+                "1": "Type of fertilizer"
+            },
+            "hint": {
+                "0": "Geben Sie unter „Düngemittelart“ den Namen des Düngemittels ein, das ausgebracht wurde. Falls Sie diesen nicht wissen, können Sie auch eine kategorische Angabe wie „Mineraldünger“, „anorganischer Dünger“, „organischer Dünger“, „Gülle“, „Stallmist“ oder „Klärschlamm“ machen.",
+                "1": "Enter the type of fertilizer that was applied. In case you do not know the type you can also enter a category like “mineral fertilizer”, “inorganic fertilizer”, “organic fertilizer”, “liquid manure”, “dung” or “sludge”."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${additionalFertilizerInfo2}=0",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "length": false,
+            "metadata": {},
+            "type": "inputText"
+        }, {
+            "name": "fertilizerAmount3",
+            "label": {
+                "0": "Menge pro Anbaufläche in kg/ha",
+                "1": "Amount of fertilizer per acerage in kg/ha"
+            },
+            "hint": {
+                "0": "Geben Sie unter die Menge des pro Fläche ausgebrachten Düngemittels ein.",
+                "1": "Enter the amount of fertilizer that was distributed over a certain area of the field."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${additionalFertilizerInfo2}=0",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": false,
+            "appearance": "Textbox",
+            "kind": "Integer",
+            "selectRange": {
+                "min": "1",
+                "max": "10"
+            },
+            "selectStep": "1",
+            "sliderTicks": true,
+            "metadata": {},
+            "type": "inputNumeric"
         }
-      ],
-      "cascading": false,
-      "other": false,
-      "appearance": "Default",
-      "metadata": {},
-      "type": "inputSelectOne"
-    },
-    {
-      "name": "fertilizerUseDate1",
-      "label": {
-        "0": "Datum der Düngung",
-        "1": "Date of fertilization"
-      },
-      "hint": {
-        "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem gedüngt wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
-        "1": "A calendar appears, if you click on the date 01.01.1970. Select the date in the calendar when the field was fertilized and confirm your selection by clicking on [OKAY]."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": { "1": "" },
-      "relevance": "${fertilizerUsed}=0",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "range": false,
-      "kind": "Full Date",
-      "metadata": {},
-      "type": "inputDate"
-    },
-    {
-      "name": "fertilizerKind1",
-      "label": {
-        "0": "Düngemittelart",
-        "1": "Type of fertilizer"
-      },
-      "hint": {
-        "0": "Geben Sie unter „Düngemittelart“ den Namen des Düngemittels ein, das ausgebracht wurde. Falls Sie diesen nicht wissen, können Sie auch eine kategorische Angabe wie „Mineraldünger“, „anorganischer Dünger“, „organischer Dünger“, „Gülle“, „Stallmist“ oder „Klärschlamm“ machen.",
-        "1": "Enter the type of fertilizer that was applied. In case you do not know the type you can also enter a category like “mineral fertilizer”, “inorganic fertilizer”, “organic fertilizer”, “liquid manure”, “dung” or “sludge”."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": { "1": "" },
-      "relevance": "${fertilizerUsed}=0",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "length": false,
-      "metadata": {},
-      "type": "inputText"
-    },
-    {
-      "name": "fertilizerAmount1",
-      "label": {
-        "0": "Menge pro Anbaufläche in kg/ha",
-        "1": "Amount of fertilizer per acerage in kg/ha"
-      },
-      "hint": {
-        "0": "Geben Sie unter die Menge des pro Fläche ausgebrachten Düngemittels ein.",
-        "1": "Enter the amount of fertilizer that was distributed over a certain area of the field."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": { "1": "" },
-      "relevance": "${fertilizerUsed}=0",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "range": false,
-      "appearance": "Textbox",
-      "kind": "Integer",
-      "selectRange": {
-        "min": "1",
-        "max": "10"
-      },
-      "selectStep": "1",
-      "sliderTicks": true,
-      "metadata": {},
-      "type": "inputNumeric"
-    },
-    {
-      "name": "additionalFertilizerInfo1",
-      "label": {
-        "0": "Weitere Angaben?",
-        "1": "Additional data?"
-      },
-      "hint": {},
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": {},
-      "relevance": "${fertilizerUsed}=0",
-      "constraint": "",
-      "invalidText": {},
-      "calculate": "",
-      "options": [
-        {
-          "text": { "0": "Ja" },
-          "cascade": [],
-          "val": "0"
+    ],
+    "metadata": {
+        "version": 2,
+        "activeLanguages": {
+            "0": "German",
+            "1": "English",
+            "_counter": 1,
+            "_display": "0"
         },
-        {
-          "text": { "0": "Nein" },
-          "cascade": [],
-          "val": "1"
-        }
-      ],
-      "cascading": false,
-      "other": false,
-      "appearance": "Default",
-      "metadata": {},
-      "type": "inputSelectOne"
-    },
-    {
-      "name": "fertilizerUseDate2",
-      "label": {
-        "0": "Datum der Düngung",
-        "1": "Date of fertilization"
-      },
-      "hint": {
-        "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem gedüngt wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
-        "1": "A calendar appears, if you click on the date 01.01.1970. Select the date in the calendar when the field was fertilized and confirm your selection by clicking on [OKAY]."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": { "1": "" },
-      "relevance": "${additionalFertilizerInfo1}=0",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "range": false,
-      "kind": "Full Date",
-      "metadata": {},
-      "type": "inputDate"
-    },
-    {
-      "name": "fertilizerKind2",
-      "label": {
-        "0": "Düngemittelart",
-        "1": "Type of fertilizer"
-      },
-      "hint": {
-        "0": "Geben Sie unter „Düngemittelart“ den Namen des Düngemittels ein, das ausgebracht wurde. Falls Sie diesen nicht wissen, können Sie auch eine kategorische Angabe wie „Mineraldünger“, „anorganischer Dünger“, „organischer Dünger“, „Gülle“, „Stallmist“ oder „Klärschlamm“ machen.",
-        "1": "Enter the type of fertilizer that was applied. In case you do not know the type you can also enter a category like “mineral fertilizer”, “inorganic fertilizer”, “organic fertilizer”, “liquid manure”, “dung” or “sludge”."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": { "1": "" },
-      "relevance": "${additionalFertilizerInfo1}=0",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "length": false,
-      "metadata": {},
-      "type": "inputText"
-    },
-    {
-      "name": "fertilizerAmount2",
-      "label": {
-        "0": "Menge pro Anbaufläche in kg/ha",
-        "1": "Amount of fertilizer per acerage in kg/ha"
-      },
-      "hint": {
-        "0": "Geben Sie unter die Menge des pro Fläche ausgebrachten Düngemittels ein.",
-        "1": "Enter the amount of fertilizer that was distributed over a certain area of the field."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": { "1": "" },
-      "relevance": "${additionalFertilizerInfo1}=0",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "range": false,
-      "appearance": "Textbox",
-      "kind": "Integer",
-      "selectRange": {
-        "min": "1",
-        "max": "10"
-      },
-      "selectStep": "1",
-      "sliderTicks": true,
-      "metadata": {},
-      "type": "inputNumeric"
-    },
-    {
-      "name": "additionalFertilizerInfo2",
-      "label": {
-        "0": "Weitere Angaben?",
-        "1": "Additional data?"
-      },
-      "hint": {},
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": {},
-      "relevance": "${additionalFertilizerInfo1}=0",
-      "constraint": "",
-      "invalidText": {},
-      "calculate": "",
-      "options": [
-        {
-          "text": { "0": "Ja" },
-          "cascade": [],
-          "val": "0"
-        },
-        {
-          "text": { "0": "Nein" },
-          "cascade": [],
-          "val": "1"
-        }
-      ],
-      "cascading": false,
-      "other": false,
-      "appearance": "Default",
-      "metadata": {},
-      "type": "inputSelectOne"
-    },
-    {
-      "name": "fertilizerUseDate3",
-      "label": {
-        "0": "Datum der Düngung",
-        "1": "Date of fertilization"
-      },
-      "hint": {
-        "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem gedüngt wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
-        "1": "A calendar appears, if you click on the date 01.01.1970. Select the date in the calendar when the field was fertilized and confirm your selection by clicking on [OKAY]."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": { "1": "" },
-      "relevance": "${additionalFertilizerInfo2}=0",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "range": false,
-      "kind": "Full Date",
-      "metadata": {},
-      "type": "inputDate"
-    },
-    {
-      "name": "fertilizerKind3",
-      "label": {
-        "0": "Düngemittelart",
-        "1": "Type of fertilizer"
-      },
-      "hint": {
-        "0": "Geben Sie unter „Düngemittelart“ den Namen des Düngemittels ein, das ausgebracht wurde. Falls Sie diesen nicht wissen, können Sie auch eine kategorische Angabe wie „Mineraldünger“, „anorganischer Dünger“, „organischer Dünger“, „Gülle“, „Stallmist“ oder „Klärschlamm“ machen.",
-        "1": "Enter the type of fertilizer that was applied. In case you do not know the type you can also enter a category like “mineral fertilizer”, “inorganic fertilizer”, “organic fertilizer”, “liquid manure”, “dung” or “sludge”."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": { "1": "" },
-      "relevance": "${additionalFertilizerInfo2}=0",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "length": false,
-      "metadata": {},
-      "type": "inputText"
-    },
-    {
-      "name": "fertilizerAmount3",
-      "label": {
-        "0": "Menge pro Anbaufläche in kg/ha",
-        "1": "Amount of fertilizer per acerage in kg/ha"
-      },
-      "hint": {
-        "0": "Geben Sie unter die Menge des pro Fläche ausgebrachten Düngemittels ein.",
-        "1": "Enter the amount of fertilizer that was distributed over a certain area of the field."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": { "1": "" },
-      "relevance": "${additionalFertilizerInfo2}=0",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "range": false,
-      "appearance": "Textbox",
-      "kind": "Integer",
-      "selectRange": {
-        "min": "1",
-        "max": "10"
-      },
-      "selectStep": "1",
-      "sliderTicks": true,
-      "metadata": {},
-      "type": "inputNumeric"
+        "optionsPresets": [],
+        "htitle": null,
+        "instance_name": "",
+        "public_key": "",
+        "submission_url": ""
     }
-  ],
-  "metadata": {
-    "version": 2,
-    "activeLanguages": {
-      "0": "German",
-      "1": "English",
-      "_counter": 1,
-      "_display": "0"
-    },
-    "optionsPresets": [],
-    "htitle": null,
-    "instance_name": "",
-    "public_key": "",
-    "submission_url": ""
-  }
 }

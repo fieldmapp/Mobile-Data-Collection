@@ -15,11 +15,8 @@ namespace DLR_Data_App.Models.ProjectForms
         public DatePicker DatePicker;
         public TimePicker TimePicker;
 
-        /// <summary>
-        /// TODO: Replace future check by using odk constraints
-        /// </summary>
-        public override bool IsValid => (DatePicker == null || (EmptyDateTicks != DatePicker.Date.Ticks && DatePicker.Date <= DateTime.Today))
-                                     && (TimePicker == null || TimePicker.Time != TimeSpan.Zero);
+        public override bool IsValid => (DatePicker == null || (EmptyDateTicks != DatePicker.Date.Ticks))
+                                     && (TimePicker == null || TimePicker.Time != TimeSpan.Zero) && base.IsValid;
 
         public override string GetRepresentationValue()
         {

@@ -18,14 +18,7 @@ namespace DLR_Data_App.Models.ProjectForms.FormCreators
             var datePicker = new DatePicker { StyleId = parms.Element.Name };
             timeSelectorElement.DatePicker = datePicker;
 
-            datePicker.Unfocused += (a, b) =>
-            {
-                //TODO: Replace by using odk constraints
-                if (datePicker.Date > DateTime.UtcNow)
-                    parms.DisplayAlertFunc(AppResources.error, AppResources.selectedDateIsInFuture, AppResources.ok);
-
-                timeSelectorElement.OnContentChange();
-            };
+            datePicker.Unfocused += (a, b) => timeSelectorElement.OnContentChange();
             datePicker.Date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
 
             grid.Children.Add(datePicker, 0, 1);

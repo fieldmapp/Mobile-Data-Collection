@@ -61,13 +61,11 @@ namespace DLR_Data_App.Services
                 args.Result = childValue == "true" || childValue == "1";
             }
             else if (name == "random")
-            {
                 args.Result = App.RandomProvider.Next();
-            }
             else if (name == "pi")
-            {
                 args.Result = Math.PI;
-            }
+            else if (name == "now")
+                args.Result = DateTime.UtcNow.Ticks;
         }
 
         private Expression Expression;

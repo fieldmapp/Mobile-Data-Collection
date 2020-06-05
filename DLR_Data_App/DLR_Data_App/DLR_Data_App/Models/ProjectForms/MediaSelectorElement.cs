@@ -13,7 +13,7 @@ namespace DLR_Data_App.Models.ProjectForms
 
         public DataHolder DataHolder;
 
-        public override bool IsValid => !string.IsNullOrEmpty(DataHolder.Data);
+        public override bool IsValid => !string.IsNullOrEmpty(DataHolder.Data) && base.IsValid;
 
         public override string GetRepresentationValue() => DataHolder.Data ?? string.Empty;
 
