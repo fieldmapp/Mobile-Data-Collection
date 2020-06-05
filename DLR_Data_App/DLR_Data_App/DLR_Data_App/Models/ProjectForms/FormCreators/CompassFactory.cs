@@ -16,6 +16,7 @@ namespace DLR_Data_App.Models.ProjectForms.FormCreators
             var compassElement = new CompassElement(grid, parms.Element, parms.Type);
 
             var currentCompassLabel = new Label { Text = AppResources.compass };
+            compassElement.CurrentDataLabel = currentCompassLabel;
             var currentCompassDataLabel = new Label();
             Sensor.Instance.Compass.ReadingChanged += (_, eventArgs) =>
             {
@@ -26,6 +27,7 @@ namespace DLR_Data_App.Models.ProjectForms.FormCreators
             var saveButton = new Button { Text = AppResources.save };
 
             var savedCompassLabel = new Label { Text = AppResources.saveddata };
+            compassElement.SavedDataLabel = savedCompassLabel;
             var savedCompassDataLabel = new Label { StyleId = parms.Element.Name };
 
             saveButton.Clicked += (_, b) => Device.BeginInvokeOnMainThread(() =>
@@ -41,6 +43,8 @@ namespace DLR_Data_App.Models.ProjectForms.FormCreators
             Grid.SetColumnSpan(saveButton, 2);
             grid.Children.Add(savedCompassLabel, 0, 3);
             grid.Children.Add(savedCompassDataLabel, 1, 3);
+
+            
 
             return compassElement;
         }
