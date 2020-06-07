@@ -14,10 +14,6 @@ namespace DLR_Data_App.Models.ProjectForms.FormCreators
             var formElement = new NumericInputElement(grid, parms.Element, parms.Type);
 
             var placeholder = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
-            if (placeholder == "Unable to parse language from json")
-            {
-                placeholder = "";
-            }
 
             var entry = new Entry
             {

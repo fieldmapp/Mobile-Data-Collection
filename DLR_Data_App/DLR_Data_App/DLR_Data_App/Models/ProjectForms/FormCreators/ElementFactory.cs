@@ -32,7 +32,7 @@ namespace DLR_Data_App.Models.ProjectForms.FormCreators
 
             var hintText = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(parms.Element.Hint, parms.CurrentProject.Languages);
 
-            if (hintText != "Unable to parse language from json" && !string.IsNullOrWhiteSpace(hintText))
+            if (!string.IsNullOrWhiteSpace(hintText))
             {
                 var helpButton = new Button { Text = AppResources.help };
 

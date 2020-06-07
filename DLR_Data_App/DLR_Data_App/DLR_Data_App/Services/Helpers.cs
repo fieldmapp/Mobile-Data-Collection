@@ -119,19 +119,19 @@ namespace DLR_Data_App.Services
         public static Project TranslateProjectDetails(Project project)
         {
             var authors = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(project.Authors, project.Languages);
-            if (authors == "Unable to parse language from json")
+            if (string.IsNullOrWhiteSpace(authors))
             {
                 authors = AppResources.noauthor;
             }
 
             var title = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(project.Title, project.Languages);
-            if (title == "Unable to parse language from json")
+            if (string.IsNullOrWhiteSpace(title))
             {
                 title = AppResources.notitle;
             }
 
             var description = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(project.Description, project.Languages);
-            if (description == "Unable to parse language from json")
+            if (string.IsNullOrWhiteSpace(description))
             {
                 description = AppResources.nodescription;
             }
@@ -191,7 +191,7 @@ namespace DLR_Data_App.Services
             translationKey = translationKey + englishLanguageExtension;
             if (!translations.TryGetValue(translationKey, out string translation))
             {
-                translation = "translation missing";
+                translation = string.Empty;
             }
             return translation;
         }

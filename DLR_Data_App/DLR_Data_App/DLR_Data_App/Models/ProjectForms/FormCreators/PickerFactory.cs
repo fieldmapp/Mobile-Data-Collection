@@ -17,7 +17,7 @@ namespace DLR_Data_App.Models.ProjectForms.FormCreators
             var optionsList = new List<string>();
             var options = ProjectParser.ParseOptionsFromJson(parms.Element.Options);
             var title = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
-            if (title == "Unable to parse language from json")
+            if (string.IsNullOrWhiteSpace(title))
             {
                 title = AppResources.notitle;
             }

@@ -97,7 +97,7 @@ namespace DLR_Data_App.Services
                 if (element.Label != null)
                 {
                     var translatedLabel = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(element.Label, currentProject.Languages);
-                    if (translatedLabel != null && findSpecialType(translatedLabel).Any())
+                    if (!string.IsNullOrWhiteSpace(translatedLabel) && findSpecialType(translatedLabel).Any())
                     {
                         //Special element
                         var specialElementType = new string(findSpecialType(translatedLabel).ToArray());
