@@ -1,7 +1,6 @@
 ﻿using DLR_Data_App.Controls;
 using DLR_Data_App.Localizations;
 using DLR_Data_App.Models.ProjectForms;
-using DLR_Data_App.Models.ProjectForms.FormCreators;
 using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Services.Sensors;
 using Plugin.FilePicker;
@@ -56,17 +55,17 @@ namespace DLR_Data_App.Services
     {
         private static Dictionary<string, Func<FormCreationParams, FormElement>> TypeToViewCreator = new Dictionary<string, Func<FormCreationParams, FormElement>>()
         {
-            { "inputText", new TextInputFactory().CreateForm },
-            { "inputSelectOne", new PickerFactory().CreateForm },
-            { "inputNumeric", new NumericInputFactory().CreateForm },
-            { "inputLocation", new LocationDetectorFactory().CreateForm },
-            { "inputDate", new TimeSelectorFactory().CreateForm },
-            { "inputMedia", new MediaSelectorFactory().CreateForm }
+            { "inputText", TextInputElement.CreateForm },
+            { "inputSelectOne", PickerElement.CreateForm },
+            { "inputNumeric", NumericInputElement.CreateForm },
+            { "inputLocation", LocationDetectorElement.CreateForm },
+            { "inputDate", TimeSelectorElement.CreateForm },
+            { "inputMedia", MediaSelectorElement.CreateForm }
         };
 
         private static Dictionary<string, Func<FormCreationParams, FormElement>> SpecialTypeToViewCreator = new Dictionary<string, Func<FormCreationParams, FormElement>>
         {
-            { "compass", new CompassFactory().CreateForm }
+            { "compass", CompassElement.CreateForm }
         };
 
         /// <summary>

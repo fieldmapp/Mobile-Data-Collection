@@ -25,5 +25,30 @@ namespace DLR_Data_App.Models.ProjectForms
         public override void LoadFromSavedRepresentation(string representation) => Entry.Text = representation;
 
         public override void Reset() => Entry.Text = string.Empty;
+
+        public static NumericInputElement CreateForm(FormCreationParams parms)
+        {
+            var grid = CreateStandardBaseGrid(parms);
+            var formElement = new NumericInputElement(grid, parms.Element, parms.Type);
+
+            var placeholder = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
+
+            var entry = new Entry
+            {
+                Placeholder = placeholder,
+                Keyboard = Keyboard.Numeric,
+                StyleId = parms.Element.Name
+            };
+
+            formElement.Entry = entry;
+
+
+            entry.TextChanged += (a, b) => formElement.OnContentChange();
+
+            grid.Children.Add(entry, 0, 1);
+            Grid.SetColumnSpan(entry, 2);
+
+            return formElement;
+        }
     }
 }

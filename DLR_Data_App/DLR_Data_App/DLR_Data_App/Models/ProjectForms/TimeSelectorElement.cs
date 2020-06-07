@@ -52,5 +52,33 @@ namespace DLR_Data_App.Models.ProjectForms
                 TimePicker.Time = TimeSpan.Zero;
             DatePicker.Date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
         }
+
+        public static TimeSelectorElement CreateForm(FormCreationParams parms)
+        {
+            var grid = CreateStandardBaseGrid(parms);
+            var timeSelectorElement = new TimeSelectorElement(grid, parms.Element, parms.Type);
+
+            TimePicker timePicker = null;
+            var datePicker = new DatePicker { StyleId = parms.Element.Name };
+            timeSelectorElement.DatePicker = datePicker;
+
+            datePicker.Unfocused += (a, b) => timeSelectorElement.OnContentChange();
+            datePicker.Date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+
+            grid.Children.Add(datePicker, 0, 1);
+            Grid.SetColumnSpan(datePicker, 2);
+
+            if (parms.Element.Kind == "Full Date and Time")
+            {
+                timePicker = new TimePicker { StyleId = parms.Element.Name };
+                timeSelectorElement.TimePicker = timePicker;
+                timePicker.Unfocused += (a, b) => timeSelectorElement.OnContentChange();
+                timePicker.Time = TimeSpan.Zero;
+                grid.Children.Add(timePicker, 0, 2);
+                Grid.SetColumnSpan(timePicker, 2);
+            }
+
+            return timeSelectorElement;
+        }
     }
 }
