@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Numerics;
 using Xamarin.Essentials;
 
 namespace DLR_Data_App.Services.Sensors
@@ -12,12 +12,14 @@ namespace DLR_Data_App.Services.Sensors
             remove => Xamarin.Essentials.Magnetometer.ReadingChanged -= value;
         }
 
-        public float CurrentX { get; set; }
-        public float CurrentY { get; set; }
-        public float CurrentZ { get; set; }
-        public float MaxX { get; set; }
-        public float MaxY { get; set; }
-        public float MaxZ { get; set; }
+        public Vector3 Current { get; private set; }
+
+        public float CurrentX => Current.X;
+        public float CurrentY => Current.Y;
+        public float CurrentZ => Current.Z;
+        public float MaxX { get; private set; }
+        public float MaxY { get; private set; }
+        public float MaxZ { get; private set; }
         
         public Magnetometer()
         {
@@ -30,26 +32,11 @@ namespace DLR_Data_App.Services.Sensors
         /// </summary>
         public void Reading_Changed(object sender, MagnetometerChangedEventArgs e)
         {
-            var data = e.Reading;
+            Current = e.Reading.MagneticField;
 
-            CurrentX = data.MagneticField.X;
-            CurrentY = data.MagneticField.Y;
-            CurrentZ = data.MagneticField.Z;
-
-            if (Math.Abs(CurrentX) > MaxX)
-            {
-                MaxX = Math.Abs(CurrentX);
-            }
-
-            if (Math.Abs(CurrentY) > MaxY)
-            {
-                MaxY = Math.Abs(CurrentY);
-            }
-
-            if (Math.Abs(CurrentZ) > MaxZ)
-            {
-                MaxZ = Math.Abs(CurrentZ);
-            }
+            MaxX = Math.Max(MaxX, Math.Abs(CurrentX));
+            MaxY = Math.Max(MaxY, Math.Abs(CurrentY));
+            MaxZ = Math.Max(MaxZ, Math.Abs(CurrentZ));
         }
 
         /// <summary>
@@ -57,9 +44,7 @@ namespace DLR_Data_App.Services.Sensors
         /// </summary>
         public void Reset()
         {
-            CurrentX = 0.0F;
-            CurrentY = 0.0F;
-            CurrentZ = 0.0F;
+            Current = Vector3.Zero;
             MaxX = 0.0F;
             MaxY = 0.0F;
             MaxZ = 0.0F;
