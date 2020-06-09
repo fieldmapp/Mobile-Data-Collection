@@ -4,9 +4,9 @@ namespace DLR_Data_App.ViewModels.Settings
 {
     class ProfileViewModel : BaseViewModel
     {
-      public ProfileViewModel()
-      {
-        Title = AppResources.profile;
-      }
+        public ProfileViewModel()
+        {
+            Title = AppResources.profile;
+        }
     }
 }

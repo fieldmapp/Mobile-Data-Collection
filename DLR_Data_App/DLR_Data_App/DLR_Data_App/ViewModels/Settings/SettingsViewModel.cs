@@ -2,11 +2,11 @@
 
 namespace DLR_Data_App.ViewModels.Settings
 {
-  class SettingsViewModel : BaseViewModel
-  {
-    public SettingsViewModel()
+    class SettingsViewModel : BaseViewModel
     {
-      Title = AppResources.settings;
+        public SettingsViewModel()
+        {
+            Title = AppResources.settings;
+        }
     }
-  }
 }

@@ -29,9 +29,9 @@ namespace DLR_Data_App.Views.ProjectList
         {
             _workingProject = new Project
             {
-                Authors = "Jan Füsting",
-                Title = "Data App Example Project",
-                Description = "An app to collect data for various scientific varieties."
+                Authors = "Author",
+                Title = "Project title",
+                Description = "Project description"
             };
 
             InitializeComponent();
