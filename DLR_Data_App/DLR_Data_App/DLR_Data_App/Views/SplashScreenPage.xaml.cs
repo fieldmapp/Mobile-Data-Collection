@@ -26,9 +26,8 @@ namespace DLR_Data_App.Views
         Dictionary<MenuItemType, NavigationPage> MenuItems;
         bool ShouldDisplayPrivacyPolicy;
 
-        public SplashScreenPage(bool shouldDisplayPrivacyPolicy)
+        public SplashScreenPage()
 		{
-            ShouldDisplayPrivacyPolicy = shouldDisplayPrivacyPolicy;
 			InitializeComponent ();
 
             Appearing += SplashScreenPage_Appearing;
@@ -38,16 +37,8 @@ namespace DLR_Data_App.Views
         {
             Appearing -= SplashScreenPage_Appearing;
 
-            var builderTask = CreateNeededRessources();
-            var displayPrivacyPolicyTask = ShouldDisplayPrivacyPolicy ? DisplayAlert(AppResources.privacypolicy, AppResources.privacytext1, AppResources.accept, AppResources.decline) : Task.FromResult(true);
+            await CreateNeededRessources();
 
-            var answer = await displayPrivacyPolicyTask;
-            if (!answer)
-            {
-                Application.Current.MainPage = new LoginPage();
-                return;
-            }
-            await builderTask;
             Application.Current.MainPage = new MainPage();
         }
 
