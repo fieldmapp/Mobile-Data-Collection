@@ -14,6 +14,7 @@ using System.Globalization;
 using System.Collections.ObjectModel;
 using System.Numerics;
 using System.Reflection;
+using System.Threading;
 
 namespace DLR_Data_App.Services
 {
@@ -467,5 +468,7 @@ namespace DLR_Data_App.Services
         {
             return value.CompareTo(other) <= 0;
         }
+
+        public static async Task WaitOneAsync(this WaitHandle waitHandle) => await Task.Run(() => waitHandle.WaitOne());
     }
 }

@@ -36,10 +36,10 @@ namespace DLR_Data_App.Models.ProjectForms
             formElement.DataHolder = dataHolder;
             pickFileButton.Clicked += async (a, b) =>
             {
-                var file = await CrossFilePicker.Current.PickFile();
-                if (file != null)
+                var image = await DependencyService.Get<ICameraProvider>().OpenCameraApp();
+                if (image != null)
                 {
-                    dataHolder.Data = Convert.ToBase64String(file.DataArray);
+                    dataHolder.Data = Convert.ToBase64String(image);
                     var length = dataHolder.Data.Length;
                     formElement.OnContentChange();
                 }

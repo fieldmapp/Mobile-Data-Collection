@@ -6,8 +6,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Android;
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.Content.Res;
+using Android.Graphics;
 using Android.Hardware;
 using Android.OS;
 using Android.Support.V7.Widget;
@@ -22,8 +24,10 @@ namespace com.DLR.DLR_Data_App.Droid
     [Activity(Label = "FieldMApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.FullUser)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        public static MainActivity Instance { get; private set; }
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            Instance = this;
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
@@ -36,7 +40,7 @@ namespace com.DLR.DLR_Data_App.Droid
 
             const string dbName = "DLRdata.sqlite";
             var folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            var fullPath = Path.Combine(folderPath, dbName);
+            var fullPath = System.IO.Path.Combine(folderPath, dbName);
 
             var storageProvider = new JsonStorageProvider(new AndroidStorageAccessProvider(this));
             LoadApplication(new App(folderPath, fullPath, storageProvider));
@@ -185,6 +189,25 @@ namespace com.DLR.DLR_Data_App.Droid
                 base.OnBackPressed();
             else
                 BackButtonPress();
+        }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            if (requestCode == AndroidCameraProvider.REQUEST_CODE)
+            {
+                var cameraProvider = (AndroidCameraProvider)DependencyService.Get<ICameraProvider>();
+                if (data != null)
+                {
+                    Bitmap bitmap = (Bitmap)data.Extras.Get("data");
+                    cameraProvider.CapturedImage = bitmap;
+                }
+                else
+                    cameraProvider.CapturedImage = null;
+
+                cameraProvider.CameraClosedHandle.Set();
+            }
+            else
+                base.OnActivityResult(requestCode, resultCode, data);
         }
     }
 }

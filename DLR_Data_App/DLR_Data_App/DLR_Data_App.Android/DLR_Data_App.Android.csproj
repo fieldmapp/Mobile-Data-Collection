@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidAppCloser.cs" />
+    <Compile Include="AndroidCameraProvider.cs" />
     <Compile Include="AndroidStorageAccessProvider.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -526,7 +527,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties Assets_4questions__JSONSchema="http://jsonapi.org/schema" XamarinHotReloadGenericExceptionInfoBarDLR_Data_AppAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadGenericExceptionInfoBarDLR_Data_AppAndroidHideInfoBar="True" Assets_4questions__JSONSchema="http://jsonapi.org/schema" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
