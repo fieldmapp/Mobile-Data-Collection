@@ -23,9 +23,6 @@ namespace DLR_Data_App.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SplashScreenPage : ContentPage
 	{
-        Dictionary<MenuItemType, NavigationPage> MenuItems;
-        bool ShouldDisplayPrivacyPolicy;
-
         public SplashScreenPage()
 		{
 			InitializeComponent ();
