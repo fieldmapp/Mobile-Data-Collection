@@ -3,27 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:res="clr-namespace:DLR_Data_App.Localizations"
              x:Class="DLR_Data_App.Views.Login.LoginPage" 
-             BackgroundImageSource="Background_Login.png">
+             BackgroundImageSource="Background_Login.png"
+             xmlns:controls="clr-namespace:DLR_Data_App.Controls">
 
     <ContentPage.Content>
         <StackLayout>
             <StackLayout x:Name="LoginEntries" 
                          VerticalOptions="CenterAndExpand"
                          Padding="40,0,40,0">
-                <Label Text="{res:Translate login}"
-                       FontSize="Large"
-                       TextColor="White"
-                       HorizontalTextAlignment="Center"/>
-                <Label Text="{res:Translate name}"
-                       TextColor="White"/>
-                <Entry x:Name="EntryUsername"
-                    Placeholder="{res:Translate name}"
-                    PlaceholderColor="Gray"
-                    Text=""
-                    TextColor="White"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="FillAndExpand" />
-                
+                <controls:InlinePicker x:Name="UserPicker">
+                    <controls:InlinePicker.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame BorderColor="{Binding BackgroundColor}" Padding="0" CornerRadius="0" BackgroundColor="{Binding BackgroundColor}">
+                                    <Frame BorderColor="{Binding BackgroundColor}" Margin="1" CornerRadius="0" BackgroundColor="White" Padding="0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Name}" />
+                                        </Grid>
+                                    </Frame>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:InlinePicker.ItemTemplate>
+                </controls:InlinePicker>
+
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
