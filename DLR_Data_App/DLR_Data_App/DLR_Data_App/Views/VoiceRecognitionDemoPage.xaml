@@ -6,16 +6,25 @@
              mc:Ignorable="d"
              x:Class="DLR_Data_App.Views.VoiceRecognitionDemoPage">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="CenterAndExpand"
-                     VerticalOptions="CenterAndExpand">
-            <ScrollView>
+        <Grid VerticalOptions="Start">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Text="Hang"  x:Name="HangSetupButton" 
+                    Clicked="HangSetupButton_Clicked" Grid.Column="0"/>
+            <Button Text="Hanglage" x:Name="HanglageSetupButton" 
+                    Clicked="HanglageSetupButton_Clicked" Grid.Column="1"/>
+            <Button Text="Gefälle" x:Name="GefaelleSetupButton"
+                    Clicked="GefaelleSetupButton_Clicked" Grid.Column="2"/>
+            <ScrollView Grid.ColumnSpan="3" Grid.Row="1">
                 <Label HorizontalOptions="CenterAndExpand"
-                       VerticalOptions="EndAndExpand"
+                       VerticalOptions="Start"
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="End"
                        x:Name="RecognizedStringLabel"
                        FontSize="Medium"/>
             </ScrollView>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
