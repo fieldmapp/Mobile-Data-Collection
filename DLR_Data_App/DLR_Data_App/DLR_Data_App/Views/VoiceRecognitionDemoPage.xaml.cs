@@ -84,7 +84,8 @@ namespace DLR_Data_App.Views
         private void SpeechRecognizer_ResultRecognized(object sender, VoiceRecognitionResult e)
         {
             var nearestKeyword = AcceptedKeywords.MinBy(k => Helpers.LevenshteinDistnace(e.Result, k));
-            SafeString = Environment.NewLine + Environment.NewLine + e.Result + Environment.NewLine + "- " + nearestKeyword + " - " +  SafeString;
+            var calculatedDistance = Helpers.LevenshteinDistnace(e.Result, nearestKeyword);
+            SafeString = $"{Environment.NewLine}{Environment.NewLine}{e.Result}{Environment.NewLine}- {nearestKeyword} : {calculatedDistance} -{SafeString}";
             RecognizedStringLabel.Text = SafeString;
         }
 
