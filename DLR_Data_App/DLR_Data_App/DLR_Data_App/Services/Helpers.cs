@@ -350,6 +350,8 @@ namespace DLR_Data_App.Services
         /// </summary>
         public static int LevenshteinDistnace(string s, string t)
         {
+            s = s.ToLower();
+            t = t.ToLower();
             int n = s.Length;
             int m = t.Length;
             int[,] d = new int[n + 1, m + 1];
