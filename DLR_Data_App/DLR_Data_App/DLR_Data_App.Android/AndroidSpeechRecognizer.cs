@@ -22,6 +22,7 @@ namespace com.DLR.DLR_Data_App.Droid
 {
     class AndroidSpeechRecognizer : Java.Lang.Object, IRecognitionListener, ISpeechRecognizer
     {
+        List<string> acceptedWords = new List<string> { "anfang", "ende", "abbrechen", "kuppe", "verdichtung", "hang", "sandlinse", "[unk]" };
         class PartialResult
         {
             public string partial;
@@ -73,11 +74,18 @@ namespace com.DLR.DLR_Data_App.Droid
             }
 
             var model = new Model(targetDir);
-            KaldiRecognizer = new SpeechRecognizer(model);
-            KaldiRecognizer.AddListener(this);
-            if (ShouldBeRunning)
+            try
             {
-                KaldiRecognizer.StartListening();
+                KaldiRecognizer = new SpeechRecognizer(model, string.Join(' ', acceptedWords));
+                KaldiRecognizer.AddListener(this);
+                if (ShouldBeRunning)
+                {
+                    KaldiRecognizer.StartListening();
+                }
+            }
+            catch (System.Exception e)
+            {
+
             }
         }
         public void OnError(Java.Lang.Exception ex) { }
