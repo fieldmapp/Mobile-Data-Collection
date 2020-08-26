@@ -614,4 +614,7 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen f√
   <data name="accuracy" xml:space="preserve">
     <value>Genauigkeit</value>
   </data>
+  <data name="exporttorootwithtimestampsuccessful" xml:space="preserve">
+    <value>Erfolgreich ins Wurzelverzeichnis mit Namen Fieldmapp_Database_ZEITSTEMPEL exportiert.</value>
+  </data>
 </root>

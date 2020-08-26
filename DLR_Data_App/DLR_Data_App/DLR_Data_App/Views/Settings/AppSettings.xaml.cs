@@ -55,7 +55,7 @@ namespace DLR_Data_App.Views.Settings
                     // Export Database
                     var exportString = ExportData();
                     (Application.Current as App).StorageProvider.ExportDatabase(exportString);
-                    await DisplayAlert(AppResources.save, AppResources.successful, AppResources.okay);
+                    await DisplayAlert(AppResources.save, AppResources.exporttorootwithtimestampsuccessful, AppResources.okay);
                     break;
             }
         }

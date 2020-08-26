@@ -403,6 +403,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Successfully exported into root directory with name Fieldmapp_Database_TIMESTAMP. ähnelt.
+        /// </summary>
+        internal static string exporttorootwithtimestampsuccessful {
+            get {
+                return ResourceManager.GetString("exporttorootwithtimestampsuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Failed ähnelt.
         /// </summary>
         internal static string failed {
