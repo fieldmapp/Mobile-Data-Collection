@@ -115,6 +115,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Accuracy ähnelt.
+        /// </summary>
+        internal static string accuracy {
+            get {
+                return ResourceManager.GetString("accuracy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Add ähnelt.
         /// </summary>
         internal static string add {

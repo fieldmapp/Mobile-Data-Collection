@@ -611,4 +611,7 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen fÃ
   <data name="ready" xml:space="preserve">
     <value>Bereit</value>
   </data>
+  <data name="accuracy" xml:space="preserve">
+    <value>Genauigkeit</value>
+  </data>
 </root>
