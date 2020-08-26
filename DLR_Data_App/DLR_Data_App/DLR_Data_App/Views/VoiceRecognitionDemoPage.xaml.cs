@@ -86,7 +86,8 @@ namespace DLR_Data_App.Views
             var nearestKeyword = AcceptedKeywords.MinBy(k => Helpers.LevenshteinDistnace(e.Result, k));
             var distance = Helpers.LevenshteinDistnace(e.Result, nearestKeyword);
             var normalizedDistance = distance / (float)e.Result.Length;
-            SafeString = $"{Environment.NewLine}{Environment.NewLine}{e.Result}{Environment.NewLine}- {nearestKeyword} : (abs {distance}; norm{normalizedDistance}) -{SafeString}";
+            var avgConf = e.Parts.Average(p => p.Confidence);
+            SafeString = $"{Environment.NewLine}{Environment.NewLine}{avgConf}:{e.Result}{Environment.NewLine} - {nearestKeyword} : (abs {distance}; norm{normalizedDistance}) -{SafeString}";
             RecognizedStringLabel.Text = SafeString;
         }
 

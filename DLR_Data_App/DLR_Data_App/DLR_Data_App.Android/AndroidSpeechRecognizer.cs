@@ -93,7 +93,7 @@ namespace com.DLR.DLR_Data_App.Droid
         {
             var result = JsonTranslator.GetFromJson<Result>(p0);
             if (!string.IsNullOrWhiteSpace(result.text))
-                ResultRecognized?.Invoke(this, new VoiceRecognitionResult(result.text));
+                ResultRecognized?.Invoke(this, new VoiceRecognitionResult(result.text, result.result.Select(r => new VoiceRecognitionResultPart(r.word, r.start, r.end, r.conf)).ToList()));
         }
 
         public void OnTimeout()
