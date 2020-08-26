@@ -13,6 +13,8 @@ namespace DLR_Data_App.Services.Sensors
         public double Latitude { get; set; }
 
         public double Longitude { get; set; }
+        
+        public double Accuracy { get; set; }
 
         public string Message { get; set; }
         
@@ -20,6 +22,7 @@ namespace DLR_Data_App.Services.Sensors
         {
             Altitude = 0.0;
             Latitude = 0.0;
+            Accuracy = -1;
             Longitude = 0.0;
             Message = "";
         }
@@ -51,6 +54,7 @@ namespace DLR_Data_App.Services.Sensors
                         Message = "Got location";
                         Latitude = location.Latitude;
                         Longitude = location.Longitude;
+                        Accuracy = location.Accuracy ?? -1;
 
                         Altitude = location.Altitude ?? 0.0;
                     }
@@ -80,7 +84,7 @@ namespace DLR_Data_App.Services.Sensors
                     Message = "Unknown error";
                 }
 
-                OnStatusChanged(new GpsEventArgs(Message, Latitude, Longitude, Altitude));
+                OnStatusChanged(new GpsEventArgs(Message, Latitude, Longitude, Accuracy, Altitude));
             }
         }
     }
@@ -94,11 +98,12 @@ namespace DLR_Data_App.Services.Sensors
         /// <param name="latitude">Latitude coordinate</param>
         /// <param name="longitude">Longitude coordinate</param>
         /// <param name="altitude">Altitude</param>
-        public GpsEventArgs(string message, double latitude, double longitude, double altitude)
+        public GpsEventArgs(string message, double latitude, double longitude, double accuracy, double altitude)
         {
             Message = message;
             Latitude = latitude;
             Longitude = longitude;
+            Accuracy = accuracy;
             Altitude = altitude;
         }
 
@@ -107,6 +112,8 @@ namespace DLR_Data_App.Services.Sensors
         public double Latitude { get; set; }
 
         public double Longitude { get; set; }
+
+        public double Accuracy { get; set; }
 
         public double Altitude { get; set; }
     }
