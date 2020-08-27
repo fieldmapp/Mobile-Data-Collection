@@ -331,6 +331,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Driving view ähnelt.
+        /// </summary>
+        internal static string drivingview {
+            get {
+                return ResourceManager.GetString("drivingview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Easy: ähnelt.
         /// </summary>
         internal static string easyWithColon {

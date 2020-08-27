@@ -11,7 +11,8 @@
         ProfilingList,
         CurrentProfiling,
         DistanceMeasuringDemo,
-        VoiceRecognitionDemo
+        VoiceRecognitionDemo,
+        Driving
     }
     public class HomeMenuItem
     {
