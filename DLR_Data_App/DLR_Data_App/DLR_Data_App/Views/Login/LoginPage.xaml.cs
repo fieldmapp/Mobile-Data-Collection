@@ -40,6 +40,9 @@ namespace DLR_Data_App.Views.Login
         /// </summary>
         private async void Btn_signin_Clicked(object sender, EventArgs e)
         {
+            if (UserPicker.SelectedItem == null)
+                return;
+
             var selectedUserName = ((UserDisplay)UserPicker.SelectedItem).Name;
 
             if (_viewModel.Check_Information(selectedUserName))
