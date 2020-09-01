@@ -51,7 +51,7 @@ namespace DLR_Data_App.Views.Profiling
             InitializeComponent();
             QuestionLabel.BindingContext = this;
             QuestionItem = question;
-            RadioButtonIndex = new Dictionary<RadioButton, int>()
+            RadioButtonIndex = new Dictionary<Controls.RadioButton, int>()
             {
                 {Button1, 1},
                 {Button2, 2},
@@ -69,10 +69,10 @@ namespace DLR_Data_App.Views.Profiling
             Button4.IsChecked = false;
             Button5.IsChecked = false;
 
-            (sender as RadioButton).IsChecked = true;
+            (sender as Controls.RadioButton).IsChecked = true;
         }
 
-        Dictionary<RadioButton, int> RadioButtonIndex;
+        Dictionary<Controls.RadioButton, int> RadioButtonIndex;
 
         public event EventHandler<PageResult> PageFinished;
 
