@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -60,8 +61,74 @@ namespace com.DLR.DLR_Data_App.Droid
             });
 
             EnsureAppPermission(Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage, Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation, Manifest.Permission.RecordAudio);
+
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
+            TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
         }
-        
+
+        private static void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs unobservedTaskExceptionEventArgs)
+        {
+            var newExc = new System.Exception("TaskSchedulerOnUnobservedTaskException", unobservedTaskExceptionEventArgs.Exception);
+            LogUnhandledException(newExc);
+        }
+
+        private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
+        {
+            var newExc = new System.Exception("CurrentDomainOnUnhandledException", unhandledExceptionEventArgs.ExceptionObject as System.Exception);
+            LogUnhandledException(newExc);
+        }
+
+        internal static void LogUnhandledException(System.Exception exception)
+        {
+            try
+            {
+                const string errorFileName = "Fatal.log";
+                var libraryPath = @""; // iOS: Environment.SpecialFolder.Resources
+                var errorFilePath = System.IO.Path.Combine(libraryPath, errorFileName);
+                var errorMessage = string.Format("Time: {0}\r\nError: Unhandled Exception\r\n{1}",
+                DateTime.Now, exception.ToString());
+                File.WriteAllText(errorFilePath, errorMessage);
+
+                // Log to Android Device Logging.
+                Android.Util.Log.Error("Crash Report", errorMessage);
+            }
+            catch
+            {
+                // just suppress any error logging exceptions
+            }
+        }
+
+        /// <summary>
+        // If there is an unhandled exception, the exception information is diplayed 
+        // on screen the next time the app is started (only in debug configuration)
+        /// </summary>
+        [Conditional("DEBUG")]
+        private void DisplayCrashReport()
+        {
+            const string errorFilename = "Fatal.log";
+            var libraryPath = @"";
+            var errorFilePath = System.IO.Path.Combine(libraryPath, errorFilename);
+
+            if (!File.Exists(errorFilePath))
+            {
+                return;
+            }
+
+            var errorText = File.ReadAllText(errorFilePath);
+            new AlertDialog.Builder(this)
+                .SetPositiveButton("Clear", (sender, args) =>
+                {
+                    File.Delete(errorFilePath);
+                })
+                .SetNegativeButton("Close", (sender, args) =>
+                {
+            // User pressed Close.
+        })
+                .SetMessage(errorText)
+                .SetTitle("Crash Report")
+                .Show();
+        }
+
         Page LastPage;
         Semaphore ToolbarItemsLock = new Semaphore(1, 1);
         SemaphoreSlim ToolbarLock = new SemaphoreSlim(1);
