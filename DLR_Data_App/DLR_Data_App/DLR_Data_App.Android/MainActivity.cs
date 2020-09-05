@@ -34,7 +34,7 @@ namespace com.DLR.DLR_Data_App.Droid
 
             Xamarin.Essentials.Platform.Init(Application);
 
-            JavaSystem.LoadLibrary("kaldi_jni");
+            JavaSystem.LoadLibrary("vosk_jni");
 
             base.OnCreate(savedInstanceState);
             Xamarin.Forms.Forms.Init(this, savedInstanceState);

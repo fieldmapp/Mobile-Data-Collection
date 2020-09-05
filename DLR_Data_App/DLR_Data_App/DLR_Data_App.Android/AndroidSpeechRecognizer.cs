@@ -22,7 +22,11 @@ namespace com.DLR.DLR_Data_App.Droid
 {
     class AndroidSpeechRecognizer : Java.Lang.Object, IRecognitionListener, ISpeechRecognizer
     {
-        List<string> acceptedWords = new List<string> { "anfang", "ende", "abbrechen", "kuppe", "verdichtung", "hang", "sandlinse", "[unk]" };
+        List<string> acceptedWords = new List<string> 
+        { 
+            "anfang", "ende", "abbrechen", "kuppe", "verdichtung", "hang", "gefälle", "wildschaden", "waldrand", "links", "rechts", "eins",
+            "zwei", "drei", "vier", "fünf", "zehn", "fünfzehn", "zwanzig", "meter", "sand", "linse", "[unk]"
+        };
         class PartialResult
         {
             public string partial;
@@ -45,7 +49,7 @@ namespace com.DLR.DLR_Data_App.Droid
         const string ModelFolderName = "voskModel";
         const string FinishedFileName = "finished";
         const string VoskModelFileName = "voskModelDe.zip";
-        Org.Kaldi.SpeechRecognizer KaldiRecognizer;
+        SpeechService KaldiRecognizer;
         bool ShouldBeRunning = false;
 
         public Task LoadTask { get; }
@@ -73,10 +77,13 @@ namespace com.DLR.DLR_Data_App.Droid
                 }
             }
 
-            var model = new Model(targetDir);
             try
             {
-                KaldiRecognizer = new SpeechRecognizer(model, string.Join(' ', acceptedWords));
+                var model = new Model(targetDir);
+                const int sampleRate = 44100;
+                string lang = string.Join(' ', acceptedWords);
+                var kaldiRecognizer = new KaldiRecognizer(model, sampleRate, lang);
+                KaldiRecognizer = new SpeechService(kaldiRecognizer, sampleRate);
                 KaldiRecognizer.AddListener(this);
                 if (ShouldBeRunning)
                 {
