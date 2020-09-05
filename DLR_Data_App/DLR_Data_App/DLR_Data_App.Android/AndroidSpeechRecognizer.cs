@@ -23,9 +23,10 @@ namespace com.DLR.DLR_Data_App.Droid
     class AndroidSpeechRecognizer : Java.Lang.Object, IRecognitionListener, ISpeechRecognizer
     {
         List<string> acceptedWords = new List<string> 
-        { 
-            "anfang", "ende", "abbrechen", "kuppe", "verdichtung", "hang", "gefälle", "wildschaden", "waldrand", "links", "rechts", "eins",
-            "zwei", "drei", "vier", "fünf", "zehn", "fünfzehn", "zwanzig", "meter", "sand", "linse", "[unk]"
+        {
+            "anfang", "ende", "abbrechen", "gering", "mittel", "hoch", 
+            "hang", "nass", "maus", "wild", "lehmig", "sand", "kuppe", "spur", "ton", "verdichtung", "nässe", "wende", 
+            "link", "rechts", "eins", "zwei", "drei", "zone", "[unk]"
         };
         class PartialResult
         {
