@@ -93,7 +93,7 @@
                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.845}"/>
 
             <Button x:Name="CenterLaneMiddleButton"
-                    Text="Fahrspur" Padding="0" Margin="0" FontSize="Micro" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
+                    Text="Fahrspur" Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
                     BorderWidth="0"
                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.459}"
                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.095}"
@@ -208,7 +208,7 @@
                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.677}"
                     RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.082}"/>
             <Button x:Name="CauseMouseEatingButton"
-                    Text="Mäusefraß&#x0a;Wildschaden" Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
+                    Text="Mäusefraẞ&#x0a;Wildschaden" Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
                     BorderWidth="0"
                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.601}"
                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.131}"
