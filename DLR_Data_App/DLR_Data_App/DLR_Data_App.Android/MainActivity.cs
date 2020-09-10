@@ -194,7 +194,7 @@ namespace com.DLR.DLR_Data_App.Droid
             List<string> neededPerms = new List<string>();
             foreach (var perm in perms)
             {
-                if (PackageManager.CheckPermission(perm, PackageName) != Permission.Granted)
+                if (base.PackageManager.CheckPermission(perm, base.PackageName) != Permission.Granted)
                 {
                     neededPerms.Add(perm);
                 }
@@ -263,14 +263,6 @@ namespace com.DLR.DLR_Data_App.Droid
             if (requestCode == AndroidCameraProvider.REQUEST_CODE)
             {
                 var cameraProvider = (AndroidCameraProvider)DependencyService.Get<ICameraProvider>();
-                if (data != null)
-                {
-                    Bitmap bitmap = (Bitmap)data.Extras.Get("data");
-                    cameraProvider.CapturedImage = bitmap;
-                }
-                else
-                    cameraProvider.CapturedImage = null;
-
                 cameraProvider.CameraClosedHandle.Set();
             }
             else

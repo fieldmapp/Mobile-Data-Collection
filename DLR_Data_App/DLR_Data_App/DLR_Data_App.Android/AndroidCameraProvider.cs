@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
+using Android.Provider;
 using DLR_Data_App.Services;
 using Xamarin.Forms;
 
@@ -17,20 +18,28 @@ namespace com.DLR.DLR_Data_App.Droid
     class AndroidCameraProvider : ICameraProvider
     {
         public AutoResetEvent CameraClosedHandle = new AutoResetEvent(false);
-        public Bitmap CapturedImage;
         public const int REQUEST_CODE = 5;
+        string PhotoPath;
 
         public async Task<byte[]> OpenCameraApp()
         {
             Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+            var dir = Android.App.Application.Context.GetExternalFilesDirs(Android.OS.Environment.DirectoryDcim)[0];
+            var fileName = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss");
+            var fileExtension = ".jpg";
+            var file = Java.IO.File.CreateTempFile(fileName, fileExtension, dir);
+            var length = file.Length();
+            PhotoPath = file.AbsolutePath;
+
+            var uri = Android.Support.V4.Content.FileProvider.GetUriForFile(MainActivity.Instance.ApplicationContext, MainActivity.Instance.PackageName + ".fileProvider", file);
+            intent.PutExtra(MediaStore.ExtraOutput, uri);
             MainActivity.Instance.StartActivityForResult(intent, REQUEST_CODE);
             await CameraClosedHandle.WaitOneAsync();
-            if (CapturedImage == null)
+            if (file.Length() == 0)
                 return null;
 
-            using var stream = new MemoryStream();
-            var byteArray = await CapturedImage.CompressAsync(Bitmap.CompressFormat.Png, 0, stream);
-            return stream.ToArray();
+            var bytes = await File.ReadAllBytesAsync(PhotoPath);
+            return bytes;
         }
 
     }
