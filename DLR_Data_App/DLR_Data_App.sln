@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.539
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLR_Data_App.Android", "DLR_Data_App\DLR_Data_App.Android\DLR_Data_App.Android.csproj", "{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}"
 EndProject
@@ -17,6 +17,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatasetDisplayer", "DatasetDisplayer\DatasetDisplayer.csproj", "{3D4814DC-E391-44A7-8BA9-746324A106A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidVoskBinding", "AndroidVoskBinding\AndroidVoskBinding.csproj", "{F93735E3-228C-4DC6-BD7F-242786284489}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectOutputProcessor", "ProjectOutputProcessor\ProjectOutputProcessor.csproj", "{63BBA936-4C22-4C4B-98B0-FB4381B127B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -118,6 +120,18 @@ Global
 		{F93735E3-228C-4DC6-BD7F-242786284489}.Release|iPhone.Build.0 = Release|Any CPU
 		{F93735E3-228C-4DC6-BD7F-242786284489}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{F93735E3-228C-4DC6-BD7F-242786284489}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{63BBA936-4C22-4C4B-98B0-FB4381B127B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63BBA936-4C22-4C4B-98B0-FB4381B127B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63BBA936-4C22-4C4B-98B0-FB4381B127B8}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{63BBA936-4C22-4C4B-98B0-FB4381B127B8}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{63BBA936-4C22-4C4B-98B0-FB4381B127B8}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{63BBA936-4C22-4C4B-98B0-FB4381B127B8}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{63BBA936-4C22-4C4B-98B0-FB4381B127B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63BBA936-4C22-4C4B-98B0-FB4381B127B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63BBA936-4C22-4C4B-98B0-FB4381B127B8}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{63BBA936-4C22-4C4B-98B0-FB4381B127B8}.Release|iPhone.Build.0 = Release|Any CPU
+		{63BBA936-4C22-4C4B-98B0-FB4381B127B8}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{63BBA936-4C22-4C4B-98B0-FB4381B127B8}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
