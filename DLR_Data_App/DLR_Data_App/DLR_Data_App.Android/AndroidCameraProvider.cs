@@ -28,7 +28,6 @@ namespace com.DLR.DLR_Data_App.Droid
             var fileName = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss");
             var fileExtension = ".jpg";
             var file = Java.IO.File.CreateTempFile(fileName, fileExtension, dir);
-            var length = file.Length();
             PhotoPath = file.AbsolutePath;
 
             var uri = Android.Support.V4.Content.FileProvider.GetUriForFile(MainActivity.Instance.ApplicationContext, MainActivity.Instance.PackageName + ".fileProvider", file);
