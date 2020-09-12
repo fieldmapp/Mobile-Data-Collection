@@ -40,7 +40,7 @@ namespace DLR_Data_App.Services
 
         public void ExportDatabase(string content)
         {
-            var filename = "Fieldmapp_Database_" + DateTime.UtcNow.ToString("ddMMyyyyHHmmf") + ".json";
+            var filename = "Fieldmapp_Database_" + DateTime.UtcNow.ToString("ddMMyyyyHHmmss") + ".json";
 
             using (var fileStream = StorageAccessProvider.OpenFileWriteExternal(filename))
             using (var streamWriter = new StreamWriter(fileStream))
