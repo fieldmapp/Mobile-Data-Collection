@@ -48,7 +48,7 @@ namespace DLR_Data_App.Services
 
             return sBuilder.ToString();
         }
-        
+
         /// <summary>
         /// Extracts files from zip folder
         /// </summary>
@@ -186,7 +186,7 @@ namespace DLR_Data_App.Services
         /// <param name="translations">Dictionary containing translations for keys</param>
         /// <param name="translationKey">Key to lookup</param>
         /// <returns>Translation or the string "translation missing" if there is no english translation</returns>
-        public static string GetEnglishTranslation(Dictionary<string,string> translations, string translationKey)
+        public static string GetEnglishTranslation(Dictionary<string, string> translations, string translationKey)
         {
             const string englishLanguageExtension = "English";
             translationKey = translationKey + englishLanguageExtension;
@@ -472,5 +472,17 @@ namespace DLR_Data_App.Services
         }
 
         public static async Task WaitOneAsync(this WaitHandle waitHandle) => await Task.Run(() => waitHandle.WaitOne());
+
+        private static string[] DigitToString = new string[]
+        {
+            "null", "eins", "zwei", "drei", "vier",
+            "fünf", "sechs", "sieben", "acht", "neun"
+        };
+        public static string GetStringFromDigit(this int digit)
+        {
+            if (digit > 9 || digit < 0)
+                throw new ArgumentException("param must be in rang 0 to 9 (inclusive)", nameof(digit));
+            return DigitToString[digit];
+        }
     }
 }

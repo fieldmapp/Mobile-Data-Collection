@@ -33,7 +33,7 @@ namespace DLR_Data_App.Views
             MouseEating
         }
         const int LaneCountPerSide = 3;
-        const int LaneCount = 2 * LaneCountPerSide + 1;
+        public const int LaneCount = 2 * LaneCountPerSide + 1;
 
         Brush CompletedInfoBrush = Brush.Green;
         Brush ActiveForInputBrush = Brush.Orange;

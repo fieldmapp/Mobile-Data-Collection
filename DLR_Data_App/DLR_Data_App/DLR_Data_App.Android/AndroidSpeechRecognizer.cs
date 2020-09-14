@@ -16,18 +16,15 @@ using Xamarin.Forms;
 using System.IO;
 using System.Threading.Tasks;
 using DLR_Data_App.Models;
+using DLR_Data_App.Views;
+using DLR_Data_App.Services.VoiceControl;
 
 [assembly: Dependency(typeof(com.DLR.DLR_Data_App.Droid.AndroidSpeechRecognizer))]
 namespace com.DLR.DLR_Data_App.Droid
 {
     class AndroidSpeechRecognizer : Java.Lang.Object, IRecognitionListener, ISpeechRecognizer
     {
-        List<string> acceptedWords = new List<string> 
-        {
-            "anfang", "ende", "abbrechen", "gering", "mittel", "hoch", 
-            "hang", "nass", "maus", "wild", "lehmig", "sand", "kuppe", "spur", "ton", "verdichtung", "nässe", "wende", 
-            "link", "rechts", "eins", "zwei", "drei", "zone", "[unk]"
-        };
+        static readonly List<string> acceptedWords = VoiceCommandCompiler.KeywordStrings;
         class PartialResult
         {
             public string partial;
