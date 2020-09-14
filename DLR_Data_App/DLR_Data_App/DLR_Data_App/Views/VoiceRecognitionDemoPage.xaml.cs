@@ -16,41 +16,16 @@ namespace DLR_Data_App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VoiceRecognitionDemoPage : ContentPage
     {
-        enum ModelConfiguration
-        {
-            Hang,
-            Hanglage,
-            Gefaelle
-        }
-        ModelConfiguration CurrentConfiguration;
-        List<string> HangKeywords = new List<string>
+        List<string> AcceptedKeywords = new List<string>
         {
             "Anfang", "Ende", "Abbrechen", "Kuppe", "Verdichtungen", "Hang", "Sandlinse", "Vernässung", "Trockenstress", "Mäusefraß", "Wildschaden", "Vorgewende", "Waldrand",
             "Links fünf Meter", "Links zehn Meter", "Links fünfzehn Meter", "Links zwanzig Meter",
             "Rechts fünf Meter", "Rechts zehn Meter", "Rechts fünfzehn Meter", "Rechts zwanzig Meter"
         };
-        List<string> HanglageKeywords = new List<string>
-        {
-            "Anfang", "Ende", "Abbrechen", "Kuppe", "Verdichtungen", "Hanglage", "Sandlinse", "Vernässung", "Trockenstress", "Mäusefraß", "Wildschaden", "Vorgewende", "Waldrand",
-            "Links fünf Meter", "Links zehn Meter", "Links fünfzehn Meter", "Links zwanzig Meter",
-            "Rechts fünf Meter", "Rechts zehn Meter", "Rechts fünfzehn Meter", "Rechts zwanzig Meter"
-        };
-        List<string> GefaelleKeywords = new List<string>
-        {
-            "Anfang", "Ende", "Abbrechen", "Kuppe", "Verdichtungen", "Gefälle", "Sandlinse", "Vernässung", "Trockenstress", "Mäusefraß", "Wildschaden", "Vorgewende", "Waldrand",
-            "Links fünf Meter", "Links zehn Meter", "Links fünfzehn Meter", "Links zwanzig Meter",
-            "Rechts fünf Meter", "Rechts zehn Meter", "Rechts fünfzehn Meter", "Rechts zwanzig Meter"
-        };
-        List<string> AcceptedKeywords =>
-            CurrentConfiguration == ModelConfiguration.Hang ? HangKeywords : (
-            CurrentConfiguration == ModelConfiguration.Gefaelle ? GefaelleKeywords : (
-            CurrentConfiguration == ModelConfiguration.Hanglage ? HanglageKeywords :
-            throw new NotImplementedException()));
 
         public VoiceRecognitionDemoPage()
         {
             InitializeComponent();
-            ChangeConfiguration(ModelConfiguration.Hang);
         }
 
         string SafeString = string.Empty;
@@ -102,34 +77,6 @@ namespace DLR_Data_App.Views
             var speechRecognizer = DependencyService.Get<ISpeechRecognizer>();
             speechRecognizer.PartialResultRecognized -= SpeechRecognizer_PartialResultRecognized;
             speechRecognizer.ResultRecognized -= SpeechRecognizer_ResultRecognized;
-        }
-
-        private void ChangeConfiguration(ModelConfiguration configuration)
-        {
-            CurrentConfiguration = configuration;
-            HangSetupButton.BackgroundColor = Color.LightGray;
-            HanglageSetupButton.BackgroundColor = Color.LightGray;
-            GefaelleSetupButton.BackgroundColor = Color.LightGray;
-            var selectedButton = CurrentConfiguration == ModelConfiguration.Hang ? HangSetupButton : (
-                CurrentConfiguration == ModelConfiguration.Gefaelle ? GefaelleSetupButton : (
-                CurrentConfiguration == ModelConfiguration.Hanglage ? HanglageSetupButton :
-                throw new NotImplementedException()));
-            selectedButton.BackgroundColor = Color.DarkSeaGreen;
-        }
-
-        private void HangSetupButton_Clicked(object sender, EventArgs e)
-        {
-            ChangeConfiguration(ModelConfiguration.Hang);
-        }
-
-        private void HanglageSetupButton_Clicked(object sender, EventArgs e)
-        {
-            ChangeConfiguration(ModelConfiguration.Hanglage);
-        }
-
-        private void GefaelleSetupButton_Clicked(object sender, EventArgs e)
-        {
-            ChangeConfiguration(ModelConfiguration.Gefaelle);
         }
     }
 }
