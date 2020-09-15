@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="base64.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Update="input.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
