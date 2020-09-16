@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -40,7 +41,7 @@ namespace DLR_Data_App.Services
 
         public void ExportDatabase(string content)
         {
-            var filename = "Fieldmapp_Database_" + DateTime.UtcNow.ToString("ddMMyyyyHHmmss") + ".json";
+            var filename = "Fieldmapp_Database_" + DateTime.UtcNow.ToString("ddMMyyyyHHmmss", CultureInfo.InvariantCulture) + ".json";
 
             using (var fileStream = StorageAccessProvider.OpenFileWriteExternal(filename))
             using (var streamWriter = new StreamWriter(fileStream))
