@@ -13,31 +13,24 @@ namespace DLR_Data_App.Controls
     /// </summary>
     public class ContentButton : ContentView
     {
-        private readonly TapGestureRecognizer elementClicked;
+        private readonly TapGestureRecognizer ElementClicked;
 
         public ContentButton()
         {
-            elementClicked = new TapGestureRecognizer();
-            GestureRecognizers.Add(elementClicked);
+            ElementClicked = new TapGestureRecognizer();
+            GestureRecognizers.Add(ElementClicked);
         }
 
         protected override void OnChildAdded(Element child)
         {
             if (child is View childview)
-                childview.GestureRecognizers.Add(elementClicked);
-        }
-        private static void CommandPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            if (newValue is ICommand command && bindable is ContentButton contentButton)
-            {
-                contentButton.elementClicked.Command = command;
-            }
+                childview.GestureRecognizers.Add(ElementClicked);
         }
 
-        public event EventHandler Tapped
+        public event EventHandler Clicked
         {
-            add => elementClicked.Tapped += value;
-            remove => elementClicked.Tapped -= value;
+            add => ElementClicked.Tapped += value;
+            remove => ElementClicked.Tapped -= value;
         }
     }
 }
