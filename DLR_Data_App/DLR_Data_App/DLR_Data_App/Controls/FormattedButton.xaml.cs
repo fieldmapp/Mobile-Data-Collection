@@ -10,10 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace DLR_Data_App.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FormattedButton : ContentView
+    public partial class FormattedButton : ContentButton
     {
         public static readonly BindableProperty FormattedTextProperty = BindableProperty.Create(nameof(FormattedText), typeof(FormattedString), typeof(FormattedButton), null, BindingMode.TwoWay);
-        
+        public static readonly BindableProperty FontSizeProperty = BindableProperty.Create(nameof(FontSize), typeof(double), typeof(FormattedButton), null, BindingMode.TwoWay);
+
         public FormattedButton()
         {
             InitializeComponent();
@@ -22,19 +23,13 @@ namespace DLR_Data_App.Controls
 
         private void FormattedButton_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(BackgroundColor))
-            {
-                ButtonTextLabel.BackgroundColor = BackgroundColor;
-                ContentButton.BackgroundColor = BackgroundColor;
-            }
-            else if (e.PropertyName == nameof(Background))
-            {
-                ButtonTextLabel.Background = Background;
-                ContentButton.Background = Background;
-            }
-            else if (e.PropertyName == nameof(FormattedText))
+            if (e.PropertyName == nameof(FormattedText))
             {
                 ButtonTextLabel.FormattedText = FormattedText;
+            }
+            else if (e.PropertyName == nameof(FontSize))
+            {
+                ButtonTextLabel.FontSize = FontSize;
             }
         }
 
@@ -42,6 +37,13 @@ namespace DLR_Data_App.Controls
         {
             get => (FormattedString)GetValue(FormattedTextProperty);
             set => SetValue(FormattedTextProperty, value);
+        }
+
+        [TypeConverter(typeof(FontSizeConverter))]
+        public double FontSize
+        {
+            get => (double)GetValue(FontSizeProperty);
+            set => SetValue(FontSizeProperty, value);
         }
     }
 }
