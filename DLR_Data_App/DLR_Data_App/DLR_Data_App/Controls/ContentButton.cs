@@ -23,19 +23,9 @@ namespace DLR_Data_App.Controls
 
         protected override void OnChildAdded(Element child)
         {
-            base.OnChildAdded(child);
             if (child is View childview)
-            {
                 childview.GestureRecognizers.Add(elementClicked);
-                childview.GestureRecognizers.Add(new TapGestureRecognizer()
-                {
-                    Command = new Command(() => { childview.BackgroundColor = Color.LightGray; })
-                });
-            }
         }
-
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(ContentButton), null, BindingMode.Default, null, CommandPropertyChanged);
-
         private static void CommandPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (newValue is ICommand command && bindable is ContentButton contentButton)
@@ -44,10 +34,10 @@ namespace DLR_Data_App.Controls
             }
         }
 
-        public ICommand Command
+        public event EventHandler Tapped
         {
-            get => (ICommand)GetValue(CommandProperty);
-            set => SetValue(CommandProperty, value);
+            add => elementClicked.Tapped += value;
+            remove => elementClicked.Tapped -= value;
         }
     }
 }
