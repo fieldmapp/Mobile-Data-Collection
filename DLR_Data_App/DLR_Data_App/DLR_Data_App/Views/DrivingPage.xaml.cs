@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DLR_Data_App.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -35,18 +36,19 @@ namespace DLR_Data_App.Views
         const int LaneCountPerSide = 3;
         public const int LaneCount = 2 * LaneCountPerSide + 1;
 
-        Brush CompletedInfoBrush = Brush.Green;
-        Brush ActiveForInputBrush = Brush.Orange;
-        Brush InactiveBrush = Brush.LightGray;
-        Brush InactiveButtonBrush = new SolidColorBrush(Color.WhiteSmoke);
-        Brush ActiveButtonBrush = new SolidColorBrush(Color.FromHex("#629C44"));
+        static Brush CompletedInfoBrush = Brush.Green;
+        static Brush ActiveForInputBrush = Brush.Orange;
+        static Brush InactiveBrush = Brush.LightGray;
+        static Color InactiveButtonColor = Color.WhiteSmoke;
+        static Brush InactiveButtonBrush = new SolidColorBrush(InactiveButtonColor);
+        static Brush ActiveButtonBrush = new SolidColorBrush(Color.FromHex("#629C44"));
         List<Button> LaneBeginButtons = new List<Button>();
         List<Button> LaneMiddleButtons = new List<Button>();
         List<Button> LaneEndButtons = new List<Button>();
         List<BoxView> TypeLaneBackgrounds = new List<BoxView>();
         List<BoxView> CauseLaneBackgrounds = new List<BoxView>();
-        List<Button> DamageTypeButtons = new List<Button>();
-        List<Button> DamageCauseButtons = new List<Button>();
+        List<FormattedButton> DamageTypeButtons = new List<FormattedButton>();
+        List<FormattedButton> DamageCauseButtons = new List<FormattedButton>();
 
         bool[] IsLaneActive = new bool[LaneCount];
         bool[] IsLaneSelectedForInput = new bool[LaneCount];
@@ -69,8 +71,6 @@ namespace DLR_Data_App.Views
 
             CenterLaneMiddleButton.Clicked += (a, b) => CenterButtonClicked(0);
 
-            LaneMiddleButtons.Add(CenterLaneMiddleButton);
-
             TypeLaneBackgrounds.Add(CenterLaneTypeBackground);
             CauseLaneBackgrounds.Add(CenterLaneCauseBackground);
 
@@ -79,7 +79,7 @@ namespace DLR_Data_App.Views
             TypeLowButton.Clicked += (a, b) => DamageTypeButtonClicked(DamageType.Low);
             TypeMediumButton.Clicked += (a, b) => DamageTypeButtonClicked(DamageType.Medium);
             TypeHighButton.Clicked += (a, b) => DamageTypeButtonClicked(DamageType.High);
-            DamageTypeButtons = new List<Button>
+            DamageTypeButtons = new List<FormattedButton>
             {
                 TypeLowButton,
                 TypeMediumButton,
@@ -95,7 +95,7 @@ namespace DLR_Data_App.Views
             CauseDryStressButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.DryStress);
             CauseWatterLoggingButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.WatterLogging);
             CauseMouseEatingButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.MouseEating);
-            DamageCauseButtons = new List<Button>
+            DamageCauseButtons = new List<FormattedButton>
             {
                 CauseSandLensButton,
                 CauseCompactionButton,
@@ -128,10 +128,15 @@ namespace DLR_Data_App.Views
             {
                 button.Background = ActiveButtonBrush;
             }
-            foreach (var button in LaneEndButtons.Union(LaneMiddleButtons).Union(DamageCauseButtons).Union(DamageTypeButtons))
+            foreach (var button in LaneEndButtons.Union(LaneMiddleButtons))
             {
                 button.Background = InactiveButtonBrush;
             }
+            foreach (var formattedButton in DamageCauseButtons.Union(DamageTypeButtons))
+            {
+                formattedButton.BackgroundColor = InactiveButtonColor;
+            }
+            CenterLaneMiddleButton.BackgroundColor = InactiveButtonColor;
             ArrowStartCenterShape.Fill = ActiveButtonBrush;
             ArrowEndCenterShape.Fill = InactiveButtonBrush;
             foreach (var boxView in TypeLaneBackgrounds.Union(CauseLaneBackgrounds))
@@ -322,7 +327,7 @@ namespace DLR_Data_App.Views
                     LaneBeginButtons[laneIndex - 1].Background = InactiveButtonBrush;
                     LaneEndButtons[laneIndex - 1].Background = ActiveButtonBrush;
                 }
-                LaneMiddleButtons[laneIndex].Background = ActiveButtonBrush;
+                GetMiddleButtonWithIndex(laneIndex).Background = ActiveButtonBrush;
                 IsLaneStarted[laneIndex] = true;
                 IsLaneActive[laneIndex] = true;
                 IsLaneCauseEntered[laneIndex] = false;
@@ -335,6 +340,8 @@ namespace DLR_Data_App.Views
             }
         }
 
+        View GetMiddleButtonWithIndex(int index) => (index == 0 ? (View)CenterLaneMiddleButton : LaneMiddleButtons[index - 1]);
+
         private void CenterButtonClicked(int laneIndex)
         {
             if (IsLaneStarted[laneIndex] && !IsLaneSelectedForInput[laneIndex])
@@ -346,7 +353,7 @@ namespace DLR_Data_App.Views
                 if (!IsLaneTypeEntered[laneIndex])
                     TypeLaneBackgrounds[laneIndex].Background = ActiveForInputBrush;
                 IsLaneSelectedForInput[laneIndex] = true;
-                LaneMiddleButtons[laneIndex].Background = InactiveButtonBrush;
+                GetMiddleButtonWithIndex(laneIndex).Background = InactiveButtonBrush;
             }
         }
 
@@ -388,7 +395,7 @@ namespace DLR_Data_App.Views
                     if (!IsLaneCauseEntered[i])
                         CauseLaneBackgrounds[i].Background = Brush.Transparent;
                     TypeLaneBackgrounds[i].Background = CompletedInfoBrush;
-                    LaneMiddleButtons[i].Background = ActiveButtonBrush;
+                    GetMiddleButtonWithIndex(i).Background = ActiveButtonBrush;
                 }
             }
         }
@@ -405,7 +412,7 @@ namespace DLR_Data_App.Views
                     if (!IsLaneTypeEntered[i])
                         TypeLaneBackgrounds[i].Background = Brush.Transparent;
                     CauseLaneBackgrounds[i].Background = CompletedInfoBrush;
-                    LaneMiddleButtons[i].Background = ActiveButtonBrush;
+                    GetMiddleButtonWithIndex(i).Background = ActiveButtonBrush;
                 }
             }
         }
