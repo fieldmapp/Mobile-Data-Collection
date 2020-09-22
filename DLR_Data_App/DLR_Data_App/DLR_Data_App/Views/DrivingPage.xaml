@@ -107,7 +107,8 @@
                                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.068}">
                 <controls:FormattedButton.FormattedText>
                     <FormattedString>
-                        <Span Text="Fahrspur" FontAttributes="Bold"/>
+                        <Span Text="Fahr" FontAttributes="None"/>
+                        <Span Text="spur" FontAttributes="Bold"/>
                     </FormattedString>
                 </controls:FormattedButton.FormattedText>
             </controls:FormattedButton>
@@ -210,8 +211,8 @@
                                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.067}">
                 <controls:FormattedButton.FormattedText>
                     <FormattedString>
-                        <Span Text="Vorge" FontAttributes="Bold"/>
-                        <Span Text="wende" FontAttributes="None"/>
+                        <Span Text="Vorge" FontAttributes="None"/>
+                        <Span Text="wende" FontAttributes="Bold"/>
                     </FormattedString>
                 </controls:FormattedButton.FormattedText>
             </controls:FormattedButton>
@@ -262,7 +263,8 @@
                                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.082}">
                 <controls:FormattedButton.FormattedText>
                     <FormattedString>
-                        <Span Text="Trockenstress" FontAttributes="None"/>
+                        <Span Text="Trocken" FontAttributes="Bold"/>
+                        <Span Text="stress" FontAttributes="None"/>
                     </FormattedString>
                 </controls:FormattedButton.FormattedText>
             </controls:FormattedButton>
@@ -274,9 +276,8 @@
                                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.082}">
                 <controls:FormattedButton.FormattedText>
                     <FormattedString>
-                        <Span Text="Ver" FontAttributes="None"/>
-                        <Span Text="näss" FontAttributes="Bold"/>
-                        <Span Text="ung" FontAttributes="None"/>
+                        <Span Text="Nass" FontAttributes="Bold"/>
+                        <Span Text="stelle" FontAttributes="None"/>
                     </FormattedString>
                 </controls:FormattedButton.FormattedText>
             </controls:FormattedButton>
@@ -288,8 +289,8 @@
                                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.082}">
                 <controls:FormattedButton.FormattedText>
                     <FormattedString>
-                        <Span Text="Mäus" FontAttributes="Bold"/>
-                        <Span Text="efraẞ&#x0a;" FontAttributes="None"/>
+                        <Span Text="Mäuse" FontAttributes="Bold"/>
+                        <Span Text="fraẞ&#x0a;" FontAttributes="None"/>
                         <Span Text="Wild" FontAttributes="Bold"/>
                         <Span Text="schaden" FontAttributes="None"/>
                     </FormattedString>
