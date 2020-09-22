@@ -1,0 +1,30 @@
+{
+  "ProfilingId": "fieldcampagneprofiling",
+  "ProfilingMenuItems" : [
+    {
+      "Id": "DoubleSlider",
+      "IntrospectionQuestion": [
+        3,
+        4
+      ],
+      "ChapterName": "chapterCoverage",
+      "AnswersNeeded": 4
+    },
+    {
+      "Id": "ImageChecker",
+      "IntrospectionQuestion": [
+        2
+      ],
+      "ChapterName": "chapterPlantIdentification",
+      "AnswersNeeded": 2
+    },
+    {
+      "Id": "Stadium",
+      "IntrospectionQuestion": [
+        1
+      ],
+      "ChapterName": "chapterGrewStages",
+      "AnswersNeeded": 6
+    }
+  ]
+}

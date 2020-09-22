@@ -1,0 +1,363 @@
+{
+  "title": "Bodentyp",
+  "controls": [
+    {
+      "name": "groundType",
+      "label": {
+        "0": "Bodentyp",
+        "1": "Soil type"
+      },
+      "hint": {
+        "0": "Wählen Sie aus der Liste der Böden den Namen des Bodentyps aus bzw. tragen Sie diesen unter „Sonstige“ ein, falls der Bodentyp nicht aufgelistet wurde.",
+        "1": "Select the name of the soil type from the list. If the name is not listed, select the option “Others” and enter the name."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": { "0": "" },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {},
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Schwarzerden",
+            "1": "Black soils"
+          },
+          "cascade": [],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Braunerden",
+            "1": "Brown soils"
+          },
+          "cascade": [],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "Auenböden",
+            "1": "Alluvial soils"
+          },
+          "cascade": [],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "Gleye",
+            "1": "Gley"
+          },
+          "cascade": [],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "Podsol",
+            "1": "Podzol"
+          },
+          "cascade": [],
+          "val": "4"
+        },
+        {
+          "text": {
+            "0": "Pelosol",
+            "1": "Pelosol"
+          },
+          "cascade": [],
+          "val": "5"
+        },
+        {
+          "text": {
+            "0": "Plaggenesch",
+            "1": "Plaggen soil"
+          },
+          "cascade": [],
+          "val": "6"
+        },
+        {
+          "text": {
+            "0": "Rendzinen",
+            "1": "Rendzina"
+          },
+          "cascade": [],
+          "val": "7"
+        },
+        {
+          "text": {
+            "0": "Trockene Sandböden",
+            "1": "Dry sandy soil"
+          },
+          "cascade": [],
+          "val": "8"
+        },
+        {
+          "text": {
+            "0": "Kulluvisol",
+            "1": "Kulluvisol"
+          },
+          "cascade": [],
+          "val": "9"
+        },
+        {
+          "text": {
+            "0": "Fahlerde",
+            "1": "Pale soil"
+          },
+          "cascade": [],
+          "val": "10"
+        },
+        {
+          "text": {
+            "0": "Sonstiges",
+            "1": "Other"
+          },
+          "cascade": [],
+          "val": "11"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {},
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "groundTypeBlackSoils",
+      "label": {
+        "0": "Bodentyp",
+        "1": "Soil type"
+      },
+      "hint": {},
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {},
+      "relevance": "${groundType}=0",
+      "constraint": "",
+      "invalidText": {},
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Tschernosem",
+            "1": "Chernosem"
+          },
+          "cascade": [],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Kalktschernosem",
+            "1": "Lime chernosem"
+          },
+          "cascade": [],
+          "val": "1"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {},
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "groundTypeBrownSoils",
+      "label": {
+        "0": "Bodentyp",
+        "1": "Soil type"
+      },
+      "hint": { "0": "" },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {},
+      "relevance": "${groundType}=1",
+      "constraint": "",
+      "invalidText": {},
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Braunerde",
+            "1": "Brown soil"
+          },
+          "cascade": [],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "Parabraunerde",
+            "1": "Chromic luvisol"
+          },
+          "cascade": [],
+          "val": "1"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {},
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "groundTypeAlluvialSoils",
+      "label": {
+        "0": "Bodentyp",
+        "1": "Soil type"
+      },
+      "hint": {},
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {},
+      "relevance": "${groundType}=2",
+      "constraint": "",
+      "invalidText": {},
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Vega",
+            "1": "Vega"
+          },
+          "cascade": [],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Tschernitza",
+            "1": "Tschernitza"
+          },
+          "cascade": [],
+          "val": "1"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {},
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "groundTypeGley",
+      "label": {
+        "0": "Bodentyp",
+        "1": "Soil type"
+      },
+      "hint": {},
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {},
+      "relevance": "${groundType}=3",
+      "constraint": "",
+      "invalidText": {},
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Anmoorgley",
+            "1": "Anmoorgley"
+          },
+          "cascade": [],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Auengley",
+            "1": "Auengley"
+          },
+          "cascade": [],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "Pseudogley",
+            "1": "Stagnosol"
+          },
+          "cascade": [],
+          "val": "2"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {},
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "groundTypeRendzina",
+      "label": {
+        "0": "Bodentyp",
+        "1": "Soil type"
+      },
+      "hint": {},
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {},
+      "relevance": "${groundType}=7",
+      "constraint": "",
+      "invalidText": {},
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Rendzina",
+            "1": "Rendzina"
+          },
+          "cascade": [],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Pararendzina",
+            "1": "Pararendzina"
+          },
+          "cascade": [],
+          "val": "1"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {},
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "groundTypeOther",
+      "label": {
+        "0": "Bodentyp",
+        "1": "Soil type"
+      },
+      "hint": {},
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {},
+      "relevance": "${groundType}=11",
+      "constraint": "",
+      "calculate": "",
+      "length": false,
+      "invalidText": {},
+      "metadata": {},
+      "type": "inputText"
+    }
+  ],
+  "metadata": {
+    "version": 2,
+    "activeLanguages": {
+      "0": "German",
+      "1": "English",
+      "_counter": 1,
+      "_display": "0"
+    },
+    "optionsPresets": [],
+    "htitle": null,
+    "instance_name": "",
+    "public_key": "",
+    "submission_url": ""
+  }
+}

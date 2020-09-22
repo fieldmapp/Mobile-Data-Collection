@@ -1,0 +1,42 @@
+{
+  "title": "Standort",
+  "controls": [
+    {
+      "name": "currentLocation",
+      "label": {
+        "0": "Standort",
+        "1": "Location"
+      },
+      "hint": {
+        "0": "Durch Tippen auf [Speichern] werden die GPS-Koordinaten des aktuellen Standorts erfasst. Bitte Koordinaten nur speichern, wenn Sie sich an/auf dem Feld befinden, dessen Eigenschaften Sie erfassen wollen. Richten Sie dazu Ihr Smartphone/Tablet vor dem Tippen auf [Speichern] so aus, als würden Sie ein Foto von dem Feld machen wollen. Dies ermöglicht uns anhand der Kompassdaten die Zuordnung Ihrer Eingaben zu dem Feld, auch wenn Sie nicht auf diesem stehen.\n\nWenn Sie sich nicht an/auf dem Feld befinden bzw. keine Koordinatenerfassung wünschen, tippen Sie auf [Überspringen]. Es wird daraufhin der Wert 0 sowohl für die geographische Breite als auch Länge gespeichert.\nDurch Tippen auf [Speichern] werden die GPS-Koordinaten des aktuellen Standorts erfasst. Bitte Koordinaten nur speichern, wenn Sie sich an/auf dem Feld befinden, dessen Eigenschaften Sie erfassen wollen. Richten Sie Ihr Smartphone/Tablett vor dem Tippen auf Speichern so aus, als würden Sie ein Foto von dem Feld machen wollen. Dies ermöglicht uns anhand der Kompassdaten die Zuordnung Ihrer Eingaben zu dem Feld, auch wenn Sie nicht auf diesem stehen. Wenn Sie keine Koordinatenerfassung wünschen, deaktivieren Sie den GPS-Sensor Ihres Gerätes. Um mit der Beantwortung der Fragen fortzufahren, tippen Sie auf Speichern. Es wird daraufhin der Wert 0 sowohl für die geographische Breite, als Länge gespeichert.",
+        "1": "Click on [Save] to record the coordinates of the current location. Please save coordinates only, if you are standing on or next to the field for which you want to record properties. Before clicking [Save], direct the camera on the backside of your Smartphone or Tablet (not the selfie camera) towards the field and hold it in that position while clicking [Save]. This enables us to assign the properties to the correct field (even if you are not standing on it) with the help of the compass data (a photo capture is not required).\n\nIf you are not standing on or next to the field or if you do not want to record coordinates, click on [Skip]. By doing so, the value 0 is assigned for both longitude and latitude."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": { "1": "" },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": { "1": "" },
+      "calculate": "",
+      "kind": "Point",
+      "appearance": "Default (GPS)",
+      "metadata": {},
+      "type": "inputLocation"
+    }
+  ],
+  "metadata": {
+    "version": 2,
+    "activeLanguages": {
+      "0": "German",
+      "1": "English",
+      "_counter": 1,
+      "_display": "0"
+    },
+    "optionsPresets": [],
+    "htitle": null,
+    "instance_name": "",
+    "public_key": "",
+    "submission_url": ""
+  }
+}

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Main contributors: Max Moebius-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DLR_Data_App.Views.Profiling.IntrospectionPage"
+             xmlns:ctrls="clr-namespace:DLR_Data_App.Controls"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             Title="{res:Translate profiling}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Button">White</Color>
+            <Color x:Key="Selection">DarkSeaGreen</Color>
+            <Color x:Key="TextColor">Gray</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Grid Margin="10,20,10,10" VerticalOptions="CenterAndExpand" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Text="{Binding QuestionItem.QuestionText}" x:Name="QuestionLabel" FontSize="Medium"/>
+            </Grid>
+
+            <Grid Margin="15,0,10,10" RowSpacing="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ctrls:RadioButton x:Name="Button1" Grid.Row="0" Title="{res:Translate introspection0}" Tapped="Button_Tapped" FontSize="Medium"/>
+                <ctrls:RadioButton x:Name="Button2" Grid.Row="1" Title="{res:Translate introspection1}" Tapped="Button_Tapped" FontSize="Large"/> <!--FontSize gibt es noch nicht-->
+                <ctrls:RadioButton x:Name="Button3" Grid.Row="2" Title="{res:Translate introspection2}" Tapped="Button_Tapped"/>
+                <ctrls:RadioButton x:Name="Button4" Grid.Row="3" Title="{res:Translate introspection3}" Tapped="Button_Tapped"/>
+                <ctrls:RadioButton x:Name="Button5" Grid.Row="4" Title="{res:Translate introspection4}" Tapped="Button_Tapped"/>
+            </Grid>
+
+            <Button Grid.Column="1"
+                    Text="{res:Translate next}" FontSize="Medium"
+                    BackgroundColor="{StaticResource Button}"
+                    TextColor="{StaticResource TextColor}"
+                    VerticalOptions="End"
+                    HorizontalOptions="Fill"
+                    Clicked="OnWeiterButtonClicked"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

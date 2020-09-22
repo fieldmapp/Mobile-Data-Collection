@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DLR_Data_App.Views.Settings.SensorListPage"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             xmlns:vm="clr-namespace:DLR_Data_App.ViewModels.Settings">
+
+    <ContentPage.BindingContext>
+        <vm:SensorListViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Padding="25">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Label Text="{res:Translate accelerometer}"
+                       Grid.Row="0"
+                       Grid.Column="0"/>
+                <Switch x:Name="SwitchAccelerometer" 
+                        IsToggled="True"
+                        Toggled="Switch_accelerometer_Toggled"
+                        Grid.Row="0"
+                        Grid.Column="1" />
+                <Label Text="{res:Translate barometer}"
+                       Grid.Row="1"
+                       Grid.Column="0"/>
+                <Switch x:Name="SwitchBarometer"  
+                        IsToggled="True"
+                        Toggled="Switch_barometer_Toggled"
+                        Grid.Row="1"
+                        Grid.Column="1" />
+                <Label Text="{res:Translate compass}"
+                       Grid.Row="2"
+                       Grid.Column="0"/>
+                <Switch x:Name="SwitchCompass" 
+                        IsToggled="True" 
+                        Toggled="Switch_compass_Toggled"
+                        Grid.Row="2"
+                        Grid.Column="1" />
+                <Label Text="{res:Translate gps}"
+                       Grid.Row="3"
+                       Grid.Column="0"/>
+                <Switch x:Name="SwitchGps"  
+                        IsToggled="True"
+                        Toggled="Switch_gps_Toggled"
+                        Grid.Row="3"
+                        Grid.Column="1" />
+                <Label Text="{res:Translate gyroscope}"
+                       Grid.Row="4"
+                       Grid.Column="0"/>
+                <Switch x:Name="SwitchGyroscope"  
+                        IsToggled="True"
+                        Toggled="Switch_gyroscope_Toggled"
+                        Grid.Row="4"
+                        Grid.Column="1" />
+                <Label Text="{res:Translate magnetometer}"
+                       Grid.Row="5"
+                       Grid.Column="0"/>
+                <Switch x:Name="SwitchMagnetometer" 
+                        IsToggled="True" 
+                        Toggled="Switch_magnetometer_Toggled"
+                        Grid.Row="5"
+                        Grid.Column="1" />
+                <Label Text="{res:Translate orientationSensor}"
+                       Grid.Row="6"
+                       Grid.Column="0"/>
+                <Switch x:Name="SwitchOrientationSensor"
+                        IsToggled="True"
+                        Toggled="SwitchOrientationSensor_Toggled"
+                        Grid.Row="6"
+                        Grid.Column="1"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

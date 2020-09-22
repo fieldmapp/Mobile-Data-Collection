@@ -1,0 +1,9 @@
+﻿/*! 
+ * \page specialcommand_page Special Commands
+ * To create some additional features, which are not part of the OpenDataKit Build environment, label with special Data Names are used to create forms with additional features
+ *
+ * Command          | Description
+ * -----------------|---------------------------------------------------------------
+ * propRuler        | Displaying a ruler on the side of the display
+ * propCheckUnknown | Creating a checkbox where the state *unknown* can be selected
+ */

@@ -1,0 +1,80 @@
+{
+    "title": "Ernte",
+    "controls": [{
+            "name": "dateHarvest",
+            "label": {
+                "0": "Datum",
+                "1": "Date"
+            },
+            "hint": {
+                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum der Ernte aus und bestätigen Sie Ihre Auswahl durch Tippen auf [OKAY].",
+                "1": "A calendar appears, if you click on the date. Select the date of harvest in the calendar and confirm your selection by clicking on [OKAY]."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": true,
+            "requiredText": {
+                "0": "",
+                "1": ""
+            },
+            "relevance": "",
+            "constraint": ".<now()",
+            "invalidText": {
+                "0": "",
+                "1": ""
+            },
+            "calculate": "",
+            "range": false,
+            "kind": "Full Date",
+            "metadata": {},
+            "type": "inputDate"
+        }, {
+            "name": "amoutHarvest",
+            "label": {
+                "0": "Erntemenge in dt/ha",
+                "1": "Yield in dt/ha"
+            },
+            "hint": {
+                "0": "Geben Sie die Erntemenge in Dezitonnen pro Hektar (bzw. Doppelzentner pro Hektar) ein.",
+                "1": "Enter the yield in decitonne per hectare (or quintals per hectare)."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": true,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": false,
+            "appearance": "Textbox",
+            "kind": "Integer",
+            "selectRange": {
+                "min": "1",
+                "max": "10"
+            },
+            "selectStep": "1",
+            "sliderTicks": true,
+            "metadata": {},
+            "type": "inputNumeric"
+        }
+    ],
+    "metadata": {
+        "version": 2,
+        "activeLanguages": {
+            "0": "German",
+            "1": "English",
+            "_counter": 1,
+            "_display": "0"
+        },
+        "optionsPresets": [],
+        "htitle": null,
+        "instance_name": "",
+        "public_key": "",
+        "submission_url": ""
+    }
+}

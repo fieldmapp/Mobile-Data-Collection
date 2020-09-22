@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Main contributors: Maximilian Enderling, Maya Koehnen-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DLR_Data_App.Views.Profiling.StadiumPage"
+             xmlns:controls="clr-namespace:DLR_Data_App.Controls"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             Title="{res:Translate profiling}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Button">Transparent</Color>
+            <Color x:Key="Selection">DarkSeaGreen</Color>
+            <Color x:Key="TextColor">Gray</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+        <StackLayout Padding="10">
+        <Grid Margin="7,0,0,0" VerticalOptions="StartAndExpand" RowSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" x:Name="HeaderText" HorizontalTextAlignment="Center"
+                   TextColor="{StaticResource TextColor}" Text="{Binding Header}" FontSize="Medium"/>
+            <Label Grid.Row="1" Margin="0,7,0,0" x:Name="QuestionText" 
+                   Text="{Binding QuestionItem.QuestionText}"
+                   FontSize="Medium" TextColor="{StaticResource TextColor}"/>
+
+            <Grid Grid.Row="2" Margin="0,0,0,15" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <controls:DetailImage BackgroundColor="{StaticResource Button}" Grid.Row="0" x:Name="Picture" 
+                                      Source="{Binding QuestionItem.Image}"/>
+                <Grid Grid.Row="1" HorizontalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" HorizontalOptions="EndAndExpand" Source="lupe.png" HeightRequest="10"/>
+                    <Label Grid.Column="1" HorizontalOptions="StartAndExpand" 
+                       Text="{res:Translate holdImageToEnlarge}" FontSize="Micro"/>
+                </Grid>
+            </Grid>
+            
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Column="0" HeightRequest="100" Padding="3" BorderColor="LightGray" CornerRadius="0">
+                    <controls:InlinePicker x:Name="PlantInlinePicker">
+                        <controls:InlinePicker.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame BorderColor="{Binding BackgroundColor}" Padding="0" CornerRadius="0" BackgroundColor="{Binding BackgroundColor}">
+                                        <Frame BorderColor="{Binding BackgroundColor}" Margin="1" CornerRadius="0" BackgroundColor="White" Padding="0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Name}" />
+                                            </Grid>
+                                        </Frame>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </controls:InlinePicker.ItemTemplate>
+                    </controls:InlinePicker>
+                </Frame>
+                <Frame Grid.Column="1" Padding="3" BorderColor="LightGray" CornerRadius="0">
+                    <controls:InlinePicker x:Name="StadiumInlinePicker">
+                        <controls:InlinePicker.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame BorderColor="{Binding BackgroundColor}" Padding="0" CornerRadius="0" BackgroundColor="{Binding BackgroundColor}">
+                                        <Frame BorderColor="{Binding BackgroundColor}" Margin="1" CornerRadius="0" BackgroundColor="White" Padding="0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Column="0" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Text="{Binding StadiumName}" />
+                                                <controls:DetailImage Grid.Column="1" BackgroundColor="{StaticResource Button}" Source="{Binding ImageSource}" HorizontalOptions="EndAndExpand"  HeightRequest="25"/>
+                                            </Grid>
+                                        </Frame>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </controls:InlinePicker.ItemTemplate>
+                    </controls:InlinePicker>
+                </Frame>
+            </Grid>
+            <Grid Grid.Row="4" VerticalOptions="EndAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="EvalButton" Text="{res:Translate evaluation}" FontSize="Medium"
+                    BackgroundColor="{StaticResource Button}"
+                    TextColor="{Binding EvaluationTextColor}"
+                    Clicked="OnAuswertungButtonClicked"/>
+                <Button Grid.Column="1"
+                    Text="{res:Translate next}" FontSize="Medium"
+                    BackgroundColor="{StaticResource Button}"
+                    TextColor="{StaticResource TextColor}"
+                    Clicked="OnWeiterButtonClicked"/>
+            </Grid>
+        </Grid>
+    </StackLayout>
+</ContentPage>

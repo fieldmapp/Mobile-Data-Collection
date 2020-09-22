@@ -1,0 +1,512 @@
+{
+    "title": "Bewässerung",
+    "controls": [{
+            "name": "wateringSystemExisting",
+            "label": {
+                "0": "Bewässerungsanlage vorhanden",
+                "1": "Irrigation system available?"
+            },
+            "hint": {
+                "0": "",
+                "1": ""
+            },
+            "defaultValue": "1",
+            "readOnly": false,
+            "required": true,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "options": [{
+                    "text": {
+                        "0": "Ja"
+                    },
+                    "cascade": [],
+                    "val": "0"
+                }, {
+                    "text": {
+                        "0": "Nein"
+                    },
+                    "cascade": [],
+                    "val": "1"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {},
+            "type": "inputSelectOne"
+        }, {
+            "name": "wateringSystemStart1",
+            "label": {
+                "0": "Bewässerungsbeginn",
+                "1": "Start of irrigation"
+            },
+            "hint": {
+                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem mit der Bewässerung des Feldes begonnen wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+                "1": "A calendar appears, if you click on the date. Select the date in the calendar when irrigation of the field was started and confirm your selection by clicking on [OKAY]."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${wateringSystemExisting}=0",
+            "constraint": ".<now()",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": false,
+            "kind": "Full Date",
+            "metadata": {},
+            "type": "inputDate"
+        }, {
+            "name": "wateringSystemEnd1",
+            "label": {
+                "0": "Bewässerungsende",
+                "1": "End of irrigation"
+            },
+            "hint": {
+                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem das Feld letztmalig bewässert wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+                "1": "A calendar appears, if you click on the date. Select the date in the calendar when irrigation of the field was stopped and confirm your selection by clicking on [OKAY]."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${wateringSystemExisting}=0",
+            "constraint": ".<now()",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": false,
+            "kind": "Full Date",
+            "metadata": {},
+            "type": "inputDate"
+        }, {
+            "name": "wateringAmmount1",
+            "label": {
+                "0": "Bewässerungsmenge in Litern pro Tag",
+                "1": "Amout of irrigation in liters per day"
+            },
+            "hint": {
+                "0": "Geben Sie den gemessenen bzw. geschätzten Wert der Wassermenge in Litern an, die pro Tag auf das Feld aufgebracht wurde.",
+                "1": "Enter the measured or estimated amount of water that was utilized on average per day to irrigate the entire field or a certain area of the field."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${wateringSystemExisting}=0",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": {
+                "min": "0",
+                "max": "",
+                "minInclusive": true,
+                "maxInclusive": false
+            },
+            "appearance": "Textbox",
+            "kind": "Integer",
+            "selectRange": {
+                "min": "1",
+                "max": "10"
+            },
+            "selectStep": "1",
+            "sliderTicks": true,
+            "metadata": {},
+            "type": "inputNumeric"
+        }, {
+            "name": "wateringAreaSize1",
+            "label": {
+                "0": "Bewässerte Fläche in ha",
+                "1": "Irrigated area in ha"
+            },
+            "hint": {
+                "0": "Geben Sie an, auf welche Fläche diese Wassermenge verteilt wurde.",
+                "1": "Enter the size of the area (in hectare) that was irrigated in the field “Irrigated area in ha”."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${wateringSystemExisting}=0",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": {
+                "min": "0",
+                "max": "",
+                "minInclusive": true,
+                "maxInclusive": false
+            },
+            "appearance": "Textbox",
+            "kind": "Integer",
+            "selectRange": {
+                "min": "1",
+                "max": "10"
+            },
+            "selectStep": "1",
+            "sliderTicks": true,
+            "metadata": {},
+            "type": "inputNumeric"
+        }, {
+            "name": "additionalWateringInfo1",
+            "label": {
+                "0": "Weitere Angaben?",
+                "1": "Additional data?"
+            },
+            "hint": {},
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {},
+            "relevance": "${wateringSystemExisting}=0",
+            "constraint": "",
+            "invalidText": {},
+            "calculate": "",
+            "options": [{
+                    "text": {
+                        "0": "Ja"
+                    },
+                    "cascade": [],
+                    "val": "0"
+                }, {
+                    "text": {
+                        "0": "Nein"
+                    },
+                    "cascade": [],
+                    "val": "1"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {},
+            "type": "inputSelectOne"
+        }, {
+            "name": "wateringSystemStart2",
+            "label": {
+                "0": "Bewässerungsbeginn",
+                "1": "Start of irrigation"
+            },
+            "hint": {
+                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem mit der Bewässerung des Feldes begonnen wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+                "1": "A calendar appears, if you click on the date. Select the date in the calendar when irrigation of the field was started and confirm your selection by clicking on [OKAY]."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${additionalWateringInfo1}=0",
+            "constraint": ".<now()",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": false,
+            "kind": "Full Date",
+            "metadata": {},
+            "type": "inputDate"
+        }, {
+            "name": "wateringSystemEnd2",
+            "label": {
+                "0": "Bewässerungsende",
+                "1": "End of irrigation"
+            },
+            "hint": {
+                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem das Feld letztmalig bewässert wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+                "1": "A calendar appears, if you click on the date. Select the date in the calendar when irrigation of the field was stopped and confirm your selection by clicking on [OKAY]."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${additionalWateringInfo1}=0",
+            "constraint": ".<now()",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": false,
+            "kind": "Full Date",
+            "metadata": {},
+            "type": "inputDate"
+        }, {
+            "name": "wateringAmmount2",
+            "label": {
+                "0": "Bewässerungsmenge in Litern pro Tag",
+                "1": "Amout of irrigation in liters per day"
+            },
+            "hint": {
+                "0": "Geben Sie den gemessenen bzw. geschätzten Wert der Wassermenge in Litern an, die pro Tag auf das Feld aufgebracht wurde.",
+                "1": "Enter the measured or estimated amount of water that was utilized on average per day to irrigate the entire field or a certain area of the field."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${additionalWateringInfo1}=0",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": {
+                "min": "0",
+                "max": "",
+                "minInclusive": true,
+                "maxInclusive": false
+            },
+            "appearance": "Textbox",
+            "kind": "Integer",
+            "selectRange": {
+                "min": "1",
+                "max": "10"
+            },
+            "selectStep": "1",
+            "sliderTicks": true,
+            "metadata": {},
+            "type": "inputNumeric"
+        }, {
+            "name": "wateringAreaSize2",
+            "label": {
+                "0": "Bewässerte Fläche in ha",
+                "1": "Irrigated area in ha"
+            },
+            "hint": {
+                "0": "Geben Sie an, auf welche Fläche diese Wassermenge verteilt wurde.",
+                "1": "Enter the size of the area (in hectare) that was irrigated in the field “Irrigated area in ha”."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${additionalWateringInfo1}=0",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": {
+                "min": "0",
+                "max": "",
+                "minInclusive": true,
+                "maxInclusive": false
+            },
+            "appearance": "Textbox",
+            "kind": "Integer",
+            "selectRange": {
+                "min": "1",
+                "max": "10"
+            },
+            "selectStep": "1",
+            "sliderTicks": true,
+            "metadata": {},
+            "type": "inputNumeric"
+        }, {
+            "name": "additionalWateringInfo2",
+            "label": {
+                "0": "Weitere Angaben?",
+                "1": "Additional data?"
+            },
+            "hint": {},
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {},
+            "relevance": "${additionalWateringInfo1}=0",
+            "constraint": "",
+            "invalidText": {},
+            "calculate": "",
+            "options": [{
+                    "text": {
+                        "0": "Ja"
+                    },
+                    "cascade": [],
+                    "val": "0"
+                }, {
+                    "text": {
+                        "0": "Nein"
+                    },
+                    "cascade": [],
+                    "val": "1"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {},
+            "type": "inputSelectOne"
+        }, {
+            "name": "wateringSystemStart3",
+            "label": {
+                "0": "Bewässerungsbeginn",
+                "1": "Start of irrigation"
+            },
+            "hint": {
+                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem mit der Bewässerung des Feldes begonnen wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+                "1": "A calendar appears, if you click on the date. Select the date in the calendar when irrigation of the field was started and confirm your selection by clicking on [OKAY]."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${additionalWateringInfo2}=0",
+            "constraint": ".<now()",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": false,
+            "kind": "Full Date",
+            "metadata": {},
+            "type": "inputDate"
+        }, {
+            "name": "wateringSystemEnd3",
+            "label": {
+                "0": "Bewässerungsende",
+                "1": "End of irrigation"
+            },
+            "hint": {
+                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, an dem das Feld letztmalig bewässert wurde und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+                "1": "A calendar appears, if you click on the date. Select the date in the calendar when irrigation of the field was stopped and confirm your selection by clicking on [OKAY]."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${additionalWateringInfo2}=0",
+            "constraint": ".<now()",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": false,
+            "kind": "Full Date",
+            "metadata": {},
+            "type": "inputDate"
+        }, {
+            "name": "wateringAmmount3",
+            "label": {
+                "0": "Bewässerungsmenge in Litern pro Tag",
+                "1": "Amout of irrigation in liters per day"
+            },
+            "hint": {
+                "0": "Geben Sie den gemessenen bzw. geschätzten Wert der Wassermenge in Litern an, die pro Tag auf das Feld aufgebracht wurde.",
+                "1": "Enter the measured or estimated amount of water that was utilized on average per day to irrigate the entire field or a certain area of the field."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${additionalWateringInfo2}=0",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": {
+                "min": "0",
+                "max": "",
+                "minInclusive": true,
+                "maxInclusive": false
+            },
+            "appearance": "Textbox",
+            "kind": "Integer",
+            "selectRange": {
+                "min": "1",
+                "max": "10"
+            },
+            "selectStep": "1",
+            "sliderTicks": true,
+            "metadata": {},
+            "type": "inputNumeric"
+        }, {
+            "name": "wateringAreaSize3",
+            "label": {
+                "0": "Bewässerte Fläche in ha",
+                "1": "Irrigated area in ha"
+            },
+            "hint": {
+                "0": "Geben Sie an, auf welche Fläche diese Wassermenge verteilt wurde.",
+                "1": "Enter the size of the area (in hectare) that was irrigated in the field “Irrigated area in ha”."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${additionalWateringInfo2}=0",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "range": {
+                "min": "0",
+                "max": "",
+                "minInclusive": true,
+                "maxInclusive": false
+            },
+            "appearance": "Textbox",
+            "kind": "Integer",
+            "selectRange": {
+                "min": "1",
+                "max": "10"
+            },
+            "selectStep": "1",
+            "sliderTicks": true,
+            "metadata": {},
+            "type": "inputNumeric"
+        }
+    ],
+    "metadata": {
+        "version": 2,
+        "activeLanguages": {
+            "0": "German",
+            "1": "English",
+            "_counter": 1,
+            "_display": "0"
+        },
+        "optionsPresets": [],
+        "htitle": null,
+        "instance_name": "",
+        "public_key": "",
+        "submission_url": ""
+    }
+}

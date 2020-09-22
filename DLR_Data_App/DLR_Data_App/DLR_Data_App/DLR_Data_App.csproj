@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Jan Füsting</Authors>
+    <Company>Deutsches Zentrum für Luft- und Raumfahrt e.V.</Company>
+    <Product>DLR Data App</Product>
+    <PackageId>DLR Data App</PackageId>
+    <NeutralLanguage>en-GB</NeutralLanguage>
+    <AssemblyName>DLR_Data_App</AssemblyName>
+    <RootNamespace>DLR_Data_App</RootNamespace>
+	<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="MultilingualResources\DLR_Data_App.de.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CoreCLR-NCalc" Version="2.2.70" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="SharpZipLib" Version="1.1.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
+    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.18" />
+  </ItemGroup>
+  <ItemGroup>
+    <XliffResource Include="MultilingualResources\DLR_Data_App.de.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Localizations\AppResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Views\GaitTrackingMeasuringDemoPage.xaml.cs">
+      <DependentUpon>GaitTrackingMeasuringDemoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Login\NewProfilePage.xaml.cs">
+      <DependentUpon>NewProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ProfilingList\NewProfilingPage.xaml.cs">
+      <DependentUpon>NewProfilingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ProfilingList\ProfilingDetailPage.xaml.cs">
+      <DependentUpon>ProfilingDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ProfilingList\ProfilingListPage.xaml.cs">
+      <DependentUpon>ProfilingListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ProjectList\ProjectDetailPage.xaml.cs">
+      <DependentUpon>ProjectDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ProjectList\NewProjectPage.xaml.cs">
+      <DependentUpon>NewProjectPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ProjectList\ProjectListPage.xaml.cs">
+      <DependentUpon>ProjectListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Settings\ProfilelistPage.xaml.cs">
+      <DependentUpon>ProfileListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Profiling\CurrentProfilingPage.xaml.cs">
+      <DependentUpon>CurrentProfilingPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Controls\FormattedButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\InlinePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Localizations\AppResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CurrentProject\EditDataDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CurrentProject\EditDataPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DistanceMeasuringDemoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DrivingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\LicensesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ProjectList\ProjectListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\AppSettings.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\NewProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\ProfileListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\ProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CurrentProject\ProjectPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\SensorListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SensorTestPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SplashScreenPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profiling\DoubleSliderPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profiling\EvaluationDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profiling\EvaluationMainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profiling\EvaluationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profiling\ImageCheckerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profiling\ImageDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profiling\IntrospectionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profiling\LoadingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profiling\CurrentProfilingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profiling\StadiumPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\VoiceRecognitionDemoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

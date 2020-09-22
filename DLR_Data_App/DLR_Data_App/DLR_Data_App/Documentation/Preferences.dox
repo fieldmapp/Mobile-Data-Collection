@@ -1,0 +1,12 @@
+﻿/*! 
+ * \page pref_page Preferences
+ * |Category | Name         | Description                   |
+ * |---------|--------------|-------------------------------|
+ * |Sensors  | acceleration | Status of acceleration sensor |
+ * |         | barometer    | Status of barometer sensor    |
+ * |         | compass      | Status of compass sensor      |
+ * |         | gps          | Status of gps sensor          |
+ * |         | gyroscope    | Status of gyroscope sensor    |
+ * |         | magnetometer | Status of magnetometer sensor |
+ * |User     | username     | Registered user name          |
+ */

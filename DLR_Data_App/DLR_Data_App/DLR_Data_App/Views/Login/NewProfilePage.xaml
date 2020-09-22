@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             x:Class="DLR_Data_App.Views.Login.NewProfilePage"
+             BackgroundImageSource="Background_Login.png">
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout x:Name="LoginEntries" 
+                         VerticalOptions="CenterAndExpand"
+                         Padding="40,0,40,0">
+
+                <Label Text="{res:Translate newaccount}"
+                       FontSize="Large"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="{res:Translate name}"
+                       TextColor="White"/>
+                <Entry x:Name="EntryUsername"
+                       TextColor="White"
+                       Placeholder="{res:Translate name}"
+                       PlaceholderColor="Gray"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    
+                    <Button x:Name="BtnCancel"
+                        Text="{res:Translate cancel}"
+                        Clicked="Btn_cancel_Clicked"
+                        Grid.Row="0"
+                        Grid.Column="0" />
+                    <Button x:Name="BtnAccept"
+                        Text="{res:Translate accept}"
+                        Clicked="Btn_accept_Clicked"
+                        Grid.Row="0"
+                        Grid.Column="1" />
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

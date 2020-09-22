@@ -1,0 +1,442 @@
+{
+  "title": "Phänologische Entwicklung",
+  "controls": [
+    {
+      "name": "avgPhenologicalStadium",
+      "label": {
+        "0": "Mittleres phänologisches Stadium",
+        "1": "Average phenological stadium"
+      },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
+      "defaultValue": "0",
+      "readOnly": false,
+      "required": true,
+      "requiredText": { "1": "" },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": { "1": "" },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Keimung",
+            "1": "Sprouting"
+          },
+          "cascade": [],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Blattentwicklung",
+            "1": "Leaf development"
+          },
+          "cascade": [],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "Bestockung",
+            "1": "Formation of side shoots"
+          },
+          "cascade": [],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "Schossen",
+            "1": "Shoot development"
+          },
+          "cascade": [],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "Ährenschwellen",
+            "1": "Bolting"
+          },
+          "cascade": [],
+          "val": "4"
+        },
+        {
+          "text": {
+            "0": "Ährenschieben",
+            "1": "Heading"
+          },
+          "cascade": [],
+          "val": "5"
+        },
+        {
+          "text": {
+            "0": "Blüte",
+            "1": "Flowering"
+          },
+          "cascade": [],
+          "val": "6"
+        },
+        {
+          "text": {
+            "0": "Fruchtentwickung",
+            "1": "Development of fruit"
+          },
+          "cascade": [],
+          "val": "7"
+        },
+        {
+          "text": {
+            "0": "Samenreife",
+            "1": "Ripening of fruit and seed"
+          },
+          "cascade": [],
+          "val": "8"
+        },
+        {
+          "text": {
+            "0": "Absterben",
+            "1": "Senescence"
+          },
+          "cascade": [],
+          "val": "9"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {},
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "minPhenologicalStadium",
+      "label": {
+        "0": "Geringstes phänologisches Stadium",
+        "1": "Lowest phenological stadium"
+      },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
+      "defaultValue": "0",
+      "readOnly": false,
+      "required": true,
+      "requiredText": { "1": "" },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": { "1": "" },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Keimung",
+            "1": "Sprouting"
+          },
+          "cascade": [],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Blattentwicklung",
+            "1": "Leaf development"
+          },
+          "cascade": [],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "Bestockung",
+            "1": "Formation of side shoots"
+          },
+          "cascade": [],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "Schossen",
+            "1": "Shoot development"
+          },
+          "cascade": [],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "Ährenschwellen",
+            "1": "Bolting"
+          },
+          "cascade": [],
+          "val": "4"
+        },
+        {
+          "text": {
+            "0": "Ährenschieben",
+            "1": "Heading"
+          },
+          "cascade": [],
+          "val": "5"
+        },
+        {
+          "text": {
+            "0": "Blüte",
+            "1": "Flowering"
+          },
+          "cascade": [],
+          "val": "6"
+        },
+        {
+          "text": {
+            "0": "Fruchtentwickung",
+            "1": "Development of fruit"
+          },
+          "cascade": [],
+          "val": "7"
+        },
+        {
+          "text": {
+            "0": "Samenreife",
+            "1": "Ripening of fruit and seed"
+          },
+          "cascade": [],
+          "val": "8"
+        },
+        {
+          "text": {
+            "0": "Absterben",
+            "1": "Senescence"
+          },
+          "cascade": [],
+          "val": "9"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {},
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "maxPhenologicalStadium",
+      "label": {
+        "0": "Höchstes phänologisches Stadium",
+        "1": "Highest phenological stadium"
+      },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
+      "defaultValue": "0",
+      "readOnly": false,
+      "required": true,
+      "requiredText": { "1": "" },
+      "relevance": "${avgPhenologicalStadium}>=${minPhenologicalStadium} or ${avgPhenologicalStadium}=10 or ${minPhenologicalStadium}=10",
+      "constraint": "",
+      "invalidText": { "1": "" },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Keimung",
+            "1": "Sprouting"
+          },
+          "cascade": [],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Blattentwicklung",
+            "1": "Leaf development"
+          },
+          "cascade": [],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "Bestockung",
+            "1": "Formation of side shoots"
+          },
+          "cascade": [],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "Schossen",
+            "1": "Shoot development"
+          },
+          "cascade": [],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "Ährenschwellen",
+            "1": "Bolting"
+          },
+          "cascade": [],
+          "val": "4"
+        },
+        {
+          "text": {
+            "0": "Ährenschieben",
+            "1": "Heading"
+          },
+          "cascade": [],
+          "val": "5"
+        },
+        {
+          "text": {
+            "0": "Blüte",
+            "1": "Flowering"
+          },
+          "cascade": [],
+          "val": "6"
+        },
+        {
+          "text": {
+            "0": "Fruchtentwickung",
+            "1": "Development of fruit"
+          },
+          "cascade": [],
+          "val": "7"
+        },
+        {
+          "text": {
+            "0": "Samenreife",
+            "1": "Ripening of fruit and seed"
+          },
+          "cascade": [],
+          "val": "8"
+        },
+        {
+          "text": {
+            "0": "Absterben",
+            "1": "Senescence"
+          },
+          "cascade": [],
+          "val": "9"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {},
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "plantHeight",
+      "label": {
+        "0": "Pflanzenhöhe in cm",
+        "1": "Plant height in cm"
+      },
+      "hint": {
+        "0": "Messen (oder schätze) Sie die Höhe der Pflanzen und tragen Sie die Höhe in Zentimetern ein.",
+        "1": "Measure (or estimate) the plant height as the vertical distance from the soil surface to the top of canopy in centimeters and enter the value here."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": { "1": "" },
+      "relevance": "${avgPhenologicalStadium}<=${maxPhenologicalStadium} or ${avgPhenologicalStadium}=10 or ${maxPhenologicalStadium}=10",
+      "constraint": "",
+      "invalidText": { "1": "" },
+      "calculate": "",
+      "range": {
+        "min": "0",
+        "max": "500",
+        "minInclusive": true,
+        "maxInclusive": true
+      },
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "10"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
+      "metadata": {},
+      "type": "inputNumeric"
+    },
+    {
+      "name": "percentPlantCoverage",
+      "label": {
+        "0": "Prozentuale Abdeckung des Bodens durch Pflanzen",
+        "1": "Fractional vegetation cover"
+      },
+      "hint": {
+        "0": "Wählen sie eine für die Umgebung repräsentative Fläche von ca. 1\u00A0m\u00A0x\u00A01\u00A0m aus. Schauen sie senkrecht auf diese Fläche. Schätzen Sie nun für diese Fläche den Anteil des Bodens, der durch Pflanzen bedeckt ist. Tragen Sie Ihre Schätzung hier ein.",
+        "1": "Select an area of 1\u00A0m\u00A0x\u00A01\u00A0m on the field that is representative for its surrounding. Look on the selected area in nadir view and estimate the fraction of the surface area that is covered by plants. Enter your estimated value as percentage in the field “Fractional vegetation cover”."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": { "1": "" },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": { "1": "" },
+      "calculate": "",
+      "range": {
+        "min": "0",
+        "max": "100",
+        "minInclusive": true,
+        "maxInclusive": true
+      },
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "100"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
+      "metadata": {},
+      "type": "inputNumeric"
+    },
+    {
+      "name": "percentGreenPlants",
+      "label": {
+        "0": "Prozentualer Anteil grüner Pflanzenbestandteile am gesamten Pflanzenmaterial",
+        "1": "Proportion of vital plant material"
+      },
+      "hint": {
+        "0": "Wählen sie eine für die Umgebung repräsentative Fläche von ca. 1\u00A0m\u00A0x\u00A01\u00A0m aus. Schauen sie senkrecht auf diese Fläche. Schätzen Sie nun für diese Fläche den Anteil des grünen Pflanzenmaterial am gesamten sichtbaren Pflanzenmaterial. Tragen Sie Ihre Schätzung hier ein.",
+        "1": "Select an area of 1\u00A0m\u00A0x\u00A01\u00A0m on the field that is representative for its surrounding. Look on the selected area in nadir view and estimate the fraction of vital (green) vegetation on the whole plant material (senescent and vital) that you see. Enter your estimated value as percentage (a value between 0 and 100 without percent sign) here."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": { "1": "" },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": { "1": "" },
+      "calculate": "",
+      "range": {
+        "min": "0",
+        "max": "100",
+        "minInclusive": true,
+        "maxInclusive": true
+      },
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "100"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
+      "metadata": {},
+      "type": "inputNumeric"
+    }
+  ],
+  "metadata": {
+    "version": 2,
+    "activeLanguages": {
+      "0": "German",
+      "1": "English",
+      "_counter": 1,
+      "_display": "0"
+    },
+    "optionsPresets": [],
+    "htitle": null,
+    "instance_name": "",
+    "public_key": "",
+    "submission_url": ""
+  }
+}
