@@ -13,15 +13,15 @@ namespace DLR_Data_App.Services.VoiceControl
             invalid,
             anfang, ende, abbrechen,
             gering, mittel, hoch, 
-            hang, nass, maus, wild, lehm, sand, kuppe, ton, verdichtung, wende, 
-            zone, spur, unk,
+            hang, nass, maus, wild, trocken, sand, kuppe, ton, verdichtung, wende, waldrand,
+            zone, unk,
             number0, number1, number2, number3, number4, number5, number6, number7, number8, number9
         }
         static KeywordSymbol[] DamageTypes = new[] { KeywordSymbol.gering, KeywordSymbol.mittel, KeywordSymbol.hoch };
         static KeywordSymbol[] DamageCauses = new[]
         {
-            KeywordSymbol.hang, KeywordSymbol.nass, KeywordSymbol.maus, KeywordSymbol.wild, KeywordSymbol.lehm, KeywordSymbol.sand, KeywordSymbol.kuppe,
-            KeywordSymbol.ton, KeywordSymbol.verdichtung, KeywordSymbol.wende
+            KeywordSymbol.hang, KeywordSymbol.nass, KeywordSymbol.maus, KeywordSymbol.wild, KeywordSymbol.trocken, KeywordSymbol.sand, KeywordSymbol.kuppe,
+            KeywordSymbol.ton, KeywordSymbol.verdichtung, KeywordSymbol.wende, KeywordSymbol.waldrand
         };
         public enum Type
         {
@@ -29,7 +29,7 @@ namespace DLR_Data_App.Services.VoiceControl
         }
         public enum Cause
         {
-            hang, nass, maus, wild, lehm, sand, kuppe, ton, verdichtung, wende
+            hang, nass, maus, wild, lehm, sand, kuppe, ton, verdichtung, wende, waldrand
         }
 
         public static bool IsNumber(this KeywordSymbol symbol) => NumberSymbols.Contains(symbol);
@@ -59,15 +59,17 @@ namespace DLR_Data_App.Services.VoiceControl
             { "nass", KeywordSymbol.nass },
             { "nässe", KeywordSymbol.nass },
             { "maus", KeywordSymbol.maus },
+            { "mäuse", KeywordSymbol.maus },
             { "wild", KeywordSymbol.wild },
-            { "lehmig", KeywordSymbol.lehm },
+            { "trocken", KeywordSymbol.trocken },
             { "sand", KeywordSymbol.sand },
             { "kuppe", KeywordSymbol.kuppe },
             { "ton", KeywordSymbol.ton },
             { "verdichtung", KeywordSymbol.verdichtung },
+            { "wald", KeywordSymbol.waldrand },
             { "wende", KeywordSymbol.wende },
             { "zone", KeywordSymbol.zone },
-            { "spur", KeywordSymbol.spur },
+            { "spur", KeywordSymbol.number0 },
             { "[unk]", KeywordSymbol.unk },
             { "null", KeywordSymbol.number0 },
             { "eins", KeywordSymbol.number1 },
