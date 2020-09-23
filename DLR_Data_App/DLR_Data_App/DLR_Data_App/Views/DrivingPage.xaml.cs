@@ -41,7 +41,8 @@ namespace DLR_Data_App.Views
         static Brush InactiveBrush = Brush.LightGray;
         static Color InactiveButtonColor = Color.WhiteSmoke;
         static Brush InactiveButtonBrush = new SolidColorBrush(InactiveButtonColor);
-        static Brush ActiveButtonBrush = new SolidColorBrush(Color.FromHex("#629C44"));
+        static Color ActiveButtonColor = Color.FromHex("#629C44");
+        static Brush ActiveButtonBrush = new SolidColorBrush(ActiveButtonColor);
         List<Button> LaneBeginButtons = new List<Button>();
         List<Button> LaneMiddleButtons = new List<Button>();
         List<Button> LaneEndButtons = new List<Button>();
@@ -327,7 +328,7 @@ namespace DLR_Data_App.Views
                     LaneBeginButtons[laneIndex - 1].Background = InactiveButtonBrush;
                     LaneEndButtons[laneIndex - 1].Background = ActiveButtonBrush;
                 }
-                GetMiddleButtonWithIndex(laneIndex).Background = ActiveButtonBrush;
+                GetMiddleButtonWithIndex(laneIndex).BackgroundColor = ActiveButtonColor;
                 IsLaneStarted[laneIndex] = true;
                 IsLaneActive[laneIndex] = true;
                 IsLaneCauseEntered[laneIndex] = false;
@@ -353,7 +354,7 @@ namespace DLR_Data_App.Views
                 if (!IsLaneTypeEntered[laneIndex])
                     TypeLaneBackgrounds[laneIndex].Background = ActiveForInputBrush;
                 IsLaneSelectedForInput[laneIndex] = true;
-                GetMiddleButtonWithIndex(laneIndex).Background = InactiveButtonBrush;
+                GetMiddleButtonWithIndex(laneIndex).BackgroundColor = InactiveButtonColor;
             }
         }
 
@@ -379,7 +380,7 @@ namespace DLR_Data_App.Views
         {
             foreach (var button in DamageCauseButtons.Union(DamageTypeButtons))
             {
-                button.Background = active ? ActiveButtonBrush : InactiveButtonBrush;
+                button.BackgroundColor = active ? ActiveButtonColor : InactiveButtonColor;
             }
         }
 
@@ -395,7 +396,7 @@ namespace DLR_Data_App.Views
                     if (!IsLaneCauseEntered[i])
                         CauseLaneBackgrounds[i].Background = Brush.Transparent;
                     TypeLaneBackgrounds[i].Background = CompletedInfoBrush;
-                    GetMiddleButtonWithIndex(i).Background = ActiveButtonBrush;
+                    GetMiddleButtonWithIndex(i).BackgroundColor = ActiveButtonColor;
                 }
             }
         }
@@ -412,7 +413,7 @@ namespace DLR_Data_App.Views
                     if (!IsLaneTypeEntered[i])
                         TypeLaneBackgrounds[i].Background = Brush.Transparent;
                     CauseLaneBackgrounds[i].Background = CompletedInfoBrush;
-                    GetMiddleButtonWithIndex(i).Background = ActiveButtonBrush;
+                    GetMiddleButtonWithIndex(i).BackgroundColor = ActiveButtonColor;
                 }
             }
         }
