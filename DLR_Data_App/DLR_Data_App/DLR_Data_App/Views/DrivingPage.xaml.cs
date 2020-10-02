@@ -127,13 +127,9 @@ namespace DLR_Data_App.Views
         {
             foreach (var button in LaneBeginButtons)
             {
-                button.Background = ActiveButtonBrush;
+                button.BackgroundColor = ActiveButtonColor;
             }
-            foreach (var button in LaneEndButtons.Union(LaneMiddleButtons))
-            {
-                button.Background = InactiveButtonBrush;
-            }
-            foreach (var formattedButton in DamageCauseButtons.Union(DamageTypeButtons))
+            foreach (var formattedButton in DamageCauseButtons.AsEnumerable<View>().Union(DamageTypeButtons).Union(LaneEndButtons).Union(LaneMiddleButtons))
             {
                 formattedButton.BackgroundColor = InactiveButtonColor;
             }
@@ -328,7 +324,8 @@ namespace DLR_Data_App.Views
                     LaneBeginButtons[laneIndex - 1].Background = InactiveButtonBrush;
                     LaneEndButtons[laneIndex - 1].Background = ActiveButtonBrush;
                 }
-                GetMiddleButtonWithIndex(laneIndex).BackgroundColor = ActiveButtonColor;
+                var middleButton = GetMiddleButtonWithIndex(laneIndex);
+                middleButton.BackgroundColor = ActiveButtonColor;
                 IsLaneStarted[laneIndex] = true;
                 IsLaneActive[laneIndex] = true;
                 IsLaneCauseEntered[laneIndex] = false;
