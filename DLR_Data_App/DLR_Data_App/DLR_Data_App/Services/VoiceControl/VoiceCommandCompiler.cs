@@ -1,8 +1,10 @@
 ﻿using DLR_Data_App.Views;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using Xamarin.Forms.Xaml;
 
 namespace DLR_Data_App.Services.VoiceControl
 {
@@ -14,8 +16,9 @@ namespace DLR_Data_App.Services.VoiceControl
             anfang, ende, abbrechen,
             gering, mittel, hoch, 
             hang, nass, maus, wild, trocken, sand, kuppe, ton, verdichtung, wende, waldrand,
-            zone, unk,
-            number0, number1, number2, number3, number4, number5, number6, number7, number8, number9
+            zone,
+            number0, number1, number2, number3, number4, number5, number6, number7, number8, number9,
+            unk, endOfStream
         }
         static KeywordSymbol[] DamageTypes = new[] { KeywordSymbol.gering, KeywordSymbol.mittel, KeywordSymbol.hoch };
         static KeywordSymbol[] DamageCauses = new[]
@@ -23,14 +26,6 @@ namespace DLR_Data_App.Services.VoiceControl
             KeywordSymbol.hang, KeywordSymbol.nass, KeywordSymbol.maus, KeywordSymbol.wild, KeywordSymbol.trocken, KeywordSymbol.sand, KeywordSymbol.kuppe,
             KeywordSymbol.ton, KeywordSymbol.verdichtung, KeywordSymbol.wende, KeywordSymbol.waldrand
         };
-        public enum Type
-        {
-            gering, mittel, hoch
-        }
-        public enum Cause
-        {
-            hang, nass, maus, wild, lehm, sand, kuppe, ton, verdichtung, wende, waldrand
-        }
 
         public static bool IsNumber(this KeywordSymbol symbol) => NumberSymbols.Contains(symbol);
         public static int ToNumber(this KeywordSymbol symbol) => NumberSymbols.IndexOf(symbol);
@@ -106,20 +101,20 @@ namespace DLR_Data_App.Services.VoiceControl
                 return "end " + base.ToString();
             }
         }
-        public class SetZonesCauseAction : ZonesAction 
+        public class SetZonesDetailAction : ZonesAction 
         {
-            public KeywordSymbol DamageCause;
+            public KeywordSymbol DamageCause = KeywordSymbol.invalid;
+            public KeywordSymbol DamageType = KeywordSymbol.invalid;
+            public bool ShouldEndZone;
             public override string ToString()
             {
-                return base.ToString() + " cause: " + KeywordStringToSymbol.FirstOrDefault(kv => kv.Value == DamageCause).Key;
-            }
-        }
-        public class SetZonesTypeAction : ZonesAction 
-        { 
-            public KeywordSymbol DamageType;
-            public override string ToString()
-            {
-                return base.ToString() + " type: " + KeywordStringToSymbol.FirstOrDefault(kv => kv.Value == DamageType).Key;
+                string result = base.ToString();
+                if (DamageCause != KeywordSymbol.invalid)
+                    result += " cause: " + KeywordStringToSymbol.First(kv => kv.Value == DamageCause).Key;
+                if (DamageType != KeywordSymbol.invalid)
+                    result += " type: " + KeywordStringToSymbol.First(kv => kv.Value == DamageType).Key;
+                result += $"; end zone: {ShouldEndZone.ToString(CultureInfo.InvariantCulture)}";
+                return result;
             }
         }
         public class CancelAction : VoiceAction 
@@ -155,55 +150,85 @@ namespace DLR_Data_App.Services.VoiceControl
              
         static List<KeywordSymbol> Scan(List<string> recognizedKeywords) => recognizedKeywords.Select(k => KeywordStringToSymbol[k]).ToList();
 
+        class SymbolStreamAccessor
+        {
+            public SymbolStreamAccessor(List<KeywordSymbol> symbols)
+            {
+                Symbols = symbols;
+                Index = 0;
+            }
+            List<KeywordSymbol> Symbols;
+            int Index;
+            public KeywordSymbol Peek()
+            {
+                if (Index == Symbols.Count)
+                    return KeywordSymbol.endOfStream;
+
+                return Symbols[Index];
+            }
+            public KeywordSymbol Next()
+            {
+                if (Index == Symbols.Count)
+                    return KeywordSymbol.endOfStream;
+
+                return Symbols[Index++];
+            }
+        }
+
         static VoiceAction Parse(List<KeywordSymbol> symbols)
         {
-            var symbolsEnumerable = symbols.AsEnumerable();
-            var firstSymbol = symbolsEnumerable.FirstOrDefault();
-            symbolsEnumerable = symbolsEnumerable.Skip(1);
-
-            if (firstSymbol == KeywordSymbol.anfang || firstSymbol == KeywordSymbol.ende || firstSymbol == KeywordSymbol.zone)
+            List<int> GetLaneIndexList(SymbolStreamAccessor acc)
             {
-                ZonesAction action;
-                if (firstSymbol == KeywordSymbol.anfang)
-                    action = new StartZonesAction();
-                else if (firstSymbol == KeywordSymbol.ende)
-                    action = new EndZonesAction();
-                else if (firstSymbol == KeywordSymbol.zone)
+                if (acc.Peek() == KeywordSymbol.zone)
+                    acc.Next();
+
+                List<int> result = new List<int>();
+                while (IsNumber(acc.Peek()))
                 {
-                    if (symbolsEnumerable.LastOrDefault().IsDamageCause())
-                        action = new SetZonesCauseAction();
-                    else if (symbols.LastOrDefault().IsDamageType())
-                        action = new SetZonesTypeAction();
-                    else
-                        return new InvalidAction();
+                    result.Add(acc.Next().ToNumber());
                 }
-                else
+                return result;
+            }
+
+            var accessor = new SymbolStreamAccessor(symbols);
+            var firstSymbol = accessor.Peek();
+
+            if (firstSymbol == KeywordSymbol.anfang || firstSymbol == KeywordSymbol.ende)
+            {
+                ZonesAction action = firstSymbol == KeywordSymbol.anfang ? (ZonesAction)new StartZonesAction() : new EndZonesAction();
+                accessor.Next();
+                action.LaneIndices = GetLaneIndexList(accessor);
+                if (accessor.Next() != KeywordSymbol.endOfStream)
                     return new InvalidAction();
+                return action;
+            }
+            else if (firstSymbol.IsDamageCause() || firstSymbol.IsDamageType() || firstSymbol == KeywordSymbol.zone || firstSymbol.IsNumber())
+            {
+                var action = new SetZonesDetailAction();
 
-                if (symbolsEnumerable.FirstOrDefault() == KeywordSymbol.zone)
-                    symbolsEnumerable = symbolsEnumerable.Skip(1);
-
-                while (symbolsEnumerable.FirstOrDefault().IsNumber())
+                void tryReadOneLineDetail()
                 {
-                    int number = symbolsEnumerable.FirstOrDefault().ToNumber();
-                    if (!action.LaneIndices.Contains(number))
-                        action.LaneIndices.Add(number);
-                    
-                    symbolsEnumerable = symbolsEnumerable.Skip(1);
-                }
-                if (firstSymbol == KeywordSymbol.zone)
-                {
-                    var lastElement = symbolsEnumerable.FirstOrDefault();
-                    symbolsEnumerable = symbolsEnumerable.Skip(1);
-                    if (lastElement.IsDamageCause() && action is SetZonesCauseAction causeAction)
-                        causeAction.DamageCause = lastElement;
-                    else if (lastElement.IsDamageType() && action is SetZonesTypeAction typeAction)
-                        typeAction.DamageType = lastElement;
-                    else
-                        return new InvalidAction();
+                    if (accessor.Peek().IsDamageCause())
+                        action.DamageCause = accessor.Next();
+                    else if (accessor.Peek().IsDamageType())
+                        action.DamageType = accessor.Next();
                 }
 
-                if (symbolsEnumerable.Any())
+                tryReadOneLineDetail();
+                tryReadOneLineDetail();
+                action.LaneIndices = GetLaneIndexList(accessor);
+                tryReadOneLineDetail();
+                tryReadOneLineDetail();
+                
+                if (accessor.Peek() == KeywordSymbol.ende)
+                {
+                    action.ShouldEndZone = true;
+                    accessor.Next();
+                }
+
+                if (accessor.Next() != KeywordSymbol.endOfStream
+                    || action.LaneIndices.Count == 0
+                    || (action.DamageCause == KeywordSymbol.invalid && action.DamageType == KeywordSymbol.invalid))
                     return new InvalidAction();
 
                 return action;
