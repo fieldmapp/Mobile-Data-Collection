@@ -79,7 +79,7 @@ namespace com.DLR.DLR_Data_App.Droid
             {
                 var model = new Model(targetDir);
                 const int sampleRate = 44100;
-                string lang = string.Join(' ', acceptedWords);
+                string lang = $"[{'"'}{string.Join(' ', acceptedWords.Where(k => k != "[unk]"))}{'"'}, {'"'}[unk]{'"'}]";
                 var kaldiRecognizer = new KaldiRecognizer(model, sampleRate, lang);
                 KaldiRecognizer = new SpeechService(kaldiRecognizer, sampleRate);
                 KaldiRecognizer.AddListener(this);
