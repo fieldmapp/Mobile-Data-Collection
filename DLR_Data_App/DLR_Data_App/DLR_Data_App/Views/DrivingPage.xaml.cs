@@ -38,7 +38,6 @@ namespace DLR_Data_App.Views
 
         static Brush CompletedInfoBrush = Brush.Green;
         static Brush ActiveForInputBrush = Brush.Orange;
-        static Brush InactiveBrush = Brush.LightGray;
         static Color InactiveButtonColor = Color.WhiteSmoke;
         static Brush InactiveButtonBrush = new SolidColorBrush(InactiveButtonColor);
         static Color ActiveButtonColor = Color.FromHex("#629C44");
@@ -202,7 +201,7 @@ namespace DLR_Data_App.Views
                 int laneIndex = i + 1;
                 string buttonText = laneIndex.ToString();
                 var buttonXFactor = leftMostButtonXFactor + (LaneCountPerSide - i - 1) * laneWidthFactor;
-                var topButton = new Button { Text = buttonText, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var topButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
                 LaneBeginButtons.Add(topButton);
                 topButton.Clicked += (a, b) => BeginButtonClicked(laneIndex);
                 topButton.FontSize = Device.GetNamedSize(NamedSize.Small, topButton);
@@ -212,7 +211,7 @@ namespace DLR_Data_App.Views
                     yConstraint: Constraint.RelativeToParent(p => p.Height * startButtonYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
 
-                var middleButton = new Button { Text = buttonText, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var middleButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
                 LaneMiddleButtons.Add(middleButton);
                 middleButton.Clicked += (a, b) => CenterButtonClicked(laneIndex);
                 middleButton.FontSize = Device.GetNamedSize(NamedSize.Small, middleButton);
@@ -222,7 +221,7 @@ namespace DLR_Data_App.Views
                     yConstraint: Constraint.RelativeToParent(p => p.Height * middleButtonYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
 
-                var endButton = new Button { Text = buttonText, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var endButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
                 LaneEndButtons.Add(endButton);
                 endButton.Clicked += (a, b) => EndButtonClicked(laneIndex);
                 endButton.FontSize = Device.GetNamedSize(NamedSize.Small, endButton);
@@ -272,7 +271,7 @@ namespace DLR_Data_App.Views
                 int laneIndex = i + 1 + LaneCountPerSide;
                 string buttonText = laneIndex.ToString();
                 var buttonXFactor = rightMostButtonXFactor - (LaneCountPerSide - i - 1) * laneWidthFactor;
-                var topButton = new Button { Text = buttonText, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var topButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
                 LaneBeginButtons.Add(topButton);
                 topButton.Clicked += (a, b) => BeginButtonClicked(laneIndex);
                 topButton.FontSize = Device.GetNamedSize(NamedSize.Small, topButton);
@@ -282,7 +281,7 @@ namespace DLR_Data_App.Views
                     yConstraint: Constraint.RelativeToParent(p => p.Height * startButtonYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
 
-                var middleButton = new Button { Text = buttonText, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var middleButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
                 LaneMiddleButtons.Add(middleButton);
                 middleButton.Clicked += (a, b) => CenterButtonClicked(laneIndex);
                 middleButton.FontSize = Device.GetNamedSize(NamedSize.Small, middleButton);
@@ -292,7 +291,7 @@ namespace DLR_Data_App.Views
                     yConstraint: Constraint.RelativeToParent(p => p.Height * middleButtonYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
 
-                var endButton = new Button { Text = buttonText, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var endButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
                 LaneEndButtons.Add(endButton);
                 endButton.Clicked += (a, b) => EndButtonClicked(laneIndex);
                 endButton.FontSize = Device.GetNamedSize(NamedSize.Small, endButton);
@@ -321,8 +320,8 @@ namespace DLR_Data_App.Views
                 }
                 else
                 {
-                    LaneBeginButtons[laneIndex - 1].Background = InactiveButtonBrush;
-                    LaneEndButtons[laneIndex - 1].Background = ActiveButtonBrush;
+                    LaneBeginButtons[laneIndex - 1].BackgroundColor = InactiveButtonColor;
+                    LaneEndButtons[laneIndex - 1].BackgroundColor = ActiveButtonColor;
                 }
                 var middleButton = GetMiddleButtonWithIndex(laneIndex);
                 middleButton.BackgroundColor = ActiveButtonColor;
@@ -366,8 +365,8 @@ namespace DLR_Data_App.Views
                 }
                 else
                 {
-                    LaneBeginButtons[laneIndex - 1].Background = ActiveButtonBrush;
-                    LaneEndButtons[laneIndex - 1].Background = InactiveButtonBrush;
+                    LaneBeginButtons[laneIndex - 1].BackgroundColor = ActiveButtonColor;
+                    LaneEndButtons[laneIndex - 1].BackgroundColor = InactiveButtonColor;
                 }
                 IsLaneActive[laneIndex] = false;
             }

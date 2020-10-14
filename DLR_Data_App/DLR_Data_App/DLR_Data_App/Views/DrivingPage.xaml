@@ -26,18 +26,12 @@
                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.143}"
                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor= 0.668}"/>
 
-            <controls:FormattedButton x:Name="CancelButton"
-                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
+            <Button x:Name="CancelButton"
+                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}" FontAttributes="Bold" TextColor="Black" Text="Abbrechen"
                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.845}"
                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.140}"
                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.912}"
-                                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.064}">
-                <controls:FormattedButton.FormattedText>
-                    <FormattedString>
-                        <Span Text="Abbrechen" FontAttributes="Bold"/>
-                    </FormattedString>
-                </controls:FormattedButton.FormattedText>
-            </controls:FormattedButton>
+                                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.064}"/>
 
             <Path x:Name="MicIcon"
                   Fill="White" Stroke="Black" StrokeThickness="0.6" Aspect="Uniform"
@@ -100,7 +94,7 @@
                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.845}"/>
 
             <controls:FormattedButton x:Name="CenterLaneMiddleButton"
-                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
+                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}" TextColor="Black"
                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.459}"
                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.095}"
                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.146}"
@@ -128,7 +122,7 @@
                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=TypeBackground, Property=Height, Factor=1}"/>
 
             <controls:FormattedButton x:Name="TypeLowButton"
-                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
+                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}" TextColor="Black"
                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.306}"
                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.110}"
                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.299}"
@@ -140,7 +134,7 @@
                 </controls:FormattedButton.FormattedText>
             </controls:FormattedButton>
             <controls:FormattedButton x:Name="TypeMediumButton"
-                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
+                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}" TextColor="Black"
                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.451}"
                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.110}"
                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.299}"
@@ -152,7 +146,7 @@
                 </controls:FormattedButton.FormattedText>
             </controls:FormattedButton>
             <controls:FormattedButton x:Name="TypeHighButton"
-                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
+                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}" TextColor="Black"
                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.595}"
                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.110}"
                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.299}"
@@ -179,7 +173,7 @@
                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=CauseBackground, Property=Height, Factor=1}"/>
 
             <controls:FormattedButton x:Name="CauseSandLensButton"
-                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
+                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}" TextColor="Black"
                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.282}"
                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.131}"
                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.503}"
@@ -192,7 +186,7 @@
                 </controls:FormattedButton.FormattedText>
             </controls:FormattedButton>
             <controls:FormattedButton x:Name="CauseCompactionButton"
-                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
+                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}" TextColor="Black"
                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.442}"
                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.131}"
                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.503}"
@@ -204,7 +198,7 @@
                 </controls:FormattedButton.FormattedText>
             </controls:FormattedButton>
             <controls:FormattedButton x:Name="CauseHeadlandButton"
-                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
+                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}" TextColor="Black"
                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.601}"
                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.131}"
                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.503}"
@@ -218,7 +212,7 @@
             </controls:FormattedButton>
 
             <controls:FormattedButton x:Name="CauseDomeButton"
-                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
+                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}" TextColor="Black"
                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.282}"
                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.131}"
                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.591}"
@@ -230,7 +224,7 @@
                 </controls:FormattedButton.FormattedText>
             </controls:FormattedButton>
             <controls:FormattedButton x:Name="CauseSlopeButton"
-                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
+                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}" TextColor="Black"
                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.442}"
                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.131}"
                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.591}"
@@ -242,7 +236,7 @@
                 </controls:FormattedButton.FormattedText>
             </controls:FormattedButton>
             <controls:FormattedButton x:Name="CauseForrestEdgeButton"
-                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
+                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}" TextColor="Black"
                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.601}"
                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.131}"
                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.591}"
@@ -256,7 +250,7 @@
             </controls:FormattedButton>
 
             <controls:FormattedButton x:Name="CauseDryStressButton"
-                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
+                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}" TextColor="Black"
                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.282}"
                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.131}"
                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.677}"
@@ -269,7 +263,7 @@
                 </controls:FormattedButton.FormattedText>
             </controls:FormattedButton>
             <controls:FormattedButton x:Name="CauseWatterLoggingButton"
-                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
+                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}" TextColor="Black"
                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.442}"
                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.131}"
                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.677}"
@@ -282,7 +276,7 @@
                 </controls:FormattedButton.FormattedText>
             </controls:FormattedButton>
             <controls:FormattedButton x:Name="CauseMouseEatingButton"
-                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
+                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}" TextColor="Black"
                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.601}"
                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.131}"
                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.677}"
@@ -306,7 +300,7 @@
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.022}"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.133}"/>
             <Label x:Name="StartLeftLabel"
-                   Text="Anfang" FontSize="Small"
+                   Text="Anfang" FontSize="Small" TextColor="Black" FontAttributes="Bold"
                    HorizontalOptions="End" VerticalOptions="Center"
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowStartLeftShape, Property=X, Factor=1}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowStartLeftShape, Property=Width, Factor=.9}"
@@ -319,7 +313,7 @@
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.790}"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.133}"/>
             <Label x:Name="EndLeftLabel"
-                   Text="Ende" FontSize="Small"
+                   Text="Ende" FontSize="Small" TextColor="Black" FontAttributes="Bold"
                    HorizontalOptions="End" VerticalOptions="Center"
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndLeftShape, Property=X, Factor=1}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndLeftShape, Property=Width, Factor=.9}"
@@ -333,7 +327,7 @@
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.036}"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.100}"/>
             <Label x:Name="StartCenterLabel" 
-                   InputTransparent="True" Text="Anfang" FontSize="Small"
+                   InputTransparent="True" Text="Anfang" FontSize="Small" TextColor="Black" FontAttributes="Bold"
                    HorizontalOptions="Center" VerticalOptions="Start"
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowStartCenterShape, Property=X, Factor=1}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowStartCenterShape, Property=Width, Factor=1}"
@@ -346,7 +340,7 @@
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.830}"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.095}"/>
             <Label x:Name="EndCenterLabel" 
-                   InputTransparent="True" Text="Ende" FontSize="Small"
+                   InputTransparent="True" Text="Ende" FontSize="Small" TextColor="Black" FontAttributes="Bold"
                    HorizontalOptions="Center" VerticalOptions="End"
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndCenterShape, Property=X, Factor=1}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndCenterShape, Property=Width, Factor=1}"
@@ -360,7 +354,7 @@
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.022}"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.133}"/>
             <Label x:Name="StartRightLabel"
-                   Text=" Anfang" FontSize="Small"
+                   Text=" Anfang" FontSize="Small" TextColor="Black" FontAttributes="Bold"
                    HorizontalOptions="Start" VerticalOptions="Center"
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowStartRightShape, Property=X, Factor=1}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowStartRightShape, Property=Width, Factor=1}"
@@ -373,7 +367,7 @@
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.790}"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.133}"/>
             <Label x:Name="EndRightLabel"
-                   Text=" Ende" FontSize="Small"
+                   Text=" Ende" FontSize="Small" TextColor="Black" FontAttributes="Bold"
                    HorizontalOptions="Start" VerticalOptions="Center"
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndRightShape, Property=X, Factor=1}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndRightShape, Property=Width, Factor=1}"
