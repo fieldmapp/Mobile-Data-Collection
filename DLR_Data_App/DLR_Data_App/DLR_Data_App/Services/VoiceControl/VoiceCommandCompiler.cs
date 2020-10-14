@@ -45,7 +45,8 @@ namespace DLR_Data_App.Services.VoiceControl
         readonly static Dictionary<string, KeywordSymbol> KeywordStringToSymbol = new Dictionary<string, KeywordSymbol>
         {
             { "anfang", KeywordSymbol.anfang },
-            { "ende", KeywordSymbol.ende },
+            { "start", KeywordSymbol.anfang },
+            { "stopp", KeywordSymbol.ende },
             { "abbrechen", KeywordSymbol.abbrechen },
             { "gering", KeywordSymbol.gering },
             { "mittel", KeywordSymbol.mittel },
