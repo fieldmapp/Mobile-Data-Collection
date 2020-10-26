@@ -300,7 +300,7 @@
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.022}"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.133}"/>
             <Label x:Name="StartLeftLabel"
-                   Text="Anfang" FontSize="Small" TextColor="Black" FontAttributes="Bold"
+                   Text="Start" FontSize="Small" TextColor="Black" FontAttributes="Bold"
                    HorizontalOptions="End" VerticalOptions="Center"
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowStartLeftShape, Property=X, Factor=1}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowStartLeftShape, Property=Width, Factor=.9}"
@@ -313,7 +313,7 @@
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.790}"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.133}"/>
             <Label x:Name="EndLeftLabel"
-                   Text="Ende" FontSize="Small" TextColor="Black" FontAttributes="Bold"
+                   Text="Stop" FontSize="Small" TextColor="Black" FontAttributes="Bold"
                    HorizontalOptions="End" VerticalOptions="Center"
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndLeftShape, Property=X, Factor=1}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndLeftShape, Property=Width, Factor=.9}"
@@ -327,7 +327,7 @@
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.036}"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.100}"/>
             <Label x:Name="StartCenterLabel" 
-                   InputTransparent="True" Text="Anfang" FontSize="Small" TextColor="Black" FontAttributes="Bold"
+                   InputTransparent="True" Text="Start" FontSize="Small" TextColor="Black" FontAttributes="Bold"
                    HorizontalOptions="Center" VerticalOptions="Start"
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowStartCenterShape, Property=X, Factor=1}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowStartCenterShape, Property=Width, Factor=1}"
@@ -340,7 +340,7 @@
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.830}"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.095}"/>
             <Label x:Name="EndCenterLabel" 
-                   InputTransparent="True" Text="Ende" FontSize="Small" TextColor="Black" FontAttributes="Bold"
+                   InputTransparent="True" Text="Stop" FontSize="Small" TextColor="Black" FontAttributes="Bold"
                    HorizontalOptions="Center" VerticalOptions="End"
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndCenterShape, Property=X, Factor=1}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndCenterShape, Property=Width, Factor=1}"
@@ -354,7 +354,7 @@
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.022}"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.133}"/>
             <Label x:Name="StartRightLabel"
-                   Text=" Anfang" FontSize="Small" TextColor="Black" FontAttributes="Bold"
+                   Text=" Start" FontSize="Small" TextColor="Black" FontAttributes="Bold"
                    HorizontalOptions="Start" VerticalOptions="Center"
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowStartRightShape, Property=X, Factor=1}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowStartRightShape, Property=Width, Factor=1}"
@@ -367,7 +367,7 @@
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.790}"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.133}"/>
             <Label x:Name="EndRightLabel"
-                   Text=" Ende" FontSize="Small" TextColor="Black" FontAttributes="Bold"
+                   Text=" Stop" FontSize="Small" TextColor="Black" FontAttributes="Bold"
                    HorizontalOptions="Start" VerticalOptions="Center"
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndRightShape, Property=X, Factor=1}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndRightShape, Property=Width, Factor=1}"
