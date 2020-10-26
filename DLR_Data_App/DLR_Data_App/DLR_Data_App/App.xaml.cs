@@ -38,6 +38,8 @@ namespace DLR_Data_App
             DatabaseLocation = databaseLocation;
             
             base.MainPage = new LoginPage();
+
+            var a = DependencyService.Get<IUbloxCommunicator>();
         }
 
         protected override void OnStart()

@@ -12,6 +12,7 @@ using Android.Content.PM;
 using Android.Content.Res;
 using Android.Graphics;
 using Android.Hardware;
+using Android.Hardware.Usb;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
@@ -20,8 +21,10 @@ using DLR_Data_App.Services;
 using Java.Lang;
 using Xamarin.Forms;
 
+[assembly: UsesFeature("android.hardware.usb.host")]
 namespace com.DLR.DLR_Data_App.Droid
 {
+    [MetaData(UsbManager.ActionUsbDeviceAttached, Resource = "@xml/device_filter")]
     [Activity(Label = "FieldMApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.FullUser)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
@@ -214,10 +217,9 @@ namespace com.DLR.DLR_Data_App.Droid
             }
         }
 
-        const int BackButtonId = 16908332;
-
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
+            const int BackButtonId = 16908332;
             if (item.ItemId == BackButtonId)
             {
                 if (!BackButtonPress())

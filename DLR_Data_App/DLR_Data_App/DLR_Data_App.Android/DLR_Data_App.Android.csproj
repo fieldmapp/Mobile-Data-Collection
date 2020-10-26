@@ -59,6 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="LusoVU.XamarinUsbSerialForAndroid">
+      <Version>0.2.3</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.2</Version>
     </PackageReference>
@@ -88,6 +91,7 @@
     <Compile Include="AndroidAppCloser.cs" />
     <Compile Include="AndroidCameraProvider.cs" />
     <Compile Include="AndroidStorageAccessProvider.cs" />
+    <Compile Include="AndroidUbloxComm.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -528,6 +532,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\translations" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\xml\device_filter.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
