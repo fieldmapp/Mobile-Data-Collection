@@ -30,11 +30,11 @@ namespace com.DLR.DLR_Data_App.Droid
 
         public Stream OpenAsset(string path) => Context.Assets.Open(path);
 
-        public Stream OpenFileRead(string path) => File.Exists(path) ? File.OpenRead(path) : Stream.Null;
+        public FileStream OpenFileRead(string path) => File.Exists(path) ? File.OpenRead(path) : null;
 
-        public Stream OpenFileWrite(string path) => File.OpenWrite(path);
+        public FileStream OpenFileWrite(string path) => File.OpenWrite(path);
 
-        public Stream OpenFileWriteExternal(string path)
+        public FileStream OpenFileWriteExternal(string path)
         {
             path = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, path);
             return OpenFileWrite(path);

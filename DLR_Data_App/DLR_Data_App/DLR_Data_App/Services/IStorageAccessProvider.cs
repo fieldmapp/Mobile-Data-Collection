@@ -9,10 +9,10 @@ namespace DLR_Data_App.Services
     {
         Stream OpenAsset(string path);
         
-        Stream OpenFileRead(string path);
+        FileStream OpenFileRead(string path);
 
-        Stream OpenFileWrite(string path);
+        FileStream OpenFileWrite(string path);
 
-        Stream OpenFileWriteExternal(string path);
+        FileStream OpenFileWriteExternal(string path);
     }
 }
