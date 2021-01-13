@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Buffers.Text;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -105,6 +106,9 @@ namespace com.DLR.DLR_Data_App.Droid
                 }
             }
 
+            string LogFileIdentifier;
+
+            FileStream LogFileStream;
             public void OnHasUsbPermission()
             {
                 SerialPort = AndroidUbloxComm.UbloxDriver.Ports.Single();
@@ -115,11 +119,18 @@ namespace com.DLR.DLR_Data_App.Droid
                     StopBits = StopBits.One,
                     Parity = Parity.None
                 };
-               
+
+                LogFileIdentifier = "ublox" + DateTime.Now.GetSafeIdentifier() + ".txt";
+
                 SerialIOManager.DataReceived += (a, b) =>
                 {
                     var message = BitConverter.ToString(b.Data);
                     Log.Verbose("ublox", message);
+                    
+                    using (var logFileStream = DependencyService.Get<IStorageAccessProvider>().OpenFileAppendExternal(LogFileIdentifier))
+                    {
+                        logFileStream.Write(b.Data);
+                    }
                 };
                 SerialIOManager.Open(AndroidUbloxComm.UsbManager);
                 WriteData(UbloxConfigurationMessageGenerator.StardardUbloxConfiguration());
@@ -186,11 +197,18 @@ namespace com.DLR.DLR_Data_App.Droid
                 const int usbOutputProtocolUbx = 0x10780001;
 
                 return SetConfigurationItems(
+                    GenerateConfigurationItem(type1005UsbOutputRate, rateValue),
+                    GenerateConfigurationItem(type1074UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type1077UsbOutputRate, rateValue),
+                    GenerateConfigurationItem(type1084UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type1087UsbOutputRate, rateValue),
+                    GenerateConfigurationItem(type1094UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type1097UsbOutputRate, rateValue),
+                    GenerateConfigurationItem(type1124UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type1127UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type1230UsbOutputRate, rateValue),
+                    GenerateConfigurationItem(type4072_0UsbOutputRate, rateValue),
+                    GenerateConfigurationItem(type4072_1UsbOutputRate, rateValue),
                     GenerateConfigurationItem(usbOutputProtocolNmea, falseValue)
                     );
             }
