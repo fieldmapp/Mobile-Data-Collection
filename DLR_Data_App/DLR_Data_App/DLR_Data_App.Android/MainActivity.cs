@@ -46,7 +46,7 @@ namespace com.DLR.DLR_Data_App.Droid
             var folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             var fullPath = System.IO.Path.Combine(folderPath, dbName);
 
-            var storageProvider = new JsonStorageProvider(new AndroidStorageAccessProvider(this));
+            var storageProvider = new JsonStorageProvider(new AndroidStorageAccessProvider());
             LoadApplication(new App(folderPath, fullPath, storageProvider));
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);

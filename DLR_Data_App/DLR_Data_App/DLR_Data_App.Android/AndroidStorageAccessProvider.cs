@@ -13,7 +13,9 @@ using Android.Views;
 using Android.Widget;
 using Xamarin.Forms;
 using DLR_Data_App.Services;
+using com.DLR.DLR_Data_App.Droid;
 
+[assembly: Dependency(typeof(AndroidStorageAccessProvider))]
 namespace com.DLR.DLR_Data_App.Droid
 {
     /// <summary>
@@ -23,9 +25,9 @@ namespace com.DLR.DLR_Data_App.Droid
     {
         Context Context;
         
-        public AndroidStorageAccessProvider(Context context)
+        public AndroidStorageAccessProvider()
         {
-            Context = context;
+            Context = MainActivity.Instance;
         }
 
         public Stream OpenAsset(string path) => Context.Assets.Open(path);
@@ -34,10 +36,18 @@ namespace com.DLR.DLR_Data_App.Droid
 
         public FileStream OpenFileWrite(string path) => File.OpenWrite(path);
 
+        public FileStream OpenFileAppend(string path) => File.Exists(path) ? File.Open(path, FileMode.Append, FileAccess.Write) : File.Create(path);
+
         public FileStream OpenFileWriteExternal(string path)
         {
             path = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, path);
             return OpenFileWrite(path);
+        }
+
+        public FileStream OpenFileAppendExternal(string path)
+        {
+            path = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, path);
+            return OpenFileAppend(path);
         }
     }
 }
