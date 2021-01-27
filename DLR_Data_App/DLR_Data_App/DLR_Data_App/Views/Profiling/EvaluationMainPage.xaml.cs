@@ -32,15 +32,5 @@ namespace DLR_Data_App.Views.Profiling
             ///Set the ItemSource for the ListView which displays the list of results for the different question categories
             CatList.ItemsSource = EvaluationItems;
         }
-        /// Function defining the ClickEvent on an ListView element: The DetailPage for the clicked category will be opened
-        private async void DetailsClicked(object sender, ItemTappedEventArgs e)
-        {
-            ///Check before casting the listview item to EvaluationItem
-            if (!(e.Item is EvaluationItem selectedItem))
-                throw new NotImplementedException();
-            EvaluationItem tapped = (EvaluationItem)e.Item;
-            ///Navigate to the DetailPage and hand over the needed percentages 
-            await this.PushPage(new EvaluationDetailsPage(tapped.PercentEasy, tapped.PercentMedium, tapped.PercentHard));
-        }
     }
 }

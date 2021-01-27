@@ -29,8 +29,7 @@
             <Label Margin="0,0,0,20" Text="{res:Translate results}" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="Large"/>
         </StackLayout>
         <!--2. Row: ListView with as many elements as question categories-->
-        <ListView Grid.Row="1" x:Name="CatList" VerticalOptions="FillAndExpand" RowHeight="70" SeparatorVisibility="None" 
-                 ItemTapped="DetailsClicked">
+        <ListView Grid.Row="1" x:Name="CatList" VerticalOptions="FillAndExpand" RowHeight="70" SeparatorVisibility="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <!--ViewCell for each element of the ListView containing information on the results of 
@@ -56,19 +55,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <!--Third row: Information to click for details-->
-        <StackLayout Grid.Row="2">
-            <!--Layout as grid with two columns-->
-            <Grid Margin="0,5,0,0" Grid.Row="3" HorizontalOptions="CenterAndExpand">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <!--First column: Icon-->
-                <Image Source="infoIcon.png" HeightRequest="15"/>
-                <!--Second column: Text-->
-                <Label Grid.Column="1" FontSize="Small" Text="{res:Translate tapOnBarForInfo}"/>
-            </Grid>
-        </StackLayout>
     </Grid>
 </ContentPage>
