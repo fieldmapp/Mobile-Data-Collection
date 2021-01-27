@@ -126,7 +126,9 @@ namespace com.DLR.DLR_Data_App.Droid
                 {
                     var message = BitConverter.ToString(b.Data);
                     Log.Verbose("ublox", message);
-                    
+
+                    if (b.Data[0] != UbloxConfigurationMessageGenerator.UbloxPreamble0 || b.Data[1] != UbloxConfigurationMessageGenerator.UbloxPreamble1)
+                        return;
                     using (var logFileStream = DependencyService.Get<IStorageAccessProvider>().OpenFileAppendExternal(LogFileIdentifier))
                     {
                         logFileStream.Write(b.Data);
@@ -239,6 +241,9 @@ namespace com.DLR.DLR_Data_App.Droid
                 return CreateUbloxWrapper(messageClass, messageId, payload);
             }
 
+            public const byte UbloxPreamble0 = 0xb5;
+            public const byte UbloxPreamble1 = 0x62;
+
             /// <summary>
             /// Creates the wrapped message out of the supplied payload
             /// </summary>
@@ -277,10 +282,7 @@ namespace com.DLR.DLR_Data_App.Droid
 
                 // 3. m = preamble + m
 
-                const byte Preamble0 = 0xb5;
-                const byte Preamble1 = 0x62;
-
-                message.InsertRange(0, new[] { Preamble0, Preamble1 });
+                message.InsertRange(0, new[] { UbloxPreamble0, UbloxPreamble1 });
 
                 return message.ToArray();
             }
