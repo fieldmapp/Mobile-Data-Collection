@@ -120,7 +120,7 @@ namespace com.DLR.DLR_Data_App.Droid
                     Parity = Parity.None
                 };
 
-                LogFileIdentifier = "ublox" + DateTime.Now.GetSafeIdentifier() + ".txt";
+                LogFileIdentifier = "ublox" + (DateTime.UtcNow + TimeSpan.FromSeconds(18)).GetSafeIdentifier() + ".txt";
 
                 SerialIOManager.DataReceived += (a, b) =>
                 {
