@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DlrDataApp.Modules.BasePclModule\DlrDataApp.Modules.SharedModule.csproj" />
+    <ProjectReference Include="..\DlrDataApp.Modules.VoiceRecognitionDefinitionModule\DlrDataApp.Modules.VoiceRecognitionDefinitionModule.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="VoiceRecognitionDemoPage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

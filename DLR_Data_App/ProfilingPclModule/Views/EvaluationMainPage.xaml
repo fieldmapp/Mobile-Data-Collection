@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Main contributors: Maya Koehnen-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="DlrDataApp.Modules.ProfilingSharedModule.Views.EvaluationMainPage"
+             xmlns:res="clr-namespace:DlrDataApp.Modules.SharedModule.Localization;assembly=DlrDataApp.Modules.SharedModule"
+             Title="{res:Translate profiling}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Button">Transparent</Color>
+            <Color x:Key="Selection">DarkSeaGreen</Color>
+            <Color x:Key="TextColor">Gray</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+   <!--Layout as Grid with three rows-->
+    <Grid Margin="20,20,20,20" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <!--1. Row: Headline-->
+        <StackLayout Grid.Row="0">
+            <Label Margin="0,0,0,20" Text="{res:Translate results}" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="Large"/>
+        </StackLayout>
+        <!--2. Row: ListView with as many elements as question categories-->
+        <ListView Grid.Row="1" x:Name="CatList" VerticalOptions="FillAndExpand" RowHeight="70" SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <!--ViewCell for each element of the ListView containing information on the results of 
+                    each question category-->
+                    <ViewCell>
+                        <!--Layout for each ListView element as grid with three columns-->
+                        <Grid HorizontalOptions="Fill">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="47*"/>
+                                <ColumnDefinition Width="13*"/>
+                                <ColumnDefinition Width="40*"/>
+                            </Grid.ColumnDefinitions>
+                            <!--First column: Name of the question category-->
+                            <Label Grid.Column="0" FontSize="Medium" Text="{Binding CategoryName}" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand"/>
+                            <!--Second column: Achived percent in the question category-->
+                            <Label Grid.Column="1" x:Name="PercentLabel" Text="{Binding PercentLabelText}" 
+                                   VerticalOptions="CenterAndExpand" FontSize="Medium"  HorizontalOptions="EndAndExpand"/>
+                            <!--Third column: Grafical representation of the result as progress bar-->
+                            <ProgressBar Grid.Column="2" x:Name="PercentBar" ScaleY="2" VerticalOptions="CenterAndExpand"
+                                         ProgressColor="{Binding BarColor}" Progress="{Binding PercentBarValue}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>

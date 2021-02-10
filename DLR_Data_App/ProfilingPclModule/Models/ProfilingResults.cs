@@ -1,0 +1,36 @@
+﻿using DlrDataApp.Modules.SharedModule;
+using Newtonsoft.Json;
+using SQLite;
+using SQLiteNetExtensions.Attributes;
+using System;
+using System.Collections.Generic;
+
+namespace DlrDataApp.Modules.ProfilingSharedModule.Models
+{
+    public class ProfilingResults
+    {
+        public List<ProfilingResult> Results { get; set; } = new List<ProfilingResult>();
+    }
+
+    public class ProfilingResult
+    {
+        [PrimaryKey, AutoIncrement]
+        public int? ProfilingResultId { get; set; }
+
+        public DateTime TimeStamp { get; set; }
+
+        [JsonIgnore]
+        public string UserAnswersJson
+        {
+            get => JsonTranslator.GetJson(UserAnswers);
+            set => UserAnswers = JsonTranslator.GetFromJson<Dictionary<string, List<IUserAnswer>>>(value);
+        }
+
+        [TextBlob(nameof(UserAnswersJson))]
+        public Dictionary<string, List<IUserAnswer>> UserAnswers { get; set; }
+
+        public int UserId { get; set; }
+
+        public string ProfilingId { get; set; }
+    }
+}

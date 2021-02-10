@@ -16,6 +16,14 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Models\Profiling\**" />
+    <Compile Remove="Views\Profiling\**" />
+    <EmbeddedResource Remove="Models\Profiling\**" />
+    <EmbeddedResource Remove="Views\Profiling\**" />
+    <None Remove="Models\Profiling\**" />
+    <None Remove="Views\Profiling\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="MultilingualResources\DLR_Data_App.de.xlf" />
   </ItemGroup>
   <ItemGroup>
@@ -32,72 +40,18 @@
     <XliffResource Include="MultilingualResources\DLR_Data_App.de.xlf" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Localizations\AppResources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>AppResources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Views\GaitTrackingMeasuringDemoPage.xaml.cs">
-      <DependentUpon>GaitTrackingMeasuringDemoPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\Login\NewProfilePage.xaml.cs">
       <DependentUpon>NewProfilePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\ProfilingList\NewProfilingPage.xaml.cs">
-      <DependentUpon>NewProfilingPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\ProfilingList\ProfilingDetailPage.xaml.cs">
-      <DependentUpon>ProfilingDetailPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\ProfilingList\ProfilingListPage.xaml.cs">
-      <DependentUpon>ProfilingListPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\ProjectList\ProjectDetailPage.xaml.cs">
-      <DependentUpon>ProjectDetailPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\ProjectList\NewProjectPage.xaml.cs">
-      <DependentUpon>NewProjectPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\ProjectList\ProjectListPage.xaml.cs">
-      <DependentUpon>ProjectListPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Settings\ProfilelistPage.xaml.cs">
       <DependentUpon>ProfileListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Profiling\CurrentProfilingPage.xaml.cs">
-      <DependentUpon>CurrentProfilingPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Controls\FormattedButton.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Controls\InlinePicker.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Controls\RadioButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Localizations\AppResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\CurrentProject\EditDataDetailPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\CurrentProject\EditDataPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\DistanceMeasuringDemoPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\DrivingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LicensesPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ProjectList\ProjectListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Settings\AppSettings.xaml">
@@ -112,9 +66,6 @@
     <EmbeddedResource Update="Views\Settings\ProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CurrentProject\ProjectPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\Settings\SensorListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -125,39 +76,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SplashScreenPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Profiling\DoubleSliderPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Profiling\EvaluationDetailsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Profiling\EvaluationMainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Profiling\EvaluationPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Profiling\ImageCheckerPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Profiling\ImageDetailPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Profiling\IntrospectionPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Profiling\LoadingPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Profiling\CurrentProfilingPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Profiling\StadiumPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\VoiceRecognitionDemoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

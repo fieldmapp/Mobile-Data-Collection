@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:DlrDataApp.Modules.SharedModule.Localization;assembly=DlrDataApp.Modules.SharedModule"
+             x:Class="DlrDataApp.Modules.ProfilingSharedModule.Views.ProfilingList.ProfilingDetailPage"
+             Title="{res:Translate projectdetails}">
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="{res:Translate title}" FontSize="Medium" />
+            <Label Text="{Binding Title}" FontSize="Small"/>
+
+            <Label Text="{res:Translate description}" FontSize="Medium" />
+            <Label Text="{Binding Description}" FontSize="Small"/>
+
+            <Label Text="{res:Translate authors}" FontSize="Medium" />
+            <Label Text="{Binding Authors}" FontSize="Small"/>
+
+            <Button x:Name="BtnCurrentProject"
+                    Text="{res:Translate setascurrentprofiling}"
+                    Clicked="Btn_current_profiling_Clicked"/>
+
+            <Button x:Name="BtnRemoveProject"
+                    Text="{res:Translate removeprofiling}"
+                    Clicked="Btn_remove_profiling_Clicked"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

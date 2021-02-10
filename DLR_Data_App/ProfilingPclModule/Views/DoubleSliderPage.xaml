@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Main contributors: Maya Koehnen-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DlrDataApp.Modules.ProfilingSharedModule.Views.DoubleSliderPage"
+             xmlns:controls="clr-namespace:DlrDataApp.Modules.SharedModule.Controls;assembly=DlrDataApp.Modules.SharedModule"
+             xmlns:res="clr-namespace:DlrDataApp.Modules.SharedModule.Localization;assembly=DlrDataApp.Modules.SharedModule"
+             Title="{res:Translate profiling}">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Button">Transparent</Color>
+            <Color x:Key="Selection">DarkSeaGreen</Color>
+            <Color x:Key="TextColor">Gray</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="10">
+        <Grid Margin="7,0,0,0" VerticalOptions="StartAndExpand" RowSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label x:Name="HeaderText" HorizontalTextAlignment="Center"
+                   Text="{Binding Header}" 
+                   FontSize="Medium" 
+                   TextColor="{StaticResource TextColor}"/>
+            <Label Grid.Row="1" Margin="0,7,0,0" x:Name="QuestionText" 
+                   Text="{Binding QuestionItem.QuestionText}"
+                   FontSize="Medium" TextColor="{StaticResource TextColor}"/>
+            <Grid Grid.Row="2" Margin="0,0,0,15" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <controls:DetailImage Grid.Row="0" x:Name="Picture" BackgroundColor="Transparent"
+                                  Source="{Binding QuestionItem.PictureAddress}"/>
+                <Grid Grid.Row="1" HorizontalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" HorizontalOptions="EndAndExpand" Source="lupe.png" HeightRequest="10"/>
+                    <Label Grid.Column="1" HorizontalOptions="StartAndExpand" 
+                       Text="{res:Translate holdImageToEnlarge}" FontSize="Micro"/>
+                </Grid>
+            </Grid>
+           <!-- <controls:DetailImage Aspect="AspectFit" Grid.Row="2" x:Name="Picture" BackgroundColor="Transparent"
+                                  Margin="0,0,0,15" Source="{Binding QuestionItem.PictureAddress}"/>-->
+            <Slider Grid.Row="3" x:Name="sliderA" Margin="5, 0, 5, 0"
+                    MinimumTrackColor="{StaticResource Selection}"
+                    MaximumTrackColor="{StaticResource Selection}"
+                    ThumbColor="{StaticResource Selection}"
+                    ValueChanged="OnSliderAValueChanged"
+                    Value="0" Maximum="100" Minimum="0"/>
+            <Label Grid.Row="4" x:Name="sliderALabel"
+                   HorizontalOptions="Center" 
+                   Text="(A): 0%" FontSize="Medium" TextColor="{StaticResource TextColor}"/>
+            <Slider Grid.Row="5" x:Name="sliderB" Margin="5, 0, 5, 0"
+                    MinimumTrackColor="{StaticResource Selection}"
+                    MaximumTrackColor="{StaticResource Selection}"
+                    ThumbColor="{StaticResource Selection}"
+                    ValueChanged="OnSliderBValueChanged"
+                    Value="0" Maximum="100" Minimum="0"/>
+            <Label Grid.Row="6" x:Name="sliderBLabel"
+                   HorizontalOptions="Center" 
+                   Text="(B): 0%" FontSize="Medium" TextColor="{StaticResource TextColor}"/>
+        </Grid>
+        
+        <Grid VerticalOptions="EndAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="EvalButton" Text="{res:Translate evaluation}" FontSize="Medium"
+                    BackgroundColor="{StaticResource Button}"
+                    TextColor="{Binding EvaluationTextColor}"
+                    Clicked="OnAuswertungButtonClicked"/>
+            <Button Grid.Column="1"
+                    Text="{res:Translate next}" FontSize="Medium"
+                    BackgroundColor="{StaticResource Button}"
+                    TextColor="{StaticResource TextColor}"
+                    Clicked="OnWeiterButtonClicked"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>

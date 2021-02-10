@@ -17,7 +17,6 @@ namespace DLR_Data_App
         public static Views.MainPage CurrentMainPage => (Current.MainPage as Views.MainPage);
         public static User CurrentUser;
         public NavigationPage Navigation => (MainPage as MasterDetailPage)?.Detail as NavigationPage;
-        public IStorageProvider StorageProvider;
         public Page CurrentPage => Navigation?.CurrentPage;
         public new MainPage MainPage => base.MainPage as MainPage;
         
@@ -27,12 +26,10 @@ namespace DLR_Data_App
         /// <param name="folderPath">Path to the location of stored files in the filesystem</param>
         /// <param name="databaseLocation"></param>
         /// <param name="storageProvider">Path to the local database</param>
-        public App(string folderPath, string databaseLocation, IStorageProvider storageProvider)
+        public App(string folderPath, string databaseLocation)
         {
             Device.SetFlags(new[] { "Shapes_Experimental" });
             InitializeComponent();
-            
-            StorageProvider = storageProvider;
             
             FolderLocation = folderPath;
             DatabaseLocation = databaseLocation;
