@@ -163,7 +163,7 @@ namespace com.DLR.DLR_Data_App.Droid
             {
                 // see https://www.u-blox.com/en/docs/UBX-18010854 5.9.11 CFG-MSGOUT for message ids
                 // see https://www.use-snip.com/kb/knowledge-base/rtcm-3-message-list/ and https://www.use-snip.com/kb/knowledge-base/an-rtcm-message-cheat-sheet/ for message description
-                const byte rate = 5;
+                const byte rate = 1;
                 byte[] rateValue = new[] { rate };
                 byte[] falseValue = new byte[] { 0 };
                 byte[] trueValue = new byte[] { 0xFF };
