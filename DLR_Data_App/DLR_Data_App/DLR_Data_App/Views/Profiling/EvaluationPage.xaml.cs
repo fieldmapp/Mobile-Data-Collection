@@ -50,10 +50,6 @@ namespace DLR_Data_App.Views.Profiling
             PercentLabel.BindingContext = this;
             PercentLabelText = $"{evalItem.Percent}%";
         }
-        void DetailsClicked(object sender, EventArgs e)
-        {
-            _ = this.PushPage(new EvaluationDetailsPage(EvaluationItem.PercentEasy, EvaluationItem.PercentMedium, EvaluationItem.PercentHard));
-        }
 
         protected override bool OnBackButtonPressed()
         {
