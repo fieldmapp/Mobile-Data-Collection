@@ -1208,7 +1208,7 @@
     {
       "Id": "ImageChecker",
       "IntrospectionQuestion": [
-        2
+        1
       ],
       "ChapterName": "chapterPlantIdentification",
       "AnswersNeeded": 2
@@ -1216,7 +1216,7 @@
     {
       "Id": "Stadium",
       "IntrospectionQuestion": [
-        1
+        2
       ],
       "ChapterName": "chapterGrewStages",
       "AnswersNeeded": 6
