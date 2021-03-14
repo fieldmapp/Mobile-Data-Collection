@@ -31,19 +31,9 @@
                 <Label FontSize="Medium" Margin="0,0,0,40" Text="{res:Translate answersCorrectAveragePart1}" HorizontalOptions="CenterAndExpand"/>
                 <ProgressBar Grid.Row="1" x:Name="PercentBar" ScaleY="3" ProgressColor="{Binding ProgressColor}"  
                              Progress="{Binding PercentBarValue}">
-                    <ProgressBar.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="DetailsClicked"
-                            NumberOfTapsRequired="1" />
-                    </ProgressBar.GestureRecognizers>
                 </ProgressBar>
                 <Label  Margin="0,5,0,20" Grid.Row="2" x:Name="PercentLabel" Text="{Binding PercentLabelText}"
                 HorizontalOptions="CenterAndExpand" FontSize="Large">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="DetailsClicked"
-                            NumberOfTapsRequired="1" />
-                    </Label.GestureRecognizers>
                 </Label>
                 <Label HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontSize="Medium" Grid.Row="3" Text="{res:Translate answersCorrectAveragePart2}"/>
             </Grid>
