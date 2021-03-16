@@ -620,4 +620,7 @@ Consent of the data subject means any freely given, specific, informed and unamb
   <data name="drivingview" xml:space="preserve">
     <value>Driving view</value>
   </data>
+  <data name="answersExportedToRoot" xml:space="preserve">
+    <value>Successfully exported into root directory with name dlr_answers_TIMESTAMP.</value>
+  </data>
 </root>

@@ -160,6 +160,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Successfully exported into root directory with name dlr_answers_TIMESTAMP. ähnelt.
+        /// </summary>
+        internal static string answersExportedToRoot {
+            get {
+                return ResourceManager.GetString("answersExportedToRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Next tap will close the app. ähnelt.
         /// </summary>
         internal static string appclosewarning {

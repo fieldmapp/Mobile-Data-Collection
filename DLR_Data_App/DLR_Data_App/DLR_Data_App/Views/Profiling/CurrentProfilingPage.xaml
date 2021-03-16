@@ -18,7 +18,13 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Image Margin="0,5,0,0" Source="infoIcon.png" HeightRequest="20" HorizontalOptions="End" VerticalOptions="Center"/>
+            <Image Margin="0,5,0,0" Source="infoIcon.png" HeightRequest="20" HorizontalOptions="End" VerticalOptions="Center">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                      Tapped = "HintClicked"
+                      NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
             <Label Grid.Column="1" FontSize="Medium" Text="{res:Translate hint}" HorizontalOptions="End" VerticalOptions="CenterAndExpand" >
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
