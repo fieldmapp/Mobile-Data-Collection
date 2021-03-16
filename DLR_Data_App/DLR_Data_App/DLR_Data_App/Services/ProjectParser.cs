@@ -42,7 +42,7 @@ namespace DLR_Data_App.Services
             }
 
             // Get files
-            var unzipContent = Directory.GetFiles(unzipFolder);
+            var unzipContent = Directory.GetFiles(unzipFolder).OrderBy(s => s).ToArray();
             foreach (var file in unzipContent)
             {
                 // Parse file
