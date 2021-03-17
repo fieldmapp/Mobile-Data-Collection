@@ -327,9 +327,6 @@
     <AndroidResource Include="Resources\drawable-mdpi\Stadium_one_question6.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-mdpi\stadium_stadium_ahrenrispenschwellen.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-mdpi\Stadium_three_question2.png" />
   </ItemGroup>
   <ItemGroup>
@@ -536,10 +533,13 @@
   <ItemGroup>
     <AndroidResource Include="Resources\xml\device_filter.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\stadium_ahrenrispenschwellen.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadGenericExceptionInfoBarDLR_Data_AppAndroidHideInfoBar="True" Assets_4questions__JSONSchema="http://jsonapi.org/schema" />
+      <UserProperties Assets_4questions__JSONSchema="http://jsonapi.org/schema" XamarinHotReloadGenericExceptionInfoBarDLR_Data_AppAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
