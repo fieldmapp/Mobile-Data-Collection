@@ -35,6 +35,7 @@ namespace DLR_Data_App.Views.CurrentProject
             var projectData = new Dictionary<string, string>();
             for (int i = 0; i < _viewModel.ProjectData.RowNameList.Count; i++)
             {
+                //if this throws an exception, its probably due to the bad way _viewModel.ProjectData is structured (prone to corruption)
                 if (_viewModel.ProjectData.RowNameList[i] != "ProjectId")
                     projectData.Add(_viewModel.ProjectData.RowNameList[i], _viewModel.ProjectData.ValueList[i][e.ItemIndex]);
             }
