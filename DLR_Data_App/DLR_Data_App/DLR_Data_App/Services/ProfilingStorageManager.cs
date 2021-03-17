@@ -237,8 +237,10 @@ namespace DLR_Data_App.Services
             var listQuestions = TranslatedQuestions[profilingId]; /// list containing all questions
             List<IQuestionContent> listAvailableQuestion = new List<IQuestionContent>(); /// list containing all available question
             foreach(IQuestionContent question in listQuestions)
-            { 
-                if (question.Difficulty == difficulty) /// check if right difficulty
+            {
+                const bool ignoreDifficulty = true;
+
+                if (ignoreDifficulty || question.Difficulty == difficulty) /// check if right difficulty
                 {
                     if (!DoesAnswersExists(profilingId, question.InternId)) /// check if not already answered
                     {
