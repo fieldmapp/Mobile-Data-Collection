@@ -75,6 +75,9 @@ namespace DLR_Data_App.Models.ProjectForms
             return new KeyValuePair<string, string>(Data.Name, GetRepresentationValue());
         }
 
+        /// <summary>
+        /// Returns the value in a string representation. Should never return null.
+        /// </summary>
         public abstract string GetRepresentationValue();
 
         /// <summary>

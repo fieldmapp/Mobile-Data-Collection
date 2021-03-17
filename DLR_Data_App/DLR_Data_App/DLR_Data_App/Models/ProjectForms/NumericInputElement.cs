@@ -20,7 +20,7 @@ namespace DLR_Data_App.Models.ProjectForms
 
         public override bool IsValid => !string.IsNullOrWhiteSpace(Entry.Text) && int.TryParse(Entry.Text, out var decimalInput) && ValidRange.IsValidInput(decimalInput) && base.IsValid;
 
-        public override string GetRepresentationValue() => Entry.Text;
+        public override string GetRepresentationValue() => Entry.Text ?? string.Empty;
 
         public override void LoadFromSavedRepresentation(string representation) => Entry.Text = representation;
 
