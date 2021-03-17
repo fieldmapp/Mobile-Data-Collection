@@ -284,7 +284,8 @@ namespace DLR_Data_App.Views.CurrentProject
                 if (!string.IsNullOrWhiteSpace(_workingProject.ProfilingId))
                 {
                     ProfilingStorageManager.ProjectsFilledSinceLastProfilingCompletion++;
-                    ProfilingStorageManager.SaveCurrentAnswer();
+                    // TODO: next line currently crashes the app. disabling it will disable saving the ProjectsFilledSinceLastProfilingCompletion though
+                    // ProfilingStorageManager.SaveCurrentAnswer();
                 }
 
                 string message;
