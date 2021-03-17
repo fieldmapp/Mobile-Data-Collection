@@ -240,10 +240,16 @@ namespace com.DLR.DLR_Data_App.Droid
             var currentPage = navigationPage.CurrentPage;
             var mainPage = (Xamarin.Forms.Application.Current as App).MainPage;
 
-            bool onBackButtonPressedOverwritten = currentPage.GetType().Overrides(typeof(Page).GetMethod("OnBackButtonPressed", System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.IgnoreReturn | System.Reflection.BindingFlags.Instance));
+            var currentPageType = currentPage.GetType();
+            bool onBackButtonPressedOverwritten = currentPageType.Overrides(typeof(Page).GetMethod("OnBackButtonPressed", System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.IgnoreReturn | System.Reflection.BindingFlags.Instance));
+            
             if (onBackButtonPressedOverwritten)
+            {
+                if (!currentPageType.IsSubclassOf(typeof(MultiPage<Page>))
+                    || currentPageType.Overrides(typeof(MultiPage<Page>).GetMethod("OnBackButtonPressed", System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.IgnoreReturn | System.Reflection.BindingFlags.Instance)))
                 return currentPage.SendBackButtonPressed();
-            else if (navigationPage.Navigation.ModalStack.Count > 0)
+            }
+            if (navigationPage.Navigation.ModalStack.Count > 0)
                 navigationPage.Navigation.PopModalAsync();
             else if (navigationPage.Navigation.NavigationStack.Count > 1)
                 navigationPage.Navigation.PopAsync();
