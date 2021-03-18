@@ -222,6 +222,9 @@ namespace DLR_Data_App.Services
                     case "Languages":
                         project.Languages = value.ToString();
                         break;
+                    case "PreviewPattern":
+                        project.PreviewPattern = value.ToString();
+                        break;
                 }
             }
 

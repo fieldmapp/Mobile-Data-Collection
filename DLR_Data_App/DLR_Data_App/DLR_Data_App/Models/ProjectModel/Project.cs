@@ -33,6 +33,8 @@ namespace DLR_Data_App.Models.ProjectModel
 
         public string ProfilingId { get; set; }
 
+        public string PreviewPattern { get; set; }
+
         // List of forms
         [Ignore]
         public List<ProjectForm> FormList { get; set; }
