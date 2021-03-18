@@ -261,8 +261,17 @@ namespace DLR_Data_App.Services
         
         public static void DeleteProfiling(ProfilingData profiling, SQLiteConnection conn)
         {
-            conn.Delete(profiling);
-            conn.Execute($"DELETE FROM {nameof(ProfilingResult)} WHERE {nameof(ProfilingResult.ProfilingId)}={profiling.ProfilingId}");
+            var startPoint = SaveTransactionPoint(conn);
+            try
+            {
+                conn.Delete(profiling);
+                conn.Execute($"DELETE FROM {nameof(ProfilingResult)} WHERE {nameof(ProfilingResult.ProfilingId)}=?", profiling.ProfilingId);
+                CommitChanges(startPoint, conn);
+            }
+            catch (Exception)
+            {
+                RollbackChanges(startPoint, conn);
+            }
         }
 
         public static bool InsertProfiling(ref ProfilingData profiling)
