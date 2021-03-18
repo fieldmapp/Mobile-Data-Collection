@@ -18,6 +18,7 @@ namespace DLR_Data_App.Models.ProjectForms
         public FormElement(Grid grid, ProjectFormElements data, string type)
         {
             Grid = grid;
+            Frame = new Frame { CornerRadius = 10, BorderColor = Color.DarkSeaGreen, Content = Grid, IsVisible = false };
             Data = data;
             ShouldBeShownExpression = string.IsNullOrWhiteSpace(data.Relevance) ? null : OdkDataExtractor.GetBooleanExpression(data.Relevance);
             if (!string.IsNullOrWhiteSpace(data.Constraint))
@@ -41,16 +42,25 @@ namespace DLR_Data_App.Models.ProjectForms
             Type = type;
         }
 
+        public Frame Frame { get; }
         public Grid Grid { get; }
+        /// <summary>
+        /// Is true if the user requested to skip the question. This is only requestable if the question is not required. Otherwise the value will always be false.
+        /// </summary>
+        public bool IsSkipped { get; set; }
         public ProjectFormElements Data { get; }
         public event EventHandler ValidContentChange;
         public event EventHandler InvalidContentChange;
         public OdkBooleanExpresion ShouldBeShownExpression { get; }
         public OdkBooleanExpresion ConstraintExpression { get; }
-        public virtual bool IsValid { get =>
-                ConstraintExpression == null ||
-                ConstraintExpression.Evaluate(new Dictionary<string, string> { { ThisOdkElement, GetRepresentationValue() } }); 
-        }
+        public virtual bool IsValid =>
+            IsSkipped || (
+            (
+            ConstraintExpression == null
+            || ConstraintExpression.Evaluate(new Dictionary<string, string> { { ThisOdkElement, GetRepresentationValue() } })
+            )
+            && IsValidElementSpecific);
+        protected abstract bool IsValidElementSpecific { get; }
         public readonly string Type;
 
         public void OnContentChange()
@@ -64,7 +74,13 @@ namespace DLR_Data_App.Models.ProjectForms
         /// <summary>
         /// Sets the grids content to the default value
         /// </summary>
-        public abstract void Reset();
+        public void Reset()
+        {
+            IsSkipped = false;
+            OnReset();
+        }
+
+        protected abstract void OnReset();
 
         /// <summary>
         /// Retrieves a representation for this element
@@ -115,7 +131,7 @@ namespace DLR_Data_App.Models.ProjectForms
                 HorizontalTextAlignment = TextAlignment.Center,
                 FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label))
             };
-            var grid = new Grid { IsVisible = false };
+            var grid = new Grid();
             grid.Children.Add(elementNameLabel, 0, 0);
             Grid.SetRowSpan(elementNameLabel, 2);
 

@@ -16,13 +16,13 @@ namespace DLR_Data_App.Models.ProjectForms
 
         public DataHolder DataHolder;
 
-        public override bool IsValid => !string.IsNullOrEmpty(DataHolder.Data) && base.IsValid;
+        protected override bool IsValidElementSpecific => !string.IsNullOrEmpty(DataHolder.Data);
 
         public override string GetRepresentationValue() => DataHolder.Data ?? string.Empty;
 
         public override void LoadFromSavedRepresentation(string representation) => DataHolder.Data = representation;
 
-        public override void Reset() => DataHolder.Data = string.Empty;
+        protected override void OnReset() => DataHolder.Data = string.Empty;
 
         public static MediaSelectorElement CreateForm(FormCreationParams parms)
         {

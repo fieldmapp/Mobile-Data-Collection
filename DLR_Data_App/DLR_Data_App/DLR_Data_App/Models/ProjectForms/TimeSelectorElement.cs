@@ -9,7 +9,7 @@ namespace DLR_Data_App.Models.ProjectForms
 {
     class TimeSelectorElement : FormElement
     {
-        private static readonly DateTime EmptyDate = new DateTime(1970, 1, 1);
+        private static readonly DateTime EmptyDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
         private static readonly long EmptyDateTicks = EmptyDate.Ticks;
         public TimeSelectorElement(Grid grid, ProjectFormElements data, string type) : base(grid, data, type) 
         {
@@ -20,10 +20,9 @@ namespace DLR_Data_App.Models.ProjectForms
         public TimePicker TimePicker;
         private OdkRange<DateTime> ValidRange;
 
-        public override bool IsValid => EmptyDateTicks != DatePicker.Date.Ticks
-                                     && (TimePicker == null || TimePicker.Time != TimeSpan.Zero)
-                                     && ValidRange.IsValidInput(GetCombinedDateTime())
-                                     && base.IsValid;
+        protected override bool IsValidElementSpecific => EmptyDateTicks != DatePicker.Date.Ticks
+            && (TimePicker == null || TimePicker.Time != TimeSpan.Zero)
+            && ValidRange.IsValidInput(GetCombinedDateTime());
 
         private DateTime GetCombinedDateTime()
         {
@@ -46,7 +45,7 @@ namespace DLR_Data_App.Models.ProjectForms
             }
         }
 
-        public override void Reset()
+        protected override void OnReset()
         {
             if (TimePicker != null)
                 TimePicker.Time = TimeSpan.Zero;
