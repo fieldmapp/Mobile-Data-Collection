@@ -536,10 +536,31 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-mdpi\stadium_ahrenrispenschwellen.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\stadium_ahrenrispenschwellen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\stadium_bestockung.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\stadium_blattentwicklung.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\stadium_bluete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\stadium_entwicklungbluetenanlage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\stadium_entwicklungvegpflanzruebenk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\stadium_laengenwachstumschossen.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties Assets_4questions__JSONSchema="http://jsonapi.org/schema" XamarinHotReloadGenericExceptionInfoBarDLR_Data_AppAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadGenericExceptionInfoBarDLR_Data_AppAndroidHideInfoBar="True" Assets_4questions__JSONSchema="http://jsonapi.org/schema" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
