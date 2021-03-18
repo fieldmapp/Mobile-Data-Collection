@@ -22,9 +22,6 @@ namespace DLR_Data_App.Models.Profiling
         // Authors of the profiling
         public string Authors { get; set; }
 
-        // Available languages
-        public string Languages { get; set; }
-
         public string ProfilingId { get; set; }
 
         [JsonIgnore]
