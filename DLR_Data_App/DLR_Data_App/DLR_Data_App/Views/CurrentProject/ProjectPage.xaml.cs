@@ -113,7 +113,7 @@ namespace DLR_Data_App.Views.CurrentProject
 
                 foreach (var projectForm in _workingProject.FormList)
                 {
-                    var content = FormCreator.GenerateForm(projectForm, _workingProject, DisplayAlert);
+                    var content = FormCreator.GenerateForm(projectForm, _workingProject, DisplayAlert, true);
                     formElements.AddRange(content.Elements);
                     foreach (var formElement in content.Elements)
                     {
@@ -124,12 +124,10 @@ namespace DLR_Data_App.Views.CurrentProject
                 }
             }
             UnlockInitialVisibleElements(formElements);
-            var lastRequiredElement = formElements.LastOrDefault(e => e.Data.Required);
+            
+            var lastRequiredElement = formElements.LastOrDefault();
             if (lastRequiredElement != null)
-            {
-                lastRequiredElement.ValidContentChange += LastRequiredElement_ValidContentChange;
-            }
-
+                lastRequiredElement.ValidContentChange += LastElement_ValidContentChange;
 
             _pages = pages;
             _formElements = formElements.AsReadOnly();
@@ -137,69 +135,104 @@ namespace DLR_Data_App.Views.CurrentProject
 
         private void UnlockInitialVisibleElements(IEnumerable<FormElement> formElements)
         {
-            var initialVisibleElements = formElements.TakeUntilIncluding(f => f.Data.Required);
-            foreach (var element in initialVisibleElements)
-            {
-                UnlockElement(element);
-            }
+            var firstElement = formElements.FirstOrDefault();
+            if (firstElement != null)
+                UnlockElement(firstElement);
         }
 
-        private void LastRequiredElement_ValidContentChange(object sender, EventArgs _)
+        private void LastElement_ValidContentChange(object sender, EventArgs _)
         {
             var lastRequiredElement = (FormElement)sender;
-            lastRequiredElement.ValidContentChange -= LastRequiredElement_ValidContentChange;
+            lastRequiredElement.ValidContentChange -= LastElement_ValidContentChange;
             DependencyService.Get<IToast>().ShortAlert(AppResources.pleaseSaveBeforeQuiting);
         }
 
         private void UnlockElement(FormElement element)
         {
             UnlockedElements.Add(element);
-            element.Grid.IsVisible = true;
+            element.Frame.IsVisible = true;
         }
 
         private void LockElement(FormElement element)
         {
             UnlockedElements.Remove(element);
-            element.Grid.IsVisible = false;
+            element.Frame.IsVisible = false;
             element.Reset();
         }
 
         private void FormElement_InvalidContentChange(object sender, EventArgs _)
         {
-            var changedElement = (FormElement)sender;
+            //var changedElement = (FormElement)sender;
+            //
+            //foreach (var element in _formElements.SkipWhileIncluding(e => e != changedElement))
+            //{
+            //    LockElement(element);
+            //}
+            RefreshVisibilityOnUnlockedElements();
+        }
 
-            //if the element was not required to progress, then changing it can't make elements invisible
-            if (changedElement.Data.Required)
+        private IEnumerable<FormElement> SelectRelevantElements(IEnumerable<FormElement> allElements)
+        {
+            Dictionary<string, string> variables = null;
+            foreach (var element in allElements)
             {
-                foreach (var element in _formElements.SkipWhileIncluding(e => e != changedElement))
+                if (element.ShouldBeShownExpression == null)
                 {
-                    LockElement(element);
+                    yield return element;
+                }
+                else
+                {
+                    if (variables == null)
+                        variables = GeatherVariables();
+
+                    if (element.ShouldBeShownExpression.Evaluate(variables))
+                        yield return element;
                 }
             }
-            RefreshVisibilityOnUnlockedElements();
         }
 
         private void RefreshVisibilityOnUnlockedElements()
         {
-            Dictionary<string,string> variables = null;
-            foreach (var element in UnlockedElements.Where(e => e.ShouldBeShownExpression != null))
+            // after each step all we want to see are all elements which are both valid and relevant + the next relevant (but invalid) item
+
+            var relevantElements = SelectRelevantElements(_formElements).ToList();
+            var validRelevantElements = relevantElements.Where(e => e.IsValid).ToList();
+            var lastValidRelevantElement = validRelevantElements.LastOrDefault();
+
+            var wantedUnlockedElements = validRelevantElements;
+            if (lastValidRelevantElement != null)
             {
-                if (variables == null)
-                    variables = GeatherVariables();
-                if (element.ShouldBeShownExpression.Evaluate(variables))
-                {
-                    element.Grid.IsVisible = true;
-                }
-                else
-                {
-                    var wasVisible = element.Grid.IsVisible;
-                    if (wasVisible)
-                    {
-                        element.Grid.IsVisible = false;
-                        element.Reset();
-                    }
-                }
+                var nextRelevantInvalidItem = relevantElements.SkipWhileIncluding(e => e != lastValidRelevantElement).FirstOrDefault();
+                if (nextRelevantInvalidItem != null)
+                    wantedUnlockedElements.Add(nextRelevantInvalidItem);
             }
+
+            foreach (var element in UnlockedElements.ToList().Except(wantedUnlockedElements))
+            {
+                LockElement(element);
+            }
+            foreach (var element in wantedUnlockedElements.ToList().Except(UnlockedElements))
+            {
+                UnlockElement(element);
+            }
+            
+            //{
+            //    if (variables == null)
+            //        variables = GeatherVariables();
+            //    if (element.ShouldBeShownExpression.Evaluate(variables))
+            //    {
+            //        element.Frame.IsVisible = true;
+            //    }
+            //    else
+            //    {
+            //        var wasVisible = element.Frame.IsVisible;
+            //        if (wasVisible)
+            //        {
+            //            element.Frame.IsVisible = false;
+            //            element.Reset();
+            //        }
+            //    }
+            //}
         }
 
         Dictionary<string,string> GeatherVariables()
@@ -216,23 +249,16 @@ namespace DLR_Data_App.Views.CurrentProject
 
         private void FormElement_ValidContentChange(object sender, EventArgs _)
         {
-            var changedElement = (FormElement)sender;
-
-            //if the element was not required to progress, then changing it can't make a new element visible
-            if (changedElement.Data.Required)
-            {
-                var currentlyRequiredElement = _formElements.LastOrDefault(e => e.Grid.IsVisible && e.Data.Required);
-                if (currentlyRequiredElement == changedElement)
-                {
-                    //Show all questions until (including) the next required one
-                    var newlyUnlockedElements = _formElements.SkipWhileIncluding(e => e != changedElement).TakeUntilIncluding(e => e.Data.Required);
-                    foreach (var element in newlyUnlockedElements)
-                    {
-                        UnlockElement(element);
-                    }
-                }
-            }
             RefreshVisibilityOnUnlockedElements();
+
+            //var changedElement = (FormElement)sender;
+            //
+            //var currentlyRequiredElement = _formElements.LastOrDefault(e => e.Frame.IsVisible);
+            //if (currentlyRequiredElement == changedElement)
+            //{
+            //    var nextUnlockedElement = SelectRelevantElements(_formElements).SkipWhileIncluding(e => e != changedElement).FirstOrDefault();
+            //    UnlockElement(nextUnlockedElement);
+            //}
         }
 
         /// <summary>

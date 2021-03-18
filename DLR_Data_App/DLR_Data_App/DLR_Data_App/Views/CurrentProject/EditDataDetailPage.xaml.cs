@@ -95,7 +95,7 @@ namespace DLR_Data_App.Views.CurrentProject
 
                 foreach (var projectForm in _workingProject.FormList)
                 {
-                    var content = FormCreator.GenerateForm(projectForm, _workingProject, DisplayAlert);
+                    var content = FormCreator.GenerateForm(projectForm, _workingProject, DisplayAlert, false);
                     formElements.AddRange(content.Elements);
                     foreach (var formElement in content.Elements)
                     {
@@ -131,13 +131,13 @@ namespace DLR_Data_App.Views.CurrentProject
         private void UnlockElement(FormElement element)
         {
             UnlockedElements.Add(element);
-            element.Grid.IsVisible = true;
+            element.Frame.IsVisible = true;
         }
 
         private void LockElement(FormElement element, bool reset = true)
         {
             UnlockedElements.Remove(element);
-            element.Grid.IsVisible = false;
+            element.Frame.IsVisible = false;
             if (reset)
                 element.Reset();
         }
@@ -164,7 +164,7 @@ namespace DLR_Data_App.Views.CurrentProject
             //if the element was not required to progress, then changing it can't make a new element visible
             if (changedElement.Data.Required)
             {
-                var currentlyRequiredElement = _formElements.LastOrDefault(e => e.Grid.IsVisible && e.Data.Required);
+                var currentlyRequiredElement = _formElements.LastOrDefault(e => e.Frame.IsVisible && e.Data.Required);
                 if (currentlyRequiredElement == changedElement)
                 {
                     //Show all questions until (including) the next required one
@@ -187,14 +187,14 @@ namespace DLR_Data_App.Views.CurrentProject
                     variables = GeatherVariables();
                 if (element.ShouldBeShownExpression.Evaluate(variables))
                 {
-                    element.Grid.IsVisible = true;
+                    element.Frame.IsVisible = true;
                 }
                 else
                 {
-                    var wasVisible = element.Grid.IsVisible;
+                    var wasVisible = element.Frame.IsVisible;
                     if (wasVisible)
                     {
-                        element.Grid.IsVisible = false;
+                        element.Frame.IsVisible = false;
                         element.Reset();
                     }
                 }
