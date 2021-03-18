@@ -19,7 +19,9 @@ namespace DLR_Data_App.Views.ProfilingList
         {
             InitializeComponent();
             InspectedProfiling = profiling;
-            BindingContext = profiling;
+            AuthorsLabel.Text = Helpers.GetCurrentLanguageTranslation(profiling.Translations, profiling.Authors);
+            DescriptionLabel.Text = Helpers.GetCurrentLanguageTranslation(profiling.Translations, profiling.Description);
+            TitleLabel.Text = Helpers.GetCurrentLanguageTranslation(profiling.Translations, profiling.Title);
         }
 
         /// <summary>
@@ -27,11 +29,7 @@ namespace DLR_Data_App.Views.ProfilingList
         /// </summary>
         public ProfilingDetailPage()
         {
-            InspectedProfiling = new ProfilingData();
-
             InitializeComponent();
-
-            BindingContext = InspectedProfiling;
         }
 
         /// <summary>

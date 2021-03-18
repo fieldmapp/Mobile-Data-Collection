@@ -16,14 +16,24 @@ namespace DLR_Data_App.Views.ProfilingList
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfilingListPage
     {
-        public ObservableCollection<ProfilingData> Profilings { get; set; }
+        public class LocalizedProfilingDataWrapper
+        {
+            public string LocalizedTitle { get; set; }
+
+            public string LocalizedDescription { get; set; }
+
+            public string LocalizedAuthors { get; set; }
+
+            public ProfilingData ProfilingData { get; set; }
+        }
+        public ObservableCollection<LocalizedProfilingDataWrapper> Profilings { get; set; }
         private NewProfilingPage _newProfilingPage;
         
         public ProfilingListPage()
         {
             InitializeComponent();
 
-            Profilings = new ObservableCollection<ProfilingData>();
+            Profilings = new ObservableCollection<LocalizedProfilingDataWrapper>();
             BindingContext = this;
         }
 
@@ -57,7 +67,13 @@ namespace DLR_Data_App.Views.ProfilingList
             Profilings.Clear();
             foreach (var profiling in Database.ReadProfilings())
             {
-                Profilings.Add(profiling);
+                Profilings.Add(new LocalizedProfilingDataWrapper
+                {
+                    LocalizedAuthors = Helpers.GetCurrentLanguageTranslation(profiling.Translations, profiling.Authors),
+                    LocalizedDescription = Helpers.GetCurrentLanguageTranslation(profiling.Translations, profiling.Description),
+                    LocalizedTitle = Helpers.GetCurrentLanguageTranslation(profiling.Translations, profiling.Title),
+                    ProfilingData = profiling
+                });
             }
         }
 
@@ -75,7 +91,7 @@ namespace DLR_Data_App.Views.ProfilingList
         /// </summary>
         private async void ProjectListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            await this.PushPage(new ProfilingDetailPage(Profilings[e.ItemIndex]));
+            await this.PushPage(new ProfilingDetailPage(Profilings[e.ItemIndex].ProfilingData));
         }
     }
 }
