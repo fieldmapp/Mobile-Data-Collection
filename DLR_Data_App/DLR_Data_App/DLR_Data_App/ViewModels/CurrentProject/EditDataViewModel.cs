@@ -5,6 +5,7 @@ using DLR_Data_App.Localizations;
 using DLR_Data_App.Models;
 using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Services;
+using FormatWith;
 
 namespace DLR_Data_App.ViewModels.CurrentProject
 {
@@ -12,10 +13,12 @@ namespace DLR_Data_App.ViewModels.CurrentProject
     {
         public List<ProjectForm> FormList { get; set; }
         public ObservableCollection<PreviewElement> ElementList { get; set; }
-        public TableData ProjectData { get; set; }
+        public TableData ProjectTableData { get; set; }
 
         private Project _workingProject;
-        
+
+        public List<Dictionary<string, string>> ProjectsData { private set; get; }
+
         public EditDataViewModel()
         {
             Title = AppResources.editdata;
@@ -34,29 +37,31 @@ namespace DLR_Data_App.ViewModels.CurrentProject
         public void GetDataFromDatabase()
         {
             // Get data from DB
-            ProjectData = Database.ReadCustomTable(ref _workingProject);
+            ProjectTableData = Database.ReadCustomTable(ref _workingProject);
             ElementList.Clear();
 
-            if (ProjectData == null)
+            if (ProjectTableData == null)
                 return;
 
-            // add the amount of elements that are available in db
-            for (var i = 0; i < ProjectData.ValueList[0].Count; i++)
-            {
-                ElementList.Add(new PreviewElement());
-            }
+            var savesCount = ProjectTableData.ValueList[0].Count;
+            ProjectsData = new List<Dictionary<string, string>>();
 
-            for (int rowNameCounter = 0; rowNameCounter < ProjectData.ValueList.Count; rowNameCounter++)
+            // add the amount of elements that are available in db
+            for (var i = 0; i < savesCount; i++)
             {
-                var dataRow = ProjectData.ValueList[rowNameCounter];
-                for (int elementCounter = 0; elementCounter < dataRow.Count; elementCounter++)
+                Dictionary<string, string> saveData = new Dictionary<string, string>();
+                for (int j = 0; j < ProjectTableData.RowNameList.Count; j++)
                 {
-                    var dataElement = dataRow[elementCounter];
-                    if (ProjectData.RowNameList[rowNameCounter] == "Timestamp")
-                        ElementList[elementCounter].Timestamp = dataElement ?? AppResources.corruptentry;
-                    else
-                        ElementList[elementCounter].Data += dataElement + " ; ";
+                    //if this throws an exception, its probably due to the bad way ProjectTableData is structured (prone to corruption)
+                    if (ProjectTableData.RowNameList[j] != "ProjectId")
+                        saveData.Add(ProjectTableData.RowNameList[j], ProjectTableData.ValueList[j][i]);
                 }
+
+                var previewElement = new PreviewElement();
+                previewElement.Timestamp = saveData["Timestamp"];
+                previewElement.Data = _workingProject.PreviewPattern.FormatWith(saveData);
+
+                ElementList.Add(previewElement);
             }
         }
     }
