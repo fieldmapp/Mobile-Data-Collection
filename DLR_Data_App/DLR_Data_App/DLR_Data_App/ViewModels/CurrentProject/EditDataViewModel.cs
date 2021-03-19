@@ -61,6 +61,7 @@ namespace DLR_Data_App.ViewModels.CurrentProject
                 previewElement.Timestamp = saveData["Timestamp"];
                 previewElement.Data = _workingProject.PreviewPattern.FormatWith(saveData);
 
+                ProjectsData.Add(saveData);
                 ElementList.Add(previewElement);
             }
         }
