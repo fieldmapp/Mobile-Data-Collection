@@ -813,7 +813,7 @@
                     },
                     {
                         "StadiumName": "stadiumFruitDevelopment",
-                        "ImageSource": "stadium_bluete.png",
+                        "ImageSource": "stadium_fruchtentwicklung.png",
                         "InternNumber": 4
                     }
                 ],
@@ -866,7 +866,7 @@
                     },
                     {
                         "StadiumName": "stadiumFruitDevelopment",
-                        "ImageSource": "stadium_bluete.png",
+                        "ImageSource": "stadium_fruchtentwicklung.png",
                         "InternNumber": 4
                     }
                 ],
@@ -919,7 +919,7 @@
                     },
                     {
                         "StadiumName": "stadiumFruitDevelopment",
-                        "ImageSource": "stadium_bluete.png",
+                        "ImageSource": "stadium_fruchtentwicklung.png",
                         "InternNumber": 4
                     }
                 ],
@@ -972,7 +972,7 @@
                     },
                     {
                         "StadiumName": "stadiumFruitDevelopment",
-                        "ImageSource": "stadium_bluete.png",
+                        "ImageSource": "stadium_fruchtentwicklung.png",
                         "InternNumber": 4
                     }
                 ],
@@ -1025,7 +1025,7 @@
                     },
                     {
                         "StadiumName": "stadiumFruitDevelopment",
-                        "ImageSource": "stadium_bluete.png",
+                        "ImageSource": "stadium_fruchtentwicklung.png",
                         "InternNumber": 4
                     }
                 ],
@@ -1078,7 +1078,7 @@
                     },
                     {
                         "StadiumName": "stadiumFruitDevelopment",
-                        "ImageSource": "stadium_bluete.png",
+                        "ImageSource": "stadium_fruchtentwicklung.png",
                         "InternNumber": 4
                     }
                 ],
@@ -1183,7 +1183,7 @@
         "estimateSoilCoverageEnglish": "Estimate (A) the coverage of soil by plants and (B) the portion of green plant parts on the total plant matter.",
         "assignPlantAndStadiumGerman": "Ordnen Sie dem Bild eine Feldfruchtsorte und das/die Entwicklungstadium/-stadien zu.",
         "assignPlantAndStadiumEnglish": "Assign a crop and a phenological stadium to the image.",
-        "stadiumLeafDevelopmentGerman": "Blattentwickug",
+        "stadiumLeafDevelopmentGerman": "Blattentwicklung",
         "stadiumLeafDevelopmentEnglish": "Leaf development",
         "stadiumTilteringGerman": "Bestockung",
         "stadiumTilteringEnglish": "Tiltering",
