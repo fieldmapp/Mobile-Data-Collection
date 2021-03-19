@@ -33,8 +33,8 @@
                 "1": "Alignment of plant rows{compass}"
             },
             "hint": {
-                "0": "Messen (oder schätzen) Sie den geringsten Abstand zweier benachbarter Pflanzreihen und tragen Sie diesen als Zentimeterwert in die dafür vorgesehene Spalte ein.",
-                "1": "Measure (or estimate) the smallest distance between two neighboring planting rows in centimeters and enter the value."
+                "0": "Die Orientierung der Pflanzreihen wird aus dem geräteinternen Kompass ausgelesen, wenn sie auf „Speichern“ klicken. Damit der Kompass korrekt arbeitet, richten Sie die Längskante des Tablets entlang einer Pflanzreihe aus und halten das Display des Tablets gleichzeitig im 45° Winkel vor sich.",
+                "1": "The angle of the orientation of the planting rows is extracted from the tablet internal compass if you press „Save“. That the measurement is carried out in proper way by the device, please align the long edge of the tablet along a planting row while holding the tablet's display in front of you at a 45° angle."
             },
             "defaultValue": "",
             "readOnly": false,
@@ -53,12 +53,12 @@
         }, {
             "name": "distancePlantRows",
             "label": {
-                "0": "Pflanzenreihenabstand in cm{distanceHorizontal}",
-                "1": "Distance betweent plant rows{distanceHorizontal}"
+                "0": "Pflanzenreihenabstand in cm (horizontaler Abstand)",
+                "1": "Distance betweent plant rows (horizontal distance)"
             },
             "hint": {
-                "0": "",
-                "1": ""
+                "0": "Messen (oder schätzen) Sie den geringsten Abstand zweier benachbarter Pflanzreihen und tragen Sie diesen als Zentimeterwert in die dafür vorgesehene Spalte ein.",
+                "1": "Measure (or estimate) the smallest distance between two neighboring planting rows in centimeters and enter the value."
             },
             "defaultValue": "",
             "readOnly": false,
@@ -81,8 +81,8 @@
                 "1": "Seed rate"
             },
             "hint": {
-                "0": "Wählen Sie sich ein Teilstück einer Pflanzreihe aus. Zählen Sie auf diesem Teilstück alle Pflanzen und tragen Sie den Wert hier ein.",
-                "1": "Select a segment of the planting row. Count the number of plants growing on this planting row segment and enter the value here."
+                "0": "Bitte wählen sie sich ein Teilstück bekannter Länge einer Pflanzreihe aus. Zählen Sie auf diesem Teilstück alle Pflanzen und tragen Sie den Wert hier ein.",
+                "1": "Please select a section of known length of a planting row. Count all plants on this section and enter the value here."
             },
             "defaultValue": "",
             "readOnly": false,
@@ -142,6 +142,27 @@
             "sliderTicks": true,
             "metadata": {},
             "type": "inputNumeric"
+        }, {
+            "name": "photoPlants",
+            "label": {
+                "0": "Photo",
+                "1": "Fotograph"
+            },
+            "hint": {
+                "0": "Bitte halten Sie das Tablet 1 m oberhalb der Pflanzen parallel zum Boden und nehmen Sie ein Photo von den Pflanzen/dem Boden auf.",
+                "1": "Please hold the tablet 1 m above the canopy parallel to the ground and take a photo of the plants/the ground."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {},
+            "relevance": "",
+            "constraint": "",
+            "invalidText": {},
+            "calculate": "",
+            "kind": "Image",
+            "metadata": {},
+            "type": "inputMedia"
         }
     ],
     "metadata": {
