@@ -9,6 +9,7 @@ using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.Provider;
+using Android.Widget;
 using DLR_Data_App.Services;
 using Xamarin.Forms;
 
@@ -24,7 +25,7 @@ namespace com.DLR.DLR_Data_App.Droid
         public async Task<byte[]> OpenCameraApp()
         {
             Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-            var dir = Android.App.Application.Context.GetExternalFilesDirs(Android.OS.Environment.DirectoryDcim)[0];
+            var dir = Android.App.Application.Context.GetExternalFilesDirs(Android.OS.Environment.DirectoryPictures)[0];
             var fileName = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss");
             var fileExtension = ".jpg";
             var file = Java.IO.File.CreateTempFile(fileName, fileExtension, dir);
