@@ -9,17 +9,14 @@ using Android;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.Content.Res;
-using Android.Graphics;
-using Android.Hardware;
 using Android.Hardware.Usb;
 using Android.OS;
-using Android.Support.V7.Widget;
 using Android.Views;
 using DLR_Data_App;
 using DLR_Data_App.Services;
 using Java.Lang;
 using Xamarin.Forms;
+using AndroidX.AppCompat.Widget;
 
 [assembly: UsesFeature("android.hardware.usb.host")]
 namespace com.DLR.DLR_Data_App.Droid
