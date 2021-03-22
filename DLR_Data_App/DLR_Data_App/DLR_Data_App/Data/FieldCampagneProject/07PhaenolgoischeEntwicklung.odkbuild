@@ -1,6 +1,7 @@
 {
     "title": "Phänologische Entwicklung2",
-    "controls": [{
+    "controls": [
+        {
             "name": "avgPhenologicalStadium",
             "label": {
                 "0": "Mittleres phänologisches Stadium",
@@ -22,70 +23,80 @@
                 "1": ""
             },
             "calculate": "",
-            "options": [{
+            "options": [
+                {
                     "text": {
                         "0": "Keimung/Austrieb",
                         "1": "Germination/sprouting/bud development"
                     },
                     "cascade": [],
                     "val": "0"
-                }, {
+                },
+                {
                     "text": {
                         "0": "Blattentwicklung",
                         "1": "Leaf development"
                     },
                     "cascade": [],
                     "val": "1"
-                }, {
+                },
+                {
                     "text": {
                         "0": "Bestockung bzw. Bildung von Seitensprossen",
                         "1": "Formation of side shoots/tillering"
                     },
                     "cascade": [],
                     "val": "2"
-                }, {
+                },
+                {
                     "text": {
                         "0": "Längen- bzw. Rosettenwachstum/Triebentwicklung/Schossen",
                         "1": "Stem elongation or rosette growth/shoot development (main shoot)"
                     },
                     "cascade": [],
                     "val": "3"
-                }, {
+                },
+                {
                     "text": {
                         "0": "Ähren- bzw. Rispenschwellen (Entwicklung Erntegut)",
                         "1": "Development of harvestable vegetatively plant parts or vegetatively propagated organs/booting (main shoot)"
                     },
                     "cascade": [],
                     "val": "4"
-                }, {
+                },
+                {
                     "text": {
                         "0": "Ähren- bzw. Rispenschieben/Erscheinen der Blütenanlage",
                         "1": "Inflorescence emergence (main shoot)/heading"
                     },
                     "cascade": [],
                     "val": "5"
-                }, {
+                },
+                {
                     "text": {
                         "0": "Blüte",
                         "1": "Flowering"
                     },
                     "cascade": [],
                     "val": "6"
-                }, {
+                },
+                {
                     "text": {
                         "0": "Fruchtentwickung",
                         "1": "Development of fruit"
                     },
                     "cascade": [],
                     "val": "7"
-                }, {
+                },
+                {
                     "text": {
                         "0": "Frucht- und Samenreife",
                         "1": "Ripening or maturity of fruit and seed"
                     },
                     "cascade": [],
                     "val": "8"
-                }, {
+                },
+                {
                     "text": {
                         "0": "Absterben bzw. Eintreten der Vegetationsruhe",
                         "1": "Senescence, beginning of dormancy"
@@ -99,7 +110,8 @@
             "appearance": "Default",
             "metadata": {},
             "type": "inputSelectOne"
-        }, {
+        },
+        {
             "name": "BBCHstage_0",
             "label": {
                 "0": "Keimung/Austrieb",
@@ -117,56 +129,64 @@
             "constraint": "",
             "invalidText": {},
             "calculate": "",
-            "options": [{
+            "options": [
+                {
                     "text": {
                         "0": "00: Trockener Samen",
                         "1": "00: Dry seed"
                     },
                     "cascade": [],
                     "val": "0"
-                }, {
+                },
+                {
                     "text": {
                         "0": "01: Beginn der Samenquellung",
                         "1": "01: Beginning of seed imbibition"
                     },
                     "cascade": [],
                     "val": "1"
-                }, {
+                },
+                {
                     "text": {
                         "0": "03: Ende der Samenquellung",
                         "1": "03: Seed imbibition complete"
                     },
                     "cascade": [],
                     "val": "2"
-                }, {
+                },
+                {
                     "text": {
                         "0": "05: Keimwurzel aus dem Samen ausgetreten",
                         "1": "05: Radicle (root) emerged from seed"
                     },
                     "cascade": [],
                     "val": "3"
-                }, {
+                },
+                {
                     "text": {
                         "0": "06: Keimwurzel streckt sich, Wurzelhaare und/oder Seitenwurzeln sichtbar",
                         "1": "06: Elongation of radicle, formation of root hairs and/or lateral roots"
                     },
                     "cascade": [],
                     "val": "4"
-                }, {
+                },
+                {
                     "text": {
                         "0": "07: Keimscheide (Koleoptile) aus dem Samen ausgetreten oder Hypokotyl mit Keimblättern bzw. Spross hat Samenschale durchbrochen",
                         "1": "07: Coleoptile emerged from caryopsis or Hypocotyl with cotyledons or shoot breaking through seed coat"
                     },
                     "cascade": [],
                     "val": "5"
-                }, {
+                },
+                {
                     "text": {
                         "0": "08: Hypokotyl mit Keimblättern bzw. Spross wächst zur Bodenoberfläche",
                         "1": "08: Hypocotyl with cotyledons growing towards soil surface"
                     },
                     "cascade": [],
                     "val": "6"
-                }, {
+                },
+                {
                     "text": {
                         "0": "09: Auflaufen: Keimscheide, Keimblätter oder Spross bzw. Blatt durchbricht Bodenoberfläche",
                         "1": "09: Emergence: Coleoptile, Cotyledons or Shoot/leaf breaks through soil surface"
@@ -180,7 +200,8 @@
             "appearance": "Default",
             "metadata": {},
             "type": "inputSelectOne"
-        }, {
+        },
+        {
             "name": "BBCHstage_1",
             "label": {
                 "0": "Blattentwicklung (Hauptspross)",
@@ -198,70 +219,80 @@
             "constraint": "",
             "invalidText": {},
             "calculate": "",
-            "options": [{
+            "options": [
+                {
                     "text": {
                         "0": "10: Erstes Laubblatt aus der Koleoptile ausgetreten oder Keimblätter voll entfaltet",
                         "1": "10: First true leaf emerged from coleoptile OR Cotyledons completely unfolded"
                     },
                     "cascade": [],
                     "val": "0"
-                }, {
+                },
+                {
                     "text": {
                         "0": "11: 1. Laubblatt bzw. Blattpaar oder Blattquirl entfaltet",
                         "1": "11: First true leaf, leaf pair or whorl unfolded"
                     },
                     "cascade": [],
                     "val": "1"
-                }, {
+                },
+                {
                     "text": {
                         "0": "12: 2. Laubblatt bzw. Blattpaar oder Blattquirl entfaltet",
                         "1": "12: 2 true leaves, leaf pairs or whorls unfolded"
                     },
                     "cascade": [],
                     "val": "2"
-                }, {
+                },
+                {
                     "text": {
                         "0": "13: 3. Laubblatt bzw. Blattpaar oder Blattquirl entfaltet",
                         "1": "13: 3 true leaves, leaf pairs or whorls unfolded"
                     },
                     "cascade": [],
                     "val": "3"
-                }, {
+                },
+                {
                     "text": {
                         "0": "14: 4. Laubblatt bzw. Blattpaar oder Blattquirl entfaltet",
                         "1": "14: 4 true leaves, leaf pairs or whorls unfolded"
                     },
                     "cascade": [],
                     "val": "4"
-                }, {
+                },
+                {
                     "text": {
                         "0": "15: 5. Laubblatt bzw. Blattpaar oder Blattquirl entfaltet",
                         "1": "15: 5 true leaves, leaf pairs or whorls unfolded"
                     },
                     "cascade": [],
                     "val": "5"
-                }, {
+                },
+                {
                     "text": {
                         "0": "16: 6. Laubblatt bzw. Blattpaar oder Blattquirl entfaltet",
                         "1": "16: 6 true leaves, leaf pairs or whorls unfolded"
                     },
                     "cascade": [],
                     "val": "6"
-                }, {
+                },
+                {
                     "text": {
                         "0": "17: 7. Laubblatt bzw. Blattpaar oder Blattquirl entfaltet",
                         "1": "17: 7true leaves, leaf pairs or whorls unfolded"
                     },
                     "cascade": [],
                     "val": "7"
-                }, {
+                },
+                {
                     "text": {
                         "0": "18: 8. Laubblatt bzw. Blattpaar oder Blattquirl entfaltet",
                         "1": "18: 8 true leaves, leaf pairs or whorls unfolded"
                     },
                     "cascade": [],
                     "val": "8"
-                }, {
+                },
+                {
                     "text": {
                         "0": "19: 9 oder mehr Laubblätter bzw. Blattpaare oder Blattquirle entfaltet",
                         "1": "19: 9 or more true leaves, leaf pairs or whorls unfolded"
@@ -275,7 +306,8 @@
             "appearance": "Default",
             "metadata": {},
             "type": "inputSelectOne"
-        }, {
+        },
+        {
             "name": "BBCHstage_2",
             "label": {
                 "0": "Bildung von Seitensprossen / Bestockung",
@@ -293,63 +325,72 @@
             "constraint": "",
             "invalidText": {},
             "calculate": "",
-            "options": [{
+            "options": [
+                {
                     "text": {
                         "0": "21: 1. Seitenspross oder 1. Bestockungstrieb sichtbar",
                         "1": "21: First side shoot or first tiller visible"
                     },
                     "cascade": [],
                     "val": "0"
-                }, {
+                },
+                {
                     "text": {
                         "0": "22: 2. Seitenspross oder 2. Bestockungstrieb sichtbar",
                         "1": "22: 2 side shoot or 2 tiller visible"
                     },
                     "cascade": [],
                     "val": "1"
-                }, {
+                },
+                {
                     "text": {
                         "0": "23: 3. Seitenspross oder 3. Bestockungstrieb sichtbar",
                         "1": "23: 3 side shoot or 3 tiller visible"
                     },
                     "cascade": [],
                     "val": "2"
-                }, {
+                },
+                {
                     "text": {
                         "0": "24: 4. Seitenspross oder 4. Bestockungstrieb sichtbar",
                         "1": "24: 4 side shoot or 4 tiller visible"
                     },
                     "cascade": [],
                     "val": "3"
-                }, {
+                },
+                {
                     "text": {
                         "0": "25: 5. Seitenspross oder 5. Bestockungstrieb sichtbar",
                         "1": "25: 5 side shoot or 5 tiller visible"
                     },
                     "cascade": [],
                     "val": "4"
-                }, {
+                },
+                {
                     "text": {
                         "0": "26: 6. Seitenspross oder 6. Bestockungstrieb sichtbar",
                         "1": "26: 6 side shoot or 6 tiller visible"
                     },
                     "cascade": [],
                     "val": "5"
-                }, {
+                },
+                {
                     "text": {
                         "0": "27: 7. Seitenspross oder 7. Bestockungstrieb sichtbar",
                         "1": "27: 7 side shoot or 7 tiller visible"
                     },
                     "cascade": [],
                     "val": "6"
-                }, {
+                },
+                {
                     "text": {
                         "0": "28: 8. Seitenspross oder 8. Bestockungstrieb sichtbar",
                         "1": "28: 8 side shoot or 8 tiller visible"
                     },
                     "cascade": [],
                     "val": "7"
-                }, {
+                },
+                {
                     "text": {
                         "0": "29: 9 oder mehr Seitensprosse/Bestockungstriebe sichtbar",
                         "1": "29: 9 or more side shoots/tillers visible"
@@ -363,7 +404,8 @@
             "appearance": "Default",
             "metadata": {},
             "type": "inputSelectOne"
-        }, {
+        },
+        {
             "name": "BBCHstage_3",
             "label": {
                 "0": "Längen- bzw. Rosettenwachstum des Hauptsprosses / Triebentwicklung / Schossen (Haupttrieb)",
@@ -381,63 +423,72 @@
             "constraint": "",
             "invalidText": {},
             "calculate": "",
-            "options": [{
+            "options": [
+                {
                     "text": {
                         "0": "31: 10% des arttypischen max. Längen- bzw. Rosettenwachstums erreicht oder 1-Knoten-Stadium",
                         "1": "31: Stern (rosette) 10 % of final length (diameter) or 1 nodes detectable"
                     },
                     "cascade": [],
                     "val": "0"
-                }, {
+                },
+                {
                     "text": {
                         "0": "32: 20% des arttypischen max. Längen- bzw. Rosettenwachstums erreicht oder 2-Knoten-Stadium",
                         "1": "32: Stern (rosette) 20 % of final length (diameter) or 2 nodes detectable"
                     },
                     "cascade": [],
                     "val": "1"
-                }, {
+                },
+                {
                     "text": {
                         "0": "33: 30% des arttypischen max. Längen- bzw. Rosettenwachstums erreicht oder 3-Knoten-Stadium",
                         "1": "33: Stern (rosette) 30 % of final length (diameter) or 3 nodes detectable"
                     },
                     "cascade": [],
                     "val": "2"
-                }, {
+                },
+                {
                     "text": {
                         "0": "34: 40% des arttypischen max. Längen- bzw. Rosettenwachstums erreicht oder 4-Knoten-Stadium",
                         "1": "34: Stern (rosette) 40 % of final length (diameter) or 4 nodes detectable"
                     },
                     "cascade": [],
                     "val": "3"
-                }, {
+                },
+                {
                     "text": {
                         "0": "35: 50% des arttypischen max. Längen- bzw. Rosettenwachstums erreicht oder 5-Knoten-Stadium",
                         "1": "35: Stern (rosette) 50 % of final length (diameter) or 5 nodes detectable"
                     },
                     "cascade": [],
                     "val": "4"
-                }, {
+                },
+                {
                     "text": {
                         "0": "36: 60% des arttypischen max. Längen- bzw. Rosettenwachstums erreicht oder 6-Knoten-Stadium",
                         "1": "36: Stern (rosette) 60 % of final length (diameter) or 6 nodes detectable"
                     },
                     "cascade": [],
                     "val": "5"
-                }, {
+                },
+                {
                     "text": {
                         "0": "37: 70% des arttypischen max. Längen- bzw. Rosettenwachstums erreicht oder 7-Knoten-Stadium",
                         "1": "37: Stern (rosette) 70 % of final length (diameter) or 7 nodes detectable"
                     },
                     "cascade": [],
                     "val": "6"
-                }, {
+                },
+                {
                     "text": {
                         "0": "38: 80% des arttypischen max. Längen- bzw. Rosettenwachstums erreicht oder 8-Knoten-Stadium",
                         "1": "38: Stern (rosette) 80 % of final length (diameter) or 8 nodes detectable"
                     },
                     "cascade": [],
                     "val": "7"
-                }, {
+                },
+                {
                     "text": {
                         "0": "39: Maximale Länge bzw. Durchmesser erreicht oder 9 oder mehr Knoten",
                         "1": "39: Maximum stem length or rosette diameter reached or 9 or more nodes detectable"
@@ -451,7 +502,8 @@
             "appearance": "Default",
             "metadata": {},
             "type": "inputSelectOne"
-        }, {
+        },
+        {
             "name": "BBCHstage_4",
             "label": {
                 "0": "Entwicklung vegetativer Pflanzenteile (Erntegut) bzw. vegetativer Vermehrungsorgane / Ähren- bzw. Rispenschwellen",
@@ -469,42 +521,48 @@
             "constraint": "",
             "invalidText": {},
             "calculate": "",
-            "options": [{
+            "options": [
+                {
                     "text": {
                         "0": "40: Beginn der Entwicklung vegetativen Erntegutes bzw. vegetativer Vermehrungsorgane",
                         "1": "40: Harvestable vegetative plant parts or vegetatively propagated organs begin to develop"
                     },
                     "cascade": [],
                     "val": "0"
-                }, {
+                },
+                {
                     "text": {
                         "0": "41: Blattscheide des Fahnenblattes verlängert sich",
                         "1": "41: Flag leaf sheath extending"
                     },
                     "cascade": [],
                     "val": "1"
-                }, {
+                },
+                {
                     "text": {
                         "0": "43: Vegetatives Erntegut bzw. vegetative Vermehrungsorgane haben 30% der endgültigen Grösse erreicht oder Blattscheide des Fahnenblattes beginnt anzuschwellen",
                         "1": "43: Harvestable vegetative plant parts or vegetatively propagated organs have reached 30 % of final size or flag leaf sheath just visibly swollen (mid-boot)"
                     },
                     "cascade": [],
                     "val": "2"
-                }, {
+                },
+                {
                     "text": {
                         "0": "45: Vegetatives Erntegut bzw. vegetative Vermehrungsorgane haben 50% der endgültigen Grösse erreicht oder Blattscheide des Fahnenblattes geschwollen",
                         "1": "45: Harvestable vegetative plant parts or vegetatively propagated organs have reached 50 % of final size or flag leaf sheath swollen (late-boot)"
                     },
                     "cascade": [],
                     "val": "3"
-                }, {
+                },
+                {
                     "text": {
                         "0": "47: Vegetatives Erntegut bzw. vegetative Vermehrungsorgane haben 70% der endgültigen Grösse erreicht oder Blattscheide des Fahnenblattes öffnet sich",
                         "1": "47: Harvestable vegetative plant parts or vegetatively propagated organs have reached 70 % of final size or flag leaf sheath opening"
                     },
                     "cascade": [],
                     "val": "4"
-                }, {
+                },
+                {
                     "text": {
                         "0": "49: Vegetatives Erntegut bzw. vegetative Vermehrungsorgane haben endgültige Grösse erreicht oder Grannen sichtbar",
                         "1": "49: Harvestable vegetative plant parts or vegetatively propagated organs have reached final size or first awns visible"
@@ -518,7 +576,8 @@
             "appearance": "Default",
             "metadata": {},
             "type": "inputSelectOne"
-        }, {
+        },
+        {
             "name": "BBCHstage_5",
             "label": {
                 "0": "Erscheinen der Blütenanlage (Hauptspross) / Ähren- bzw. Rispenschieben",
@@ -536,21 +595,24 @@
             "constraint": "",
             "invalidText": {},
             "calculate": "",
-            "options": [{
+            "options": [
+                {
                     "text": {
                         "0": "51: Blütenanlagen bzw. -knospen sichtbar oder Beginn des Ähren- bzw. Rispenschiebens",
                         "1": "51: lnllorescence or flower buds visible or beginning of heading"
                     },
                     "cascade": [],
                     "val": "0"
-                }, {
+                },
+                {
                     "text": {
                         "0": "55: Erste Einzelblüten sichtbar (geschlossen) oder mitte des Ähren- bzw. Rispenschiebens",
                         "1": "55: First individual flowers visible (still closed) or half of inflorescence emerged (middle of heading)"
                     },
                     "cascade": [],
                     "val": "1"
-                }, {
+                },
+                {
                     "text": {
                         "0": "59: Erste Blütenblätter sichtbar, Blüten noch geschlossen oder Ende des Ähren- bzw. Rispenschiebens",
                         "1": "59: First flower petals visible (in petalled forms) or intlorescence tully emerged (end of heading)"
@@ -564,7 +626,8 @@
             "appearance": "Default",
             "metadata": {},
             "type": "inputSelectOne"
-        }, {
+        },
+        {
             "name": "BBCHstage_6",
             "label": {
                 "0": "Blüte (Hauptspross)",
@@ -582,56 +645,64 @@
             "constraint": "",
             "invalidText": {},
             "calculate": "",
-            "options": [{
+            "options": [
+                {
                     "text": {
                         "0": "60: Vereinzelt erste Blüten offen",
                         "1": "60: First flowers open (sporadically)"
                     },
                     "cascade": [],
                     "val": "0"
-                }, {
+                },
+                {
                     "text": {
                         "0": "61: Beginn der Blüte: 10% der Blüten offen",
                         "1": "61: Beginning of flowering: 10% of flowers open"
                     },
                     "cascade": [],
                     "val": "1"
-                }, {
+                },
+                {
                     "text": {
                         "0": "62: 20% der Blüten offen",
                         "1": "62: 20 % of flowers open"
                     },
                     "cascade": [],
                     "val": "2"
-                }, {
+                },
+                {
                     "text": {
                         "0": "63: 30% der Blüten offen",
                         "1": "63: 30 % of flowers open"
                     },
                     "cascade": [],
                     "val": "3"
-                }, {
+                },
+                {
                     "text": {
                         "0": "40% der Blüten offen",
                         "1": "64: 40 % of flowers open"
                     },
                     "cascade": [],
                     "val": "4"
-                }, {
+                },
+                {
                     "text": {
                         "0": "65: Vollblüte: 50% der Blüten offen, erste Blütenblätter können fallen oder vertrocknen",
                         "1": "65: Full flowering: 50 % ol flowers open, lirs! petals may be lallen"
                     },
                     "cascade": [],
                     "val": "5"
-                }, {
+                },
+                {
                     "text": {
                         "0": "67: Abgehende Blüte: Mehrzahl der Blütenblätter abgefallen oder vertrocknet",
                         "1": "67: Flowering finishing: majority of petals fallen or dry"
                     },
                     "cascade": [],
                     "val": "6"
-                }, {
+                },
+                {
                     "text": {
                         "0": "69: Ende der Blüte: Fruchtansatz sichtbar",
                         "1": "69: End of flowering: fruit sei visible"
@@ -645,7 +716,8 @@
             "appearance": "Default",
             "metadata": {},
             "type": "inputSelectOne"
-        }, {
+        },
+        {
             "name": "BBCHstage_7",
             "label": {
                 "0": "Fruchtentwicklung",
@@ -663,63 +735,72 @@
             "constraint": "",
             "invalidText": {},
             "calculate": "",
-            "options": [{
+            "options": [
+                {
                     "text": {
                         "0": "71: 10% der Früchte erreichen art-/sortenspezifische Grösse bzw. 10% der normalen Fruchtgrösse erreicht oder Wasserreife, Korninhalt wässrig",
                         "1": "71: 10 % of fruits have reached final size or fruit has reached 10 % of final size or Caryopsis watery ripe"
                     },
                     "cascade": [],
                     "val": "0"
-                }, {
+                },
+                {
                     "text": {
                         "0": "72: 20% der Früchte erreichen art-/sortenspezifische Grösse bzw. 20% der normalen Fruchtgrösse erreicht",
                         "1": "72: 20 % of fruits have reached final size or fruit has reached 20 % of final size"
                     },
                     "cascade": [],
                     "val": "1"
-                }, {
+                },
+                {
                     "text": {
                         "0": "73: 30% der Früchte erreichen art-/sortenspezifische Grösse bzw. 30% der normalen Fruchtgrösse erreicht oder Frühe Milchreife",
                         "1": "73: 30 % of fruits have reached final size or fruit has reached 30 % of final size or Early milk"
                     },
                     "cascade": [],
                     "val": "2"
-                }, {
+                },
+                {
                     "text": {
                         "0": "74: 40% der Früchte erreichen art-/sortenspezifische Grösse bzw. 40% der normalen Fruchtgrösse erreicht",
                         "1": "74: 40 % of fruits have reached final size or fruit has reached 40 % of final size"
                     },
                     "cascade": [],
                     "val": "3"
-                }, {
+                },
+                {
                     "text": {
                         "0": "75: 50% der Früchte erreichen art-/sortenspezifische Grösse bzw. 50% der normalen Fruchtgrösse erreicht oder Milchreife, Korninhalt milchig",
                         "1": "75: 50 % of fruits have reached final size or fruit has reached 50 % of final size or Milky ripe, medium milk"
                     },
                     "cascade": [],
                     "val": "4"
-                }, {
+                },
+                {
                     "text": {
                         "0": "76: 60% der Früchte erreichen art-/sortenspezifische Grösse bzw. 60% der normalen Fruchtgrösse erreicht",
                         "1": "76: 60 % of fruits have reached final size or fruit has reached 60 % of final size"
                     },
                     "cascade": [],
                     "val": "5"
-                }, {
+                },
+                {
                     "text": {
                         "0": "77: 70% der Früchte erreichen art-/sortenspezifische Grösse bzw. 70% der normalen Fruchtgrösse erreicht oder Späte Milchreife",
                         "1": "77: 70 % of fruits have reached final size or fruit has reached 70 % of final size or Late milk"
                     },
                     "cascade": [],
                     "val": "6"
-                }, {
+                },
+                {
                     "text": {
                         "0": "78: 80% der Früchte erreichen art-/sortenspezifische Grösse bzw. 80% der normalen Fruchtgrösse erreicht",
                         "1": "78: 80 % of fruits have reached final size or fruit has reached 80 % of final size"
                     },
                     "cascade": [],
                     "val": "7"
-                }, {
+                },
+                {
                     "text": {
                         "0": "79: nahezu alle Früchte erreichen art- /sortenspezifische Fruchtgrösse",
                         "1": "79: Nearly all fruits have reached final size"
@@ -733,7 +814,8 @@
             "appearance": "Default",
             "metadata": {},
             "type": "inputSelectOne"
-        }, {
+        },
+        {
             "name": "BBCHstage_8",
             "label": {
                 "0": "Frucht- und Samenreife",
@@ -751,28 +833,32 @@
             "constraint": "",
             "invalidText": {},
             "calculate": "",
-            "options": [{
+            "options": [
+                {
                     "text": {
                         "0": "81: Beginn der Reife bzw. Fruchtausfärbung",
                         "1": "81: Beginning of ripening or fruit colouration"
                     },
                     "cascade": [],
                     "val": "0"
-                }, {
+                },
+                {
                     "text": {
                         "0": "85: Fortschreiten der art- /sortentypischen Fruchtausfärbung oder Teigreife, Korninhalt noch weich, aber trocken",
                         "1": "85: Advanced ripening or fruit colouration or Dough stage"
                     },
                     "cascade": [],
                     "val": "1"
-                }, {
+                },
+                {
                     "text": {
                         "0": "87: Verringerung der Fruchtfestigkeit (bei fleischigen Früchten)",
                         "1": "87: Fruit begins to soften (species with fleshy fruit)"
                     },
                     "cascade": [],
                     "val": "2"
-                }, {
+                },
+                {
                     "text": {
                         "0": "89: Vollreife: Art- /Sortentypische Fruchtausfärbung erreicht. Früchte bzw. Fruchtstände lösen sich relativ leicht",
                         "1": "89: Fully ripe: fruit shows fully-ripe colour, beginning of fruit abscission"
@@ -786,7 +872,8 @@
             "appearance": "Default",
             "metadata": {},
             "type": "inputSelectOne"
-        }, {
+        },
+        {
             "name": "BBCHstage_9",
             "label": {
                 "0": "Absterben bzw. Eintreten der Vegetationsruhe",
@@ -804,35 +891,40 @@
             "constraint": "",
             "invalidText": {},
             "calculate": "",
-            "options": [{
+            "options": [
+                {
                     "text": {
                         "0": "91: Holz- bzw. Triebwachstum abgeschlossen, Laub aber noch grün",
                         "1": "91: Shoot development completed, foliage still green"
                     },
                     "cascade": [],
                     "val": "0"
-                }, {
+                },
+                {
                     "text": {
                         "0": "93: Beginn der Blattverfärbung oder des Blattfalles",
                         "1": "93: Beginning of leaf-fall"
                     },
                     "cascade": [],
                     "val": "1"
-                }, {
+                },
+                {
                     "text": {
                         "0": "95: 50% der Blätter verfärbt oder abgefallen",
                         "1": "95: 50 % of leaves fallen"
                     },
                     "cascade": [],
                     "val": "2"
-                }, {
+                },
+                {
                     "text": {
                         "0": "97: Ende des Blattfalles. Pflanze bzw. oberirdische Teile abgestorben oder im Ruhestadium oder Pflanze in Winter- bzw. Vegetationsruhe",
                         "1": "97: End of leaf fall, plants or above ground parts dead or dormant or Plant resting or dormant"
                     },
                     "cascade": [],
                     "val": "3"
-                }, {
+                },
+                {
                     "text": {
                         "0": "99: Erntegut (Stadium für die Nacherntebehandlung)",
                         "1": "99: Harvested product (post-harvest or storage treatment)"
@@ -846,7 +938,8 @@
             "appearance": "Default",
             "metadata": {},
             "type": "inputSelectOne"
-        }, {
+        },
+        {
             "name": "plantHeight",
             "label": {
                 "0": "Pflanzenhöhe in cm",
@@ -884,7 +977,8 @@
             "sliderTicks": true,
             "metadata": {},
             "type": "inputNumeric"
-        }, {
+        },
+        {
             "name": "percentPlantCoverage",
             "label": {
                 "0": "Prozentuale Abdeckung des Bodens durch Pflanzen",
@@ -922,7 +1016,8 @@
             "sliderTicks": true,
             "metadata": {},
             "type": "inputNumeric"
-        }, {
+        },
+        {
             "name": "percentGreenPlants",
             "label": {
                 "0": "Prozentualer Anteil grüner Pflanzenbestandteile am gesamten Pflanzenmaterial",
@@ -960,15 +1055,16 @@
             "sliderTicks": true,
             "metadata": {},
             "type": "inputNumeric"
-        }, {
+        },
+        {
             "name": "imagePlant1",
             "label": {
-                "0": "Photo",
-                "1": "Photograph"
+                "0": "Nadirfoto",
+                "1": "Nadir photo"
             },
             "hint": {
                 "0": "Bitte halten Sie das Tablet 1 m oberhalb der Pflanzen parallel zum Boden und nehmen Sie ein Photo von den Pflanzen/dem Boden auf.",
-                "1": ""
+                "1": "Please hold the tablet 1 m above the canopy parallel to the ground and take a photo of the plants/the ground."
             },
             "defaultValue": "",
             "readOnly": false,

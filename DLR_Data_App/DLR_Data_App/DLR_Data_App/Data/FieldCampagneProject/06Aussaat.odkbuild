@@ -142,27 +142,6 @@
             "sliderTicks": true,
             "metadata": {},
             "type": "inputNumeric"
-        }, {
-            "name": "photoPlants",
-            "label": {
-                "0": "Photo",
-                "1": "Fotograph"
-            },
-            "hint": {
-                "0": "Bitte halten Sie das Tablet 1 m oberhalb der Pflanzen parallel zum Boden und nehmen Sie ein Photo von den Pflanzen/dem Boden auf.",
-                "1": "Please hold the tablet 1 m above the canopy parallel to the ground and take a photo of the plants/the ground."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {},
-            "relevance": "",
-            "constraint": "",
-            "invalidText": {},
-            "calculate": "",
-            "kind": "Image",
-            "metadata": {},
-            "type": "inputMedia"
         }
     ],
     "metadata": {
