@@ -13,10 +13,27 @@ namespace DLR_Data_App.Models.ProjectForms
         {
             ValidRange = OdkDataExtractor.GetRangeFromJsonString(data.Range, DateTime.Parse);
         }
-
+        static readonly Color SetColor = Color.Black;
+        static readonly Color UnsetColor = Color.LightGray;
         public DatePicker DatePicker;
         public TimePicker TimePicker;
-        public bool IsSet;
+        bool _isSet;
+        public bool IsSet
+        {
+            get => _isSet;
+            set
+            {
+                _isSet = value;
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    var newColor = value ? SetColor : UnsetColor;
+                    if (DatePicker != null)
+                        DatePicker.TextColor = newColor;
+                    if (TimePicker != null)
+                        TimePicker.TextColor = newColor;
+                });
+            }
+        }
         private OdkRange<DateTime> ValidRange;
 
         protected override bool IsValidElementSpecific => IsSet
@@ -58,7 +75,7 @@ namespace DLR_Data_App.Models.ProjectForms
             var timeSelectorElement = new TimeSelectorElement(grid, parms.Element, parms.Type);
 
             TimePicker timePicker = null;
-            var datePicker = new DatePicker { StyleId = parms.Element.Name };
+            var datePicker = new DatePicker { TextColor = UnsetColor };
             timeSelectorElement.DatePicker = datePicker;
 
             datePicker.Unfocused += (a, b) =>
@@ -73,7 +90,7 @@ namespace DLR_Data_App.Models.ProjectForms
 
             if (parms.Element.Kind == "Full Date and Time")
             {
-                timePicker = new TimePicker { StyleId = parms.Element.Name };
+                timePicker = new TimePicker { TextColor = UnsetColor };
                 timeSelectorElement.TimePicker = timePicker;
                 timePicker.Unfocused += (a, b) =>
                 {
