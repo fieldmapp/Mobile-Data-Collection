@@ -55,7 +55,7 @@ namespace DLR_Data_App.Models.ProjectForms
 
             var savedCompassLabel = new Label { Text = AppResources.saveddata };
             compassElement.SavedDataLabel = savedCompassLabel;
-            var savedCompassDataLabel = new Label { StyleId = parms.Element.Name };
+            var savedCompassDataLabel = new Label();
 
             saveButton.Clicked += (_, b) => Device.BeginInvokeOnMainThread(() =>
             {

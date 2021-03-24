@@ -32,7 +32,7 @@ namespace DLR_Data_App.Models.ProjectForms
             var pickFileButton = new Button { Text = AppResources.select };
             var fileSelectedLabel = new Label { Text = AppResources.fileselected };
             //HACK: bad way to store an image. blob would be better
-            var dataHolder = new DataHolder { StyleId = parms.Element.Name };
+            var dataHolder = new DataHolder();
             formElement.DataHolder = dataHolder;
             pickFileButton.Clicked += async (a, b) =>
             {

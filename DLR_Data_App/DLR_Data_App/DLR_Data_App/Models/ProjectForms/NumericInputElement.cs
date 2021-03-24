@@ -36,8 +36,7 @@ namespace DLR_Data_App.Models.ProjectForms
             var entry = new Entry
             {
                 Placeholder = placeholder,
-                Keyboard = Keyboard.Numeric,
-                StyleId = parms.Element.Name
+                Keyboard = Keyboard.Numeric
             };
 
             formElement.Entry = entry;

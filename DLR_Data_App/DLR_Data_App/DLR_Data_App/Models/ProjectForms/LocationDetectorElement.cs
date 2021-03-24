@@ -59,11 +59,7 @@ namespace DLR_Data_App.Models.ProjectForms
             var skipButton = new Button { Text = AppResources.skip };
 
             var savedLocation = new Label { Text = AppResources.saveddata };
-            var savedLocationData = new Label
-            {
-                Text = string.Empty,
-                StyleId = parms.Element.Name
-            };
+            var savedLocationData = new Label { Text = string.Empty };
 
             formElement.SavedLocationLabel = savedLocationData;
 

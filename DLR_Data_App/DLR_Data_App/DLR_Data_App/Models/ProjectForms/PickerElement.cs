@@ -50,7 +50,6 @@ namespace DLR_Data_App.Models.ProjectForms
             {
                 Title = title,
                 VerticalOptions = LayoutOptions.CenterAndExpand,
-                StyleId = parms.Element.Name,
                 ItemsSource = optionsList
             };
 
