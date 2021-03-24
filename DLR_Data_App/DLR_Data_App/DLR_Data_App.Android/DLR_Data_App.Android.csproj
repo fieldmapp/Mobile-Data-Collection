@@ -547,7 +547,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties Assets_4questions__JSONSchema="http://jsonapi.org/schema" XamarinHotReloadGenericExceptionInfoBarDLR_Data_AppAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadGenericExceptionInfoBarDLR_Data_AppAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
