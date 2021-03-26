@@ -210,17 +210,17 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumLeafDevelopment",
-                        "ImageSource": "stadium_blattentwicklung.png",
+                        "ImageSource": "stadium_1_leafDevelopment.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumTiltering",
-                        "ImageSource": "stadium_bestockung.png",
+                        "ImageSource": "stadium_2_tillering.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumShootDevelopmentLenghtGrow",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 3
                     }
                 ],
@@ -254,17 +254,17 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumLeafDevelopment",
-                        "ImageSource": "stadium_blattentwicklung.png",
+                        "ImageSource": "stadium_1_leafDevelopment.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumTiltering",
-                        "ImageSource": "stadium_bestockung.png",
+                        "ImageSource": "stadium_2_tillering.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumShootDevelopmentLenghtGrow",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 3
                     }
                 ],
@@ -298,17 +298,17 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumLeafDevelopment",
-                        "ImageSource": "stadium_blattentwicklung.png",
+                        "ImageSource": "stadium_1_leafDevelopment.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumTiltering",
-                        "ImageSource": "stadium_bestockung.png",
+                        "ImageSource": "stadium_2_tillering.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumShootDevelopmentLenghtGrow",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 3
                     }
                 ],
@@ -342,17 +342,17 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumLeafDevelopment",
-                        "ImageSource": "stadium_blattentwicklung.png",
+                        "ImageSource": "stadium_1_leafDevelopment.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumTiltering",
-                        "ImageSource": "stadium_bestockung.png",
+                        "ImageSource": "stadium_2_tillering.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumShootDevelopmentLenghtGrow",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 3
                     }
                 ],
@@ -386,17 +386,17 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumLeafDevelopment",
-                        "ImageSource": "stadium_blattentwicklung.png",
+                        "ImageSource": "stadium_1_leafDevelopment.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumTiltering",
-                        "ImageSource": "stadium_bestockung.png",
+                        "ImageSource": "stadium_2_tillering.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumShootDevelopmentLenghtGrow",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 3
                     }
                 ],
@@ -430,17 +430,17 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumLeafDevelopment",
-                        "ImageSource": "stadium_blattentwicklung.png",
+                        "ImageSource": "stadium_1_leafDevelopment.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumTiltering",
-                        "ImageSource": "stadium_bestockung.png",
+                        "ImageSource": "stadium_2_tillering.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumShootDevelopmentLenghtGrow",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 3
                     }
                 ],
@@ -474,27 +474,27 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumLeafDevelopment",
-                        "ImageSource": "stadium_blattentwicklung.png",
+                        "ImageSource": "stadium_1_leafDevelopment.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumShootDevelopmentMainStem",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumBooting",
-                        "ImageSource": "stadium_ahrenrispenschwellen.png",
+                        "ImageSource": "stadium_4_bootingMainShoot.png",
                         "InternNumber": 3
                     },
                     {
                         "StadiumName": "stadiumInfloresceneEmergence",
-                        "ImageSource": "stadium_entwicklungbluetenanlage.png",
+                        "ImageSource": "stadium_5_inflorEmergence.png",
                         "InternNumber": 4
                     },
                     {
                         "StadiumName": "stadiumFlowering",
-                        "ImageSource": "stadium_bluete.png",
+                        "ImageSource": "stadium_6_flowering.png",
                         "InternNumber": 5
                     }
                 ],
@@ -528,27 +528,27 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumLeafDevelopment",
-                        "ImageSource": "stadium_blattentwicklung.png",
+                        "ImageSource": "stadium_1_leafDevelopment.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumShootDevelopmentMainStem",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumBooting",
-                        "ImageSource": "stadium_ahrenrispenschwellen.png",
+                        "ImageSource": "stadium_4_bootingMainShoot.png",
                         "InternNumber": 3
                     },
                     {
                         "StadiumName": "stadiumInfloresceneEmergence",
-                        "ImageSource": "stadium_entwicklungbluetenanlage.png",
+                        "ImageSource": "stadium_5_inflorEmergence.png",
                         "InternNumber": 4
                     },
                     {
                         "StadiumName": "stadiumFlowering",
-                        "ImageSource": "stadium_bluete.png",
+                        "ImageSource": "stadium_6_flowering.png",
                         "InternNumber": 5
                     }
                 ],
@@ -582,27 +582,27 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumLeafDevelopment",
-                        "ImageSource": "stadium_blattentwicklung.png",
+                        "ImageSource": "stadium_1_leafDevelopment.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumShootDevelopmentMainStem",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumBooting",
-                        "ImageSource": "stadium_ahrenrispenschwellen.png",
+                        "ImageSource": "stadium_4_bootingMainShoot.png",
                         "InternNumber": 3
                     },
                     {
                         "StadiumName": "stadiumInfloresceneEmergence",
-                        "ImageSource": "stadium_entwicklungbluetenanlage.png",
+                        "ImageSource": "stadium_5_inflorEmergence.png",
                         "InternNumber": 4
                     },
                     {
                         "StadiumName": "stadiumFlowering",
-                        "ImageSource": "stadium_bluete.png",
+                        "ImageSource": "stadium_6_flowering.png",
                         "InternNumber": 5
                     }
                 ],
@@ -636,27 +636,27 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumLeafDevelopment",
-                        "ImageSource": "stadium_blattentwicklung.png",
+                        "ImageSource": "stadium_1_leafDevelopment.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumShootDevelopmentMainStem",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumBooting",
-                        "ImageSource": "stadium_ahrenrispenschwellen.png",
+                        "ImageSource": "stadium_4_bootingMainShoot.png",
                         "InternNumber": 3
                     },
                     {
                         "StadiumName": "stadiumInfloresceneEmergence",
-                        "ImageSource": "stadium_entwicklungbluetenanlage.png",
+                        "ImageSource": "stadium_5_inflorEmergence.png",
                         "InternNumber": 4
                     },
                     {
                         "StadiumName": "stadiumFlowering",
-                        "ImageSource": "stadium_bluete.png",
+                        "ImageSource": "stadium_6_flowering.png",
                         "InternNumber": 5
                     }
                 ],
@@ -690,27 +690,27 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumLeafDevelopment",
-                        "ImageSource": "stadium_blattentwicklung.png",
+                        "ImageSource": "stadium_1_leafDevelopment.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumShootDevelopmentMainStem",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumBooting",
-                        "ImageSource": "stadium_ahrenrispenschwellen.png",
+                        "ImageSource": "stadium_4_bootingMainShoot.png",
                         "InternNumber": 3
                     },
                     {
                         "StadiumName": "stadiumInfloresceneEmergence",
-                        "ImageSource": "stadium_entwicklungbluetenanlage.png",
+                        "ImageSource": "stadium_5_inflorEmergence.png",
                         "InternNumber": 4
                     },
                     {
                         "StadiumName": "stadiumFlowering",
-                        "ImageSource": "stadium_bluete.png",
+                        "ImageSource": "stadium_6_flowering.png",
                         "InternNumber": 5
                     }
                 ],
@@ -744,27 +744,27 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumLeafDevelopment",
-                        "ImageSource": "stadium_blattentwicklung.png",
+                        "ImageSource": "stadium_1_leafDevelopment.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumShootDevelopmentMainStem",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumBooting",
-                        "ImageSource": "stadium_ahrenrispenschwellen.png",
+                        "ImageSource": "stadium_4_bootingMainShoot.png",
                         "InternNumber": 3
                     },
                     {
                         "StadiumName": "stadiumInfloresceneEmergence",
-                        "ImageSource": "stadium_entwicklungbluetenanlage.png",
+                        "ImageSource": "stadium_5_inflorEmergence.png",
                         "InternNumber": 4
                     },
                     {
                         "StadiumName": "stadiumFlowering",
-                        "ImageSource": "stadium_bluete.png",
+                        "ImageSource": "stadium_6_flowering.png",
                         "InternNumber": 5
                     }
                 ],
@@ -798,22 +798,22 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumShootDevelopmentLenghtGrow",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
-                        "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+                        "ImageSource": "stadium_4_bootingMainShoot.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumInfloresceneEmergence",
-                        "ImageSource": "stadium_entwicklungbluetenanlage.png",
+                        "ImageSource": "stadium_5_inflorEmergence.png",
                         "InternNumber": 3
                     },
                     {
                         "StadiumName": "stadiumFruitDevelopment",
-                        "ImageSource": "stadium_fruchtentwicklung.png",
+                        "ImageSource": "stadium_7_devFruit.png",
                         "InternNumber": 4
                     }
                 ],
@@ -851,22 +851,22 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumShootDevelopmentLenghtGrow",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
-                        "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+                        "ImageSource": "stadium_4_bootingMainShoot.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumInfloresceneEmergence",
-                        "ImageSource": "stadium_entwicklungbluetenanlage.png",
+                        "ImageSource": "stadium_5_inflorEmergence.png",
                         "InternNumber": 3
                     },
                     {
                         "StadiumName": "stadiumFruitDevelopment",
-                        "ImageSource": "stadium_fruchtentwicklung.png",
+                        "ImageSource": "stadium_7_devFruit.png",
                         "InternNumber": 4
                     }
                 ],
@@ -904,22 +904,22 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumShootDevelopmentLenghtGrow",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
-                        "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+                        "ImageSource": "stadium_4_bootingMainShoot.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumInfloresceneEmergence",
-                        "ImageSource": "stadium_entwicklungbluetenanlage.png",
+                        "ImageSource": "stadium_5_inflorEmergence.png",
                         "InternNumber": 3
                     },
                     {
                         "StadiumName": "stadiumFruitDevelopment",
-                        "ImageSource": "stadium_fruchtentwicklung.png",
+                        "ImageSource": "stadium_7_devFruit.png",
                         "InternNumber": 4
                     }
                 ],
@@ -957,22 +957,22 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumShootDevelopmentLenghtGrow",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
-                        "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+                        "ImageSource": "stadium_4_bootingMainShoot.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumInfloresceneEmergence",
-                        "ImageSource": "stadium_entwicklungbluetenanlage.png",
+                        "ImageSource": "stadium_5_inflorEmergence.png",
                         "InternNumber": 3
                     },
                     {
                         "StadiumName": "stadiumFruitDevelopment",
-                        "ImageSource": "stadium_fruchtentwicklung.png",
+                        "ImageSource": "stadium_7_devFruit.png",
                         "InternNumber": 4
                     }
                 ],
@@ -1010,22 +1010,22 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumShootDevelopmentLenghtGrow",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
-                        "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+                        "ImageSource": "stadium_4_bootingMainShoot.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumInfloresceneEmergence",
-                        "ImageSource": "stadium_entwicklungbluetenanlage.png",
+                        "ImageSource": "stadium_5_inflorEmergence.png",
                         "InternNumber": 3
                     },
                     {
                         "StadiumName": "stadiumFruitDevelopment",
-                        "ImageSource": "stadium_fruchtentwicklung.png",
+                        "ImageSource": "stadium_7_devFruit.png",
                         "InternNumber": 4
                     }
                 ],
@@ -1063,22 +1063,22 @@
                 "Stadiums": [
                     {
                         "StadiumName": "stadiumShootDevelopmentLenghtGrow",
-                        "ImageSource": "stadium_laengenwachstumschossen.png",
+                        "ImageSource": "stadium_3_stemElongShootDev.png",
                         "InternNumber": 1
                     },
                     {
                         "StadiumName": "stadiumDevelopmentVegitativePartsBeetBody",
-                        "ImageSource": "stadium_entwicklungvegpflanzruebenk.png",
+                        "ImageSource": "stadium_4_bootingMainShoot.png",
                         "InternNumber": 2
                     },
                     {
                         "StadiumName": "stadiumInfloresceneEmergence",
-                        "ImageSource": "stadium_entwicklungbluetenanlage.png",
+                        "ImageSource": "stadium_5_inflorEmergence.png",
                         "InternNumber": 3
                     },
                     {
                         "StadiumName": "stadiumFruitDevelopment",
-                        "ImageSource": "stadium_fruchtentwicklung.png",
+                        "ImageSource": "stadium_7_devFruit.png",
                         "InternNumber": 4
                     }
                 ],
