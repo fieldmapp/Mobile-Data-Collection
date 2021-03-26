@@ -41,6 +41,9 @@ namespace DLR_Data_App.Models.ProjectForms
 
         private DateTime GetCombinedDateTime()
         {
+            if (!IsSet)
+                return new DateTime();
+
             var result = DatePicker.Date;
             if (TimePicker != null)
                 result += TimePicker.Time;
