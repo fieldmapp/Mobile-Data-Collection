@@ -197,7 +197,7 @@
             "name": "preceedingCropCereals1",
             "label": {
                 "0": "Vorfrucht 1: Sorte",
-                "1": "Previous crop: Crop type"
+                "1": "Previous crop 1: Crop type"
             },
             "hint": {
                 "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
@@ -282,7 +282,7 @@
             "name": "preceedingCropLegumes1",
             "label": {
                 "0": "Vorfrucht 1: Sorte",
-                "1": "Previous crop: Crop type"
+                "1": "Previous crop 1: Crop type"
             },
             "hint": {
                 "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
@@ -349,7 +349,7 @@
             "name": "preceedingCropRootCrops1",
             "label": {
                 "0": "Vorfrucht 1: Sorte",
-                "1": "Previous crop: Crop type"
+                "1": "Previous crop 1: Crop type"
             },
             "hint": {
                 "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
@@ -398,7 +398,7 @@
             "name": "preceedingCropOilSeeds1",
             "label": {
                 "0": "Vorfrucht 1: Sorte",
-                "1": "Previous crop: Crop type"
+                "1": "Previous crop 1: Crop type"
             },
             "hint": {
                 "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
@@ -455,8 +455,8 @@
         {
             "name": "preceedingCropOther1",
             "label": {
-                "0": "Aktuelle Anbausorte",
-                "1": "Crop type"
+                "0": "Vorfrucht 1: Sorte",
+                "1": "Previous crop 1: Crop type"
             },
             "hint": {
                 "0": "Sorte der Feldfrucht eingeben.",
@@ -484,7 +484,7 @@
             "name": "preceedingCropFruitType2",
             "label": {
                 "0": "Vorfrucht 2: Pflanzenkategorie",
-                "1": "Previous crop: Plant category"
+                "1": "Previous crop 2: Plant category"
             },
             "hint": {
                 "0": "Kategorie, der die Feldfruchtsorte zuzuordnen ist, aus dem Menü durch Antippen auswählen.",
@@ -560,7 +560,7 @@
             "name": "preceedingCropCereals2",
             "label": {
                 "0": "Vorfrucht 2: Sorte",
-                "1": "Previous crop: Crop type"
+                "1": "Previous crop 2: Crop type"
             },
             "hint": {
                 "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
@@ -645,7 +645,7 @@
             "name": "preceedingCropLegumes2",
             "label": {
                 "0": "Vorfrucht 2: Sorte",
-                "1": "Previous crop: Crop type"
+                "1": "Previous crop 2: Crop type"
             },
             "hint": {
                 "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
@@ -712,7 +712,7 @@
             "name": "preceedingCropRootCrops2",
             "label": {
                 "0": "Vorfrucht 2: Sorte",
-                "1": "Previous crop: Crop type"
+                "1": "Previous crop 2: Crop type"
             },
             "hint": {
                 "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
@@ -761,7 +761,7 @@
             "name": "preceedingCropOilSeeds2",
             "label": {
                 "0": "Vorfrucht 2: Sorte",
-                "1": "Previous crop: Crop type"
+                "1": "Previous crop 2: Crop type"
             },
             "hint": {
                 "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
@@ -818,8 +818,8 @@
         {
             "name": "preceedingCropOther2",
             "label": {
-                "0": "Aktuelle Anbausorte",
-                "1": "Crop type"
+                "0": "Vorfrucht 2: Sorte",
+                "1": "Previous crop 2: Crop type"
             },
             "hint": {
                 "0": "Sorte der Feldfrucht der aktuellen Anbauperiode aus dem Menü durch Antippen auswählen.",

@@ -572,7 +572,7 @@
             "requiredText": {
                 "1": ""
             },
-            "relevance": "${cultivatedFruit}=2&&${preceedingCropFruitType2}=0",
+            "relevance": "${cultivatedFruit}=2&&${cultivatedFruitType2}=0",
             "constraint": "",
             "invalidText": {
                 "1": ""
@@ -657,7 +657,7 @@
             "requiredText": {
                 "1": ""
             },
-            "relevance": "${cultivatedFruit}=2&&${preceedingCropFruitType2}=1",
+            "relevance": "${cultivatedFruit}=2&&${cultivatedFruitType2}=1",
             "constraint": "",
             "invalidText": {
                 "1": ""
@@ -724,7 +724,7 @@
             "requiredText": {
                 "1": ""
             },
-            "relevance": "${cultivatedFruit}=2&&${preceedingCropFruitType2}=2",
+            "relevance": "${cultivatedFruit}=2&&${cultivatedFruitType2}=2",
             "constraint": "",
             "invalidText": {
                 "1": ""
@@ -773,7 +773,7 @@
             "requiredText": {
                 "1": ""
             },
-            "relevance": "${preceedingCrop}=2&&${preceedingCropFruitType2}=4",
+            "relevance": "${cultivatedFruit}=2&&${cultivatedFruitType2}=4",
             "constraint": "",
             "invalidText": {
                 "0": "",

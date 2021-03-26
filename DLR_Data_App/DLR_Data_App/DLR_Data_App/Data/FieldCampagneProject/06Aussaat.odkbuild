@@ -27,6 +27,50 @@
             "metadata": {},
             "type": "inputDate"
         }, {
+            "name": "dateSowingStart",
+            "label": {
+                "0": "Zeitfenster Beginn",
+                "1": "Time frame begin"
+            },
+            "hint": {
+                "0": "Bitte geben Sie das Anfangsdatum des Zeitraums ein, innerhalb dessen die Aussaat stattgefunden hat.",
+                "1": "Please enter the start date of the time span, in which the crop was seeded."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {},
+            "relevance": "${dateSowing}=0",
+            "constraint": "",
+            "calculate": "",
+            "range": false,
+            "invalidText": {},
+            "kind": "Full Date",
+            "metadata": {},
+            "type": "inputDate"
+        }, {
+            "name": "dateSowingEnd",
+            "label": {
+                "0": "Zeitfenster Ende",
+                "1": "Time frame end"
+            },
+            "hint": {
+                "0": "Bitte geben Sie das Endedatum des Zeitraums ein, innerhalb dessen die Aussaat stattgefunden hat.",
+                "1": "Please enter the end date of the time span, in which the crop was seeded."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {},
+            "relevance": "${dateSowing}=0",
+            "constraint": "",
+            "calculate": "",
+            "range": false,
+            "invalidText": {},
+            "kind": "Full Date",
+            "metadata": {},
+            "type": "inputDate"
+        }, {
             "name": "directionPlantRows",
             "label": {
                 "0": "Ausrichtung der Pflanzenreihen{compass}",
@@ -48,6 +92,8 @@
                 "1": ""
             },
             "calculate": "",
+            "appearance": null,
+            "kind": null,
             "metadata": {},
             "type": "inputNumeric"
         }, {
@@ -62,7 +108,7 @@
             },
             "defaultValue": "",
             "readOnly": false,
-            "required": true,
+            "required": false,
             "requiredText": {
                 "1": ""
             },
@@ -72,6 +118,14 @@
                 "1": ""
             },
             "calculate": "",
+            "range": {
+                "min": "0",
+                "max": "",
+                "minInclusive": true,
+                "maxInclusive": false
+            },
+            "appearance": "Textbox",
+            "kind": "Decimal",
             "metadata": {},
             "type": "inputNumeric"
         }, {

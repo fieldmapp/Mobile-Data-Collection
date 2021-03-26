@@ -1,10 +1,11 @@
 {
     "title": "Ernte",
-    "controls": [{
+    "controls": [
+        {
             "name": "dateHarvest",
             "label": {
-                "0": "Datum",
-                "1": "Date"
+                "0": "Datum Ernte",
+                "1": "Date harvest"
             },
             "hint": {
                 "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum der Ernte aus und bestätigen Sie Ihre Auswahl durch Tippen auf [OKAY].",
@@ -26,9 +27,63 @@
             "calculate": "",
             "range": false,
             "kind": "Full Date",
-            "metadata": {},
+            "metadata": {
+            },
             "type": "inputDate"
-        }, {
+        },
+        {
+            "name": "dateHarvestBegin",
+            "label": {
+                "0": "Ernte-Zeitfenster Begin",
+                "1": "Harvest time frame begin"
+            },
+            "hint": {
+                "0": "Bitte geben Sie das Anfangsdatum des Zeitraums ein, innerhalb dessen die Ernte stattgefunden hat.",
+                "1": "Please enter the start date of the time span, in which the crop was harvested."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+            },
+            "relevance": "",
+            "constraint": "",
+            "calculate": "",
+            "range": false,
+            "invalidText": {
+            },
+            "kind": "Full Date",
+            "metadata": {
+            },
+            "type": "inputDate"
+        },
+        {
+            "name": "dateHarvestEnd",
+            "label": {
+                "0": "Ernte-Zeitfenster Ende",
+                "1": "Harvest time frame end"
+            },
+            "hint": {
+                "0": "Bitte geben Sie das Endedatum des Zeitraums ein, innerhalb dessen die Ernte stattgefunden hat.",
+                "1": "Please enter the end date of the time span, in which the crop was harvested."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+            },
+            "relevance": "",
+            "constraint": "",
+            "calculate": "",
+            "range": false,
+            "invalidText": {
+            },
+            "kind": "Full Date",
+            "metadata": {
+            },
+            "type": "inputDate"
+        },
+        {
             "name": "amoutHarvest",
             "label": {
                 "0": "Erntemenge in dt/ha",
@@ -59,7 +114,8 @@
             },
             "selectStep": "1",
             "sliderTicks": true,
-            "metadata": {},
+            "metadata": {
+            },
             "type": "inputNumeric"
         }
     ],
@@ -71,7 +127,8 @@
             "_counter": 1,
             "_display": "0"
         },
-        "optionsPresets": [],
+        "optionsPresets": [
+        ],
         "htitle": null,
         "instance_name": "",
         "public_key": "",
