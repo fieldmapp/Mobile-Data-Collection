@@ -99,6 +99,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AndroidToast.cs" />
     <Compile Include="AndroidSpeechRecognizer.cs" />
+    <Compile Include="ScreenListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\questions" />

@@ -12724,94 +12724,97 @@ namespace com.DLR.DLR_Data_App.Droid
 			public const int radiocheckmark = 2131165584;
 			
 			// aapt resource value: 0x7F070191
-			public const int stadium_ahrenrispenschwellen = 2131165585;
+			public const int stadium_1_leafDevelopment = 2131165585;
 			
 			// aapt resource value: 0x7F070192
-			public const int stadium_bestockung = 2131165586;
+			public const int stadium_2_tillering = 2131165586;
 			
 			// aapt resource value: 0x7F070193
-			public const int stadium_blattentwicklung = 2131165587;
+			public const int stadium_3_stemElongShootDev = 2131165587;
 			
 			// aapt resource value: 0x7F070194
-			public const int stadium_bluete = 2131165588;
+			public const int stadium_4_bootingMainShoot = 2131165588;
 			
 			// aapt resource value: 0x7F070195
-			public const int stadium_entwicklungbluetenanlage = 2131165589;
+			public const int stadium_5_inflorEmergence = 2131165589;
 			
 			// aapt resource value: 0x7F070196
-			public const int stadium_entwicklungvegpflanzruebenk = 2131165590;
+			public const int stadium_6_flowering = 2131165590;
 			
 			// aapt resource value: 0x7F070197
-			public const int stadium_fruchtentwicklung = 2131165591;
+			public const int stadium_7_devFruit = 2131165591;
 			
 			// aapt resource value: 0x7F070198
-			public const int stadium_laengenwachstumschossen = 2131165592;
+			public const int stadium_8_ripeningFruitAndSeed = 2131165592;
 			
 			// aapt resource value: 0x7F070199
-			public const int Stadium_one_question1 = 2131165593;
+			public const int stadium_9_senescence = 2131165593;
 			
 			// aapt resource value: 0x7F07019A
-			public const int Stadium_one_question2 = 2131165594;
+			public const int Stadium_one_question1 = 2131165594;
 			
 			// aapt resource value: 0x7F07019B
-			public const int Stadium_one_question3 = 2131165595;
+			public const int Stadium_one_question2 = 2131165595;
 			
 			// aapt resource value: 0x7F07019C
-			public const int Stadium_one_question4 = 2131165596;
+			public const int Stadium_one_question3 = 2131165596;
 			
 			// aapt resource value: 0x7F07019D
-			public const int Stadium_one_question5 = 2131165597;
+			public const int Stadium_one_question4 = 2131165597;
 			
 			// aapt resource value: 0x7F07019E
-			public const int Stadium_one_question6 = 2131165598;
+			public const int Stadium_one_question5 = 2131165598;
 			
 			// aapt resource value: 0x7F07019F
-			public const int Stadium_three_question1 = 2131165599;
+			public const int Stadium_one_question6 = 2131165599;
 			
 			// aapt resource value: 0x7F0701A0
-			public const int Stadium_three_question2 = 2131165600;
+			public const int Stadium_three_question1 = 2131165600;
 			
 			// aapt resource value: 0x7F0701A1
-			public const int Stadium_three_question3 = 2131165601;
+			public const int Stadium_three_question2 = 2131165601;
 			
 			// aapt resource value: 0x7F0701A2
-			public const int Stadium_three_question4 = 2131165602;
+			public const int Stadium_three_question3 = 2131165602;
 			
 			// aapt resource value: 0x7F0701A3
-			public const int Stadium_three_question5 = 2131165603;
+			public const int Stadium_three_question4 = 2131165603;
 			
 			// aapt resource value: 0x7F0701A4
-			public const int Stadium_three_question6 = 2131165604;
+			public const int Stadium_three_question5 = 2131165604;
 			
 			// aapt resource value: 0x7F0701A5
-			public const int Stadium_two_question1 = 2131165605;
+			public const int Stadium_three_question6 = 2131165605;
 			
 			// aapt resource value: 0x7F0701A6
-			public const int Stadium_two_question2 = 2131165606;
+			public const int Stadium_two_question1 = 2131165606;
 			
 			// aapt resource value: 0x7F0701A7
-			public const int Stadium_two_question3 = 2131165607;
+			public const int Stadium_two_question2 = 2131165607;
 			
 			// aapt resource value: 0x7F0701A8
-			public const int Stadium_two_question4 = 2131165608;
+			public const int Stadium_two_question3 = 2131165608;
 			
 			// aapt resource value: 0x7F0701A9
-			public const int Stadium_two_question5 = 2131165609;
+			public const int Stadium_two_question4 = 2131165609;
 			
 			// aapt resource value: 0x7F0701AA
-			public const int Stadium_two_question6 = 2131165610;
+			public const int Stadium_two_question5 = 2131165610;
 			
 			// aapt resource value: 0x7F0701AB
-			public const int test_custom_background = 2131165611;
+			public const int Stadium_two_question6 = 2131165611;
 			
 			// aapt resource value: 0x7F0701AC
-			public const int tooltip_frame_dark = 2131165612;
+			public const int test_custom_background = 2131165612;
 			
 			// aapt resource value: 0x7F0701AD
-			public const int tooltip_frame_light = 2131165613;
+			public const int tooltip_frame_dark = 2131165613;
 			
 			// aapt resource value: 0x7F0701AE
-			public const int xamarin_logo = 2131165614;
+			public const int tooltip_frame_light = 2131165614;
+			
+			// aapt resource value: 0x7F0701AF
+			public const int xamarin_logo = 2131165615;
 			
 			static Drawable()
 			{

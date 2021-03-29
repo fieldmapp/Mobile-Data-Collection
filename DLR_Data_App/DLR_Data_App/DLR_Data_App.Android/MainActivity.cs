@@ -17,15 +17,18 @@ using DLR_Data_App.Services;
 using Java.Lang;
 using Xamarin.Forms;
 using AndroidX.AppCompat.Widget;
+using static com.DLR.DLR_Data_App.Droid.ScreenListener;
 
 [assembly: UsesFeature("android.hardware.usb.host")]
 namespace com.DLR.DLR_Data_App.Droid
 {
     [MetaData(UsbManager.ActionUsbDeviceAttached, Resource = "@xml/device_filter")]
     [Activity(Label = "FieldMApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.FullUser)]
-    public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IScreenStateListener
     {
         public static MainActivity Instance { get; private set; }
+
+        ScreenListener ScreenListener;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             Instance = this;
@@ -45,22 +48,10 @@ namespace com.DLR.DLR_Data_App.Droid
 
             var storageProvider = new JsonStorageProvider(new AndroidStorageAccessProvider());
             LoadApplication(new App(folderPath, fullPath, storageProvider));
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            SetSupportActionBar(toolbar);
-
-            MessagingCenter.Subscribe<object, bool>(this, "ReloadToolbar", async (sender, reload) =>
-            {
-                await ToolbarLock.WaitAsync();
-                {
-                    if (reload)
-                    {
-                        ReloadToolbar();
-                    }
-                }
-                ToolbarLock.Release();
-            });
-
+            ReloadToolbar();
             EnsureAppPermission(Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage, Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation, Manifest.Permission.RecordAudio);
+
+            ScreenListener = new ScreenListener(this);
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
             TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
@@ -122,33 +113,23 @@ namespace com.DLR.DLR_Data_App.Droid
                 })
                 .SetNegativeButton("Close", (sender, args) =>
                 {
-            // User pressed Close.
-        })
+                    // User pressed Close.
+                })
                 .SetMessage(errorText)
                 .SetTitle("Crash Report")
                 .Show();
         }
 
-        Page LastPage;
-        Semaphore ToolbarItemsLock = new Semaphore(1, 1);
-        SemaphoreSlim ToolbarLock = new SemaphoreSlim(1);
-
-        private void ResetToolbarItems(Page page, List<ToolbarItem> toolbarItems)
+        private async Task ResetToolbarItems(Page page, List<ToolbarItem> toolbarItems)
         {
-            //When you turn your smartphone on and off (just the screen), the ToolbarItems will disappear
-            //Probably has something to do with TabbedPage calling OnAppearing multiple times
-            //TODO: Fix issue with tabbed page:
+            await Task.Delay(100);
             Device.BeginInvokeOnMainThread(() =>
             {
-                ToolbarItemsLock.WaitOne();
+                page.ToolbarItems.Clear();
+                foreach (var item in toolbarItems)
                 {
-                    page.ToolbarItems.Clear();
-                    foreach (var item in toolbarItems)
-                    {
-                        page.ToolbarItems.Add(item);
-                    }
+                    page.ToolbarItems.Add(item);
                 }
-                ToolbarItemsLock.Release();
             });
         }
 
@@ -165,18 +146,7 @@ namespace com.DLR.DLR_Data_App.Droid
 
                 var items = currentPage.ToolbarItems.ToList();
 
-                if (LastPage != null)
-                    LastPage.Appearing -= currentPage_Appearing;
-
-                LastPage = currentPage;
-                currentPage.Appearing += currentPage_Appearing;
-
-                ResetToolbarItems(currentPage, items);
-                
-                void currentPage_Appearing(object sender, EventArgs e)
-                {
-                    ResetToolbarItems((Page)sender, items);
-                }
+                _ = ResetToolbarItems(currentPage, items);
             });
         }
 
@@ -207,11 +177,13 @@ namespace com.DLR.DLR_Data_App.Droid
         {
             base.OnResume();
 
-            Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            if (toolbar != null)
-            {
-                SetSupportActionBar(toolbar);
-            }
+            ScreenListener.Begin(this);
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            ScreenListener.UnregisterListener();
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -272,6 +244,21 @@ namespace com.DLR.DLR_Data_App.Droid
             }
             else
                 base.OnActivityResult(requestCode, resultCode, data);
+        }
+
+        public void OnScreenOn()
+        {
+
+        }
+
+        public void OnScreenOff()
+        {
+
+        }
+
+        public void OnUserPresent()
+        {
+            ReloadToolbar();
         }
     }
 }
