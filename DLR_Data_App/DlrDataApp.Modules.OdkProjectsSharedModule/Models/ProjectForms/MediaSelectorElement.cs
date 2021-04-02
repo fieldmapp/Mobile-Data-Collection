@@ -28,13 +28,13 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
             }
         }
 
-        public override bool IsValid => Data != null && base.IsValid;
+        protected override bool IsValidElementSpecific => !string.IsNullOrEmpty(DataHolder.Data);
 
         public override string GetRepresentationValue() => Base64Data ?? string.Empty;
 
         public override void LoadFromSavedRepresentation(string representation) => Base64Data = representation;
 
-        public override void Reset() => Base64Data = null;
+        protected override void OnReset() => DataHolder.Data = string.Empty;
 
         public static MediaSelectorElement CreateForm(FormCreationParams parms)
         {
@@ -44,7 +44,8 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
             var pickFileButton = new Button { Text = AppResources.select };
             var fileSelectedLabel = new Label { Text = AppResources.fileselected };
             //HACK: bad way to store an image. blob would be better
-            var dataHolder = new Label { Text = AppResources.no };
+            var dataHolder = new DataHolder();
+            formElement.DataHolder = dataHolder;
             pickFileButton.Clicked += async (a, b) =>
             {
                 var image = await DependencyService.Get<ICameraProvider>().OpenCameraApp();

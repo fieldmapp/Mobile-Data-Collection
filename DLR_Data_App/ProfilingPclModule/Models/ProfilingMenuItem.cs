@@ -77,6 +77,8 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Models
         }
         private string UpdateProgressString() => ProgressString = $"{AnswersGiven}/{AnswersNeeded}";
 
+        const int StreakToChangeDifficulty = 1;
+
         [JsonIgnore]
         public int Streak { get; private set; }
 
@@ -101,12 +103,12 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Models
                 Streak = Streak <= 0 ? 1 : Streak + 1;
             else
                 Streak = Streak >= 0 ? -1 : Streak - 1;
-            if (Streak < -2)
+            if (Streak <= -StreakToChangeDifficulty)
             {
                 CurrentDifficulty = Math.Max(1, CurrentDifficulty - 1);
                 Streak = 0;
             }
-            else if (Streak > 2)
+            else if (Streak >= StreakToChangeDifficulty)
             {
                 CurrentDifficulty = Math.Min(3, CurrentDifficulty + 1);
                 Streak = 0;

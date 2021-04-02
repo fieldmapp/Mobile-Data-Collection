@@ -31,6 +31,8 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel
 
         public string ProfilingId { get; set; }
 
+        public string PreviewPattern { get; set; }
+
         // List of forms
         [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<ProjectForm> FormList { get; set; }

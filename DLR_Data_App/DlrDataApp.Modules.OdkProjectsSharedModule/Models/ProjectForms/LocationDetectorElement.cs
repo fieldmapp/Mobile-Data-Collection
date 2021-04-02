@@ -16,13 +16,13 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
 
         public Label SavedLocationLabel;
 
-        public override bool IsValid => !string.IsNullOrEmpty(SavedLocationLabel.Text) && base.IsValid;
+        protected override bool IsValidElementSpecific => !string.IsNullOrEmpty(SavedLocationLabel.Text);
 
         public override string GetRepresentationValue() => SavedLocationLabel.Text;
 
         public override void LoadFromSavedRepresentation(string representation) => SavedLocationLabel.Text = representation;
 
-        public override void Reset() => SavedLocationLabel.Text = string.Empty;
+        protected override void OnReset() => SavedLocationLabel.Text = string.Empty;
 
         public static LocationDetectorElement CreateForm(FormCreationParams parms)
         {
@@ -61,11 +61,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
             var skipButton = new Button { Text = AppResources.skip };
 
             var savedLocation = new Label { Text = AppResources.saveddata };
-            var savedLocationData = new Label
-            {
-                Text = string.Empty,
-                StyleId = parms.Element.Name
-            };
+            var savedLocationData = new Label { Text = string.Empty };
 
             formElement.SavedLocationLabel = savedLocationData;
 

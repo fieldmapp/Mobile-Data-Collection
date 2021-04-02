@@ -42,7 +42,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Services
             }
 
             // Get files
-            var unzipContent = Directory.GetFiles(unzipFolder);
+            var unzipContent = Directory.GetFiles(unzipFolder).OrderBy(s => s).ToArray();
             foreach (var file in unzipContent)
             {
                 // Parse file
@@ -221,6 +221,9 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Services
                         break;
                     case "Languages":
                         project.Languages = value.ToString();
+                        break;
+                    case "PreviewPattern":
+                        project.PreviewPattern = value.ToString();
                         break;
                 }
             }

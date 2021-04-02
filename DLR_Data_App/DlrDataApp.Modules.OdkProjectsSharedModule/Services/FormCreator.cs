@@ -70,7 +70,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Services
         /// <param name="currentProject">Information of current project</param>
         /// <param name="displayAlert">Async function which will display an alert.</param>
         /// <returns></returns>
-        public static FormContent GenerateForm(ProjectForm form, Project currentProject, Func<string, string, string, Task> displayAlert)
+        public static FormContent GenerateForm(ProjectForm form, Project currentProject, Func<string, string, string, Task> displayAlert, bool useSkipButtons)
         {
             var contentPage = new ContentPage();
             var scrollView = new ScrollView();
@@ -114,8 +114,22 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Services
                 }
                 if (formElement != null)
                 {
+                    if (useSkipButtons && !element.Required)
+                    {
+                        var columnCount = formElement.Grid.Children.Max(c => Grid.GetColumn(c)) + 1;
+                        var firstFreeRow = formElement.Grid.Children.Max(c => Grid.GetRow(c)) + 1;
+                        var skipButton = new Button { Text = AppResources.skip };
+                        var localFormElementCopy = formElement;
+                        skipButton.Clicked += (a, b) =>
+                        {
+                            localFormElementCopy.IsSkipped = true;
+                            localFormElementCopy.OnContentChange();
+                        };
+                        formElement.Grid.Children.Add(skipButton, 0, firstFreeRow);
+                        Grid.SetColumnSpan(skipButton, columnCount);
+                    }
                     elements.Add(formElement);
-                    stack.Children.Add(formElement.Grid);
+                    stack.Children.Add(formElement.Frame);
                 }
             }
 

@@ -14,9 +14,9 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
         public Label CurrentDataLabel;
         public Label SavedDataLabel;
 
-        public override bool IsValid => SavedHeadingMagneticNorth != 0 && base.IsValid;
+        protected override bool IsValidElementSpecific => SavedHeadingMagneticNorth != 0;
 
-        public override void Reset()
+        protected override void OnReset()
         {
             CurrentHeadingMagneticNorth = 0;
             CurrentDataLabel.Text = string.Empty;
@@ -52,7 +52,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
 
             var savedCompassLabel = new Label { Text = AppResources.saveddata };
             compassElement.SavedDataLabel = savedCompassLabel;
-            var savedCompassDataLabel = new Label { StyleId = parms.Element.Name };
+            var savedCompassDataLabel = new Label();
 
             saveButton.Clicked += (_, b) => Device.BeginInvokeOnMainThread(() =>
             {

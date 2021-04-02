@@ -7,13 +7,13 @@
     <ScrollView>
         <StackLayout Spacing="20" Padding="15">
             <Label Text="{res:Translate title}" FontSize="Medium" />
-            <Label Text="{Binding Title}" FontSize="Small"/>
+            <Label x:Name="TitleLabel" FontSize="Small"/>
 
             <Label Text="{res:Translate description}" FontSize="Medium" />
-            <Label Text="{Binding Description}" FontSize="Small"/>
+            <Label x:Name="DescriptionLabel" FontSize="Small"/>
 
             <Label Text="{res:Translate authors}" FontSize="Medium" />
-            <Label Text="{Binding Authors}" FontSize="Small"/>
+            <Label x:Name="AuthorsLabel" FontSize="Small"/>
 
             <Button x:Name="BtnCurrentProject"
                     Text="{res:Translate setascurrentprofiling}"

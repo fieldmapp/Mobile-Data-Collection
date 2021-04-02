@@ -142,6 +142,33 @@ namespace DlrDataApp.Modules.SharedModule.Localization {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Your answers were averagely  ähnelt.
+        /// </summary>
+        internal static string answersCorrectAveragePart1 {
+            get {
+                return ResourceManager.GetString("answersCorrectAveragePart1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  correct. ähnelt.
+        /// </summary>
+        internal static string answersCorrectAveragePart2 {
+            get {
+                return ResourceManager.GetString("answersCorrectAveragePart2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Successfully exported into root directory with name dlr_answers_TIMESTAMP. ähnelt.
+        /// </summary>
+        internal static string answersExportedToRoot {
+            get {
+                return ResourceManager.GetString("answersExportedToRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Next tap will close the app. ähnelt.
         /// </summary>
         public static string appclosewarning {

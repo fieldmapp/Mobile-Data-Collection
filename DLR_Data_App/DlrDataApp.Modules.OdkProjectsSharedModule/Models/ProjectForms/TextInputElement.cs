@@ -15,13 +15,13 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
         public OdkRange<int> LengthRange;
         public Entry Entry;
 
-        public override bool IsValid => !string.IsNullOrEmpty(Entry.Text) && LengthRange.IsValidInput(Entry.Text.Length) && base.IsValid;
+        protected override bool IsValidElementSpecific => !string.IsNullOrEmpty(Entry.Text) && LengthRange.IsValidInput(Entry.Text.Length);
 
-        public override string GetRepresentationValue() => Entry.Text;
+        public override string GetRepresentationValue() => Entry.Text ?? string.Empty;
 
         public override void LoadFromSavedRepresentation(string representation) => Entry.Text = representation;
 
-        public override void Reset() => Entry.Text = string.Empty;
+        protected override void OnReset() => Entry.Text = string.Empty;
 
         public static TextInputElement CreateForm(FormCreationParams parms)
         {
@@ -33,8 +33,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
             var entry = new Entry
             {
                 Placeholder = placeholder,
-                Keyboard = Keyboard.Default,
-                StyleId = parms.Element.Name
+                Keyboard = Keyboard.Default
             };
             formElement.Entry = entry;
 

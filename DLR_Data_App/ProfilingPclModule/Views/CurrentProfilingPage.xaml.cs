@@ -69,9 +69,10 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views
             await this.PushPage(new EvaluationMainPage(evalItems));
         }
 
-        private void ExportAnwersClicked(object sender, EventArgs e)
+        private async void ExportAnwersClicked(object sender, EventArgs e)
         {
             ProfilingStorageManager.ExportAnswers();
+            await DisplayAlert(AppResources.save, AppResources.answersExportedToRoot, AppResources.okay);
         }
     }
 }

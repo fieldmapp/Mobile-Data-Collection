@@ -7,24 +7,41 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
 {
     class TimeSelectorElement : FormElement
     {
-        private static readonly DateTime EmptyDate = new DateTime(1970, 1, 1);
-        private static readonly long EmptyDateTicks = EmptyDate.Ticks;
         public TimeSelectorElement(Grid grid, ProjectFormElements data, string type) : base(grid, data, type) 
         {
             ValidRange = OdkDataExtractor.GetRangeFromJsonString(data.Range, DateTime.Parse);
         }
-
+        static readonly Color SetColor = Color.Black;
+        static readonly Color UnsetColor = Color.LightGray;
         public DatePicker DatePicker;
         public TimePicker TimePicker;
+        bool _isSet;
+        public bool IsSet
+        {
+            get => _isSet;
+            set
+            {
+                _isSet = value;
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    var newColor = value ? SetColor : UnsetColor;
+                    if (DatePicker != null)
+                        DatePicker.TextColor = newColor;
+                    if (TimePicker != null)
+                        TimePicker.TextColor = newColor;
+                });
+            }
+        }
         private OdkRange<DateTime> ValidRange;
 
-        public override bool IsValid => EmptyDateTicks != DatePicker.Date.Ticks
-                                     && (TimePicker == null || TimePicker.Time != TimeSpan.Zero)
-                                     && ValidRange.IsValidInput(GetCombinedDateTime())
-                                     && base.IsValid;
+        protected override bool IsValidElementSpecific => IsSet
+            && ValidRange.IsValidInput(GetCombinedDateTime());
 
         private DateTime GetCombinedDateTime()
         {
+            if (!IsSet)
+                return new DateTime();
+
             var result = DatePicker.Date;
             if (TimePicker != null)
                 result += TimePicker.Time;
@@ -41,14 +58,16 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
                 DatePicker.Date = savedDateTime - savedDateTime.TimeOfDay;
                 if (TimePicker != null)
                     TimePicker.Time = savedDateTime.TimeOfDay;
+                IsSet = true;
             }
         }
 
-        public override void Reset()
+        protected override void OnReset()
         {
             if (TimePicker != null)
                 TimePicker.Time = TimeSpan.Zero;
             DatePicker.Date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            IsSet = false;
         }
 
         public static TimeSelectorElement CreateForm(FormCreationParams parms)
@@ -57,10 +76,14 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
             var timeSelectorElement = new TimeSelectorElement(grid, parms.Element, parms.Type);
 
             TimePicker timePicker = null;
-            var datePicker = new DatePicker { StyleId = parms.Element.Name };
+            var datePicker = new DatePicker { TextColor = UnsetColor };
             timeSelectorElement.DatePicker = datePicker;
 
-            datePicker.Unfocused += (a, b) => timeSelectorElement.OnContentChange();
+            datePicker.Unfocused += (a, b) =>
+            {
+                timeSelectorElement.IsSet = true;
+                timeSelectorElement.OnContentChange();
+            };
             datePicker.Date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
 
             grid.Children.Add(datePicker, 0, 1);
@@ -68,9 +91,13 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
 
             if (parms.Element.Kind == "Full Date and Time")
             {
-                timePicker = new TimePicker { StyleId = parms.Element.Name };
+                timePicker = new TimePicker { TextColor = UnsetColor };
                 timeSelectorElement.TimePicker = timePicker;
-                timePicker.Unfocused += (a, b) => timeSelectorElement.OnContentChange();
+                timePicker.Unfocused += (a, b) =>
+                {
+                    timeSelectorElement.IsSet = true;
+                    timeSelectorElement.OnContentChange();
+                };
                 timePicker.Time = TimeSpan.Zero;
                 grid.Children.Add(timePicker, 0, 2);
                 Grid.SetColumnSpan(timePicker, 2);

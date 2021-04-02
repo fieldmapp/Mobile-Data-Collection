@@ -27,10 +27,80 @@
             "metadata": {},
             "type": "inputDate"
         }, {
+            "name": "dateSowingStart",
+            "label": {
+                "0": "Zeitfenster Beginn",
+                "1": "Time frame begin"
+            },
+            "hint": {
+                "0": "Bitte geben Sie das Anfangsdatum des Zeitraums ein, innerhalb dessen die Aussaat stattgefunden hat.",
+                "1": "Please enter the start date of the time span, in which the crop was seeded."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {},
+            "relevance": "${dateSowing}=0",
+            "constraint": "",
+            "calculate": "",
+            "range": false,
+            "invalidText": {},
+            "kind": "Full Date",
+            "metadata": {},
+            "type": "inputDate"
+        }, {
+            "name": "dateSowingEnd",
+            "label": {
+                "0": "Zeitfenster Ende",
+                "1": "Time frame end"
+            },
+            "hint": {
+                "0": "Bitte geben Sie das Endedatum des Zeitraums ein, innerhalb dessen die Aussaat stattgefunden hat.",
+                "1": "Please enter the end date of the time span, in which the crop was seeded."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {},
+            "relevance": "${dateSowing}=0",
+            "constraint": "",
+            "calculate": "",
+            "range": false,
+            "invalidText": {},
+            "kind": "Full Date",
+            "metadata": {},
+            "type": "inputDate"
+        }, {
             "name": "directionPlantRows",
             "label": {
                 "0": "Ausrichtung der Pflanzenreihen{compass}",
                 "1": "Alignment of plant rows{compass}"
+            },
+            "hint": {
+                "0": "Die Orientierung der Pflanzreihen wird aus dem geräteinternen Kompass ausgelesen, wenn sie auf „Speichern“ klicken. Damit der Kompass korrekt arbeitet, richten Sie die Längskante des Tablets entlang einer Pflanzreihe aus und halten das Display des Tablets gleichzeitig im 45° Winkel vor sich.",
+                "1": "The angle of the orientation of the planting rows is extracted from the tablet internal compass if you press „Save“. That the measurement is carried out in proper way by the device, please align the long edge of the tablet along a planting row while holding the tablet's display in front of you at a 45° angle."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": true,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "appearance": null,
+            "kind": null,
+            "metadata": {},
+            "type": "inputNumeric"
+        }, {
+            "name": "distancePlantRows",
+            "label": {
+                "0": "Pflanzenreihenabstand in cm (horizontaler Abstand)",
+                "1": "Distance betweent plant rows (horizontal distance)"
             },
             "hint": {
                 "0": "Messen (oder schätzen) Sie den geringsten Abstand zweier benachbarter Pflanzreihen und tragen Sie diesen als Zentimeterwert in die dafür vorgesehene Spalte ein.",
@@ -38,7 +108,7 @@
             },
             "defaultValue": "",
             "readOnly": false,
-            "required": true,
+            "required": false,
             "requiredText": {
                 "1": ""
             },
@@ -48,30 +118,14 @@
                 "1": ""
             },
             "calculate": "",
-            "metadata": {},
-            "type": "inputNumeric"
-        }, {
-            "name": "distancePlantRows",
-            "label": {
-                "0": "Pflanzenreihenabstand in cm{distanceHorizontal}",
-                "1": "Distance betweent plant rows{distanceHorizontal}"
+            "range": {
+                "min": "0",
+                "max": "",
+                "minInclusive": true,
+                "maxInclusive": false
             },
-            "hint": {
-                "0": "",
-                "1": ""
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": true,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "",
-            "constraint": "",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
+            "appearance": "Textbox",
+            "kind": "Decimal",
             "metadata": {},
             "type": "inputNumeric"
         }, {
@@ -81,8 +135,8 @@
                 "1": "Seed rate"
             },
             "hint": {
-                "0": "Wählen Sie sich ein Teilstück einer Pflanzreihe aus. Zählen Sie auf diesem Teilstück alle Pflanzen und tragen Sie den Wert hier ein.",
-                "1": "Select a segment of the planting row. Count the number of plants growing on this planting row segment and enter the value here."
+                "0": "Bitte wählen sie sich ein Teilstück bekannter Länge einer Pflanzreihe aus. Zählen Sie auf diesem Teilstück alle Pflanzen und tragen Sie den Wert hier ein.",
+                "1": "Please select a section of known length of a planting row. Count all plants on this section and enter the value here."
             },
             "defaultValue": "",
             "readOnly": false,

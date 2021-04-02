@@ -13,7 +13,6 @@ namespace DLR_Data_App.Views.CurrentProject
     public partial class EditDataPage
     {
         private readonly EditDataViewModel _viewModel;
-
         public EditDataPage()
         {
             _viewModel = new EditDataViewModel();
@@ -29,16 +28,10 @@ namespace DLR_Data_App.Views.CurrentProject
             _viewModel.GetDataFromDatabase();
         }
 
-        
+
         private void DataList_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var projectData = new Dictionary<string, string>();
-            for (int i = 0; i < _viewModel.ProjectData.RowNameList.Count; i++)
-            {
-                if (_viewModel.ProjectData.RowNameList[i] != "ProjectId")
-                    projectData.Add(_viewModel.ProjectData.RowNameList[i], _viewModel.ProjectData.ValueList[i][e.ItemIndex]);
-            }
-            _ = this.PushPage(new EditDataDetailPage(projectData));
+            _ = this.PushPage(new EditDataDetailPage(_viewModel.ProjectsData[e.ItemIndex]));
         }
     }
 }

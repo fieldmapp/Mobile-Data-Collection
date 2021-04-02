@@ -1,20 +1,21 @@
 {
-  "Project": {
-    "0": "FieldMApp",
-    "1": "FieldMApp"
-  },
-  "Author": {
-    "0": "Deutsches Zentrum für Luft- und Raumfahrt e.V. (DLR) Jena, Institut für Datenwissenschaften, Arbeitsgruppe Bürgerwissenschaften; Friedrich-Schiller-Universität Jena, Institut für Geographie, Abteilung Fernerkundung; DLR Neustrelitz, Deutsches Fernerkundungsdatenzentrum, Nationales Bodensegment; Hochschule Stralsund, Fakultät für Elektrotechnik und Informatik",
-    "1": "German Aerospace Center (DLR) Jena, Institute of Data Science, Citizen Science; Friedrich Schiller University Jena, Institute of Geography, Earth Observation; DLR Neustrelitz, German Remote Sensing Data Center, National Ground Segment; University of Applied Sciences Stralsund; Faculty of Electrical Engineering and Informatics"
-  },
-  "Description": {
-    "0": "Projekt zur Erfassung von Parametern, die das Pflanzenwachstum von Feldfrüchten charakterisieren. Die Parameter sollen genutzt werden, um Algorithmen aufzubauen, zu trainieren und zu überprüfen, mit denen Satellitenbilder ausgewertet werden.",
-    "1": "Project to collect parameter that characterize the development of crops. The parameters are relevant to set-up, train and validate algorithms that are deployed to analyze satellite imagery."
-  },
-  "Secret": null,
-  "Languages": {
-    "0": "German",
-    "1": "English"
-  },
-  "ProfilingId": "fieldcampagneprofiling"
+    "Project": {
+        "0": "FieldMApp",
+        "1": "FieldMApp"
+    },
+    "Author": {
+        "0": "Deutsches Zentrum für Luft- und Raumfahrt e.V. (DLR) Jena, Institut für Datenwissenschaften, Arbeitsgruppe Bürgerwissenschaften; Friedrich-Schiller-Universität Jena, Institut für Geographie, Abteilung Fernerkundung; DLR Neustrelitz, Deutsches Fernerkundungsdatenzentrum, Nationales Bodensegment; Hochschule Stralsund, Fakultät für Elektrotechnik und Informatik",
+        "1": "German Aerospace Center (DLR) Jena, Institute of Data Science, Citizen Science; Friedrich Schiller University Jena, Institute of Geography, Earth Observation; DLR Neustrelitz, German Remote Sensing Data Center, National Ground Segment; University of Applied Sciences Stralsund; Faculty of Electrical Engineering and Informatics"
+    },
+    "Description": {
+        "0": "Projekt zur Erfassung von Parametern, die das Pflanzenwachstum von Feldfrüchten charakterisieren. Die Parameter sollen genutzt werden, um Algorithmen aufzubauen, zu trainieren und zu überprüfen, mit denen Satellitenbilder ausgewertet werden.",
+        "1": "Project to collect parameter that characterize the development of crops. The parameters are relevant to set-up, train and validate algorithms that are deployed to analyze satellite imagery."
+    },
+    "Secret": null,
+    "Languages": {
+        "0": "German",
+        "1": "English"
+    },
+    "ProfilingId": "fieldcampagneprofiling",
+    "PreviewPattern": "{fieldnumber} - {fieldname}"
 }

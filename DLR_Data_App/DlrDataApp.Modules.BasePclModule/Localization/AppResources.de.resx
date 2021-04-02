@@ -512,4 +512,7 @@ Einwilligung ist jede von der betroffenen Person freiwillig für den bestimmten 
   <data name="drivingview" xml:space="preserve">
     <value>Fahransicht</value>
   </data>
+  <data name="answersExportedToRoot" xml:space="preserve">
+    <value>Erfolgreich ins Wurzelverzeichnis mit Namen dlr_answers_ZEITSTEMPEL exportiert.</value>
+  </data>
 </root>

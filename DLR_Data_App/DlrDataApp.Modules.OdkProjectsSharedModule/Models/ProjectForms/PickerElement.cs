@@ -13,7 +13,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
 
         public Picker Picker;
 
-        public override bool IsValid => Picker.SelectedIndex >= 0 && base.IsValid;
+        protected override bool IsValidElementSpecific => Picker.SelectedIndex >= 0;
 
         public override string GetRepresentationValue() => Picker.SelectedIndex.ToString();
 
@@ -23,7 +23,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
                 Picker.SelectedIndex = value;
         }
 
-        public override void Reset() => Picker.SelectedIndex = -1;
+        protected override void OnReset() => Picker.SelectedIndex = -1;
 
         public static PickerElement CreateForm(FormCreationParams parms)
         {
@@ -49,7 +49,6 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
             {
                 Title = title,
                 VerticalOptions = LayoutOptions.CenterAndExpand,
-                StyleId = parms.Element.Name,
                 ItemsSource = optionsList
             };
 

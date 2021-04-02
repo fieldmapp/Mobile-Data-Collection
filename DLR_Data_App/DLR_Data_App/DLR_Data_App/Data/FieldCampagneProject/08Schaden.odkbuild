@@ -143,7 +143,7 @@
             "metadata": {},
             "type": "inputText"
         }, {
-            "name": "imageDamge1",
+            "name": "imageDamage1",
             "label": {
                 "0": "Foto",
                 "1": "Image of damage"
@@ -387,7 +387,7 @@
             "metadata": {},
             "type": "inputText"
         }, {
-            "name": "imageDamge2",
+            "name": "imageDamage2",
             "label": {
                 "0": "Foto",
                 "1": "Image of damage"

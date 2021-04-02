@@ -1,580 +1,804 @@
 {
-  "title": "Aktuelle Anbaufrucht",
-  "controls": [
-    {
-      "name": "cultivatedFruit",
-      "label": {
-        "0": "Aktuelle Bepflanzungsart",
-        "1": "Planting type"
-      },
-      "hint": {
-        "0": "Art der Bepflanzung für die aktuelle Anbauperiode aus dem Menü durch Antippen auswählen.",
-        "1": "Select the planting type of the current cultivation period from the menu."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": true,
-      "requiredText": { "1": "" },
-      "relevance": "",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "options": [
+    "title": "Aktuelle Anbaufrucht",
+    "controls": [
         {
-          "text": {
-            "0": "Brache",
-            "1": "Fallow"
-          },
-          "cascade": [],
-          "val": "1"
+            "name": "cultivatedFruit",
+            "label": {
+                "0": "Aktuelle Bepflanzungsart",
+                "1": "Planting type"
+            },
+            "hint": {
+                "0": "Art der Bepflanzung für die aktuelle Anbauperiode aus dem Menü durch Antippen auswählen.",
+                "1": "Select the planting type of the current cultivation period from the menu."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": true,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "options": [
+                {
+                    "text": {
+                        "0": "Brache",
+                        "1": "Fallow"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "0"
+                },
+                {
+                    "text": {
+                        "0": "Monokultur",
+                        "1": "Monoculture"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "1"
+                },
+                {
+                    "text": {
+                        "0": "Polykultur",
+                        "1": "Pulyculture"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "2"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {
+            },
+            "type": "inputSelectOne"
         },
         {
-          "text": {
-            "0": "Monokultur",
-            "1": "Monoculture"
-          },
-          "cascade": [],
-          "val": "2"
+            "name": "cultivatedFruitCultivation",
+            "label": {
+                "0": "Aktueller Anbautyp",
+                "1": "Cultivation type"
+            },
+            "hint": {
+                "0": "Art des Anbaus entsprechend des Saatzeitpunktes für die aktuelle Anbauperiode (d.h. meist das letzte oder aktuelle Jahr) aus dem Menü durch Antippen auswählen.",
+                "1": "Select the cultivation type according to the sowing time (i.e., mostly in the past or current year) of the currently grown cultivar from the menu."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${cultivatedFruit}!=0&&${cultivatedFruit}!=3",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "options": [
+                {
+                    "text": {
+                        "0": "Sommeranbau",
+                        "1": "Spring crop"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "0"
+                },
+                {
+                    "text": {
+                        "0": "Winteranbau",
+                        "1": "Winter crop"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "1"
+                },
+                {
+                    "text": {
+                        "0": "Sonstiges",
+                        "1": "Other"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "2"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {
+            },
+            "type": "inputSelectOne"
         },
         {
-          "text": {
-            "0": "Polykultur",
-            "1": "Pulyculture"
-          },
-          "cascade": [],
-          "val": "3"
+            "name": "cultivatedFruitType1",
+            "label": {
+                "0": "Aktuelle Pflanzenkategorie 1",
+                "1": "Plant category 1"
+            },
+            "hint": {
+                "0": "Kategorie, der die Feldfruchtsorte zu zuordnen ist, aus dem Menü durch Antippen auswählen.",
+                "1": "Select (from the menu) the category to which the currently grown crop belongs."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${cultivatedFruit}!=0&&${cultivatedFruit}!=3",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "options": [
+                {
+                    "text": {
+                        "0": "Getreide",
+                        "1": "Cereals"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "0"
+                },
+                {
+                    "text": {
+                        "0": "Hülsenfrüchte",
+                        "1": "Legumes"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "1"
+                },
+                {
+                    "text": {
+                        "0": "Hackfrüchte",
+                        "1": "Root crops"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "2"
+                },
+                {
+                    "text": {
+                        "0": "Ölfrüchte",
+                        "1": "Oil seeds"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "3"
+                },
+                {
+                    "text": {
+                        "0": "Sonstige",
+                        "1": "Other"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "4"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {
+            },
+            "type": "inputSelectOne"
+        },
+        {
+            "name": "cultivatedFruitCereals1",
+            "label": {
+                "0": "Aktuelle Anbausorte 1",
+                "1": "Crop type 1"
+            },
+            "hint": {
+                "0": "Sorte der Feldfrucht der aktuellen Anbauperiode aus dem Menü durch Antippen auswählen.",
+                "1": "Select the currently grown crop type from the menu."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${cultivatedFruitType1}=0",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "options": [
+                {
+                    "text": {
+                        "0": "Weizen",
+                        "1": "Wheat"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "0"
+                },
+                {
+                    "text": {
+                        "0": "Roggen",
+                        "1": "Rye"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "1"
+                },
+                {
+                    "text": {
+                        "0": "Gerste",
+                        "1": "Barley"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "2"
+                },
+                {
+                    "text": {
+                        "0": "Hafer",
+                        "1": "Oat"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "3"
+                },
+                {
+                    "text": {
+                        "0": "Triticale",
+                        "1": "Triticale"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "4"
+                },
+                {
+                    "text": {
+                        "0": "Mais",
+                        "1": "Corn"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "5"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {
+            },
+            "type": "inputSelectOne"
+        },
+        {
+            "name": "cultivatedFruitLegumes1",
+            "label": {
+                "0": "Aktuelle Anbausorte 1",
+                "1": "Crop type 1"
+            },
+            "hint": {
+                "0": "Sorte der Feldfrucht der aktuellen Anbauperiode aus dem Menü durch Antippen auswählen.",
+                "1": "Select the currently grown crop type from the menu."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${cultivatedFruitType1}=1",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "options": [
+                {
+                    "text": {
+                        "0": "Erbsen",
+                        "1": "Pea"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "0"
+                },
+                {
+                    "text": {
+                        "0": "Ackerbohne",
+                        "1": "Field bean"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "1"
+                },
+                {
+                    "text": {
+                        "0": "Süßlupine",
+                        "1": "Sweet lupins"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "2"
+                },
+                {
+                    "text": {
+                        "0": "Sojabohne",
+                        "1": "Soybean"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "3"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {
+            },
+            "type": "inputSelectOne"
+        },
+        {
+            "name": "cultivatedFruitRootCrops1",
+            "label": {
+                "0": "Aktuelle Anbausorte 1",
+                "1": "Crop type 1"
+            },
+            "hint": {
+                "0": "Sorte der Feldfrucht der aktuellen Anbauperiode aus dem Menü durch Antippen auswählen.",
+                "1": "Select the currently grown crop type from the menu."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${cultivatedFruitType1}=2",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "options": [
+                {
+                    "text": {
+                        "0": "Kartoffel",
+                        "1": "Potato"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "0"
+                },
+                {
+                    "text": {
+                        "0": "Zuckerrübe",
+                        "1": "Sugar beet"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "1"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {
+            },
+            "type": "inputSelectOne"
+        },
+        {
+            "name": "cultivatedFruitOilSeeds1",
+            "label": {
+                "0": "Aktuelle Anbausorte 1",
+                "1": "Crop type 1"
+            },
+            "hint": {
+                "0": "Sorte der Feldfrucht der aktuellen Anbauperiode aus dem Menü durch Antippen auswählen.",
+                "1": "Select the currently grown crop type from the menu."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${cultivatedFruitType1}=3",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "options": [
+                {
+                    "text": {
+                        "0": "Raps",
+                        "1": "Oilseed rape"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "0"
+                },
+                {
+                    "text": {
+                        "0": "Leinsamen",
+                        "1": "Flaxseed"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "1"
+                },
+                {
+                    "text": {
+                        "0": "Sonnenblume",
+                        "1": "Sunflower"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "2"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {
+            },
+            "type": "inputSelectOne"
+        },
+        {
+            "name": "cultivatedFruitOther1",
+            "label": {
+                "0": "Aktuelle Anbausorte 1",
+                "1": "Crop type 1"
+            },
+            "hint": {
+                "0": "Sorte der Feldfrucht der aktuellen Anbauperiode eingeben.",
+                "1": "Enter the currently grown crop type."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${cultivatedFruitType1}=4",
+            "constraint": "",
+            "invalidText": {
+                "0": "",
+                "1": ""
+            },
+            "calculate": "",
+            "length": false,
+            "metadata": {
+            },
+            "type": "inputText"
+        },
+        {
+            "name": "cultivatedFruitType2",
+            "label": {
+                "0": "Aktuelle Pflanzenkategorie 2",
+                "1": "Plant category 2"
+            },
+            "hint": {
+                "0": "Kategorie, der die Feldfruchtsorte zuzuordnen ist, aus dem Menü durch Antippen auswählen.",
+                "1": "Select (from the menu) the plant category of the crop that was grown in the previous growing period."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${cultivatedFruit}=2",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "options": [
+                {
+                    "text": {
+                        "0": "Getreide",
+                        "1": "Cereals"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "0"
+                },
+                {
+                    "text": {
+                        "0": "Hülsenfrüchte",
+                        "1": "Legumes"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "1"
+                },
+                {
+                    "text": {
+                        "0": "Hackfrüchte",
+                        "1": "Root crops"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "2"
+                },
+                {
+                    "text": {
+                        "0": "Ölfrüchte",
+                        "1": "Oil seeds"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "3"
+                },
+                {
+                    "text": {
+                        "0": "Sonstige",
+                        "1": "Other"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "4"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {
+            },
+            "type": "inputSelectOne"
+        },
+        {
+            "name": "cultivatedFruitCereals2",
+            "label": {
+                "0": "Aktuelle Anbausorte 2",
+                "1": "Crop type 2"
+            },
+            "hint": {
+                "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
+                "1": "Select (from the menu) the crop type that was grown in the previous growing period."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${cultivatedFruit}=2&&${cultivatedFruitType2}=0",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "options": [
+                {
+                    "text": {
+                        "0": "Weizen",
+                        "1": "Wheat"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "0"
+                },
+                {
+                    "text": {
+                        "0": "Roggen",
+                        "1": "Rye"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "1"
+                },
+                {
+                    "text": {
+                        "0": "Gerste",
+                        "1": "Barley"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "2"
+                },
+                {
+                    "text": {
+                        "0": "Hafer",
+                        "1": "Oat"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "3"
+                },
+                {
+                    "text": {
+                        "0": "Triticale",
+                        "1": "Triticale"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "4"
+                },
+                {
+                    "text": {
+                        "0": "Mais",
+                        "1": "Corn"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "5"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {
+            },
+            "type": "inputSelectOne"
+        },
+        {
+            "name": "cultivatedFruitLegumes2",
+            "label": {
+                "0": "Aktuelle Anbausorte 2",
+                "1": "Crop type 2"
+            },
+            "hint": {
+                "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
+                "1": "Select (from the menu) the crop type that was grown in the previous growing period."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${cultivatedFruit}=2&&${cultivatedFruitType2}=1",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "options": [
+                {
+                    "text": {
+                        "0": "Erbsen",
+                        "1": "Pea"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "0"
+                },
+                {
+                    "text": {
+                        "0": "Ackerbohne",
+                        "1": "Field bean"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "1"
+                },
+                {
+                    "text": {
+                        "0": "Süßlupine",
+                        "1": "Sweet lupins"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "2"
+                },
+                {
+                    "text": {
+                        "0": "Sojabohne",
+                        "1": "Soybean"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "3"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {
+            },
+            "type": "inputSelectOne"
+        },
+        {
+            "name": "cultivatedFruitRootCrops2",
+            "label": {
+                "0": "Aktuelle Anbausorte 2",
+                "1": "Crop type 2"
+            },
+            "hint": {
+                "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
+                "1": "Select (from the menu) the crop type that was grown in the previous growing period."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${cultivatedFruit}=2&&${cultivatedFruitType2}=2",
+            "constraint": "",
+            "invalidText": {
+                "1": ""
+            },
+            "calculate": "",
+            "options": [
+                {
+                    "text": {
+                        "0": "Kartoffel",
+                        "1": "Potato"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "0"
+                },
+                {
+                    "text": {
+                        "0": "Zuckerrübe",
+                        "1": "Sugar beet"
+                    },
+                    "cascade": [
+                    ],
+                    "val": "1"
+                }
+            ],
+            "cascading": false,
+            "other": false,
+            "appearance": "Default",
+            "metadata": {
+            },
+            "type": "inputSelectOne"
+        },
+        {
+            "name": "cultivatedFruitOther2",
+            "label": {
+                "0": "Aktuelle Anbausorte 2",
+                "1": "Crop type 2"
+            },
+            "hint": {
+                "0": "Sorte der Feldfrucht der aktuellen Anbauperiode eingeben.",
+                "1": "Enter the currently grown crop type."
+            },
+            "defaultValue": "",
+            "readOnly": false,
+            "required": false,
+            "requiredText": {
+                "1": ""
+            },
+            "relevance": "${cultivatedFruit}=2&&${cultivatedFruitType2}=4",
+            "constraint": "",
+            "invalidText": {
+                "0": "",
+                "1": ""
+            },
+            "calculate": "",
+            "length": false,
+            "metadata": {
+            },
+            "type": "inputText"
         }
-      ],
-      "cascading": false,
-      "other": false,
-      "appearance": "Default",
-      "metadata": {},
-      "type": "inputSelectOne"
-    },
-    {
-      "name": "cultivatedFruitCultivation",
-      "label": {
-        "0": "Aktueller Anbautyp",
-        "1": "Cultivation type"
-      },
-      "hint": {
-        "0": "Art des Anbaus entsprechend des Saatzeitpunktes für die aktuelle Anbauperiode (d.h. meist das letzte oder aktuelle Jahr) aus dem Menü durch Antippen auswählen.",
-        "1": "Select the cultivation type according to the sowing time (i.e., mostly in the past or current year) of the currently grown cultivar from the menu."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": true,
-      "requiredText": { "1": "" },
-      "relevance": "",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "options": [
-        {
-          "text": {
-            "0": "Sommeranbau",
-            "1": "Spring crop"
-          },
-          "cascade": [],
-          "val": "1"
+    ],
+    "metadata": {
+        "version": 2,
+        "activeLanguages": {
+            "0": "German",
+            "1": "English",
+            "_counter": 1,
+            "_display": "0"
         },
-        {
-          "text": {
-            "0": "Winteranbau",
-            "1": "Winter crop"
-          },
-          "cascade": [],
-          "val": "2"
-        },
-        {
-          "text": {
-            "0": "Sonstiges",
-            "1": "Other"
-          },
-          "cascade": [],
-          "val": "0"
-        }
-      ],
-      "cascading": false,
-      "other": false,
-      "appearance": "Default",
-      "metadata": {},
-      "type": "inputSelectOne"
-    },
-    {
-      "name": "cultivatedFruitType",
-      "label": {
-        "0": "Aktuelle Pflanzenkategorie",
-        "1": "Plant category"
-      },
-      "hint": {
-        "0": "Kategorie, der die Feldfruchtsorte zu zuordnen ist, aus dem Menü durch Antippen auswählen.",
-        "1": "Select (from the menu) the category to which the currently grown crop belongs."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": true,
-      "requiredText": { "1": "" },
-      "relevance": "",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "options": [
-        {
-          "text": {
-            "0": "Getreide",
-            "1": "Cereals"
-          },
-          "cascade": [],
-          "val": "1"
-        },
-        {
-          "text": {
-            "0": "Hülsenfrüchte",
-            "1": "Legumes"
-          },
-          "cascade": [],
-          "val": "2"
-        },
-        {
-          "text": {
-            "0": "Hackfrüchte",
-            "1": "Root crops"
-          },
-          "cascade": [],
-          "val": "3"
-        },
-        {
-          "text": {
-            "0": "Ölfrüchte",
-            "1": "Oil seeds"
-          },
-          "cascade": [],
-          "val": "4"
-        },
-        {
-          "text": {
-            "0": "Sonstige",
-            "1": "Other"
-          },
-          "cascade": [],
-          "val": "5"
-        }
-      ],
-      "cascading": false,
-      "other": false,
-      "appearance": "Default",
-      "metadata": {},
-      "type": "inputSelectOne"
-    },
-    {
-      "name": "cultivatedFruitCereals",
-      "label": {
-        "0": "Aktuelle Anbausorte",
-        "1": "Crop type"
-      },
-      "hint": {
-        "0": "Sorte der Feldfrucht der aktuellen Anbauperiode aus dem Menü durch Antippen auswählen.",
-        "1": "Select the currently grown crop type from the menu."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": { "1": "" },
-      "relevance": "${cultivatedFruitType}=0",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "options": [
-        {
-          "text": {
-            "0": "Weizen",
-            "1": "Wheat"
-          },
-          "cascade": [],
-          "val": "0"
-        },
-        {
-          "text": {
-            "0": "Roggen",
-            "1": "Rye"
-          },
-          "cascade": [],
-          "val": "1"
-        },
-        {
-          "text": {
-            "0": "Gerste",
-            "1": "Barley"
-          },
-          "cascade": [],
-          "val": "2"
-        },
-        {
-          "text": {
-            "0": "Hafer",
-            "1": "Oat"
-          },
-          "cascade": [],
-          "val": "3"
-        },
-        {
-          "text": {
-            "0": "Triticale",
-            "1": "Triticale"
-          },
-          "cascade": [],
-          "val": "4"
-        },
-        {
-          "text": {
-            "0": "Mais",
-            "1": "Corn"
-          },
-          "cascade": [],
-          "val": "5"
-        }
-      ],
-      "cascading": false,
-      "other": false,
-      "appearance": "Default",
-      "metadata": {},
-      "type": "inputSelectOne"
-    },
-    {
-      "name": "cultivatedFruitLegumes",
-      "label": {
-        "0": "Aktuelle Anbausorte",
-        "1": "Crop type"
-      },
-      "hint": {
-        "0": "Sorte der Feldfrucht der aktuellen Anbauperiode aus dem Menü durch Antippen auswählen.",
-        "1": "Select the currently grown crop type from the menu."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": { "1": "" },
-      "relevance": "${cultivatedFruitType}=1",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "options": [
-        {
-          "text": {
-            "0": "Erbsen",
-            "1": "Pea"
-          },
-          "cascade": [],
-          "val": "0"
-        },
-        {
-          "text": {
-            "0": "Ackerbohne",
-            "1": "Field bean"
-          },
-          "cascade": [],
-          "val": "1"
-        },
-        {
-          "text": {
-            "0": "Süßlupine",
-            "1": "Sweet lupins"
-          },
-          "cascade": [],
-          "val": "2"
-        },
-        {
-          "text": {
-            "0": "Sojabohne",
-            "1": "Soybean"
-          },
-          "cascade": [],
-          "val": "3"
-        }
-      ],
-      "cascading": false,
-      "other": false,
-      "appearance": "Default",
-      "metadata": {},
-      "type": "inputSelectOne"
-    },
-    {
-      "name": "cultivatedFruitRootCrops",
-      "label": {
-        "0": "Aktuelle Anbausorte",
-        "1": "Crop type"
-      },
-      "hint": {
-        "0": "Sorte der Feldfrucht der aktuellen Anbauperiode aus dem Menü durch Antippen auswählen.",
-        "1": "Select the currently grown crop type from the menu."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": { "1": "" },
-      "relevance": "${cultivatedFruitType}=2",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "options": [
-        {
-          "text": {
-            "0": "Kartoffel",
-            "1": "Potato"
-          },
-          "cascade": [],
-          "val": "0"
-        },
-        {
-          "text": {
-            "0": "Zuckerrübe",
-            "1": "Sugar beet"
-          },
-          "cascade": [],
-          "val": "1"
-        }
-      ],
-      "cascading": false,
-      "other": false,
-      "appearance": "Default",
-      "metadata": {},
-      "type": "inputSelectOne"
-    },
-    {
-      "name": "cultivatedFruitOilSeeds",
-      "label": {
-        "0": "Aktuelle Anbausorte",
-        "1": "Crop type"
-      },
-      "hint": {
-        "0": "Sorte der Feldfrucht der aktuellen Anbauperiode aus dem Menü durch Antippen auswählen.",
-        "1": "Select the currently grown crop type from the menu."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": { "1": "" },
-      "relevance": "${cultivatedFruitType}=3",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "options": [
-        {
-          "text": {
-            "0": "Raps",
-            "1": "Oilseed rape"
-          },
-          "cascade": [],
-          "val": "19"
-        },
-        {
-          "text": {
-            "0": "Leinsamen",
-            "1": "Flaxseed"
-          },
-          "cascade": [],
-          "val": "20"
-        },
-        {
-          "text": {
-            "0": "Sonnenblume",
-            "1": "Sunflower"
-          },
-          "cascade": [],
-          "val": "21"
-        }
-      ],
-      "cascading": false,
-      "other": false,
-      "appearance": "Default",
-      "metadata": {},
-      "type": "inputSelectOne"
-    },
-    {
-      "name": "cultivatedFruitOther",
-      "label": {
-        "0": "Aktuelle Anbausorte",
-        "1": "Crop type"
-      },
-      "hint": {
-        "0": "Sorte der Feldfrucht der aktuellen Anbauperiode aus dem Menü durch Antippen auswählen.",
-        "1": "Select the currently grown crop type from the menu."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": { "1": "" },
-      "relevance": "${cultivatedFruitType}=4",
-      "constraint": "",
-      "invalidText": {
-        "0": "",
-        "1": ""
-      },
-      "calculate": "",
-      "length": false,
-      "metadata": {},
-      "type": "inputText"
-    },
-    {
-      "name": "cultivatedFruitUnknown",
-      "label": {
-        "0": "Aktuelle Anbausorte",
-        "1": "Crop type"
-      },
-      "hint": {
-        "0": "Sorte der Feldfrucht der aktuellen Anbauperiode eingeben.",
-        "1": "Enter the currently grown crop type."
-      },
-      "defaultValue": "",
-      "readOnly": false,
-      "required": false,
-      "requiredText": { "1": "" },
-      "relevance": "${cultivatedFruitType}=5",
-      "constraint": "",
-      "invalidText": { "1": "" },
-      "calculate": "",
-      "options": [
-        {
-          "text": {
-            "0": "Weizen",
-            "1": "Wheat"
-          },
-          "cascade": [],
-          "val": "0"
-        },
-        {
-          "text": {
-            "0": "Roggen",
-            "1": "Rye"
-          },
-          "cascade": [],
-          "val": "1"
-        },
-        {
-          "text": {
-            "0": "Gerste",
-            "1": "Barley"
-          },
-          "cascade": [],
-          "val": "2"
-        },
-        {
-          "text": {
-            "0": "Hafer",
-            "1": "Oat"
-          },
-          "cascade": [],
-          "val": "3"
-        },
-        {
-          "text": {
-            "0": "Triticale",
-            "1": "Triticale"
-          },
-          "cascade": [],
-          "val": "4"
-        },
-        {
-          "text": {
-            "0": "Mais",
-            "1": "Corn"
-          },
-          "cascade": [],
-          "val": "5"
-        },
-        {
-          "text": {
-            "0": "Erbsen",
-            "1": "Pea"
-          },
-          "cascade": [],
-          "val": "6"
-        },
-        {
-          "text": {
-            "0": "Ackerbohne",
-            "1": "Field bean"
-          },
-          "cascade": [],
-          "val": "7"
-        },
-        {
-          "text": {
-            "0": "Süßlupine",
-            "1": "Sweet lupins"
-          },
-          "cascade": [],
-          "val": "8"
-        },
-        {
-          "text": {
-            "0": "Sojabohne",
-            "1": "Soybean"
-          },
-          "cascade": [],
-          "val": "9"
-        },
-        {
-          "text": {
-            "0": "Kartoffel",
-            "1": "Potato"
-          },
-          "cascade": [],
-          "val": "10"
-        },
-        {
-          "text": {
-            "0": "Zuckerrübe",
-            "1": "Sugar beet"
-          },
-          "cascade": [],
-          "val": "11"
-        },
-        {
-          "text": {
-            "0": "Raps",
-            "1": "Oilseed rape"
-          },
-          "cascade": [],
-          "val": "12"
-        },
-        {
-          "text": {
-            "0": "Leinsamen",
-            "1": "Flaxseed"
-          },
-          "cascade": [],
-          "val": "13"
-        },
-        {
-          "text": {
-            "0": "Sonnenblume",
-            "1": "Sunflower"
-          },
-          "cascade": [],
-          "val": "14"
-        }
-      ],
-      "cascading": false,
-      "other": false,
-      "appearance": "Default",
-      "metadata": {},
-      "type": "inputSelectOne"
+        "optionsPresets": [
+        ],
+        "htitle": null,
+        "instance_name": "",
+        "public_key": "",
+        "submission_url": ""
     }
-  ],
-  "metadata": {
-    "version": 2,
-    "activeLanguages": {
-      "0": "German",
-      "1": "English",
-      "_counter": 1,
-      "_display": "0"
-    },
-    "optionsPresets": [],
-    "htitle": null,
-    "instance_name": "",
-    "public_key": "",
-    "submission_url": ""
-  }
 }

@@ -18,13 +18,13 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
 
         private readonly OdkRange<int> ValidRange;
 
-        public override bool IsValid => !string.IsNullOrWhiteSpace(Entry.Text) && int.TryParse(Entry.Text, out var decimalInput) && ValidRange.IsValidInput(decimalInput) && base.IsValid;
+        protected override bool IsValidElementSpecific => !string.IsNullOrWhiteSpace(Entry.Text) && int.TryParse(Entry.Text, out var decimalInput) && ValidRange.IsValidInput(decimalInput);
 
-        public override string GetRepresentationValue() => Entry.Text;
+        public override string GetRepresentationValue() => Entry.Text ?? string.Empty;
 
         public override void LoadFromSavedRepresentation(string representation) => Entry.Text = representation;
 
-        public override void Reset() => Entry.Text = string.Empty;
+        protected override void OnReset() => Entry.Text = string.Empty;
 
         public static NumericInputElement CreateForm(FormCreationParams parms)
         {
@@ -36,8 +36,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
             var entry = new Entry
             {
                 Placeholder = placeholder,
-                Keyboard = Keyboard.Numeric,
-                StyleId = parms.Element.Name
+                Keyboard = Keyboard.Numeric
             };
 
             formElement.Entry = entry;

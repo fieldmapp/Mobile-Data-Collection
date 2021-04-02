@@ -15,7 +15,9 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views.ProfilingList
         {
             InitializeComponent();
             InspectedProfiling = profiling;
-            BindingContext = profiling;
+            AuthorsLabel.Text = Helpers.GetCurrentLanguageTranslation(profiling.Translations, profiling.Authors);
+            DescriptionLabel.Text = Helpers.GetCurrentLanguageTranslation(profiling.Translations, profiling.Description);
+            TitleLabel.Text = Helpers.GetCurrentLanguageTranslation(profiling.Translations, profiling.Title);
         }
 
         /// <summary>
@@ -23,11 +25,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views.ProfilingList
         /// </summary>
         public ProfilingDetailPage()
         {
-            InspectedProfiling = new ProfilingData();
-
             InitializeComponent();
-
-            BindingContext = InspectedProfiling;
         }
 
         Database Database => ProfilingSharedModule.Instance.ModuleHost.App.Database;
