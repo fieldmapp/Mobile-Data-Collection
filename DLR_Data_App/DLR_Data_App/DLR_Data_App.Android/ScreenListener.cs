@@ -17,46 +17,44 @@ namespace com.DLR.DLR_Data_App.Droid
     /// </summary>
     public class ScreenListener
     {
-        private Context Context;
-        private ScreenBroadcastReceiver mScreenReceiver;
+        private readonly Context Context;
+        private readonly ScreenBroadcastReceiver ScreenReceiver;
         private static IScreenStateListener ScreenStateListener;
 
         public ScreenListener(Context context)
         {
             Context = context;
-            mScreenReceiver = new ScreenBroadcastReceiver();
+            ScreenReceiver = new ScreenBroadcastReceiver();
         }
 
-        /**
-         * screen BroadcastReceiver
-         */
+        /// <summary>
+        /// Screen BroadcastReceiver
+        /// </summary>
         private class ScreenBroadcastReceiver : BroadcastReceiver
         {
-            private string action = null;
-
             public override void OnReceive(Context context, Intent intent)
             {
-                action = intent.Action;
-                if (Intent.ActionScreenOn == action)
+                var action = intent.Action;
+                if (action == Intent.ActionScreenOn)
                 { // screen on
                     ScreenStateListener.OnScreenOn();
                 }
-                else if (Intent.ActionScreenOff == action)
-                { // screen off
+                else if (action == Intent.ActionScreenOff)
+                {
                     ScreenStateListener.OnScreenOff();
                 }
-                else if (Intent.ActionUserPresent == action)
+                else if (action == Intent.ActionUserPresent)
                 { // unlock
                     ScreenStateListener.OnUserPresent();
                 }
             }
         }
 
-        /**
-         * begin to listen screen state
-         *
-         * @param listener
-         */
+        /// <summary>
+        /// Begin to listen screen state
+        /// </summary>
+        /// <param name="listener"></param>
+        /// <param name="callRelevantEnventsNow"></param>
         public void Begin(IScreenStateListener listener, bool callRelevantEnventsNow = false)
         {
             ScreenStateListener = listener;
@@ -65,47 +63,43 @@ namespace com.DLR.DLR_Data_App.Droid
                 GetScreenState();
         }
 
-        /**
-         * get screen state
-         */
+        /// <summary>
+        /// Get screen state
+        /// </summary>
         private void GetScreenState()
         {
             PowerManager manager = (PowerManager)Context
                     .GetSystemService(Context.PowerService);
+
             if (manager.IsScreenOn)
             {
-                if (ScreenStateListener != null)
-                {
-                    ScreenStateListener.OnScreenOn();
-                }
+                ScreenStateListener?.OnScreenOn();
             }
             else
             {
-                if (ScreenStateListener != null)
-                {
-                    ScreenStateListener.OnScreenOff();
-                }
+                ScreenStateListener?.OnScreenOff();
             }
         }
 
-        /**
-         * stop listen screen state
-         */
+        /// <summary>
+        /// Stop listen screen state listening
+        /// </summary>
         public void UnregisterListener()
         {
-            Context.UnregisterReceiver(mScreenReceiver);
+            Context.UnregisterReceiver(ScreenReceiver);
         }
 
-        /**
-         * regist screen state broadcast
-         */
+
+        /// <summary>
+        /// Register screen state broadcast
+        /// </summary>
         private void RegisterListener()
         {
             IntentFilter filter = new IntentFilter();
             filter.AddAction(Intent.ActionScreenOn);
             filter.AddAction(Intent.ActionScreenOff);
             filter.AddAction(Intent.ActionUserPresent);
-            Context.RegisterReceiver(mScreenReceiver, filter);
+            Context.RegisterReceiver(ScreenReceiver, filter);
         }
 
         /// <summary>
