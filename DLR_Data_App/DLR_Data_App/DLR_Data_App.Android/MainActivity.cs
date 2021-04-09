@@ -53,6 +53,14 @@ namespace com.DLR.DLR_Data_App.Droid
 
             ScreenListener = new ScreenListener(this);
 
+            MessagingCenter.Subscribe<object, bool>(this, "ReloadToolbar", (sender, reload) =>
+            {
+                if (reload)
+                {
+                    ReloadToolbar();
+                }
+            });
+
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
             TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
         }
