@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DLR_Data_App.Models.ProjectForms
@@ -40,6 +41,24 @@ namespace DLR_Data_App.Models.ProjectForms
                 ConstraintExpression = OdkDataExtractor.GetBooleanExpression(modifiedConstraintString.ToString());
             }
             Type = type;
+        }
+
+        public bool IsVisible
+        {
+            get => Frame.IsVisible;
+            set
+            {
+                Frame.IsVisible = value;
+
+                // Hack: The following Task.Run tries to prevent following issue:
+                // When items become visible and should expand beyond the height of the parent StackLayout, they will only expand to the height.
+                // If the hack does not work, the user has to e.g. rotate the screen or try making other elements visible
+                Task.Run(async () =>
+                {
+                    await Task.Delay(100);
+                    Device.BeginInvokeOnMainThread(() => (Frame.Parent as StackLayout).InvalidateSize());
+                });
+            }
         }
 
         public Frame Frame { get; }

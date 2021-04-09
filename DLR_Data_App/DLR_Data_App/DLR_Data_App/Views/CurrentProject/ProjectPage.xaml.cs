@@ -150,13 +150,13 @@ namespace DLR_Data_App.Views.CurrentProject
         private void UnlockElement(FormElement element)
         {
             UnlockedElements.Add(element);
-            element.Frame.IsVisible = true;
+            element.IsVisible = true;
         }
 
         private void LockElement(FormElement element)
         {
             UnlockedElements.Remove(element);
-            element.Frame.IsVisible = false;
+            element.IsVisible = false;
             element.Reset();
         }
 
