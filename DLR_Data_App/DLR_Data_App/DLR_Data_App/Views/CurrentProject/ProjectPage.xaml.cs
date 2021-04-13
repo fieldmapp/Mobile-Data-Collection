@@ -162,12 +162,6 @@ namespace DLR_Data_App.Views.CurrentProject
 
         private void FormElement_InvalidContentChange(object sender, EventArgs _)
         {
-            //var changedElement = (FormElement)sender;
-            //
-            //foreach (var element in _formElements.SkipWhileIncluding(e => e != changedElement))
-            //{
-            //    LockElement(element);
-            //}
             RefreshVisibilityOnUnlockedElements();
         }
 
@@ -195,44 +189,30 @@ namespace DLR_Data_App.Views.CurrentProject
         {
             // after each step all we want to see are all elements which are both valid and relevant + the next relevant (but invalid) item
 
-            var relevantElements = SelectRelevantElements(_formElements).ToList();
-            var validRelevantElements = relevantElements.Where(e => e.IsValid).ToList();
-            var lastValidRelevantElement = validRelevantElements.LastOrDefault();
-
-            var wantedUnlockedElements = validRelevantElements;
-            if (lastValidRelevantElement != null)
-            {
-                var nextRelevantInvalidItem = relevantElements.SkipWhileIncluding(e => e != lastValidRelevantElement).FirstOrDefault();
-                if (nextRelevantInvalidItem != null)
-                    wantedUnlockedElements.Add(nextRelevantInvalidItem);
-            }
-
-            foreach (var element in UnlockedElements.ToList().Except(wantedUnlockedElements))
-            {
-                LockElement(element);
-            }
-            foreach (var element in wantedUnlockedElements.ToList().Except(UnlockedElements))
-            {
-                UnlockElement(element);
-            }
+            List<FormElement> prevRelevantElements;
+            List<FormElement> currRelevantElements = SelectRelevantElements(_formElements).ToList();
+            List<FormElement> initialRelevantValidElements = currRelevantElements.Where(e => e.IsValid).ToList();
             
-            //{
-            //    if (variables == null)
-            //        variables = GeatherVariables();
-            //    if (element.ShouldBeShownExpression.Evaluate(variables))
-            //    {
-            //        element.Frame.IsVisible = true;
-            //    }
-            //    else
-            //    {
-            //        var wasVisible = element.Frame.IsVisible;
-            //        if (wasVisible)
-            //        {
-            //            element.Frame.IsVisible = false;
-            //            element.Reset();
-            //        }
-            //    }
-            //}
+            // we need to loop the locking of newly irrelevant elements because a chain like this may happen (a,b,c are elements):
+            // a is invalidated -> locking a -> resetting a -> next iteration -> invalidating b -> locking b -> reseting b -> next iteration -> invalidating c -> .. 
+            // and just looping until nothing changes is the lazy but always correct solution
+            do
+            {
+                prevRelevantElements = currRelevantElements;
+                var validRelevantElements = prevRelevantElements.Where(e => e.IsValid).ToList();
+                foreach (var element in UnlockedElements.ToList().Except(validRelevantElements))
+                {
+                    LockElement(element);
+                }
+                currRelevantElements = SelectRelevantElements(_formElements).ToList();
+            }
+            while (!currRelevantElements.SequenceEqual(prevRelevantElements));
+
+            var nextRelevantInvalidElement = currRelevantElements.Except(initialRelevantValidElements).FirstOrDefault();
+            if (nextRelevantInvalidElement != null)
+            {
+                UnlockElement(nextRelevantInvalidElement);
+            }
         }
 
         Dictionary<string,string> GeatherVariables()
@@ -250,15 +230,6 @@ namespace DLR_Data_App.Views.CurrentProject
         private void FormElement_ValidContentChange(object sender, EventArgs _)
         {
             RefreshVisibilityOnUnlockedElements();
-
-            //var changedElement = (FormElement)sender;
-            //
-            //var currentlyRequiredElement = _formElements.LastOrDefault(e => e.Frame.IsVisible);
-            //if (currentlyRequiredElement == changedElement)
-            //{
-            //    var nextUnlockedElement = SelectRelevantElements(_formElements).SkipWhileIncluding(e => e != changedElement).FirstOrDefault();
-            //    UnlockElement(nextUnlockedElement);
-            //}
         }
 
         /// <summary>
