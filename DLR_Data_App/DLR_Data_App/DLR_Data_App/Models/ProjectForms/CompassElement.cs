@@ -4,13 +4,14 @@ using DLR_Data_App.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DLR_Data_App.Models.ProjectForms
 {
     class CompassElement : FormElement
     {
-        public CompassElement(Grid grid, ProjectFormElements data, string type) : base(grid, data, type) { }
+        public CompassElement(Grid grid, ProjectFormElements data, string type, Func<string, string, string, Task> displayAlertFunc, Project project) : base(grid, data, type, displayAlertFunc, project) { }
 
         public double CurrentHeadingMagneticNorth;
         public double SavedHeadingMagneticNorth;
@@ -40,7 +41,7 @@ namespace DLR_Data_App.Models.ProjectForms
         public static CompassElement CreateForm(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var compassElement = new CompassElement(grid, parms.Element, parms.Type);
+            var compassElement = new CompassElement(grid, parms.Element, parms.Type, parms.DisplayAlertFunc, parms.CurrentProject);
 
             var currentCompassLabel = new Label { Text = AppResources.compass };
             compassElement.CurrentDataLabel = currentCompassLabel;

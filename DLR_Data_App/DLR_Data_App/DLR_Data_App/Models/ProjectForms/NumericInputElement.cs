@@ -3,13 +3,14 @@ using DLR_Data_App.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DLR_Data_App.Models.ProjectForms
 {
     class NumericInputElement : FormElement
     {
-        public NumericInputElement(Grid grid, ProjectFormElements data, string type) : base(grid, data, type)
+        public NumericInputElement(Grid grid, ProjectFormElements data, string type, Func<string, string, string, Task> displayAlertFunc, Project project) : base(grid, data, type, displayAlertFunc, project)
         {
             ValidRange = OdkDataExtractor.GetRangeFromJsonString(Data.Range, Convert.ToInt32);
         }
@@ -29,7 +30,7 @@ namespace DLR_Data_App.Models.ProjectForms
         public static NumericInputElement CreateForm(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var formElement = new NumericInputElement(grid, parms.Element, parms.Type);
+            var formElement = new NumericInputElement(grid, parms.Element, parms.Type, parms.DisplayAlertFunc, parms.CurrentProject);
 
             var placeholder = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
 

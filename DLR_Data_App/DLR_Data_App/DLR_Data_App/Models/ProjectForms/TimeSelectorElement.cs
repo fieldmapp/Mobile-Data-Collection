@@ -3,13 +3,14 @@ using DLR_Data_App.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DLR_Data_App.Models.ProjectForms
 {
     class TimeSelectorElement : FormElement
     {
-        public TimeSelectorElement(Grid grid, ProjectFormElements data, string type) : base(grid, data, type) 
+        public TimeSelectorElement(Grid grid, ProjectFormElements data, string type, Func<string, string, string, Task> displayAlertFunc, Project project) : base(grid, data, type, displayAlertFunc, project) 
         {
             ValidRange = OdkDataExtractor.GetRangeFromJsonString(data.Range, DateTime.Parse);
         }
@@ -75,7 +76,7 @@ namespace DLR_Data_App.Models.ProjectForms
         public static TimeSelectorElement CreateForm(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var timeSelectorElement = new TimeSelectorElement(grid, parms.Element, parms.Type);
+            var timeSelectorElement = new TimeSelectorElement(grid, parms.Element, parms.Type, parms.DisplayAlertFunc, parms.CurrentProject);
 
             TimePicker timePicker = null;
             var datePicker = new DatePicker { TextColor = UnsetColor };

@@ -5,13 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DLR_Data_App.Models.ProjectForms
 {
     class LocationDetectorElement : FormElement
     {
-        public LocationDetectorElement(Grid grid, ProjectFormElements data, string type) : base(grid, data, type) { }
+        public LocationDetectorElement(Grid grid, ProjectFormElements data, string type, Func<string, string, string, Task> displayAlertFunc, Project project) : base(grid, data, type, displayAlertFunc, project) { }
 
         public Label SavedLocationLabel;
 
@@ -26,7 +27,7 @@ namespace DLR_Data_App.Models.ProjectForms
         public static LocationDetectorElement CreateForm(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var formElement = new LocationDetectorElement(grid, parms.Element, parms.Type);
+            var formElement = new LocationDetectorElement(grid, parms.Element, parms.Type, parms.DisplayAlertFunc, parms.CurrentProject);
 
             var labelLat = new Label { Text = AppResources.latitude };
             var labelLatData = new Label() { Text = Sensor.Instance.Gps.Latitude.ToString(CultureInfo.CurrentCulture) };

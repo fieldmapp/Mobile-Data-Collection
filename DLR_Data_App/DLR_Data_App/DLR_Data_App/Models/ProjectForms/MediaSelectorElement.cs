@@ -6,13 +6,14 @@ using Plugin.FilePicker;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DLR_Data_App.Models.ProjectForms
 {
     class MediaSelectorElement : FormElement
     {
-        public MediaSelectorElement(Grid grid, ProjectFormElements data, string type) : base(grid, data, type) { }
+        public MediaSelectorElement(Grid grid, ProjectFormElements data, string type, Func<string, string, string, Task> displayAlertFunc, Project project) : base(grid, data, type, displayAlertFunc, project) { }
 
         public DataHolder DataHolder;
 
@@ -27,7 +28,7 @@ namespace DLR_Data_App.Models.ProjectForms
         public static MediaSelectorElement CreateForm(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var formElement = new MediaSelectorElement(grid, parms.Element, parms.Type);
+            var formElement = new MediaSelectorElement(grid, parms.Element, parms.Type, parms.DisplayAlertFunc, parms.CurrentProject);
 
             var pickFileButton = new Button { Text = AppResources.select };
             var fileSelectedLabel = new Label { Text = AppResources.fileselected };

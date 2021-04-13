@@ -16,8 +16,12 @@ namespace DLR_Data_App.Models.ProjectForms
     abstract class FormElement
     {
         const string ThisOdkElement = "thisodkelement";
-        public FormElement(Grid grid, ProjectFormElements data, string type)
+        Func<string, string, string, Task> DisplayAlertFunc;
+        Project Project;
+        public FormElement(Grid grid, ProjectFormElements data, string type, Func<string, string, string, Task> displayAlertFunc, Project project)
         {
+            Project = project;
+            DisplayAlertFunc = displayAlertFunc;
             Grid = grid;
             Frame = new Frame { CornerRadius = 10, BorderColor = Color.DarkSeaGreen, Content = Grid, IsVisible = false };
             Data = data;
@@ -72,19 +76,27 @@ namespace DLR_Data_App.Models.ProjectForms
         public event EventHandler InvalidContentChange;
         public OdkBooleanExpresion ShouldBeShownExpression { get; }
         public OdkBooleanExpresion ConstraintExpression { get; }
-        public bool IsValid =>
-            IsSkipped || 
-            ( ConstraintExpression?.Evaluate(new Dictionary<string, string> { { ThisOdkElement, GetRepresentationValue() } }) ?? true
-            && IsValidElementSpecific);
+        public bool IsValid => IsSkipped || (IsConstraintFulfilled && IsValidElementSpecific);
+        private bool IsConstraintFulfilled => ConstraintExpression?.Evaluate(new Dictionary<string, string> { { ThisOdkElement, GetRepresentationValue() } }) ?? true;
         protected abstract bool IsValidElementSpecific { get; }
         public readonly string Type;
 
+        /// <summary>
+        /// Should be called every time the user did some input on this FormElement. Handles calls to <see cref="ValidContentChange"/> and <see cref="InvalidContentChange"/>.
+        /// Also displays the set ODK error message if needed.
+        /// </summary>
         public void OnContentChange()
         {
             if (IsValid)
                 ValidContentChange?.Invoke(this, null);
             else
+            {
                 InvalidContentChange?.Invoke(this, null);
+
+                var localizedErrorHint = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(Data.InvalidText, Project.Languages);
+                if (!string.IsNullOrWhiteSpace(localizedErrorHint))
+                    DisplayAlertFunc(AppResources.error, localizedErrorHint, AppResources.ok);
+            }
         }
 
         /// <summary>
