@@ -919,6 +919,15 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Profiling details ähnelt.
+        /// </summary>
+        internal static string profilingdetails {
+            get {
+                return ResourceManager.GetString("profilingdetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You are missing the profiling module {0} required for this project. ähnelt.
         /// </summary>
         internal static string profilingModuleMissing {

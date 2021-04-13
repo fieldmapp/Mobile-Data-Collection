@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:res="clr-namespace:DLR_Data_App.Localizations"
              x:Class="DLR_Data_App.Views.ProfilingList.ProfilingDetailPage"
-             Title="{res:Translate projectdetails}">
+             Title="{res:Translate profilingdetails}">
     <ScrollView>
         <StackLayout Spacing="20" Padding="15">
             <Label Text="{res:Translate title}" FontSize="Medium" />
