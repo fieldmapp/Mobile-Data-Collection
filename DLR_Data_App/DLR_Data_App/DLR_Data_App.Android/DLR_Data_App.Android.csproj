@@ -522,31 +522,31 @@
     <AndroidResource Include="Resources\xml\file_paths.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\stadium_9_senescence.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\stadium_5_inflorEmergence.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\stadium_1_leafDevelopment.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\stadium_6_flowering.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\stadium_2_tillering.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\stadium_7_devFruit.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\stadium_3_stemElongShootDev.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\stadium_8_ripeningFruitAndSeed.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\stadium_4_bootingMainShoot.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\stadium_9_senescence.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\stadium_5_inflorEmergence.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\stadium_1_leafDevelopment.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\stadium_6_flowering.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\stadium_2_tillering.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\stadium_7_devFruit.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\stadium_3_stemElongShootDev.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\stadium_8_ripeningFruitAndSeed.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\stadium_4_bootingMainShoot.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
