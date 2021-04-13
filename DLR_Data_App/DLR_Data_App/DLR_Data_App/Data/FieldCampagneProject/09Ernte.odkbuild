@@ -46,7 +46,7 @@
             "required": false,
             "requiredText": {
             },
-            "relevance": "",
+            "relevance": "${dateHarvest}=0",
             "constraint": "",
             "calculate": "",
             "range": false,
@@ -72,7 +72,7 @@
             "required": false,
             "requiredText": {
             },
-            "relevance": "",
+            "relevance": "${dateHarvest}=0",
             "constraint": "",
             "calculate": "",
             "range": false,
