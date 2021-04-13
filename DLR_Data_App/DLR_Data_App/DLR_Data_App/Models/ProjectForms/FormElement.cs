@@ -72,12 +72,9 @@ namespace DLR_Data_App.Models.ProjectForms
         public event EventHandler InvalidContentChange;
         public OdkBooleanExpresion ShouldBeShownExpression { get; }
         public OdkBooleanExpresion ConstraintExpression { get; }
-        public virtual bool IsValid =>
-            IsSkipped || (
-            (
-            ConstraintExpression == null
-            || ConstraintExpression.Evaluate(new Dictionary<string, string> { { ThisOdkElement, GetRepresentationValue() } })
-            )
+        public bool IsValid =>
+            IsSkipped || 
+            ( ConstraintExpression?.Evaluate(new Dictionary<string, string> { { ThisOdkElement, GetRepresentationValue() } }) ?? true
             && IsValidElementSpecific);
         protected abstract bool IsValidElementSpecific { get; }
         public readonly string Type;
@@ -152,7 +149,6 @@ namespace DLR_Data_App.Models.ProjectForms
             };
             var grid = new Grid();
             grid.Children.Add(elementNameLabel, 0, 0);
-            Grid.SetRowSpan(elementNameLabel, 2);
 
             var hintText = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(parms.Element.Hint, parms.CurrentProject.Languages);
 
