@@ -102,8 +102,6 @@
     <Compile Include="ScreenListener.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\questions" />
-    <AndroidAsset Include="Assets\profilings" />
     <AndroidAsset Include="Assets\voskModelDe.zip" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -511,9 +509,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\Stadium_three_question1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\translations" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\device_filter.xml" />
