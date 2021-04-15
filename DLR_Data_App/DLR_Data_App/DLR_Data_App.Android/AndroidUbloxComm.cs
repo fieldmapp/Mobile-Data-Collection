@@ -43,7 +43,7 @@ namespace com.DLR.DLR_Data_App.Droid
 
 
 
-        public async Task Initialize()
+        public Task Initialize()
         {
             // see https://github.com/851265601/Xamarin.Android_ListviewSelect/blob/master/GetUSBPermission for tutorial on xamarin usb host connection
             // see https://github.com/anotherlab/UsbSerialForAndroid/blob/master/UsbSerialExampleApp/SerialConsoleActivity.cs for tutorial on used serial usb lib
@@ -73,7 +73,7 @@ namespace com.DLR.DLR_Data_App.Droid
                 //todo: popup will be overwritten by other permissions popup (MainActivity.EnsureAppPermission)
                 UsbManager.RequestPermission(UbloxDriver.Device, intent);
             }
-
+            return Task.CompletedTask;
         }
 
         class UsbBroadcastReciever : BroadcastReceiver
@@ -168,6 +168,7 @@ namespace com.DLR.DLR_Data_App.Droid
                 byte[] falseValue = new byte[] { 0 };
                 byte[] trueValue = new byte[] { 0xFF };
 
+#pragma warning disable CS0219 // Variable ist zugewiesen, der Wert wird jedoch niemals verwendet
                 // Stationary RTK Reference Station ARP
                 const int type1005UsbOutputRate = 0x209102c0;
 
@@ -197,6 +198,7 @@ namespace com.DLR.DLR_Data_App.Droid
                 // See https://www.u-blox.com/en/docs/UBX-18010854 5.9.36 CFG - USBOUTPROT
                 const int usbOutputProtocolNmea = 0x10780002;
                 const int usbOutputProtocolUbx = 0x10780001;
+#pragma warning restore CS0219 // Variable ist zugewiesen, der Wert wird jedoch niemals verwendet
 
                 return SetConfigurationItems(
                     GenerateConfigurationItem(type1005UsbOutputRate, rateValue),
