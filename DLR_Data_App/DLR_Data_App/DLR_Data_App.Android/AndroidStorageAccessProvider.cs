@@ -40,14 +40,20 @@ namespace com.DLR.DLR_Data_App.Droid
 
         public FileStream OpenFileWriteExternal(string path)
         {
+            // prevent compilation when targeting android 30 or above because android:requestLegacyExternalStorage would be ignored, breaking this code
+#if !__ANDROID_30__
             path = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, path);
             return OpenFileWrite(path);
+#endif
         }
 
         public FileStream OpenFileAppendExternal(string path)
         {
+            // prevent compilation when targeting android 30 or above because android:requestLegacyExternalStorage would be ignored, breaking this code
+#if !__ANDROID_30__
             path = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, path);
             return OpenFileAppend(path);
+#endif
         }
     }
 }

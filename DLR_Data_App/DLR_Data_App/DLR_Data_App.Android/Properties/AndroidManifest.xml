@@ -7,7 +7,7 @@
 	<uses-permission android:name="android.permission.READ_USER_DICTIONARY" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.RECORD_AUDIO" />
-	<application android:label="FieldMApp" android:icon="@mipmap/icon">
+	<application android:label="FieldMApp" android:icon="@mipmap/icon" android:requestLegacyExternalStorage="true">
 		<provider android:name="android.support.v4.content.FileProvider" android:authorities="com.DLR.FieldMApp.fileProvider" android:exported="false" android:grantUriPermissions="true">
 			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
 		</provider>
