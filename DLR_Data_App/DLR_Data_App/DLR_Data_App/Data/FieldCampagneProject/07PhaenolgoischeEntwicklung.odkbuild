@@ -1971,7 +1971,7 @@
             "required": false,
             "requiredText": {
             },
-            "relevance": "${avgPhenologicalStadium}=3&&${cultivatedFruitType1}=1&&${cultivatedFruitCereals1}!=5",
+            "relevance": "${avgPhenologicalStadium}=3&&${cultivatedFruitType1}=0&&${cultivatedFruitCereals1}!=5",
             "constraint": "",
             "invalidText": {
             },
