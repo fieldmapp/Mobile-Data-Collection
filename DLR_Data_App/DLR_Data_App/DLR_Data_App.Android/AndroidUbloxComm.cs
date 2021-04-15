@@ -62,6 +62,9 @@ namespace com.DLR.DLR_Data_App.Droid
             var driversList = drivers.ToList();
             UbloxDriver = driversList.FirstOrDefault();
 
+            if (UbloxDriver == null)
+                return Task.FromException(new Exception("Ublox device not connected"));
+
             if (UsbManager.HasPermission(UbloxDriver.Device))
             {
                 UsbReceiver.OnHasUsbPermission();
