@@ -176,7 +176,7 @@ namespace DLR_Data_App.Views
 
                 var laneTopBackground = new BoxView { Background = Brush.Transparent };
                 TypeLaneBackgrounds.Add(laneTopBackground);
-                Layout.Children.Add(laneTopBackground,
+                RelativeLayout.Children.Add(laneTopBackground,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * laneBackgroundXFactor),
                     widthConstraint: Constraint.RelativeToParent(p => p.Width * laneBackgroundWidthFactor),
                     yConstraint: Constraint.RelativeToView(CenterLaneTypeBackground, (l, v) => v.Y),
@@ -184,7 +184,7 @@ namespace DLR_Data_App.Views
 
                 var laneBottomBackground = new BoxView { Background = Brush.Transparent };
                 CauseLaneBackgrounds.Add(laneBottomBackground);
-                Layout.Children.Add(laneBottomBackground,
+                RelativeLayout.Children.Add(laneBottomBackground,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * laneBackgroundXFactor),
                     widthConstraint: Constraint.RelativeToParent(p => p.Width * laneBackgroundWidthFactor),
                     yConstraint: Constraint.RelativeToView(CenterLaneCauseBackground, (l, v) => v.Y),
@@ -192,7 +192,7 @@ namespace DLR_Data_App.Views
 
                 var laneBorder = new BoxView { Color = Color.Black };
                 var borderXFactor = leftMostBorderXFactor + (LaneCountPerSide - i) * laneWidthFactor;
-                Layout.Children.Add(laneBorder,
+                RelativeLayout.Children.Add(laneBorder,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * borderXFactor),
                     widthConstraint: Constraint.RelativeToParent(p => p.Width * innerBorderWidthFactor),
                     yConstraint: Constraint.RelativeToParent(p => p.Height * borderYFactor),
@@ -205,7 +205,7 @@ namespace DLR_Data_App.Views
                 LaneBeginButtons.Add(topButton);
                 topButton.Clicked += (a, b) => BeginButtonClicked(laneIndex);
                 topButton.FontSize = Device.GetNamedSize(NamedSize.Small, topButton);
-                Layout.Children.Add(topButton,
+                RelativeLayout.Children.Add(topButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
                     widthConstraint: Constraint.RelativeToParent(p => p.Width * buttonWidthFactor),
                     yConstraint: Constraint.RelativeToParent(p => p.Height * startButtonYFactor),
@@ -215,7 +215,7 @@ namespace DLR_Data_App.Views
                 LaneMiddleButtons.Add(middleButton);
                 middleButton.Clicked += (a, b) => CenterButtonClicked(laneIndex);
                 middleButton.FontSize = Device.GetNamedSize(NamedSize.Small, middleButton);
-                Layout.Children.Add(middleButton,
+                RelativeLayout.Children.Add(middleButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
                     widthConstraint: Constraint.RelativeToParent(p => p.Width * buttonWidthFactor),
                     yConstraint: Constraint.RelativeToParent(p => p.Height * middleButtonYFactor),
@@ -225,7 +225,7 @@ namespace DLR_Data_App.Views
                 LaneEndButtons.Add(endButton);
                 endButton.Clicked += (a, b) => EndButtonClicked(laneIndex);
                 endButton.FontSize = Device.GetNamedSize(NamedSize.Small, endButton);
-                Layout.Children.Add(endButton,
+                RelativeLayout.Children.Add(endButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
                     widthConstraint: Constraint.RelativeToParent(p => p.Width * buttonWidthFactor),
                     yConstraint: Constraint.RelativeToParent(p => p.Height * endButtonYFactor),
@@ -233,7 +233,7 @@ namespace DLR_Data_App.Views
 
             }
             var leftMostLaneBorder = new BoxView { Color = Color.Black };
-            Layout.Children.Add(leftMostLaneBorder,
+            RelativeLayout.Children.Add(leftMostLaneBorder,
                 xConstraint: Constraint.RelativeToParent(p => p.Width * leftMostBorderXFactor),
                 widthConstraint: Constraint.RelativeToParent(p => p.Width * outerMostBorderWidthFactor),
                 yConstraint: Constraint.RelativeToParent(p => p.Height * borderYFactor),
@@ -245,7 +245,7 @@ namespace DLR_Data_App.Views
 
                 var laneTopBackground = new BoxView { Background = Brush.Transparent };
                 TypeLaneBackgrounds.Add(laneTopBackground);
-                Layout.Children.Add(laneTopBackground,
+                RelativeLayout.Children.Add(laneTopBackground,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * laneBackgroundXFactor),
                     widthConstraint: Constraint.RelativeToParent(p => p.Width * laneBackgroundWidthFactor),
                     yConstraint: Constraint.RelativeToView(CenterLaneTypeBackground, (l, v) => v.Y),
@@ -253,7 +253,7 @@ namespace DLR_Data_App.Views
 
                 var laneBottomBackground = new BoxView { Background = Brush.Transparent };
                 CauseLaneBackgrounds.Add(laneBottomBackground);
-                Layout.Children.Add(laneBottomBackground,
+                RelativeLayout.Children.Add(laneBottomBackground,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * laneBackgroundXFactor),
                     widthConstraint: Constraint.RelativeToParent(p => p.Width * laneBackgroundWidthFactor),
                     yConstraint: Constraint.RelativeToView(CenterLaneCauseBackground, (l, v) => v.Y),
@@ -262,7 +262,7 @@ namespace DLR_Data_App.Views
 
                 var laneBorder = new BoxView { Color = Color.Black };
                 var borderXFactor = rightMostBorderXFactor - (LaneCountPerSide - i) * laneWidthFactor;
-                Layout.Children.Add(laneBorder,
+                RelativeLayout.Children.Add(laneBorder,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * borderXFactor),
                     widthConstraint: Constraint.RelativeToParent(p => p.Width * innerBorderWidthFactor),
                     yConstraint: Constraint.RelativeToParent(p => p.Height * borderYFactor),
@@ -275,7 +275,7 @@ namespace DLR_Data_App.Views
                 LaneBeginButtons.Add(topButton);
                 topButton.Clicked += (a, b) => BeginButtonClicked(laneIndex);
                 topButton.FontSize = Device.GetNamedSize(NamedSize.Small, topButton);
-                Layout.Children.Add(topButton,
+                RelativeLayout.Children.Add(topButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
                     widthConstraint: Constraint.RelativeToParent(p => p.Width * buttonWidthFactor),
                     yConstraint: Constraint.RelativeToParent(p => p.Height * startButtonYFactor),
@@ -285,7 +285,7 @@ namespace DLR_Data_App.Views
                 LaneMiddleButtons.Add(middleButton);
                 middleButton.Clicked += (a, b) => CenterButtonClicked(laneIndex);
                 middleButton.FontSize = Device.GetNamedSize(NamedSize.Small, middleButton);
-                Layout.Children.Add(middleButton,
+                RelativeLayout.Children.Add(middleButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
                     widthConstraint: Constraint.RelativeToParent(p => p.Width * buttonWidthFactor),
                     yConstraint: Constraint.RelativeToParent(p => p.Height * middleButtonYFactor),
@@ -295,14 +295,14 @@ namespace DLR_Data_App.Views
                 LaneEndButtons.Add(endButton);
                 endButton.Clicked += (a, b) => EndButtonClicked(laneIndex);
                 endButton.FontSize = Device.GetNamedSize(NamedSize.Small, endButton);
-                Layout.Children.Add(endButton,
+                RelativeLayout.Children.Add(endButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
                     widthConstraint: Constraint.RelativeToParent(p => p.Width * buttonWidthFactor),
                     yConstraint: Constraint.RelativeToParent(p => p.Height * endButtonYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
             }
             var rightMostLaneBorder = new BoxView { Color = Color.Black };
-            Layout.Children.Add(rightMostLaneBorder,
+            RelativeLayout.Children.Add(rightMostLaneBorder,
                 xConstraint: Constraint.RelativeToParent(p => p.Width * rightMostBorderXFactor),
                 widthConstraint: Constraint.RelativeToParent(p => p.Width * outerMostBorderWidthFactor),
                 yConstraint: Constraint.RelativeToParent(p => p.Height * borderYFactor),
