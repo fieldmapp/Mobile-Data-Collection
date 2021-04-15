@@ -47,7 +47,7 @@ namespace DLR_Data_App.Views
 
             Detail = _menuPages[MenuItemType.Projects];
 
-            MasterBehavior = MasterBehavior.Popover;
+            FlyoutLayoutBehavior = FlyoutLayoutBehavior.Popover;
 
             Appearing += MainPage_Appearing;
         }

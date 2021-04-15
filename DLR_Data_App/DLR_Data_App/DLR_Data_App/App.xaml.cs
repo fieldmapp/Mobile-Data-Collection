@@ -16,7 +16,7 @@ namespace DLR_Data_App
         public static ThreadSafeRandom RandomProvider = new ThreadSafeRandom();
         public static Views.MainPage CurrentMainPage => (Current.MainPage as Views.MainPage);
         public static User CurrentUser;
-        public NavigationPage Navigation => (MainPage as MasterDetailPage)?.Detail as NavigationPage;
+        public NavigationPage Navigation => (MainPage as FlyoutPage)?.Detail as NavigationPage;
         public IStorageProvider StorageProvider;
         public Page CurrentPage => Navigation?.CurrentPage;
         public new MainPage MainPage => base.MainPage as MainPage;
