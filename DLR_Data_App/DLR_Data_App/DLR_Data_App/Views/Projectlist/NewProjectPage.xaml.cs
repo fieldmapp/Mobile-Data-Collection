@@ -1,18 +1,17 @@
 ﻿using System;
 using Xamarin.Forms.Xaml;
 
-using Plugin.FilePicker;
 using DLR_Data_App.Services;
 using DLR_Data_App.Localizations;
 using System.IO;
-using Plugin.FilePicker.Abstractions;
+using Xamarin.Essentials;
 
 namespace DLR_Data_App.Views.ProjectList
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewProjectPage
     {
-        private FileData File { get; set; }
+        private FileResult File { get; set; }
         string _fileCopyPath;
 
         public NewProjectPage()
@@ -27,7 +26,7 @@ namespace DLR_Data_App.Views.ProjectList
         /// </summary>
         private async void btn_filepicker_Clicked(object sender, EventArgs e)
         {
-            File = await CrossFilePicker.Current.PickFile();
+            File = await FilePicker.PickAsync();
 
             if (File != null)
             {
@@ -35,7 +34,7 @@ namespace DLR_Data_App.Views.ProjectList
                 {
                     LblZipPath.Text = File.FileName;
                     _fileCopyPath = Path.Combine(App.FolderLocation, "Data.zip");
-                    using (var dataArray = File.GetStream())
+                    using (var dataArray = await File.OpenReadAsync())
                     {
                         System.IO.File.Delete(_fileCopyPath);
 

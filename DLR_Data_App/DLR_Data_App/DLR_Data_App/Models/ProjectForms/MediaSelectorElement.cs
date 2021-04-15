@@ -2,7 +2,6 @@
 using DLR_Data_App.Localizations;
 using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Services;
-using Plugin.FilePicker;
 using System;
 using System.Collections.Generic;
 using System.Text;

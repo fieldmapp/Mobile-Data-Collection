@@ -3,7 +3,6 @@ using DLR_Data_App.Localizations;
 using DLR_Data_App.Models.ProjectForms;
 using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Services.Sensors;
-using Plugin.FilePicker;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
