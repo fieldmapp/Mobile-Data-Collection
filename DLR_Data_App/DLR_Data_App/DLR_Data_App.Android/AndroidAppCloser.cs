@@ -20,7 +20,7 @@ namespace com.DLR.DLR_Data_App.Droid
     {
         public void CloseApp()
         {
-            var activity = (Activity)Forms.Context;
+            var activity = (Activity)MainActivity.Instance;
             activity.FinishAffinity();
         }
     }
