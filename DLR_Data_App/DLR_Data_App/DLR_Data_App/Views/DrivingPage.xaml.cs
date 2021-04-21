@@ -1,7 +1,12 @@
-﻿using DLR_Data_App.Controls;
+﻿using CsvHelper;
+using CsvHelper.Configuration.Attributes;
+using DLR_Data_App.Controls;
+using DLR_Data_App.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,6 +65,7 @@ namespace DLR_Data_App.Views
         public DrivingPage()
         {
             InitializeComponent();
+            WriteUsingCsvWriter(csvWriter => csvWriter.WriteHeader<InteractionInfo>());
 
             var centerLaneStartTapRecognizer = new TapGestureRecognizer();
             centerLaneStartTapRecognizer.Tapped += CenterLaneStartTapRecognizer_Tapped;
@@ -313,6 +319,8 @@ namespace DLR_Data_App.Views
         {
             if (!IsLaneActive[laneIndex])
             {
+                PushInteractionToLog(new[] { new InteractionInfo(DateTime.Now, laneIndex, "open") });
+
                 if (laneIndex == 0)
                 {
                     ArrowStartCenterShape.Fill = InactiveButtonBrush;
@@ -339,6 +347,39 @@ namespace DLR_Data_App.Views
 
         View GetMiddleButtonWithIndex(int index) => (index == 0 ? (View)CenterLaneMiddleButton : LaneMiddleButtons[index - 1]);
 
+        public class InteractionInfo
+        {
+            public InteractionInfo(DateTime utcDateTime, int laneIndex, string action)
+            {
+                UtcDateTime = utcDateTime;
+                LaneIndex = laneIndex;
+                Action = action;
+            }
+            [Index(0)]
+            public DateTime UtcDateTime { get; set; }
+            [Index(1)]
+            public int LaneIndex { get; set; }
+            [Index(2)]
+            public string Action { get; set; }
+        }
+
+        string LogFileIdentifier = "drivingView" + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
+
+        public void WriteUsingCsvWriter(Action<CsvWriter> writerAction)
+        {
+            using (var logFileStream = DependencyService.Get<IStorageAccessProvider>().OpenFileAppendExternal(LogFileIdentifier))
+            using (var writer = new StreamWriter(logFileStream))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                writerAction(csv);
+            }
+        }
+
+        public void PushInteractionToLog(IEnumerable<InteractionInfo> interactionInfo)
+        {
+            WriteUsingCsvWriter(csvWriter => csvWriter.WriteRecords(interactionInfo));
+        }
+
         private void CenterButtonClicked(int laneIndex)
         {
             if (IsLaneStarted[laneIndex] && !IsLaneSelectedForInput[laneIndex])
@@ -358,6 +399,8 @@ namespace DLR_Data_App.Views
         {
             if (IsLaneActive[laneIndex])
             {
+                PushInteractionToLog(new[] { new InteractionInfo(DateTime.Now, laneIndex, "close") });
+
                 if (laneIndex == 0)
                 {
                     ArrowStartCenterShape.Fill = ActiveButtonBrush;
@@ -383,23 +426,31 @@ namespace DLR_Data_App.Views
         void DamageTypeButtonClicked(DamageType type)
         {
             ShowTypeAndCauseButtonsActiveStatus(false);
+            var now = DateTime.UtcNow;
+            var interactionInfos = new List<InteractionInfo>();
             for (int i = 0; i < LaneCount; i++)
             {
                 if (IsLaneSelectedForInput[i])
                 {
+
                     IsLaneSelectedForInput[i] = false;
                     IsLaneTypeEntered[i] = true;
                     if (!IsLaneCauseEntered[i])
                         CauseLaneBackgrounds[i].Background = Brush.Transparent;
                     TypeLaneBackgrounds[i].Background = CompletedInfoBrush;
                     GetMiddleButtonWithIndex(i).BackgroundColor = ActiveButtonColor;
+                    interactionInfos.Add(new InteractionInfo(now, i, "damage=" + type.ToString()));
                 }
             }
+            if (interactionInfos.Any())
+                PushInteractionToLog(interactionInfos);
         }
 
         void DamageCauseButtonClicked(DamageCause cause)
         {
             ShowTypeAndCauseButtonsActiveStatus(false);
+            var now = DateTime.UtcNow;
+            var interactionInfos = new List<InteractionInfo>();
             for (int i = 0; i < LaneCount; i++)
             {
                 if (IsLaneSelectedForInput[i])
@@ -410,8 +461,11 @@ namespace DLR_Data_App.Views
                         TypeLaneBackgrounds[i].Background = Brush.Transparent;
                     CauseLaneBackgrounds[i].Background = CompletedInfoBrush;
                     GetMiddleButtonWithIndex(i).BackgroundColor = ActiveButtonColor;
+                    interactionInfos.Add(new InteractionInfo(now, i, "cause=" + cause.ToString()));
                 }
             }
+            if (interactionInfos.Any())
+                PushInteractionToLog(interactionInfos);
         }
     }
 }
