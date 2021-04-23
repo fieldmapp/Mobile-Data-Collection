@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 using DLR_Data_App.Controls;
 using DLR_Data_App.Services;
@@ -130,6 +131,7 @@ namespace DLR_Data_App.Views
 
         private void ResetToInitialState()
         {
+            PushInteractionToLog(new[] { new InteractionInfo(DateTime.Now, -1, "canceled") });
             foreach (var button in LaneBeginButtons)
             {
                 button.BackgroundColor = ActiveButtonColor;
@@ -369,7 +371,7 @@ namespace DLR_Data_App.Views
         {
             using (var logFileStream = DependencyService.Get<IStorageAccessProvider>().OpenFileAppendExternal(LogFileIdentifier))
             using (var writer = new StreamWriter(logFileStream))
-            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            using (var csv = new CsvWriter(writer, new CsvConfiguration(CultureInfo.InvariantCulture) { HasHeaderRecord = false }))
             {
                 writerAction(csv);
             }
