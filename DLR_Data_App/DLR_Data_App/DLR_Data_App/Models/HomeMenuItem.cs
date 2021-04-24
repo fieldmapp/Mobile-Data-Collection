@@ -12,7 +12,8 @@
         CurrentProfiling,
         DistanceMeasuringDemo,
         VoiceRecognitionDemo,
-        Driving
+        DrivingEasy,
+        DrivingHard
     }
     public class HomeMenuItem
     {

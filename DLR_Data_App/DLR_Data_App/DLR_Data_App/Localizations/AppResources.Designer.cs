@@ -349,6 +349,24 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Driving View Easy ähnelt.
+        /// </summary>
+        internal static string drivingvieweasy {
+            get {
+                return ResourceManager.GetString("drivingvieweasy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Driving View Hard ähnelt.
+        /// </summary>
+        internal static string drivingviewhard {
+            get {
+                return ResourceManager.GetString("drivingviewhard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Easy: ähnelt.
         /// </summary>
         internal static string easyWithColon {

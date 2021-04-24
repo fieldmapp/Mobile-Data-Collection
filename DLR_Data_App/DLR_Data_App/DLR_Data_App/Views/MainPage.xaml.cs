@@ -36,7 +36,8 @@ namespace DLR_Data_App.Views
                 { MenuItemType.Settings, new NavigationPage(new SettingsPage()) },
                 { MenuItemType.About, new NavigationPage(new AboutPage()) },
                 { MenuItemType.VoiceRecognitionDemo, new NavigationPage(new VoiceRecognitionDemoPage()) },
-                { MenuItemType.Driving, new NavigationPage(new DrivingPage()) }
+                { MenuItemType.DrivingEasy, new NavigationPage(new DrivingPage(1)) },
+                { MenuItemType.DrivingHard, new NavigationPage(new DrivingPage(3)) }
             };
         }
 

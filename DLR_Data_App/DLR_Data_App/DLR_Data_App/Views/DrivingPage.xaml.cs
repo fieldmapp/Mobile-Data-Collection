@@ -39,32 +39,47 @@ namespace DLR_Data_App.Views
             WatterLogging,
             MouseEating
         }
-        const int LaneCountPerSide = 3;
-        public const int LaneCount = 2 * LaneCountPerSide + 1;
+        public const int MaxLaneCountPerSide = 3;
+        public const int MaxTotalLaneCount = 2 * MaxLaneCountPerSide + 1;
 
-        static Brush CompletedInfoBrush = Brush.Green;
-        static Brush ActiveForInputBrush = Brush.Orange;
-        static Color InactiveButtonColor = Color.WhiteSmoke;
-        static Brush InactiveButtonBrush = new SolidColorBrush(InactiveButtonColor);
-        static Color ActiveButtonColor = Color.FromHex("#629C44");
-        static Brush ActiveButtonBrush = new SolidColorBrush(ActiveButtonColor);
-        List<Button> LaneBeginButtons = new List<Button>();
-        List<Button> LaneMiddleButtons = new List<Button>();
-        List<Button> LaneEndButtons = new List<Button>();
-        List<BoxView> TypeLaneBackgrounds = new List<BoxView>();
-        List<BoxView> CauseLaneBackgrounds = new List<BoxView>();
-        List<FormattedButton> DamageTypeButtons = new List<FormattedButton>();
-        List<FormattedButton> DamageCauseButtons = new List<FormattedButton>();
-
-        bool[] IsLaneActive = new bool[LaneCount];
-        bool[] IsLaneSelectedForInput = new bool[LaneCount];
-        bool[] IsLaneCauseEntered = new bool[LaneCount];
-        bool[] IsLaneTypeEntered = new bool[LaneCount];
-        bool[] IsLaneStarted = new bool[LaneCount];
+        readonly static Brush CompletedInfoBrush = Brush.Green;
+        readonly static Brush ActiveForInputBrush = Brush.Orange;
+        readonly static Color InactiveButtonColor = Color.WhiteSmoke;
+        readonly static Brush InactiveButtonBrush = new SolidColorBrush(InactiveButtonColor);
+        readonly static Color ActiveButtonColor = Color.FromHex("#629C44");
+        readonly static Brush ActiveButtonBrush = new SolidColorBrush(ActiveButtonColor);
 
 
-        public DrivingPage()
+        readonly int LaneCountPerSide;
+        readonly int TotalLaneCount;
+        readonly List<Button> LaneBeginButtons = new List<Button>();
+        readonly List<Button> LaneMiddleButtons = new List<Button>();
+        readonly List<Button> LaneEndButtons = new List<Button>();
+        readonly List<BoxView> TypeLaneBackgrounds = new List<BoxView>();
+        readonly List<BoxView> CauseLaneBackgrounds = new List<BoxView>();
+        readonly List<FormattedButton> DamageTypeButtons = new List<FormattedButton>();
+        readonly List<FormattedButton> DamageCauseButtons = new List<FormattedButton>();
+        readonly bool[] IsLaneActive;
+        readonly bool[] IsLaneSelectedForInput;
+        readonly bool[] IsLaneCauseEntered;
+        readonly bool[] IsLaneTypeEntered;
+        readonly bool[] IsLaneStarted;
+        readonly string LogFileIdentifier;
+
+
+        public DrivingPage(int laneCountPerSide = MaxLaneCountPerSide)
         {
+            LaneCountPerSide = laneCountPerSide;
+            TotalLaneCount = 2 * LaneCountPerSide + 1;
+
+            IsLaneActive = new bool[TotalLaneCount];
+            IsLaneSelectedForInput = new bool[TotalLaneCount];
+            IsLaneCauseEntered = new bool[TotalLaneCount];
+            IsLaneTypeEntered = new bool[TotalLaneCount];
+            IsLaneStarted = new bool[TotalLaneCount];
+
+            LogFileIdentifier = "drivingView" + laneCountPerSide + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
+
             InitializeComponent();
             WriteUsingCsvWriter(csvWriter => csvWriter.WriteHeader<InteractionInfo>());
 
@@ -147,7 +162,7 @@ namespace DLR_Data_App.Views
             {
                 boxView.Background = Brush.Transparent;
             }
-            for (int i = 0; i < LaneCount; i++)
+            for (int i = 0; i < TotalLaneCount; i++)
             {
                 IsLaneActive[i] = false;
                 IsLaneSelectedForInput[i] = false;
@@ -365,8 +380,6 @@ namespace DLR_Data_App.Views
             public string Action { get; set; }
         }
 
-        string LogFileIdentifier = "drivingView" + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
-
         public void WriteUsingCsvWriter(Action<CsvWriter> writerAction)
         {
             using (var logFileStream = DependencyService.Get<IStorageAccessProvider>().OpenFileAppendExternal(LogFileIdentifier))
@@ -430,7 +443,7 @@ namespace DLR_Data_App.Views
             ShowTypeAndCauseButtonsActiveStatus(false);
             var now = DateTime.UtcNow;
             var interactionInfos = new List<InteractionInfo>();
-            for (int i = 0; i < LaneCount; i++)
+            for (int i = 0; i < TotalLaneCount; i++)
             {
                 if (IsLaneSelectedForInput[i])
                 {
@@ -453,7 +466,7 @@ namespace DLR_Data_App.Views
             ShowTypeAndCauseButtonsActiveStatus(false);
             var now = DateTime.UtcNow;
             var interactionInfos = new List<InteractionInfo>();
-            for (int i = 0; i < LaneCount; i++)
+            for (int i = 0; i < TotalLaneCount; i++)
             {
                 if (IsLaneSelectedForInput[i])
                 {
