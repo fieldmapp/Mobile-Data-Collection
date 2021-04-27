@@ -289,7 +289,7 @@ Wiki2PDF:
 
     # Let's start AsciiDoc to PDF conversion
     - printf "\n-------------------------------------\nSTARTING ASCIIDOC CONVERSION:\n-------------------------------------\n"
-    - find . -name '*.asciidoc' -exec sh -c 'echo "Processing $0" && asciidoctor-pdf -a icons=font $0 && echo "Done.\n"' {} \;
+    - find . -name '*.asciidoc' -exec sh -c 'echo "Processing $0" && asciidoctor-pdf -a theme=default-with-fallback-font -a icons=font $0 && echo "Done.\n"' {} \;
 
     # Cleanup
     - cd ../..
