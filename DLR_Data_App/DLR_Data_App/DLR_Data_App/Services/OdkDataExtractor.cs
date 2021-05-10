@@ -36,6 +36,7 @@ namespace DLR_Data_App.Services
             { "exp10(", "Pow(10," },
             { "${", string.Empty },
             { "}", string.Empty },
+            { "\"", "'" }
         };
 
         /// <summary>
