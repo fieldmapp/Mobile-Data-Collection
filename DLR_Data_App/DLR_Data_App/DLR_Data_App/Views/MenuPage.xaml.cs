@@ -28,7 +28,8 @@ namespace DLR_Data_App.Views
                 new HomeMenuItem { Id = MenuItemType.Logout, Title=AppResources.logout },
                 new HomeMenuItem { Id = MenuItemType.DistanceMeasuringDemo, Title=AppResources.movement },
                 new HomeMenuItem { Id = MenuItemType.VoiceRecognitionDemo, Title=AppResources.voicerecognition },
-                new HomeMenuItem { Id = MenuItemType.Driving, Title=AppResources.drivingview }
+                new HomeMenuItem { Id = MenuItemType.DrivingEasy, Title=AppResources.drivingvieweasy },
+                new HomeMenuItem { Id = MenuItemType.DrivingHard, Title=AppResources.drivingviewhard }
             };
 
             ListViewMenu.ItemsSource = menuItems;

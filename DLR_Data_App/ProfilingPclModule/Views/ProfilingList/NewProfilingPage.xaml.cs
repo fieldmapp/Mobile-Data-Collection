@@ -1,17 +1,16 @@
 ﻿using System;
 using Xamarin.Forms.Xaml;
+using Plugin.FilePicker;
 using DLR_Data_App.Services;
 using System.IO;
-using Plugin.FilePicker;
-using Plugin.FilePicker.Abstractions;
-using DlrDataApp.Modules.SharedModule.Localization;
+using Xamarin.Essentials;
 
 namespace DlrDataApp.Modules.ProfilingSharedModule.Views.ProfilingList
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewProfilingPage
     {
-        private FileData SelectedFile { get; set; }
+        private FileResult SelectedFile { get; set; }
         string _fileCopyPath;
 
         public NewProfilingPage()
@@ -26,14 +25,14 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views.ProfilingList
         /// </summary>
         private async void btn_filepicker_Clicked(object sender, EventArgs e)
         {
-            SelectedFile = await CrossFilePicker.Current.PickFile();
+            SelectedFile = await FilePicker.PickAsync();
 
             if (SelectedFile != null)
             {
                 if (SelectedFile.FileName.EndsWith(".zip"))
                 {
-                    LblZipPath.Text = SelectedFile.FileName;
                     _fileCopyPath = Path.Combine(ProfilingSharedModule.Instance.ModuleHost.App.FolderLocation, "Data.zip");
+                    using (var dataArray = await SelectedFile.OpenReadAsync())
                     using (var dataArray = SelectedFile.GetStream())
                     {
                         File.Delete(_fileCopyPath);

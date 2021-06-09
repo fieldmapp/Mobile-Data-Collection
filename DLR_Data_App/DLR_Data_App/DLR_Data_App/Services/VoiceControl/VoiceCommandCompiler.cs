@@ -139,7 +139,7 @@ namespace DLR_Data_App.Services.VoiceControl
             KeywordSymbol.number5, KeywordSymbol.number6, KeywordSymbol.number7, KeywordSymbol.number8, KeywordSymbol.number9
         };
 
-        readonly static List<KeywordSymbol> ExcludedNumberSymbols = NumberSymbols.Skip(DrivingPage.LaneCount).ToList();
+        readonly static List<KeywordSymbol> ExcludedNumberSymbols = NumberSymbols.Skip(DrivingPage.MaxTotalLaneCount).ToList();
 
         public readonly static List<string> KeywordStrings =
             KeywordStringToSymbol

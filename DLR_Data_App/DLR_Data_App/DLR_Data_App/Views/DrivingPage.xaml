@@ -17,7 +17,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <RelativeLayout x:Name="Layout">
+        <RelativeLayout x:Name="RelativeLayout">
             <Frame x:Name="BackgroundBox"
                    BackgroundColor="{StaticResource Key=BackgroundColor}"
                    BorderColor="Black" CornerRadius="0"

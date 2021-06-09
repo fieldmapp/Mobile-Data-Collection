@@ -124,7 +124,7 @@
                 "1": "Previous crop: Plant category"
             },
             "hint": {
-                "0": "Kategorie, der die Feldfruchtsorte zuzuordnen ist, aus dem Menü durch Antippen auswählen.",
+                "0": "Kategorie, der die Feldfruchtsorte der Vorfrucht zu zuordnen ist, aus dem Menü durch Antippen auswählen.",
                 "1": "Select (from the menu) the plant category of the crop that was grown in the previous growing period."
             },
             "defaultValue": "",
@@ -200,7 +200,7 @@
                 "1": "Previous crop 1: Crop type"
             },
             "hint": {
-                "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
+                "0": "Sorte der Feldfrucht aus der letzten Anbauperiode aus dem Menü durch Antippen auswählen.",
                 "1": "Select (from the menu) the crop type that was grown in the previous growing period."
             },
             "defaultValue": "",
@@ -285,7 +285,7 @@
                 "1": "Previous crop 1: Crop type"
             },
             "hint": {
-                "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
+                "0": "Sorte der Feldfrucht aus der letzten Anbauperiode aus dem Menü durch Antippen auswählen.",
                 "1": "Select (from the menu) the crop type that was grown in the previous growing period."
             },
             "defaultValue": "",
@@ -352,7 +352,7 @@
                 "1": "Previous crop 1: Crop type"
             },
             "hint": {
-                "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
+                "0": "Sorte der Feldfrucht aus der letzten Anbauperiode aus dem Menü durch Antippen auswählen.",
                 "1": "Select (from the menu) the crop type that was grown in the previous growing period."
             },
             "defaultValue": "",
@@ -401,7 +401,7 @@
                 "1": "Previous crop 1: Crop type"
             },
             "hint": {
-                "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
+                "0": "Sorte der Feldfrucht aus der letzten Anbauperiode aus dem Menü durch Antippen auswählen.",
                 "1": "Select (from the menu) the crop type that was grown in the previous growing period."
             },
             "defaultValue": "",
@@ -459,8 +459,8 @@
                 "1": "Previous crop 1: Crop type"
             },
             "hint": {
-                "0": "Sorte der Feldfrucht eingeben.",
-                "1": "Write the grown crop type into the field."
+                "0": "Sorte der Feldfrucht aus der letzten Anbauperiode aus dem Menü durch Antippen auswählen.",
+                "1": "Select (from the menu) the crop type that was grown in the previous growing period."
             },
             "defaultValue": "",
             "readOnly": false,
@@ -487,7 +487,7 @@
                 "1": "Previous crop 2: Plant category"
             },
             "hint": {
-                "0": "Kategorie, der die Feldfruchtsorte zuzuordnen ist, aus dem Menü durch Antippen auswählen.",
+                "0": "Kategorie, der die Feldfruchtsorte der Vorfrucht zu zuordnen ist, aus dem Menü durch Antippen auswählen.",
                 "1": "Select (from the menu) the plant category of the crop that was grown in the previous growing period."
             },
             "defaultValue": "",
@@ -563,7 +563,7 @@
                 "1": "Previous crop 2: Crop type"
             },
             "hint": {
-                "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
+                "0": "Sorte der Feldfrucht aus der letzten Anbauperiode aus dem Menü durch Antippen auswählen.",
                 "1": "Select (from the menu) the crop type that was grown in the previous growing period."
             },
             "defaultValue": "",
@@ -648,7 +648,7 @@
                 "1": "Previous crop 2: Crop type"
             },
             "hint": {
-                "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
+                "0": "Sorte der Feldfrucht aus der letzten Anbauperiode aus dem Menü durch Antippen auswählen.",
                 "1": "Select (from the menu) the crop type that was grown in the previous growing period."
             },
             "defaultValue": "",
@@ -715,7 +715,7 @@
                 "1": "Previous crop 2: Crop type"
             },
             "hint": {
-                "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
+                "0": "Sorte der Feldfrucht aus der letzten Anbauperiode aus dem Menü durch Antippen auswählen.",
                 "1": "Select (from the menu) the crop type that was grown in the previous growing period."
             },
             "defaultValue": "",
@@ -764,7 +764,7 @@
                 "1": "Previous crop 2: Crop type"
             },
             "hint": {
-                "0": "Sorte der Feldfrucht aus dem Menü durch Antippen auswählen.",
+                "0": "Sorte der Feldfrucht aus der letzten Anbauperiode aus dem Menü durch Antippen auswählen.",
                 "1": "Select (from the menu) the crop type that was grown in the previous growing period."
             },
             "defaultValue": "",
@@ -822,8 +822,8 @@
                 "1": "Previous crop 2: Crop type"
             },
             "hint": {
-                "0": "Sorte der Feldfrucht der aktuellen Anbauperiode aus dem Menü durch Antippen auswählen.",
-                "1": "Select the currently grown crop type from the menu."
+                "0": "Sorte der Feldfrucht aus der letzten Anbauperiode aus dem Menü durch Antippen auswählen.",
+                "1": "Select (from the menu) the crop type that was grown in the previous growing period."
             },
             "defaultValue": "",
             "readOnly": false,

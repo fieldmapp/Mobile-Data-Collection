@@ -12,7 +12,7 @@
             },
             "defaultValue": "",
             "readOnly": false,
-            "required": true,
+            "required": false,
             "requiredText": {
                 "1": ""
             },

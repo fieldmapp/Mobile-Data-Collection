@@ -86,7 +86,7 @@ namespace com.DLR.DLR_Data_App.Droid
                     KaldiRecognizer.StartListening();
                 }
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
 
             }

@@ -15,7 +15,7 @@ namespace DlrDataApp.Modules.VoiceRecognitionSharedModule
     {
 
         const int MaxKeywordInspectionLength = 40;
-        const int LaneCount = DrivingPage.LaneCount;
+        const int LaneCount = DrivingPage.MaxTotalLaneCount;
 
         public VoiceRecognitionDemoPage()
         {

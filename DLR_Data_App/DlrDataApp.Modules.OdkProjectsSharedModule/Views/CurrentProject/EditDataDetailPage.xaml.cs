@@ -131,13 +131,13 @@ namespace DLR_Data_App.Views.CurrentProject
         private void UnlockElement(FormElement element)
         {
             UnlockedElements.Add(element);
-            element.Frame.IsVisible = true;
+            element.IsVisible = true;
         }
 
         private void LockElement(FormElement element, bool reset = true)
         {
             UnlockedElements.Remove(element);
-            element.Frame.IsVisible = false;
+            element.IsVisible = false;
             if (reset)
                 element.Reset();
         }
@@ -164,7 +164,7 @@ namespace DLR_Data_App.Views.CurrentProject
             //if the element was not required to progress, then changing it can't make a new element visible
             if (changedElement.Data.Required)
             {
-                var currentlyRequiredElement = _formElements.LastOrDefault(e => e.Frame.IsVisible && e.Data.Required);
+                var currentlyRequiredElement = _formElements.LastOrDefault(e => e.IsVisible && e.Data.Required);
                 if (currentlyRequiredElement == changedElement)
                 {
                     //Show all questions until (including) the next required one
@@ -187,14 +187,14 @@ namespace DLR_Data_App.Views.CurrentProject
                     variables = GeatherVariables();
                 if (element.ShouldBeShownExpression.Evaluate(variables))
                 {
-                    element.Frame.IsVisible = true;
+                    element.IsVisible = true;
                 }
                 else
                 {
-                    var wasVisible = element.Frame.IsVisible;
+                    var wasVisible = element.IsVisible;
                     if (wasVisible)
                     {
-                        element.Frame.IsVisible = false;
+                        element.IsVisible = false;
                         element.Reset();
                     }
                 }

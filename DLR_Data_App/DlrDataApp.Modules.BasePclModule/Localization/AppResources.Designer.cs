@@ -313,6 +313,33 @@ namespace DlrDataApp.Modules.SharedModule.Localization {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Driving View Easy ähnelt.
+        /// </summary>
+        internal static string drivingvieweasy {
+            get {
+                return ResourceManager.GetString("drivingvieweasy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Driving View Hard ähnelt.
+        /// </summary>
+        internal static string drivingviewhard {
+            get {
+                return ResourceManager.GetString("drivingviewhard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Easy: ähnelt.
+        /// </summary>
+        internal static string easyWithColon {
+            get {
+                return ResourceManager.GetString("easyWithColon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Edit ähnelt.
         /// </summary>
         public static string edit {
@@ -723,6 +750,24 @@ namespace DlrDataApp.Modules.SharedModule.Localization {
         public static string profiles {
             get {
                 return ResourceManager.GetString("profiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Profiling ähnelt.
+        /// </summary>
+        internal static string profiling {
+            get {
+                return ResourceManager.GetString("profiling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Profiling details ähnelt.
+        /// </summary>
+        internal static string profilingdetails {
+            get {
+                return ResourceManager.GetString("profilingdetails", resourceCulture);
             }
         }
         

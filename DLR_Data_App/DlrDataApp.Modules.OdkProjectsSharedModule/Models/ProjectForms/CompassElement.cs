@@ -1,4 +1,11 @@
-﻿using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
+﻿using DLR_Data_App.Localizations;
+using DLR_Data_App.Models.ProjectModel;
+using DLR_Data_App.Services;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
 using DlrDataApp.Modules.OdkProjectsSharedModule.Services;
 using DlrDataApp.Modules.SharedModule.Localization;
 using Xamarin.Forms;
@@ -7,7 +14,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
 {
     class CompassElement : FormElement
     {
-        public CompassElement(Grid grid, ProjectFormElements data, string type) : base(grid, data, type) { }
+        public CompassElement(Grid grid, ProjectFormElements data, string type, Func<string, string, string, Task> displayAlertFunc, Project project) : base(grid, data, type, displayAlertFunc, project) { }
 
         public double CurrentHeadingMagneticNorth;
         public double SavedHeadingMagneticNorth;
@@ -37,7 +44,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
         public static CompassElement CreateForm(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var compassElement = new CompassElement(grid, parms.Element, parms.Type);
+            var compassElement = new CompassElement(grid, parms.Element, parms.Type, parms.DisplayAlertFunc, parms.CurrentProject);
 
             var currentCompassLabel = new Label { Text = AppResources.compass };
             compassElement.CurrentDataLabel = currentCompassLabel;

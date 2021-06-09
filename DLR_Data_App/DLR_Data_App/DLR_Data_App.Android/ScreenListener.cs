@@ -71,7 +71,7 @@ namespace com.DLR.DLR_Data_App.Droid
             PowerManager manager = (PowerManager)Context
                     .GetSystemService(Context.PowerService);
 
-            if (manager.IsScreenOn)
+            if (manager.IsInteractive)
             {
                 ScreenStateListener?.OnScreenOn();
             }

@@ -1,13 +1,16 @@
 ﻿using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
 using DlrDataApp.Modules.OdkProjectsSharedModule.Services;
 using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
 {
     class TextInputElement : FormElement
     {
-        public TextInputElement(Grid grid, ProjectFormElements data, string type) : base(grid, data, type) 
+        public TextInputElement(Grid grid, ProjectFormElements data, string type, Func<string, string, string, Task> displayAlertFunc, Project project) : base(grid, data, type, displayAlertFunc, project) 
         {
             LengthRange = OdkDataExtractor.GetRangeFromJsonString(data.Length, Convert.ToInt32, true, true);
         }
@@ -26,7 +29,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
         public static TextInputElement CreateForm(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var formElement = new TextInputElement(grid, parms.Element, parms.Type);
+            var formElement = new TextInputElement(grid, parms.Element, parms.Type, parms.DisplayAlertFunc, parms.CurrentProject);
 
             var placeholder = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
 

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
@@ -15,8 +16,12 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
     abstract class FormElement
     {
         const string ThisOdkElement = "thisodkelement";
-        public FormElement(Grid grid, ProjectFormElements data, string type)
+        Func<string, string, string, Task> DisplayAlertFunc;
+        Project Project;
+        public FormElement(Grid grid, ProjectFormElements data, string type, Func<string, string, string, Task> displayAlertFunc, Project project)
         {
+            Project = project;
+            DisplayAlertFunc = displayAlertFunc;
             Grid = grid;
             Frame = new Frame { CornerRadius = 10, BorderColor = Color.DarkSeaGreen, Content = Grid, IsVisible = false };
             Data = data;
@@ -42,6 +47,24 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
             Type = type;
         }
 
+        public bool IsVisible
+        {
+            get => Frame.IsVisible;
+            set
+            {
+                Frame.IsVisible = value;
+
+                // Hack: The following Task.Run tries to prevent following issue:
+                // When items become visible and should expand beyond the height of the parent StackLayout, they will only expand to the height.
+                // If the hack does not work, the user has to e.g. rotate the screen or try making other elements visible
+                Task.Run(async () =>
+                {
+                    await Task.Delay(100);
+                    Device.BeginInvokeOnMainThread(() => (Frame.Parent as StackLayout).InvalidateSize());
+                });
+            }
+        }
+
         public Frame Frame { get; }
         public Grid Grid { get; }
         /// <summary>
@@ -53,22 +76,27 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
         public event EventHandler InvalidContentChange;
         public OdkBooleanExpresion ShouldBeShownExpression { get; }
         public OdkBooleanExpresion ConstraintExpression { get; }
-        public virtual bool IsValid =>
-            IsSkipped || (
-            (
-            ConstraintExpression == null
-            || ConstraintExpression.Evaluate(new Dictionary<string, string> { { ThisOdkElement, GetRepresentationValue() } })
-            )
-            && IsValidElementSpecific);
+        public bool IsValid => IsSkipped || (IsConstraintFulfilled && IsValidElementSpecific);
+        private bool IsConstraintFulfilled => ConstraintExpression?.Evaluate(new Dictionary<string, string> { { ThisOdkElement, GetRepresentationValue() } }) ?? true;
         protected abstract bool IsValidElementSpecific { get; }
         public readonly string Type;
 
+        /// <summary>
+        /// Should be called every time the user did some input on this FormElement. Handles calls to <see cref="ValidContentChange"/> and <see cref="InvalidContentChange"/>.
+        /// Also displays the set ODK error message if needed.
+        /// </summary>
         public void OnContentChange()
         {
             if (IsValid)
                 ValidContentChange?.Invoke(this, null);
             else
+            {
                 InvalidContentChange?.Invoke(this, null);
+
+                var localizedErrorHint = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(Data.InvalidText, Project.Languages);
+                if (!string.IsNullOrWhiteSpace(localizedErrorHint))
+                    DisplayAlertFunc(AppResources.error, localizedErrorHint, AppResources.ok);
+            }
         }
 
         /// <summary>
@@ -133,7 +161,6 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
             };
             var grid = new Grid();
             grid.Children.Add(elementNameLabel, 0, 0);
-            Grid.SetRowSpan(elementNameLabel, 2);
 
             var hintText = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(parms.Element.Hint, parms.CurrentProject.Languages);
 

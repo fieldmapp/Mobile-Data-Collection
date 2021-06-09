@@ -37,6 +37,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Services
             { "exp10(", "Pow(10," },
             { "${", string.Empty },
             { "}", string.Empty },
+            { "\"", "'" }
         };
 
         /// <summary>

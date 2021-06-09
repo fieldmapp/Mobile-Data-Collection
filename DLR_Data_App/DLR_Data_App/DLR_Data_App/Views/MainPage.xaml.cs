@@ -35,9 +35,9 @@ namespace DLR_Data_App.Views
                 { MenuItemType.Sensortest, new NavigationPage(new SensorTestPage()) },
                 { MenuItemType.Settings, new NavigationPage(new SettingsPage()) },
                 { MenuItemType.About, new NavigationPage(new AboutPage()) },
-                { MenuItemType.DistanceMeasuringDemo, new NavigationPage(new DistanceMeasuringDemoPage()) },
                 { MenuItemType.VoiceRecognitionDemo, new NavigationPage(new VoiceRecognitionDemoPage()) },
-                { MenuItemType.Driving, new NavigationPage(new DrivingPage()) }
+                { MenuItemType.DrivingEasy, new NavigationPage(new DrivingPage(1)) },
+                { MenuItemType.DrivingHard, new NavigationPage(new DrivingPage(3)) }
             };
         }
 
@@ -48,7 +48,7 @@ namespace DLR_Data_App.Views
 
             Detail = _menuPages[MenuItemType.Projects];
 
-            MasterBehavior = MasterBehavior.Popover;
+            FlyoutLayoutBehavior = FlyoutLayoutBehavior.Popover;
 
             Appearing += MainPage_Appearing;
         }

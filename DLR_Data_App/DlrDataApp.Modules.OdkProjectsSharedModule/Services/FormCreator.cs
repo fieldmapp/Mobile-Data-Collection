@@ -1,4 +1,9 @@
-﻿using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms;
+﻿using DLR_Data_App.Controls;
+using DLR_Data_App.Localizations;
+using DLR_Data_App.Models.ProjectForms;
+using DLR_Data_App.Models.ProjectModel;
+using DLR_Data_App.Services.Sensors;
+using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms;
 using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
 using DlrDataApp.Modules.SharedModule;
 using System;

@@ -1,17 +1,18 @@
 ﻿using System;
 using Xamarin.Forms.Xaml;
-using DLR_Data_App.Services;
-using System.IO;
-using Plugin.FilePicker.Abstractions;
+
 using Plugin.FilePicker;
+using DLR_Data_App.Services;
+using Xamarin.Essentials;
 using DlrDataApp.Modules.SharedModule.Localization;
+using Xamarin.Essentials;
 
 namespace DlrDataApp.Modules.OdkProjectsSharedModule.Views.ProjectList
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewProjectPage
     {
-        private FileData File { get; set; }
+        private FileResult File { get; set; }
         string _fileCopyPath;
 
         public NewProjectPage()
@@ -26,14 +27,14 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Views.ProjectList
         /// </summary>
         private async void btn_filepicker_Clicked(object sender, EventArgs e)
         {
-            File = await CrossFilePicker.Current.PickFile();
+            File = await FilePicker.PickAsync();
 
             if (File != null)
             {
                 if (File.FileName.EndsWith(".zip"))
                 {
-                    LblZipPath.Text = File.FileName;
                     _fileCopyPath = Path.Combine(OdkProjectsSharedModule.Instance.ModuleHost.App.FolderLocation, "Data.zip");
+                    using (var dataArray = await File.OpenReadAsync())
                     using (var dataArray = File.GetStream())
                     {
                         System.IO.File.Delete(_fileCopyPath);

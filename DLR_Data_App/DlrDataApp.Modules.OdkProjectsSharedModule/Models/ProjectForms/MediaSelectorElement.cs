@@ -1,15 +1,22 @@
-﻿using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
+﻿using DLR_Data_App.Controls;
+using DLR_Data_App.Localizations;
+using DLR_Data_App.Models.ProjectModel;
+using DLR_Data_App.Services;
+using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
 using DlrDataApp.Modules.OdkProjectsSharedModule.Services;
 using DlrDataApp.Modules.SharedModule;
 using DlrDataApp.Modules.SharedModule.Localization;
 using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
 {
     class MediaSelectorElement : FormElement
     {
-        public MediaSelectorElement(Grid grid, ProjectFormElements data, string type) : base(grid, data, type) { }
+        public MediaSelectorElement(Grid grid, ProjectFormElements data, string type, Func<string, string, string, Task> displayAlertFunc, Project project) : base(grid, data, type, displayAlertFunc, project) { }
 
         string _base64Data;
         public string Base64Data 
@@ -39,7 +46,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
         public static MediaSelectorElement CreateForm(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var formElement = new MediaSelectorElement(grid, parms.Element, parms.Type);
+            var formElement = new MediaSelectorElement(grid, parms.Element, parms.Type, parms.DisplayAlertFunc, parms.CurrentProject);
 
             var pickFileButton = new Button { Text = AppResources.select };
             var fileSelectedLabel = new Label { Text = AppResources.fileselected };
