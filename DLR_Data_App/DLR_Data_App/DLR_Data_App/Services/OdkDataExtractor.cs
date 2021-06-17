@@ -275,7 +275,7 @@ namespace DLR_Data_App.Services
                     languageCode = key;
                     break;
                 }
-                if (languageCode == null)
+                if (string.IsNullOrWhiteSpace(languageCode))
                 {
                     //just pick first available translation
                     var languagesEnumerator = languageObjects.GetEnumerator();
