@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace DlrDataApp.Modules.SharedModule
+namespace DlrDataApp.Modules.Base.Shared
 {
     public interface IModuleHost
     {
-        void AddSidebarItems(params KeyValuePair<string, NavigationPage>[] items);
-        void AddSidebarItems(IEnumerable<KeyValuePair<string, NavigationPage>> items);
+        Guid AddSidebarItems(params KeyValuePair<string, NavigationPage>[] items);
+        IEnumerable<Guid> AddSidebarItems(IEnumerable<KeyValuePair<string, NavigationPage>> items);
         IApp App { get; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿//Main contributors: Maya Koehnen
-using DlrDataApp.Modules.SharedModule;
-using DlrDataApp.Modules.ProfilingSharedModule.Models;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Profiling.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule.Views
+namespace DlrDataApp.Modules.Profiling.Shared.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EvaluationPage : ContentPage

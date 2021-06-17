@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DlrDataApp.Modules.SharedModule.Controls
+namespace DlrDataApp.Modules.Base.Shared.Controls
 {
     /// <summary>
     /// View which works like a picker, but without using popups. Works best when the children implements the <see cref="IInlinePickerElement"/> interface.

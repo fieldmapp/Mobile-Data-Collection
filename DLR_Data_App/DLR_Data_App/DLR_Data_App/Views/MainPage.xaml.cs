@@ -1,52 +1,50 @@
-﻿using DLR_Data_App.Localizations;
-using DLR_Data_App.Models;
+﻿using DLR_Data_App.Models;
 using DLR_Data_App.Services;
-using DLR_Data_App.Views.CurrentProject;
 using DLR_Data_App.Views.Login;
-using DLR_Data_App.Views.ProjectList;
 using DLR_Data_App.Views.Settings;
-using DLR_Data_App.Views.Profiling;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using DLR_Data_App.Views.ProfilingList;
 
 namespace DLR_Data_App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage
     {
-        private static Dictionary<MenuItemType, NavigationPage> LoadedMenuPages;
-        private readonly Dictionary<MenuItemType, NavigationPage> _menuPages;
+        private static Dictionary<Guid, NavigationPage> PreloadedMenuPages;
+        private readonly Dictionary<Guid, NavigationPage> _menuPages;
         private SemaphoreSlim NavigationLock = new SemaphoreSlim(1);
+        public MenuPage MenuPage { get; private set; }
+        public static MenuPage PreloadedMenuPage;
 
         [OnSplashScreenLoad]
         static void OnSplashscreenLoad()
         {
-            LoadedMenuPages = new Dictionary<MenuItemType, NavigationPage>
-            {
-                { MenuItemType.CurrentProject, new NavigationPage(new ProjectPage()) },
-                { MenuItemType.Projects, new NavigationPage(new ProjectListPage()) },
-                { MenuItemType.ProfilingList, new NavigationPage(new ProfilingListPage()) },
-                { MenuItemType.CurrentProfiling, new NavigationPage(new CurrentProfilingPage()) },
-                { MenuItemType.Sensortest, new NavigationPage(new SensorTestPage()) },
-                { MenuItemType.Settings, new NavigationPage(new SettingsPage()) },
-                { MenuItemType.About, new NavigationPage(new AboutPage()) },
-                { MenuItemType.VoiceRecognitionDemo, new NavigationPage(new VoiceRecognitionDemoPage()) },
-                { MenuItemType.DrivingEasy, new NavigationPage(new DrivingPage(1)) },
-                { MenuItemType.DrivingHard, new NavigationPage(new DrivingPage(3)) }
-            };
+            PreloadedMenuPage = new MenuPage();
+            PreloadedMenuPages = PreloadedMenuPage.MenuItems.ToDictionary(m => m.Id, m => m.NavigationPage);
+        }
+        [AfterSplashScreenLoad]
+        static void AfterSplashScreenLoad()
+        {
+            
         }
 
         public MainPage()
         {
             InitializeComponent();
-            _menuPages = LoadedMenuPages;
+            MenuPage = PreloadedMenuPage;
+            Flyout = MenuPage;
+            _menuPages = PreloadedMenuPages;
 
-            Detail = _menuPages[MenuItemType.Projects];
+            //PreloadedMenuPage
+
+            Detail = MenuPage.AboutMenuItem.NavigationPage;
 
             FlyoutLayoutBehavior = FlyoutLayoutBehavior.Popover;
 
@@ -65,11 +63,11 @@ namespace DLR_Data_App.Views
         /// </summary>
         /// <param name="id">Selected page</param>
         /// <returns><see cref="Page"/> which is displayed after this method is finished</returns>
-        public async Task<Page> NavigateFromMenu(MenuItemType id)
+        public async Task<Page> NavigateToPage(Guid id)
         {
             await NavigationLock.WaitAsync();
 
-            if (id == MenuItemType.Logout)
+            if (id == MenuPage.LogoutMenuItem.Id)
             {
                 var loginPage = new LoginPage();
                 Application.Current.MainPage = loginPage;
@@ -97,7 +95,7 @@ namespace DLR_Data_App.Views
 
         protected override bool OnBackButtonPressed()
         {
-            if ((App.Current as App).Navigation.Navigation.NavigationStack.Count == 1)
+            if ((App.Current as App).NavigationPage.Navigation.NavigationStack.Count == 1)
             {
                 if (!IsPresented)
                 {
@@ -111,7 +109,7 @@ namespace DLR_Data_App.Views
                     else
                     {
                         LastBackButtonPress = DateTime.UtcNow;
-                        DependencyService.Get<IToast>().ShortAlert(AppResources.appclosewarning);
+                        DependencyService.Get<IToast>().ShortAlert(SharedResources.appclosewarning);
                     }
                     return true;
                 }

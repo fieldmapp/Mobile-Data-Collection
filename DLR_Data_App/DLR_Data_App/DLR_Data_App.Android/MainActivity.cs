@@ -18,6 +18,7 @@ using Java.Lang;
 using Xamarin.Forms;
 using AndroidX.AppCompat.Widget;
 using static com.DLR.DLR_Data_App.Droid.ScreenListener;
+using DlrDataApp.Modules.Base.Shared;
 
 [assembly: UsesFeature("android.hardware.usb.host")]
 namespace com.DLR.DLR_Data_App.Droid
@@ -37,7 +38,8 @@ namespace com.DLR.DLR_Data_App.Droid
 
             Xamarin.Essentials.Platform.Init(Application);
 
-            JavaSystem.LoadLibrary("vosk_jni");
+            // TODO
+            //JavaSystem.LoadLibrary("vosk_jni");
 
             base.OnCreate(savedInstanceState);
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
@@ -46,8 +48,7 @@ namespace com.DLR.DLR_Data_App.Droid
             var folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             var fullPath = System.IO.Path.Combine(folderPath, dbName);
 
-            var storageProvider = new JsonStorageProvider(new AndroidStorageAccessProvider());
-            LoadApplication(new App(folderPath, fullPath, storageProvider));
+            LoadApplication(new App(folderPath, fullPath));
             ReloadToolbar();
             EnsureAppPermission(Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage, Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation, Manifest.Permission.RecordAudio);
 
@@ -213,7 +214,7 @@ namespace com.DLR.DLR_Data_App.Droid
 
         bool BackButtonPress()
         {
-            var navigationPage = (Xamarin.Forms.Application.Current as App).Navigation;
+            var navigationPage = (Xamarin.Forms.Application.Current as App).NavigationPage;
             var currentPage = navigationPage.CurrentPage;
             var mainPage = (Xamarin.Forms.Application.Current as App).MainPage;
 
@@ -245,6 +246,7 @@ namespace com.DLR.DLR_Data_App.Droid
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
+            // TODO ?
             if (requestCode == AndroidCameraProvider.REQUEST_CODE)
             {
                 var cameraProvider = (AndroidCameraProvider)DependencyService.Get<ICameraProvider>();

@@ -1,4 +1,5 @@
-﻿using DLR_Data_App.Localizations;
+﻿using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.Localization;
 
 namespace DLR_Data_App.ViewModels.Settings
 {
@@ -6,7 +7,7 @@ namespace DLR_Data_App.ViewModels.Settings
     {
         public AppSettingsViewModel()
         {
-            Title = AppResources.general;
+            Title = SharedResources.general;
         }
     }
 }

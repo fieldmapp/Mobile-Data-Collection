@@ -1,7 +1,4 @@
-﻿using DLR_Data_App.Localizations;
-using DLR_Data_App.Models.ProjectModel;
-using DLR_Data_App.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +6,7 @@ using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
 using DlrDataApp.Modules.OdkProjectsSharedModule.Services;
 using DlrDataApp.Modules.SharedModule.Localization;
 using Xamarin.Forms;
+using DlrDataApp.Modules.OdkProjectsSharedModule.Localization;
 
 namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
 {
@@ -46,7 +44,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
             var grid = CreateStandardBaseGrid(parms);
             var compassElement = new CompassElement(grid, parms.Element, parms.Type, parms.DisplayAlertFunc, parms.CurrentProject);
 
-            var currentCompassLabel = new Label { Text = AppResources.compass };
+            var currentCompassLabel = new Label { Text = SharedResources.compass };
             compassElement.CurrentDataLabel = currentCompassLabel;
             var currentCompassDataLabel = new Label();
             OdkProjectsSharedModule.Instance.ModuleHost.App.Sensor.Compass.ReadingChanged += (_, eventArgs) =>
@@ -55,9 +53,9 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
                 compassElement.CurrentHeadingMagneticNorth = eventArgs.Reading.HeadingMagneticNorth;
             };
 
-            var saveButton = new Button { Text = AppResources.save };
+            var saveButton = new Button { Text = SharedResources.save };
 
-            var savedCompassLabel = new Label { Text = AppResources.saveddata };
+            var savedCompassLabel = new Label { Text = SharedResources.saveddata };
             compassElement.SavedDataLabel = savedCompassLabel;
             var savedCompassDataLabel = new Label();
 

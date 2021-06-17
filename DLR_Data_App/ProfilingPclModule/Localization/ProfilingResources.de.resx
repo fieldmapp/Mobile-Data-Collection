@@ -183,6 +183,9 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen fÃ
   <data name="profilingResultsDifferentDifficulties" xml:space="preserve">
     <value>Hier sehen Sie Ihre Ergebnisse in den verschiedenen Schwierigkeitskategorien der Fragen</value>
   </data>
+  <data name="projectSuccessfullyAdded" xml:space="preserve">
+    <value>Projekt wurde erfolgreich geladen.</value>
+  </data>
   <data name="questionEntryFormat" xml:space="preserve">
     <value>Frage {0}/{1} ID {2}</value>
   </data>

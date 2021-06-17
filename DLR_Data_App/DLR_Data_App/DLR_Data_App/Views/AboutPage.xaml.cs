@@ -1,7 +1,5 @@
-﻿using DLR_Data_App.Localizations;
-using DLR_Data_App.Services;
+﻿using DlrDataApp.Modules.Base.Shared;
 using System;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace DLR_Data_App.Views

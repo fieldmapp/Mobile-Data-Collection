@@ -6,7 +6,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="DlrDataApp.Modules.SharedModule.Controls.InlinePicker">
+             x:Class="DlrDataApp.Modules.Base.Shared.Controls.InlinePicker">
     <ContentView.Content>
         <ListView ItemSelected="ListView_ItemSelected" RowHeight="40" x:Name="ListView" BackgroundColor="Transparent" SelectionMode="Single">
             

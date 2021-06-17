@@ -1,5 +1,5 @@
-﻿using DlrDataApp.Modules.ProfilingSharedModule.Models;
-using DlrDataApp.Modules.SharedModule;
+﻿using DlrDataApp.Modules.Profiling.Shared.Models;
+using DlrDataApp.Modules.Base.Shared;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule
+namespace DlrDataApp.Modules.Profiling.Shared
 {
     static class Helpers
     {

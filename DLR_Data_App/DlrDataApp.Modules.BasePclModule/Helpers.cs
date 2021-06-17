@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace DlrDataApp.Modules.SharedModule
+namespace DlrDataApp.Modules.Base.Shared
 {
     public static class Helpers
     {
@@ -138,6 +140,20 @@ namespace DlrDataApp.Modules.SharedModule
             return value.CompareTo(other) <= 0;
         }
 
+        public static void InvalidateSize(this View view)
+        {
+            if (view != null)
+            {
+                Type viewType = typeof(VisualElement);
+                IEnumerable<MethodInfo> methods = viewType.GetTypeInfo()
+                                                          .DeclaredMethods;
+                MethodInfo method = methods.FirstOrDefault(m => m.Name == "InvalidateMeasure");
 
+                if (method != null)
+                {
+                    method.Invoke(view, null);
+                }
+            }
+        }
     }
 }

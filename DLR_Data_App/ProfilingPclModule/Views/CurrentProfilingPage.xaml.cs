@@ -1,7 +1,7 @@
 ﻿//Main contributors: Maximilian Enderling, Henning Woydt
-using DlrDataApp.Modules.SharedModule;
-using DlrDataApp.Modules.ProfilingSharedModule.Localization;
-using DlrDataApp.Modules.ProfilingSharedModule.Models;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Profiling.Shared.Localization;
+using DlrDataApp.Modules.Profiling.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,8 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using DlrDataApp.Modules.Base.Shared.Localization;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule.Views
+namespace DlrDataApp.Modules.Profiling.Shared.Views
 {
     public partial class CurrentProfilingPage : ContentPage
     {
@@ -21,8 +22,8 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views
         public CurrentProfilingPage()
         {
             InitializeComponent();
-            Database = ProfilingSharedModule.Instance.ModuleHost.App.Database;
-            ProfilingStorageManager.Initilize(ProfilingSharedModule.Instance.ModuleHost.App.CurrentUser.Id);
+            Database = ProfilingModule.Instance.ModuleHost.App.Database;
+            ProfilingStorageManager.Initilize(ProfilingModule.Instance.ModuleHost.App.CurrentUser.Id);
 
             MenuList.ItemsSource = ProfilingStorageManager.ProfilingMenuItems;
         }
@@ -57,7 +58,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views
 
         private void HintClicked(object sender, EventArgs e)
         {
-            DisplayAlert(Localization.AppResources.hint, Localization.AppResources.hintProfilingListPage, SharedModule.Localization.AppResources.ok);
+            DisplayAlert(ProfilingResources.hint, ProfilingResources.hintProfilingListPage, SharedResources.ok);
         }
 
         private async void EvaluationClicked(object sender, EventArgs e)
@@ -72,7 +73,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views
         private async void ExportAnwersClicked(object sender, EventArgs e)
         {
             ProfilingStorageManager.ExportAnswers();
-            await DisplayAlert(AppResources.save, AppResources.answersExportedToRoot, AppResources.okay);
+            await DisplayAlert(SharedResources.save, SharedResources.answersExportedToRoot, SharedResources.okay);
         }
     }
 }

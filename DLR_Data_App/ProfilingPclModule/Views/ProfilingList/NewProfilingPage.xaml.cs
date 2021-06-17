@@ -1,11 +1,12 @@
 ﻿using System;
 using Xamarin.Forms.Xaml;
-using Plugin.FilePicker;
 using DLR_Data_App.Services;
 using System.IO;
 using Xamarin.Essentials;
+using DlrDataApp.Modules.Base.Shared.Localization;
+using DlrDataApp.Modules.Profiling.Shared.Localization;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule.Views.ProfilingList
+namespace DlrDataApp.Modules.Profiling.Shared.Views.ProfilingList
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewProfilingPage
@@ -31,9 +32,8 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views.ProfilingList
             {
                 if (SelectedFile.FileName.EndsWith(".zip"))
                 {
-                    _fileCopyPath = Path.Combine(ProfilingSharedModule.Instance.ModuleHost.App.FolderLocation, "Data.zip");
+                    _fileCopyPath = Path.Combine(ProfilingModule.Instance.ModuleHost.App.FolderLocation, "Data.zip");
                     using (var dataArray = await SelectedFile.OpenReadAsync())
-                    using (var dataArray = SelectedFile.GetStream())
                     {
                         File.Delete(_fileCopyPath);
 
@@ -45,7 +45,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views.ProfilingList
                 }
                 else
                 {
-                    await DisplayAlert(AppResources.filepicker, AppResources.filetypeerror, AppResources.cancel);
+                    await DisplayAlert(SharedResources.filepicker, SharedResources.filetypeerror, SharedResources.cancel);
                 }
             }
         }
@@ -64,18 +64,18 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views.ProfilingList
                     if (success)
                     {
                         //TODO: Fix alert info (currently related to project)
-                        await DisplayAlert(AppResources.projects, AppResources.projectSuccessfullyAdded, AppResources.okay);
+                        await DisplayAlert(ProfilingResources.profiling, ProfilingResources.projectSuccessfullyAdded, SharedResources.okay);
                         await Navigation.PopModalAsync();
                     }
                     else
                     {
-                        await DisplayAlert(AppResources.projects, AppResources.failed, AppResources.okay);
+                        await DisplayAlert(ProfilingResources.profiling, SharedResources.failed, SharedResources.okay);
                     }
                 }
             }
             else
             {
-                await DisplayAlert(AppResources.projects, AppResources.failed, AppResources.okay);
+                await DisplayAlert(ProfilingResources.profiling, SharedResources.failed, SharedResources.okay);
             }
         }
 

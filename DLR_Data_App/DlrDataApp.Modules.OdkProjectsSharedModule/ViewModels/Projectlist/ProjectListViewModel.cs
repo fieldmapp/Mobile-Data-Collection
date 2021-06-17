@@ -1,4 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using DlrDataApp.Modules.OdkProjectsSharedModule.Localization;
+using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
+using DlrDataApp.Modules.SharedModule;
+using System.Collections.ObjectModel;
 namespace DlrDataApp.Modules.OdkProjectsSharedModule.ViewModels.ProjectList
 {
     public class ProjectListViewModel : BaseViewModel
@@ -7,7 +10,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.ViewModels.ProjectList
 
         public ProjectListViewModel()
         {
-            Title = AppResources.projects;
+            Title = OdkProjectsResources.projects;
             Projects = new ObservableCollection<Project>();
         }
 
@@ -17,7 +20,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.ViewModels.ProjectList
         public void UpdateProjects()
         {
             //var projectList = Database.ReadProjects();
-            var projectListTranslated = Helpers.TranslateProjectDetails(Database.ReadProjects());
+            var projectListTranslated = Services.Helpers.TranslateProjectDetails(Database.ReadProjects());
 
             if (Projects == null) return;
 

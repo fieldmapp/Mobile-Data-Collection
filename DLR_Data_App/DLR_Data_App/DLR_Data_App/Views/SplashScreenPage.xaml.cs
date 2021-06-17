@@ -1,11 +1,4 @@
-﻿using DLR_Data_App.Localizations;
-using DLR_Data_App.Models;
-using DLR_Data_App.Services;
-using DLR_Data_App.Views.CurrentProject;
-using DLR_Data_App.Views.Login;
-using DLR_Data_App.Views.ProjectList;
-using DLR_Data_App.Views.Settings;
-using DLR_Data_App.Views.Profiling;
+﻿using DLR_Data_App.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +7,6 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using DLR_Data_App.Views.ProfilingList;
-using System.Runtime.CompilerServices;
 using System.Reflection;
 
 namespace DLR_Data_App.Views
@@ -34,18 +25,19 @@ namespace DLR_Data_App.Views
         {
             Appearing -= SplashScreenPage_Appearing;
 
-            await CreateNeededRessources();
+            await RunAllMethodsWithAttribute<OnSplashScreenLoadAttribute>();
+            await RunAllMethodsWithAttribute<AfterSplashScreenLoadAttribute>();
 
             Application.Current.MainPage = new MainPage();
         }
 
-        Task CreateNeededRessources()
+        Task RunAllMethodsWithAttribute<T>() where T : Attribute
         {
             //altered from https://stackoverflow.com/a/28791265/8512719#
 
             var tasksToDo = typeof(SplashScreenPage).Assembly.GetTypes()
                 .SelectMany(t => t.GetRuntimeMethods())
-                .Where(m => m.IsStatic && m.GetCustomAttribute<OnSplashScreenLoadAttribute>() != null)
+                .Where(m => m.IsStatic && m.GetCustomAttribute<T>() != null)
                 .Select(m => new Task(() => m.Invoke(null, null)))
                 .ToList();
 

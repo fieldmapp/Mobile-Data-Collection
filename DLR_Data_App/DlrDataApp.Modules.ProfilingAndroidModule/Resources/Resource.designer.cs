@@ -8,9 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("DlrDataApp.Modules.ProfilingAndroidModule.Resource", IsApplication=false)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("DlrDataApp.Modules.Profiling.Android.Resource", IsApplication=false)]
 
-namespace DlrDataApp.Modules.ProfilingAndroidModule
+namespace DlrDataApp.Modules.Profiling.Android
 {
 	
 	

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DlrDataApp.Modules.SharedModule.Controls
+namespace DlrDataApp.Modules.Base.Shared.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FormattedButton : ContentButton

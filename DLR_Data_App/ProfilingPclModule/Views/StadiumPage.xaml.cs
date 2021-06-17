@@ -1,6 +1,7 @@
 ﻿//Main contributors: Maximilian Enderling, Maya Koehnen
-using DlrDataApp.Modules.ProfilingSharedModule.Localization;
-using DlrDataApp.Modules.ProfilingSharedModule.Models;
+using DlrDataApp.Modules.Profiling.Shared.Localization;
+using DlrDataApp.Modules.Profiling.Shared.Models;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule.Views
+namespace DlrDataApp.Modules.Profiling.Shared.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class StadiumPage : ContentPage, IProfilingPage
@@ -81,7 +82,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views
             QuestionText.BindingContext = this;
             StadiumInlinePicker.ItemSource = StadiumCollection;
             PlantInlinePicker.ItemSource = PlantCollection;
-            Header = string.Format(AppResources.questionEntryFormat, answersGiven + 1, answersNeeded, question.InternId);
+            Header = string.Format(ProfilingResources.questionEntryFormat, answersGiven + 1, answersNeeded, question.InternId);
             HeaderText.BindingContext = this;
             PageFinished += StadiumPage_PageFinished;
             EvalButton.BindingContext = this;
@@ -108,7 +109,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views
             var selectedPlant = (PlantInlinePicker.SelectedItem as Plant)?.InternLetter;
             if (selectedPlant == null || selectedStadium == 0)
             {
-                DisplayAlert(AppResources.hint, AppResources.completeSelectionToAdvance, SharedModule.Localization.AppResources.ok);
+                DisplayAlert(ProfilingResources.hint, ProfilingResources.completeSelectionToAdvance, SharedResources.ok);
                 return;
             }
 

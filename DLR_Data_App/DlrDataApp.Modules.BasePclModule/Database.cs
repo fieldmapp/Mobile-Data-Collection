@@ -6,7 +6,7 @@ using System.Reflection;
 using SQLite;
 using SQLiteNetExtensions.Extensions;
 
-namespace DlrDataApp.Modules.SharedModule
+namespace DlrDataApp.Modules.Base.Shared
 {
     /// <summary>
     /// Class which handles database access

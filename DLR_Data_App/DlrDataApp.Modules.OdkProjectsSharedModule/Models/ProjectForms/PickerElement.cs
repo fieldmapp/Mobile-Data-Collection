@@ -37,7 +37,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
             var title = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(parms.Element.Label, parms.CurrentProject.Languages);
             if (string.IsNullOrWhiteSpace(title))
             {
-                title = AppResources.notitle;
+                title = SharedResources.notitle;
             }
             var currentLanguageCode = OdkDataExtractor.GetCurrentLanguageCodeFromJsonList(parms.CurrentProject.Languages);
             foreach (var option in options)
@@ -45,7 +45,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
                 option.Text.TryGetValue(currentLanguageCode, out var value);
                 optionsList.Add(value);
             }
-            optionsList.Add(AppResources.unknown);
+            optionsList.Add(SharedResources.unknown);
 
             var picker = new Picker
             {

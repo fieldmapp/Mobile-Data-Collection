@@ -1,6 +1,5 @@
-﻿using DLR_Data_App.Localizations;
-using DLR_Data_App.Models;
-using DLR_Data_App.Services;
+﻿using DLR_Data_App.Models;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 
 using Xamarin.Forms.Xaml;
@@ -37,22 +36,22 @@ namespace DLR_Data_App.Views.Settings
         private async void Btn_remove_Clicked(object sender, EventArgs e)
         {
             // ask user if he really wants to remove his account
-            var answer = await DisplayAlert(AppResources.removeaccount, AppResources.removeaccountwarning, AppResources.accept, AppResources.decline);
+            var answer = await DisplayAlert(SharedResources.removeaccount, SharedResources.removeaccountwarning, SharedResources.accept, SharedResources.decline);
 
             if (!answer) return;
 
             // remove data from database
-            var result = Database.Delete(ref _selectedUser);
+            var result = (App.Current as App).Database.Delete(_selectedUser);
 
             // check if removal was successful
             if (result)
             {
-                await DisplayAlert(AppResources.removeaccount, AppResources.successful, AppResources.accept);
+                await DisplayAlert(SharedResources.removeaccount, SharedResources.successful, SharedResources.accept);
                 await Navigation.PopAsync();
             }
             else
             {
-                await DisplayAlert(AppResources.removeaccount, AppResources.removeaccountfailure, AppResources.accept);
+                await DisplayAlert(SharedResources.removeaccount, SharedResources.removeaccountfailure, SharedResources.accept);
             }
         }
     }

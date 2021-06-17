@@ -2,10 +2,10 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Collections.ObjectModel;
-using DlrDataApp.Modules.ProfilingSharedModule.Models;
-using DlrDataApp.Modules.SharedModule;
+using DlrDataApp.Modules.Profiling.Shared.Models;
+using DlrDataApp.Modules.Base.Shared;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule.Views.ProfilingList
+namespace DlrDataApp.Modules.Profiling.Shared.Views.ProfilingList
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfilingListPage
@@ -59,7 +59,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views.ProfilingList
         private void RefreshProfilingList()
         {
             Profilings.Clear();
-            foreach (var profiling in ProfilingSharedModule.Instance.ModuleHost.App.Database.Read<ProfilingData>())
+            foreach (var profiling in ProfilingModule.Instance.ModuleHost.App.Database.Read<ProfilingData>())
             {
                 Profilings.Add(new LocalizedProfilingDataWrapper
                 {

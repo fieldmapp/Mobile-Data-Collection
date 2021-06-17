@@ -1,10 +1,11 @@
 ﻿using System;
 using Xamarin.Forms.Xaml;
-using DlrDataApp.Modules.ProfilingSharedModule.Models;
-using DlrDataApp.Modules.SharedModule;
-using DlrDataApp.Modules.ProfilingSharedModule.Localization;
+using DlrDataApp.Modules.Profiling.Shared.Models;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Profiling.Shared.Localization;
+using DlrDataApp.Modules.Base.Shared.Localization;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule.Views.ProfilingList
+namespace DlrDataApp.Modules.Profiling.Shared.Views.ProfilingList
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfilingDetailPage
@@ -28,7 +29,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views.ProfilingList
             InitializeComponent();
         }
 
-        Database Database => ProfilingSharedModule.Instance.ModuleHost.App.Database;
+        Database Database => ProfilingModule.Instance.ModuleHost.App.Database;
 
         /// <summary>
         /// Selects project as current active project.
@@ -49,7 +50,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views.ProfilingList
         /// </summary>
         private async void Btn_remove_profiling_Clicked(object sender, EventArgs e)
         {
-            var answer = await DisplayAlert(AppResources.removeprofiling, AppResources.removeprofilingwarning, SharedModule.Localization.AppResources.okay, SharedModule.Localization.AppResources.cancel);
+            var answer = await DisplayAlert(ProfilingResources.removeprofiling, ProfilingResources.removeprofilingwarning, SharedResources.okay, SharedResources.cancel);
             if (answer)
             {
                 Database.Delete(InspectedProfiling);

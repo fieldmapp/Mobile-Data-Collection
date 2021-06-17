@@ -4,7 +4,7 @@ using System.Numerics;
 using System.Text;
 using Xamarin.Essentials;
 
-namespace DlrDataApp.Modules.SharedModule.Services.Sensors
+namespace DlrDataApp.Modules.Base.Shared.Services.Sensors
 {
     public class OrientationSensor
     {

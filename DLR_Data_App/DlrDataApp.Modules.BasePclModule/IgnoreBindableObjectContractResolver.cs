@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using Xamarin.Forms;
 
-namespace DlrDataApp.Modules.SharedModule
+namespace DlrDataApp.Modules.Base.Shared
 {
     /// <summary>
     /// Child of <see cref="DefaultContractResolver"/> which, when used, will prevent the serialization of elements where declaring type is a <see cref="BindableObject"/>.

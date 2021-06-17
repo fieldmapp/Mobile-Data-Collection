@@ -1,11 +1,7 @@
-﻿using DLR_Data_App.Controls;
-using DLR_Data_App.Localizations;
-using DLR_Data_App.Models.ProjectForms;
-using DLR_Data_App.Models.ProjectModel;
-using DLR_Data_App.Services.Sensors;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms;
+﻿using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms;
 using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
 using DlrDataApp.Modules.SharedModule;
+using DlrDataApp.Modules.SharedModule.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -123,7 +119,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Services
                     {
                         var columnCount = formElement.Grid.Children.Max(c => Grid.GetColumn(c)) + 1;
                         var firstFreeRow = formElement.Grid.Children.Max(c => Grid.GetRow(c)) + 1;
-                        var skipButton = new Button { Text = AppResources.skip };
+                        var skipButton = new Button { Text = SharedResources.skip };
                         var localFormElementCopy = formElement;
                         skipButton.Clicked += (a, b) =>
                         {

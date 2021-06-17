@@ -1,6 +1,7 @@
 ﻿//Main contributors: Maya Koehnen
-using DlrDataApp.Modules.ProfilingSharedModule.Localization;
-using DlrDataApp.Modules.ProfilingSharedModule.Models;
+using DlrDataApp.Modules.Profiling.Shared.Localization;
+using DlrDataApp.Modules.Profiling.Shared.Models;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule.Views
+namespace DlrDataApp.Modules.Profiling.Shared.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DoubleSliderPage : ContentPage, IProfilingPage
@@ -74,7 +75,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views
             Picture.BindingContext = this;
             QuestionText.BindingContext = this;
             HeaderText.BindingContext = this;
-            Header = string.Format(AppResources.questionEntryFormat, answersGiven + 1, answersNeeded, question.InternId);
+            Header = string.Format(ProfilingResources.questionEntryFormat, answersGiven + 1, answersNeeded, question.InternId);
             EvalButton.BindingContext = this;
             EvaluationTextColor = answersGiven >= answersNeeded ? Color.Green : Color.LightGray;
         }
@@ -106,7 +107,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views
 
             if(sliderA.Value == 0 && sliderB.Value == 0 && !hintNoticed)
             {
-                DisplayAlert(AppResources.hint, AppResources.selectionCorrectQuestion, SharedModule.Localization.AppResources.ok);
+                DisplayAlert(ProfilingResources.hint, ProfilingResources.selectionCorrectQuestion, SharedResources.ok);
                 hintNoticed = true;
                 return;
             }

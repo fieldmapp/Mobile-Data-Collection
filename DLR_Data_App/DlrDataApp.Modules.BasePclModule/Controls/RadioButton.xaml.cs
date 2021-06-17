@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DlrDataApp.Modules.SharedModule.Controls
+namespace DlrDataApp.Modules.Base.Shared.Controls
 {
     /// <summary>  
     /// View which represents a RadioButton.

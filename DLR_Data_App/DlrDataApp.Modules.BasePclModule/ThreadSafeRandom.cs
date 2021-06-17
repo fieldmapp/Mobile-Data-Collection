@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DlrDataApp.Modules.SharedModule
+namespace DlrDataApp.Modules.Base.Shared
 {
     /// <summary>
     /// Thread safe wrapper around <see cref="System.Random"/>. Inspired from https://stackoverflow.com/a/11109361/8512719. Doesn't override <see cref="System.Random.Sample"/>.

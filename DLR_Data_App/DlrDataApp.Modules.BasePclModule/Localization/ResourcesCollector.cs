@@ -4,11 +4,11 @@ using System.Globalization;
 using System.Resources;
 using System.Text;
 
-namespace DlrDataApp.Modules.SharedModule.Localization
+namespace DlrDataApp.Modules.Base.Shared.Localization
 {
     public static class ResourcesCollector
     {
-        private static List<ResourceManager> ResourceManagers = new List<ResourceManager> { GetResourceManager<AppResources>() };
+        private static List<ResourceManager> ResourceManagers = new List<ResourceManager> { GetResourceManager<SharedResources>() };
         public static void AddResource<T>()
         {
             ResourceManagers.Add(GetResourceManager<T>());

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule.Views
+namespace DlrDataApp.Modules.Profiling.Shared.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EvaluationDetailsPage : ContentPage

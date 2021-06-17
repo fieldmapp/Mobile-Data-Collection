@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DlrDataApp.Modules.SharedModule.Localization {
+namespace DlrDataApp.Modules.Base.Shared.Localization {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DlrDataApp.Modules.SharedModule.Localization {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class AppResources {
+    public class SharedResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AppResources() {
+        internal SharedResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DlrDataApp.Modules.SharedModule.Localization {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DlrDataApp.Modules.SharedModule.Localization.AppResources", typeof(AppResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DlrDataApp.Modules.Base.Shared.Localization.SharedResources", typeof(SharedResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -142,27 +142,9 @@ namespace DlrDataApp.Modules.SharedModule.Localization {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Your answers were averagely  ähnelt.
-        /// </summary>
-        internal static string answersCorrectAveragePart1 {
-            get {
-                return ResourceManager.GetString("answersCorrectAveragePart1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die  correct. ähnelt.
-        /// </summary>
-        internal static string answersCorrectAveragePart2 {
-            get {
-                return ResourceManager.GetString("answersCorrectAveragePart2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Successfully exported into root directory with name dlr_answers_TIMESTAMP. ähnelt.
         /// </summary>
-        internal static string answersExportedToRoot {
+        public static string answersExportedToRoot {
             get {
                 return ResourceManager.GetString("answersExportedToRoot", resourceCulture);
             }
@@ -315,7 +297,7 @@ namespace DlrDataApp.Modules.SharedModule.Localization {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Driving View Easy ähnelt.
         /// </summary>
-        internal static string drivingvieweasy {
+        public static string drivingvieweasy {
             get {
                 return ResourceManager.GetString("drivingvieweasy", resourceCulture);
             }
@@ -324,18 +306,9 @@ namespace DlrDataApp.Modules.SharedModule.Localization {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Driving View Hard ähnelt.
         /// </summary>
-        internal static string drivingviewhard {
+        public static string drivingviewhard {
             get {
                 return ResourceManager.GetString("drivingviewhard", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Easy: ähnelt.
-        /// </summary>
-        internal static string easyWithColon {
-            get {
-                return ResourceManager.GetString("easyWithColon", resourceCulture);
             }
         }
         
@@ -754,18 +727,9 @@ namespace DlrDataApp.Modules.SharedModule.Localization {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Profiling ähnelt.
-        /// </summary>
-        internal static string profiling {
-            get {
-                return ResourceManager.GetString("profiling", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Profiling details ähnelt.
         /// </summary>
-        internal static string profilingdetails {
+        public static string profilingdetails {
             get {
                 return ResourceManager.GetString("profilingdetails", resourceCulture);
             }

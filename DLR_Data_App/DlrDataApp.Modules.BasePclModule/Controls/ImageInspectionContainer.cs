@@ -6,7 +6,7 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
-namespace DlrDataApp.Modules.SharedModule.Controls
+namespace DlrDataApp.Modules.Base.Shared.Controls
 {
     /// <summary>
     /// View containing an image which can be interacted on with pinch, pan and doube taps.

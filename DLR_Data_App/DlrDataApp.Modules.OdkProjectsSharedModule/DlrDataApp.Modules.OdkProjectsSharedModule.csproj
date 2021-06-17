@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="CoreCLR-NCalc" Version="2.2.92" />
+    <PackageReference Include="FormatWith" Version="3.0.1" />
     <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.41" />
   </ItemGroup>
 
@@ -14,10 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Localization\AppResources.Designer.cs">
+    <Compile Update="Localization\OdkProjectsResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>AppResources.resx</DependentUpon>
+      <DependentUpon>OdkProjectsResources.resx</DependentUpon>
     </Compile>
     <Compile Update="Views\CurrentProject\EditDataDetailPage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
@@ -40,9 +41,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Localization\AppResources.resx">
+    <EmbeddedResource Update="Localization\OdkProjectsResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>OdkProjectsResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

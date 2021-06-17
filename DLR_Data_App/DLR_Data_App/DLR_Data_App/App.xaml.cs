@@ -5,22 +5,26 @@ using DLR_Data_App.Services;
 using Xamarin.Forms;
 using System;
 using DLR_Data_App.Views;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace DLR_Data_App
 {
-    public partial class App
+    public partial class App : IApp
     {
         public static string DatabaseLocation = string.Empty;
-        public static string FolderLocation = string.Empty;
-        public static ThreadSafeRandom RandomProvider = new ThreadSafeRandom();
-        public static Views.MainPage CurrentMainPage => (Current.MainPage as Views.MainPage);
-        public static User CurrentUser;
-        public NavigationPage Navigation => (MainPage as FlyoutPage)?.Detail as NavigationPage;
-        public IStorageProvider StorageProvider;
-        public Page CurrentPage => Navigation?.CurrentPage;
+        public static MainPage CurrentMainPage => Current.MainPage as MainPage;
+
+        public string FolderLocation { get; } = string.Empty;
+        public ThreadSafeRandom RandomProvider { get; } = new ThreadSafeRandom();
+        public IUser CurrentUser { get; internal set; }
+        public Sensor Sensor { get; }
+        public NavigationPage NavigationPage => MainPage?.Detail as NavigationPage;
+        public Page CurrentPage => NavigationPage?.CurrentPage;
         public new MainPage MainPage => base.MainPage as MainPage;
-        
+        public Database Database { get; }
+
         /// <summary>
         /// Constructor with database support
         /// </summary>
@@ -34,10 +38,14 @@ namespace DLR_Data_App
             
             FolderLocation = folderPath;
             DatabaseLocation = databaseLocation;
-            
+            Sensor = new Sensor();
+            Database = new Database(databaseLocation);
+
+
             base.MainPage = new LoginPage();
 
-            var a = DependencyService.Get<IUbloxCommunicator>();
+            // TODO
+            //var a = DependencyService.Get<IUbloxCommunicator>();
         }
 
         protected override void OnStart()

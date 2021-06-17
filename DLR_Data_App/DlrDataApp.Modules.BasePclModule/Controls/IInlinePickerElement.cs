@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace DlrDataApp.Modules.SharedModule.Controls
+namespace DlrDataApp.Modules.Base.Shared.Controls
 {
     public interface IInlinePickerElement
     {

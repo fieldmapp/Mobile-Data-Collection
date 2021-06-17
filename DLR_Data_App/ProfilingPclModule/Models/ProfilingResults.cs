@@ -1,11 +1,11 @@
-﻿using DlrDataApp.Modules.SharedModule;
+﻿using DlrDataApp.Modules.Base.Shared;
 using Newtonsoft.Json;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule.Models
+namespace DlrDataApp.Modules.Profiling.Shared.Models
 {
     public class ProfilingResults
     {

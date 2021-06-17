@@ -5,13 +5,13 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{12E23230-2A80-46CE-8392-0AB2C633BD49}</ProjectGuid>
+    <ProjectGuid>{3F04C52D-D155-47BB-AA8A-D01983F0B0D0}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{9ef11e43-1701-4396-8835-8392d57abb70}</TemplateGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DlrDataApp.Modules.ProfilingAndroidModule</RootNamespace>
-    <AssemblyName>DlrDataApp.Modules.ProfilingAndroidModule</AssemblyName>
+    <RootNamespace>DlrDataApp.Modules.Base.Android</RootNamespace>
+    <AssemblyName>DlrDataApp.Modules.Base.Android</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <Deterministic>True</Deterministic>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndroidStorageAccessProvider.cs" />
+    <Compile Include="AndroidToast.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,7 +56,13 @@
     <None Include="Resources\AboutResources.txt" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Xamarin.Android.Support.Design">
+      <Version>28.0.0.3</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Forms">
+      <Version>4.8.0.1821</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />
@@ -63,13 +71,9 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DlrDataApp.Modules.SharedAndroidModule\DlrDataApp.Modules.AndroidModule.csproj">
-      <Project>{3f04c52d-d155-47bb-aa8a-d01983f0b0d0}</Project>
-      <Name>DlrDataApp.Modules.AndroidModule</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProfilingPclModule\DlrDataApp.Modules.ProfilingSharedModule.csproj">
-      <Project>{431ba8e5-6ff1-42a1-9468-f34fa8e4573a}</Project>
-      <Name>DlrDataApp.Modules.ProfilingSharedModule</Name>
+    <ProjectReference Include="..\DlrDataApp.Modules.BasePclModule\DlrDataApp.Modules.Base.Shared.csproj">
+      <Project>{cf63e909-0792-4368-a206-001a76ab1ce8}</Project>
+      <Name>DlrDataApp.Modules.Base.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

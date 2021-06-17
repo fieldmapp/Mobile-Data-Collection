@@ -8,9 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("DlrDataApp.Modules.AndroidModule.Resource", IsApplication=false)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("DlrDataApp.Modules.Base.Android.Resource", IsApplication=false)]
 
-namespace DlrDataApp.Modules.AndroidModule
+namespace DlrDataApp.Modules.Base.Android
 {
 	
 	

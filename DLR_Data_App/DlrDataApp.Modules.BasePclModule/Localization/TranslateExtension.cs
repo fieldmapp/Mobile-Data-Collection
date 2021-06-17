@@ -6,7 +6,7 @@ using System.Resources;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DlrDataApp.Modules.SharedModule.Localization
+namespace DlrDataApp.Modules.Base.Shared.Localization
 {
     [ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension

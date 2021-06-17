@@ -1,8 +1,4 @@
-﻿using DLR_Data_App.Controls;
-using DLR_Data_App.Localizations;
-using DLR_Data_App.Models.ProjectModel;
-using DLR_Data_App.Services;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
+﻿using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
 using DlrDataApp.Modules.OdkProjectsSharedModule.Services;
 using DlrDataApp.Modules.SharedModule;
 using DlrDataApp.Modules.SharedModule.Localization;
@@ -35,31 +31,30 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
             }
         }
 
-        protected override bool IsValidElementSpecific => !string.IsNullOrEmpty(DataHolder.Data);
+        protected override bool IsValidElementSpecific => !string.IsNullOrEmpty(Base64Data);
 
         public override string GetRepresentationValue() => Base64Data ?? string.Empty;
 
         public override void LoadFromSavedRepresentation(string representation) => Base64Data = representation;
 
-        protected override void OnReset() => DataHolder.Data = string.Empty;
+        protected override void OnReset() => Base64Data = string.Empty;
 
         public static MediaSelectorElement CreateForm(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
             var formElement = new MediaSelectorElement(grid, parms.Element, parms.Type, parms.DisplayAlertFunc, parms.CurrentProject);
 
-            var pickFileButton = new Button { Text = AppResources.select };
-            var fileSelectedLabel = new Label { Text = AppResources.fileselected };
-            //HACK: bad way to store an image. blob would be better
-            var dataHolder = new DataHolder();
-            formElement.DataHolder = dataHolder;
+            var pickFileButton = new Button { Text = SharedResources.select };
+            var fileSelectedLabel = new Label { Text = SharedResources.fileselected };
+            var fileSelectedDataLabel = new Label { Text = SharedResources.no };
+
             pickFileButton.Clicked += async (a, b) =>
             {
                 var image = await DependencyService.Get<ICameraProvider>().OpenCameraApp();
                 if (image != null)
                 {
                     formElement.Base64Data = Convert.ToBase64String(image);
-                    dataHolder.Text = AppResources.yes;
+                    fileSelectedDataLabel.Text = SharedResources.yes;
                     formElement.OnContentChange();
                 }
             };
@@ -67,7 +62,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
             grid.Children.Add(pickFileButton, 0, 1);
             Grid.SetColumnSpan(pickFileButton, 2);
             grid.Children.Add(fileSelectedLabel, 0, 2);
-            grid.Children.Add(dataHolder, 1, 2);
+            grid.Children.Add(fileSelectedDataLabel, 1, 2);
             return formElement;
         }
     }

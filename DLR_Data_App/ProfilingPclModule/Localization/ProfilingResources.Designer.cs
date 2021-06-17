@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DlrDataApp.Modules.ProfilingSharedModule.Localization {
+namespace DlrDataApp.Modules.Profiling.Shared.Localization {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Localization {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class AppResources {
+    internal class ProfilingResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AppResources() {
+        internal ProfilingResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Localization {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DlrDataApp.Modules.ProfilingSharedModule.Localization.AppResources", typeof(AppResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DlrDataApp.Modules.Profiling.Shared.Localization.ProfilingResources", typeof(ProfilingResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -249,6 +249,15 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Localization {
         internal static string profilingResultsDifferentDifficulties {
             get {
                 return ResourceManager.GetString("profilingResultsDifferentDifficulties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Project was launched successfully. ähnelt.
+        /// </summary>
+        internal static string projectSuccessfullyAdded {
+            get {
+                return ResourceManager.GetString("projectSuccessfullyAdded", resourceCulture);
             }
         }
         

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DlrDataApp.Modules.SharedModule
+namespace DlrDataApp.Modules.Base.Shared
 {
     public interface IUser
     {
-        int Id { get; }
+        int? Id { get; }
         string Username { get; }
     }
 }

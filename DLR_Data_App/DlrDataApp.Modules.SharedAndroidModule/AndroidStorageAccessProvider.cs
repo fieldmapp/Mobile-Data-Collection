@@ -11,12 +11,12 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using DlrDataApp.Modules.SharedModule;
-using DlrDataApp.Modules.AndroidModule;
 using Xamarin.Forms;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Android;
 
 [assembly: Dependency(typeof(AndroidStorageAccessProvider))]
-namespace DlrDataApp.Modules.AndroidModule
+namespace DlrDataApp.Modules.Base.Android
 {
     /// <summary>
     /// Implements the IStorageAccessProvider interface for android
@@ -27,7 +27,7 @@ namespace DlrDataApp.Modules.AndroidModule
         
         public AndroidStorageAccessProvider()
         {
-            Context = Android.App.Application.Context;
+            Context = global::Android.App.Application.Context;
         }
 
         public Stream OpenAsset(string path) => Context.Assets.Open(path);
@@ -42,7 +42,7 @@ namespace DlrDataApp.Modules.AndroidModule
         {
             // prevent compilation when targeting android 30 or above because android:requestLegacyExternalStorage would be ignored, breaking this code
 #if !__ANDROID_30__
-            path = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, path);
+            path = Path.Combine(global::Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, path);
             return OpenFileWrite(path);
 #endif
         }
@@ -51,7 +51,7 @@ namespace DlrDataApp.Modules.AndroidModule
         {
             // prevent compilation when targeting android 30 or above because android:requestLegacyExternalStorage would be ignored, breaking this code
 #if !__ANDROID_30__
-            path = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, path);
+            path = Path.Combine(global::Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, path);
             return OpenFileAppend(path);
 #endif
         }

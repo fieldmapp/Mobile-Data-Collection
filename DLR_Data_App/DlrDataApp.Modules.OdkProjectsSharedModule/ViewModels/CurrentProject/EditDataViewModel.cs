@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using DLR_Data_App.Localizations;
-using DLR_Data_App.Models;
-using DLR_Data_App.Models.ProjectModel;
-using DLR_Data_App.Services;
+using DlrDataApp.Modules.OdkProjectsSharedModule.Models;
+using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
+using DlrDataApp.Modules.SharedModule;
+using DlrDataApp.Modules.SharedModule.Localization;
 using FormatWith;
 
 namespace DlrDataApp.Modules.OdkProjectsSharedModule.ViewModels.CurrentProject
@@ -21,7 +21,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.ViewModels.CurrentProject
 
         public EditDataViewModel()
         {
-            Title = AppResources.editdata;
+            Title = SharedResources.editdata;
 
             _workingProject =  Database.GetCurrentProject();
             FormList = _workingProject.FormList;

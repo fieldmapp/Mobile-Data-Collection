@@ -8,4 +8,10 @@
     <ProjectReference Include="..\DlrDataApp.Modules.BasePclModule\DlrDataApp.Modules.SharedModule.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="DrivingPage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>

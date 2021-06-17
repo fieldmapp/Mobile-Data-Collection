@@ -17,7 +17,7 @@ using Android.Views;
 using Android.Widget;
 using com.DLR.DLR_Data_App.Droid;
 using DLR_Data_App.Services;
-using DlrDataApp.Modules.SharedModule;
+using DlrDataApp.Modules.Base.Shared;
 using Hoho.Android.UsbSerial.Driver;
 using Hoho.Android.UsbSerial.Util;
 using Java.Util.Concurrent;

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:res="clr-namespace:DlrDataApp.Modules.SharedModule.Localization;assembly=DlrDataApp.Modules.SharedModule"
-             x:Class="DlrDataApp.Modules.ProfilingSharedModule.Views.ProfilingList.NewProfilingPage"
+             xmlns:res="clr-namespace:DlrDataApp.Modules.Base.Shared.Localization;assembly=DlrDataApp.Modules.Base.Shared"
+             x:Class="DlrDataApp.Modules.Profiling.Shared.Views.ProfilingList.NewProfilingPage"
              Title="{res:Translate newprofiling}">
     
     <ContentPage.Content>

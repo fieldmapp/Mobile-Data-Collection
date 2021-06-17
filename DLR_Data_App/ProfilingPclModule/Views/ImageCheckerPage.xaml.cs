@@ -1,6 +1,7 @@
 ﻿//Main contributors: Max Moebius, Henning Woydt
-using DlrDataApp.Modules.ProfilingSharedModule.Localization;
-using DlrDataApp.Modules.ProfilingSharedModule.Models;
+using DlrDataApp.Modules.Profiling.Shared.Localization;
+using DlrDataApp.Modules.Profiling.Shared.Models;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +10,7 @@ using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule.Views
+namespace DlrDataApp.Modules.Profiling.Shared.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ImageCheckerPage : ContentPage, IProfilingPage
@@ -86,7 +87,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views
             PictureD.BindingContext = this;
             Frage.BindingContext = this;
 
-            Header = string.Format(AppResources.questionEntryFormat, answersGiven + 1, answersNeeded, question.InternId);
+            Header = string.Format(ProfilingResources.questionEntryFormat, answersGiven + 1, answersNeeded, question.InternId);
             QuestionItem = question;
             EvalButton.BindingContext = this;
             EvaluationTextColor = answersGiven >= answersNeeded ? Color.Green : Color.LightGray;
@@ -119,7 +120,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views
             if(PictureA.BorderColor == nonSelectedColor && PictureB.BorderColor == nonSelectedColor 
                 && PictureC.BorderColor == nonSelectedColor && PictureD.BorderColor == nonSelectedColor)
             {
-                DisplayAlert(AppResources.hint, AppResources.completeSelectionToAdvance, SharedModule.Localization.AppResources.ok);
+                DisplayAlert(ProfilingResources.hint, ProfilingResources.completeSelectionToAdvance, SharedResources.ok);
                 return;
             }
 

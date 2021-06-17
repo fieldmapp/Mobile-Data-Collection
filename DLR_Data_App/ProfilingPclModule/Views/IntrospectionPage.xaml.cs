@@ -1,7 +1,7 @@
 ﻿//Main contributors: Max Moebius, Henning Woydt
-using DlrDataApp.Modules.ProfilingSharedModule.Localization;
-using DlrDataApp.Modules.SharedModule;
-using DlrDataApp.Modules.ProfilingSharedModule.Models;
+using DlrDataApp.Modules.Profiling.Shared.Localization;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Profiling.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,8 +12,9 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using DlrDataApp.Modules.Base.Shared.Localization;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule.Views
+namespace DlrDataApp.Modules.Profiling.Shared.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class IntrospectionPage : ContentPage, IProfilingPage
@@ -51,7 +52,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views
             InitializeComponent();
             QuestionLabel.BindingContext = this;
             QuestionItem = question;
-            RadioButtonIndex = new Dictionary<SharedModule.Controls.RadioButton, int>()
+            RadioButtonIndex = new Dictionary<Base.Shared.Controls.RadioButton, int>()
             {
                 {Button1, 1},
                 {Button2, 2},
@@ -69,10 +70,10 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views
             Button4.IsChecked = false;
             Button5.IsChecked = false;
 
-            (sender as SharedModule.Controls.RadioButton).IsChecked = true;
+            (sender as RadioButton).IsChecked = true;
         }
 
-        Dictionary<SharedModule.Controls.RadioButton, int> RadioButtonIndex;
+        Dictionary<Base.Shared.Controls.RadioButton, int> RadioButtonIndex;
 
         public event EventHandler<PageResult> PageFinished;
 
@@ -81,7 +82,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule.Views
             var selectedRadioButton = RadioButtonIndex.Keys.FirstOrDefault(r => r.IsChecked);
             if (selectedRadioButton == null)
             {
-                DisplayAlert(Localization.AppResources.hint, SharedModule.Localization.AppResources.pleaseMakeSelection, SharedModule.Localization.AppResources.ok);
+                DisplayAlert(ProfilingResources.hint, SharedResources.pleaseMakeSelection, SharedResources.ok);
                 return;
             }
 

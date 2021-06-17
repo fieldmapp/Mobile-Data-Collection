@@ -5,9 +5,9 @@ using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using System.Linq;
-using DLR_Data_App.Models;
-using DLR_Data_App.Models.ProjectModel;
 using Newtonsoft.Json;
+using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
+using DlrDataApp.Modules.OdkProjectsSharedModule.Models;
 
 namespace DlrDataApp.Modules.OdkProjectsSharedModule.Services
 {
@@ -22,7 +22,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Services
         /// Project which will be used
         /// </summary>
         /// <param name="project"></param>
-        public ProjectParser(ref Project project)
+        public ProjectParser(Project project)
         {
             _workingProject = project;
         }
@@ -35,7 +35,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Services
         public async Task<bool> ParseZip(string zipFile, string unzipFolder)
         {
             // Extract zip archive
-            var status = await Helpers.UnzipFileAsync(zipFile, unzipFolder);
+            var status = await SharedModule.Helpers.UnzipFileAsync(zipFile, unzipFolder);
             if (!status)
             {
                 return false;

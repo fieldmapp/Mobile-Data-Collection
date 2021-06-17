@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule.Models
+namespace DlrDataApp.Modules.Profiling.Shared.Models
 {
     public class QuestionIntrospectionPage : BindableObject, IQuestionContent
     {

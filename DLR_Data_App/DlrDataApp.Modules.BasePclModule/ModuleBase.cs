@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DlrDataApp.Modules.SharedModule
+namespace DlrDataApp.Modules.Base.Shared
 {
-    public abstract class BaseSharedModule : ISharedModule
+    public abstract class ModuleBase : ISharedModule
     {
         public event EventHandler<IModuleHost> Initializing = delegate { };
         public event EventHandler<IModuleHost> Initialized = delegate { };

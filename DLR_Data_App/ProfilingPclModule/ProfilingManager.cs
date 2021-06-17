@@ -1,14 +1,14 @@
 ﻿//Main contributors: Maximilian Enderling
-using DlrDataApp.Modules.SharedModule;
-using DlrDataApp.Modules.ProfilingSharedModule.Models;
-using DlrDataApp.Modules.ProfilingSharedModule.Views;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Profiling.Shared.Models;
+using DlrDataApp.Modules.Profiling.Shared.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule
+namespace DlrDataApp.Modules.Profiling.Shared
 {
     /// <summary>
     /// This class is responsible for keeping question data, both
@@ -17,7 +17,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule
     /// </summary>
     static class ProfilingManager
     {
-        static NavigationPage Navigation => ProfilingSharedModule.Instance.ModuleHost.App.CurrentPage;
+        static NavigationPage Navigation => ProfilingModule.Instance.ModuleHost.App.NavigationPage;
         static ProfilingMenuItem CurrentProfiling;
 
         public static IQuestionContent GetNextQuestion(ProfilingMenuItem profilingType)

@@ -1,8 +1,11 @@
-﻿using DLR_Data_App.Localizations;
-using DLR_Data_App.Services;
-using DLR_Data_App.Views.Login;
+﻿using DLR_Data_App.Views.Login;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,10 +19,12 @@ namespace DLR_Data_App.Views.Settings
         public AppSettings ()
         {
             InitializeComponent ();
-            _elementList = new List<string> {AppResources.privacypolicy, AppResources.removedatabase, AppResources.exportdatabase};
+            _elementList = new List<string> {SharedResources.privacypolicy, SharedResources.removedatabase, SharedResources.exportdatabase};
             
             AppSettingsList.ItemsSource = _elementList;
         }
+
+        Database Database => (App.Current as App).Database;
 
         /// <summary>
         /// List of settings about the app shown
@@ -31,32 +36,43 @@ namespace DLR_Data_App.Views.Settings
             {
                 case 0:
                     // Show privacy policy
-                    await DisplayAlert(AppResources.privacypolicy, AppResources.privacytext1, AppResources.okay);
+                    await DisplayAlert(SharedResources.privacypolicy, SharedResources.privacytext1, SharedResources.okay);
                     break;
                 case 1:
                     // Remove Database
-                    answer = await DisplayAlert(AppResources.removedatabase, AppResources.removedatabasewarning, AppResources.accept, AppResources.cancel);
+                    answer = await DisplayAlert(SharedResources.removedatabase, SharedResources.removedatabasewarning, SharedResources.accept, SharedResources.cancel);
                     if(answer)
                     {
-                        if(Database.RemoveDatabase())
+                        if(Database.DeleteDatabase())
                         {
                             // Successful
-                            await DisplayAlert(AppResources.removedatabase, AppResources.successful, AppResources.okay);
+                            await DisplayAlert(SharedResources.removedatabase, SharedResources.successful, SharedResources.okay);
                             App.Current.MainPage = new LoginPage();
                         }
                         else
                         {
                             // Failure
-                            await DisplayAlert(AppResources.removedatabase, AppResources.failed, AppResources.cancel);
+                            await DisplayAlert(SharedResources.removedatabase, SharedResources.failed, SharedResources.cancel);
                         }
                     }
                     break;
                 case 2:
                     // Export Database
                     var exportString = ExportData();
-                    (Application.Current as App).StorageProvider.ExportDatabase(exportString);
-                    await DisplayAlert(AppResources.save, AppResources.exporttorootwithtimestampsuccessful, AppResources.okay);
+                    ExportDatabase(exportString, DependencyService.Get<IStorageAccessProvider>());
+                    await DisplayAlert(SharedResources.save, SharedResources.exporttorootwithtimestampsuccessful, SharedResources.okay);
                     break;
+            }
+        }
+
+        private void ExportDatabase(string exportString, IStorageAccessProvider storageAccessProvider)
+        {
+            var filename = "Fieldmapp_Database_" + DateTime.UtcNow.ToString("ddMMyyyyHHmmss", CultureInfo.InvariantCulture) + ".json";
+
+            using (var fileStream = storageAccessProvider.OpenFileWriteExternal(filename))
+            using (var streamWriter = new StreamWriter(fileStream))
+            {
+                streamWriter.Write(exportString);
             }
         }
 
@@ -65,7 +81,10 @@ namespace DLR_Data_App.Views.Settings
         /// </summary>
         public static string ExportData()
         {
+            return @"{""info"":""todo""}";
+            // TODO
             // get data of the project from the db
+            /*
             var workingProject = Database.GetCurrentProject();
             var tableContent = Database.ReadCustomTable(ref workingProject);
             if (tableContent == null)
@@ -101,6 +120,7 @@ namespace DLR_Data_App.Views.Settings
               ));
 
             return exportObject.ToString();
+            */
         }
     }
 }

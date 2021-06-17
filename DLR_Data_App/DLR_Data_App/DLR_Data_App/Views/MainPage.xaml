@@ -4,9 +4,6 @@
             xmlns:views="clr-namespace:DLR_Data_App.Views"
             x:Class="DLR_Data_App.Views.MainPage">
 
-    <FlyoutPage.Flyout>
-        <views:MenuPage />
-    </FlyoutPage.Flyout>
 
     <FlyoutPage.Detail>
         <NavigationPage>

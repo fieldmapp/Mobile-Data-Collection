@@ -2,9 +2,9 @@
 <!--Main contributors: Maximilian Enderling-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DlrDataApp.Modules.SharedModule.Controls.ImageDetailPage"
-             xmlns:controls="clr-namespace:DlrDataApp.Modules.SharedModule.Controls"
-             xmlns:res="clr-namespace:DlrDataApp.Modules.SharedModule.Localization"
+             x:Class="DlrDataApp.Modules.Base.Shared.Controls.ImageDetailPage"
+             xmlns:controls="clr-namespace:DlrDataApp.Modules.Base.Shared.Controls"
+             xmlns:res="clr-namespace:DlrDataApp.Modules.Base.Shared.Localization"
              Title="{res:Translate profiling}">
     <ContentPage.Content>
         <Grid Padding="20">

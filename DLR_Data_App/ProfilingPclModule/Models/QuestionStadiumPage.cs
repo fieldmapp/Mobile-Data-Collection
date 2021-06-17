@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using System.Linq;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule.Models
+namespace DlrDataApp.Modules.Profiling.Shared.Models
 {
     public class QuestionStadiumPage : BindableObject, IQuestionContent
     {

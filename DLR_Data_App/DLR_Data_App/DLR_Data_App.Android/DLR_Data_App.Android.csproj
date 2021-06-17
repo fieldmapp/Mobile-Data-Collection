@@ -63,7 +63,7 @@
       <Version>0.2.3</Version>
     </PackageReference>
     <PackageReference Include="SharpZipLib">
-      <Version>1.1.0</Version>
+      <Version>1.3.1</Version>
     </PackageReference>
     <PackageReference Include="System.Numerics.Vectors">
       <Version>4.5.0</Version>
@@ -86,11 +86,9 @@
   <ItemGroup>
     <Compile Include="AndroidAppCloser.cs" />
     <Compile Include="AndroidCameraProvider.cs" />
-    <Compile Include="AndroidUbloxComm.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AndroidToast.cs" />
     <Compile Include="ScreenListener.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -124,9 +122,9 @@
     <Folder Include="Resources\drawable-xxxhdpi\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DlrDataApp.Modules.BasePclModule\DlrDataApp.Modules.SharedModule.csproj">
+    <ProjectReference Include="..\..\DlrDataApp.Modules.BasePclModule\DlrDataApp.Modules.Base.Shared.csproj">
       <Project>{CF63E909-0792-4368-A206-001A76AB1CE8}</Project>
-      <Name>DlrDataApp.Modules.SharedModule</Name>
+      <Name>DlrDataApp.Modules.Base.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\DLR_Data_App\DLR_Data_App.csproj">
       <Project>{8D4418A5-EFC0-4FEC-A4EE-88A26F42945A}</Project>

@@ -5,9 +5,9 @@ using System.Text;
 using Xamarin.Forms;
 using System.Linq;
 using Newtonsoft.Json;
-using DlrDataApp.Modules.ProfilingSharedModule.Views;
+using DlrDataApp.Modules.Profiling.Shared.Views;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule.Models
+namespace DlrDataApp.Modules.Profiling.Shared.Models
 {
     public class ProfilingMenuItem : BindableObject
     {

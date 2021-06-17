@@ -20,19 +20,19 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Services
             var authors = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(project.Authors, project.Languages);
             if (string.IsNullOrWhiteSpace(authors))
             {
-                authors = AppResources.noauthor;
+                authors = SharedResources.noauthor;
             }
 
             var title = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(project.Title, project.Languages);
             if (string.IsNullOrWhiteSpace(title))
             {
-                title = AppResources.notitle;
+                title = SharedResources.notitle;
             }
 
             var description = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(project.Description, project.Languages);
             if (string.IsNullOrWhiteSpace(description))
             {
-                description = AppResources.nodescription;
+                description = SharedResources.nodescription;
             }
 
             var tempProject = new Project

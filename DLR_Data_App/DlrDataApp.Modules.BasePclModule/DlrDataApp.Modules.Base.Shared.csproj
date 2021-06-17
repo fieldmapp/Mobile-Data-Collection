@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>DlrDataApp.Modules.SharedModule</RootNamespace>
+    <RootNamespace>DlrDataApp.Modules.Base.Shared</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,8 +18,8 @@
     <Compile Update="Controls\FormattedButton.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
-    <Compile Update="Localization\AppResources.Designer.cs">
-      <DependentUpon>AppResources.resx</DependentUpon>
+    <Compile Update="Localization\SharedResources.Designer.cs">
+      <DependentUpon>SharedResources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
@@ -35,12 +35,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Localization\AppResources.de.resx">
+    <EmbeddedResource Update="Localization\SharedResources.de.resx">
       <SubType>Designer</SubType>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Localization\AppResources.resx">
-      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    <EmbeddedResource Update="Localization\SharedResources.resx">
+      <LastGenOutput>SharedResources.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Controls\ImageDetailPage.xaml">

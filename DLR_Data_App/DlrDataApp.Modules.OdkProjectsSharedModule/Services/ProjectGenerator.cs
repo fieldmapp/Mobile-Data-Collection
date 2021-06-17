@@ -1,4 +1,8 @@
-﻿using SQLite;
+﻿using DlrDataApp.Modules.OdkProjectsSharedModule;
+using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
+using DlrDataApp.Modules.OdkProjectsSharedModule.Services;
+using DlrDataApp.Modules.SharedModule;
+using SQLite;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,15 +28,16 @@ namespace DLR_Data_App.Services
             _workingProject = new Project();
 
             // parsing form files
-            ProjectParser parser = new ProjectParser(ref _workingProject);
+            ProjectParser parser = new ProjectParser(_workingProject);
+            var moduleHost = OdkProjectsSharedModule.Instance.ModuleHost;
 
             // check if parsing failed
-            if (!await parser.ParseZip(_zipFile, Path.Combine(App.FolderLocation, "unzip")))
+            if (!await parser.ParseZip(_zipFile, Path.Combine(moduleHost.App.FolderLocation, "unzip")))
                 return false;
 
             // create tables for project
 
-            using (var dbConn = Database.CreateConnection())
+            using (var dbConn = moduleHost.App.Database.CreateConnection())
             {
                 var startPoint = Database.SaveTransactionPoint(dbConn);
                 if (GenerateDatabaseTable(dbConn))

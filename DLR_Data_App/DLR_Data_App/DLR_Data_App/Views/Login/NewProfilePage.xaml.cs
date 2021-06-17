@@ -1,9 +1,7 @@
-﻿using DLR_Data_App.Localizations;
-using DLR_Data_App.Models;
-using DLR_Data_App.Services;
+﻿using DLR_Data_App.Models;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -33,21 +31,23 @@ namespace DLR_Data_App.Views.Login
             // check if entry is empty
             if (username == null)
             {
-                await DisplayAlert(AppResources.newaccount, AppResources.wrongentry, AppResources.okay);
+                await DisplayAlert(SharedResources.newaccount, SharedResources.wrongentry, SharedResources.okay);
                 return;
             }
 
             _user = new User { Username = username };
 
-            var existingUser = Database.ReadUsers().FirstOrDefault(u => u.Username == _user.Username);
+            var database = (App.Current as App).Database;
+
+            var existingUser = database.Read<User>().FirstOrDefault(u => u.Username == _user.Username);
             if (existingUser != null)
             {
-                await DisplayAlert(AppResources.newaccount, AppResources.useralreadyexists, AppResources.okay);
+                await DisplayAlert(SharedResources.newaccount, SharedResources.useralreadyexists, SharedResources.okay);
                 Application.Current.MainPage = new LoginPage();
                 return;
             }
 
-            var answer = await DisplayAlert(AppResources.privacypolicy, AppResources.privacytext1, AppResources.accept, AppResources.decline);
+            var answer = await DisplayAlert(SharedResources.privacypolicy, SharedResources.privacytext1, SharedResources.accept, SharedResources.decline);
 
             if (!answer)
             {
@@ -56,16 +56,16 @@ namespace DLR_Data_App.Views.Login
                 return;
             }
 
-            var status = Database.Insert(ref _user);
+            var status = database.Insert(_user);
 
             if (!status)
             {
-                await DisplayAlert(AppResources.newaccount, AppResources.failed, AppResources.okay);
+                await DisplayAlert(SharedResources.newaccount, SharedResources.failed, SharedResources.okay);
                 Application.Current.MainPage = new LoginPage();
                 return;
             }
 
-            App.CurrentUser = _user;
+            (App.Current as App).CurrentUser = _user;
 
             Application.Current.MainPage = new SplashScreenPage();
         }

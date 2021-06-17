@@ -31,19 +31,19 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
             var sensor = OdkProjectsSharedModule.Instance.ModuleHost.App.Sensor;
             var formElement = new LocationDetectorElement(grid, parms.Element, parms.Type, parms.DisplayAlertFunc, parms.CurrentProject);
 
-            var labelLat = new Label { Text = AppResources.latitude };
+            var labelLat = new Label { Text = SharedResources.latitude };
             var labelLatData = new Label() { Text = sensor.Gps.Latitude.ToString(CultureInfo.CurrentCulture) };
 
-            var labelLong = new Label { Text = AppResources.longitude };
+            var labelLong = new Label { Text = SharedResources.longitude };
             var labelLongData = new Label() { Text = sensor.Gps.Longitude.ToString(CultureInfo.CurrentCulture) };
 
-            var labelAltitude = new Label { Text = AppResources.altitude };
+            var labelAltitude = new Label { Text = SharedResources.altitude };
             var labelAltitudeData = new Label { Text = sensor.Gps.Altitude.ToString(CultureInfo.CurrentCulture) };
 
-            var labelAccuracy = new Label { Text = AppResources.accuracy };
+            var labelAccuracy = new Label { Text = SharedResources.accuracy };
             var labelAccuracyData = new Label { Text = sensor.Gps.Accuracy.ToString(CultureInfo.CurrentCulture) };
 
-            var labelMessage = new Label { Text = AppResources.message };
+            var labelMessage = new Label { Text = SharedResources.message };
             var labelMessageData = new Label() { Text = sensor.Gps.Message };
 
             sensor.Gps.StatusChanged += (sender, args) =>
@@ -58,10 +58,10 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
                 });
             };
 
-            var saveButton = new Button { Text = AppResources.save };
-            var skipButton = new Button { Text = AppResources.skip };
+            var saveButton = new Button { Text = SharedResources.save };
+            var skipButton = new Button { Text = SharedResources.skip };
 
-            var savedLocation = new Label { Text = AppResources.saveddata };
+            var savedLocation = new Label { Text = SharedResources.saveddata };
             var savedLocationData = new Label { Text = string.Empty };
 
             formElement.SavedLocationLabel = savedLocationData;

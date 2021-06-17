@@ -1,5 +1,6 @@
 ﻿using DLR_Data_App.Models;
 using DLR_Data_App.Services;
+using DlrDataApp.Modules.Base.Shared;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -16,7 +17,7 @@ namespace DLR_Data_App.Views.Settings
         {
             InitializeComponent();
             // Get all users from database
-            _userList = Database.ReadUsers();
+            _userList = (App.Current as App).Database.Read<User>();
             ProfileListView.ItemsSource = _userList;
         }
 

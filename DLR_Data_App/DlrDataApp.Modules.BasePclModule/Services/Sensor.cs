@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace DlrDataApp.Modules.SharedModule.Services
+namespace DlrDataApp.Modules.Base.Shared.Services
 {
     public class Sensor
     {

@@ -1,12 +1,12 @@
 ﻿using Android.App;
 using Android.Widget;
-using com.DLR.DLR_Data_App.Droid;
 using DLR_Data_App.Services;
+using DlrDataApp.Modules.Base.Android;
 
 // see https://stackoverflow.com/a/44126899
 
 [assembly: Xamarin.Forms.Dependency(typeof(AndroidToast))]
-namespace com.DLR.DLR_Data_App.Droid
+namespace DlrDataApp.Modules.Base.Android
 {
     class AndroidToast : IToast
     {

@@ -1,12 +1,12 @@
 ﻿//Main contributors: Maximilian Enderling, Max Moebius
-using DlrDataApp.Modules.SharedModule.Controls;
+using DlrDataApp.Modules.Base.Shared.Controls;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule.Models
+namespace DlrDataApp.Modules.Profiling.Shared.Models
 {
     public class Plant : BindableObject, IInlinePickerElement
     {

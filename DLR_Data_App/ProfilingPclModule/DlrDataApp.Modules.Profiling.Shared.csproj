@@ -2,22 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>DlrDataApp.Modules.ProfilingSharedModule</RootNamespace>
+    <RootNamespace>DlrDataApp.Modules.Profiling.Shared</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.41" />
+    <ProjectReference Include="..\DlrDataApp.Modules.BasePclModule\DlrDataApp.Modules.Base.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DlrDataApp.Modules.BasePclModule\DlrDataApp.Modules.SharedModule.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Localization\AppResources.Designer.cs">
+    <Compile Update="Localization\ProfilingResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>AppResources.resx</DependentUpon>
+      <DependentUpon>ProfilingResources.resx</DependentUpon>
     </Compile>
     <Compile Update="Views\ProfilingList\NewProfilingPage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
@@ -58,9 +54,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Localization\AppResources.resx">
+    <EmbeddedResource Update="Localization\ProfilingResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>ProfilingResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CurrentProfilingPage.xaml">
       <Generator>MSBuild:Compile</Generator>

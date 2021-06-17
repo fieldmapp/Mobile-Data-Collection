@@ -1,5 +1,5 @@
 ﻿//Main contributors: Maximilian Enderling
-using DlrDataApp.Modules.SharedModule.Controls;
+using DlrDataApp.Modules.Base.Shared.Controls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace DlrDataApp.Modules.SharedModule.Controls
+namespace DlrDataApp.Modules.Base.Shared.Controls
 {
     /// <summary>
     /// An ImageButton which, when hold long enough, will open an <see cref="ImageDetailPage"/> .

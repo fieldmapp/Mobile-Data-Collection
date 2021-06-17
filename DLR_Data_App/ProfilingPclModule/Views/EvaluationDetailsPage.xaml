@@ -5,8 +5,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="DlrDataApp.Modules.ProfilingSharedModule.Views.EvaluationDetailsPage"
-             xmlns:res="clr-namespace:DlrDataApp.Modules.SharedModule.Localization;assembly=DlrDataApp.Modules.SharedModule"
+             x:Class="DlrDataApp.Modules.Profiling.Shared.Views.EvaluationDetailsPage"
+             xmlns:res="clr-namespace:DlrDataApp.Modules.Base.Shared.Localization;assembly=DlrDataApp.Modules.Base.Shared"
              Title="{res:Translate profiling}">
     <ContentPage.Content>
         <!-- Page is structured with StackLayout with 20pt Padding-->

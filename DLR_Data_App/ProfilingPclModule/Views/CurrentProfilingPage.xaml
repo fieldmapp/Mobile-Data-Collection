@@ -2,8 +2,8 @@
 <!--Main contributors: Maximilian Enderling, Maya Koehnen-->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DlrDataApp.Modules.ProfilingSharedModule.Views.CurrentProfilingPage"
-             xmlns:res="clr-namespace:DlrDataApp.Modules.SharedModule;assembly=DlrDataApp.Modules.SharedModule"
+             x:Class="DlrDataApp.Modules.Profiling.Shared.Views.CurrentProfilingPage"
+             xmlns:res="clr-namespace:DlrDataApp.Modules.Base.Shared;assembly=DlrDataApp.Modules.Base.Shared"
              Title="{res:Translate profiling}">
 <!--This is the Frontend representation of the Main Page. It consists of an ListView containing all question 
     categories with name and the answered questions and a button to navigate to the evaluation main page-->

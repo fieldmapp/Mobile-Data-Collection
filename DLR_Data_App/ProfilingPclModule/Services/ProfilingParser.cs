@@ -1,5 +1,5 @@
-﻿using DlrDataApp.Modules.ProfilingSharedModule.Models;
-using DlrDataApp.Modules.SharedModule;
+﻿using DlrDataApp.Modules.Profiling.Shared.Models;
+using DlrDataApp.Modules.Base.Shared;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;

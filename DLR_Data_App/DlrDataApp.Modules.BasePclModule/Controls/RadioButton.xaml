@@ -3,7 +3,7 @@
 <!--Altered from http://bsubramanyamraju.blogspot.com/2018/03/how-to-create-radiobutton-in_13.html -->
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="DlrDataApp.Modules.SharedModule.Controls.RadioButton">
+             x:Class="DlrDataApp.Modules.Base.Shared.Controls.RadioButton">
     <ContentView.Content>
         <StackLayout Orientation="Horizontal"  
                      x:Name="mainContainer"  

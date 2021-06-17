@@ -1,9 +1,9 @@
-﻿using DLR_Data_App.Localizations;
-using DLR_Data_App.Models;
-using DLR_Data_App.Services;
+﻿using DLR_Data_App.Models;
+using DLR_Data_App.Views.Settings;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Collections.Generic;
-
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,27 +12,39 @@ namespace DLR_Data_App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MenuPage
     {
+        public ObservableCollection<HomeMenuItem> MenuItems { get; }
+        public HomeMenuItem SensorTestMenuItem { get; }
+        public HomeMenuItem SettingsMenuItem { get; }
+        public HomeMenuItem AboutMenuItem { get; }
+        public HomeMenuItem LogoutMenuItem { get; }
+
         public MenuPage()
         {
             InitializeComponent();
 
-            var menuItems = new List<HomeMenuItem>
+            SensorTestMenuItem = new HomeMenuItem { Id = Guid.NewGuid(), Title = SharedResources.sensortest, NavigationPage = new NavigationPage(new SensorTestPage()) };
+            SettingsMenuItem = new HomeMenuItem { Id = Guid.NewGuid(), Title = SharedResources.settings, NavigationPage = new NavigationPage(new SettingsPage()) };
+            AboutMenuItem = new HomeMenuItem { Id = Guid.NewGuid(), Title = SharedResources.about, NavigationPage = new NavigationPage(new AboutPage()) };
+            LogoutMenuItem = new HomeMenuItem { Id = Guid.NewGuid(), Title = SharedResources.logout };
+
+            MenuItems = new ObservableCollection<HomeMenuItem>
             {
-                new HomeMenuItem { Id = MenuItemType.CurrentProject, Title=AppResources.currentproject },
-                new HomeMenuItem { Id = MenuItemType.Projects, Title=AppResources.projects },
-                new HomeMenuItem { Id = MenuItemType.CurrentProfiling, Title = AppResources.currentprofiling },
-                new HomeMenuItem { Id = MenuItemType.ProfilingList, Title = AppResources.profiling },
-                new HomeMenuItem { Id = MenuItemType.Sensortest, Title=AppResources.sensortest },
-                new HomeMenuItem { Id = MenuItemType.Settings, Title=AppResources.settings },
-                new HomeMenuItem { Id = MenuItemType.About, Title=AppResources.about },
-                new HomeMenuItem { Id = MenuItemType.Logout, Title=AppResources.logout },
-                new HomeMenuItem { Id = MenuItemType.DistanceMeasuringDemo, Title=AppResources.movement },
-                new HomeMenuItem { Id = MenuItemType.VoiceRecognitionDemo, Title=AppResources.voicerecognition },
-                new HomeMenuItem { Id = MenuItemType.DrivingEasy, Title=AppResources.drivingvieweasy },
-                new HomeMenuItem { Id = MenuItemType.DrivingHard, Title=AppResources.drivingviewhard }
+                SensorTestMenuItem,
+                SettingsMenuItem,
+                AboutMenuItem,
+                LogoutMenuItem
+                // TODO
+                //new HomeMenuItem { Id = MenuItemType.CurrentProject, Title=SharedResources.currentproject },
+                //new HomeMenuItem { Id = MenuItemType.Projects, Title=SharedResources.projects },
+                //new HomeMenuItem { Id = MenuItemType.CurrentProfiling, Title = SharedResources.currentprofiling },
+                //new HomeMenuItem { Id = MenuItemType.ProfilingList, Title = SharedResources.profiling },
+                //new HomeMenuItem { Id = MenuItemType.DistanceMeasuringDemo, Title=SharedResources.movement },
+                //new HomeMenuItem { Id = MenuItemType.VoiceRecognitionDemo, Title=SharedResources.voicerecognition },
+                //new HomeMenuItem { Id = MenuItemType.DrivingEasy, Title=SharedResources.drivingvieweasy },
+                //new HomeMenuItem { Id = MenuItemType.DrivingHard, Title=SharedResources.drivingviewhard }
             };
 
-            ListViewMenu.ItemsSource = menuItems;
+            ListViewMenu.ItemsSource = MenuItems;
 
             ListViewMenu.ItemTapped += async (sender, e) =>
             {
@@ -40,7 +52,7 @@ namespace DLR_Data_App.Views
                     return;
 
                 var id = ((HomeMenuItem)e.Item).Id;
-                await App.CurrentMainPage.NavigateFromMenu(id);
+                await App.CurrentMainPage.NavigateToPage(id);
             };
         }
     }

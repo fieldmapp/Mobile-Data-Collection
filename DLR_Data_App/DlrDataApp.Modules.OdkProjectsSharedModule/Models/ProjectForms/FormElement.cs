@@ -1,5 +1,6 @@
 ﻿using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
 using DlrDataApp.Modules.OdkProjectsSharedModule.Services;
+using DlrDataApp.Modules.SharedModule;
 using DlrDataApp.Modules.SharedModule.Localization;
 using System;
 using System.Collections.Generic;
@@ -95,7 +96,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
 
                 var localizedErrorHint = OdkDataExtractor.GetCurrentLanguageStringFromJsonList(Data.InvalidText, Project.Languages);
                 if (!string.IsNullOrWhiteSpace(localizedErrorHint))
-                    DisplayAlertFunc(AppResources.error, localizedErrorHint, AppResources.ok);
+                    DisplayAlertFunc(SharedResources.error, localizedErrorHint, SharedResources.ok);
             }
         }
 
@@ -166,9 +167,9 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
 
             if (!string.IsNullOrWhiteSpace(hintText))
             {
-                var helpButton = new Button { Text = AppResources.help };
+                var helpButton = new Button { Text = SharedResources.help };
 
-                helpButton.Clicked += async (sender, args) => await parms.DisplayAlertFunc(AppResources.help, hintText, AppResources.okay);
+                helpButton.Clicked += async (sender, args) => await parms.DisplayAlertFunc(SharedResources.help, hintText, SharedResources.okay);
                 grid.Children.Add(helpButton, 1, 0);
             }
             else

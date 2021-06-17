@@ -1,12 +1,12 @@
-﻿using DLR_Data_App.Localizations;
-using DLR_Data_App.Services;
-using System;
+﻿using System;
 using DLR_Data_App.ViewModels.Login;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Collections.Generic;
-using DLR_Data_App.Models.Profiling;
 using System.Linq;
+using DlrDataApp.Modules.Base.Shared.Controls;
+using DLR_Data_App.Models;
+using DlrDataApp.Modules.Base.Shared.Localization;
 
 namespace DLR_Data_App.Views.Login
 {
@@ -29,7 +29,7 @@ namespace DLR_Data_App.Views.Login
         
         public LoginPage()
         {
-            UserList = Database.ReadUsers().Select(u => new UserDisplay { Name = u.Username }).ToList();
+            UserList = (App.Current as App).Database.Read<User>().Select(u => new UserDisplay { Name = u.Username }).ToList();
             InitializeComponent();
             UserPicker.ItemSource = UserList;
             BindingContext = _viewModel;
@@ -51,7 +51,7 @@ namespace DLR_Data_App.Views.Login
             }
             else
             {
-                await DisplayAlert(AppResources.login, AppResources.nouserfound, AppResources.back);
+                await DisplayAlert(SharedResources.login, SharedResources.nouserfound, SharedResources.back);
             }
         }
 

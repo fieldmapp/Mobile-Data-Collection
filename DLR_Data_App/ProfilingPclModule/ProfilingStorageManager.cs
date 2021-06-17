@@ -1,18 +1,14 @@
 ﻿//Main contributors: Henning Woydt
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Profiling.Shared.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Drawing;
-using Xamarin.Forms;
 using System.Collections.ObjectModel;
-using System.Globalization;
-using DlrDataApp.Modules.ProfilingSharedModule.Models;
-using DlrDataApp.Modules.SharedModule;
-using Newtonsoft.Json;
+using System.IO;
+using System.Linq;
 
-namespace DlrDataApp.Modules.ProfilingSharedModule
+namespace DlrDataApp.Modules.Profiling.Shared
 {
     public static class ProfilingStorageManager
     {
@@ -41,7 +37,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule
 
         private static ProfilingResult Result;
 
-        private static Database Database => ProfilingSharedModule.Instance.ModuleHost.App.Database;
+        private static Database Database => ProfilingModule.Instance.ModuleHost.App.Database;
 
         /// <summary>
         /// The name of the user currently logged into the app
@@ -252,7 +248,7 @@ namespace DlrDataApp.Modules.ProfilingSharedModule
             }
             if (listAvailableQuestion.Count > 0)
             {
-                return listAvailableQuestion[ProfilingSharedModule.Instance.ModuleHost.App.RandomProvider.Next(listAvailableQuestion.Count)]; /// return random question
+                return listAvailableQuestion[ProfilingModule.Instance.ModuleHost.App.RandomProvider.Next(listAvailableQuestion.Count)]; /// return random question
             }
             if (difficulty == 1 || !lowerDifficultyOk)
             {

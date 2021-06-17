@@ -12,7 +12,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule
         public override Task OnInitialize()
         {
             Instance = this;
-            SharedModule.Localization.ResourcesCollector.AddResource<Localization.AppResources>();
+            SharedModule.Localization.ResourcesCollector.AddResource<Localization.OdkProjectsResources>();
             return Task.CompletedTask;
         }
     }
