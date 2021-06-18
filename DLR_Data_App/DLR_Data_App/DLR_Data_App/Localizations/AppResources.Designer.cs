@@ -439,7 +439,7 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Successfully exported into root directory with name Fieldmapp_Database_TIMESTAMP. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Successfully exported into root directory with name Fieldmapp_Export_TIMESTAMP. ähnelt.
         /// </summary>
         internal static string exporttorootwithtimestampsuccessful {
             get {

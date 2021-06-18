@@ -4,6 +4,7 @@ using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -12,6 +13,9 @@ namespace DLR_Data_App.Models.ProjectForms
 {
     class MediaSelectorElement : FormElement
     {
+        public const string ImageFolderName = "img_rec";
+        public const string DateToFileFormat = "yyyyMMdd_HHmmss";
+        public static string MediaPath => Path.Combine(App.FolderLocation, ImageFolderName);
         public MediaSelectorElement(Grid grid, ProjectFormElements data, string type, Func<string, string, string, Task> displayAlertFunc, Project project) : base(grid, data, type, displayAlertFunc, project) { }
 
         public DataHolder DataHolder;
@@ -31,7 +35,6 @@ namespace DLR_Data_App.Models.ProjectForms
 
             var pickFileButton = new Button { Text = AppResources.select };
             var fileSelectedLabel = new Label { Text = AppResources.fileselected };
-            //HACK: bad way to store an image. blob would be better
             var dataHolder = new DataHolder();
             formElement.DataHolder = dataHolder;
             pickFileButton.Clicked += async (a, b) =>
@@ -39,8 +42,16 @@ namespace DLR_Data_App.Models.ProjectForms
                 var image = await DependencyService.Get<ICameraProvider>().OpenCameraApp();
                 if (image != null)
                 {
-                    dataHolder.Data = Convert.ToBase64String(image);
-                    var length = dataHolder.Data.Length;
+                    // save image into own folder
+                    Directory.CreateDirectory(MediaPath);
+                    if (!string.IsNullOrWhiteSpace(dataHolder.Data))
+                        File.Delete(dataHolder.Data);
+
+                    var targetFilePath = Path.Combine(MediaPath, DateTime.UtcNow.ToString(DateToFileFormat) + ".jpg");
+                    using (var fileStream = DependencyService.Get<IStorageAccessProvider>().OpenFileWrite(targetFilePath))
+                        await fileStream.WriteAsync(image, 0, image.Length);
+
+                    dataHolder.Data = targetFilePath;
                     formElement.OnContentChange();
                 }
             };

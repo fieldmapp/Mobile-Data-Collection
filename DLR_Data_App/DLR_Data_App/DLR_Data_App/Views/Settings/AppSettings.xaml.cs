@@ -1,8 +1,14 @@
 ﻿using DLR_Data_App.Localizations;
+using DLR_Data_App.Models.ProjectForms;
 using DLR_Data_App.Services;
 using DLR_Data_App.Views.Login;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.IO.Compression;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -38,6 +44,7 @@ namespace DLR_Data_App.Views.Settings
                     answer = await DisplayAlert(AppResources.removedatabase, AppResources.removedatabasewarning, AppResources.accept, AppResources.cancel);
                     if(answer)
                     {
+                        Directory.Delete(MediaSelectorElement.MediaPath, true);
                         if(Database.RemoveDatabase())
                         {
                             // Successful
@@ -53,34 +60,66 @@ namespace DLR_Data_App.Views.Settings
                     break;
                 case 2:
                     // Export Database
-                    var exportString = ExportData();
-                    (Application.Current as App).StorageProvider.ExportDatabase(exportString);
+                    await ExportData();
                     await DisplayAlert(AppResources.save, AppResources.exporttorootwithtimestampsuccessful, AppResources.okay);
                     break;
             }
         }
 
+        public static void WriteDatabaseContentToFile(string content, string baseOutputPath)
+        {
+            var filename = "Fieldmapp_Database_" + DateTime.UtcNow.ToString(MediaSelectorElement.DateToFileFormat, CultureInfo.InvariantCulture) + ".json";
+
+            using (var fileStream = DependencyService.Get<IStorageAccessProvider>().OpenFileWrite(Path.Combine(baseOutputPath, filename)))
+            using (var streamWriter = new StreamWriter(fileStream))
+            {
+                streamWriter.Write(content);
+            }
+        }
+
+
         /// <summary>
         /// Exports data of current project to a json string.
         /// </summary>
-        public static string ExportData()
+        public static async Task ExportData()
         {
             // get data of the project from the db
             var workingProject = Database.GetCurrentProject();
             var tableContent = Database.ReadCustomTable(ref workingProject);
+
             if (tableContent == null)
-            {
-                return "";
-            }
+                return;
 
             // get current user
             var user = App.CurrentUser;
 
             JObject dataObject = new JObject();
 
+            var mediaPath = MediaSelectorElement.MediaPath;
+            var storageAccessProvider = DependencyService.Get<IStorageAccessProvider>();
+
+
+            var baseTempOutputPath = Path.Combine(App.FolderLocation, "export" + DateTime.UtcNow.ToString(MediaSelectorElement.DateToFileFormat, CultureInfo.InvariantCulture));
+            Directory.Delete(baseTempOutputPath, true);
+            Directory.CreateDirectory(baseTempOutputPath);
+            Directory.CreateDirectory(Path.Combine(baseTempOutputPath, MediaSelectorElement.ImageFolderName));
+
             for (var i = 0; i < tableContent.RowNameList.Count; i++)
             {
-                JArray dataArray = JArray.FromObject(tableContent.ValueList[i]);
+                var dataValues = tableContent.ValueList[i];
+                JArray dataArray = JArray.FromObject(dataValues);
+                for (int j = 0; j < dataValues.Count; j++)
+                {
+                    var item = dataValues[i];
+                    if (item.StartsWith(mediaPath))
+                    {
+                        // copy file into output directory
+                        var fileName = Path.GetFileName(item);
+                        dataValues[i] = fileName;
+                        if (File.Exists(item))
+                            File.Copy(item, Path.Combine(baseTempOutputPath, MediaSelectorElement.ImageFolderName, fileName));
+                    }
+                }
                 JProperty name = new JProperty(tableContent.RowNameList[i], dataArray);
                 dataObject.Add(name);
             }
@@ -100,7 +139,21 @@ namespace DLR_Data_App.Views.Settings
                 dataObject
               ));
 
-            return exportObject.ToString();
+            WriteDatabaseContentToFile(exportObject.ToString(), baseTempOutputPath);
+
+            var internalZipFilePath = Path.Combine(App.FolderLocation, "export.zip");
+            File.Delete(internalZipFilePath);
+            ZipFile.CreateFromDirectory(baseTempOutputPath, internalZipFilePath);
+
+            using (var internalFileStream = storageAccessProvider.OpenFileRead(internalZipFilePath))
+            using (var externalFileStream = storageAccessProvider.OpenFileWriteExternal("Fieldmapp_Export_" + DateTime.UtcNow.ToString(MediaSelectorElement.DateToFileFormat, CultureInfo.InvariantCulture) + ".zip"))
+            {
+                await internalFileStream.CopyToAsync(externalFileStream);
+            }
+
+            File.Delete(internalZipFilePath);
+
+            Directory.Delete(baseTempOutputPath, true);
         }
     }
 }

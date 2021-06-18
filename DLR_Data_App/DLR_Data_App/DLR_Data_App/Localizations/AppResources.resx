@@ -615,7 +615,7 @@ Consent of the data subject means any freely given, specific, informed and unamb
     <value>Accuracy</value>
   </data>
   <data name="exporttorootwithtimestampsuccessful" xml:space="preserve">
-    <value>Successfully exported into root directory with name Fieldmapp_Database_TIMESTAMP.</value>
+    <value>Successfully exported into root directory with name Fieldmapp_Export_TIMESTAMP.</value>
   </data>
   <data name="drivingview" xml:space="preserve">
     <value>Driving view</value>

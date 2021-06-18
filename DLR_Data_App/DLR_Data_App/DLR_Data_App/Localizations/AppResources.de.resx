@@ -615,7 +615,7 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen f√
     <value>Genauigkeit</value>
   </data>
   <data name="exporttorootwithtimestampsuccessful" xml:space="preserve">
-    <value>Erfolgreich ins Wurzelverzeichnis mit Namen Fieldmapp_Database_ZEITSTEMPEL exportiert.</value>
+    <value>Erfolgreich ins Wurzelverzeichnis mit Namen Fieldmapp_Export_ZEITSTEMPEL exportiert.</value>
   </data>
   <data name="drivingview" xml:space="preserve">
     <value>Fahransicht</value>
