@@ -66,13 +66,13 @@ namespace DLR_Data_App.Models.ProjectForms
 
             saveButton.Clicked += (sender, args) =>
             {
-                savedLocationData.Text = $"Lat:{labelLongData.Text} Long:{labelLatData.Text} Alt:{labelAltitudeData.Text} Acc:{labelAccuracyData.Text}";
+                savedLocationData.Text = $"Lat:{labelLongData.Text} Long:{labelLatData.Text} Alt:{labelAltitudeData.Text} Acc:{labelAccuracyData.Text} Utc:{DateTime.UtcNow.Ticks}";
                 formElement.OnContentChange();
             };
 
             skipButton.Clicked += (sender, args) =>
             {
-                savedLocationData.Text = $"Lat:0 Long:0 Alt:0 Acc:-1";
+                savedLocationData.Text = $"Lat:0 Long:0 Alt:0 Acc:-1 Utc:0";
                 formElement.OnContentChange();
             };
 
