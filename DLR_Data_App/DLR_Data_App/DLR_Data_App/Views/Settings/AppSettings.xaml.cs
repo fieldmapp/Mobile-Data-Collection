@@ -60,8 +60,15 @@ namespace DLR_Data_App.Views.Settings
                     break;
                 case 2:
                     // Export Database
-                    await ExportData();
-                    await DisplayAlert(AppResources.save, AppResources.exporttorootwithtimestampsuccessful, AppResources.okay);
+                    try
+                    {
+                        await ExportData();
+                        await DisplayAlert(AppResources.save, AppResources.exporttorootwithtimestampsuccessful, AppResources.okay);
+                    }
+                    catch (Exception exception)
+                    {
+                        await DisplayAlert(AppResources.error, exception.ToString(), AppResources.ok);
+                    }
                     break;
             }
         }
@@ -100,7 +107,9 @@ namespace DLR_Data_App.Views.Settings
 
 
             var baseTempOutputPath = Path.Combine(App.FolderLocation, "export" + DateTime.UtcNow.ToString(MediaSelectorElement.DateToFileFormat, CultureInfo.InvariantCulture));
-            Directory.Delete(baseTempOutputPath, true);
+            if (Directory.Exists(baseTempOutputPath))
+                Directory.Delete(baseTempOutputPath, true);
+            
             Directory.CreateDirectory(baseTempOutputPath);
             Directory.CreateDirectory(Path.Combine(baseTempOutputPath, MediaSelectorElement.ImageFolderName));
 
@@ -110,12 +119,12 @@ namespace DLR_Data_App.Views.Settings
                 JArray dataArray = JArray.FromObject(dataValues);
                 for (int j = 0; j < dataValues.Count; j++)
                 {
-                    var item = dataValues[i];
+                    var item = dataValues[j];
                     if (item.StartsWith(mediaPath))
                     {
                         // copy file into output directory
                         var fileName = Path.GetFileName(item);
-                        dataValues[i] = fileName;
+                        dataValues[j] = fileName;
                         if (File.Exists(item))
                             File.Copy(item, Path.Combine(baseTempOutputPath, MediaSelectorElement.ImageFolderName, fileName));
                     }
@@ -142,7 +151,9 @@ namespace DLR_Data_App.Views.Settings
             WriteDatabaseContentToFile(exportObject.ToString(), baseTempOutputPath);
 
             var internalZipFilePath = Path.Combine(App.FolderLocation, "export.zip");
-            File.Delete(internalZipFilePath);
+            if (File.Exists(internalZipFilePath))
+                File.Delete(internalZipFilePath);
+            
             ZipFile.CreateFromDirectory(baseTempOutputPath, internalZipFilePath);
 
             using (var internalFileStream = storageAccessProvider.OpenFileRead(internalZipFilePath))
