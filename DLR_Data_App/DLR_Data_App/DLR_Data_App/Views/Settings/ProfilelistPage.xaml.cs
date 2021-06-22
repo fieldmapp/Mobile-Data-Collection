@@ -1,7 +1,7 @@
 ﻿using DLR_Data_App.Models;
 using DLR_Data_App.Services;
 using System.Collections.Generic;
-
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,14 +10,19 @@ namespace DLR_Data_App.Views.Settings
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfileListPage
     {
-        private readonly List<User> _userList;
+        private readonly ObservableCollection<User> _userList;
 
         public ProfileListPage()
         {
             InitializeComponent();
             // Get all users from database
-            _userList = Database.ReadUsers();
+            _userList = new ObservableCollection<User>(Database.ReadUsers());
             ProfileListView.ItemsSource = _userList;
+        }
+
+        protected override void OnAppearing()
+        {
+            _userList.SetTo(Database.ReadUsers());
         }
 
         /// <summary>
