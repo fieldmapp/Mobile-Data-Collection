@@ -44,7 +44,9 @@ namespace DLR_Data_App.Views.Settings
                     answer = await DisplayAlert(AppResources.removedatabase, AppResources.removedatabasewarning, AppResources.accept, AppResources.cancel);
                     if(answer)
                     {
-                        Directory.Delete(MediaSelectorElement.MediaPath, true);
+                        if (Directory.Exists(MediaSelectorElement.MediaPath))
+                            Directory.Delete(MediaSelectorElement.MediaPath, true);
+
                         if(Database.RemoveDatabase())
                         {
                             // Successful
