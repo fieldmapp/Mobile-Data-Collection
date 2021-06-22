@@ -190,7 +190,7 @@
     <value>Bitte wählen Sie ein Datum und eine Zeit aus, in der Sie den Datensatz suchen. Es werden alle Datensätze in einer Liste dargestellt, wobei der zur Zeit passende Eintrag ausgewählt ist. Wählen Sie einen Eintrag zum Bearbeiten durch antippen aus.</value>
   </data>
   <data name="exportdatabase" xml:space="preserve">
-    <value>Datenbank als JSON exportieren</value>
+    <value>Datenbank exportieren</value>
   </data>
   <data name="failed" xml:space="preserve">
     <value>Fehlgeschlagen</value>
