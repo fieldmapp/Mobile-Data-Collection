@@ -41,6 +41,8 @@ namespace DLR_Data_App.Views.Settings
 
             if (!answer) return;
 
+            var isActiveUser = App.CurrentUser.Id == _selectedUser.Id;
+
             // remove data from database
             var result = Database.Delete(ref _selectedUser);
 
@@ -48,7 +50,10 @@ namespace DLR_Data_App.Views.Settings
             if (result)
             {
                 await DisplayAlert(AppResources.removeaccount, AppResources.successful, AppResources.accept);
-                await Navigation.PopAsync();
+                if (isActiveUser)
+                    _ = App.CurrentMainPage.NavigateFromMenu(MenuItemType.Logout);
+                else
+                    _ =  Navigation.PopAsync();
             }
             else
             {
