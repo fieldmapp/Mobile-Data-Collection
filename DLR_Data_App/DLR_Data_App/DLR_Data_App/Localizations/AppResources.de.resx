@@ -381,7 +381,7 @@ Einwilligung ist jede von der betroffenen Person freiwillig für den bestimmten 
     <value>Wollen Sie ihr Profil und alle gesammelten Daten löschen?</value>
   </data>
   <data name="removedatabase" xml:space="preserve">
-    <value>Datenbank löschen</value>
+    <value>Zurücksetzen (des gesamten Systems)</value>
   </data>
   <data name="removedatabasewarning" xml:space="preserve">
     <value>Wollen Sie die Datenbank löschen?</value>

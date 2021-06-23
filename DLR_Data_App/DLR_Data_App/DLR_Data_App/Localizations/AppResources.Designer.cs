@@ -1054,7 +1054,7 @@ namespace DLR_Data_App.Localizations {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Remove Database ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reset (of the whole system) ähnelt.
         /// </summary>
         internal static string removedatabase {
             get {
