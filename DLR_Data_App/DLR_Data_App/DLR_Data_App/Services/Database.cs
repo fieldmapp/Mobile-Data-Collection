@@ -265,6 +265,7 @@ namespace DLR_Data_App.Services
             try
             {
                 conn.Delete(profiling);
+                conn.CreateTable<ProfilingResult>();
                 conn.Execute($"DELETE FROM {nameof(ProfilingResult)} WHERE {nameof(ProfilingResult.ProfilingId)}=?", profiling.ProfilingId);
                 CommitChanges(startPoint, conn);
             }
