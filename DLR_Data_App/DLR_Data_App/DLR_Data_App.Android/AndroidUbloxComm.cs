@@ -28,6 +28,19 @@ namespace com.DLR.DLR_Data_App.Droid
     [BroadcastReceiver]
     class AndroidUbloxComm : IUbloxCommunicator
     {
+        public class UsbAttachedListener : BroadcastReceiver
+        {
+            Action<Context, Intent> Callback;
+            public UsbAttachedListener(Action<Context, Intent> callback)
+            {
+                Callback = callback;
+            }
+            public override void OnReceive(Context context, Intent intent)
+            {
+                Callback?.Invoke(context, intent);
+            }
+        }
+
         public const int REQUEST_CODE = 6;
         private static readonly string ACTION_USB_PERMISSION = MainActivity.Instance.PackageName + ".USB_PERMISSION";
         public Task LoadTask { get; }
@@ -38,25 +51,36 @@ namespace com.DLR.DLR_Data_App.Droid
 
         public AndroidUbloxComm()
         {
+            UsbDeviceAttachedListener = new UsbAttachedListener(OnUsbDeviceAttached);
             LoadTask = Initialize();
         }
 
+        public UsbAttachedListener UsbDeviceAttachedListener { get; }
 
+
+        const int UbloxVendorId = 5446;
+        const int UbloxSensorProductId = 425;
+
+        void OnUsbDeviceAttached(Context context, Intent intent)
+        {
+            var connectedDevice = (UsbDevice)intent.Extras.Get(UsbManager.ExtraDevice);
+            if (connectedDevice.VendorId != UbloxVendorId || connectedDevice.ProductId != UbloxSensorProductId)
+                return;
+
+            Initialize();
+        }
 
         public Task Initialize()
         {
             // see https://github.com/851265601/Xamarin.Android_ListviewSelect/blob/master/GetUSBPermission for tutorial on xamarin usb host connection
             // see https://github.com/anotherlab/UsbSerialForAndroid/blob/master/UsbSerialExampleApp/SerialConsoleActivity.cs for tutorial on used serial usb lib
             UsbManager = (UsbManager)MainActivity.Instance.ApplicationContext.GetSystemService(Context.UsbService);
-
             UsbReceiver = new UsbBroadcastReciever(this);
             var filter = new IntentFilter(ACTION_USB_PERMISSION);
             MainActivity.Instance.RegisterReceiver(UsbReceiver, filter);
 
             var table = UsbSerialProber.DefaultProbeTable;
-            const int ubloxVendorId = 5446;
-            const int ubloxSensorProductId = 425;
-            table.AddProduct(ubloxVendorId, ubloxSensorProductId, Java.Lang.Class.FromType(typeof(CdcAcmSerialDriver)));
+            table.AddProduct(UbloxVendorId, UbloxSensorProductId, Java.Lang.Class.FromType(typeof(CdcAcmSerialDriver)));
             var prober = new UsbSerialProber(table);
             var drivers = prober.FindAllDrivers(UsbManager);
             var driversList = drivers.ToList();
@@ -137,8 +161,12 @@ namespace com.DLR.DLR_Data_App.Droid
                         logFileStream.Write(b.Data);
                     }
                 };
-                SerialIOManager.Open(AndroidUbloxComm.UsbManager);
-                WriteData(UbloxConfigurationMessageGenerator.StardardUbloxConfiguration());
+                try
+                {
+                    SerialIOManager.Open(AndroidUbloxComm.UsbManager);
+                }
+                catch (Exception) { }
+                    WriteData(UbloxConfigurationMessageGenerator.StardardUbloxConfiguration());
             }
 
             void WriteData(byte[] data)
