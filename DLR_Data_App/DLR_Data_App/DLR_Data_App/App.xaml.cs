@@ -29,7 +29,6 @@ namespace DLR_Data_App
         /// <param name="storageProvider">Path to the local database</param>
         public App(string folderPath, string databaseLocation, IStorageProvider storageProvider)
         {
-            Device.SetFlags(new[] { "Shapes_Experimental" });
             InitializeComponent();
             
             StorageProvider = storageProvider;
@@ -39,7 +38,7 @@ namespace DLR_Data_App
             
             base.MainPage = new LoginPage();
 
-            var a = DependencyService.Get<IUbloxCommunicator>();
+            var ubloxCommService = DependencyService.Get<IUbloxCommunicator>();
         }
 
         protected override void OnStart()
