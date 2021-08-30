@@ -23,7 +23,7 @@ namespace DlrDataApp.Modules.Profiling.Shared.Views
         {
             InitializeComponent();
             Database = ProfilingModule.Instance.ModuleHost.App.Database;
-            ProfilingStorageManager.Initilize(ProfilingModule.Instance.ModuleHost.App.CurrentUser.Id);
+            ProfilingStorageManager.Initilize(ProfilingModule.Instance.ModuleHost.App.CurrentUser.Id.Value);
 
             MenuList.ItemsSource = ProfilingStorageManager.ProfilingMenuItems;
         }

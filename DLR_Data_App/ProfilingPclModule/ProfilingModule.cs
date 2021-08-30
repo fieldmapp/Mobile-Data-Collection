@@ -18,10 +18,10 @@ namespace DlrDataApp.Modules.Profiling.Shared
         {
             ResourcesCollector.AddResource<ProfilingResources>();
             Instance = this;
-            ModuleHost.AddSidebarItems(
+            var a = new[] {
                 new KeyValuePair<string, NavigationPage>(ProfilingResources.currentprofiling, new NavigationPage(new CurrentProfilingPage())),
-                new KeyValuePair<string, NavigationPage>(ProfilingResources.profiling, new NavigationPage(new ProfilingListPage()))
-                    );
+                new KeyValuePair<string, NavigationPage>(ProfilingResources.profiling, new NavigationPage(new ProfilingListPage())) };
+            var b = ModuleHost.AddSidebarItems(a);
             return Task.CompletedTask;
         }
     }

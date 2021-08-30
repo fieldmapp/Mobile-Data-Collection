@@ -5,6 +5,7 @@ using Xamarin.Forms.Xaml;
 using System.Collections.Generic;
 using System.Linq;
 using DlrDataApp.Modules.Base.Shared.Controls;
+using DlrDataApp.Modules.Base.Shared;
 using DLR_Data_App.Models;
 using DlrDataApp.Modules.Base.Shared.Localization;
 
@@ -26,10 +27,11 @@ namespace DLR_Data_App.Views.Login
 
         private readonly LoginViewModel _viewModel = new LoginViewModel();
         private List<UserDisplay> UserList;
+        Database Database => App.Current.Database;
         
         public LoginPage()
         {
-            UserList = (App.Current as App).Database.Read<User>().Select(u => new UserDisplay { Name = u.Username }).ToList();
+            UserList = Database.Read<User>().Select(u => new UserDisplay { Name = u.Username }).ToList();
             InitializeComponent();
             UserPicker.ItemSource = UserList;
             BindingContext = _viewModel;

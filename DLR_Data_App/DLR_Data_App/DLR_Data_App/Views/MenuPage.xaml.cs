@@ -12,7 +12,7 @@ namespace DLR_Data_App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MenuPage
     {
-        public ObservableCollection<HomeMenuItem> MenuItems { get; }
+        public ObservableCollection<HomeMenuItem> MenuItems { get; } = new ObservableCollection<HomeMenuItem>();
         public HomeMenuItem SensorTestMenuItem { get; }
         public HomeMenuItem SettingsMenuItem { get; }
         public HomeMenuItem AboutMenuItem { get; }
@@ -22,12 +22,12 @@ namespace DLR_Data_App.Views
         {
             InitializeComponent();
 
-            SensorTestMenuItem = new HomeMenuItem { Id = Guid.NewGuid(), Title = SharedResources.sensortest, NavigationPage = new NavigationPage(new SensorTestPage()) };
-            SettingsMenuItem = new HomeMenuItem { Id = Guid.NewGuid(), Title = SharedResources.settings, NavigationPage = new NavigationPage(new SettingsPage()) };
-            AboutMenuItem = new HomeMenuItem { Id = Guid.NewGuid(), Title = SharedResources.about, NavigationPage = new NavigationPage(new AboutPage()) };
-            LogoutMenuItem = new HomeMenuItem { Id = Guid.NewGuid(), Title = SharedResources.logout };
+            MenuItems.Add(SensorTestMenuItem = new HomeMenuItem { Id = Guid.NewGuid(), Title = SharedResources.sensortest, NavigationPage = new NavigationPage(new SensorTestPage()) });
+            MenuItems.Add(SettingsMenuItem = new HomeMenuItem { Id = Guid.NewGuid(), Title = SharedResources.settings, NavigationPage = new NavigationPage(new SettingsPage()) });
+            MenuItems.Add(AboutMenuItem = new HomeMenuItem { Id = Guid.NewGuid(), Title = SharedResources.about, NavigationPage = new NavigationPage(new AboutPage()) });
+            MenuItems.Add(LogoutMenuItem = new HomeMenuItem { Id = Guid.NewGuid(), Title = SharedResources.logout });
 
-            MenuItems = new ObservableCollection<HomeMenuItem>
+            /* = new ObservableCollection<HomeMenuItem>
             {
                 SensorTestMenuItem,
                 SettingsMenuItem,
@@ -42,7 +42,7 @@ namespace DLR_Data_App.Views
                 //new HomeMenuItem { Id = MenuItemType.VoiceRecognitionDemo, Title=SharedResources.voicerecognition },
                 //new HomeMenuItem { Id = MenuItemType.DrivingEasy, Title=SharedResources.drivingvieweasy },
                 //new HomeMenuItem { Id = MenuItemType.DrivingHard, Title=SharedResources.drivingviewhard }
-            };
+            };*/
 
             ListViewMenu.ItemsSource = MenuItems;
 

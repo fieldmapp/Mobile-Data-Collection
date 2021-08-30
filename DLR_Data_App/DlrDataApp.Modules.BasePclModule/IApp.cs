@@ -8,6 +8,7 @@ namespace DlrDataApp.Modules.Base.Shared
 {
     public interface IApp
     {
+        IModuleHost ModuleHost { get; }
         IUser CurrentUser { get; }
         NavigationPage NavigationPage { get; }
         Page CurrentPage { get; }

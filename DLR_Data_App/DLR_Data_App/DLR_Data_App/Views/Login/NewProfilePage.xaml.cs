@@ -1,7 +1,10 @@
 ﻿using DLR_Data_App.Models;
+using DLR_Data_App.Services;
+using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -21,6 +24,8 @@ namespace DLR_Data_App.Views.Login
             EntryUsername.Completed += (s, e) => BtnAccept.Focus();
         }
 
+        Database Database => App.Current.Database;
+
         /// <summary>
         /// Adds user
         /// </summary>
@@ -37,9 +42,7 @@ namespace DLR_Data_App.Views.Login
 
             _user = new User { Username = username };
 
-            var database = (App.Current as App).Database;
-
-            var existingUser = database.Read<User>().FirstOrDefault(u => u.Username == _user.Username);
+            var existingUser = Database.Read<User>().FirstOrDefault(u => u.Username == _user.Username);
             if (existingUser != null)
             {
                 await DisplayAlert(SharedResources.newaccount, SharedResources.useralreadyexists, SharedResources.okay);
@@ -56,7 +59,7 @@ namespace DLR_Data_App.Views.Login
                 return;
             }
 
-            var status = database.Insert(_user);
+            var status = Database.Insert(_user);
 
             if (!status)
             {
@@ -65,7 +68,7 @@ namespace DLR_Data_App.Views.Login
                 return;
             }
 
-            (App.Current as App).CurrentUser = _user;
+            App.Current.CurrentUser = _user;
 
             Application.Current.MainPage = new SplashScreenPage();
         }

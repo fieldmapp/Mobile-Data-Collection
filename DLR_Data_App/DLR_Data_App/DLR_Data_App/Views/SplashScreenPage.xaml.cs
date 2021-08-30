@@ -1,8 +1,6 @@
 ﻿using DLR_Data_App.Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -25,19 +23,20 @@ namespace DLR_Data_App.Views
         {
             Appearing -= SplashScreenPage_Appearing;
 
-            await RunAllMethodsWithAttribute<OnSplashScreenLoadAttribute>();
-            await RunAllMethodsWithAttribute<AfterSplashScreenLoadAttribute>();
+            await CreateNeededRessources();
 
             Application.Current.MainPage = new MainPage();
+
+            App.Current.AfterSplashScreenLoad();
         }
 
-        Task RunAllMethodsWithAttribute<T>() where T : Attribute
+        Task CreateNeededRessources()
         {
             //altered from https://stackoverflow.com/a/28791265/8512719#
 
             var tasksToDo = typeof(SplashScreenPage).Assembly.GetTypes()
                 .SelectMany(t => t.GetRuntimeMethods())
-                .Where(m => m.IsStatic && m.GetCustomAttribute<T>() != null)
+                .Where(m => m.IsStatic && m.GetCustomAttribute<OnSplashScreenLoadAttribute>() != null)
                 .Select(m => new Task(() => m.Invoke(null, null)))
                 .ToList();
 

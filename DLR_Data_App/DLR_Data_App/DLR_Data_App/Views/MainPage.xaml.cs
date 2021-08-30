@@ -1,51 +1,57 @@
 ﻿using DLR_Data_App.Models;
 using DLR_Data_App.Services;
 using DLR_Data_App.Views.Login;
-using DLR_Data_App.Views.Settings;
-using DlrDataApp.Modules.Base.Shared;
-using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.Localization;
+using System.Linq;
 
 namespace DLR_Data_App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage
     {
-        private static Dictionary<Guid, NavigationPage> PreloadedMenuPages;
-        private readonly Dictionary<Guid, NavigationPage> _menuPages;
+        //private static Dictionary<MenuItemType, NavigationPage> LoadedMenuPages;
+        //private readonly Dictionary<MenuItemType, NavigationPage> _menuPages;
         private SemaphoreSlim NavigationLock = new SemaphoreSlim(1);
-        public MenuPage MenuPage { get; private set; }
-        public static MenuPage PreloadedMenuPage;
+        public MenuPage MenuPage { get; }
 
         [OnSplashScreenLoad]
         static void OnSplashscreenLoad()
         {
-            PreloadedMenuPage = new MenuPage();
-            PreloadedMenuPages = PreloadedMenuPage.MenuItems.ToDictionary(m => m.Id, m => m.NavigationPage);
-        }
-        [AfterSplashScreenLoad]
-        static void AfterSplashScreenLoad()
-        {
-            
+            /*
+            LoadedMenuPages = new Dictionary<MenuItemType, NavigationPage>
+            {
+                { MenuItemType.CurrentProject, new NavigationPage(new ProjectPage()) },
+                { MenuItemType.Projects, new NavigationPage(new ProjectListPage()) },
+                { MenuItemType.ProfilingList, new NavigationPage(new ProfilingListPage()) },
+                { MenuItemType.CurrentProfiling, new NavigationPage(new CurrentProfilingPage()) },
+                { MenuItemType.Sensortest, new NavigationPage(new SensorTestPage()) },
+                { MenuItemType.Settings, new NavigationPage(new SettingsPage()) },
+                { MenuItemType.About, new NavigationPage(new AboutPage()) },
+                { MenuItemType.VoiceRecognitionDemo, new NavigationPage(new VoiceRecognitionDemoPage()) },
+                { MenuItemType.DrivingEasy, new NavigationPage(new DrivingPage(1)) },
+                { MenuItemType.DrivingHard, new NavigationPage(new DrivingPage(3)) }
+            };
+            */
         }
 
         public MainPage()
         {
             InitializeComponent();
-            MenuPage = PreloadedMenuPage;
-            Flyout = MenuPage;
-            _menuPages = PreloadedMenuPages;
+            //_menuPages = LoadedMenuPages;
 
-            //PreloadedMenuPage
+            MenuPage = new MenuPage();
+            
+            Flyout = MenuPage;
 
             Detail = MenuPage.AboutMenuItem.NavigationPage;
-
+            
             FlyoutLayoutBehavior = FlyoutLayoutBehavior.Popover;
 
             Appearing += MainPage_Appearing;
@@ -74,11 +80,11 @@ namespace DLR_Data_App.Views
                 return loginPage;
             }
 
-            var newPage = _menuPages[id];
+            var newPage = MenuPage.MenuItems.FirstOrDefault(m => m.Id == id);
 
-            if (newPage != null && Detail != newPage)
+            if (newPage != null && Detail != newPage.NavigationPage)
             {
-                Detail = newPage;
+                Detail = newPage.NavigationPage;
 
                 if (Device.RuntimePlatform == Device.Android)
                     await Task.Delay(200);
@@ -88,7 +94,7 @@ namespace DLR_Data_App.Views
 
             IsPresented = false;
             NavigationLock.Release();
-            return newPage;
+            return newPage.NavigationPage;
         }
 
         DateTime LastBackButtonPress = DateTime.MinValue;

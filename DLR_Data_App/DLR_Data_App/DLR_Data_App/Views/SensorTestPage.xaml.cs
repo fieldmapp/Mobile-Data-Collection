@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Numerics;
 using DLR_Data_App.Services;
 using DlrDataApp.Modules.Base.Shared.Services;
 using DlrDataApp.Modules.Base.Shared.Services.Sensors;
@@ -16,7 +20,7 @@ namespace DLR_Data_App.Views
         {
             InitializeComponent();
 
-            _sensor = (App.Current as App).Sensor;
+            _sensor = App.Current.Sensor;
         }
 
         protected override void OnAppearing()

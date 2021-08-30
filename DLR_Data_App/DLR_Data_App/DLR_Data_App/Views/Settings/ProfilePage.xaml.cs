@@ -40,14 +40,19 @@ namespace DLR_Data_App.Views.Settings
 
             if (!answer) return;
 
+            var isActiveUser = App.Current.CurrentUser.Id == _selectedUser.Id;
+
             // remove data from database
-            var result = (App.Current as App).Database.Delete(_selectedUser);
+            var result = App.Current.Database.Delete(_selectedUser);
 
             // check if removal was successful
             if (result)
             {
                 await DisplayAlert(SharedResources.removeaccount, SharedResources.successful, SharedResources.accept);
-                await Navigation.PopAsync();
+                if (isActiveUser)
+                    _ = App.CurrentMainPage.NavigateToPage(App.CurrentMainPage.MenuPage.LogoutMenuItem.Id);
+                else
+                    _ =  Navigation.PopAsync();
             }
             else
             {

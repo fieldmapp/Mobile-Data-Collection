@@ -9,6 +9,5 @@ namespace DLR_Data_App.ViewModels.Settings
         {
             Title = SharedResources.profiles;
         }
-
     }
 }

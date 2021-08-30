@@ -1,11 +1,12 @@
 ﻿using DLR_Data_App.Views.Login;
-using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Shared.Localization;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.IO.Compression;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,12 +20,10 @@ namespace DLR_Data_App.Views.Settings
         public AppSettings ()
         {
             InitializeComponent ();
-            _elementList = new List<string> {SharedResources.privacypolicy, SharedResources.removedatabase, SharedResources.exportdatabase};
+            _elementList = new List<string> { SharedResources.privacypolicy, SharedResources.removedatabase, SharedResources.exportdatabase};
             
             AppSettingsList.ItemsSource = _elementList;
         }
-
-        Database Database => (App.Current as App).Database;
 
         /// <summary>
         /// List of settings about the app shown
@@ -43,63 +42,99 @@ namespace DLR_Data_App.Views.Settings
                     answer = await DisplayAlert(SharedResources.removedatabase, SharedResources.removedatabasewarning, SharedResources.accept, SharedResources.cancel);
                     if(answer)
                     {
-                        if(Database.DeleteDatabase())
+                        // TODO
+                        /*if (Directory.Exists(MediaSelectorElement.MediaPath))
+                            Directory.Delete(MediaSelectorElement.MediaPath, true);
+
+                        if(Database.RemoveDatabase())
                         {
                             // Successful
-                            await DisplayAlert(SharedResources.removedatabase, SharedResources.successful, SharedResources.okay);
+                            await DisplayAlert(AppResources.removedatabase, AppResources.successful, AppResources.okay);
                             App.Current.MainPage = new LoginPage();
                         }
                         else
                         {
                             // Failure
-                            await DisplayAlert(SharedResources.removedatabase, SharedResources.failed, SharedResources.cancel);
-                        }
+                            await DisplayAlert(AppResources.removedatabase, AppResources.failed, AppResources.cancel);
+                        }*/
                     }
                     break;
                 case 2:
                     // Export Database
-                    var exportString = ExportData();
-                    ExportDatabase(exportString, DependencyService.Get<IStorageAccessProvider>());
-                    await DisplayAlert(SharedResources.save, SharedResources.exporttorootwithtimestampsuccessful, SharedResources.okay);
+                    try
+                    {
+                        await ExportData();
+                        await DisplayAlert(SharedResources.save, SharedResources.exporttorootwithtimestampsuccessful, SharedResources.okay);
+                    }
+                    catch (Exception exception)
+                    {
+                        await DisplayAlert(SharedResources.error, exception.ToString(), SharedResources.ok);
+                    }
                     break;
             }
         }
 
-        private void ExportDatabase(string exportString, IStorageAccessProvider storageAccessProvider)
+        public static void WriteDatabaseContentToFile(string content, string baseOutputPath)
         {
-            var filename = "Fieldmapp_Database_" + DateTime.UtcNow.ToString("ddMMyyyyHHmmss", CultureInfo.InvariantCulture) + ".json";
+            // TODO
+            /*
+            var filename = "Fieldmapp_Database_" + DateTime.UtcNow.ToString(MediaSelectorElement.DateToFileFormat, CultureInfo.InvariantCulture) + ".json";
 
-            using (var fileStream = storageAccessProvider.OpenFileWriteExternal(filename))
+            using (var fileStream = DependencyService.Get<IStorageAccessProvider>().OpenFileWrite(Path.Combine(baseOutputPath, filename)))
             using (var streamWriter = new StreamWriter(fileStream))
             {
-                streamWriter.Write(exportString);
+                streamWriter.Write(content);
             }
+            */
         }
+
 
         /// <summary>
         /// Exports data of current project to a json string.
         /// </summary>
-        public static string ExportData()
+        public static async Task ExportData()
         {
-            return @"{""info"":""todo""}";
             // TODO
-            // get data of the project from the db
             /*
+            // get data of the project from the db
             var workingProject = Database.GetCurrentProject();
             var tableContent = Database.ReadCustomTable(ref workingProject);
+
             if (tableContent == null)
-            {
-                return "";
-            }
+                return;
 
             // get current user
             var user = App.CurrentUser;
 
             JObject dataObject = new JObject();
 
+            var mediaPath = MediaSelectorElement.MediaPath;
+            var storageAccessProvider = DependencyService.Get<IStorageAccessProvider>();
+
+
+            var baseTempOutputPath = Path.Combine(App.FolderLocation, "export" + DateTime.UtcNow.ToString(MediaSelectorElement.DateToFileFormat, CultureInfo.InvariantCulture));
+            if (Directory.Exists(baseTempOutputPath))
+                Directory.Delete(baseTempOutputPath, true);
+            
+            Directory.CreateDirectory(baseTempOutputPath);
+            Directory.CreateDirectory(Path.Combine(baseTempOutputPath, MediaSelectorElement.ImageFolderName));
+
             for (var i = 0; i < tableContent.RowNameList.Count; i++)
             {
-                JArray dataArray = JArray.FromObject(tableContent.ValueList[i]);
+                var dataValues = tableContent.ValueList[i];
+                JArray dataArray = JArray.FromObject(dataValues);
+                for (int j = 0; j < dataValues.Count; j++)
+                {
+                    var item = dataValues[j];
+                    if (item.StartsWith(mediaPath))
+                    {
+                        // copy file into output directory
+                        var fileName = Path.GetFileName(item);
+                        dataValues[j] = fileName;
+                        if (File.Exists(item))
+                            File.Copy(item, Path.Combine(baseTempOutputPath, MediaSelectorElement.ImageFolderName, fileName));
+                    }
+                }
                 JProperty name = new JProperty(tableContent.RowNameList[i], dataArray);
                 dataObject.Add(name);
             }
@@ -119,7 +154,23 @@ namespace DLR_Data_App.Views.Settings
                 dataObject
               ));
 
-            return exportObject.ToString();
+            WriteDatabaseContentToFile(exportObject.ToString(), baseTempOutputPath);
+
+            var internalZipFilePath = Path.Combine(App.FolderLocation, "export.zip");
+            if (File.Exists(internalZipFilePath))
+                File.Delete(internalZipFilePath);
+            
+            ZipFile.CreateFromDirectory(baseTempOutputPath, internalZipFilePath);
+
+            using (var internalFileStream = storageAccessProvider.OpenFileRead(internalZipFilePath))
+            using (var externalFileStream = storageAccessProvider.OpenFileWriteExternal("Fieldmapp_Export_" + DateTime.UtcNow.ToString(MediaSelectorElement.DateToFileFormat, CultureInfo.InvariantCulture) + ".zip"))
+            {
+                await internalFileStream.CopyToAsync(externalFileStream);
+            }
+
+            File.Delete(internalZipFilePath);
+
+            Directory.Delete(baseTempOutputPath, true);
             */
         }
     }
