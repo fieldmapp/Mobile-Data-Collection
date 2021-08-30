@@ -260,21 +260,23 @@ namespace DlrDataApp.Modules.Base.Shared
             {
                 var primaryKeyProperties = typeof(T).GetProperties()
                     .Where(prop => prop.IsDefined(typeof(PrimaryKeyAttribute), false)).ToList();
-                if (primaryKeyProperties.Count != 0)
+                if (primaryKeyProperties.Count != 1)
                     throw new ArgumentException($"Type {typeof(T)} needs exactly one Property marked with {typeof(PrimaryKeyAttribute)}.");
                 propInfo = primaryKeyProperties.First();
             }
             return propInfo.GetValue(element);
         }
-        public List<T> ReadWithChildren<T>(bool recursive = false) where T : new() => RunWithConnection(conn => ReadWithChildren<T>(conn, recursive));
-        public static List<T> ReadWithChildren<T>(SQLiteConnection conn, bool recursive = false) where T : new()
+        public List<T> ReadWithChildren<T>(bool recursive = false) where T : class, new() => RunWithConnection(conn => ReadWithChildren<T>(conn, recursive));
+        public static List<T> ReadWithChildren<T>(SQLiteConnection conn, bool recursive = false) where T : class, new()
         {
             var content = Read<T>(conn);
             return content.Select(element => GetWithChildren<T>(conn, recursive, element)).ToList();
         }
 
-        private static T GetWithChildren<T>(SQLiteConnection conn, bool recursive, T element) where T : new()
+        private static T GetWithChildren<T>(SQLiteConnection conn, bool recursive, T element) where T : class, new()
         {
+            if (element == null)
+                return null;
             return conn.GetWithChildren<T>(GetPrimaryKeyValue(element), recursive);
         }
         public T Find<T>(Func<T, bool> predicate) where T : new()
@@ -290,8 +292,8 @@ namespace DlrDataApp.Modules.Base.Shared
             var value = conn.Table<T>().FirstOrDefault(predicate);
             return value;
         }
-        public T FindWithChildren<T>(Func<T, bool> predicate, bool recursive = false) where T : new() => RunWithConnection(conn => FindWithChildren<T>(conn, predicate, recursive));
-        public static T FindWithChildren<T>(SQLiteConnection conn, Func<T, bool> predicate, bool recursive = false) where T:new()
+        public T FindWithChildren<T>(Func<T, bool> predicate, bool recursive = false) where T : class, new() => RunWithConnection(conn => FindWithChildren<T>(conn, predicate, recursive));
+        public static T FindWithChildren<T>(SQLiteConnection conn, Func<T, bool> predicate, bool recursive = false) where T : class, new()
         {
             var element = Find(conn, predicate);
             return GetWithChildren<T>(conn, recursive, element);

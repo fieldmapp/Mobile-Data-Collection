@@ -40,13 +40,13 @@ namespace DlrDataApp.Modules.Profiling.Shared.Views
 
         protected override void OnAppearing()
         {
-            var currentProfiling = Database.FindWithChildren<ActiveProfilingInfo>(t => true).ActiveProfiling;
+            var currentProfiling = Database.FindWithChildren<ActiveProfilingInfo>(t => true)?.ActiveProfiling;
             // Todo
-            //if (currentProfiling == null)
-            //{
-            //    _ = App.CurrentMainPage.NavigateFromMenu(Models.MenuItemType.ProfilingList);
-            //    return;
-            //}
+            if (currentProfiling == null)
+            {
+                ProfilingModule.Instance.ModuleHost.NavigateTo(ProfilingModule.Instance.ProfilingListPageGuid);
+                return;
+            }
 
             if (CurrentProfilingId != currentProfiling.ProfilingId)
             {

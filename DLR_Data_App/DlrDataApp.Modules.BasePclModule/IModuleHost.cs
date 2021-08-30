@@ -7,8 +7,9 @@ namespace DlrDataApp.Modules.Base.Shared
 {
     public interface IModuleHost
     {
-        Guid AddSidebarItems(KeyValuePair<string, NavigationPage> items);
-        List<Guid> AddSidebarItems(IEnumerable<KeyValuePair<string, NavigationPage>> items);
+        Guid AddToSidebar(string title, NavigationPage page);
+        List<Guid> AddToSidebar(IEnumerable<KeyValuePair<string, NavigationPage>> items);
         IApp App { get; }
+        void NavigateTo(Guid id);
     }
 }

@@ -71,7 +71,7 @@
       <Project>{f93735e3-228c-4dc6-bd7f-242786284489}</Project>
       <Name>AndroidVoskBinding</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DlrDataApp.Modules.BasePclModule\DlrDataApp.Modules.SharedModule.csproj">
+    <ProjectReference Include="..\DlrDataApp.Modules.BasePclModule\DlrDataApp.Modules.Base.Shared.csproj">
       <Project>{CF63E909-0792-4368-A206-001A76AB1CE8}</Project>
       <Name>DlrDataApp.Modules.SharedModule</Name>
     </ProjectReference>

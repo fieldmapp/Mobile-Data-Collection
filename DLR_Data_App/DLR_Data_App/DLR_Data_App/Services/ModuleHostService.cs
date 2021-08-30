@@ -38,21 +38,26 @@ namespace DLR_Data_App.Services
 
         public IApp App { get; }
 
-        public Guid AddSidebarItems(KeyValuePair<string, NavigationPage> pageInfo)
+        public Guid AddToSidebar(string title, NavigationPage page)
         {
             var guid = Guid.NewGuid();
-            MenuPage.MenuItems.Add(new HomeMenuItem { Id = guid, Title = pageInfo.Key, NavigationPage = pageInfo.Value });
+            MenuPage.MenuItems.Add(new HomeMenuItem { Id = guid, Title = title, NavigationPage = page });
             return guid;
         }
 
-        public List<Guid> AddSidebarItems(IEnumerable<KeyValuePair<string, NavigationPage>> items)
+        public List<Guid> AddToSidebar(IEnumerable<KeyValuePair<string, NavigationPage>> items)
         {
             var result = new List<Guid>();
             foreach (var item in items)
             {
-                result.Add(AddSidebarItems(item));
+                result.Add(AddToSidebar(item.Key, item.Value));
             }
             return result;
+        }
+
+        public void NavigateTo(Guid id)
+        {
+            _ = (Application.Current as App).MainPage.NavigateToPage(id);
         }
     }
 }
