@@ -20,11 +20,7 @@ namespace DlrDataApp.Modules.Profiling.Shared.Models
         public DateTime TimeStamp { get; set; }
 
         [JsonIgnore]
-        public string UserAnswersJson
-        {
-            get => JsonTranslator.GetJson(UserAnswers);
-            set => UserAnswers = JsonTranslator.GetFromJson<Dictionary<string, List<IUserAnswer>>>(value);
-        }
+        public string UserAnswersJson { get; set; }
 
         [TextBlob(nameof(UserAnswersJson))]
         public Dictionary<string, List<IUserAnswer>> UserAnswers { get; set; }

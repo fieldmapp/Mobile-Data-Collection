@@ -22,10 +22,6 @@ namespace DlrDataApp.Modules.Profiling.Shared.Models
 
         // Authors of the profiling
         public string Authors { get; set; }
-
-        // Available languages
-        public string Languages { get; set; }
-
         public string ProfilingId { get; set; }
 
         [JsonIgnore]

@@ -36,6 +36,25 @@ namespace DLR_Data_App.Services
                 return null;
             }
 
+            /*var a = JsonTranslator.GetJson(new ProfilingData
+            {
+                ProfilingMenuItems = new List<ProfilingMenuItem>
+                {
+                    new ProfilingMenuItem("1","1",1,
+                    new List<int> { 1,2 })
+                },
+                Authors = "a",
+                Description = "a",
+                Id = 1,
+                Languages = "",
+                ProfilingId = "",
+                ProfilingMenuItemsJson = "",
+                Questions = new Dictionary<string, List<IQuestionContent>> {
+                    {"", new List<IQuestionContent>{new QuestionImageCheckerPage(1,"",0,1,1,1,1,"","","","") } } },
+                Title = "",
+                Translations = new Dictionary<string, string> { { "",""} }
+            });*/
+
             var profilingJsonContent = File.ReadAllText(profilingJsonPath);
             try
             {

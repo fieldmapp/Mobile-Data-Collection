@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using SQLite;
 using SQLiteNetExtensions.Extensions;
+using SQLiteNetExtensions.Extensions.TextBlob;
 
 namespace DlrDataApp.Modules.Base.Shared
 {
@@ -14,10 +15,27 @@ namespace DlrDataApp.Modules.Base.Shared
     /// <see cref="https://docs.microsoft.com/de-de/xamarin/android/data-cloud/data-access/using-sqlite-orm"/>
     public class Database
     {
+        class JsonTranslatorHelper : ITextBlobSerializer
+        {
+            public object Deserialize(string text, Type type)
+            {
+                // use JsonTranslator.GetFromJson
+                MethodInfo method = typeof(JsonTranslator).GetMethod(nameof(JsonTranslator.GetFromJson));
+                MethodInfo generic = method.MakeGenericMethod(type);
+                var a = generic.Invoke(null, new[] { text });
+                return a;
+            }
+
+            public string Serialize(object element)
+            {
+                return JsonTranslator.GetJson(element);
+            }
+        }
         string DatabasePath { get; }
         public Database(string databasePath)
         {
             DatabasePath = databasePath;
+            TextBlobOperations.SetTextSerializer(new JsonTranslatorHelper());
         }
 
         /// <summary>

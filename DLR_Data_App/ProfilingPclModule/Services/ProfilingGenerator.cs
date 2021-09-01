@@ -23,7 +23,7 @@ namespace DLR_Data_App.Services
             using (var dbConn = app.Database.CreateConnection())
             {
                 var startPoint = Database.SaveTransactionPoint(dbConn);
-                if (Database.Insert(parsedProfiling, dbConn))
+                if (Database.InsertOrUpdateWithChildren(parsedProfiling, dbConn))
                 {
                     Database.CommitChanges(startPoint, dbConn);
                     return true;

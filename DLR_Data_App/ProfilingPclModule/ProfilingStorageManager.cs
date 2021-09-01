@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using Xamarin.Forms;
 
 namespace DlrDataApp.Modules.Profiling.Shared
 {
@@ -46,7 +47,7 @@ namespace DlrDataApp.Modules.Profiling.Shared
 
         public static int ProjectsFilledSinceLastProfilingCompletion = 0;
 
-        public static IStorageAccessProvider StorageAccessProvider;
+        public static IStorageAccessProvider StorageAccessProvider => DependencyService.Get<IStorageAccessProvider>();
 
         /// <summary>
         /// Initializes the <see cref="ProfilingStorageManager"/>
@@ -145,7 +146,7 @@ namespace DlrDataApp.Modules.Profiling.Shared
         public static void SaveCurrentAnswer()
         {
             Result.TimeStamp = DateTime.UtcNow;
-            Database.InsertOrUpdate(Result);
+            Database.InsertOrUpdateWithChildren(Result);
         }
 
         /// <summary>
@@ -310,12 +311,11 @@ namespace DlrDataApp.Modules.Profiling.Shared
 
         public static void ExportAnswers()
         {
-            var results = new ProfilingResults { Results = Database.Read<ProfilingResult>().Where(p => p.UserId == UserId).ToList() };
+            var results = new ProfilingResults { Results = Database.ReadWithChildren<ProfilingResult>().Where(p => p.UserId == UserId).ToList() };
             if (!results.Results.Any())
                 return;
 
             var path = $"dlr_answers_{results.Results.First().UserId}.txt";
-
             using (var storageStream = StorageAccessProvider.OpenFileWriteExternal(path))
             using (var streamWriter = new StreamWriter(storageStream))
             using (var jsonWriter = new JsonTextWriter(streamWriter))

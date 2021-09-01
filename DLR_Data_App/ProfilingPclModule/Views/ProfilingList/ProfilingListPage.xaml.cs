@@ -59,7 +59,7 @@ namespace DlrDataApp.Modules.Profiling.Shared.Views.ProfilingList
         private void RefreshProfilingList()
         {
             Profilings.Clear();
-            foreach (var profiling in ProfilingModule.Instance.ModuleHost.App.Database.Read<ProfilingData>())
+            foreach (var profiling in ProfilingModule.Instance.ModuleHost.App.Database.ReadWithChildren<ProfilingData>())
             {
                 Profilings.Add(new LocalizedProfilingDataWrapper
                 {

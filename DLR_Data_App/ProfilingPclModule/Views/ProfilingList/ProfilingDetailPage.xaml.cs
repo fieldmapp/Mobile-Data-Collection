@@ -41,8 +41,7 @@ namespace DlrDataApp.Modules.Profiling.Shared.Views.ProfilingList
             Database.SetCurrentProfiling(InspectedProfiling);
 
             // Navigate to current project
-            // TODO
-            //await App.CurrentMainPage.NavigateFromMenu(MenuItemType.CurrentProfiling);
+            ProfilingModule.Instance.ModuleHost.NavigateTo(ProfilingModule.Instance.CurrentProfilingPageGuid);
         }
 
         /// <summary>

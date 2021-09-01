@@ -70,7 +70,7 @@ namespace DlrDataApp.Modules.Profiling.Shared.Views
             Button4.IsChecked = false;
             Button5.IsChecked = false;
 
-            (sender as RadioButton).IsChecked = true;
+            (sender as Base.Shared.Controls.RadioButton).IsChecked = true;
         }
 
         Dictionary<Base.Shared.Controls.RadioButton, int> RadioButtonIndex;

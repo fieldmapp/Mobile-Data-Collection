@@ -130,6 +130,10 @@
       <Project>{12e23230-2a80-46ce-8392-0ab2c633bd49}</Project>
       <Name>DlrDataApp.Modules.Profiling.Android</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\DlrDataApp.Modules.SharedAndroidModule\DlrDataApp.Modules.Base.Android.csproj">
+      <Project>{3f04c52d-d155-47bb-aa8a-d01983f0b0d0}</Project>
+      <Name>DlrDataApp.Modules.Base.Android</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ProfilingPclModule\DlrDataApp.Modules.Profiling.Shared.csproj">
       <Project>{431ba8e5-6ff1-42a1-9468-f34fa8e4573a}</Project>
       <Name>DlrDataApp.Modules.Profiling.Shared</Name>

@@ -129,16 +129,17 @@ namespace DlrDataApp.Modules.Profiling.Shared.Models
             CurrentDifficulty = 1;
             PropertyChanged += ProfilingMenuItem_PropertyChanged;
 
-            var nspace = typeof(ProfilingMenuItem).Namespace;
-            ProfilingPageType = Type.GetType($"{nspace}.Views.Profiling.{id}Page");
+            // todo: rework this mess
+            var nspace = typeof(ProfilingModule).Namespace;
+            ProfilingPageType = Type.GetType($"{nspace}.Views.{id}Page");
             if (ProfilingPageType == null || ProfilingPageType.IsAssignableFrom(typeof(IProfilingPage)))
-                throw new ArgumentException($"You need to provide an IProfilingPage matching the id given (for given id it needs to be called {id}Page and must be located in {nspace}.Views.Profiling");
-            QuestionType = Type.GetType($"{nspace}.Models.Profiling.Question{id.ToString()}Page");
+                throw new ArgumentException($"You need to provide an IProfilingPage matching the id given (for given id it needs to be called {id}Page and must be located in {nspace}.Views");
+            QuestionType = Type.GetType($"{nspace}.Models.Question{id.ToString()}Page");
             if (QuestionType == null || QuestionType.IsAssignableFrom(typeof(IQuestionContent)))
-                throw new ArgumentException($"You need to provide a IQuestionContent matching the id given (for given id it needs to be called Question{id}Page and must be located in {nspace}.Models.Profiling");
-            AnswerType = Type.GetType($"{nspace}.Models.Profiling.Question{id.ToString()}Page");
+                throw new ArgumentException($"You need to provide a IQuestionContent matching the id given (for given id it needs to be called Question{id}Page and must be located in {nspace}.Models");
+            AnswerType = Type.GetType($"{nspace}.Models.Question{id.ToString()}Page");
             if (AnswerType == null || AnswerType.IsAssignableFrom(typeof(IUserAnswer)))
-                throw new ArgumentException($"You need to provide a ProfilingPage matching the id given (for given id it needs to be called Answer{id}Page and must be located in {nspace}.Models.Profiling");
+                throw new ArgumentException($"You need to provide a ProfilingPage matching the id given (for given id it needs to be called Answer{id}Page and must be located in {nspace}.Models");
             if (!ProfilingPageType.GetConstructors().Any(ci =>
             {
                 var parms = ci.GetParameters();
