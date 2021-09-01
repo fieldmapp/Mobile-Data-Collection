@@ -63,8 +63,7 @@ namespace DlrDataApp.Modules.Profiling.Shared.Views.ProfilingList
 
                     if (success)
                     {
-                        //TODO: Fix alert info (currently related to project)
-                        await DisplayAlert(ProfilingResources.profiling, ProfilingResources.projectSuccessfullyAdded, SharedResources.okay);
+                        await DisplayAlert(ProfilingResources.profiling, ProfilingResources.profilingSuccessfullyAdded, SharedResources.okay);
                         await Navigation.PopModalAsync();
                     }
                     else

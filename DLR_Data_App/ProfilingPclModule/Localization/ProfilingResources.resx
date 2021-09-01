@@ -183,8 +183,8 @@ Tap on one to answer the questions of it. For each category you see:
   <data name="profilingResultsDifferentDifficulties" xml:space="preserve">
     <value>Here you can see your results in the different difficulties</value>
   </data>
-  <data name="projectSuccessfullyAdded" xml:space="preserve">
-    <value>Project was launched successfully.</value>
+  <data name="profilingSuccessfullyAdded" xml:space="preserve">
+    <value>Profiling was launched successfully.</value>
   </data>
   <data name="questionEntryFormat" xml:space="preserve">
     <value>Question {0}/{1} Id {2}</value>

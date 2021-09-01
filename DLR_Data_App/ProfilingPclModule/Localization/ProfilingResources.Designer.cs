@@ -253,11 +253,11 @@ namespace DlrDataApp.Modules.Profiling.Shared.Localization {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Project was launched successfully. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Profiling was launched successfully. ähnelt.
         /// </summary>
-        internal static string projectSuccessfullyAdded {
+        internal static string profilingSuccessfullyAdded {
             get {
-                return ResourceManager.GetString("projectSuccessfullyAdded", resourceCulture);
+                return ResourceManager.GetString("profilingSuccessfullyAdded", resourceCulture);
             }
         }
         
