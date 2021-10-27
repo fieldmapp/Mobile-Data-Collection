@@ -52,7 +52,7 @@ namespace DLR_Data_App.Models.ProjectForms
                     labelLongData.Text = args.Longitude.ToString();
                     labelAltitudeData.Text = args.Altitude.ToString();
                     labelAccuracyData.Text = args.Accuracy.ToString();
-                    labelMessage.Text = args.Message;
+                    labelMessageData.Text = args.Message;
                 });
             };
 
