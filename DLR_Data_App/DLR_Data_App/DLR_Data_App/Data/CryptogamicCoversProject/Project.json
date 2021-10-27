@@ -1,0 +1,17 @@
+{
+    "Project": {
+        "0": "Sampling of crypogamic covers"
+    },
+    "Author": {
+        "0": "Sina Truckenbrodt (1, 2), Maximilian Enderling (2) & Diego Leiva Cáceres (3) | 1 - Friedrich Schiller University Jena, Institute of Geography, Earth Observation | 2 - German Aerospace Center (DLR) Jena, Institute of Data Science, Citizen Science | 3 - Institute of Biology, University of Graz"
+    },
+    "Description": {
+        "0": "This is a project to collect parameters that characterize crypogamic covers in the earth system. Organisms that can be studied within this project are bryophytes, cyanobacteria, and lichens. This tool allows for a fast and precise sample data collection, especially on the microscale, if a dGNSS sensor (like the ZED-F9P RTK GNSS USB Dongle (from u-blox, GNSS OEM Future World) with an ANN-MB-Antenna) is connected the mobile device (e.g., tablet or smartphone)."
+    },
+    "Secret": null,
+    "Languages": {
+        "0": "English"
+    },
+    "ProfilingId": "",
+    "PreviewPattern": "{sample_ID}"
+}
