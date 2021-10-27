@@ -3,6 +3,7 @@ using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 using DLR_Data_App.Controls;
 using DLR_Data_App.Services;
+using DLR_Data_App.Services.TouchGesture;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -83,6 +84,10 @@ namespace DLR_Data_App.Views
             InitializeComponent();
             WriteUsingCsvWriter(csvWriter => csvWriter.WriteHeader<InteractionInfo>());
 
+            var backgroundTouchEffect = new TouchEffect();
+            backgroundTouchEffect.TouchAction += BackgroundTouchEffect_TouchAction;
+            RelativeLayout.Effects.Add(backgroundTouchEffect);
+
             var centerLaneStartTapRecognizer = new TapGestureRecognizer();
             centerLaneStartTapRecognizer.Tapped += CenterLaneStartTapRecognizer_Tapped;
             ArrowStartCenterShape.GestureRecognizers.Add(centerLaneStartTapRecognizer);
@@ -134,6 +139,14 @@ namespace DLR_Data_App.Views
             ResetToInitialState();
         }
 
+        private void BackgroundTouchEffect_TouchAction(object sender, TouchActionEventArgs args)
+        {
+            var pos = args.Location;
+            double normalizedX = pos.X / RelativeLayout.Width;
+            double normalizedY = pos.Y / RelativeLayout.Height;
+            PushInteractionToLog(new[] { new InteractionInfo(DateTime.UtcNow, -1, $"Miss: {normalizedX.ToString(CultureInfo.InvariantCulture)}, {normalizedY.ToString(CultureInfo.InvariantCulture)}") });
+        }
+
         private void CenterLaneEndTapRecognizer_Tapped(object sender, EventArgs e)
         {
             EndButtonClicked(0);
@@ -183,13 +196,13 @@ namespace DLR_Data_App.Views
             const double borderYFactor = 0.054;
             const double borderHeightFactor = 0.842;
 
-            const double buttonWidthFactor = 0.032;
+            const double buttonWidthFactor = 0.043;
             const double leftMostButtonXFactor = leftMostBorderXFactor + (laneWidthFactor - buttonWidthFactor) / 2.0;
             const double rightMostButtonXFactor = rightMostBorderXFactor - laneWidthFactor + (laneWidthFactor - buttonWidthFactor) / 2.0;
-            const double startButtonYFactor = 0.062;
-            const double middleButtonYFactor = 0.459;
-            const double endButtonYFactor = 0.825;
-            const double buttonHeightFactor = 0.062;
+            const double startButtonYFactor = 0.058;
+            const double middleButtonYFactor = 0.455;
+            const double endButtonYFactor = 0.821;
+            const double buttonHeightFactor = 0.070;
 
             const double laneBackgroundWidthFactor = laneWidthFactor - innerBorderWidthFactor;
 
