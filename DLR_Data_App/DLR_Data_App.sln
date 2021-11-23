@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLR_Data_App", "DLR_Data_Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidVoskBinding", "AndroidVoskBinding\AndroidVoskBinding.csproj", "{F93735E3-228C-4DC6-BD7F-242786284489}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectOutputProcessor", "ProjectOutputProcessor\ProjectOutputProcessor.csproj", "{63BBA936-4C22-4C4B-98B0-FB4381B127B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldCartographerProcessor", "ProjectOutputProcessor\FieldCartographerProcessor.csproj", "{63BBA936-4C22-4C4B-98B0-FB4381B127B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectOutputProcessor
+namespace FieldCartographerProcessor
 {
     public class Options
     {

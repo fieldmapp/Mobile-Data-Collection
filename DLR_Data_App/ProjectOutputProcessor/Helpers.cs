@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProjectOutputProcessor
+namespace FieldCartographerProcessor
 {
     internal static class Helpers
     {
