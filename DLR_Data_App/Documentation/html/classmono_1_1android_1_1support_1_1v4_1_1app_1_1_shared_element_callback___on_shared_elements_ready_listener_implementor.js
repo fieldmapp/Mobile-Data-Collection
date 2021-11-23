@@ -1,7 +1,0 @@
-var classmono_1_1android_1_1support_1_1v4_1_1app_1_1_shared_element_callback___on_shared_elements_ready_listener_implementor =
-[
-    [ "SharedElementCallback_OnSharedElementsReadyListenerImplementor", "classmono_1_1android_1_1support_1_1v4_1_1app_1_1_shared_element_callback___on_shared_elements_ready_listener_implementor.html#aa0c1bbd941448c3da43cbec63f53ae7d", null ],
-    [ "monodroidAddReference", "classmono_1_1android_1_1support_1_1v4_1_1app_1_1_shared_element_callback___on_shared_elements_ready_listener_implementor.html#a0c23882816bc9a3c60a20b6b78ddcecd", null ],
-    [ "monodroidClearReferences", "classmono_1_1android_1_1support_1_1v4_1_1app_1_1_shared_element_callback___on_shared_elements_ready_listener_implementor.html#ad09c450b8d36eac5011c443f7ef17dbd", null ],
-    [ "onSharedElementsReady", "classmono_1_1android_1_1support_1_1v4_1_1app_1_1_shared_element_callback___on_shared_elements_ready_listener_implementor.html#a1c76f286348f96d584d4ca5cb7f7ae91", null ]
-];

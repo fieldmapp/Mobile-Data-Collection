@@ -1,7 +1,0 @@
-var classmono_1_1android_1_1support_1_1v7_1_1media_1_1_remote_playback_client___on_message_received_listener_implementor =
-[
-    [ "RemotePlaybackClient_OnMessageReceivedListenerImplementor", "classmono_1_1android_1_1support_1_1v7_1_1media_1_1_remote_playback_client___on_message_received_listener_implementor.html#a022fca6ccb3bd609298df8dba53c100b", null ],
-    [ "monodroidAddReference", "classmono_1_1android_1_1support_1_1v7_1_1media_1_1_remote_playback_client___on_message_received_listener_implementor.html#aef2664f4c8c664fb805d7d2da12e9f2e", null ],
-    [ "monodroidClearReferences", "classmono_1_1android_1_1support_1_1v7_1_1media_1_1_remote_playback_client___on_message_received_listener_implementor.html#a021f477b112e12fc48db395502bf0979", null ],
-    [ "onMessageReceived", "classmono_1_1android_1_1support_1_1v7_1_1media_1_1_remote_playback_client___on_message_received_listener_implementor.html#afd8e4d54492afc49fc49d7cf64834110", null ]
-];

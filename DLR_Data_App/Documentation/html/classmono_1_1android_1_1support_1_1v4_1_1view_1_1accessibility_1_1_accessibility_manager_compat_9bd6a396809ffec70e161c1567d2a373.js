@@ -1,7 +1,0 @@
-var classmono_1_1android_1_1support_1_1v4_1_1view_1_1accessibility_1_1_accessibility_manager_compat_9bd6a396809ffec70e161c1567d2a373 =
-[
-    [ "AccessibilityManagerCompat_TouchExplorationStateChangeListenerImplementor", "classmono_1_1android_1_1support_1_1v4_1_1view_1_1accessibility_1_1_accessibility_manager_compat_9bd6a396809ffec70e161c1567d2a373.html#a70870b0d045f2660907b0639993c323e", null ],
-    [ "monodroidAddReference", "classmono_1_1android_1_1support_1_1v4_1_1view_1_1accessibility_1_1_accessibility_manager_compat_9bd6a396809ffec70e161c1567d2a373.html#a646b0cb4c9332288a6d51479147d0466", null ],
-    [ "monodroidClearReferences", "classmono_1_1android_1_1support_1_1v4_1_1view_1_1accessibility_1_1_accessibility_manager_compat_9bd6a396809ffec70e161c1567d2a373.html#aa27a317e4acec5bb2ce6981d96dbaffe", null ],
-    [ "onTouchExplorationStateChanged", "classmono_1_1android_1_1support_1_1v4_1_1view_1_1accessibility_1_1_accessibility_manager_compat_9bd6a396809ffec70e161c1567d2a373.html#abbf61e7546b08cf0d159de6aea819833", null ]
-];
