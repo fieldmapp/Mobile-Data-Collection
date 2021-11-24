@@ -159,7 +159,7 @@ namespace DLR_Data_App.Views
 
         private void ResetToInitialState()
         {
-            PushInteractionToLog(new[] { new InteractionInfo(DateTime.Now, -1, "canceled") });
+            PushInteractionToLog(new[] { new InteractionInfo(DateTime.UtcNow, -1, "canceled") });
             foreach (var button in LaneBeginButtons)
             {
                 button.BackgroundColor = ActiveButtonColor;
@@ -349,7 +349,7 @@ namespace DLR_Data_App.Views
         {
             if (!IsLaneActive[laneIndex])
             {
-                PushInteractionToLog(new[] { new InteractionInfo(DateTime.Now, laneIndex, "open") });
+                PushInteractionToLog(new[] { new InteractionInfo(DateTime.UtcNow, laneIndex, "open") });
 
                 if (laneIndex == 0)
                 {
@@ -427,7 +427,7 @@ namespace DLR_Data_App.Views
         {
             if (IsLaneActive[laneIndex])
             {
-                PushInteractionToLog(new[] { new InteractionInfo(DateTime.Now, laneIndex, "close") });
+                PushInteractionToLog(new[] { new InteractionInfo(DateTime.UtcNow, laneIndex, "close") });
 
                 if (laneIndex == 0)
                 {
