@@ -1,50 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FieldCartographerProcessor
 {
     internal static class Helpers
     {
-        public static IEnumerable<int> AllIndexesOf(this string str, string value)
+        public static DateTime FromGPST(this DateTime gpst)
         {
-            // from https://stackoverflow.com/a/2641383
 
-            if (String.IsNullOrEmpty(value))
-                throw new ArgumentException("the string to find may not be empty", "value");
-            for (int index = 0; ; index += value.Length)
+            // Table from https://confluence.qps.nl/qinsy/latest/en/utc-to-gps-time-correction-32245263.html
+            List<DateTime> leapSecondDays = new List<DateTime>
             {
-                index = str.IndexOf(value, index);
-                if (index == -1)
-                    break;
-                yield return index;
-            }
-        }
-        public static IEnumerable<int> AllIndexesOf(this string str, char value)
-        {
-            for (int index = 0; ; index += 1)
-            {
-                index = str.IndexOf(value, index);
-                if (index == -1)
-                    break;
-                yield return index;
-            }
-        }
-
-        public static int GetOriginalLengthInBytes(ReadOnlySpan<char> base64string)
-        {
-            // altered from https://blog.aaronlenoir.com/2017/11/10/get-original-length-from-base-64-string/ to work with spans
-            if (base64string.Length == 0)
-                return 0;
-
-            var characterCount = base64string.Length;
-            int paddingCount = 0;
-            if (base64string[^1] == '=')
-                paddingCount++;
-            if (base64string[^2] == '=')
-                paddingCount++;
-
-            return (3 * (characterCount / 4)) - paddingCount;
+                new DateTime(1981, 7, 1),
+                new DateTime(1982, 7, 1),
+                new DateTime(1983, 7, 1),
+                new DateTime(1985, 7, 1),
+                new DateTime(1988, 1, 1),
+                new DateTime(1990, 1, 1),
+                new DateTime(1991, 1, 1),
+                new DateTime(1992, 7, 1),
+                new DateTime(1993, 7, 1),
+                new DateTime(1994, 7, 1),
+                new DateTime(1996, 1, 1),
+                new DateTime(1997, 7, 1),
+                new DateTime(1999, 1, 1),
+                new DateTime(2006, 1, 1),
+                new DateTime(2009, 1, 1),
+                new DateTime(2012, 7, 1),
+                new DateTime(2015, 7, 1),
+                new DateTime(2017, 1, 1)
+            };
+            var leapSeconds = leapSecondDays.Count(leapSecondDate => gpst > leapSecondDate);
+            return gpst + TimeSpan.FromSeconds(leapSeconds);
         }
     }
 }
