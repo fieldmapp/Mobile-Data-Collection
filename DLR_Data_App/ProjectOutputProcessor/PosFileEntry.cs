@@ -57,7 +57,6 @@ namespace FieldCartographerProcessor
         public void AfterRead(AfterReadEventArgs e) 
         {
             DateTime = DateTime.FromGPST();
-            // TODO: Figure out how long the offset between UTC and GPST is
         }
 
         public void BeforeRead(BeforeReadEventArgs e)

@@ -11,6 +11,7 @@ namespace FieldCartographerProcessor
         {
 
             // Table from https://confluence.qps.nl/qinsy/latest/en/utc-to-gps-time-correction-32245263.html
+            // Requires updates when UTC leap seconds are announced
             List<DateTime> leapSecondDays = new List<DateTime>
             {
                 new DateTime(1981, 7, 1),

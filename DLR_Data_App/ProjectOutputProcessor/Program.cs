@@ -3,6 +3,7 @@ using CsvHelper.Configuration;
 using ExifLib;
 using FileHelpers;
 using FileHelpers.Options;
+using NetTopologySuite.Geometries;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -18,13 +19,18 @@ namespace FieldCartographerProcessor
         [Option('v', "verbose", Default = false, Required = false, HelpText = "Set output to verbose messages.")]
         public bool Verbose { get; set; }
 
-        [Option('i', "interactions", Default = "interactions.txt", Required = false, HelpText = "Set interaction csv file path.")]
+        [Option('i', "interactions", Default = "interactions.csv", Required = false, HelpText = "Set interaction csv file path.")]
         public string InteractionsPath { get; set; }
-        
+
         [Option('p', "pos", Default = "complete.pos", Required = false, HelpText = "Set interaction csv file path.")]
         public string PositionPath { get; set; }
+
+        [Option('l', "lanes", Default = "lanes", Required = false, HelpText = "Set lane csv file path.")]
+        public string LanesPath { get; set; }
+
         [Option('o', "output", Default = "output.txt", Required = false, HelpText = "Set output json file path.")]
         public string OutputPath { get; set; }
+
         [Option('t', "temp-file-name", Default = "current", Required = false, HelpText = "Set path to use for the temp file.")]
         public string TempFilePath { get; set; }
 
@@ -56,7 +62,7 @@ namespace FieldCartographerProcessor
                 throw new ArgumentException("arguments given are malformed");
 
             if (!File.Exists(options.InteractionsPath))
-                throw new ArgumentException($"Path {'"'}{options.PositionPath}{'"'} does not exist");
+                throw new ArgumentException($"Path {'"'}{options.InteractionsPath}{'"'} does not exist");
 
             if (!File.Exists(options.PositionPath))
                 throw new ArgumentException($"Path {'"'}{options.PositionPath}{'"'} does not exist");
@@ -74,10 +80,21 @@ namespace FieldCartographerProcessor
 
             VerboseWriteLine($"Trying to read {options.PositionPath}.");
 
-            var engine = new FileHelperEngine<PosFileEntry>();
-            var result = engine.ReadFile(options.PositionPath);
+            var posFileReader = new FileHelperEngine<PosFileEntry>();
+            var posLog = posFileReader.ReadFile(options.PositionPath);
 
             VerboseWriteLine($"Read successful.");
+
+            var shapeFileReader = NetTopologySuite.IO.Shapefile.CreateDataReader(options.LanesPath, GeometryFactory.Floating);
+            var shapeFileHeader = shapeFileReader.ShapeHeader;
+            while (shapeFileReader.Read())
+            {
+                Geometry geom = shapeFileReader.Geometry;
+
+                object[] values = new object[shapeFileReader.FieldCount];
+                var dbaseHeader = shapeFileReader.DbaseHeader;
+                int result = shapeFileReader.GetValues(values);
+            }
         }
     }
 }
