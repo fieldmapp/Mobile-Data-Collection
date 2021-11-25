@@ -8,17 +8,17 @@
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.8.0" />
-    <PackageReference Include="CsvHelper" Version="27.2.0" />
     <PackageReference Include="ExifLib.Standard" Version="1.7.0" />
     <PackageReference Include="FileHelpers" Version="3.5.1" />
+    <PackageReference Include="morelinq" Version="3.3.2" />
     <PackageReference Include="NetTopologySuite.IO.ShapeFile" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="interactions.csv">
+    <None Update="complete.pos">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="complete.pos">
+    <None Update="interactions.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="lanes.dbf">

@@ -1,8 +1,8 @@
 ﻿using CommandLine;
-using CsvHelper.Configuration;
 using ExifLib;
 using FileHelpers;
 using FileHelpers.Options;
+using MoreLinq;
 using NetTopologySuite.Geometries;
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace FieldCartographerProcessor
         [Option('p', "pos", Default = "complete.pos", Required = false, HelpText = "Set interaction csv file path.")]
         public string PositionPath { get; set; }
 
-        [Option('l', "lanes", Default = "lanes", Required = false, HelpText = "Set lane csv file path.")]
+        [Option('l', "lanes", Default = "lanes", Required = false, HelpText = "Set lane shapefile path. (without extension, all relevant shapefile-files are needed)")]
         public string LanesPath { get; set; }
 
         [Option('o', "output", Default = "output.txt", Required = false, HelpText = "Set output json file path.")]
@@ -68,33 +68,64 @@ namespace FieldCartographerProcessor
                 throw new ArgumentException($"Path {'"'}{options.PositionPath}{'"'} does not exist");
 
             VerboseWriteLine($"Trying to read {options.InteractionsPath}.");
-
-            List<InteractionInfo> interactions = null;
-            using (TextReader textReader = File.OpenText(options.InteractionsPath))
-            {
-                var csvReader = new CsvHelper.CsvReader(textReader, new CsvConfiguration(CultureInfo.InvariantCulture) { HasHeaderRecord = true });
-                interactions = csvReader.GetRecords<InteractionInfo>().ToList();
-            }
-
+            List<InteractionInfo> interactions = readInteractions(options);
             VerboseWriteLine($"Read successful.");
 
             VerboseWriteLine($"Trying to read {options.PositionPath}.");
-
-            var posFileReader = new FileHelperEngine<PosFileEntry>();
-            var posLog = posFileReader.ReadFile(options.PositionPath);
-
+            PosFileEntry[] posLog = readPosFile(options);
             VerboseWriteLine($"Read successful.");
 
+            VerboseWriteLine($"Trying to read {options.LanesPath}.");
+            List<(Geometry Geometry, string Name)> laneGeometries = readShapeFiles(options);
+            VerboseWriteLine($"Read successful.");
+
+            foreach (var p in interactions.Skip(13))
+            {
+                var time = p.UtcDateTime;
+                PosFileEntry posEntry = posLog.MinBy(p => Math.Abs((p.DateTime - time).Ticks)).First();
+                var timeOffset = posEntry.DateTime - time;
+                var lat = posEntry.Latitude;
+                var lon = posEntry.Longitude;
+                
+                var inside = laneGeometries[0].Geometry.Contains(new Point(lon, lat));
+                Console.WriteLine($"{inside} with position age {timeOffset}");
+            }
+            bool c = laneGeometries[0].Geometry.Contains(new Point(12.23382887, 53.83023661));
+        }
+
+        private static PosFileEntry[] readPosFile(Options options)
+        {
+            var posFileReader = new FileHelperEngine<PosFileEntry>();
+            var posLog = posFileReader.ReadFile(options.PositionPath);
+            return posLog;
+        }
+
+        private static List<InteractionInfo> readInteractions(Options options)
+        {
+
+            var interactionsFileReader = new FileHelperEngine<InteractionInfo>();
+            var interactionsLog = interactionsFileReader.ReadFile(options.InteractionsPath);
+            return interactionsLog.ToList();
+        }
+
+        private static List<(Geometry Geometry, string Name)> readShapeFiles(Options options)
+        {
+            List<(Geometry Geometry, string Name)> laneGeometries = new List<(Geometry Geometry, string Name)>();
             var shapeFileReader = NetTopologySuite.IO.Shapefile.CreateDataReader(options.LanesPath, GeometryFactory.Floating);
             var shapeFileHeader = shapeFileReader.ShapeHeader;
+            var dbaseHeader = shapeFileReader.DbaseHeader;
+            int nameIndex = dbaseHeader.Fields.ToList().FindIndex(d => d.Name.Equals("name", StringComparison.InvariantCultureIgnoreCase)) + 1; // +1 because objects shapeFileReader.GetValues contains geometry as first entry
+
             while (shapeFileReader.Read())
             {
                 Geometry geom = shapeFileReader.Geometry;
 
                 object[] values = new object[shapeFileReader.FieldCount];
-                var dbaseHeader = shapeFileReader.DbaseHeader;
-                int result = shapeFileReader.GetValues(values);
+                string name = (string)shapeFileReader.GetValue(nameIndex);
+                laneGeometries.Add((geom, name));
             }
+
+            return laneGeometries;
         }
     }
 }

@@ -34,7 +34,7 @@ namespace FieldCartographerProcessor
                 new DateTime(2017, 1, 1)
             };
             var leapSeconds = leapSecondDays.Count(leapSecondDate => gpst > leapSecondDate);
-            return gpst + TimeSpan.FromSeconds(leapSeconds);
+            return new DateTime(gpst.Ticks, DateTimeKind.Utc) + TimeSpan.FromSeconds(leapSeconds);
         }
     }
 }

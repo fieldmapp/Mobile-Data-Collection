@@ -1,5 +1,4 @@
-﻿using CsvHelper.Configuration.Attributes;
-using FileHelpers;
+﻿using FileHelpers;
 using FileHelpers.Events;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.Text;
 
 namespace FieldCartographerProcessor
 {
-    [FixedLengthRecord(), FileHelpers.IgnoreCommentedLines("%")]
+    [FixedLengthRecord()]
     class PosFileEntry : INotifyRead
     {
         [FieldConverter(ConverterKind.Date, "yyyy/MM/dd HH:mm:ss.fff")]
@@ -54,7 +53,7 @@ namespace FieldCartographerProcessor
         [FieldFixedLength(7)]
         public double Ratio { get; set; }
 
-        public void AfterRead(AfterReadEventArgs e) 
+        public void AfterRead(AfterReadEventArgs e)
         {
             DateTime = DateTime.FromGPST();
         }

@@ -1,11 +1,11 @@
-﻿using CsvHelper.Configuration.Attributes;
+﻿using FileHelpers;
+using FileHelpers.Events;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FieldCartographerProcessor
 {
-    public class InteractionInfo
+    [DelimitedRecord(","), IgnoreFirst]
+    public class InteractionInfo : INotifyRead
     {
         /// <summary>
         /// Default constructor. Needed for CsvHelper
@@ -14,17 +14,21 @@ namespace FieldCartographerProcessor
         {
 
         }
-        public InteractionInfo(DateTime utcDateTime, int laneIndex, string action)
-        {
-            UtcDateTime = utcDateTime;
-            LaneIndex = laneIndex;
-            Action = action;
-        }
-        [Index(0)]
+
+        [FieldConverter(ConverterKind.Date, "MM/dd/yyyy HH:mm:ss", "")] // empty string as culture -> invariant culture is being used
         public DateTime UtcDateTime { get; set; }
-        [Index(1)]
         public int LaneIndex { get; set; }
-        [Index(2)]
+        [FieldQuoted('"')]
         public string Action { get; set; }
+
+        public void AfterRead(AfterReadEventArgs e)
+        {
+            UtcDateTime = new DateTime(UtcDateTime.Ticks, DateTimeKind.Utc);
+        }
+
+        public void BeforeRead(BeforeReadEventArgs e)
+        {
+
+        }
     }
 }
