@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetTopologySuite.Geometries;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,24 @@ namespace FieldCartographerProcessor
             };
             var leapSeconds = leapSecondDays.Count(leapSecondDate => gpst > leapSecondDate);
             return new DateTime(gpst.Ticks, DateTimeKind.Utc) + TimeSpan.FromSeconds(leapSeconds);
+        }
+
+        public static bool ContainsDuplicates<T>(this IEnumerable<T> seq)
+        {
+            return seq.GroupBy(x => x).Any(x => x.Count() > 1);
+        }
+
+        public static double DistanceBetween(Point point1, Point point2)
+        {
+            // haversine from https://stackoverflow.com/a/41623738/8512719
+            const double r = 6371; // meters
+            
+            var sdlat = Math.Sin((point2.Y - point1.Y) / 2);
+            var sdlon = Math.Sin((point2.X - point1.X) / 2);
+            var q = sdlat * sdlat + Math.Cos(point1.Y) * Math.Cos(point2.Y) * sdlon * sdlon;
+            var d = 2 * r * Math.Asin(Math.Sqrt(q));
+            
+            return d;
         }
     }
 }

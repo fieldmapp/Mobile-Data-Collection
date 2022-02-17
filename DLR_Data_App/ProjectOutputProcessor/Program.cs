@@ -61,36 +61,107 @@ namespace FieldCartographerProcessor
             if (options == null)
                 throw new ArgumentException("arguments given are malformed");
 
-            if (!File.Exists(options.InteractionsPath))
-                throw new ArgumentException($"Path {'"'}{options.InteractionsPath}{'"'} does not exist");
-
             if (!File.Exists(options.PositionPath))
                 throw new ArgumentException($"Path {'"'}{options.PositionPath}{'"'} does not exist");
-
-            VerboseWriteLine($"Trying to read {options.InteractionsPath}.");
-            List<InteractionInfo> interactions = readInteractions(options);
-            VerboseWriteLine($"Read successful.");
 
             VerboseWriteLine($"Trying to read {options.PositionPath}.");
             PosFileEntry[] posLog = readPosFile(options);
             VerboseWriteLine($"Read successful.");
 
             VerboseWriteLine($"Trying to read {options.LanesPath}.");
-            List<(Geometry Geometry, string Name)> laneGeometries = readShapeFiles(options);
+            List<LaneInfo> laneInfos = readShapeFiles(options);
+
             VerboseWriteLine($"Read successful.");
 
-            foreach (var p in interactions.Skip(13))
+            const int zoneCount = 7;
+            var zonesHistory = new List<AreaInfo>();
+
+            foreach (var file in Directory.GetFiles("interactions"))
             {
-                var time = p.UtcDateTime;
+                var interactions = readInteractions(file);
+                var username = file.Split('_')[1];
+                ProcessInteractions(interactions, posLog, laneInfos, zoneCount, username, zonesHistory);
+            }
+
+            var fileWriter = new FileHelperEngine<AreaInfo>();
+            fileWriter.HeaderText = fileWriter.GetFileHeader();
+            fileWriter.WriteFile("out.csv", zonesHistory);
+        }
+
+        private static void ProcessInteractions(List<InteractionInfo> interactions, PosFileEntry[] posLog, List<LaneInfo> lanes, int zoneCount, string username, List<AreaInfo> zonesHistory)
+        {
+            var activeZones = new AreaInfo[zoneCount];
+
+            void finalizeZone(int zoneIndex)
+            {
+                if (activeZones[zoneIndex] == null)
+                    return;
+                zonesHistory.Add(activeZones[zoneIndex]);
+                activeZones[zoneIndex] = null;
+            }
+
+            LaneInfo currentLane = null;
+
+            foreach (var interaction in interactions.Where(i => !i.Action.StartsWith("Miss")))
+            {
+                var time = interaction.UtcDateTime;
                 PosFileEntry posEntry = posLog.MinBy(p => Math.Abs((p.DateTime - time).Ticks)).First();
                 var timeOffset = posEntry.DateTime - time;
-                var lat = posEntry.Latitude;
-                var lon = posEntry.Longitude;
-                
-                var inside = laneGeometries[0].Geometry.Contains(new Point(lon, lat));
-                Console.WriteLine($"{inside} with position age {timeOffset}");
+
+                var pos = new Point(posEntry.Longitude, posEntry.Latitude);
+
+                var newLane = lanes.FirstOrDefault(l => l.Geometry.Contains(pos));
+                if (newLane != null)
+                {
+                    if (newLane != currentLane)
+                    {
+                        Console.WriteLine($"Entered lane {newLane.Name} at {time} at position {pos}");
+                        // close all zones
+                        for (int i = 0; i < zoneCount; i++)
+                        {
+                            if (activeZones[i] != null)
+                            {
+                                activeZones[i].DistanceEndToZoneEntry = Helpers.DistanceBetween(currentLane.ExitPoint, currentLane.EntryPoint);
+                                finalizeZone(i);
+                            }
+                        }
+                        currentLane = newLane;
+                    }
+                }
+
+                if (currentLane == null)
+                    continue;
+
+                if (interaction.Action == "open")
+                {
+                    finalizeZone(interaction.LaneIndex);
+                    activeZones[interaction.LaneIndex] = new AreaInfo
+                    {
+                        ZoneIndex = interaction.LaneIndex,
+                        UserName = username,
+                        DistanceStartToZoneEntry = Helpers.DistanceBetween(pos, currentLane.EntryPoint)
+                    };
+                }
+                else if (interaction.Action == "close" && activeZones[interaction.LaneIndex] != null)
+                {
+                    activeZones[interaction.LaneIndex].DistanceEndToZoneEntry = Helpers.DistanceBetween(pos, currentLane.EntryPoint);
+                }
+                else if (interaction.Action == "canceled")
+                {
+                    for (int i = 0; i < zoneCount; i++)
+                    {
+                        activeZones[i] = null;
+                    }
+                }
+                else if (interaction.Action.StartsWith("cause=") && activeZones[interaction.LaneIndex] != null)
+                {
+                    activeZones[interaction.LaneIndex].Cause = Enum.Parse<DamageCause>(interaction.Action["cause=".Length..]);
+                }
+                else if (interaction.Action.StartsWith("damage=") && activeZones[interaction.LaneIndex] != null)
+                {
+                    activeZones[interaction.LaneIndex].Type = Enum.Parse<DamageType>(interaction.Action["damage=".Length..]);
+                }
             }
-            bool c = laneGeometries[0].Geometry.Contains(new Point(12.23382887, 53.83023661));
         }
 
         private static PosFileEntry[] readPosFile(Options options)
@@ -100,21 +171,27 @@ namespace FieldCartographerProcessor
             return posLog;
         }
 
-        private static List<InteractionInfo> readInteractions(Options options)
+        private static List<InteractionInfo> readInteractions(string interactionsPath)
         {
 
             var interactionsFileReader = new FileHelperEngine<InteractionInfo>();
-            var interactionsLog = interactionsFileReader.ReadFile(options.InteractionsPath);
+            var interactionsLog = interactionsFileReader.ReadFile(interactionsPath);
             return interactionsLog.ToList();
         }
 
-        private static List<(Geometry Geometry, string Name)> readShapeFiles(Options options)
+        private static List<LaneInfo> readShapeFiles(Options options)
         {
-            List<(Geometry Geometry, string Name)> laneGeometries = new List<(Geometry Geometry, string Name)>();
+            var lanes = new List<LaneInfo>();
             var shapeFileReader = NetTopologySuite.IO.Shapefile.CreateDataReader(options.LanesPath, GeometryFactory.Floating);
             var shapeFileHeader = shapeFileReader.ShapeHeader;
             var dbaseHeader = shapeFileReader.DbaseHeader;
-            int nameIndex = dbaseHeader.Fields.ToList().FindIndex(d => d.Name.Equals("name", StringComparison.InvariantCultureIgnoreCase)) + 1; // +1 because objects shapeFileReader.GetValues contains geometry as first entry
+            List<NetTopologySuite.IO.DbaseFieldDescriptor> headerList = dbaseHeader.Fields.ToList();
+            int nameIndex = headerList.FindIndex(d => d.Name.Equals("name", StringComparison.InvariantCultureIgnoreCase)) + 1; // +1 because objects shapeFileReader.GetValues contains geometry as first entry
+            int entryLatIndex = headerList.FindIndex(d => d.Name.Equals("EntryLat", StringComparison.InvariantCultureIgnoreCase)) + 1; // +1 because objects shapeFileReader.GetValues contains geometry as first entry
+            int entryLongIndex = headerList.FindIndex(d => d.Name.Equals("EntryLong", StringComparison.InvariantCultureIgnoreCase)) + 1; // +1 because objects shapeFileReader.GetValues contains geometry as first entry
+            int exitLatIndex = headerList.FindIndex(d => d.Name.Equals("ExitLat", StringComparison.InvariantCultureIgnoreCase)) + 1; // +1 because objects shapeFileReader.GetValues contains geometry as first entry
+            int exitLongIndex = headerList.FindIndex(d => d.Name.Equals("ExitLong", StringComparison.InvariantCultureIgnoreCase)) + 1; // +1 because objects shapeFileReader.GetValues contains geometry as first entry
+
 
             while (shapeFileReader.Read())
             {
@@ -122,10 +199,26 @@ namespace FieldCartographerProcessor
 
                 object[] values = new object[shapeFileReader.FieldCount];
                 string name = (string)shapeFileReader.GetValue(nameIndex);
-                laneGeometries.Add((geom, name));
+                if (name == null)
+                    throw new Exception("The lanes name must not be null.");
+                var entryPoint = new Point((double)shapeFileReader.GetValue(entryLongIndex), (double)shapeFileReader.GetValue(entryLatIndex));
+                var exitPoint = new Point((double)shapeFileReader.GetValue(exitLongIndex), (double)shapeFileReader.GetValue(exitLatIndex));
+                lanes.Add(new LaneInfo(geom, entryPoint, exitPoint, name));
             }
 
-            return laneGeometries;
+            if (lanes.Select(l => l.Name).ContainsDuplicates())
+                throw new Exception("The lanes shapefile contains multiple features with the same name.");
+
+            foreach (var geometry1 in lanes.Select(g => g.Geometry))
+            {
+                foreach (var geometry2 in lanes.Select(g => g.Geometry).Where(g => g != geometry1))
+                {
+                    if (geometry1.Intersects(geometry2))
+                        throw new Exception("There are intersecting lanes defined in the lanes shapefile.");
+                }
+            }
+
+            return lanes;
         }
     }
 }
