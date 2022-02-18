@@ -10,7 +10,6 @@
         Logout,
         ProfilingList,
         CurrentProfiling,
-        DistanceMeasuringDemo,
         VoiceRecognitionDemo,
         DrivingEasy,
         DrivingHard
