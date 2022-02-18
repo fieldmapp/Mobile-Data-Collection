@@ -41,8 +41,6 @@
 
             <Button Grid.Column="1"
                     Text="{res:Translate next}" FontSize="Medium"
-                    BackgroundColor="{StaticResource Button}"
-                    TextColor="{StaticResource TextColor}"
                     VerticalOptions="End"
                     HorizontalOptions="Fill"
                     Clicked="OnWeiterButtonClicked"/>

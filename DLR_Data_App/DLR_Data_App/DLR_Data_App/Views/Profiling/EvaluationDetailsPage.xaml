@@ -38,7 +38,7 @@
                 <Label Grid.Row="1" FontSize="Medium" Text="{res:Translate easyWithColon}"  VerticalOptions="CenterAndExpand"/>
                 <Label Grid.Column="1" Grid.Row="1" x:Name="PercentEasyLabel" Text="{Binding PercentEasyLabelText}"
                 HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large"/>
-                <ProgressBar Grid.Column="2" Grid.Row="1" x:Name="PercentEasyBar" ProgressColor="{Binding ProgressEasyColor}"  
+                <ProgressBar Grid.Column="2" Grid.Row="1" x:Name="PercentEasyBar" ProgressColor="{Binding ProgressEasyColor}"
                             ScaleY="2" Progress="{Binding PercentEasyBarValue}"/>
                 <!-- Second Row: Result for medium questions-->
                 <Label Grid.Row="2" FontSize="Medium" Text="{res:Translate moderateWithColon}"  VerticalOptions="CenterAndExpand"/>

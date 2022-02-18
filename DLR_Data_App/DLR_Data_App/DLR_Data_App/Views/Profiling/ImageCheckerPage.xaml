@@ -67,7 +67,7 @@
                          VerticalOptions="CenterAndExpand"
                          IsEnabled="true"
                          ShortPress="Picture_ShortPress"
-                         BorderColor="White"
+                         BorderColor="Transparent"
                          BorderWidth="5"/>
             <controls:DetailImage x:Name="PictureD"
                          Source="{Binding QuestionItem.Image4Source}"
@@ -97,13 +97,10 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button x:Name="EvalButton" Text="{res:Translate evaluation}" FontSize="Medium"
-                    BackgroundColor="{StaticResource Button}"
                     TextColor="{Binding EvaluationTextColor}"
                     Clicked="OnAuswertungButtonClicked"/>
             <Button Grid.Column="1"
                     Text="{res:Translate next}" FontSize="Medium"
-                    BackgroundColor="{StaticResource Button}"
-                    TextColor="{StaticResource TextColor}"
                     Clicked="OnWeiterButtonClicked"/>
         </Grid>
     </StackLayout>

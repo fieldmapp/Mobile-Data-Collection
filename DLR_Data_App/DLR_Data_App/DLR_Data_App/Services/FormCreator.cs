@@ -77,8 +77,8 @@ namespace DLR_Data_App.Services
         public static FormContent GenerateForm(ProjectForm form, Project currentProject, Func<string, string, string, Task> displayAlert, bool useSkipButtons)
         {
             var contentPage = new ContentPage();
-            var scrollView = new ScrollView();
-            var stack = new StackLayout();
+            var scrollView = new ScrollView() { BackgroundColor = Color.Transparent };
+            var stack = new StackLayout() { BackgroundColor = Color.Transparent };
             var elements = new List<FormElement>();
 
             contentPage.Padding = new Thickness(10, 10, 10, 10);

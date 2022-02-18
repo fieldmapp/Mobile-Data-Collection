@@ -47,19 +47,19 @@
                        Text="{res:Translate holdImageToEnlarge}" FontSize="Micro"/>
                 </Grid>
             </Grid>
-            
+
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Frame Grid.Column="0" HeightRequest="100" Padding="3" BorderColor="LightGray" CornerRadius="0">
+                <Frame Grid.Column="0" HeightRequest="100" Padding="3" BorderColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundNight}}" CornerRadius="0">
                     <controls:InlinePicker x:Name="PlantInlinePicker">
                         <controls:InlinePicker.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <Frame BorderColor="{Binding BackgroundColor}" Padding="0" CornerRadius="0" BackgroundColor="{Binding BackgroundColor}">
-                                        <Frame BorderColor="{Binding BackgroundColor}" Margin="1" CornerRadius="0" BackgroundColor="White" Padding="0">
+                                        <Frame BorderColor="{Binding BackgroundColor}" Margin="1" CornerRadius="0" BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundNight}}" Padding="0">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>
@@ -73,13 +73,13 @@
                         </controls:InlinePicker.ItemTemplate>
                     </controls:InlinePicker>
                 </Frame>
-                <Frame Grid.Column="1" Padding="3" BorderColor="LightGray" CornerRadius="0">
+                <Frame Grid.Column="1" Padding="3" BorderColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundNight}}" CornerRadius="0">
                     <controls:InlinePicker x:Name="StadiumInlinePicker">
                         <controls:InlinePicker.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <Frame BorderColor="{Binding BackgroundColor}" Padding="0" CornerRadius="0" BackgroundColor="{Binding BackgroundColor}">
-                                        <Frame BorderColor="{Binding BackgroundColor}" Margin="1" CornerRadius="0" BackgroundColor="White" Padding="0">
+                                        <Frame BorderColor="{Binding BackgroundColor}" Margin="1" CornerRadius="0" BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundNight}}" Padding="0">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>

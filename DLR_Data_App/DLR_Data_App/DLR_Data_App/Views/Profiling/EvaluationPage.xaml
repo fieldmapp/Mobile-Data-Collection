@@ -8,14 +8,6 @@
              x:Class="DLR_Data_App.Views.Profiling.EvaluationPage"
              xmlns:res="clr-namespace:DLR_Data_App.Localizations"
              Title="{res:Translate profiling}">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Color x:Key="Button">Transparent</Color>
-            <Color x:Key="Selection">DarkSeaGreen</Color>
-            <Color x:Key="TextColor">Gray</Color>
-            <Color x:Key="LightTextColor">#999999</Color>
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
     <ContentPage.Content>
         <StackLayout Padding="20" HorizontalOptions="CenterAndExpand">

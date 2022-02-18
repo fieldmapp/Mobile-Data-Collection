@@ -166,6 +166,7 @@
                      RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.421}"
                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.073}"/>
             <Label x:Name="CauseText"
+                   TextColor="Blue"
                    Text="Ursache" FontSize="Body"
                    HorizontalOptions="CenterAndExpand" VerticalOptions="Center"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"

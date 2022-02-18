@@ -23,7 +23,7 @@ using static com.DLR.DLR_Data_App.Droid.ScreenListener;
 namespace com.DLR.DLR_Data_App.Droid
 {
     [MetaData(UsbManager.ActionUsbDeviceAttached, Resource = "@xml/device_filter")]
-    [Activity(Label = "FieldMApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.FullUser)]
+    [Activity(Label = "FieldMApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode, ScreenOrientation = ScreenOrientation.FullUser)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IScreenStateListener
     {
         public static MainActivity Instance { get; private set; }

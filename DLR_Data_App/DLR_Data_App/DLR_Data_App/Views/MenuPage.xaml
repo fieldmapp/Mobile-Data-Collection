@@ -2,10 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DLR_Data_App.Views.MenuPage"
-             Title="Menu">
+             Title="Menu"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundNight}}">
     <StackLayout VerticalOptions="FillAndExpand">
         <ListView x:Name="ListViewMenu"
-                    HasUnevenRows="True">
+                    HasUnevenRows="True" SeparatorColor="{AppThemeBinding Light={StaticResource Divider}, Dark={StaticResource DividerNight}}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

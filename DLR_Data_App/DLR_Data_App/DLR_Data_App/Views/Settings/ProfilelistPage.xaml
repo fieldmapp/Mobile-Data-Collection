@@ -17,8 +17,12 @@
                           SelectionMode="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextCell Text="{Binding Username}" 
-                                      Detail="{Binding Id, StringFormat='Id: {0:F0}'}"/>
+                            <ViewCell>
+                                <StackLayout VerticalOptions="Fill" HorizontalOptions="Fill" Orientation="Vertical" Padding="10, 1, 0, 0">
+                                    <Label Text="{Binding Username}"/>
+                                    <Label Text="{Binding Id, StringFormat='Id: {0:F0}'}" TextColor="{AppThemeBinding Light={StaticResource TextSecondary}, Dark={StaticResource TextSecondaryNight}}"/>
+                                </StackLayout>
+                            </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
