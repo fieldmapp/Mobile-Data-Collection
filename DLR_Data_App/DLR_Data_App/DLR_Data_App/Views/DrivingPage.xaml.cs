@@ -222,7 +222,7 @@ namespace DLR_Data_App.Views
                 int laneIndex = i;
                 string buttonText = (laneIndex + 1).ToString();
                 var buttonXFactor = leftMostButtonXFactor + (LaneCountPerSide - i - 1) * laneWidthFactor;
-                var topButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var topButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneBeginButtons.Add(topButton);
                 topButton.Clicked += (a, b) => BeginButtonClicked(laneIndex);
                 topButton.FontSize = Device.GetNamedSize(NamedSize.Small, topButton);
@@ -232,7 +232,7 @@ namespace DLR_Data_App.Views
                     yConstraint: Constraint.RelativeToParent(p => p.Height * startButtonYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
 
-                var middleButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var middleButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneMiddleButtons.Add(middleButton);
                 middleButton.Clicked += (a, b) => CenterButtonClicked(laneIndex);
                 middleButton.FontSize = Device.GetNamedSize(NamedSize.Small, middleButton);
@@ -242,7 +242,7 @@ namespace DLR_Data_App.Views
                     yConstraint: Constraint.RelativeToParent(p => p.Height * middleButtonYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
 
-                var endButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var endButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneEndButtons.Add(endButton);
                 endButton.Clicked += (a, b) => EndButtonClicked(laneIndex);
                 endButton.FontSize = Device.GetNamedSize(NamedSize.Small, endButton);
@@ -294,7 +294,7 @@ namespace DLR_Data_App.Views
                 int laneIndex = i + LaneCountPerSide;
                 string buttonText = (laneIndex + 1).ToString();
                 var buttonXFactor = rightMostButtonXFactor - (LaneCountPerSide - i - 1) * laneWidthFactor;
-                var topButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var topButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneBeginButtons.Add(topButton);
                 topButton.Clicked += (a, b) => BeginButtonClicked(laneIndex);
                 topButton.FontSize = Device.GetNamedSize(NamedSize.Small, topButton);
@@ -304,7 +304,7 @@ namespace DLR_Data_App.Views
                     yConstraint: Constraint.RelativeToParent(p => p.Height * startButtonYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
 
-                var middleButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var middleButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneMiddleButtons.Add(middleButton);
                 middleButton.Clicked += (a, b) => CenterButtonClicked(laneIndex);
                 middleButton.FontSize = Device.GetNamedSize(NamedSize.Small, middleButton);
@@ -314,7 +314,7 @@ namespace DLR_Data_App.Views
                     yConstraint: Constraint.RelativeToParent(p => p.Height * middleButtonYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
 
-                var endButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var endButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName]};
                 LaneEndButtons.Add(endButton);
                 endButton.Clicked += (a, b) => EndButtonClicked(laneIndex);
                 endButton.FontSize = Device.GetNamedSize(NamedSize.Small, endButton);
@@ -476,6 +476,12 @@ namespace DLR_Data_App.Views
             }
             if (interactionInfos.Any())
                 PushInteractionToLog(interactionInfos);
+        }
+
+        private void ConfigurePressed(object sender, EventArgs e)
+        {
+            var confPage = new DrivingConfigurationPage();
+            Navigation.PushModalAsync(confPage);
         }
     }
 }

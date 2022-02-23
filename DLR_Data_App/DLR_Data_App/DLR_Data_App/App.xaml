@@ -12,7 +12,7 @@
             <Color x:Key="TextDisabledNight">#80ffffff</Color>
             <Color x:Key="ButtonActive">#8A000000</Color>
             <Color x:Key="ButtonActiveNight">#fff</Color>
-            <Color x:Key="ButtonBorder">Transparent</Color>
+            <Color x:Key="ButtonBorder">#000</Color>
             <Color x:Key="ButtonBorderNight">#434343</Color>
             <Color x:Key="ButtonHover">#0A000000</Color>
             <Color x:Key="ButtonHoverNight">#04ffffff</Color>

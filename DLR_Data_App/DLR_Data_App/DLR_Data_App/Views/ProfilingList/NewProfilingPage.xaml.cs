@@ -33,7 +33,7 @@ namespace DLR_Data_App.Views.ProfilingList
                 if (SelectedFile.FileName.EndsWith(".zip"))
                 {
                     LblZipPath.Text = SelectedFile.FileName;
-                    _fileCopyPath = Path.Combine(App.FolderLocation, "Data.zip");
+                    _fileCopyPath = Path.Combine(Application.FolderLocation, "Data.zip");
                     using (var dataArray = await SelectedFile.OpenReadAsync())
                     {
                         File.Delete(_fileCopyPath);

@@ -11,7 +11,7 @@ namespace DLR_Data_App.Controls
     /// <summary>
     /// View which works like a button but can have other views as children.
     /// </summary>
-    public class ContentButton : ContentView
+    public class ContentButton : Frame
     {
         private readonly TapGestureRecognizer ElementClicked;
 

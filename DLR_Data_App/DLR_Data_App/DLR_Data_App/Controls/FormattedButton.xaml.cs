@@ -20,6 +20,9 @@ namespace DLR_Data_App.Controls
         {
             InitializeComponent();
             PropertyChanged += FormattedButton_PropertyChanged;
+            this.SetAppThemeColor(TextColorProperty, (Color)Application.Current.Resources["TextPrimary"], (Color)Application.Current.Resources["TextPrimaryNight"]);
+            this.SetAppThemeColor(BackgroundColorProperty, (Color)Application.Current.Resources["Background"], (Color)Application.Current.Resources["BackgroundNight"]);
+            this.SetAppThemeColor(BorderColorProperty, (Color)Application.Current.Resources["ButtonBorder"], (Color)Application.Current.Resources["ButtonBorderNight"]);
         }
 
         private void FormattedButton_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
