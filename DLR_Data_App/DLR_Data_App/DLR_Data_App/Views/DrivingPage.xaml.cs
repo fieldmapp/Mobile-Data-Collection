@@ -95,16 +95,6 @@ namespace DLR_Data_App.Views
             backgroundTouchEffect.TouchAction += BackgroundTouchEffect_TouchAction;
             RelativeLayout.Effects.Add(backgroundTouchEffect);
 
-            var centerLaneStartTapRecognizer = new TapGestureRecognizer();
-            centerLaneStartTapRecognizer.Tapped += CenterLaneStartTapRecognizer_Tapped;
-            ArrowStartCenterShape.GestureRecognizers.Add(centerLaneStartTapRecognizer);
-
-            var centerLaneEndTapRecognizer = new TapGestureRecognizer();
-            centerLaneEndTapRecognizer.Tapped += CenterLaneEndTapRecognizer_Tapped;
-            ArrowEndCenterShape.GestureRecognizers.Add(centerLaneEndTapRecognizer);
-
-            CenterLaneMiddleButton.Clicked += (a, b) => CenterButtonClicked(0);
-
             TypeLaneBackgrounds.Add(CenterLaneTypeBackground);
             CauseLaneBackgrounds.Add(CenterLaneCauseBackground);
 
@@ -154,16 +144,6 @@ namespace DLR_Data_App.Views
             PushInteractionToLog(new[] { new InteractionInfo(DateTime.UtcNow, -1, $"Miss: {normalizedX.ToString(CultureInfo.InvariantCulture)}, {normalizedY.ToString(CultureInfo.InvariantCulture)}") });
         }
 
-        private void CenterLaneEndTapRecognizer_Tapped(object sender, EventArgs e)
-        {
-            EndButtonClicked(0);
-        }
-
-        private void CenterLaneStartTapRecognizer_Tapped(object sender, EventArgs e)
-        {
-            BeginButtonClicked(0);
-        }
-
         private void ResetToInitialState()
         {
             PushInteractionToLog(new[] { new InteractionInfo(DateTime.UtcNow, -1, "canceled") });
@@ -175,9 +155,6 @@ namespace DLR_Data_App.Views
             {
                 SetActiveIndicator(formattedButton, false);
             }
-            SetActiveIndicator(CenterLaneMiddleButton, false);
-            SetActiveIndicator(ArrowStartCenterShape, true);
-            SetActiveIndicator(ArrowEndCenterShape, false);
             foreach (var boxView in TypeLaneBackgrounds.Union(CauseLaneBackgrounds))
             {
                 boxView.Background = Brush.Transparent;
@@ -242,8 +219,8 @@ namespace DLR_Data_App.Views
                     yConstraint: Constraint.RelativeToParent(p => p.Height * borderYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * borderHeightFactor));
 
-                int laneIndex = i + 1;
-                string buttonText = laneIndex.ToString();
+                int laneIndex = i;
+                string buttonText = (laneIndex + 1).ToString();
                 var buttonXFactor = leftMostButtonXFactor + (LaneCountPerSide - i - 1) * laneWidthFactor;
                 var topButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
                 LaneBeginButtons.Add(topButton);
@@ -314,8 +291,8 @@ namespace DLR_Data_App.Views
                     yConstraint: Constraint.RelativeToParent(p => p.Height * borderYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * borderHeightFactor));
 
-                int laneIndex = i + 1 + LaneCountPerSide;
-                string buttonText = laneIndex.ToString();
+                int laneIndex = i + LaneCountPerSide;
+                string buttonText = (laneIndex + 1).ToString();
                 var buttonXFactor = rightMostButtonXFactor - (LaneCountPerSide - i - 1) * laneWidthFactor;
                 var topButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
                 LaneBeginButtons.Add(topButton);
@@ -362,16 +339,8 @@ namespace DLR_Data_App.Views
             {
                 PushInteractionToLog(new[] { new InteractionInfo(DateTime.UtcNow, laneIndex, "open") });
 
-                if (laneIndex == 0)
-                {
-                    SetActiveIndicator(ArrowStartCenterShape, false);
-                    SetActiveIndicator(ArrowEndCenterShape, true);
-                }
-                else
-                {
-                    SetActiveIndicator(LaneBeginButtons[laneIndex - 1], false);
-                    SetActiveIndicator(LaneEndButtons[laneIndex - 1], true);
-                }
+                SetActiveIndicator(LaneBeginButtons[laneIndex], false);
+                SetActiveIndicator(LaneEndButtons[laneIndex], true);
                 var middleButton = GetMiddleButtonWithIndex(laneIndex);
                 SetActiveIndicator(middleButton, true);
                 IsLaneStarted[laneIndex] = true;
@@ -396,7 +365,7 @@ namespace DLR_Data_App.Views
                 shape.SetOnAppTheme(Shape.FillProperty, active ? ActiveButtonBrush : InactiveButtonBrush, active ? ActiveButtonBrushNight : InactiveButtonBrushNight);
         }
 
-        View GetMiddleButtonWithIndex(int index) => (index == 0 ? (View)CenterLaneMiddleButton : LaneMiddleButtons[index - 1]);
+        View GetMiddleButtonWithIndex(int index) => LaneMiddleButtons[index];
 
         public class InteractionInfo
         {
@@ -450,16 +419,8 @@ namespace DLR_Data_App.Views
             {
                 PushInteractionToLog(new[] { new InteractionInfo(DateTime.UtcNow, laneIndex, "close") });
 
-                if (laneIndex == 0)
-                {
-                    SetActiveIndicator(ArrowStartCenterShape, true);
-                    SetActiveIndicator(ArrowEndCenterShape, false);
-                }
-                else
-                {
-                    SetActiveIndicator(LaneBeginButtons[laneIndex - 1], true);
-                    SetActiveIndicator(LaneEndButtons[laneIndex - 1], false);
-                }
+                SetActiveIndicator(LaneBeginButtons[laneIndex], true);
+                SetActiveIndicator(LaneEndButtons[laneIndex], false);
                 IsLaneActive[laneIndex] = false;
             }
         }

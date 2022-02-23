@@ -103,20 +103,6 @@
                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.054}"
                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.845}"/>
 
-            <controls:FormattedButton x:Name="CenterLaneMiddleButton"
-                                      Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}" TextColor="Black"
-                                      RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.459}"
-                                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.095}"
-                                      RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.146}"
-                                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.068}">
-                <controls:FormattedButton.FormattedText>
-                    <FormattedString>
-                        <Span Text="Fahr" FontAttributes="None"/>
-                        <Span Text="spur" FontAttributes="Bold"/>
-                    </FormattedString>
-                </controls:FormattedButton.FormattedText>
-            </controls:FormattedButton>
-
 
             <BoxView x:Name="TypeBackground"
                      Color="{AppThemeBinding Light={StaticResource BannerColor}, Dark={StaticResource BannerColorNight}}" 
@@ -329,33 +315,6 @@
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndLeftShape, Property=Width, Factor=.9}"
                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndLeftShape, Property=Y, Factor=1}"
                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndLeftShape, Property=Height, Factor=1}"/>
-
-            <Path x:Name="ArrowStartCenterShape"
-                Data="M 0,-67 L 66,0 132,-67Z" Fill="{AppThemeBinding Light={StaticResource InactiveButtonBrush}, Dark={StaticResource InactiveButtonBrushNight}}"  Stroke="Black" StrokeThickness="1" Aspect="Fill"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.453}"
-                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.104}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.036}"
-                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.100}"/>
-            <Label x:Name="StartCenterLabel" 
-                   InputTransparent="True" Text="Start" FontSize="Small" TextColor="Black" FontAttributes="Bold"
-                   HorizontalOptions="Center" VerticalOptions="Start"
-                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowStartCenterShape, Property=X, Factor=1}"
-                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowStartCenterShape, Property=Width, Factor=1}"
-                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowStartCenterShape, Property=Y, Factor=1}"
-                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowStartCenterShape, Property=Height, Factor=1}"/>
-            <Path x:Name="ArrowEndCenterShape"
-                Data="M 0,67 L 66,0 132,67Z" Fill="{AppThemeBinding Light={StaticResource InactiveButtonBrush}, Dark={StaticResource InactiveButtonBrushNight}}"  Stroke="Black" StrokeThickness="1" Aspect="Fill"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.453}"
-                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.104}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.830}"
-                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.095}"/>
-            <Label x:Name="EndCenterLabel" 
-                   InputTransparent="True" Text="Stop" FontSize="Small" TextColor="Black" FontAttributes="Bold"
-                   HorizontalOptions="Center" VerticalOptions="End"
-                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndCenterShape, Property=X, Factor=1}"
-                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndCenterShape, Property=Width, Factor=1}"
-                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndCenterShape, Property=Y, Factor=1}"
-                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ArrowEndCenterShape, Property=Height, Factor=0.9}"/>
 
             <Path x:Name="ArrowStartRightShape"
                 Data="M 0,0 L 100,65 0,130Z" Fill="{AppThemeBinding Light={StaticResource InactiveButtonBrush}, Dark={StaticResource InactiveButtonBrushNight}}" Stroke="Black" StrokeThickness="1" Aspect="Fill"
