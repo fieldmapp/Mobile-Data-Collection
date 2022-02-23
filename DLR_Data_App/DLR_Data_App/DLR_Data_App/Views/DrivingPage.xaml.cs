@@ -45,11 +45,18 @@ namespace DLR_Data_App.Views
 
         readonly static Brush CompletedInfoBrush = Brush.Green;
         readonly static Brush ActiveForInputBrush = Brush.Orange;
-        readonly static Color InactiveButtonColor = Color.WhiteSmoke;
-        readonly static Brush InactiveButtonBrush = new SolidColorBrush(InactiveButtonColor);
-        readonly static Color ActiveButtonColor = Color.FromHex("#629C44");
-        readonly static Brush ActiveButtonBrush = new SolidColorBrush(ActiveButtonColor);
 
+        Color InactiveButtonColor => (Color)Resources["InactiveButtonColor"];
+        Brush InactiveButtonBrush => new SolidColorBrush(InactiveButtonColor);
+        
+        Color InactiveButtonColorNight => (Color)Resources["InactiveButtonColorNight"];
+        Brush InactiveButtonBrushNight => new SolidColorBrush(InactiveButtonColorNight);
+
+        Color ActiveButtonColor => (Color)Resources["ActiveColor"];
+        Brush ActiveButtonBrush => new SolidColorBrush(ActiveButtonColor);
+        
+        Color ActiveButtonColorNight => (Color)Resources["ActiveColorNight"];
+        Brush ActiveButtonBrushNight => new SolidColorBrush(ActiveButtonColorNight);
 
         readonly int LaneCountPerSide;
         readonly int TotalLaneCount;
@@ -162,15 +169,15 @@ namespace DLR_Data_App.Views
             PushInteractionToLog(new[] { new InteractionInfo(DateTime.UtcNow, -1, "canceled") });
             foreach (var button in LaneBeginButtons)
             {
-                button.BackgroundColor = ActiveButtonColor;
+                SetActiveIndicator(button, true);
             }
             foreach (var formattedButton in DamageCauseButtons.AsEnumerable<View>().Union(DamageTypeButtons).Union(LaneEndButtons).Union(LaneMiddleButtons))
             {
-                formattedButton.BackgroundColor = InactiveButtonColor;
+                SetActiveIndicator(formattedButton, false);
             }
-            CenterLaneMiddleButton.BackgroundColor = InactiveButtonColor;
-            ArrowStartCenterShape.Fill = ActiveButtonBrush;
-            ArrowEndCenterShape.Fill = InactiveButtonBrush;
+            SetActiveIndicator(CenterLaneMiddleButton, false);
+            SetActiveIndicator(ArrowStartCenterShape, true);
+            SetActiveIndicator(ArrowEndCenterShape, false);
             foreach (var boxView in TypeLaneBackgrounds.Union(CauseLaneBackgrounds))
             {
                 boxView.Background = Brush.Transparent;
@@ -226,7 +233,8 @@ namespace DLR_Data_App.Views
                     yConstraint: Constraint.RelativeToView(CenterLaneCauseBackground, (l, v) => v.Y),
                     heightConstraint: Constraint.RelativeToView(CenterLaneCauseBackground, (l, v) => v.Height));
 
-                var laneBorder = new BoxView { Color = Color.Black };
+                var laneBorder = new BoxView();
+                laneBorder.SetAppThemeColor(BoxView.ColorProperty, (Color)Resources["BorderColor"], (Color)Resources["BorderColorNight"]);
                 var borderXFactor = leftMostBorderXFactor + (LaneCountPerSide - i) * laneWidthFactor;
                 RelativeLayout.Children.Add(laneBorder,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * borderXFactor),
@@ -268,7 +276,8 @@ namespace DLR_Data_App.Views
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
 
             }
-            var leftMostLaneBorder = new BoxView { Color = Color.Black };
+            var leftMostLaneBorder = new BoxView();
+            leftMostLaneBorder.SetAppThemeColor(BoxView.ColorProperty, (Color)Resources["BorderColor"], (Color)Resources["BorderColorNight"]);
             RelativeLayout.Children.Add(leftMostLaneBorder,
                 xConstraint: Constraint.RelativeToParent(p => p.Width * leftMostBorderXFactor),
                 widthConstraint: Constraint.RelativeToParent(p => p.Width * outerMostBorderWidthFactor),
@@ -296,7 +305,8 @@ namespace DLR_Data_App.Views
                     heightConstraint: Constraint.RelativeToView(CenterLaneCauseBackground, (l, v) => v.Height));
 
 
-                var laneBorder = new BoxView { Color = Color.Black };
+                var laneBorder = new BoxView();
+                laneBorder.SetAppThemeColor(BoxView.ColorProperty, (Color)Resources["BorderColor"], (Color)Resources["BorderColorNight"]);
                 var borderXFactor = rightMostBorderXFactor - (LaneCountPerSide - i) * laneWidthFactor;
                 RelativeLayout.Children.Add(laneBorder,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * borderXFactor),
@@ -337,7 +347,8 @@ namespace DLR_Data_App.Views
                     yConstraint: Constraint.RelativeToParent(p => p.Height * endButtonYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
             }
-            var rightMostLaneBorder = new BoxView { Color = Color.Black };
+            var rightMostLaneBorder = new BoxView();
+            rightMostLaneBorder.SetAppThemeColor(BoxView.ColorProperty, (Color)Resources["BorderColor"], (Color)Resources["BorderColorNight"]);
             RelativeLayout.Children.Add(rightMostLaneBorder,
                 xConstraint: Constraint.RelativeToParent(p => p.Width * rightMostBorderXFactor),
                 widthConstraint: Constraint.RelativeToParent(p => p.Width * outerMostBorderWidthFactor),
@@ -353,16 +364,16 @@ namespace DLR_Data_App.Views
 
                 if (laneIndex == 0)
                 {
-                    ArrowStartCenterShape.Fill = InactiveButtonBrush;
-                    ArrowEndCenterShape.Fill = ActiveButtonBrush;
+                    SetActiveIndicator(ArrowStartCenterShape, false);
+                    SetActiveIndicator(ArrowEndCenterShape, true);
                 }
                 else
                 {
-                    LaneBeginButtons[laneIndex - 1].BackgroundColor = InactiveButtonColor;
-                    LaneEndButtons[laneIndex - 1].BackgroundColor = ActiveButtonColor;
+                    SetActiveIndicator(LaneBeginButtons[laneIndex - 1], false);
+                    SetActiveIndicator(LaneEndButtons[laneIndex - 1], true);
                 }
                 var middleButton = GetMiddleButtonWithIndex(laneIndex);
-                middleButton.BackgroundColor = ActiveButtonColor;
+                SetActiveIndicator(middleButton, true);
                 IsLaneStarted[laneIndex] = true;
                 IsLaneActive[laneIndex] = true;
                 IsLaneCauseEntered[laneIndex] = false;
@@ -373,6 +384,16 @@ namespace DLR_Data_App.Views
                 if (!IsLaneSelectedForInput.Any(l => l))
                     ShowTypeAndCauseButtonsActiveStatus(false);
             }
+        }
+
+        void SetActiveIndicator(View view, bool active)
+        {
+            if (view is Button button)
+                button.SetAppThemeColor(BackgroundColorProperty, active ? ActiveButtonColor : InactiveButtonColor, active ? ActiveButtonColorNight : InactiveButtonColorNight);
+            else if (view is FormattedButton formattedButton)
+                formattedButton.SetAppThemeColor(BackgroundColorProperty, active ? ActiveButtonColor : InactiveButtonColor, active ? ActiveButtonColorNight : InactiveButtonColorNight);
+            else if (view is Xamarin.Forms.Shapes.Path shape)
+                shape.SetOnAppTheme(Shape.FillProperty, active ? ActiveButtonBrush : InactiveButtonBrush, active ? ActiveButtonBrushNight : InactiveButtonBrushNight);
         }
 
         View GetMiddleButtonWithIndex(int index) => (index == 0 ? (View)CenterLaneMiddleButton : LaneMiddleButtons[index - 1]);
@@ -419,7 +440,7 @@ namespace DLR_Data_App.Views
                 if (!IsLaneTypeEntered[laneIndex])
                     TypeLaneBackgrounds[laneIndex].Background = ActiveForInputBrush;
                 IsLaneSelectedForInput[laneIndex] = true;
-                GetMiddleButtonWithIndex(laneIndex).BackgroundColor = InactiveButtonColor;
+                SetActiveIndicator(GetMiddleButtonWithIndex(laneIndex), false);
             }
         }
 
@@ -431,13 +452,13 @@ namespace DLR_Data_App.Views
 
                 if (laneIndex == 0)
                 {
-                    ArrowStartCenterShape.Fill = ActiveButtonBrush;
-                    ArrowEndCenterShape.Fill = InactiveButtonBrush;
+                    SetActiveIndicator(ArrowStartCenterShape, true);
+                    SetActiveIndicator(ArrowEndCenterShape, false);
                 }
                 else
                 {
-                    LaneBeginButtons[laneIndex - 1].BackgroundColor = ActiveButtonColor;
-                    LaneEndButtons[laneIndex - 1].BackgroundColor = InactiveButtonColor;
+                    SetActiveIndicator(LaneBeginButtons[laneIndex - 1], true);
+                    SetActiveIndicator(LaneEndButtons[laneIndex - 1], false);
                 }
                 IsLaneActive[laneIndex] = false;
             }
@@ -447,7 +468,7 @@ namespace DLR_Data_App.Views
         {
             foreach (var button in DamageCauseButtons.Union(DamageTypeButtons))
             {
-                button.BackgroundColor = active ? ActiveButtonColor : InactiveButtonColor;
+                SetActiveIndicator(button, active);
             }
         }
 
@@ -466,7 +487,7 @@ namespace DLR_Data_App.Views
                     if (!IsLaneCauseEntered[i])
                         CauseLaneBackgrounds[i].Background = Brush.Transparent;
                     TypeLaneBackgrounds[i].Background = CompletedInfoBrush;
-                    GetMiddleButtonWithIndex(i).BackgroundColor = ActiveButtonColor;
+                    SetActiveIndicator(GetMiddleButtonWithIndex(i), true);
                     interactionInfos.Add(new InteractionInfo(now, i, "damage=" + type.ToString()));
                 }
             }
@@ -488,7 +509,7 @@ namespace DLR_Data_App.Views
                     if (!IsLaneTypeEntered[i])
                         TypeLaneBackgrounds[i].Background = Brush.Transparent;
                     CauseLaneBackgrounds[i].Background = CompletedInfoBrush;
-                    GetMiddleButtonWithIndex(i).BackgroundColor = ActiveButtonColor;
+                    SetActiveIndicator(GetMiddleButtonWithIndex(i), true);
                     interactionInfos.Add(new InteractionInfo(now, i, "cause=" + cause.ToString()));
                 }
             }
