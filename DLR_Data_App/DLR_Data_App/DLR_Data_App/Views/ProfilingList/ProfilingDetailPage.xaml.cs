@@ -41,7 +41,7 @@ namespace DLR_Data_App.Views.ProfilingList
             Database.SetCurrentProfiling(InspectedProfiling);
 
             // Navigate to current project
-            await Application.CurrentMainPage.NavigateFromMenu(MenuItemType.CurrentProfiling);
+            await App.CurrentMainPage.NavigateFromMenu(MenuItemType.CurrentProfiling);
         }
 
         /// <summary>
