@@ -28,18 +28,6 @@ namespace DLR_Data_App.Views
             Medium,
             High
         }
-        enum DamageCause
-        {
-            SandLens,
-            Compaction,
-            Headland,
-            Dome,
-            Slope,
-            ForrestEdge,
-            DryStress,
-            WatterLogging,
-            MouseEating
-        }
         public const int MaxLaneCountPerSide = 3;
         public const int MaxTotalLaneCount = 2 * MaxLaneCountPerSide + 1;
 
@@ -75,9 +63,11 @@ namespace DLR_Data_App.Views
         readonly string LogFileIdentifier;
 
 
-        public DrivingPage(int laneCountPerSide = MaxLaneCountPerSide)
+        public DrivingConfigurationPage.DrivingPageConfiguration Configuration { get; set; }
+        public DrivingPage(DrivingConfigurationPage.DrivingPageConfiguration configuration)
         {
-            LaneCountPerSide = laneCountPerSide;
+            Configuration = configuration;
+            LaneCountPerSide = Configuration.LaneCount;
             TotalLaneCount = 2 * LaneCountPerSide + 1;
 
             IsLaneActive = new bool[TotalLaneCount];
@@ -86,7 +76,7 @@ namespace DLR_Data_App.Views
             IsLaneTypeEntered = new bool[TotalLaneCount];
             IsLaneStarted = new bool[TotalLaneCount];
 
-            LogFileIdentifier = "drivingView_" + App.CurrentUser.Username + "_" + laneCountPerSide + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
+            LogFileIdentifier = "drivingView_" + App.CurrentUser.Username + "_" + LaneCountPerSide + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
 
             InitializeComponent();
             WriteUsingCsvWriter(csvWriter => csvWriter.WriteHeader<InteractionInfo>());
@@ -110,26 +100,26 @@ namespace DLR_Data_App.Views
                 TypeHighButton
             };
 
-            CauseSandLensButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.SandLens);
-            CauseCompactionButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.Compaction);
-            CauseHeadlandButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.Headland);
-            CauseDomeButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.Dome);
-            CauseSlopeButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.Slope);
-            CauseForrestEdgeButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.ForrestEdge);
-            CauseDryStressButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.DryStress);
-            CauseWatterLoggingButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.WatterLogging);
-            CauseMouseEatingButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.MouseEating);
+            Cause1Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause1Button.FormattedText.Spans.Select(s => s.Text)));
+            Cause2Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause2Button.FormattedText.Spans.Select(s => s.Text)));
+            Cause3Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause3Button.FormattedText.Spans.Select(s => s.Text)));
+            Cause4Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause4Button.FormattedText.Spans.Select(s => s.Text)));
+            Cause5Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause5Button.FormattedText.Spans.Select(s => s.Text)));
+            Cause6Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause6Button.FormattedText.Spans.Select(s => s.Text)));
+            Cause7Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause7Button.FormattedText.Spans.Select(s => s.Text)));
+            Cause8Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause8Button.FormattedText.Spans.Select(s => s.Text)));
+            Cause9Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause9Button.FormattedText.Spans.Select(s => s.Text)));
             DamageCauseButtons = new List<FormattedButton>
             {
-                CauseSandLensButton,
-                CauseCompactionButton,
-                CauseHeadlandButton,
-                CauseDomeButton,
-                CauseSlopeButton,
-                CauseForrestEdgeButton,
-                CauseDryStressButton,
-                CauseWatterLoggingButton,
-                CauseMouseEatingButton
+                Cause1Button,
+                Cause2Button,
+                Cause3Button,
+                Cause4Button,
+                Cause5Button,
+                Cause6Button,
+                Cause7Button,
+                Cause8Button,
+                Cause9Button
             };
 
             AddSideLanesToLayout();
@@ -456,7 +446,7 @@ namespace DLR_Data_App.Views
                 PushInteractionToLog(interactionInfos);
         }
 
-        void DamageCauseButtonClicked(DamageCause cause)
+        void DamageCauseButtonClicked(string cause)
         {
             ShowTypeAndCauseButtonsActiveStatus(false);
             var now = DateTime.UtcNow;
@@ -471,7 +461,7 @@ namespace DLR_Data_App.Views
                         TypeLaneBackgrounds[i].Background = Brush.Transparent;
                     CauseLaneBackgrounds[i].Background = CompletedInfoBrush;
                     SetActiveIndicator(GetMiddleButtonWithIndex(i), true);
-                    interactionInfos.Add(new InteractionInfo(now, i, "cause=" + cause.ToString()));
+                    interactionInfos.Add(new InteractionInfo(now, i, "cause=" + cause));
                 }
             }
             if (interactionInfos.Any())
@@ -480,7 +470,7 @@ namespace DLR_Data_App.Views
 
         private void ConfigurePressed(object sender, EventArgs e)
         {
-            var confPage = new DrivingConfigurationPage();
+            var confPage = new DrivingConfigurationPage(new DrivingConfigurationPage.DrivingPageConfiguration());
             Navigation.PushModalAsync(confPage);
         }
     }

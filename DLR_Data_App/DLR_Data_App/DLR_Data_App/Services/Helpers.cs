@@ -504,5 +504,20 @@ namespace DLR_Data_App.Services
                 }
             }
         }
+
+        public static List<int> AllIndicesOf(this string str, string value)
+        {
+            // taken from https://stackoverflow.com/a/2641383/8512719
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentException("the string to find may not be empty", "value");
+            List<int> indexes = new List<int>();
+            for (int index = 0; ; index += value.Length)
+            {
+                index = str.IndexOf(value, index);
+                if (index == -1)
+                    return indexes;
+                indexes.Add(index);
+            }
+        }
     }
 }

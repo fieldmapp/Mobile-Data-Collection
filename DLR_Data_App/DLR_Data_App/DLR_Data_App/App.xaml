@@ -67,6 +67,10 @@
             <Style TargetType="Picker">
                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryNight}}"/>
             </Style>
+            <Style TargetType="Slider" ApplyToDerivedTypes="True">
+                <Setter Property="MaximumTrackColor" Value="Black"/>
+                <Setter Property="MinimumTrackColor" Value="Red"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

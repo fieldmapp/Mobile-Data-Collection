@@ -33,8 +33,7 @@ namespace DLR_Data_App.Views
                 { MenuItemType.ProfilingList, new NavigationPage(new ProfilingListPage()) },
                 { MenuItemType.CurrentProfiling, new NavigationPage(new CurrentProfilingPage()) },
                 { MenuItemType.Sensortest, new NavigationPage(new SensorTestPage()) },
-                { MenuItemType.DrivingEasy, new NavigationPage(new DrivingPage(1)) },
-                { MenuItemType.DrivingHard, new NavigationPage(new DrivingPage(3)) },
+                { MenuItemType.DrivingHard, new NavigationPage(new DrivingPage(DrivingConfigurationPage.DefaultConfiguration)) },
                 { MenuItemType.VoiceRecognitionDemo, new NavigationPage(new VoiceRecognitionDemoPage()) },
                 { MenuItemType.Settings, new NavigationPage(new SettingsPage()) },
                 { MenuItemType.About, new NavigationPage(new AboutPage()) }
