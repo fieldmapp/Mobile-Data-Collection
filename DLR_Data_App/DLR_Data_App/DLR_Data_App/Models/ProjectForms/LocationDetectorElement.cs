@@ -66,7 +66,7 @@ namespace DLR_Data_App.Models.ProjectForms
 
             saveButton.Clicked += (sender, args) =>
             {
-                savedLocationData.Text = $"Lat:{labelLongData.Text} Long:{labelLatData.Text} Alt:{labelAltitudeData.Text} Acc:{labelAccuracyData.Text} Utc:{DateTime.UtcNow.Ticks}";
+                savedLocationData.Text = $"Lat:{labelLatData.Text} Long:{labelLongData.Text} Alt:{labelAltitudeData.Text} Acc:{labelAccuracyData.Text} Utc:{DateTime.UtcNow.Ticks}";
                 formElement.OnContentChange();
             };
 
