@@ -28,7 +28,7 @@
     <item name="windowActionModeOverlay">true</item>
     <item name="actionMenuTextColor">@color/textColorPrimary</item>
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
-    
+    <item name="colorBackgroundFloating">@color/windowBackgroundColor</item>
     <item name="android:colorActivatedHighlight">@color/transparent</item>
   </style>
   <color name="transparent">#00000000 </color>
