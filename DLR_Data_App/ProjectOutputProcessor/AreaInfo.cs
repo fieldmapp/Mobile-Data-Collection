@@ -5,36 +5,26 @@ using System.Text;
 
 namespace FieldCartographerProcessor
 {
-    public enum DamageType
-    {
-        Low,
-        Medium,
-        High
-    }
-    public enum DamageCause
-    {
-        SandLens,
-        Compaction,
-        Headland,
-        Dome,
-        Slope,
-        ForrestEdge,
-        DryStress,
-        WatterLogging,
-        MouseEating
-    }
-
-
     [DelimitedRecord(";")]
     class AreaInfo
     {
+        public string LaneIdentifier { get; set; }
         public int ZoneIndex { get; set; }
         [FieldConverter(ConverterKind.Double, ",")]
         public double DistanceStartToZoneEntry { get; set; }
         [FieldConverter(ConverterKind.Double, ",")]
+        public double StartLat { get; set; }
+        [FieldConverter(ConverterKind.Double, ",")]
+        public double StartLong { get; set; }
+        [FieldConverter(ConverterKind.Double, ",")]
         public double DistanceEndToZoneEntry { get; set; }
-        public DamageType Type { get; set; }
-        public DamageCause Cause { get; set; }
+        [FieldConverter(ConverterKind.Double, ",")]
+        public double EndLat { get; set; }
+        [FieldConverter(ConverterKind.Double, ",")]
+        public double EndLong { get; set; }
+        
+        public string EstYieldReduction { get; set; }
+        public string Cause { get; set; }
         public string UserName { get; set; }
     }
 }

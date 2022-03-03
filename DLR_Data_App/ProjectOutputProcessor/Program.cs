@@ -139,12 +139,17 @@ namespace FieldCartographerProcessor
                     {
                         ZoneIndex = interaction.LaneIndex,
                         UserName = username,
-                        DistanceStartToZoneEntry = Helpers.DistanceBetween(pos, currentLane.EntryPoint)
+                        DistanceStartToZoneEntry = Helpers.DistanceBetween(pos, currentLane.EntryPoint),
+                        StartLong = pos.X,
+                        StartLat = pos.Y,
+                        LaneIdentifier = currentLane.Name
                     };
                 }
                 else if (interaction.Action == "close" && activeZones[interaction.LaneIndex] != null)
                 {
                     activeZones[interaction.LaneIndex].DistanceEndToZoneEntry = Helpers.DistanceBetween(pos, currentLane.EntryPoint);
+                    activeZones[interaction.LaneIndex].EndLong = pos.X;
+                    activeZones[interaction.LaneIndex].EndLat = pos.Y;
                 }
                 else if (interaction.Action == "canceled")
                 {
@@ -155,11 +160,11 @@ namespace FieldCartographerProcessor
                 }
                 else if (interaction.Action.StartsWith("cause=") && activeZones[interaction.LaneIndex] != null)
                 {
-                    activeZones[interaction.LaneIndex].Cause = Enum.Parse<DamageCause>(interaction.Action["cause=".Length..]);
+                    activeZones[interaction.LaneIndex].Cause = interaction.Action["cause=".Length..];
                 }
                 else if (interaction.Action.StartsWith("damage=") && activeZones[interaction.LaneIndex] != null)
                 {
-                    activeZones[interaction.LaneIndex].Type = Enum.Parse<DamageType>(interaction.Action["damage=".Length..]);
+                    activeZones[interaction.LaneIndex].EstYieldReduction = interaction.Action["damage=".Length..];
                 }
             }
         }
