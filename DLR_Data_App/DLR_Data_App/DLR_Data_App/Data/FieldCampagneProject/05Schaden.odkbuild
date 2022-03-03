@@ -1,761 +1,876 @@
 {
-    "title": "Schäden am Bestand",
-    "controls": [{
-            "name": "stockDamaged",
-            "label": {
-                "0": "Gibt es eine Schädigung am Bestand?",
-                "1": "Is there any damage on the cultivated crops?"
-            },
-            "hint": {
-                "0": "",
-                "1": ""
-            },
-            "defaultValue": "1",
-            "readOnly": false,
-            "required": true,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "",
-            "constraint": "",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "options": [{
-                    "text": {
-                        "0": "Ja",
-                        "1": "Yes"
-                    },
-                    "cascade": [],
-                    "val": "0"
-                }, {
-                    "text": {
-                        "0": "Nein",
-                        "1": "No"
-                    },
-                    "cascade": [],
-                    "val": "1"
-                }
-            ],
-            "cascading": false,
-            "other": false,
-            "appearance": "Default",
-            "metadata": {},
-            "type": "inputSelectOne"
-        }, {
-            "name": "reasonDamage1",
-            "label": {
-                "0": "Ursache",
-                "1": "Reason of Damage"
-            },
-            "hint": {
-                "0": "Wählen Sie aus dem Auswahlmenü eine Ursache für den Schaden am Bestand aus. Für den Fall, dass die aktuelle Ursache nicht in der Auswahl enthalten ist, geben Sie diese bitte unter „Sonstiges“ ein.",
-                "1": "Select a reason for the apparent damage of the crop from the menu. In case, the reason is not listed in the menu, please choose “Others” and enter the reason in the input field."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {},
-            "relevance": "${stockDamaged}=0",
-            "constraint": "",
-            "invalidText": {},
-            "calculate": "",
-            "options": [{
-                    "text": {
-                        "0": "Sturm",
-                        "1": "Storm"
-                    },
-                    "cascade": [],
-                    "val": "0"
-                }, {
-                    "text": {
-                        "0": "Hagel",
-                        "1": "Hail"
-                    },
-                    "cascade": [],
-                    "val": "1"
-                }, {
-                    "text": {
-                        "0": "Hochwasser",
-                        "1": "Flood"
-                    },
-                    "cascade": [],
-                    "val": "2"
-                }, {
-                    "text": {
-                        "0": "Tierplage",
-                        "1": "Plague"
-                    },
-                    "cascade": [],
-                    "val": "3"
-                }, {
-                    "text": {
-                        "0": "Feuer",
-                        "1": "Fire"
-                    },
-                    "cascade": [],
-                    "val": "4"
-                }, {
-                    "text": {
-                        "0": "Überdüngung",
-                        "1": "Overfertilisation"
-                    },
-                    "cascade": [],
-                    "val": "5"
-                }, {
-                    "text": {
-                        "0": "Sonstiges",
-                        "1": "Other"
-                    },
-                    "cascade": [],
-                    "val": "6"
-                }
-            ],
-            "cascading": false,
-            "other": false,
-            "appearance": "Default",
-            "metadata": {},
-            "type": "inputSelectOne"
-        }, {
-            "name": "reasonDamageOther1",
-            "label": {
-                "0": "Ursache",
-                "1": "Cause of the damage"
-            },
-            "hint": {
-                "0": "",
-                "1": ""
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "${stockDamaged}=0 and ${reasonDamage1}=6",
-            "constraint": "",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "length": false,
-            "metadata": {},
-            "type": "inputText"
-        }, {
-            "name": "imageDamage1",
-            "label": {
-                "0": "Foto",
-                "1": "Image of damage"
-            },
-            "hint": {
-                "0": "",
-                "1": ""
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {},
-            "relevance": "${stockDamaged}=0",
-            "constraint": "",
-            "invalidText": {},
-            "calculate": "",
-            "kind": "Image",
-            "metadata": {},
-            "type": "inputMedia"
-        }, {
-            "name": "damageDateStart1",
-            "label": {
-                "0": "Beginn des Schädigungseintritts",
-                "1": "Begin of damage"
-            },
-            "hint": {
-                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, zu dem die Schädigung eingetreten ist und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
-                "1": "A calendar appears, if you click on the date. Select the date when the damage on the crops began to appear and confirm your selection by clicking on [OKAY]."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "${stockDamaged}=0",
-            "constraint": ".<now()",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "range": false,
-            "kind": "Full Date",
-            "metadata": {},
-            "type": "inputDate"
-        }, {
-            "name": "damgeDateEnd1",
-            "label": {
-                "0": "Ende des Schädigungseintritts",
-                "1": "End of hazard"
-            },
-            "hint": {
-                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, ab dem die Ausweitung der Schädigung beendet war und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
-                "1": "A calendar appears, if you click on the date. Select the date when the expansion of the damaged crop area stopped and confirm your selection by clicking on [OKAY]."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "${stockDamaged}=0",
-            "constraint": ".<now()",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "range": false,
-            "kind": "Full Date",
-            "metadata": {},
-            "type": "inputDate"
-        }, {
-            "name": "damagePercentage1",
-            "label": {
-                "0": "Geschädigte Fläche in %",
-                "1": "Affected area in %"
-            },
-            "hint": {
-                "0": "Schätzen Sie den Anteil der Fläche am Feld, die von der Schädigung betroffen ist und tragen Sie diesen Wert als Prozentangabe hier ein.",
-                "1": "Estimate the fraction of the field that is affected by the damage and enter the percentage (a value between 0 and 100 without percent sign) in the input field “Affected area in %”."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "${stockDamaged}=0",
-            "constraint": "",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "range": {
-                "min": "0",
-                "max": "100",
-                "minInclusive": true,
-                "maxInclusive": true
-            },
-            "appearance": "Textbox",
-            "kind": "Integer",
-            "selectRange": {
-                "min": "1",
-                "max": "10"
-            },
-            "selectStep": "1",
-            "sliderTicks": true,
-            "metadata": {},
-            "type": "inputNumeric"
-        }, {
-            "name": "additionalDamageInfo1",
-            "label": {
-                "0": "Weitere Angaben?",
-                "1": "Additional data?"
-            },
-            "hint": {},
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {},
-            "relevance": "${stockDamaged}=0",
-            "constraint": "",
-            "invalidText": {},
-            "calculate": "",
-            "options": [{
-                    "text": {
-                        "0": "Ja"
-                    },
-                    "cascade": [],
-                    "val": "0"
-                }, {
-                    "text": {
-                        "0": "Nein"
-                    },
-                    "cascade": [],
-                    "val": "1"
-                }
-            ],
-            "cascading": false,
-            "other": false,
-            "appearance": "Default",
-            "metadata": {},
-            "type": "inputSelectOne"
-        }, {
-            "name": "reasonDamage2",
-            "label": {
-                "0": "Ursache",
-                "1": "Reason of Damage"
-            },
-            "hint": {
-                "0": "Wählen Sie aus dem Auswahlmenü eine Ursache für den Schaden am Bestand aus. Für den Fall, dass die aktuelle Ursache nicht in der Auswahl enthalten ist, geben Sie diese bitte unter „Sonstiges“ ein.",
-                "1": "Select a reason for the apparent damage of the crop from the menu. In case, the reason is not listed in the menu, please choose “Others” and enter the reason in the input field."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {},
-            "relevance": "${additionalDamageInfo1}=0",
-            "constraint": "",
-            "invalidText": {},
-            "calculate": "",
-            "options": [{
-                    "text": {
-                        "0": "Sturm",
-                        "1": "Storm"
-                    },
-                    "cascade": [],
-                    "val": "0"
-                }, {
-                    "text": {
-                        "0": "Hagel",
-                        "1": "Hail"
-                    },
-                    "cascade": [],
-                    "val": "1"
-                }, {
-                    "text": {
-                        "0": "Hochwasser",
-                        "1": "Flood"
-                    },
-                    "cascade": [],
-                    "val": "2"
-                }, {
-                    "text": {
-                        "0": "Tierplage",
-                        "1": "Plague"
-                    },
-                    "cascade": [],
-                    "val": "3"
-                }, {
-                    "text": {
-                        "0": "Feuer",
-                        "1": "Fire"
-                    },
-                    "cascade": [],
-                    "val": "4"
-                }, {
-                    "text": {
-                        "0": "Überdüngung",
-                        "1": "Overfertilisation"
-                    },
-                    "cascade": [],
-                    "val": "5"
-                }, {
-                    "text": {
-                        "0": "Sonstiges",
-                        "1": "Other"
-                    },
-                    "cascade": [],
-                    "val": "6"
-                }
-            ],
-            "cascading": false,
-            "other": false,
-            "appearance": "Default",
-            "metadata": {},
-            "type": "inputSelectOne"
-        }, {
-            "name": "reasonDamageOther2",
-            "label": {
-                "0": "Ursache",
-                "1": "Cause of the damage"
-            },
-            "hint": {
-                "0": "",
-                "1": ""
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "${additionalDamageInfo1}=0 and ${reasonDamage2}=6",
-            "constraint": "",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "length": false,
-            "metadata": {},
-            "type": "inputText"
-        }, {
-            "name": "imageDamage2",
-            "label": {
-                "0": "Foto",
-                "1": "Image of damage"
-            },
-            "hint": {
-                "0": "",
-                "1": ""
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {},
-            "relevance": "${additionalDamageInfo1}=0",
-            "constraint": "",
-            "invalidText": {},
-            "calculate": "",
-            "kind": "Image",
-            "metadata": {},
-            "type": "inputMedia"
-        }, {
-            "name": "damageDateStart2",
-            "label": {
-                "0": "Beginn des Schädigungseintritts",
-                "1": "Begin of damage"
-            },
-            "hint": {
-                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, zu dem die Schädigung eingetreten ist und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
-                "1": "A calendar appears, if you click on the date. Select the date when the damage on the crops began to appear and confirm your selection by clicking on [OKAY]."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "${additionalDamageInfo1}=0",
-            "constraint": ".<now()",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "range": false,
-            "kind": "Full Date",
-            "metadata": {},
-            "type": "inputDate"
-        }, {
-            "name": "damgeDateEnd2",
-            "label": {
-                "0": "Ende des Schädigungseintritts",
-                "1": "End of hazard"
-            },
-            "hint": {
-                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, ab dem die Ausweitung der Schädigung beendet war und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
-                "1": "A calendar appears, if you click on the date. Select the date when the expansion of the damaged crop area stopped and confirm your selection by clicking on [OKAY]."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "${additionalDamageInfo1}=0",
-            "constraint": ".<now()",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "range": false,
-            "kind": "Full Date",
-            "metadata": {},
-            "type": "inputDate"
-        }, {
-            "name": "damagePercentage2",
-            "label": {
-                "0": "Geschädigte Fläche in %",
-                "1": "Affected area in %"
-            },
-            "hint": {
-                "0": "Schätzen Sie den Anteil der Fläche am Feld, die von der Schädigung betroffen ist und tragen Sie diesen Wert als Prozentangabe hier ein.",
-                "1": "Estimate the fraction of the field that is affected by the damage and enter the percentage (a value between 0 and 100 without percent sign) in the input field “Affected area in %”."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "${additionalDamageInfo1}=0",
-            "constraint": "",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "range": {
-                "min": "0",
-                "max": "100",
-                "minInclusive": true,
-                "maxInclusive": true
-            },
-            "appearance": "Textbox",
-            "kind": "Integer",
-            "selectRange": {
-                "min": "1",
-                "max": "10"
-            },
-            "selectStep": "1",
-            "sliderTicks": true,
-            "metadata": {},
-            "type": "inputNumeric"
-        }, {
-            "name": "additionalDamageInfo2",
-            "label": {
-                "0": "Weitere Angaben?",
-                "1": "Additional data?"
-            },
-            "hint": {},
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {},
-            "relevance": "${additionalDamageInfo1}=0",
-            "constraint": "",
-            "invalidText": {},
-            "calculate": "",
-            "options": [{
-                    "text": {
-                        "0": "Ja"
-                    },
-                    "cascade": [],
-                    "val": "0"
-                }, {
-                    "text": {
-                        "0": "Nein"
-                    },
-                    "cascade": [],
-                    "val": "1"
-                }
-            ],
-            "cascading": false,
-            "other": false,
-            "appearance": "Default",
-            "metadata": {},
-            "type": "inputSelectOne"
-        }, {
-            "name": "reasonDamage3",
-            "label": {
-                "0": "Ursache",
-                "1": "Reason of Damage"
-            },
-            "hint": {
-                "0": "Wählen Sie aus dem Auswahlmenü eine Ursache für den Schaden am Bestand aus. Für den Fall, dass die aktuelle Ursache nicht in der Auswahl enthalten ist, geben Sie diese bitte unter „Sonstiges“ ein.",
-                "1": "Select a reason for the apparent damage of the crop from the menu. In case, the reason is not listed in the menu, please choose “Others” and enter the reason in the input field."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {},
-            "relevance": "${additionalDamageInfo2}=0",
-            "constraint": "",
-            "invalidText": {},
-            "calculate": "",
-            "options": [{
-                    "text": {
-                        "0": "Sturm",
-                        "1": "Storm"
-                    },
-                    "cascade": [],
-                    "val": "0"
-                }, {
-                    "text": {
-                        "0": "Hagel",
-                        "1": "Hail"
-                    },
-                    "cascade": [],
-                    "val": "1"
-                }, {
-                    "text": {
-                        "0": "Hochwasser",
-                        "1": "Flood"
-                    },
-                    "cascade": [],
-                    "val": "2"
-                }, {
-                    "text": {
-                        "0": "Tierplage",
-                        "1": "Plague"
-                    },
-                    "cascade": [],
-                    "val": "3"
-                }, {
-                    "text": {
-                        "0": "Feuer",
-                        "1": "Fire"
-                    },
-                    "cascade": [],
-                    "val": "4"
-                }, {
-                    "text": {
-                        "0": "Überdüngung",
-                        "1": "Overfertilisation"
-                    },
-                    "cascade": [],
-                    "val": "5"
-                }, {
-                    "text": {
-                        "0": "Sonstiges",
-                        "1": "Other"
-                    },
-                    "cascade": [],
-                    "val": "6"
-                }
-            ],
-            "cascading": false,
-            "other": false,
-            "appearance": "Default",
-            "metadata": {},
-            "type": "inputSelectOne"
-        }, {
-            "name": "reasonDamageOther3",
-            "label": {
-                "0": "Ursache",
-                "1": "Cause of the damage"
-            },
-            "hint": {
-                "0": "",
-                "1": ""
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "${additionalDamageInfo2}=0 and ${reasonDamage3}=6",
-            "constraint": "",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "length": false,
-            "metadata": {},
-            "type": "inputText"
-        }, {
-            "name": "imageDamge3",
-            "label": {
-                "0": "Foto",
-                "1": "Image of damage"
-            },
-            "hint": {
-                "0": "",
-                "1": ""
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {},
-            "relevance": "${additionalDamageInfo2}=0",
-            "constraint": "",
-            "invalidText": {},
-            "calculate": "",
-            "kind": "Image",
-            "metadata": {},
-            "type": "inputMedia"
-        }, {
-            "name": "damageDateStart3",
-            "label": {
-                "0": "Beginn des Schädigungseintritts",
-                "1": "Begin of damage"
-            },
-            "hint": {
-                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, zu dem die Schädigung eingetreten ist und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
-                "1": "A calendar appears, if you click on the date. Select the date when the damage on the crops began to appear and confirm your selection by clicking on [OKAY]."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "${additionalDamageInfo2}=0",
-            "constraint": ".<now()",
-            "invalidText": {
-                "0": "",
-                "1": ""
-            },
-            "calculate": "",
-            "range": false,
-            "kind": "Full Date",
-            "metadata": {},
-            "type": "inputDate"
-        }, {
-            "name": "damgeDateEnd3",
-            "label": {
-                "0": "Ende des Schädigungseintritts",
-                "1": "End of hazard"
-            },
-            "hint": {
-                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, ab dem die Ausweitung der Schädigung beendet war und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
-                "1": "A calendar appears, if you click on the date. Select the date when the expansion of the damaged crop area stopped and confirm your selection by clicking on [OKAY]."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "${additionalDamageInfo2}=0",
-            "constraint": ".<now()",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "range": false,
-            "kind": "Full Date",
-            "metadata": {},
-            "type": "inputDate"
-        }, {
-            "name": "damagePercentage3",
-            "label": {
-                "0": "Geschädigte Fläche in %",
-                "1": "Affected area in %"
-            },
-            "hint": {
-                "0": "Schätzen Sie den Anteil der Fläche am Feld, die von der Schädigung betroffen ist und tragen Sie diesen Wert als Prozentangabe hier ein.",
-                "1": "Estimate the fraction of the field that is affected by the damage and enter the percentage (a value between 0 and 100 without percent sign) in the input field “Affected area in %”."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "${additionalDamageInfo2}=0",
-            "constraint": "",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "range": {
-                "min": "0",
-                "max": "100",
-                "minInclusive": true,
-                "maxInclusive": true
-            },
-            "appearance": "Textbox",
-            "kind": "Integer",
-            "selectRange": {
-                "min": "1",
-                "max": "10"
-            },
-            "selectStep": "1",
-            "sliderTicks": true,
-            "metadata": {},
-            "type": "inputNumeric"
-        }
-    ],
-    "metadata": {
-        "version": 2,
-        "activeLanguages": {
-            "0": "German",
-            "1": "English",
-            "_counter": 1,
-            "_display": "0"
+  "title": "Schäden am Bestand",
+  "controls": [
+    {
+      "name": "stockDamaged",
+      "label": {
+        "0": "Gibt es eine Schädigung am Bestand?",
+        "1": "Is there any damage on the cultivated crops?"
+      },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
+      "defaultValue": "1",
+      "readOnly": false,
+      "required": true,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Ja",
+            "1": "Yes"
+          },
+          "cascade": [
+          ],
+          "val": "0"
         },
-        "optionsPresets": [],
-        "htitle": null,
-        "instance_name": "",
-        "public_key": "",
-        "submission_url": ""
+        {
+          "text": {
+            "0": "Nein",
+            "1": "No"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "reasonDamage1",
+      "label": {
+        "0": "Ursache",
+        "1": "Reason of Damage"
+      },
+      "hint": {
+        "0": "Wählen Sie aus dem Auswahlmenü eine Ursache für den Schaden am Bestand aus. Für den Fall, dass die aktuelle Ursache nicht in der Auswahl enthalten ist, geben Sie diese bitte unter „Sonstiges“ ein.",
+        "1": "Select a reason for the apparent damage of the crop from the menu. In case, the reason is not listed in the menu, please choose “Others” and enter the reason in the input field."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${stockDamaged}=0",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Sturm",
+            "1": "Storm"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Hagel",
+            "1": "Hail"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "Hochwasser",
+            "1": "Flood"
+          },
+          "cascade": [
+          ],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "Tierplage",
+            "1": "Plague"
+          },
+          "cascade": [
+          ],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "Feuer",
+            "1": "Fire"
+          },
+          "cascade": [
+          ],
+          "val": "4"
+        },
+        {
+          "text": {
+            "0": "Überdüngung",
+            "1": "Overfertilisation"
+          },
+          "cascade": [
+          ],
+          "val": "5"
+        },
+        {
+          "text": {
+            "0": "Sonstiges",
+            "1": "Other"
+          },
+          "cascade": [
+          ],
+          "val": "6"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "reasonDamageOther1",
+      "label": {
+        "0": "Ursache",
+        "1": "Cause of the damage"
+      },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "${stockDamaged}=0 and ${reasonDamage1}=6",
+      "constraint": "",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "length": false,
+      "metadata": {
+      },
+      "type": "inputText"
+    },
+    {
+      "name": "imageDamage1",
+      "label": {
+        "0": "Foto",
+        "1": "Image of damage"
+      },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${stockDamaged}=0",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "kind": "Image",
+      "metadata": {
+      },
+      "type": "inputMedia"
+    },
+    {
+      "name": "damageDateStart1",
+      "label": {
+        "0": "Beginn des Schädigungseintritts",
+        "1": "Begin of damage"
+      },
+      "hint": {
+        "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, zu dem die Schädigung eingesetzt hat und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+        "1": "A calendar appears, if you click on the date. Select the date when the damage on the crops began to appear and confirm your selection by clicking on [OKAY]."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "${stockDamaged}=0",
+      "constraint": ".<now()",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "range": false,
+      "kind": "Full Date",
+      "metadata": {
+      },
+      "type": "inputDate"
+    },
+    {
+      "name": "damgeDateEnd1",
+      "label": {
+        "0": "Ende des Schädigungseintritts",
+        "1": "End of hazard"
+      },
+      "hint": {
+        "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, ab dem die Ausweitung der Schädigung beendet war und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+        "1": "A calendar appears, if you click on the date. Select the date when the expansion of the damaged crop area stopped and confirm your selection by clicking on [OKAY]."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "${stockDamaged}=0",
+      "constraint": ".<now()",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "range": false,
+      "kind": "Full Date",
+      "metadata": {
+      },
+      "type": "inputDate"
+    },
+    {
+      "name": "damagePercentage1",
+      "label": {
+        "0": "Geschädigte Fläche in %",
+        "1": "Affected area in %"
+      },
+      "hint": {
+        "0": "Schätzen Sie den Anteil der Fläche am Feld, die von der Schädigung betroffen ist und tragen Sie diesen Wert als Prozentangabe hier ein.",
+        "1": "Estimate the fraction of the field that is affected by the damage and enter the percentage (a value between 0 and 100 without percent sign) in the input field “Affected area in %”."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "${stockDamaged}=0",
+      "constraint": "",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "range": {
+        "min": "0",
+        "max": "100",
+        "minInclusive": true,
+        "maxInclusive": true
+      },
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "10"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
+      "metadata": {
+      },
+      "type": "inputNumeric"
+    },
+    {
+      "name": "additionalDamageInfo1",
+      "label": {
+        "0": "Weitere Angaben?",
+        "1": "Additional data?"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${stockDamaged}=0",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Ja"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Nein"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "reasonDamage2",
+      "label": {
+        "0": "Ursache",
+        "1": "Reason of Damage"
+      },
+      "hint": {
+        "0": "Wählen Sie aus dem Auswahlmenü eine Ursache für den Schaden am Bestand aus. Für den Fall, dass die aktuelle Ursache nicht in der Auswahl enthalten ist, geben Sie diese bitte unter „Sonstiges“ ein.",
+        "1": "Select a reason for the apparent damage of the crop from the menu. In case, the reason is not listed in the menu, please choose “Others” and enter the reason in the input field."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${additionalDamageInfo1}=0",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Sturm",
+            "1": "Storm"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Hagel",
+            "1": "Hail"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "Hochwasser",
+            "1": "Flood"
+          },
+          "cascade": [
+          ],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "Tierplage",
+            "1": "Plague"
+          },
+          "cascade": [
+          ],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "Feuer",
+            "1": "Fire"
+          },
+          "cascade": [
+          ],
+          "val": "4"
+        },
+        {
+          "text": {
+            "0": "Überdüngung",
+            "1": "Overfertilisation"
+          },
+          "cascade": [
+          ],
+          "val": "5"
+        },
+        {
+          "text": {
+            "0": "Sonstiges",
+            "1": "Other"
+          },
+          "cascade": [
+          ],
+          "val": "6"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "reasonDamageOther2",
+      "label": {
+        "0": "Ursache",
+        "1": "Cause of the damage"
+      },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "${additionalDamageInfo1}=0 and ${reasonDamage2}=6",
+      "constraint": "",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "length": false,
+      "metadata": {
+      },
+      "type": "inputText"
+    },
+    {
+      "name": "imageDamage2",
+      "label": {
+        "0": "Foto vom betroffenen Areal",
+        "1": "Image of damage"
+      },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${additionalDamageInfo1}=0",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "kind": "Image",
+      "metadata": {
+      },
+      "type": "inputMedia"
+    },
+    {
+      "name": "damageDateStart2",
+      "label": {
+        "0": "Beginn des Schädigungseintritts",
+        "1": "Begin of damage"
+      },
+      "hint": {
+        "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, zu dem die Schädigung eingetreten ist und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+        "1": "A calendar appears, if you click on the date. Select the date when the damage on the crops began to appear and confirm your selection by clicking on [OKAY]."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "${additionalDamageInfo1}=0",
+      "constraint": ".<now()",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "range": false,
+      "kind": "Full Date",
+      "metadata": {
+      },
+      "type": "inputDate"
+    },
+    {
+      "name": "damgeDateEnd2",
+      "label": {
+        "0": "Ende des Schädigungseintritts",
+        "1": "End of hazard"
+      },
+      "hint": {
+        "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, ab dem die Ausweitung der Schädigung beendet war und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+        "1": "A calendar appears, if you click on the date. Select the date when the expansion of the damaged crop area stopped and confirm your selection by clicking on [OKAY]."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "${additionalDamageInfo1}=0",
+      "constraint": ".<now()",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "range": false,
+      "kind": "Full Date",
+      "metadata": {
+      },
+      "type": "inputDate"
+    },
+    {
+      "name": "damagePercentage2",
+      "label": {
+        "0": "Geschädigte Fläche in %",
+        "1": "Affected area in %"
+      },
+      "hint": {
+        "0": "Schätzen Sie den Anteil der Fläche am Feld, die von der Schädigung betroffen ist und tragen Sie diesen Wert als Prozentangabe hier ein.",
+        "1": "Estimate the fraction of the field that is affected by the damage and enter the percentage (a value between 0 and 100 without percent sign) in the input field “Affected area in %”."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "${additionalDamageInfo1}=0",
+      "constraint": "",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "range": {
+        "min": "0",
+        "max": "100",
+        "minInclusive": true,
+        "maxInclusive": true
+      },
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "10"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
+      "metadata": {
+      },
+      "type": "inputNumeric"
+    },
+    {
+      "name": "additionalDamageInfo2",
+      "label": {
+        "0": "Weitere Angaben?",
+        "1": "Additional data?"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${additionalDamageInfo1}=0",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Ja"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Nein"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "reasonDamage3",
+      "label": {
+        "0": "Ursache",
+        "1": "Reason of Damage"
+      },
+      "hint": {
+        "0": "Wählen Sie aus dem Auswahlmenü eine Ursache für den Schaden am Bestand aus. Für den Fall, dass die aktuelle Ursache nicht in der Auswahl enthalten ist, geben Sie diese bitte unter „Sonstiges“ ein.",
+        "1": "Select a reason for the apparent damage of the crop from the menu. In case, the reason is not listed in the menu, please choose “Others” and enter the reason in the input field."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${additionalDamageInfo2}=0",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Sturm",
+            "1": "Storm"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Hagel",
+            "1": "Hail"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "Hochwasser",
+            "1": "Flood"
+          },
+          "cascade": [
+          ],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "Tierplage",
+            "1": "Plague"
+          },
+          "cascade": [
+          ],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "Feuer",
+            "1": "Fire"
+          },
+          "cascade": [
+          ],
+          "val": "4"
+        },
+        {
+          "text": {
+            "0": "Überdüngung",
+            "1": "Overfertilisation"
+          },
+          "cascade": [
+          ],
+          "val": "5"
+        },
+        {
+          "text": {
+            "0": "Sonstiges",
+            "1": "Other"
+          },
+          "cascade": [
+          ],
+          "val": "6"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "reasonDamageOther3",
+      "label": {
+        "0": "Ursache",
+        "1": "Cause of the damage"
+      },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "${additionalDamageInfo2}=0 and ${reasonDamage3}=6",
+      "constraint": "",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "length": false,
+      "metadata": {
+      },
+      "type": "inputText"
+    },
+    {
+      "name": "imageDamge3",
+      "label": {
+        "0": "Foto vom betroffenen Areal",
+        "1": "Image of damage"
+      },
+      "hint": {
+        "0": "",
+        "1": ""
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${additionalDamageInfo2}=0",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "kind": "Image",
+      "metadata": {
+      },
+      "type": "inputMedia"
+    },
+    {
+      "name": "damageDateStart3",
+      "label": {
+        "0": "Beginn des Schädigungseintritts",
+        "1": "Begin of damage"
+      },
+      "hint": {
+        "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, zu dem die Schädigung eingetreten ist und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+        "1": "A calendar appears, if you click on the date. Select the date when the damage on the crops began to appear and confirm your selection by clicking on [OKAY]."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "${additionalDamageInfo2}=0",
+      "constraint": ".<now()",
+      "invalidText": {
+        "0": "",
+        "1": ""
+      },
+      "calculate": "",
+      "range": false,
+      "kind": "Full Date",
+      "metadata": {
+      },
+      "type": "inputDate"
+    },
+    {
+      "name": "damgeDateEnd3",
+      "label": {
+        "0": "Ende des Schädigungseintritts",
+        "1": "End of hazard"
+      },
+      "hint": {
+        "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum aus, ab dem die Ausweitung der Schädigung beendet war und bestätigen Sie Ihre Auswahl mit Tippen auf [OKAY].",
+        "1": "A calendar appears, if you click on the date. Select the date when the expansion of the damaged crop area stopped and confirm your selection by clicking on [OKAY]."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "${additionalDamageInfo2}=0",
+      "constraint": ".<now()",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "range": false,
+      "kind": "Full Date",
+      "metadata": {
+      },
+      "type": "inputDate"
+    },
+    {
+      "name": "damagePercentage3",
+      "label": {
+        "0": "Geschädigte Fläche in %",
+        "1": "Affected area in %"
+      },
+      "hint": {
+        "0": "Schätzen Sie den Anteil der Fläche am Feld, die von der Schädigung betroffen ist und tragen Sie diesen Wert als Prozentangabe hier ein.",
+        "1": "Estimate the fraction of the field that is affected by the damage and enter the percentage (a value between 0 and 100 without percent sign) in the input field “Affected area in %”."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "${additionalDamageInfo2}=0",
+      "constraint": "",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "range": {
+        "min": "0",
+        "max": "100",
+        "minInclusive": true,
+        "maxInclusive": true
+      },
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "10"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
+      "metadata": {
+      },
+      "type": "inputNumeric"
     }
+  ],
+  "metadata": {
+    "version": 2,
+    "activeLanguages": {
+      "0": "German",
+      "1": "English",
+      "_counter": 1,
+      "_display": "0"
+    },
+    "optionsPresets": [
+    ],
+    "htitle": null,
+    "instance_name": "",
+    "public_key": "",
+    "submission_url": ""
+  }
 }

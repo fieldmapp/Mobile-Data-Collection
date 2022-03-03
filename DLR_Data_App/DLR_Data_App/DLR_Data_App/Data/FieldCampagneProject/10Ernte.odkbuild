@@ -1,137 +1,137 @@
 {
-    "title": "Ernte",
-    "controls": [
-        {
-            "name": "dateHarvest",
-            "label": {
-                "0": "Datum Ernte",
-                "1": "Date harvest"
-            },
-            "hint": {
-                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum der Ernte aus und bestätigen Sie Ihre Auswahl durch Tippen auf [OKAY].",
-                "1": "A calendar appears, if you click on the date. Select the date of harvest in the calendar and confirm your selection by clicking on [OKAY]."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "0": "",
-                "1": ""
-            },
-            "relevance": "",
-            "constraint": ".<now()",
-            "invalidText": {
-                "0": "",
-                "1": ""
-            },
-            "calculate": "",
-            "range": false,
-            "kind": "Full Date",
-            "metadata": {
-            },
-            "type": "inputDate"
-        },
-        {
-            "name": "dateHarvestBegin",
-            "label": {
-                "0": "Ernte-Zeitfenster Begin",
-                "1": "Harvest time frame begin"
-            },
-            "hint": {
-                "0": "Bitte geben Sie das Anfangsdatum des Zeitraums ein, innerhalb dessen die Ernte stattgefunden hat.",
-                "1": "Please enter the start date of the time span, in which the crop was harvested."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-            },
-            "relevance": "${dateHarvest}=0",
-            "constraint": "",
-            "calculate": "",
-            "range": false,
-            "invalidText": {
-            },
-            "kind": "Full Date",
-            "metadata": {
-            },
-            "type": "inputDate"
-        },
-        {
-            "name": "dateHarvestEnd",
-            "label": {
-                "0": "Ernte-Zeitfenster Ende",
-                "1": "Harvest time frame end"
-            },
-            "hint": {
-                "0": "Bitte geben Sie das Endedatum des Zeitraums ein, innerhalb dessen die Ernte stattgefunden hat.",
-                "1": "Please enter the end date of the time span, in which the crop was harvested."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-            },
-            "relevance": "${dateHarvest}=0",
-            "constraint": "",
-            "calculate": "",
-            "range": false,
-            "invalidText": {
-            },
-            "kind": "Full Date",
-            "metadata": {
-            },
-            "type": "inputDate"
-        },
-        {
-            "name": "amoutHarvest",
-            "label": {
-                "0": "Erntemenge in dt/ha",
-                "1": "Yield in dt/ha"
-            },
-            "hint": {
-                "0": "Geben Sie die Erntemenge in Dezitonnen pro Hektar (bzw. Doppelzentner pro Hektar) ein.",
-                "1": "Enter the yield in decitonne per hectare (or quintals per hectare)."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "",
-            "constraint": "",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "range": false,
-            "appearance": "Textbox",
-            "kind": "Integer",
-            "selectRange": {
-                "min": "1",
-                "max": "10"
-            },
-            "selectStep": "1",
-            "sliderTicks": true,
-            "metadata": {
-            },
-            "type": "inputNumeric"
-        }
-    ],
-    "metadata": {
-        "version": 2,
-        "activeLanguages": {
-            "0": "German",
-            "1": "English",
-            "_counter": 1,
-            "_display": "0"
-        },
-        "optionsPresets": [
-        ],
-        "htitle": null,
-        "instance_name": "",
-        "public_key": "",
-        "submission_url": ""
+  "title": "Ernte",
+  "controls": [
+    {
+      "name": "dateHarvest",
+      "label": {
+        "0": "Datum Ernte",
+        "1": "Date harvest"
+      },
+      "hint": {
+        "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum der Ernte aus und bestätigen Sie Ihre Auswahl durch Tippen auf [OKAY].",
+        "1": "A calendar appears, if you click on the date. Select the date of harvest in the calendar and confirm your selection by clicking on [OKAY]."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "0": "",
+        "1": ""
+      },
+      "relevance": "",
+      "constraint": ".<now()",
+      "invalidText": {
+        "0": "",
+        "1": ""
+      },
+      "calculate": "",
+      "range": false,
+      "kind": "Full Date",
+      "metadata": {
+      },
+      "type": "inputDate"
+    },
+    {
+      "name": "dateHarvestBegin",
+      "label": {
+        "0": "Ernte-Zeitfenster Begin",
+        "1": "Harvest time frame begin"
+      },
+      "hint": {
+        "0": "Bitte geben Sie das Anfangsdatum des Zeitraums ein, innerhalb dessen die Ernte stattgefunden hat.",
+        "1": "Please enter the start date of the time span, in which the crop was harvested."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${dateHarvest}=0",
+      "constraint": "",
+      "calculate": "",
+      "range": false,
+      "invalidText": {
+      },
+      "kind": "Full Date",
+      "metadata": {
+      },
+      "type": "inputDate"
+    },
+    {
+      "name": "dateHarvestEnd",
+      "label": {
+        "0": "Ernte-Zeitfenster Ende",
+        "1": "Harvest time frame end"
+      },
+      "hint": {
+        "0": "Bitte geben Sie das Endedatum des Zeitraums ein, innerhalb dessen die Ernte stattgefunden hat.",
+        "1": "Please enter the end date of the time span, in which the crop was harvested."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${dateHarvest}=0",
+      "constraint": "",
+      "calculate": "",
+      "range": false,
+      "invalidText": {
+      },
+      "kind": "Full Date",
+      "metadata": {
+      },
+      "type": "inputDate"
+    },
+    {
+      "name": "amoutHarvest",
+      "label": {
+        "0": "Erntemenge in dt/ha",
+        "1": "Yield in dt/ha"
+      },
+      "hint": {
+        "0": "Geben Sie die Erntemenge in Dezitonnen pro Hektar (bzw. Doppelzentner pro Hektar) ein.",
+        "1": "Enter the yield in decitonne per hectare (or quintals per hectare)."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "range": false,
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "10"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
+      "metadata": {
+      },
+      "type": "inputNumeric"
     }
+  ],
+  "metadata": {
+    "version": 2,
+    "activeLanguages": {
+      "0": "German",
+      "1": "English",
+      "_counter": 1,
+      "_display": "0"
+    },
+    "optionsPresets": [
+    ],
+    "htitle": null,
+    "instance_name": "",
+    "public_key": "",
+    "submission_url": ""
+  }
 }

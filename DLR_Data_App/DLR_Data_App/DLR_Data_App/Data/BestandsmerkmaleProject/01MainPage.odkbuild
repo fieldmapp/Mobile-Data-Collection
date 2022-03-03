@@ -1,0 +1,194 @@
+{
+  "title": "Kartierung von Bestandsmerkmalen",
+  "controls": [
+    {
+      "name": "location",
+      "label": {
+        "0": "Standort"
+      },
+      "hint": {
+        "0": "\"Durch Tippen auf [Speichern] werden die GPS-Koordinaten des aktuellen Standorts erfasst. Bitte Koordinaten nur speichern, wenn Sie sich an/auf dem Feld befinden, dessen Eigenschaften Sie erfassen wollen. Richten Sie dazu Ihr Smartphone/Tablet vor dem Tippen auf [Speichern] so aus, als würden Sie ein Foto von dem Feld machen wollen. Dies ermöglicht uns anhand der Kompassdaten die Zuordnung Ihrer Eingaben zu dem Feld, auch wenn Sie nicht auf diesem stehen.\n \nWenn Sie sich nicht an/auf dem Feld befinden bzw. keine Koordinatenerfassung wünschen, tippen Sie auf [Überspringen]. Es wird daraufhin der Wert 0 sowohl für die geographische Breite als auch Länge gespeichert."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": {
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "kind": "Point",
+      "appearance": "Default (GPS)",
+      "metadata": {
+      },
+      "type": "inputLocation"
+    },
+    {
+      "name": "dataType",
+      "label": {
+        "0": "Bestandscharakteristik"
+      },
+      "hint": {
+        "0": "Wählen Sie aus dem Auswahlmenü eine zutreffende Charakterisierung des Bestandes aus. Für den Fall, dass die auftretende Bestandscharakteristik nicht in der Auswahl enthalten ist, geben Sie diese bitte unter „Sonstiges“ ein."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": {
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Sandlinse"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Tonkuppe"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "Bestandeslücke"
+          },
+          "cascade": [
+          ],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "Unkraut allgemein"
+          },
+          "cascade": [
+          ],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "Bestand sehr gut"
+          },
+          "cascade": [
+          ],
+          "val": "4"
+        },
+        {
+          "text": {
+            "0": "Bestand sehr schlecht"
+          },
+          "cascade": [
+          ],
+          "val": "5"
+        },
+        {
+          "text": {
+            "0": "Lager"
+          },
+          "cascade": [
+          ],
+          "val": "7"
+        },
+        {
+          "text": {
+            "0": "Wildschaden"
+          },
+          "cascade": [
+          ],
+          "val": "8"
+        },
+        {
+          "text": {
+            "0": "Distel"
+          },
+          "cascade": [
+          ],
+          "val": "9"
+        },
+        {
+          "text": {
+            "0": "Stein"
+          },
+          "cascade": [
+          ],
+          "val": "10"
+        },
+        {
+          "text": {
+            "0": "Sonstiges"
+          },
+          "cascade": [
+          ],
+          "val": "11"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "dataType2",
+      "label": {
+        "0": "Sonstige Bestandscharakteristik"
+      },
+      "hint": {
+        "0": "Geben Sie hier freitextlich die vorliegende Bestandscharakteristik ein, die nicht Teil des Auswahlmenüs war."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "",
+      "constraint": "",
+      "calculate": "",
+      "short": {
+      },
+      "image": {
+      },
+      "audio": {
+      },
+      "video": {
+      },
+      "bigimage": {
+      },
+      "guidance": {
+      },
+      "length": false,
+      "invalidText": {
+        "0": "${dataType}=11"
+      },
+      "metadata": {
+      },
+      "type": "inputText"
+    }
+  ],
+  "metadata": {
+    "version": 2,
+    "activeLanguages": {
+      "0": "German",
+      "_counter": 0,
+      "_display": "0"
+    },
+    "optionsPresets": [
+    ],
+    "htitle": null,
+    "instance_name": "",
+    "public_key": "",
+    "submission_url": ""
+  }
+}

@@ -1,1 +1,283 @@
-{"title":"Substrate characteristics","controls":[{"name":"substrate_type","label":{"0":"Substrate type"},"hint":{},"defaultValue":"","readOnly":false,"required":true,"requiredText":{},"relevance":"","constraint":"","invalidText":{},"calculate":"","options":[{"text":{"0":"soil"},"cascade":[],"val":"0"},{"text":{"0":"mineral soil"},"cascade":[],"val":"1"},{"text":{"0":"rich in humus"},"cascade":[],"val":"2"},{"text":{"0":"mud"},"cascade":[],"val":"3"},{"text":{"0":"loose sand or gravel"},"cascade":[],"val":"4"},{"text":{"0":"deadwood"},"cascade":[],"val":"5"},{"text":{"0":"decaying herbaceous vegetation"},"cascade":[],"val":"6"}],"cascading":false,"other":false,"appearance":"Default","metadata":{},"type":"inputSelectOne"},{"name":"moisture","label":{"0":"Moisture"},"hint":{},"defaultValue":"","readOnly":false,"required":true,"requiredText":{},"relevance":"","constraint":"","invalidText":{},"calculate":"","options":[{"text":{"0":"very dry"},"cascade":[],"val":"0"},{"text":{"0":"dry"},"cascade":[],"val":"1"},{"text":{"0":"mesic"},"cascade":[],"val":"2"},{"text":{"0":"moist"},"cascade":[],"val":"3"},{"text":{"0":"wet"},"cascade":[],"val":"4"}],"cascading":false,"other":false,"appearance":"Default","metadata":{},"type":"inputSelectOne"},{"name":"reaction","label":{"0":"Reaction"},"hint":{},"defaultValue":"","readOnly":false,"required":true,"requiredText":{},"relevance":"","constraint":"","invalidText":{},"calculate":"","options":[{"text":{"0":"very acid"},"cascade":[],"val":"0"},{"text":{"0":"acid"},"cascade":[],"val":"1"},{"text":{"0":"subneutral"},"cascade":[],"val":"2"},{"text":{"0":"± neutral"},"cascade":[],"val":"3"},{"text":{"0":"alkaline"},"cascade":[],"val":"4"}],"cascading":false,"other":false,"appearance":"Default","metadata":{},"type":"inputSelectOne"},{"name":"nutrients","label":{"0":"Nutrients"},"hint":{},"defaultValue":"","readOnly":false,"required":true,"requiredText":{},"relevance":"","constraint":"","invalidText":{},"calculate":"","options":[{"text":{"0":"infertile"},"cascade":[],"val":"0"},{"text":{"0":"intermediate"},"cascade":[],"val":"1"},{"text":{"0":"fertile"},"cascade":[],"val":"2"}],"cascading":false,"other":false,"appearance":"Default","metadata":{},"type":"inputSelectOne"}],"metadata":{"version":2,"activeLanguages":{"0":"English","_counter":0,"_display":"0"},"optionsPresets":[],"htitle":null,"instance_name":"","public_key":"","submission_url":""}}
+{
+  "title": "Substrate characteristics",
+  "controls": [
+    {
+      "name": "substrate_type",
+      "label": {
+        "0": "Substrate type"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": {
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "soil"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "mineral soil"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "rich in humus"
+          },
+          "cascade": [
+          ],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "mud"
+          },
+          "cascade": [
+          ],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "loose sand or gravel"
+          },
+          "cascade": [
+          ],
+          "val": "4"
+        },
+        {
+          "text": {
+            "0": "deadwood"
+          },
+          "cascade": [
+          ],
+          "val": "5"
+        },
+        {
+          "text": {
+            "0": "decaying herbaceous vegetation"
+          },
+          "cascade": [
+          ],
+          "val": "6"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "moisture",
+      "label": {
+        "0": "Moisture"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": {
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "very dry"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "dry"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "mesic"
+          },
+          "cascade": [
+          ],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "moist"
+          },
+          "cascade": [
+          ],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "wet"
+          },
+          "cascade": [
+          ],
+          "val": "4"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "reaction",
+      "label": {
+        "0": "Reaction"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": {
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "very acid"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "acid"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "subneutral"
+          },
+          "cascade": [
+          ],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "± neutral"
+          },
+          "cascade": [
+          ],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "alkaline"
+          },
+          "cascade": [
+          ],
+          "val": "4"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "nutrients",
+      "label": {
+        "0": "Nutrients"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": {
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "infertile"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "intermediate"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "fertile"
+          },
+          "cascade": [
+          ],
+          "val": "2"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    }
+  ],
+  "metadata": {
+    "version": 2,
+    "activeLanguages": {
+      "0": "English",
+      "_counter": 0,
+      "_display": "0"
+    },
+    "optionsPresets": [
+    ],
+    "htitle": null,
+    "instance_name": "",
+    "public_key": "",
+    "submission_url": ""
+  }
+}
