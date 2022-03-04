@@ -495,7 +495,7 @@ Einwilligung ist jede von der betroffenen Person freiwillig für den bestimmten 
     <value>Klicken Sie auf einen Balken für mehr Informationen</value>
   </data>
   <data name="completeSelectionToAdvance" xml:space="preserve">
-    <value>Bitte verfollständigen Sie Ihre Auswahl um fortzufahren.</value>
+    <value>Bitte vervollständigen Sie Ihre Auswahl um fortzufahren.</value>
   </data>
   <data name="deleteSavedAnswersProfiling" xml:space="preserve">
     <value>Gespeicherte Antworten löschen</value>
