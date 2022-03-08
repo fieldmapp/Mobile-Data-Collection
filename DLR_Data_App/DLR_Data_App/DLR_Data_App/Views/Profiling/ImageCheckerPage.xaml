@@ -67,7 +67,7 @@
                          VerticalOptions="CenterAndExpand"
                          IsEnabled="true"
                          ShortPress="Picture_ShortPress"
-                         BorderColor="Transparent"
+                         BorderColor="White"
                          BorderWidth="5"/>
             <controls:DetailImage x:Name="PictureD"
                          Source="{Binding QuestionItem.Image4Source}"
