@@ -61,7 +61,7 @@
                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryNight}}"/>
                 <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource TextSecondary}, Dark={StaticResource TextSecondaryNight}}"/>
             </Style>
-            <Style TargetType="DatePicker">
+            <Style TargetType="DatePicker" ApplyToDerivedTypes="True">
                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryNight}}"/>
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundNight}}"/>
             </Style>

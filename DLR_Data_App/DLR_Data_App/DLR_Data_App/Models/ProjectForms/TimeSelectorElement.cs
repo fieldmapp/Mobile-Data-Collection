@@ -1,4 +1,5 @@
-﻿using DLR_Data_App.Models.ProjectModel;
+﻿using DLR_Data_App.Controls;
+using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Services;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,10 @@ namespace DLR_Data_App.Models.ProjectForms
         {
             ValidRange = OdkDataExtractor.GetRangeFromJsonString(data.Range, DateTime.Parse);
         }
-        static readonly Color SetColor = Color.Black;
-        static readonly Color UnsetColor = Color.LightGray;
+        static Color SetColor => (Color)App.Current.Resources["TextPrimary"];
+        static Color SetColorNight => (Color)App.Current.Resources["TextPrimaryNight"];
+        static Color UnsetColor = (Color)App.Current.Resources["TextSecondary"];
+        static Color UnsetColorNight = (Color)App.Current.Resources["TextSecondaryNight"];
         public DatePicker DatePicker;
         public TimePicker TimePicker;
         bool _isSet;
@@ -25,16 +28,22 @@ namespace DLR_Data_App.Models.ProjectForms
             set
             {
                 _isSet = value;
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    var newColor = value ? SetColor : UnsetColor;
-                    if (DatePicker != null)
-                        DatePicker.TextColor = newColor;
-                    if (TimePicker != null)
-                        TimePicker.TextColor = newColor;
-                });
+                UpdateColor(value);
             }
         }
+
+        void UpdateColor(bool isSet)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                var newColor = isSet ? SetColor : UnsetColor;
+                if (DatePicker != null)
+                    DatePicker.SetAppThemeColor(DatePicker.TextColorProperty, isSet ? SetColor : UnsetColor, isSet ? SetColorNight : UnsetColorNight);
+                if (TimePicker != null)
+                    TimePicker.SetAppThemeColor(TimePicker.TextColorProperty, isSet ? SetColor : UnsetColor, isSet ? SetColorNight : UnsetColorNight);
+            });
+        }
+
         private OdkRange<DateTime> ValidRange;
 
         protected override bool IsValidElementSpecific => IsSet
@@ -79,11 +88,14 @@ namespace DLR_Data_App.Models.ProjectForms
             var timeSelectorElement = new TimeSelectorElement(grid, parms.Element, parms.Type, parms.DisplayAlertFunc, parms.CurrentProject);
 
             TimePicker timePicker = null;
-            var datePicker = new DatePicker { TextColor = UnsetColor };
+            var datePicker = new OKCancelDatePicker { TextColor = UnsetColor };
             timeSelectorElement.DatePicker = datePicker;
 
-            datePicker.Unfocused += (a, b) =>
+            datePicker.Closed += (a, b) =>
             {
+                if (b == OKCancelDatePicker.CloseType.Cancel)
+                    return;
+
                 timeSelectorElement.IsSet = true;
                 timeSelectorElement.OnContentChange();
             };
@@ -105,6 +117,7 @@ namespace DLR_Data_App.Models.ProjectForms
                 grid.Children.Add(timePicker, 0, 2);
                 Grid.SetColumnSpan(timePicker, 2);
             }
+            timeSelectorElement.UpdateColor(false);
 
             return timeSelectorElement;
         }
