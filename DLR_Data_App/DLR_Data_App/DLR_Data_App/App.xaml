@@ -30,7 +30,7 @@
             <Color x:Key="DividerNight">#1Fffffff</Color>
 
 
-            
+
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource Divider}, Dark={StaticResource DividerNight}}"/>
                 <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryNight}}"/>
@@ -59,6 +59,7 @@
             </Style>
             <Style TargetType="Entry">
                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryNight}}"/>
+                <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource TextSecondary}, Dark={StaticResource TextSecondaryNight}}"/>
             </Style>
             <Style TargetType="DatePicker">
                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryNight}}"/>
