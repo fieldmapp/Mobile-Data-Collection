@@ -588,7 +588,7 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen f�
     <value>Aktuelles Profiling</value>
   </data>
   <data name="profilingModuleMissing" xml:space="preserve">
-    <value>Das Profiling Modul {0} felt, wird aber für dieses Projekt benötigt.</value>
+    <value>Das Profiling-Modul {0} fehlt, wird aber für dieses Projekt benötigt.</value>
   </data>
   <data name="orientationSensor" xml:space="preserve">
     <value>Orientierungssensor</value>
