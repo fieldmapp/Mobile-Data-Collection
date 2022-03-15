@@ -11,15 +11,32 @@
         <StackLayout Padding="10">
             <Label Style="{DynamicResource TitleStyle}" Text="Ursachen" HorizontalOptions="Center"/>
             <Grid>
-                <Controls:FormattedButton Grid.Row="0" Grid.Column="0" FormattedText="{Binding Configuration.Cause1, Mode=OneWayToSource}" Clicked="CauseButton_Clicked"/>
-                <Controls:FormattedButton Grid.Row="0" Grid.Column="1" FormattedText="{Binding Configuration.Cause2, Mode=OneWayToSource}" Clicked="CauseButton_Clicked"/>
-                <Controls:FormattedButton Grid.Row="0" Grid.Column="2" FormattedText="{Binding Configuration.Cause3, Mode=OneWayToSource}" Clicked="CauseButton_Clicked"/>
-                <Controls:FormattedButton Grid.Row="1" Grid.Column="0" FormattedText="{Binding Configuration.Cause4, Mode=OneWayToSource}" Clicked="CauseButton_Clicked"/>
-                <Controls:FormattedButton Grid.Row="1" Grid.Column="1" FormattedText="{Binding Configuration.Cause5, Mode=OneWayToSource}" Clicked="CauseButton_Clicked"/>
-                <Controls:FormattedButton Grid.Row="1" Grid.Column="2" FormattedText="{Binding Configuration.Cause6, Mode=OneWayToSource}" Clicked="CauseButton_Clicked"/>
-                <Controls:FormattedButton Grid.Row="2" Grid.Column="0" FormattedText="{Binding Configuration.Cause7, Mode=OneWayToSource}" Clicked="CauseButton_Clicked"/>
-                <Controls:FormattedButton Grid.Row="2" Grid.Column="1" FormattedText="{Binding Configuration.Cause8, Mode=OneWayToSource}" Clicked="CauseButton_Clicked"/>
-                <Controls:FormattedButton Grid.Row="2" Grid.Column="2" FormattedText="{Binding Configuration.Cause9, Mode=OneWayToSource}" Clicked="CauseButton_Clicked"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label x:Name="Cause1IdLabel" Grid.Row="0" Grid.Column="0" Text="{Binding Configuration.Cause1Id, Mode=OneWay, StringFormat='Id: {0}'}" HorizontalOptions="Center"/>
+                <Label x:Name="Cause2IdLabel" Grid.Row="0" Grid.Column="1" Text="{Binding Configuration.Cause2Id, Mode=OneWay, StringFormat='Id: {0}'}" HorizontalOptions="Center"/>
+                <Label x:Name="Cause3IdLabel" Grid.Row="0" Grid.Column="2" Text="{Binding Configuration.Cause3Id, Mode=OneWay, StringFormat='Id: {0}'}" HorizontalOptions="Center"/>
+                <Label x:Name="Cause4IdLabel" Grid.Row="2" Grid.Column="0" Text="{Binding Configuration.Cause4Id, Mode=OneWay, StringFormat='Id: {0}'}" HorizontalOptions="Center"/>
+                <Label x:Name="Cause5IdLabel" Grid.Row="2" Grid.Column="1" Text="{Binding Configuration.Cause5Id, Mode=OneWay, StringFormat='Id: {0}'}" HorizontalOptions="Center"/>
+                <Label x:Name="Cause6IdLabel" Grid.Row="2" Grid.Column="2" Text="{Binding Configuration.Cause6Id, Mode=OneWay, StringFormat='Id: {0}'}" HorizontalOptions="Center"/>
+                <Label x:Name="Cause7IdLabel" Grid.Row="4" Grid.Column="0" Text="{Binding Configuration.Cause7Id, Mode=OneWay, StringFormat='Id: {0}'}" HorizontalOptions="Center"/>
+                <Label x:Name="Cause8IdLabel" Grid.Row="4" Grid.Column="1" Text="{Binding Configuration.Cause8Id, Mode=OneWay, StringFormat='Id: {0}'}" HorizontalOptions="Center"/>
+                <Label x:Name="Cause9IdLabel" Grid.Row="4" Grid.Column="2" Text="{Binding Configuration.Cause9Id, Mode=OneWay, StringFormat='Id: {0}'}" HorizontalOptions="Center"/>
+                <Controls:FormattedButton x:Name="Button1" Grid.Row="1" Grid.Column="0" FormattedText="{Binding Configuration.Cause1, Mode=TwoWay}" Clicked="CauseButton_Clicked"/>
+                <Controls:FormattedButton x:Name="Button2" Grid.Row="1" Grid.Column="1" FormattedText="{Binding Configuration.Cause2, Mode=TwoWay}" Clicked="CauseButton_Clicked"/>
+                <Controls:FormattedButton x:Name="Button3" Grid.Row="1" Grid.Column="2" FormattedText="{Binding Configuration.Cause3, Mode=TwoWay}" Clicked="CauseButton_Clicked"/>
+                <Controls:FormattedButton x:Name="Button4" Grid.Row="3" Grid.Column="0" FormattedText="{Binding Configuration.Cause4, Mode=TwoWay}" Clicked="CauseButton_Clicked"/>
+                <Controls:FormattedButton x:Name="Button5" Grid.Row="3" Grid.Column="1" FormattedText="{Binding Configuration.Cause5, Mode=TwoWay}" Clicked="CauseButton_Clicked"/>
+                <Controls:FormattedButton x:Name="Button6" Grid.Row="3" Grid.Column="2" FormattedText="{Binding Configuration.Cause6, Mode=TwoWay}" Clicked="CauseButton_Clicked"/>
+                <Controls:FormattedButton x:Name="Button7" Grid.Row="5" Grid.Column="0" FormattedText="{Binding Configuration.Cause7, Mode=TwoWay}" Clicked="CauseButton_Clicked"/>
+                <Controls:FormattedButton x:Name="Button8" Grid.Row="5" Grid.Column="1" FormattedText="{Binding Configuration.Cause8, Mode=TwoWay}" Clicked="CauseButton_Clicked"/>
+                <Controls:FormattedButton x:Name="Button9" Grid.Row="5" Grid.Column="2" FormattedText="{Binding Configuration.Cause9, Mode=TwoWay}" Clicked="CauseButton_Clicked"/>
             </Grid>
             <Label Style="{DynamicResource TitleStyle}" Text="Anzahl der Zonen"  HorizontalOptions="Center"/>
             <Controls:IntegerSlider x:Name="LaneCountSlider" IntegerValue="{Binding Configuration.LaneCount, Mode=OneWayToSource}" Maximum="3" Minimum="1"/>

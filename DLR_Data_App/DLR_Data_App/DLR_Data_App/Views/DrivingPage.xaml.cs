@@ -100,15 +100,15 @@ namespace DLR_Data_App.Views
                 TypeHighButton
             };
 
-            Cause1Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause1Button.FormattedText.Spans.Select(s => s.Text)));
-            Cause2Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause2Button.FormattedText.Spans.Select(s => s.Text)));
-            Cause3Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause3Button.FormattedText.Spans.Select(s => s.Text)));
-            Cause4Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause4Button.FormattedText.Spans.Select(s => s.Text)));
-            Cause5Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause5Button.FormattedText.Spans.Select(s => s.Text)));
-            Cause6Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause6Button.FormattedText.Spans.Select(s => s.Text)));
-            Cause7Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause7Button.FormattedText.Spans.Select(s => s.Text)));
-            Cause8Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause8Button.FormattedText.Spans.Select(s => s.Text)));
-            Cause9Button.Clicked += (a, b) => DamageCauseButtonClicked(string.Join("", Cause9Button.FormattedText.Spans.Select(s => s.Text)));
+            Cause1Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause1Id);
+            Cause2Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause2Id);
+            Cause3Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause3Id);
+            Cause4Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause4Id);
+            Cause5Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause5Id);
+            Cause6Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause6Id);
+            Cause7Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause7Id);
+            Cause8Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause8Id);
+            Cause9Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause9Id);
             DamageCauseButtons = new List<FormattedButton>
             {
                 Cause1Button,
@@ -470,7 +470,7 @@ namespace DLR_Data_App.Views
 
         private void ConfigurePressed(object sender, EventArgs e)
         {
-            var confPage = new DrivingConfigurationPage(new DrivingConfigurationPage.DrivingPageConfiguration());
+            var confPage = new DrivingConfigurationPage(DrivingConfigurationPage.DefaultConfiguration);
             Navigation.PushModalAsync(confPage);
         }
     }

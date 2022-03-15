@@ -26,20 +26,38 @@ namespace DLR_Data_App.Views
             public FormattedString Cause7 { get; set; }
             public FormattedString Cause8 { get; set; }
             public FormattedString Cause9 { get; set; }
+            public string Cause1Id { get; set; }
+            public string Cause2Id { get; set; }
+            public string Cause3Id { get; set; }
+            public string Cause4Id { get; set; }
+            public string Cause5Id { get; set; }
+            public string Cause6Id { get; set; }
+            public string Cause7Id { get; set; }
+            public string Cause8Id { get; set; }
+            public string Cause9Id { get; set; }
             public int LaneCount { get; set; }
         }
 
         public static readonly DrivingPageConfiguration DefaultConfiguration = new DrivingPageConfiguration
         {
             Cause1 = StringWithAnnotationsToFormattedString("*Sand*linse"),
+            Cause1Id = "SandLens",
             Cause2 = StringWithAnnotationsToFormattedString("*Verdichtung*"),
+            Cause2Id = "Compaction",
             Cause3 = StringWithAnnotationsToFormattedString("Vorge*wende*"),
+            Cause3Id = "Headland",
             Cause4 = StringWithAnnotationsToFormattedString("*Kuppe*"),
+            Cause4Id = "Dome",
             Cause5 = StringWithAnnotationsToFormattedString("*Hang*"),
+            Cause5Id = "Slope",
             Cause6 = StringWithAnnotationsToFormattedString("*Wald*rand"),
+            Cause6Id = "ForestEdge",
             Cause7 = StringWithAnnotationsToFormattedString("*Trocken*stress"),
+            Cause7Id = "DryStress",
             Cause8 = StringWithAnnotationsToFormattedString("*Nass*stelle"),
-            Cause9 = StringWithAnnotationsToFormattedString("*Mäuse*fraß" + Environment.NewLine + "*Wild*schaden"),
+            Cause8Id = "WaterLogging",
+            Cause9 = StringWithAnnotationsToFormattedString("*Mäuse*fraß\\n*Wild*schaden"),
+            Cause9Id = "GameMouseDamage",
             LaneCount = 3
         };
 
@@ -70,49 +88,88 @@ namespace DLR_Data_App.Views
             return result;
         }
 
+        public List<FormattedButton> KeywordButtons;
+        public List<Action<string>> SetCauseIdActions;
+
         public DrivingPageConfiguration Configuration { get; set; }
         public DrivingConfigurationPage(DrivingPageConfiguration input)
         {
             Configuration = input;
             InitializeComponent();
+            KeywordButtons = new List<FormattedButton>
+            {
+                Button1,
+                Button2,
+                Button3,
+                Button4,
+                Button5,
+                Button6,
+                Button7,
+                Button8,
+                Button9
+            };
+            SetCauseIdActions = new List<Action<string>>
+            {
+                id => input.Cause1Id = id,
+                id => input.Cause2Id = id,
+                id => input.Cause3Id = id,
+                id => input.Cause4Id = id,
+                id => input.Cause5Id = id,
+                id => input.Cause6Id = id,
+                id => input.Cause7Id = id,
+                id => input.Cause8Id = id,
+                id => input.Cause9Id = id
+            };
         }
 
         private async void CauseButton_Clicked(object sender, EventArgs e)
         {
             var button = (FormattedButton)sender;
-            string newCause = await DisplayPromptAsync("Ursache anpassen", "Neues Minderertragsursache angeben. Leer lassen um die Schaltfläche zu verstecken.");
-            if (newCause == null)
+            var causeIndex = KeywordButtons.IndexOf(button);
+
+            string newCauseId = await DisplayPromptAsync("Ursachen-ID angeben", "Id der neuen Minderertragsursache angeben. Leer lassen um die Schaltfläche zu verstecken.");
+            if (newCauseId == null)
                 return;
-            if (string.IsNullOrWhiteSpace(newCause))
+            if (string.IsNullOrWhiteSpace(newCauseId))
             {
                 button.FormattedText = new FormattedString();
+                SetCauseIdActions[causeIndex](string.Empty);
+                OnPropertyChanged(nameof(Configuration));
                 return;
             }
-            while (true)
+
+            string newCause = null;
+            while (string.IsNullOrWhiteSpace(newCause))
             {
-                string voiceRecogKeywords = await DisplayPromptAsync("Spracherkennung anpassen",
+                newCause = await DisplayPromptAsync("Ursache anpassen", "Neues Minderertragsursache angeben.");
+                if (newCause == null)
+                    return;
+            }
+            string voiceRecogKeywords = null;
+            while (string.IsNullOrWhiteSpace(voiceRecogKeywords))
+            {
+                voiceRecogKeywords = await DisplayPromptAsync("Spracherkennung anpassen",
                     "Neues Spracherkennungs-Schlüsselwort angeben. Wenn mehrere Schlüsselwörter gewünscht sind, bitte mit Komma (,) trennen. Muss ein Teilwort der Ursache sein. Leer lassen um die Spracherkennung zu deaktivieren.",
                     initialValue: newCause);
                 if (voiceRecogKeywords == null)
                     return;
-
-                var annotatedString = newCause;
-                foreach (var keyword in voiceRecogKeywords.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    var substrPos = annotatedString.ToLower().IndexOf(keyword.ToLower());
-                    if (substrPos == -1)
-                    {
-                        annotatedString = null;
-                        break;
-                    }
-                    annotatedString = annotatedString.Substring(0, substrPos) + BoldMarker + annotatedString.Substring(substrPos, keyword.Length) + BoldMarker + annotatedString.Substring(substrPos + keyword.Length);
-                }
-                if (annotatedString != null)
-                {
-                    button.FormattedText = StringWithAnnotationsToFormattedString(annotatedString);
-                    return;
-                }
             }
+
+            var annotatedString = newCause;
+            foreach (var keyword in voiceRecogKeywords.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                var substrPos = annotatedString.ToLower().IndexOf(keyword.ToLower());
+                if (substrPos == -1)
+                {
+                    annotatedString = null;
+                    break;
+                }
+                annotatedString = annotatedString.Substring(0, substrPos) + BoldMarker + annotatedString.Substring(substrPos, keyword.Length) + BoldMarker + annotatedString.Substring(substrPos + keyword.Length);
+            }
+            
+            button.FormattedText = StringWithAnnotationsToFormattedString(annotatedString);
+            SetCauseIdActions[causeIndex](newCauseId);
+            OnPropertyChanged(nameof(Configuration));
         }
     }
 }
