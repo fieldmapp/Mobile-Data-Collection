@@ -122,6 +122,8 @@ namespace FieldCartographerProcessor
                             if (activeZones[i] != null)
                             {
                                 activeZones[i].DistanceEndToZoneEntry = Helpers.DistanceBetween(currentLane.ExitPoint, currentLane.EntryPoint);
+                                activeZones[i].EndLong = Helpers.DistanceBetween(currentLane.ExitPoint, currentLane.EntryPoint);
+                                activeZones[i].EndLat = Helpers.DistanceBetween(currentLane.ExitPoint, currentLane.EntryPoint);
                                 finalizeZone(i);
                             }
                         }
@@ -142,6 +144,7 @@ namespace FieldCartographerProcessor
                         DistanceStartToZoneEntry = Helpers.DistanceBetween(pos, currentLane.EntryPoint),
                         StartLong = pos.X,
                         StartLat = pos.Y,
+                        StartInputDateTime = time,
                         LaneIdentifier = currentLane.Name
                     };
                 }
@@ -149,7 +152,8 @@ namespace FieldCartographerProcessor
                 {
                     activeZones[interaction.LaneIndex].DistanceEndToZoneEntry = Helpers.DistanceBetween(pos, currentLane.EntryPoint);
                     activeZones[interaction.LaneIndex].EndLong = pos.X;
-                    activeZones[interaction.LaneIndex].EndLat = pos.Y;
+                    activeZones[interaction.LaneIndex].EndLat = pos.Y; ;
+                    activeZones[interaction.LaneIndex].EndInputDateTime = time;
                 }
                 else if (interaction.Action == "canceled")
                 {
@@ -161,10 +165,16 @@ namespace FieldCartographerProcessor
                 else if (interaction.Action.StartsWith("cause=") && activeZones[interaction.LaneIndex] != null)
                 {
                     activeZones[interaction.LaneIndex].Cause = interaction.Action["cause=".Length..];
+                    activeZones[interaction.LaneIndex].CauseInputLong = pos.X;
+                    activeZones[interaction.LaneIndex].CauseInputLat = pos.Y;
+                    activeZones[interaction.LaneIndex].CauseInputDateTime = time;
                 }
                 else if (interaction.Action.StartsWith("damage=") && activeZones[interaction.LaneIndex] != null)
                 {
                     activeZones[interaction.LaneIndex].EstYieldReduction = interaction.Action["damage=".Length..];
+                    activeZones[interaction.LaneIndex].EstYieldReductionInputLong = pos.X;
+                    activeZones[interaction.LaneIndex].EstYieldReductionInputLat = pos.Y;
+                    activeZones[interaction.LaneIndex].EstYieldReductionInputDateTime = time;
                 }
             }
         }
