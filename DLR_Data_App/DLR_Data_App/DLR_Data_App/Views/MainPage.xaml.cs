@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using DLR_Data_App.Views.ProfilingList;
+using DLR_Data_App.Views.DrivingView;
 
 namespace DLR_Data_App.Views
 {
@@ -33,7 +34,7 @@ namespace DLR_Data_App.Views
                 { MenuItemType.ProfilingList, new NavigationPage(new ProfilingListPage()) },
                 { MenuItemType.CurrentProfiling, new NavigationPage(new CurrentProfilingPage()) },
                 { MenuItemType.Sensortest, new NavigationPage(new SensorTestPage()) },
-                { MenuItemType.DrivingHard, new NavigationPage(new DrivingPage(DrivingConfigurationPage.DefaultConfiguration)) },
+                { MenuItemType.DrivingHard, new NavigationPage(new DrivingConfigurationSelectionPage()) },
                 { MenuItemType.VoiceRecognitionDemo, new NavigationPage(new VoiceRecognitionDemoPage()) },
                 { MenuItemType.Settings, new NavigationPage(new SettingsPage()) },
                 { MenuItemType.About, new NavigationPage(new AboutPage()) }

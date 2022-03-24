@@ -467,11 +467,5 @@ namespace DLR_Data_App.Views
             if (interactionInfos.Any())
                 PushInteractionToLog(interactionInfos);
         }
-
-        private void ConfigurePressed(object sender, EventArgs e)
-        {
-            var confPage = new DrivingConfigurationPage(DrivingConfigurationPage.DefaultConfiguration);
-            Navigation.PushModalAsync(confPage);
-        }
     }
 }

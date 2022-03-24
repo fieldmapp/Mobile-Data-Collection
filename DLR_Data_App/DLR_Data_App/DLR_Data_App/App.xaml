@@ -74,6 +74,10 @@
                 <Setter Property="MaximumTrackColor" Value="Black"/>
                 <Setter Property="MinimumTrackColor" Value="Red"/>
             </Style>
+            <Style TargetType="ListView" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundNight}}"/>
+                <Setter Property="SeparatorColor" Value="{AppThemeBinding Light={StaticResource Divider}, Dark={StaticResource DividerNight}}"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

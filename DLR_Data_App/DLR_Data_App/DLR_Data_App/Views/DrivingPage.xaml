@@ -30,9 +30,6 @@
             <SolidColorBrush x:Key="BorderBrushNight" Color="{StaticResource BorderColorNight}"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Konfigurieren" Clicked="ConfigurePressed"/>
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <RelativeLayout x:Name="RelativeLayout">
             <Frame x:Name="BackgroundBox"

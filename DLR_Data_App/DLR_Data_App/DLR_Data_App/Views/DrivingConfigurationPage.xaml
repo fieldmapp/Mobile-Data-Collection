@@ -9,6 +9,10 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout Padding="10">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Name" VerticalOptions="Center" Style="{DynamicResource TitleStyle}"/>
+                <Entry Text="{Binding Configuration.Name}" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
             <Label Style="{DynamicResource TitleStyle}" Text="Ursachen" HorizontalOptions="Center"/>
             <Grid>
                 <Grid.RowDefinitions>
@@ -39,8 +43,9 @@
                 <Controls:FormattedButton x:Name="Button9" Grid.Row="5" Grid.Column="2" FormattedText="{Binding Configuration.Cause9, Mode=TwoWay}" Clicked="CauseButton_Clicked"/>
             </Grid>
             <Label Style="{DynamicResource TitleStyle}" Text="Anzahl der Zonen"  HorizontalOptions="Center"/>
-            <Controls:IntegerSlider x:Name="LaneCountSlider" IntegerValue="{Binding Configuration.LaneCount, Mode=OneWayToSource}" Maximum="3" Minimum="1"/>
+            <Controls:IntegerSlider x:Name="LaneCountSlider" IntegerValue="{Binding Configuration.LaneCount, Mode=TwoWay}" Maximum="3" Minimum="1"/>
             <Label BindingContext="{x:Reference LaneCountSlider}" Text="{Binding Value, Mode=OneWay}" HorizontalOptions="Center"/>
+            <Button Text="Speichern" Clicked="SaveButton_Clicked" HorizontalOptions="Center"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

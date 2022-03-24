@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DLR_Data_App.Views.DrivingView.DrivingConfigurationSelectionPage"
+             x:Name="This"
+             xmlns:controls="clr-namespace:DLR_Data_App.Controls">
+    <ContentPage.BindingContext>
+        <x:Reference Name="This" />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout x:Name="LoginEntries" 
+                         VerticalOptions="CenterAndExpand"
+                         Padding="40,0,40,0">
+
+            <Frame BorderColor="Black" Padding="2" VerticalOptions="Start">
+                <controls:InlinePicker x:Name="ConfigurationPicker" ItemsSource="{Binding DisplayedItems}">
+                    <controls:InlinePicker.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame BorderColor="{Binding BackgroundColor}" Padding="0" CornerRadius="0" BackgroundColor="{Binding BackgroundColor}">
+                                    <Frame BorderColor="{Binding BackgroundColor}"
+                                           Margin="1" CornerRadius="0" 
+                                           BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundNight}}" Padding="0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Configuration.Name}" />
+                                        </Grid>
+                                    </Frame>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:InlinePicker.ItemTemplate>
+                </controls:InlinePicker>
+            </Frame>
+
+            <Grid VerticalOptions="Fill">
+                <Button Text="Neue Konfiguration erstellen"
+                        Clicked="NewConfigurationButton_Clicked"
+                        Grid.Row="0"
+                        Grid.Column="0" />
+                <Button Text="Konfiguration anpassen"
+                        Clicked="EditSelectedConfiguratioButton_Clicked"
+                        Grid.Row="0"
+                        Grid.Column="1" />
+                <Button Text="Ausgewählte Konfiguration benutzen"
+                        Clicked="UseSelectedConfigurationButton_Clicked"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"/>
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

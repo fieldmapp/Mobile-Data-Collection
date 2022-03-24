@@ -36,6 +36,7 @@ namespace DLR_Data_App.Views
             public string Cause8Id { get; set; }
             public string Cause9Id { get; set; }
             public int LaneCount { get; set; }
+            public string Name { get; set; }
         }
 
         public static readonly DrivingPageConfiguration DefaultConfiguration = new DrivingPageConfiguration
@@ -58,7 +59,8 @@ namespace DLR_Data_App.Views
             Cause8Id = "WaterLogging",
             Cause9 = StringWithAnnotationsToFormattedString("*Mäuse*fraß\\n*Wild*schaden"),
             Cause9Id = "GameMouseDamage",
-            LaneCount = 3
+            LaneCount = 3,
+            Name = "Standard"
         };
 
         public static FormattedString StringWithAnnotationsToFormattedString(string annotatedInput)
@@ -90,7 +92,7 @@ namespace DLR_Data_App.Views
 
         public List<FormattedButton> KeywordButtons;
         public List<Action<string>> SetCauseIdActions;
-
+        public Action Save { get; set; }
         public DrivingPageConfiguration Configuration { get; set; }
         public DrivingConfigurationPage(DrivingPageConfiguration input)
         {
@@ -170,6 +172,12 @@ namespace DLR_Data_App.Views
             button.FormattedText = StringWithAnnotationsToFormattedString(annotatedString);
             SetCauseIdActions[causeIndex](newCauseId);
             OnPropertyChanged(nameof(Configuration));
+        }
+
+        private void SaveButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
+            Save?.Invoke();
         }
     }
 }
