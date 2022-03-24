@@ -79,8 +79,8 @@ namespace DLR_Data_App.Views.Profiling
             PlantCollection = new ObservableCollection<Plant>(question.Plants);
             Picture.BindingContext = this;
             QuestionText.BindingContext = this;
-            StadiumInlinePicker.ItemSource = StadiumCollection;
-            PlantInlinePicker.ItemSource = PlantCollection;
+            StadiumInlinePicker.ItemsSource = StadiumCollection;
+            PlantInlinePicker.ItemsSource = PlantCollection;
             Header = string.Format(AppResources.questionEntryFormat, answersGiven + 1, answersNeeded, question.InternId);
             HeaderText.BindingContext = this;
             PageFinished += StadiumPage_PageFinished;
