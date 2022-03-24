@@ -26,7 +26,6 @@ namespace DLR_Data_App.Views
                 new HomeMenuItem { Id = MenuItemType.Settings, Title=AppResources.settings },
                 new HomeMenuItem { Id = MenuItemType.About, Title=AppResources.about },
                 new HomeMenuItem { Id = MenuItemType.Logout, Title=AppResources.logout },
-                new HomeMenuItem { Id = MenuItemType.VoiceRecognitionDemo, Title=AppResources.voicerecognition },
                 new HomeMenuItem { Id = MenuItemType.DrivingEasy, Title=AppResources.drivingvieweasy },
                 new HomeMenuItem { Id = MenuItemType.DrivingHard, Title=AppResources.drivingviewhard }
             };
