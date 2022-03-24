@@ -4,6 +4,7 @@ using CsvHelper.Configuration.Attributes;
 using DLR_Data_App.Controls;
 using DLR_Data_App.Services;
 using DLR_Data_App.Services.TouchGesture;
+using DLR_Data_App.Services.VoiceControl;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Shapes;
 using Xamarin.Forms.Xaml;
+using static DLR_Data_App.Services.VoiceControl.VoiceCommandCompiler;
 
 namespace DLR_Data_App.Views
 {
@@ -63,12 +65,18 @@ namespace DLR_Data_App.Views
         readonly string LogFileIdentifier;
 
 
+        [OnSplashScreenLoad]
+        static void OnSplashScreenLoad()
+        {
+            DependencyService.Get<ISpeechRecognizer>().Start();
+        }
+
         public DrivingConfigurationPage.DrivingPageConfiguration Configuration { get; set; }
         public DrivingPage(DrivingConfigurationPage.DrivingPageConfiguration configuration)
         {
             Configuration = configuration;
             LaneCountPerSide = Configuration.LaneCount;
-            TotalLaneCount = 2 * LaneCountPerSide + 1;
+            TotalLaneCount = 2 * LaneCountPerSide;
 
             IsLaneActive = new bool[TotalLaneCount];
             IsLaneSelectedForInput = new bool[TotalLaneCount];
@@ -84,9 +92,6 @@ namespace DLR_Data_App.Views
             var backgroundTouchEffect = new TouchEffect();
             backgroundTouchEffect.TouchAction += BackgroundTouchEffect_TouchAction;
             RelativeLayout.Effects.Add(backgroundTouchEffect);
-
-            TypeLaneBackgrounds.Add(CenterLaneTypeBackground);
-            CauseLaneBackgrounds.Add(CenterLaneCauseBackground);
 
             CancelButton.Clicked += (a,b) => ResetToInitialState();
 
@@ -124,7 +129,77 @@ namespace DLR_Data_App.Views
 
             AddSideLanesToLayout();
             ResetToInitialState();
+
+            var speechRecognizer = DependencyService.Get<ISpeechRecognizer>();
+            speechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
         }
+
+        private void SpeechRecognizer_ResultRecognized(object sender, Models.VoiceRecognitionResult e)
+        {
+            var command = VoiceCommandCompiler.Compile(e.Parts.Select(p => p.Word).ToList());
+
+            if (command is InvalidAction)
+                return;
+            if (command is CancelAction)
+            {
+                ResetToInitialState();
+                return;
+            }
+            if (command is StartZonesAction startZonesAction)
+            {
+                foreach (var laneIndex in startZonesAction.LaneIndices)
+                {
+                    BeginZone(laneIndex);
+                }
+                return;
+            }
+            if (command is EndZonesAction endZonesAction)
+            {
+                foreach (var laneIndex in endZonesAction.LaneIndices)
+                {
+                    EndZone(laneIndex);
+                }
+                return;
+            }
+            if (command is SetZonesDetailAction setZonesDetailAction)
+            {
+                if (setZonesDetailAction.DamageCause != KeywordSymbol.invalid)
+                {
+                    SetDamageCauses(setZonesDetailAction.LaneIndices, keywordSymbolToCause[setZonesDetailAction.DamageCause]);
+                }
+                if (setZonesDetailAction.DamageType != KeywordSymbol.invalid)
+                {
+                    SetDamageType(setZonesDetailAction.LaneIndices, keywordSymbolToDamageType[setZonesDetailAction.DamageType]);
+                }
+                if (setZonesDetailAction.ShouldEndZone)
+                {
+                    foreach (var laneIndex in setZonesDetailAction.LaneIndices)
+                    {
+                        EndZone(laneIndex);
+                    }
+                }
+                return;
+            }
+        }
+
+        Dictionary<KeywordSymbol, string> keywordSymbolToCause = new Dictionary<KeywordSymbol, string>
+        {
+            { KeywordSymbol.maus, "GameMouseDamage" },
+            { KeywordSymbol.kuppe, "Dome" },
+            { KeywordSymbol.nass, "WaterLogging" },
+            { KeywordSymbol.sand, "SandLens" },
+            { KeywordSymbol.trocken, "DryStress" },
+            { KeywordSymbol.verdichtung, "Compaction" },
+            { KeywordSymbol.waldrand, "ForestEdge" },
+            { KeywordSymbol.wende, "Headland" },
+            { KeywordSymbol.wild, "GameMouseDamage" }
+        };
+        Dictionary<KeywordSymbol, DamageType> keywordSymbolToDamageType = new Dictionary<KeywordSymbol, DamageType>
+        {
+            { KeywordSymbol.gering, DamageType.Low },
+            { KeywordSymbol.mittel, DamageType.Medium },
+            { KeywordSymbol.hoch, DamageType.High }
+        };
 
         private void BackgroundTouchEffect_TouchAction(object sender, TouchActionEventArgs args)
         {
@@ -214,7 +289,7 @@ namespace DLR_Data_App.Views
                 var buttonXFactor = leftMostButtonXFactor + (LaneCountPerSide - i - 1) * laneWidthFactor;
                 var topButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneBeginButtons.Add(topButton);
-                topButton.Clicked += (a, b) => BeginButtonClicked(laneIndex);
+                topButton.Clicked += (a, b) => BeginZone(laneIndex);
                 topButton.FontSize = Device.GetNamedSize(NamedSize.Small, topButton);
                 RelativeLayout.Children.Add(topButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
@@ -224,7 +299,7 @@ namespace DLR_Data_App.Views
 
                 var middleButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneMiddleButtons.Add(middleButton);
-                middleButton.Clicked += (a, b) => CenterButtonClicked(laneIndex);
+                middleButton.Clicked += (a, b) => ActivateLaneForDetailInput(laneIndex);
                 middleButton.FontSize = Device.GetNamedSize(NamedSize.Small, middleButton);
                 RelativeLayout.Children.Add(middleButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
@@ -234,7 +309,7 @@ namespace DLR_Data_App.Views
 
                 var endButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneEndButtons.Add(endButton);
-                endButton.Clicked += (a, b) => EndButtonClicked(laneIndex);
+                endButton.Clicked += (a, b) => EndZone(laneIndex);
                 endButton.FontSize = Device.GetNamedSize(NamedSize.Small, endButton);
                 RelativeLayout.Children.Add(endButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
@@ -286,7 +361,7 @@ namespace DLR_Data_App.Views
                 var buttonXFactor = rightMostButtonXFactor - (LaneCountPerSide - i - 1) * laneWidthFactor;
                 var topButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneBeginButtons.Add(topButton);
-                topButton.Clicked += (a, b) => BeginButtonClicked(laneIndex);
+                topButton.Clicked += (a, b) => BeginZone(laneIndex);
                 topButton.FontSize = Device.GetNamedSize(NamedSize.Small, topButton);
                 RelativeLayout.Children.Add(topButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
@@ -296,7 +371,7 @@ namespace DLR_Data_App.Views
 
                 var middleButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneMiddleButtons.Add(middleButton);
-                middleButton.Clicked += (a, b) => CenterButtonClicked(laneIndex);
+                middleButton.Clicked += (a, b) => ActivateLaneForDetailInput(laneIndex);
                 middleButton.FontSize = Device.GetNamedSize(NamedSize.Small, middleButton);
                 RelativeLayout.Children.Add(middleButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
@@ -306,7 +381,7 @@ namespace DLR_Data_App.Views
 
                 var endButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName]};
                 LaneEndButtons.Add(endButton);
-                endButton.Clicked += (a, b) => EndButtonClicked(laneIndex);
+                endButton.Clicked += (a, b) => EndZone(laneIndex);
                 endButton.FontSize = Device.GetNamedSize(NamedSize.Small, endButton);
                 RelativeLayout.Children.Add(endButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
@@ -323,7 +398,7 @@ namespace DLR_Data_App.Views
                 heightConstraint: Constraint.RelativeToParent(p => p.Height * borderHeightFactor));
         }
 
-        private void BeginButtonClicked(int laneIndex)
+        private void BeginZone(int laneIndex)
         {
             if (!IsLaneActive[laneIndex])
             {
@@ -331,7 +406,7 @@ namespace DLR_Data_App.Views
 
                 SetActiveIndicator(LaneBeginButtons[laneIndex], false);
                 SetActiveIndicator(LaneEndButtons[laneIndex], true);
-                var middleButton = GetMiddleButtonWithIndex(laneIndex);
+                var middleButton = LaneMiddleButtons[laneIndex];
                 SetActiveIndicator(middleButton, true);
                 IsLaneStarted[laneIndex] = true;
                 IsLaneActive[laneIndex] = true;
@@ -354,8 +429,6 @@ namespace DLR_Data_App.Views
             else if (view is Xamarin.Forms.Shapes.Path shape)
                 shape.SetOnAppTheme(Shape.FillProperty, active ? ActiveButtonBrush : InactiveButtonBrush, active ? ActiveButtonBrushNight : InactiveButtonBrushNight);
         }
-
-        View GetMiddleButtonWithIndex(int index) => LaneMiddleButtons[index];
 
         public class InteractionInfo
         {
@@ -388,7 +461,7 @@ namespace DLR_Data_App.Views
             WriteUsingCsvWriter(csvWriter => csvWriter.WriteRecords(interactionInfo));
         }
 
-        private void CenterButtonClicked(int laneIndex)
+        private void ActivateLaneForDetailInput(int laneIndex)
         {
             if (IsLaneStarted[laneIndex] && !IsLaneSelectedForInput[laneIndex])
             {
@@ -399,11 +472,11 @@ namespace DLR_Data_App.Views
                 if (!IsLaneTypeEntered[laneIndex])
                     TypeLaneBackgrounds[laneIndex].Background = ActiveForInputBrush;
                 IsLaneSelectedForInput[laneIndex] = true;
-                SetActiveIndicator(GetMiddleButtonWithIndex(laneIndex), false);
+                SetActiveIndicator(LaneMiddleButtons[laneIndex], false);
             }
         }
 
-        private void EndButtonClicked(int laneIndex)
+        private void EndZone(int laneIndex)
         {
             if (IsLaneActive[laneIndex])
             {
@@ -423,49 +496,70 @@ namespace DLR_Data_App.Views
             }
         }
 
-        void DamageTypeButtonClicked(DamageType type)
+        void SetDamageType(List<int> laneIndices, DamageType type)
         {
-            ShowTypeAndCauseButtonsActiveStatus(false);
             var now = DateTime.UtcNow;
             var interactionInfos = new List<InteractionInfo>();
-            for (int i = 0; i < TotalLaneCount; i++)
+            foreach (var laneIndex in laneIndices)
             {
-                if (IsLaneSelectedForInput[i])
-                {
-
-                    IsLaneSelectedForInput[i] = false;
-                    IsLaneTypeEntered[i] = true;
-                    if (!IsLaneCauseEntered[i])
-                        CauseLaneBackgrounds[i].Background = Brush.Transparent;
-                    TypeLaneBackgrounds[i].Background = CompletedInfoBrush;
-                    SetActiveIndicator(GetMiddleButtonWithIndex(i), true);
-                    interactionInfos.Add(new InteractionInfo(now, i, "damage=" + type.ToString()));
-                }
+                IsLaneTypeEntered[laneIndex] = true;
+                if (!IsLaneCauseEntered[laneIndex])
+                    CauseLaneBackgrounds[laneIndex].Background = Brush.Transparent;
+                TypeLaneBackgrounds[laneIndex].Background = CompletedInfoBrush;
+                SetActiveIndicator(LaneMiddleButtons[laneIndex], true);
+                interactionInfos.Add(new InteractionInfo(now, laneIndex, "damage=" + type.ToString()));
             }
+
             if (interactionInfos.Any())
                 PushInteractionToLog(interactionInfos);
         }
 
-        void DamageCauseButtonClicked(string cause)
+        void DamageTypeButtonClicked(DamageType type)
         {
             ShowTypeAndCauseButtonsActiveStatus(false);
-            var now = DateTime.UtcNow;
-            var interactionInfos = new List<InteractionInfo>();
+            var laneIndices = new List<int>();
             for (int i = 0; i < TotalLaneCount; i++)
             {
                 if (IsLaneSelectedForInput[i])
                 {
                     IsLaneSelectedForInput[i] = false;
-                    IsLaneCauseEntered[i] = true;
-                    if (!IsLaneTypeEntered[i])
-                        TypeLaneBackgrounds[i].Background = Brush.Transparent;
-                    CauseLaneBackgrounds[i].Background = CompletedInfoBrush;
-                    SetActiveIndicator(GetMiddleButtonWithIndex(i), true);
-                    interactionInfos.Add(new InteractionInfo(now, i, "cause=" + cause));
+                    laneIndices.Add(i);
                 }
             }
+            SetDamageType(laneIndices, type);
+        }
+
+        void SetDamageCauses(List<int> laneIndices, string cause)
+        {
+            var now = DateTime.UtcNow;
+            var interactionInfos = new List<InteractionInfo>();
+            foreach (var laneIndex in laneIndices)
+            {
+                IsLaneSelectedForInput[laneIndex] = false;
+                IsLaneCauseEntered[laneIndex] = true;
+                if (!IsLaneTypeEntered[laneIndex])
+                    TypeLaneBackgrounds[laneIndex].Background = Brush.Transparent;
+                CauseLaneBackgrounds[laneIndex].Background = CompletedInfoBrush;
+                SetActiveIndicator(LaneMiddleButtons[laneIndex], true);
+                interactionInfos.Add(new InteractionInfo(now, laneIndex, "cause=" + cause));
+            }
+
             if (interactionInfos.Any())
                 PushInteractionToLog(interactionInfos);
+        }
+        void DamageCauseButtonClicked(string cause)
+        {
+            ShowTypeAndCauseButtonsActiveStatus(false);
+            var laneIndices = new List<int>();
+            for (int i = 0; i < TotalLaneCount; i++)
+            {
+                if (IsLaneSelectedForInput[i])
+                {
+                    IsLaneSelectedForInput[i] = false;
+                    laneIndices.Add(i);
+                }
+            }
+            SetDamageCauses(laneIndices, cause);
         }
     }
 }
