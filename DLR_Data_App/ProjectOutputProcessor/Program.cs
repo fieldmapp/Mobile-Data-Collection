@@ -83,6 +83,7 @@ namespace FieldCartographerProcessor
                 ProcessInteractions(interactions, posLog, laneInfos, zoneCount, username, zonesHistory);
             }
 
+            zonesHistory.Sort((a, b) => a.StartInputDateTime.CompareTo(b.StartInputDateTime));
             var fileWriter = new FileHelperEngine<AreaInfo>();
             fileWriter.HeaderText = fileWriter.GetFileHeader();
             fileWriter.WriteFile("out.csv", zonesHistory);
