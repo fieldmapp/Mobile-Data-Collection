@@ -1,4 +1,4 @@
-﻿using CommandLine;
+using CommandLine;
 using ExifLib;
 using FileHelpers;
 using FileHelpers.Options;
@@ -160,7 +160,13 @@ namespace FieldCartographerProcessor
                 {
                     for (int i = 0; i < zoneCount; i++)
                     {
+                        if (activeZones[i] == null)
+                            continue;
+                        else if (activeZones[i].EndInputDateTime == default)
+                            finalizeZone(i);
+                        else
                         activeZones[i] = null;
+                        
                     }
                 }
                 else if (interaction.Action.StartsWith("cause=") && activeZones[interaction.LaneIndex] != null)
@@ -177,6 +183,11 @@ namespace FieldCartographerProcessor
                     activeZones[interaction.LaneIndex].EstYieldReductionInputLat = pos.Y;
                     activeZones[interaction.LaneIndex].EstYieldReductionInputDateTime = time;
                 }
+            }
+
+            for (int i = 0; i < zoneCount; i++)
+            {
+                finalizeZone(i);
             }
         }
 
