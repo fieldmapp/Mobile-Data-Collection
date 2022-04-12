@@ -35,7 +35,7 @@ namespace FieldCartographerProcessor
                 new DateTime(2017, 1, 1)
             };
             var leapSeconds = leapSecondDays.Count(leapSecondDate => gpst > leapSecondDate);
-            return new DateTime(gpst.Ticks, DateTimeKind.Utc) + TimeSpan.FromSeconds(leapSeconds);
+            return new DateTime(gpst.Ticks, DateTimeKind.Utc) - TimeSpan.FromSeconds(leapSeconds);
         }
 
         public static bool ContainsDuplicates<T>(this IEnumerable<T> seq)
