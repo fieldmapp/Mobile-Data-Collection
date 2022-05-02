@@ -135,7 +135,6 @@ namespace com.DLR.DLR_Data_App.Droid
 
             string LogFileIdentifier;
 
-            FileStream LogFileStream;
             public void OnHasUsbPermission()
             {
                 SerialPort = AndroidUbloxComm.UbloxDriver.Ports.Single();
@@ -166,7 +165,8 @@ namespace com.DLR.DLR_Data_App.Droid
                     SerialIOManager.Open(AndroidUbloxComm.UsbManager);
                 }
                 catch (Exception) { }
-                    WriteData(UbloxConfigurationMessageGenerator.StardardUbloxConfiguration());
+                
+                WriteData(UbloxConfigurationMessageGenerator.StardardUbloxConfiguration());
             }
 
             void WriteData(byte[] data)
