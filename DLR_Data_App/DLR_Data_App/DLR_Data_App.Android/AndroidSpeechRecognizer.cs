@@ -27,21 +27,21 @@ namespace com.DLR.DLR_Data_App.Droid
         static readonly List<string> acceptedWords = VoiceCommandCompiler.KeywordStrings;
         class PartialResult
         {
-            public string partial;
+            public string partial = default;
         }
 
         class Result
         {
-            public string text;
-            public List<ResultPart> result;
+            public string text = default;
+            public List<ResultPart> result = default;
         }
 
         class ResultPart
         {
-            public float conf;
-            public float end;
-            public float start;
-            public string word;
+            public float conf = default;
+            public float end = default;
+            public float start = default;
+            public string word = default;
         }
 
         const string ModelFolderName = "voskModel";
