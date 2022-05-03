@@ -174,6 +174,40 @@ namespace DLR_Data_App.Services
             return resultDelete > 0;
         }
 
+        public static List<T> ReadAll<T>() where T : new()
+        {
+            using (var conn = CreateConnection())
+            {
+                return ReadAll<T>(conn);
+            }
+        }
+
+        private static List<T> ReadAll<T>(SQLiteConnection conn) where T : new()
+        {
+            List<T> result;
+            // if table doesn't exist create a new one
+            conn.CreateTable<T>();
+
+            // get content of table
+            result = conn.Table<T>().ToList();
+
+            return result;
+        }
+
+        public static T Find<T>(object primaryKey) where T : new()
+        {
+            using (var conn = CreateConnection())
+            {
+                return Find<T>(primaryKey);
+            }
+        }
+
+        public static T Find<T>(object primaryKey, SQLiteConnection conn) where T : new()
+        {
+            conn.CreateTable<T>();
+            return conn.Find<T>(primaryKey);
+        }
+
         /// <summary>
         /// Reads all users from the database.
         /// </summary>

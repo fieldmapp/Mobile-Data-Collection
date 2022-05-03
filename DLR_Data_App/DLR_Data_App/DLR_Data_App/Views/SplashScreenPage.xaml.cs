@@ -35,7 +35,6 @@ namespace DLR_Data_App.Views
             Appearing -= SplashScreenPage_Appearing;
 
             await CreateNeededRessources();
-
             Application.Current.MainPage = new MainPage();
         }
 

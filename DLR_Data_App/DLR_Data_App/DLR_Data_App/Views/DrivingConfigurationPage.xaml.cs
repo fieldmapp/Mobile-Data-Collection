@@ -15,28 +15,162 @@ namespace DLR_Data_App.Views
     public partial class DrivingConfigurationPage : ContentPage
     {
         const string BoldMarker = "*";
-        public class DrivingPageConfiguration
+
+        public class DrivingPageConfigurationDTO
         {
-            public FormattedString Cause1 { get; set; }
-            public FormattedString Cause2 { get; set; }
-            public FormattedString Cause3 { get; set; }
-            public FormattedString Cause4 { get; set; }
-            public FormattedString Cause5 { get; set; }
-            public FormattedString Cause6 { get; set; }
-            public FormattedString Cause7 { get; set; }
-            public FormattedString Cause8 { get; set; }
-            public FormattedString Cause9 { get; set; }
-            public string Cause1Id { get; set; }
-            public string Cause2Id { get; set; }
-            public string Cause3Id { get; set; }
-            public string Cause4Id { get; set; }
-            public string Cause5Id { get; set; }
-            public string Cause6Id { get; set; }
-            public string Cause7Id { get; set; }
-            public string Cause8Id { get; set; }
-            public string Cause9Id { get; set; }
-            public int LaneCount { get; set; }
-            public string Name { get; set; }
+            public DrivingPageConfigurationDTO()
+            {
+
+            }
+            public DrivingPageConfigurationDTO(DrivingPageConfiguration configuration)
+            {
+                Configuration = JsonTranslator.GetJson(configuration);
+                Id = configuration.Id;
+            }
+            [SQLite.PrimaryKey, SQLite.AutoIncrement]
+            public int? Id { get; set; }
+            public string Configuration { get; set; }
+            [SQLite.Ignore]
+            public DrivingPageConfiguration DrivingPageConfiguration
+            {
+                get
+                {
+                    var conf = JsonTranslator.GetFromJson<DrivingPageConfiguration>(Configuration);
+                    conf.Id = Id;
+                    return conf;
+                }
+            }
+        }
+        public class DrivingPageConfiguration : BindableObject
+        {
+            public int? Id { get; set; }
+            public static BindableProperty Cause1Property = BindableProperty.Create(nameof(Cause1), typeof(FormattedString), typeof(DrivingPageConfiguration), default(FormattedString));
+            public static BindableProperty Cause2Property = BindableProperty.Create(nameof(Cause2), typeof(FormattedString), typeof(DrivingPageConfiguration), default(FormattedString));
+            public static BindableProperty Cause3Property = BindableProperty.Create(nameof(Cause3), typeof(FormattedString), typeof(DrivingPageConfiguration), default(FormattedString));
+            public static BindableProperty Cause4Property = BindableProperty.Create(nameof(Cause4), typeof(FormattedString), typeof(DrivingPageConfiguration), default(FormattedString));
+            public static BindableProperty Cause5Property = BindableProperty.Create(nameof(Cause5), typeof(FormattedString), typeof(DrivingPageConfiguration), default(FormattedString));
+            public static BindableProperty Cause6Property = BindableProperty.Create(nameof(Cause6), typeof(FormattedString), typeof(DrivingPageConfiguration), default(FormattedString));
+            public static BindableProperty Cause7Property = BindableProperty.Create(nameof(Cause7), typeof(FormattedString), typeof(DrivingPageConfiguration), default(FormattedString));
+            public static BindableProperty Cause8Property = BindableProperty.Create(nameof(Cause8), typeof(FormattedString), typeof(DrivingPageConfiguration), default(FormattedString));
+            public static BindableProperty Cause9Property = BindableProperty.Create(nameof(Cause9), typeof(FormattedString), typeof(DrivingPageConfiguration), default(FormattedString));
+            public static BindableProperty Cause1IdProperty = BindableProperty.Create(nameof(Cause1Id), typeof(string), typeof(DrivingPageConfiguration), default(string));
+            public static BindableProperty Cause2IdProperty = BindableProperty.Create(nameof(Cause2Id), typeof(string), typeof(DrivingPageConfiguration), default(string));
+            public static BindableProperty Cause3IdProperty = BindableProperty.Create(nameof(Cause3Id), typeof(string), typeof(DrivingPageConfiguration), default(string));
+            public static BindableProperty Cause4IdProperty = BindableProperty.Create(nameof(Cause4Id), typeof(string), typeof(DrivingPageConfiguration), default(string));
+            public static BindableProperty Cause5IdProperty = BindableProperty.Create(nameof(Cause5Id), typeof(string), typeof(DrivingPageConfiguration), default(string));
+            public static BindableProperty Cause6IdProperty = BindableProperty.Create(nameof(Cause6Id), typeof(string), typeof(DrivingPageConfiguration), default(string));
+            public static BindableProperty Cause7IdProperty = BindableProperty.Create(nameof(Cause7Id), typeof(string), typeof(DrivingPageConfiguration), default(string));
+            public static BindableProperty Cause8IdProperty = BindableProperty.Create(nameof(Cause8Id), typeof(string), typeof(DrivingPageConfiguration), default(string));
+            public static BindableProperty Cause9IdProperty = BindableProperty.Create(nameof(Cause9Id), typeof(string), typeof(DrivingPageConfiguration), default(string));
+            public static BindableProperty NameProperty = BindableProperty.Create(nameof(Name), typeof(string), typeof(DrivingPageConfiguration), default(string));
+            public static BindableProperty LaneCountProperty = BindableProperty.Create(nameof(LaneCount), typeof(int), typeof(DrivingPageConfiguration), default(int));
+
+            [Newtonsoft.Json.JsonProperty()]
+            public FormattedString Cause1
+            {
+                get { return (FormattedString)GetValue(Cause1Property); }
+                set { SetValue(Cause1Property, value); }
+            }
+            public FormattedString Cause2
+            {
+                get { return (FormattedString)GetValue(Cause2Property); }
+                set { SetValue(Cause2Property, value); }
+            }
+            public FormattedString Cause3
+            {
+                get { return (FormattedString)GetValue(Cause3Property); }
+                set { SetValue(Cause3Property, value); }
+            }
+            public FormattedString Cause4
+            {
+                get { return (FormattedString)GetValue(Cause4Property); }
+                set { SetValue(Cause4Property, value); }
+            }
+            public FormattedString Cause5
+            {
+                get { return (FormattedString)GetValue(Cause5Property); }
+                set { SetValue(Cause5Property, value); }
+            }
+            public FormattedString Cause6
+            {
+                get { return (FormattedString)GetValue(Cause6Property); }
+                set { SetValue(Cause6Property, value); }
+            }
+            public FormattedString Cause7
+            {
+                get { return (FormattedString)GetValue(Cause7Property); }
+                set { SetValue(Cause7Property, value); }
+            }
+            public FormattedString Cause8
+            {
+                get { return (FormattedString)GetValue(Cause8Property); }
+                set { SetValue(Cause8Property, value); }
+            }
+            public FormattedString Cause9
+            {
+                get { return (FormattedString)GetValue(Cause9Property); }
+                set { SetValue(Cause9Property, value); }
+            }
+            public string Cause1Id
+            {
+                get { return (string)GetValue(Cause1IdProperty); }
+                set { SetValue(Cause1IdProperty, value); }
+            }
+            public string Cause2Id
+            {
+                get { return (string)GetValue(Cause2IdProperty); }
+                set { SetValue(Cause2IdProperty, value); }
+            }
+            public string Cause3Id
+            {
+                get { return (string)GetValue(Cause3IdProperty); }
+                set { SetValue(Cause3IdProperty, value); }
+            }
+            public string Cause4Id
+            {
+                get { return (string)GetValue(Cause4IdProperty); }
+                set { SetValue(Cause4IdProperty, value); }
+            }
+            public string Cause5Id
+            {
+                get { return (string)GetValue(Cause5IdProperty); }
+                set { SetValue(Cause5IdProperty, value); }
+            }
+            public string Cause6Id
+            {
+                get { return (string)GetValue(Cause6IdProperty); }
+                set { SetValue(Cause6IdProperty, value); }
+            }
+            public string Cause7Id
+            {
+                get { return (string)GetValue(Cause7IdProperty); }
+                set { SetValue(Cause7IdProperty, value); }
+            }
+            public string Cause8Id
+            {
+                get { return (string)GetValue(Cause8IdProperty); }
+                set { SetValue(Cause8IdProperty, value); }
+            }
+            public string Cause9Id
+            {
+                get { return (string)GetValue(Cause9IdProperty); }
+                set { SetValue(Cause9IdProperty, value); }
+            }
+            public int LaneCount
+            {
+                get { return (int)GetValue(LaneCountProperty); }
+                set { SetValue(LaneCountProperty, value); }
+            }
+            public string Name
+            {
+                get { return (string)GetValue(NameProperty); }
+                set { SetValue(NameProperty, value); }
+            }
+
+            public DrivingPageConfiguration Clone()
+            {
+                return (DrivingPageConfiguration)this.MemberwiseClone();
+            }
         }
 
         public static readonly DrivingPageConfiguration DefaultConfiguration = new DrivingPageConfiguration
@@ -65,6 +199,9 @@ namespace DLR_Data_App.Views
 
         public static FormattedString StringWithAnnotationsToFormattedString(string annotatedInput)
         {
+            if (string.IsNullOrWhiteSpace(annotatedInput))
+                return new FormattedString();
+
             annotatedInput = annotatedInput.Replace("\\n", Environment.NewLine);
             var markerIndices = annotatedInput.AllIndicesOf(BoldMarker);
             int prevPartEndIndex = 0;
@@ -90,13 +227,32 @@ namespace DLR_Data_App.Views
             return result;
         }
 
+        public static string FormattedStringToAnnotatedString(FormattedString formattedString)
+        {
+            if (formattedString == null)
+                return string.Empty;
+
+            StringBuilder builder = new StringBuilder();
+            foreach (var span in formattedString.Spans)
+            {
+                if (span.FontAttributes.HasFlag(FontAttributes.Bold))
+                    builder.Append('*');
+                builder.Append(span.Text);
+                if (span.FontAttributes.HasFlag(FontAttributes.Bold))
+                    builder.Append('*');
+            }
+            return builder.ToString().Replace(Environment.NewLine, "\\n");
+        }
+
         public List<FormattedButton> KeywordButtons;
         public List<Action<string>> SetCauseIdActions;
         public Action Save { get; set; }
+        public DrivingPageConfiguration Input { get; set; }
         public DrivingPageConfiguration Configuration { get; set; }
         public DrivingConfigurationPage(DrivingPageConfiguration input)
         {
-            Configuration = input;
+            Input = input;
+            Configuration = input.Clone();
             InitializeComponent();
             KeywordButtons = new List<FormattedButton>
             {
@@ -176,8 +332,12 @@ namespace DLR_Data_App.Views
 
         private void SaveButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PopModalAsync();
+            Configuration.CopyProperties(Input);
+            var c = new DrivingPageConfigurationDTO(Input);
+            Database.Update(ref c);
+            Input.Id = c.Id;
             Save?.Invoke();
+            Navigation.PopModalAsync();
         }
     }
 }

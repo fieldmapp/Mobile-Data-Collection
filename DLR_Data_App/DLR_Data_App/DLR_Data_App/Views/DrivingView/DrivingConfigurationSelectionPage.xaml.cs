@@ -1,5 +1,6 @@
 ﻿using DLR_Data_App.Controls;
 using DLR_Data_App.Models.Profiling;
+using DLR_Data_App.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,10 +32,16 @@ namespace DLR_Data_App.Views.DrivingView
 
         public DrivingConfigurationSelectionPage()
         {
-            DisplayedItems = new ObservableCollection<DrivingConfigurationDisplay>
+            var configurations = Database.ReadAll<DrivingPageConfigurationDTO>().Select(c => c.DrivingPageConfiguration).ToList();
+            if (configurations.Count == 0)
             {
-                new DrivingConfigurationDisplay{ Configuration=DefaultConfiguration }
-            };
+                configurations = new List<DrivingPageConfiguration>() { DefaultConfiguration };
+                var dto = new DrivingPageConfigurationDTO(DefaultConfiguration);
+                Database.Update(ref dto);
+                DefaultConfiguration.Id = dto.Id;
+            }
+            DisplayedItems = new ObservableCollection<DrivingConfigurationDisplay>(
+                configurations.Select(c => new DrivingConfigurationDisplay { Configuration = c }));
             InitializeComponent();
         }
 
@@ -50,7 +57,12 @@ namespace DLR_Data_App.Views.DrivingView
 
         private void NewConfigurationButton_Clicked(object sender, EventArgs e)
         {
-
+            var newConfiguration = new DrivingPageConfiguration();
+            var newPage = new DrivingConfigurationPage(newConfiguration)
+            {
+                Save = () => DisplayedItems.Add(new DrivingConfigurationDisplay { Configuration = newConfiguration })
+            };
+            Navigation.PushModalAsync(newPage);
         }
 
         private void EditSelectedConfiguratioButton_Clicked(object sender, EventArgs e)
@@ -60,9 +72,6 @@ namespace DLR_Data_App.Views.DrivingView
                 return;
 
             var newPage = new DrivingConfigurationPage(selectedConfiguration);
-            newPage.Save = () => 
-                OnPropertyChanged(nameof(DisplayedItems));
-            // TODO: reflect change back to displayed items list, above line does not work
             Navigation.PushModalAsync(newPage);
         }
     }

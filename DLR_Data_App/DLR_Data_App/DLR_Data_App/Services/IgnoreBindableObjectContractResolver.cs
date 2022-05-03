@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DLR_Data_App.Views;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,21 @@ using Xamarin.Forms;
 
 namespace DLR_Data_App.Services
 {
+
+    class FormattedStringConverter : JsonConverter<FormattedString>
+    {
+        public static readonly FormattedStringConverter Instance = new FormattedStringConverter();
+
+        public override FormattedString ReadJson(JsonReader reader, Type objectType, FormattedString existingValue, bool hasExistingValue, JsonSerializer serializer)
+        {
+            return DrivingConfigurationPage.StringWithAnnotationsToFormattedString((string)reader.Value);
+        }
+
+        public override void WriteJson(JsonWriter writer, FormattedString value, JsonSerializer serializer)
+        {
+            writer.WriteValue(DrivingConfigurationPage.FormattedStringToAnnotatedString(value));
+        }
+    }
     /// <summary>
     /// Child of <see cref="DefaultContractResolver"/> which, when used, will prevent the serialization of elements where declaring type is a <see cref="BindableObject"/>.
     /// </summary>
@@ -22,6 +38,9 @@ namespace DLR_Data_App.Services
                 property.ShouldSerialize = instance => false;
             else
                 property.ShouldSerialize = instance => true;
+            
+            if (property.PropertyType == typeof(FormattedString))
+                property.Converter = FormattedStringConverter.Instance;
 
             return property;
         }
