@@ -199,6 +199,12 @@ namespace com.DLR.DLR_Data_App.Droid
                 byte[] falseValue = new byte[] { 0 };
                 byte[] trueValue = new byte[] { 0xFF };
 
+                // see https://content.u-blox.com/sites/default/files/documents/u-blox-F9-HPG-1.32_InterfaceDescription_UBX-22008968.pdf 6.9.18
+                const int measurementRate = 0x30210001;
+                const int measurementFrequency = 4;
+                const short measurementDurationMs = 1000/measurementFrequency;
+                byte[] measurementRateValue = GetAsLittleEndian(BitConverter.GetBytes(measurementDurationMs)).ToArray();
+
 #pragma warning disable CS0219 // Variable ist zugewiesen, der Wert wird jedoch niemals verwendet
                 // Stationary RTK Reference Station ARP
                 const int type1005UsbOutputRate = 0x209102c0;
@@ -232,6 +238,7 @@ namespace com.DLR.DLR_Data_App.Droid
 #pragma warning restore CS0219 // Variable ist zugewiesen, der Wert wird jedoch niemals verwendet
 
                 return SetConfigurationItems(
+                    GenerateConfigurationItem(measurementRate, measurementRateValue),
                     GenerateConfigurationItem(type1005UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type1074UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type1077UsbOutputRate, rateValue),
