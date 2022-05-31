@@ -140,7 +140,7 @@ namespace com.DLR.DLR_Data_App.Droid
                 SerialPort = AndroidUbloxComm.UbloxDriver.Ports.Single();
                 SerialIOManager = new SerialInputOutputManager(SerialPort)
                 {
-                    BaudRate = 38400,
+                    BaudRate = 115200,
                     DataBits = 8,
                     StopBits = StopBits.One,
                     Parity = Parity.None
@@ -201,7 +201,7 @@ namespace com.DLR.DLR_Data_App.Droid
 
                 // see https://content.u-blox.com/sites/default/files/documents/u-blox-F9-HPG-1.32_InterfaceDescription_UBX-22008968.pdf 6.9.18
                 const int measurementRate = 0x30210001;
-                const int measurementFrequency = 4;
+                const int measurementFrequency = 20;
                 const short measurementDurationMs = 1000/measurementFrequency;
                 byte[] measurementRateValue = GetAsLittleEndian(BitConverter.GetBytes(measurementDurationMs)).ToArray();
 
