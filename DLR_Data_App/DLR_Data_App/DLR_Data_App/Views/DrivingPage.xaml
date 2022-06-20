@@ -44,7 +44,7 @@
             <Button x:Name="CancelButton"
                     Padding="0" Margin="0" FontSize="Small" BackgroundColor="{AppThemeBinding Light={StaticResource InactiveButtonColor}, Dark={StaticResource InactiveButtonColorNight}}"
                     FontAttributes="Bold" Text="Abbrechen"
-                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.845}"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.57}"
                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.140}"
                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.912}"
                     RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.064}"/>
@@ -52,37 +52,25 @@
             <Path x:Name="MicIcon"
                   Fill="White" Stroke="{AppThemeBinding Light={StaticResource Divider}, Dark={StaticResource DividerNight}}" StrokeThickness="0.6" Aspect="Uniform"
                   Data="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"
-                  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.020}"
+                  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.35}"
                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.045}"
                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.935}"
                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.045}"/>
 
-            <Frame x:Name="LeftLeftLane"
-                   BackgroundColor="{StaticResource Key=LaneColor}" BorderColor="{StaticResource LaneBorder}" CornerRadius="0"
-                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.191}"
-                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.012}"
-                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.054}"
-                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.845}"/>
-            <Frame x:Name="LeftRightLane"
-                   BackgroundColor="{StaticResource Key=LaneColor}" BorderColor="{StaticResource LaneBorder}" CornerRadius="0"
-                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.232}"
-                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.012}"
-                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.054}"
-                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.845}"/>
-
 
             <BoxView x:Name="CenterLaneTypeBackground"
+                     IsVisible="False"
                      BackgroundColor="{StaticResource Key=ActiveColor}" Background="Transparent"
                      RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.491}"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.029}"
                      RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.147}"
                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.279}"/>
-            <BoxView x:Name="CenterLaneCauseBackground"
-                     BackgroundColor="Orange" IsVisible="true" Background="Transparent"
+            <BoxView x:Name="CenterLaneCauseBackground" Background="Transparent"
+                     IsVisible="False"
                      RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.491}"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.029}"
                      RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.426}"
-                     RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.381}"/>
+                     RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.381}" BackgroundColor="#FFA500"/>
             <Frame x:Name="CenterLeftLane"
                    BackgroundColor="{StaticResource Key=LaneColor}" BorderColor="{StaticResource LaneBorder}" CornerRadius="0" 
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.480}"
@@ -92,19 +80,6 @@
             <Frame x:Name="CenterRightLane"
                    BackgroundColor="{StaticResource Key=LaneColor}" BorderColor="{StaticResource LaneBorder}" CornerRadius="0" 
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.520}"
-                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.012}"
-                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.054}"
-                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.845}"/>
-
-            <Frame x:Name="RightLeftLane"
-                   BackgroundColor="{StaticResource Key=LaneColor}" BorderColor="{StaticResource LaneBorder}" CornerRadius="0" 
-                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.766}"
-                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.012}"
-                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.054}"
-                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.845}"/>
-            <Frame x:Name="RightRightLane"
-                   BackgroundColor="{StaticResource Key=LaneColor}" BorderColor="{StaticResource LaneBorder}" CornerRadius="0" 
-                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.808}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.012}"
                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.054}"
                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.845}"/>

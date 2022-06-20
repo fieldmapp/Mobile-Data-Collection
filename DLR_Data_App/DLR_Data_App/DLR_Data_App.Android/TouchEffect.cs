@@ -15,6 +15,10 @@ using DLR_Data_App.Services;
 
 namespace com.DLR.DLR_Data_App.Droid
 {
+    /// <summary>
+    /// Taken from https://github.com/xamarin/xamarin-forms-samples/blob/main/SkiaSharpForms/Demos/Demos/SkiaSharpFormsDemos.Droid/TouchEffect.cs
+    /// which is licensed under Apache 2 by Xamarin Inc
+    /// </summary>
     public class TouchEffect : PlatformEffect
     {
         Android.Views.View view;
@@ -24,10 +28,10 @@ namespace com.DLR.DLR_Data_App.Droid
         Func<double, double> fromPixels;
         int[] twoIntArray = new int[2];
 
-        static Dictionary<Android.Views.View, TouchEffect> viewDictionary = 
+        static Dictionary<Android.Views.View, TouchEffect> viewDictionary =
             new Dictionary<Android.Views.View, TouchEffect>();
 
-        static Dictionary<int, TouchEffect> idToEffectDictionary = 
+        static Dictionary<int, TouchEffect> idToEffectDictionary =
             new Dictionary<int, TouchEffect>();
 
         protected override void OnAttached()
@@ -36,7 +40,7 @@ namespace com.DLR.DLR_Data_App.Droid
             view = Control == null ? Container : Control;
 
             // Get access to the TouchEffect class in the .NET Standard library
-            global::DLR_Data_App.Services.TouchGesture.TouchEffect touchEffect = 
+            global::DLR_Data_App.Services.TouchGesture.TouchEffect touchEffect =
                 (global::DLR_Data_App.Services.TouchGesture.TouchEffect)Element.Effects.
                     FirstOrDefault(e => e is global::DLR_Data_App.Services.TouchGesture.TouchEffect);
 
@@ -158,7 +162,7 @@ namespace com.DLR.DLR_Data_App.Droid
         }
 
         void CheckForBoundaryHop(int id, Point pointerLocation)
-        { 
+        {
             TouchEffect touchEffectHit = null;
 
             foreach (Android.Views.View view in viewDictionary.Keys)

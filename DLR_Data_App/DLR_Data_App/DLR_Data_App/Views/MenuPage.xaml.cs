@@ -23,11 +23,10 @@ namespace DLR_Data_App.Views
                 new HomeMenuItem { Id = MenuItemType.CurrentProfiling, Title = AppResources.currentprofiling },
                 new HomeMenuItem { Id = MenuItemType.ProfilingList, Title = AppResources.profiling },
                 new HomeMenuItem { Id = MenuItemType.Sensortest, Title=AppResources.sensortest },
+                new HomeMenuItem { Id = MenuItemType.LowYieldCartograph, Title=AppResources.lowYieldCartograph },
                 new HomeMenuItem { Id = MenuItemType.Settings, Title=AppResources.settings },
                 new HomeMenuItem { Id = MenuItemType.About, Title=AppResources.about },
                 new HomeMenuItem { Id = MenuItemType.Logout, Title=AppResources.logout },
-                new HomeMenuItem { Id = MenuItemType.DrivingEasy, Title=AppResources.drivingvieweasy },
-                new HomeMenuItem { Id = MenuItemType.DrivingHard, Title=AppResources.drivingviewhard }
             };
 
             ListViewMenu.ItemsSource = menuItems;

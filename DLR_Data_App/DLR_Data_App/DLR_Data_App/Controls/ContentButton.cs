@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using static DLR_Data_App.Services.Helpers;
 
 namespace DLR_Data_App.Controls
 {
@@ -31,6 +32,11 @@ namespace DLR_Data_App.Controls
         {
             add => ElementClicked.Tapped += value;
             remove => ElementClicked.Tapped -= value;
+        }
+
+        public void OnTap()
+        {
+            ElementClicked.RaiseEventViaReflection(nameof(ElementClicked.Tapped), EventArgs.Empty);
         }
     }
 }

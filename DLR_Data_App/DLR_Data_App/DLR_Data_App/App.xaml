@@ -28,6 +28,7 @@
             <Color x:Key="BackgroundPaperNight">#121212</Color>
             <Color x:Key="Divider">#1F000000</Color>
             <Color x:Key="DividerNight">#1Fffffff</Color>
+            <Color x:Key="AccentPrimary">#FF8FBC8F</Color>
 
 
 
@@ -71,8 +72,8 @@
                 <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource TextSecondary}, Dark={StaticResource TextSecondaryNight}}"/>
             </Style>
             <Style TargetType="Slider" ApplyToDerivedTypes="True">
-                <Setter Property="MaximumTrackColor" Value="Black"/>
-                <Setter Property="MinimumTrackColor" Value="Red"/>
+                <Setter Property="MaximumTrackColor" Value="{AppThemeBinding Light={StaticResource ButtonBorder}, Dark={StaticResource Background}}"/>
+                <Setter Property="MinimumTrackColor" Value="{StaticResource AccentPrimary}"/>
             </Style>
             <Style TargetType="ListView" ApplyToDerivedTypes="True">
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundNight}}"/>

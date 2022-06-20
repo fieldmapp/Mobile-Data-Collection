@@ -12,7 +12,7 @@
         CurrentProfiling,
         VoiceRecognitionDemo,
         DrivingEasy,
-        DrivingHard
+        LowYieldCartograph
     }
     public class HomeMenuItem
     {

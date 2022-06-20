@@ -1,9 +1,11 @@
 ﻿using DLR_Data_App.Controls;
+using DLR_Data_App.Localizations;
 using DLR_Data_App.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -64,8 +66,13 @@ namespace DLR_Data_App.Views
             public static BindableProperty Cause9IdProperty = BindableProperty.Create(nameof(Cause9Id), typeof(string), typeof(DrivingPageConfiguration), default(string));
             public static BindableProperty NameProperty = BindableProperty.Create(nameof(Name), typeof(string), typeof(DrivingPageConfiguration), default(string));
             public static BindableProperty LaneCountProperty = BindableProperty.Create(nameof(LaneCount), typeof(int), typeof(DrivingPageConfiguration), default(int));
+            public static BindableProperty LaneWidthProperty = BindableProperty.Create(nameof(LaneWidth), typeof(string), typeof(DrivingPageConfiguration), default(string));
+            public string LaneWidth
+            {
+                get { return (string)GetValue(LaneWidthProperty); }
+                set { SetValue(LaneWidthProperty, value); }
+            }
 
-            [Newtonsoft.Json.JsonProperty()]
             public FormattedString Cause1
             {
                 get { return (FormattedString)GetValue(Cause1Property); }
@@ -245,7 +252,7 @@ namespace DLR_Data_App.Views
         }
 
         public List<FormattedButton> KeywordButtons;
-        public List<Action<string>> SetCauseIdActions;
+        public List<Label> CauseIdLabels;
         public Action Save { get; set; }
         public DrivingPageConfiguration Input { get; set; }
         public DrivingPageConfiguration Configuration { get; set; }
@@ -266,17 +273,17 @@ namespace DLR_Data_App.Views
                 Button8,
                 Button9
             };
-            SetCauseIdActions = new List<Action<string>>
+            CauseIdLabels = new List<Label>
             {
-                id => input.Cause1Id = id,
-                id => input.Cause2Id = id,
-                id => input.Cause3Id = id,
-                id => input.Cause4Id = id,
-                id => input.Cause5Id = id,
-                id => input.Cause6Id = id,
-                id => input.Cause7Id = id,
-                id => input.Cause8Id = id,
-                id => input.Cause9Id = id
+                Cause1IdLabel, 
+                Cause2IdLabel, 
+                Cause3IdLabel, 
+                Cause4IdLabel,
+                Cause5IdLabel, 
+                Cause6IdLabel, 
+                Cause7IdLabel,
+                Cause8IdLabel,
+                Cause9IdLabel
             };
         }
 
@@ -285,48 +292,82 @@ namespace DLR_Data_App.Views
             var button = (FormattedButton)sender;
             var causeIndex = KeywordButtons.IndexOf(button);
 
-            string newCauseId = await DisplayPromptAsync("Ursachen-ID angeben", "Id der neuen Minderertragsursache angeben. Leer lassen um die Schaltfläche zu verstecken.");
+            string newCauseId = await DisplayPromptAsync("Ursachen-ID angeben", 
+                "ID der neuen Minderertragsursache festlegen. Wird keine ID eingegeben, bleibt die Schaltfläche verborgen.", 
+                accept:AppResources.ok, cancel:AppResources.cancel);
             if (newCauseId == null)
                 return;
             if (string.IsNullOrWhiteSpace(newCauseId))
             {
                 button.FormattedText = new FormattedString();
-                SetCauseIdActions[causeIndex](string.Empty);
+                CauseIdLabels[causeIndex].Text = string.Empty;
                 OnPropertyChanged(nameof(Configuration));
                 return;
+            }
+
+            if (CauseIdLabels.Where(l => l != CauseIdLabels[causeIndex]).Any(l => l.Text == newCauseId))
+            {
+                if (!await DisplayAlert("Warnung", "Es gibt bereits eine Minderertragsursache mit dieser ID. Trotzdem fortfahren?",
+                    accept: AppResources.yes, cancel: AppResources.cancel))
+                    return;
             }
 
             string newCause = null;
             while (string.IsNullOrWhiteSpace(newCause))
             {
-                newCause = await DisplayPromptAsync("Ursache anpassen", "Neues Minderertragsursache angeben.");
+                newCause = await DisplayPromptAsync("Minderertragsursache anpassen", "Neue Minderertragsursache angeben.");
                 if (newCause == null)
                     return;
-            }
-            string voiceRecogKeywords = null;
-            while (string.IsNullOrWhiteSpace(voiceRecogKeywords))
-            {
-                voiceRecogKeywords = await DisplayPromptAsync("Spracherkennung anpassen",
-                    "Neues Spracherkennungs-Schlüsselwort angeben. Wenn mehrere Schlüsselwörter gewünscht sind, bitte mit Komma (,) trennen. Muss ein Teilwort der Ursache sein. Leer lassen um die Spracherkennung zu deaktivieren.",
-                    initialValue: newCause);
-                if (voiceRecogKeywords == null)
-                    return;
+                if (newCause.Contains(BoldMarker))
+                {
+                    DependencyService.Get<IToast>().LongAlert($@"""{BoldMarker}"" kann nicht benutzt werden.");
+                    newCause = null;
+                }
             }
 
-            var annotatedString = newCause;
-            foreach (var keyword in voiceRecogKeywords.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            string annotatedString = null;
+            while (annotatedString == null)
             {
-                var substrPos = annotatedString.ToLower().IndexOf(keyword.ToLower());
-                if (substrPos == -1)
+                string voiceRecogKeywordInput = null;
+                while (string.IsNullOrWhiteSpace(voiceRecogKeywordInput))
                 {
-                    annotatedString = null;
-                    break;
+                    voiceRecogKeywordInput = await DisplayPromptAsync("Spracherkennung anpassen",
+                        "Neue Schlüsselworte für die Spracherkennung angeben. " +
+                        "Wenn mehrere Schlüsselworte gewünscht sind, diese bitte durch Komma (,) getrennt auflisten. " +
+                        "Diese müssen als Teilwort in der angegebenen Ursache enthalten sein. " +
+                        "Durch das Auslassen von Angaben wird die Spracherkennung deaktiviert.",
+                        initialValue: newCause,
+                        accept: AppResources.ok, cancel: AppResources.cancel);
+                    if (voiceRecogKeywordInput == null)
+                        return;
+                    if (!Regex.IsMatch(voiceRecogKeywordInput, @"^[a-zA-Z, ]*$"))
+                    {
+                        if (!await DisplayAlert("Warnung", 
+                            "Schlüsselwörter der Spracherkennung können nur aus lateinischen Buchstaben bestehen. " +
+                            "Trotzdem fortfahren?",
+                            accept: AppResources.yes, cancel: "Korrigieren"))
+                            return;
+                    }
                 }
-                annotatedString = annotatedString.Substring(0, substrPos) + BoldMarker + annotatedString.Substring(substrPos, keyword.Length) + BoldMarker + annotatedString.Substring(substrPos + keyword.Length);
+
+                annotatedString = newCause;
+                var voiceRecogKeywords = voiceRecogKeywordInput.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var keyword in voiceRecogKeywords)
+                {
+                    var substrPos = annotatedString.ToLower().IndexOf(keyword.ToLower());
+                    if (substrPos == -1)
+                    {
+                        DependencyService.Get<IToast>().LongAlert("Die Schlüsselwörter müssen Teile der Minderertragsursache sein.");
+                        annotatedString = null;
+                        voiceRecogKeywordInput = null;
+                        break;
+                    }
+                    annotatedString = annotatedString.Substring(0, substrPos) + BoldMarker + annotatedString.Substring(substrPos, keyword.Length) + BoldMarker + annotatedString.Substring(substrPos + keyword.Length);
+                }
             }
-            
+
             button.FormattedText = StringWithAnnotationsToFormattedString(annotatedString);
-            SetCauseIdActions[causeIndex](newCauseId);
+            CauseIdLabels[causeIndex].Text = newCauseId;
             OnPropertyChanged(nameof(Configuration));
         }
 

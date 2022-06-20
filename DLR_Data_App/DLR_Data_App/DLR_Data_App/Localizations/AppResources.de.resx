@@ -626,10 +626,7 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen f√
   <data name="profilingdetails" xml:space="preserve">
     <value>Profilingdetails</value>
   </data>
-  <data name="drivingvieweasy" xml:space="preserve">
-    <value>Fahransicht einfach</value>
-  </data>
-  <data name="drivingviewhard" xml:space="preserve">
-    <value>Fahransicht schwer</value>
+  <data name="lowYieldCartograph" xml:space="preserve">
+    <value>Minderertragskartierung</value>
   </data>
 </root>

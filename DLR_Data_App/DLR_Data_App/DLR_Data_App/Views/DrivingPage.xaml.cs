@@ -8,6 +8,7 @@ using DLR_Data_App.Services.VoiceControl;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -84,14 +85,10 @@ namespace DLR_Data_App.Views
             IsLaneTypeEntered = new bool[TotalLaneCount];
             IsLaneStarted = new bool[TotalLaneCount];
 
-            LogFileIdentifier = "drivingView_" + App.CurrentUser.Username + "_" + LaneCountPerSide + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
+            LogFileIdentifier = "drivingView_" + App.CurrentUser.Username + "_" + LaneCountPerSide + "_" + configuration.LaneWidth + "_" + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
 
             InitializeComponent();
             WriteUsingCsvWriter(csvWriter => csvWriter.WriteHeader<InteractionInfo>());
-
-            var backgroundTouchEffect = new TouchEffect();
-            backgroundTouchEffect.TouchAction += BackgroundTouchEffect_TouchAction;
-            RelativeLayout.Effects.Add(backgroundTouchEffect);
 
             CancelButton.Clicked += (a,b) => ResetToInitialState();
 
@@ -105,15 +102,6 @@ namespace DLR_Data_App.Views
                 TypeHighButton
             };
 
-            Cause1Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause1Id);
-            Cause2Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause2Id);
-            Cause3Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause3Id);
-            Cause4Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause4Id);
-            Cause5Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause5Id);
-            Cause6Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause6Id);
-            Cause7Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause7Id);
-            Cause8Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause8Id);
-            Cause9Button.Clicked += (a, b) => DamageCauseButtonClicked(configuration.Cause9Id);
             DamageCauseButtons = new List<FormattedButton>
             {
                 Cause1Button,
@@ -126,9 +114,37 @@ namespace DLR_Data_App.Views
                 Cause8Button,
                 Cause9Button
             };
+            var damageCauseIds = new List<string>
+            {
+                configuration.Cause1Id,
+                configuration.Cause2Id,
+                configuration.Cause3Id,
+                configuration.Cause4Id,
+                configuration.Cause5Id,
+                configuration.Cause6Id,
+                configuration.Cause7Id,
+                configuration.Cause8Id,
+                configuration.Cause9Id
+            };
+
+            for (int i = 0; i < damageCauseIds.Count; i++)
+            {
+                var damageCauseId = damageCauseIds[i];
+                if (string.IsNullOrWhiteSpace(damageCauseId))
+                    DamageCauseButtons[i].IsVisible = false;
+                else
+                    DamageCauseButtons[i].Clicked += (a, b) => DamageCauseButtonClicked(damageCauseId);
+            }
 
             AddSideLanesToLayout();
             ResetToInitialState();
+
+            foreach (var child in RelativeLayout.Children)
+            {
+                var touchEffect = new TouchEffect { Capture = false };
+                touchEffect.TouchAction += TouchEffect_TouchAction;
+                child.Effects.Add(touchEffect);
+            }
 
             var speechRecognizer = DependencyService.Get<ISpeechRecognizer>();
             speechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
@@ -201,12 +217,12 @@ namespace DLR_Data_App.Views
             { KeywordSymbol.hoch, DamageType.High }
         };
 
-        private void BackgroundTouchEffect_TouchAction(object sender, TouchActionEventArgs args)
+        private void TouchEffect_TouchAction(object sender, TouchActionEventArgs args)
         {
-            var pos = args.Location;
-            double normalizedX = pos.X / RelativeLayout.Width;
-            double normalizedY = pos.Y / RelativeLayout.Height;
-            PushInteractionToLog(new[] { new InteractionInfo(DateTime.UtcNow, -1, $"Miss: {normalizedX.ToString(CultureInfo.InvariantCulture)}, {normalizedY.ToString(CultureInfo.InvariantCulture)}") });
+            if (sender is Button button)
+                button.PerformClick();
+            if (sender is FormattedButton formattedButton)
+                formattedButton.OnTap();
         }
 
         private void ResetToInitialState()
@@ -236,7 +252,7 @@ namespace DLR_Data_App.Views
 
         private void AddSideLanesToLayout()
         {
-            const double laneWidthFactor = 0.047;
+            double laneWidthFactor = 0.047 * 3 / Configuration.LaneCount;
 
             const double leftMostBorderXFactor = 0.015;
             const double rightMostBorderXFactor = 0.983;
@@ -245,15 +261,15 @@ namespace DLR_Data_App.Views
             const double borderYFactor = 0.054;
             const double borderHeightFactor = 0.842;
 
-            const double buttonWidthFactor = 0.043;
-            const double leftMostButtonXFactor = leftMostBorderXFactor + (laneWidthFactor - buttonWidthFactor) / 2.0;
-            const double rightMostButtonXFactor = rightMostBorderXFactor - laneWidthFactor + (laneWidthFactor - buttonWidthFactor) / 2.0;
+            double buttonWidthFactor = 0.043 * 3 / Configuration.LaneCount;
+            double leftMostButtonXFactor = leftMostBorderXFactor + (laneWidthFactor - buttonWidthFactor) / 2.0;
+            double rightMostButtonXFactor = rightMostBorderXFactor - laneWidthFactor + (laneWidthFactor - buttonWidthFactor) / 2.0;
             const double startButtonYFactor = 0.058;
             const double middleButtonYFactor = 0.455;
             const double endButtonYFactor = 0.821;
             const double buttonHeightFactor = 0.070;
 
-            const double laneBackgroundWidthFactor = laneWidthFactor - innerBorderWidthFactor;
+            double laneBackgroundWidthFactor = laneWidthFactor - innerBorderWidthFactor;
 
             for (int i = 0; i < LaneCountPerSide; i++)
             {
@@ -289,6 +305,10 @@ namespace DLR_Data_App.Views
                 var buttonXFactor = leftMostButtonXFactor + (LaneCountPerSide - i - 1) * laneWidthFactor;
                 var topButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneBeginButtons.Add(topButton);
+                var swipeGesture = new SwipeGestureRecognizer { Direction = SwipeDirection.Right | SwipeDirection.Left | SwipeDirection.Down | SwipeDirection.Up };
+                swipeGesture.Swiped += SwipeGesture_Swiped;
+                topButton.GestureRecognizers.Add(swipeGesture);
+                
                 topButton.Clicked += (a, b) => BeginZone(laneIndex);
                 topButton.FontSize = Device.GetNamedSize(NamedSize.Small, topButton);
                 RelativeLayout.Children.Add(topButton,
@@ -330,7 +350,7 @@ namespace DLR_Data_App.Views
             {
                 double laneBackgroundXFactor = rightMostBorderXFactor - (LaneCountPerSide - i) * laneWidthFactor + innerBorderWidthFactor;
 
-                var laneTopBackground = new BoxView { Background = Brush.Transparent };
+                var laneTopBackground = new BoxView { Background = Brush.Transparent, BackgroundColor = Color.Transparent, Color = Color.Transparent };
                 TypeLaneBackgrounds.Add(laneTopBackground);
                 RelativeLayout.Children.Add(laneTopBackground,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * laneBackgroundXFactor),
@@ -396,6 +416,11 @@ namespace DLR_Data_App.Views
                 widthConstraint: Constraint.RelativeToParent(p => p.Width * outerMostBorderWidthFactor),
                 yConstraint: Constraint.RelativeToParent(p => p.Height * borderYFactor),
                 heightConstraint: Constraint.RelativeToParent(p => p.Height * borderHeightFactor));
+        }
+
+        private void SwipeGesture_Swiped(object sender, SwipedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void BeginZone(int laneIndex)
