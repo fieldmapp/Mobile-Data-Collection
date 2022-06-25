@@ -32,6 +32,14 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <RelativeLayout x:Name="RelativeLayout">
+            <Frame BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundColorNight}}"
+                   BorderColor="{AppThemeBinding Light={StaticResource BorderColor}, Dark={StaticResource BorderBrushNight}}"
+                   CornerRadius="0"
+                   RelativeLayout.XConstraint="{ConstraintExpression Type=Constant, Constant=-5}"
+                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=10}"
+                   RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=-5}"
+                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=10}"/>
+            
             <Frame x:Name="BackgroundBox"
                    BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundColorNight}}"
                    BorderColor="{AppThemeBinding Light={StaticResource BorderColor}, Dark={StaticResource BorderBrushNight}}" 
