@@ -315,7 +315,7 @@ namespace DLR_Data_App.Views
             string newCause = null;
             while (string.IsNullOrWhiteSpace(newCause))
             {
-                newCause = await DisplayPromptAsync("Minderertragsursache anpassen", "Neue Minderertragsursache angeben.");
+                newCause = await DisplayPromptAsync("Minderertragsursache anpassen", "Neue Minderertragsursache angeben. Zwei oder mehr Worte können durch einfügen eines Zeilenumbruchs (\\n) auf mehrere Zeilen innerhalb des Buttons verteilt werden.");
                 if (newCause == null)
                     return;
                 if (newCause.Contains(BoldMarker))
@@ -335,6 +335,7 @@ namespace DLR_Data_App.Views
                         "Neue Schlüsselworte für die Spracherkennung angeben. " +
                         "Wenn mehrere Schlüsselworte gewünscht sind, diese bitte durch Komma (,) getrennt auflisten. " +
                         "Diese müssen als Teilwort in der angegebenen Ursache enthalten sein. " +
+                        "Zudem darf ein Schlüsselwort nicht in anderen vorkommen. " +
                         "Durch das Auslassen von Angaben wird die Spracherkennung deaktiviert.",
                         initialValue: newCause,
                         accept: AppResources.ok, cancel: AppResources.cancel);
@@ -342,11 +343,11 @@ namespace DLR_Data_App.Views
                         return;
                     if (!Regex.IsMatch(voiceRecogKeywordInput, @"^[a-zA-Z, ]*$"))
                     {
-                        if (!await DisplayAlert("Warnung", 
+                        if (!await DisplayAlert("Warnung",
                             "Schlüsselwörter der Spracherkennung können nur aus lateinischen Buchstaben bestehen. " +
                             "Trotzdem fortfahren?",
                             accept: AppResources.yes, cancel: "Korrigieren"))
-                            return;
+                            voiceRecogKeywordInput = null;
                     }
                 }
 
