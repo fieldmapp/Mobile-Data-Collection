@@ -21,12 +21,12 @@
                     <Label Text="Bearbeitungsbreite (in Metern)" VerticalOptions="Center" Style="{DynamicResource TitleStyle}"/>
                     <Entry Keyboard="Numeric" Text="{Binding Configuration.LaneWidth}" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
-                <Label Style="{DynamicResource CaptionStyle}" Text="Welche Arbeitsbreite wird genutzt?" HorizontalOptions="Center" FontSize="Micro"/>
+                <Label Style="{DynamicResource CaptionStyle}" Text="Welche Arbeitsbreite wird genutzt?" HorizontalOptions="Center" FontSize="Caption"/>
 
                 <BoxView HeightRequest="1" VerticalOptions="Fill" BackgroundColor="{AppThemeBinding Light={StaticResource Divider}, Dark={StaticResource DividerNight}}" Margin="0, 10, 0, 10"/>
 
                 <Label Style="{DynamicResource TitleStyle}" Text="Auswahl Minderertragsursachen" HorizontalOptions="Center" />
-                <Label Style="{DynamicResource CaptionStyle}" Text="Welche Minderertragstypen können aktuell während der Bewirtschaftung erkannt werden? Es können bis zu neun Ursachen festgelegt werden." HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="Micro"/>
+                <Label Style="{DynamicResource CaptionStyle}" Text="Welche Minderertragstypen können aktuell während der Bewirtschaftung erkannt werden? Es können bis zu neun Ursachen festgelegt werden." HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="Caption"/>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -86,7 +86,7 @@
                 <BoxView HeightRequest="1" VerticalOptions="Fill" BackgroundColor="{AppThemeBinding Light={StaticResource Divider}, Dark={StaticResource DividerNight}}" Margin="0, 10, 0, 10"/>
 
                 <Label Style="{DynamicResource TitleStyle}" Text="Anzahl der Zonen"  HorizontalOptions="Center"/>
-                <Label Style="{DynamicResource CaptionStyle}" Text="In wie viele (parallel zur Fahrspur verlaufende) Zonen kann die Bearbeitungsbreite sinnvoll unterteilt werden, sodass die Kartierung neben dem zu erwartenden Arbeitsaufwand machbar bleibt?" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="Micro"/>
+                <Label Style="{DynamicResource CaptionStyle}" Text="In wie viele (parallel zur Fahrspur verlaufende) Zonen kann die Bearbeitungsbreite sinnvoll unterteilt werden, sodass die Kartierung neben dem zu erwartenden Arbeitsaufwand machbar bleibt?" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="Caption"/>
                 <Controls:IntegerSlider x:Name="LaneCountSlider" Maximum="3" Minimum="1" Value="{Binding Configuration.LaneCount, Mode=OneTime}" IntegerValue="{Binding Configuration.LaneCount, Mode=OneWayToSource}"/>
                 <Label BindingContext="{x:Reference LaneCountSlider}" Text="{Binding Value, Mode=OneWay}" HorizontalOptions="Center"/>
 
