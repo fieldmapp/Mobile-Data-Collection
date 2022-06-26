@@ -88,6 +88,7 @@ namespace DLR_Data_App.Views
             LogFileIdentifier = "drivingView_" + App.CurrentUser.Username + "_" + LaneCountPerSide + "_" + configuration.LaneWidth + "_" + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
 
             InitializeComponent();
+            WriteUsingCsvWriter(csvWriter => csvWriter.WriteComment(JsonTranslator.GetJson(configuration).Replace("\n", "").Replace("\r", "")));
             WriteUsingCsvWriter(csvWriter => csvWriter.WriteHeader<InteractionInfo>());
 
             CancelButton.Clicked += (a,b) => ResetToInitialState();
@@ -114,6 +115,18 @@ namespace DLR_Data_App.Views
                 configuration.Cause8Id,
                 configuration.Cause9Id
             };
+            var damageCauseFormattedStrings = new List<FormattedString>
+            {
+                configuration.Cause1,
+                configuration.Cause2,
+                configuration.Cause3,
+                configuration.Cause4,
+                configuration.Cause5,
+                configuration.Cause6,
+                configuration.Cause7,
+                configuration.Cause8,
+                configuration.Cause9
+            };
 
             float[] causesPerRow = { 1, 2, 3, 2, 3, 3, 3, 3, 3 };
             DamageCauseButtons = new List<FormattedButton>();
@@ -121,7 +134,7 @@ namespace DLR_Data_App.Views
             for (int i = 0; i < damageCauseIds.Count; i++)
             {
                 var formattedButton = new FormattedButton { FormattedText = new FormattedString(), Padding = new Thickness(5, 0), Margin=new Thickness(0, 5)};
-                formattedButton.FormattedText.Spans.Add(new Span { Text = damageCauseIds[i] });
+                formattedButton.FormattedText = damageCauseFormattedStrings[i];
                 DamageCauseButtons.Add(formattedButton);
                 ButtonLayout.Children.Add(formattedButton);
                 FlexLayout.SetBasis(formattedButton, new FlexBasis(1 / causesPerRow[visibleButtons] - 0.01f, true));
