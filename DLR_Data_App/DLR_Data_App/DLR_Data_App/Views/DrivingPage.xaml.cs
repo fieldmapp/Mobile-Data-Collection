@@ -102,18 +102,6 @@ namespace DLR_Data_App.Views
                 TypeHighButton
             };
 
-            DamageCauseButtons = new List<FormattedButton>
-            {
-                Cause1Button,
-                Cause2Button,
-                Cause3Button,
-                Cause4Button,
-                Cause5Button,
-                Cause6Button,
-                Cause7Button,
-                Cause8Button,
-                Cause9Button
-            };
             var damageCauseIds = new List<string>
             {
                 configuration.Cause1Id,
@@ -126,6 +114,18 @@ namespace DLR_Data_App.Views
                 configuration.Cause8Id,
                 configuration.Cause9Id
             };
+
+            float[] causesPerRow = { 1, 2, 3, 2, 3, 3, 3, 3, 3 };
+            DamageCauseButtons = new List<FormattedButton>();
+            var visibleButtons = damageCauseIds.Count(i => !string.IsNullOrWhiteSpace(i));
+            for (int i = 0; i < damageCauseIds.Count; i++)
+            {
+                var formattedButton = new FormattedButton { FormattedText = new FormattedString(), Padding = new Thickness(5, 0), Margin=new Thickness(0, 5)};
+                formattedButton.FormattedText.Spans.Add(new Span { Text = damageCauseIds[i] });
+                DamageCauseButtons.Add(formattedButton);
+                ButtonLayout.Children.Add(formattedButton);
+                FlexLayout.SetBasis(formattedButton, new FlexBasis(1 / causesPerRow[visibleButtons] - 0.01f, true));
+            }
 
             for (int i = 0; i < damageCauseIds.Count; i++)
             {
