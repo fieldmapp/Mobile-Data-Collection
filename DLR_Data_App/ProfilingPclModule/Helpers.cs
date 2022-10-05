@@ -54,7 +54,7 @@ namespace DlrDataApp.Modules.Profiling.Shared
 
         public static bool SetCurrentProfiling(this Database db, ProfilingData profiling)
         {
-            var previousProfilingInfo = db.ReadWithChildren<ActiveProfilingInfo>(true).FirstOrDefault() ?? new ActiveProfilingInfo();
+            var previousProfilingInfo = db.ReadWithChildren<ActiveProfilingInfo>().FirstOrDefault() ?? new ActiveProfilingInfo();
             previousProfilingInfo.ActiveProfiling = profiling;
             return db.InsertOrUpdateWithChildren(previousProfilingInfo, true);
         }

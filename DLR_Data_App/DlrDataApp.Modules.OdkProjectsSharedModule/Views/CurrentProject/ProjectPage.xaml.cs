@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using DLR_Data_App.Localizations;
-using DLR_Data_App.Models;
-using DLR_Data_App.Models.ProjectForms;
-using DLR_Data_App.Models.ProjectModel;
 using DLR_Data_App.Services;
-using DLR_Data_App.Services.Sensors;
-using DLR_Data_App.ViewModels.CurrentProject;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.Localization;
+using DlrDataApp.Modules.Base.Shared.Services;
+using DlrDataApp.Modules.OdkProjects.Shared.Localization;
+using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectForms;
+using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+using DlrDataApp.Modules.OdkProjects.Shared.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DLR_Data_App.Views.CurrentProject
+namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProjectPage
@@ -21,32 +22,29 @@ namespace DLR_Data_App.Views.CurrentProject
         const int MaxDaysSinceLastProfilingCompletion = 45;
         const int MaxProjectsFilledPerProfiling = 10;
 
-        private readonly ProjectViewModel _viewModel = new ProjectViewModel();
         private Project _workingProject;
         private List<ContentPage> _pages;
         private Project _projectLastCheck;
         private IReadOnlyList<FormElement> _formElements;
 
-        private readonly Sensor _sensor = Sensor.Instance;
+        private readonly Sensor _sensor = OdkProjectsModule.Instance.Sensor;
 
         public ProjectPage()
         {
             InitializeComponent();
-
-            BindingContext = _viewModel;
 
             Appearing += ProjectPage_Appearing;
         }
 
         private async void ProjectPage_Appearing(object sender, EventArgs e)
         {
-            var newProject = Database.GetCurrentProject();
+            var newProject = OdkProjectsModule.Instance.Database.ReadWithChildren<ActiveProjectInfo>().FirstOrDefault()?.ActiveProject;
 
             if (newProject == null)
             {
-                DependencyService.Get<IToast>().LongAlert(AppResources.noactiveproject);
+                DependencyService.Get<IToast>().LongAlert(OdkProjectsResources.noactiveproject);
 
-                await App.CurrentMainPage.NavigateFromMenu(MenuItemType.Projects);
+                OdkProjectsModule.Instance.ModuleHost.NavigateTo(OdkProjectsModule.Instance.ProjectListPageGuid);
                 return;
             }
 
@@ -75,9 +73,9 @@ namespace DLR_Data_App.Views.CurrentProject
             {
                 var profilingList = await App.CurrentMainPage.NavigateFromMenu(MenuItemType.ProfilingList);
 
-                await profilingList.DisplayAlert(AppResources.error,
+                await profilingList.DisplayAlert(SharedResources.error,
                     string.Format(AppResources.profilingModuleMissing, project.ProfilingId),
-                    AppResources.ok);
+                    SharedResources.ok);
                 return;
             }
 
@@ -104,7 +102,7 @@ namespace DLR_Data_App.Views.CurrentProject
             // Check if current project is set
             if (_workingProject == null)
             {
-                Title = AppResources.currentproject;
+                Title = OdkProjectsResources.currentproject;
             }
             else
             {
@@ -144,7 +142,7 @@ namespace DLR_Data_App.Views.CurrentProject
         {
             var lastRequiredElement = (FormElement)sender;
             lastRequiredElement.ValidContentChange -= LastElement_ValidContentChange;
-            DependencyService.Get<IToast>().ShortAlert(AppResources.pleaseSaveBeforeQuiting);
+            DependencyService.Get<IToast>().ShortAlert(SharedResources.pleaseSaveBeforeQuiting);
         }
 
         private void UnlockElement(FormElement element)
@@ -239,7 +237,7 @@ namespace DLR_Data_App.Views.CurrentProject
         {
             if (_pages == null || _pages.Count == 0)
             {
-                await DisplayAlert(AppResources.warning, AppResources.noactiveproject, AppResources.okay);
+                await DisplayAlert(SharedResources.warning, OdkProjectsResources.noactiveproject, SharedResources.okay);
                 return false;
             }
             else
@@ -288,7 +286,7 @@ namespace DLR_Data_App.Views.CurrentProject
                 string message;
                 if (status)
                 {
-                    message = AppResources.successful;
+                    message = SharedResources.successful;
                     foreach (var element in _formElements)
                     {
                         element.Reset();
@@ -298,10 +296,10 @@ namespace DLR_Data_App.Views.CurrentProject
                 }
                 else
                 {
-                    message = AppResources.failed;
+                    message = SharedResources.failed;
                 }
 
-                await DisplayAlert(AppResources.save, message, AppResources.okay);
+                await DisplayAlert(SharedResources.save, message, SharedResources.okay);
                 await CheckForProfilingCompletionNeeded(_workingProject);
             }
         }

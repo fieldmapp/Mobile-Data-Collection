@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel
+namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel
 {
     class ActiveProjectInfo
     {

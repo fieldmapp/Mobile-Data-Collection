@@ -119,7 +119,7 @@ namespace DlrDataApp.Modules.Profiling.Shared
         /// <returns><see cref="DateTime"/> of newest answered profiling</returns>
         public static DateTime GetLastCompletedProfilingDate(string profilingId)
         {
-            var results = Database.ReadWithChildren<ProfilingResult>().Where(r => r.UserId == UserId && r.ProfilingId == profilingId);
+            var results = Database.ReadWithChildren<ProfilingResult>(false).Where(r => r.UserId == UserId && r.ProfilingId == profilingId);
             return results.Any() ? results.Max(e => e.TimeStamp) : DateTime.MinValue;
         }
 

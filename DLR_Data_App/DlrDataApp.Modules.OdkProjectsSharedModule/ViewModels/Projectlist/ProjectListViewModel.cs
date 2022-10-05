@@ -1,8 +1,9 @@
-﻿using DlrDataApp.Modules.OdkProjectsSharedModule.Localization;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
-using DlrDataApp.Modules.SharedModule;
+﻿using DlrDataApp.Modules.OdkProjects.Shared.Localization;
+using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+using DlrDataApp.Modules.Base.Shared;
 using System.Collections.ObjectModel;
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.ViewModels.ProjectList
+
+namespace DlrDataApp.Modules.OdkProjects.Shared.ViewModels.ProjectList
 {
     public class ProjectListViewModel : BaseViewModel
     {

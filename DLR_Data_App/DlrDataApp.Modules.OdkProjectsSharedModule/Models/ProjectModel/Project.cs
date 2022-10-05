@@ -2,7 +2,7 @@
 using SQLiteNetExtensions.Attributes;
 using System.Collections.Generic;
 
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel
+namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel
 {
     /// <summary>
     /// Model of a project containing all general informations about it.

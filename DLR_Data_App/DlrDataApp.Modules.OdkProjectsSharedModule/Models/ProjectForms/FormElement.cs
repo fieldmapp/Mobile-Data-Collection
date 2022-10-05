@@ -1,7 +1,7 @@
-﻿using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Services;
-using DlrDataApp.Modules.SharedModule;
-using DlrDataApp.Modules.SharedModule.Localization;
+﻿using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+using DlrDataApp.Modules.OdkProjects.Shared.Services;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
+namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectForms
 {
     /// <summary>
     /// Class representing every part of a displayed element in a form.

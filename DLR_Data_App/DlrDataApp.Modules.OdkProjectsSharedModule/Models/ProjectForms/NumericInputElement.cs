@@ -1,12 +1,12 @@
-﻿using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Services;
+﻿using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+using DlrDataApp.Modules.OdkProjects.Shared.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
+namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectForms
 {
     class NumericInputElement : FormElement
     {

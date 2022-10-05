@@ -1,7 +1,7 @@
 ﻿using DLR_Data_App.Services;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Services;
-using DlrDataApp.Modules.SharedModule.Localization;
+using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+using DlrDataApp.Modules.OdkProjects.Shared.Services;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
+namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectForms
 {
     class LocationDetectorElement : FormElement
     {
@@ -28,7 +28,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
         public static LocationDetectorElement CreateForm(FormCreationParams parms)
         {
             var grid = CreateStandardBaseGrid(parms);
-            var sensor = OdkProjectsSharedModule.Instance.ModuleHost.App.Sensor;
+            var sensor = OdkProjectsModule.Instance.ModuleHost.App.Sensor;
             var formElement = new LocationDetectorElement(grid, parms.Element, parms.Type, parms.DisplayAlertFunc, parms.CurrentProject);
 
             var labelLat = new Label { Text = SharedResources.latitude };

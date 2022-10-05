@@ -1,4 +1,4 @@
-﻿namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models
+﻿namespace DlrDataApp.Modules.OdkProjects.Shared.Models
 {
     /// <summary>
     /// Class containing the data displayed in the edit list

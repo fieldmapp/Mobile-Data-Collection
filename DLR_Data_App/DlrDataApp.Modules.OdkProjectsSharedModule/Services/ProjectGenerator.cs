@@ -1,14 +1,14 @@
-﻿using DlrDataApp.Modules.OdkProjectsSharedModule;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Services;
-using DlrDataApp.Modules.SharedModule;
+﻿using DlrDataApp.Modules.OdkProjects.Shared;
+using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+using DlrDataApp.Modules.OdkProjects.Shared.Services;
+using DlrDataApp.Modules.Base.Shared;
 using SQLite;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace DLR_Data_App.Services
+namespace DlrDataApp.Modules.OdkProjects.Shared.Services
 {
     public class ProjectGenerator
     {
@@ -29,7 +29,7 @@ namespace DLR_Data_App.Services
 
             // parsing form files
             ProjectParser parser = new ProjectParser(_workingProject);
-            var moduleHost = OdkProjectsSharedModule.Instance.ModuleHost;
+            var moduleHost = OdkProjectsModule.Instance.ModuleHost;
 
             // check if parsing failed
             if (!await parser.ParseZip(_zipFile, Path.Combine(moduleHost.App.FolderLocation, "unzip")))

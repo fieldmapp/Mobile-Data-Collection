@@ -1,7 +1,7 @@
 ﻿using DLR_Data_App.Services;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
-using DlrDataApp.Modules.SharedModule;
-using DlrDataApp.Modules.SharedModule.Services;
+using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.Services;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DLR_Data_App.Views.CurrentProject
+namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditDataDetailPage
     {
         //TODO: Merge EditDataDetailPage and ProjectPage
 
-        private readonly Project _workingProject = Database.GetCurrentProject();
+        private readonly Project _workingProject = OdkProjectsModule.Instance.Database.ReadWithChildren<ActiveProjectInfo>().FirstOrDefault()?.ActiveProject;
         private int _id;
-        private readonly Sensor _sensor = Sensor.Instance;
+        private readonly Sensor _sensor = OdkProjectsModule.Instance.Sensor;
         private List<ContentPage> _pages;
         HashSet<FormElement> UnlockedElements;
         private IReadOnlyList<FormElement> _formElements;

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Services;
-using DlrDataApp.Modules.SharedModule.Localization;
+using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+using DlrDataApp.Modules.OdkProjects.Shared.Services;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using Xamarin.Forms;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Localization;
+using DlrDataApp.Modules.OdkProjects.Shared.Localization;
 
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
+namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectForms
 {
     class CompassElement : FormElement
     {
@@ -47,7 +47,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms
             var currentCompassLabel = new Label { Text = SharedResources.compass };
             compassElement.CurrentDataLabel = currentCompassLabel;
             var currentCompassDataLabel = new Label();
-            OdkProjectsSharedModule.Instance.ModuleHost.App.Sensor.Compass.ReadingChanged += (_, eventArgs) =>
+            OdkProjectsModule.Instance.ModuleHost.App.Sensor.Compass.ReadingChanged += (_, eventArgs) =>
             {
                 currentCompassDataLabel.Text = ((int)eventArgs.Reading.HeadingMagneticNorth).ToString() + " °";
                 compassElement.CurrentHeadingMagneticNorth = eventArgs.Reading.HeadingMagneticNorth;

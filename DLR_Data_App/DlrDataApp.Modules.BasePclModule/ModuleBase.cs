@@ -1,7 +1,9 @@
-﻿using System;
+﻿using DlrDataApp.Modules.Base.Shared.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace DlrDataApp.Modules.Base.Shared
 {
@@ -12,6 +14,16 @@ namespace DlrDataApp.Modules.Base.Shared
         public event EventHandler<IModuleHost> PostInitialized = delegate { };
         public event EventHandler<IModuleHost> PostInitializing = delegate { };
         public IModuleHost ModuleHost { get; private set; }
+
+        public IApp App => ModuleHost.App;
+        public IUser CurrentUser => ModuleHost.App.CurrentUser;
+        public NavigationPage NavigationPage => ModuleHost.App.NavigationPage;
+        public Page CurrentPage => ModuleHost.App.CurrentPage;
+        public Database Database => ModuleHost.App.Database;
+        public ThreadSafeRandom RandomProvider => ModuleHost.App.RandomProvider;
+        public Sensor Sensor => ModuleHost.App.Sensor;
+        public string FolderLocation => ModuleHost.App.FolderLocation;
+
         public async Task Initialize(IModuleHost moduleHost)
         {
             ModuleHost = moduleHost;

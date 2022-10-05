@@ -1,12 +1,12 @@
-﻿using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
-using DlrDataApp.Modules.SharedModule;
-using DlrDataApp.Modules.SharedModule.Localization;
+﻿using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.Services
+namespace DlrDataApp.Modules.OdkProjects.Shared.Services
 {
     static class Helpers
     {
@@ -62,13 +62,13 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Services
 
         public static Project GetCurrentProject(this Database db)
         {
-            var activeProjectInfo = db.ReadWithChildren<ActiveProjectInfo>(true).FirstOrDefault();
+            var activeProjectInfo = db.ReadWithChildren<ActiveProjectInfo>().FirstOrDefault();
             return activeProjectInfo?.ActiveProject;
         }
 
         public static bool SetCurrentProject(this Database db, Project project)
         {
-            var previousProjectInfo = db.ReadWithChildren<ActiveProjectInfo>(true).FirstOrDefault() ?? new ActiveProjectInfo();
+            var previousProjectInfo = db.ReadWithChildren<ActiveProjectInfo>().FirstOrDefault() ?? new ActiveProjectInfo();
             previousProjectInfo.ActiveProject = project;
             return db.InsertOrUpdateWithChildren(previousProjectInfo, true);
         }

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Models;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
-using DlrDataApp.Modules.SharedModule;
-using DlrDataApp.Modules.SharedModule.Localization;
+using DlrDataApp.Modules.OdkProjects.Shared.Models;
+using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using FormatWith;
+using System.Linq;
 
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.ViewModels.CurrentProject
+namespace DlrDataApp.Modules.OdkProjects.Shared.ViewModels.CurrentProject
 {
     public class EditDataViewModel : BaseViewModel
     {
@@ -23,7 +24,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.ViewModels.CurrentProject
         {
             Title = SharedResources.editdata;
 
-            _workingProject =  Database.GetCurrentProject();
+            _workingProject = OdkProjectsModule.Instance.Database.ReadWithChildren<ActiveProjectInfo>().FirstOrDefault()?.ActiveProject;
             FormList = _workingProject.FormList;
 
             ElementList = new ObservableCollection<PreviewElement>();

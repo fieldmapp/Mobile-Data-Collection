@@ -1,9 +1,9 @@
-﻿using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Services;
+﻿using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+using DlrDataApp.Modules.OdkProjects.Shared.Services;
 using System;
 using Xamarin.Forms.Xaml;
 
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.Views.ProjectList
+namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProjectDetailPage

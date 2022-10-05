@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:res="clr-namespace:DlrDataApp.Modules.SharedModule.Localization;assembly=DlrDataApp.Modules.SharedModule"
-             x:Class="DlrDataApp.Modules.OdkProjectsSharedModule.Views.ProjectList.ProjectDetailPage"
+             xmlns:res="clr-namespace:DlrDataApp.Modules.Base.Shared.Localization;assembly=DlrDataApp.Modules.Base.Shared"
+             x:Class="DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList.ProjectDetailPage"
              Title="{res:Translate projectdetails}">
     <ScrollView>
         <StackLayout Spacing="20" Padding="15">

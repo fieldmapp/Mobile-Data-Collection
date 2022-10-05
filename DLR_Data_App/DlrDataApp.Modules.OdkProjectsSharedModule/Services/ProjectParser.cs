@@ -6,10 +6,10 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Linq;
 using Newtonsoft.Json;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Models;
+using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+using DlrDataApp.Modules.OdkProjects.Shared.Models;
 
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.Services
+namespace DlrDataApp.Modules.OdkProjects.Shared.Services
 {
     /// <summary>
     /// Handles the parsing of form definition files for project

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLR_Data_App.Android", "DLR_Data_App\DLR_Data_App.Android\DLR_Data_App.Android.csproj", "{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}"
 EndProject
@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DlrDataApp.Modules.Base.And
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OdkProjects", "OdkProjects", "{146FDDAC-4BD9-4644-9E16-4E264B028E34}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DlrDataApp.Modules.OdkProjectsSharedModule", "DlrDataApp.Modules.OdkProjectsSharedModule\DlrDataApp.Modules.OdkProjectsSharedModule.csproj", "{B8827F02-5873-47C8-9A6C-C90EF5B6537D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DlrDataApp.Modules.OdkProjects.Shared", "DlrDataApp.Modules.OdkProjectsSharedModule\DlrDataApp.Modules.OdkProjects.Shared.csproj", "{B8827F02-5873-47C8-9A6C-C90EF5B6537D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VoiceRecognition", "VoiceRecognition", "{41FB36C8-C16A-45E8-8461-B3C735754191}"
 EndProject
@@ -40,6 +40,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DlrDataApp.Modules.FieldCartographerSharedModule", "DlrDataApp.Modules.FieldCartographerSharedModule\DlrDataApp.Modules.FieldCartographerSharedModule.csproj", "{17671A2F-BAAB-4072-BA5D-637E9D83B199}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DlrDataApp.Modules.FieldCartographer.Android", "DlrDataApp.Modules.FieldCartographer.Android\DlrDataApp.Modules.FieldCartographer.Android.csproj", "{60844982-82E4-45C1-82CE-633237DC0CEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DlrDataApp.Modules.OdProjects.Android", "DlrDataApp.Modules.OdProjects.Android\DlrDataApp.Modules.OdProjects.Android.csproj", "{81E490AE-C947-441F-AF42-ED7D338261C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -237,6 +239,18 @@ Global
 		{60844982-82E4-45C1-82CE-633237DC0CEE}.Release|iPhone.Build.0 = Release|Any CPU
 		{60844982-82E4-45C1-82CE-633237DC0CEE}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{60844982-82E4-45C1-82CE-633237DC0CEE}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{81E490AE-C947-441F-AF42-ED7D338261C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81E490AE-C947-441F-AF42-ED7D338261C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81E490AE-C947-441F-AF42-ED7D338261C1}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{81E490AE-C947-441F-AF42-ED7D338261C1}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{81E490AE-C947-441F-AF42-ED7D338261C1}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{81E490AE-C947-441F-AF42-ED7D338261C1}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{81E490AE-C947-441F-AF42-ED7D338261C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81E490AE-C947-441F-AF42-ED7D338261C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81E490AE-C947-441F-AF42-ED7D338261C1}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{81E490AE-C947-441F-AF42-ED7D338261C1}.Release|iPhone.Build.0 = Release|Any CPU
+		{81E490AE-C947-441F-AF42-ED7D338261C1}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{81E490AE-C947-441F-AF42-ED7D338261C1}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -257,6 +271,7 @@ Global
 		{5BC105DB-E9D1-4A15-B205-37F3E02D3FA8} = {719BE7B9-BA88-44A4-BE28-D699006AFDF3}
 		{17671A2F-BAAB-4072-BA5D-637E9D83B199} = {5BC105DB-E9D1-4A15-B205-37F3E02D3FA8}
 		{60844982-82E4-45C1-82CE-633237DC0CEE} = {5BC105DB-E9D1-4A15-B205-37F3E02D3FA8}
+		{81E490AE-C947-441F-AF42-ED7D338261C1} = {146FDDAC-4BD9-4644-9E16-4E264B028E34}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54AA9D20-5781-4F11-B2B7-FC6930DDB15B}

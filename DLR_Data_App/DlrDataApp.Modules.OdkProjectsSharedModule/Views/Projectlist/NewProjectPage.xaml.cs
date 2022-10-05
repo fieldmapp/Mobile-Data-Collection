@@ -1,13 +1,9 @@
 ﻿using System;
 using Xamarin.Forms.Xaml;
-
-using Plugin.FilePicker;
 using DLR_Data_App.Services;
 using Xamarin.Essentials;
-using DlrDataApp.Modules.SharedModule.Localization;
-using Xamarin.Essentials;
 
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.Views.ProjectList
+namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewProjectPage
@@ -33,7 +29,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Views.ProjectList
             {
                 if (File.FileName.EndsWith(".zip"))
                 {
-                    _fileCopyPath = Path.Combine(OdkProjectsSharedModule.Instance.ModuleHost.App.FolderLocation, "Data.zip");
+                    _fileCopyPath = Path.Combine(OdkProjectsModule.Instance.ModuleHost.App.FolderLocation, "Data.zip");
                     using (var dataArray = await File.OpenReadAsync())
                     using (var dataArray = File.GetStream())
                     {

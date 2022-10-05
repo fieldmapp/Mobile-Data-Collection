@@ -1,4 +1,4 @@
-﻿using DlrDataApp.Modules.SharedModule;
+﻿using DlrDataApp.Modules.Base.Shared;
 using NCalc;
 using Newtonsoft.Json.Linq;
 using System;
@@ -7,7 +7,7 @@ using System.Data;
 using System.Globalization;
 using System.Text;
 
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.Services
+namespace DlrDataApp.Modules.OdkProjects.Shared.Services
 {
     /// <summary>
     /// Class representing an expression in odk expression format https://docs.opendatakit.org/form-logic/
@@ -63,7 +63,7 @@ namespace DlrDataApp.Modules.OdkProjectsSharedModule.Services
                 args.Result = childValue == "true" || childValue == "1";
             }
             else if (name == "random")
-                args.Result = OdkProjectsSharedModule.Instance.ModuleHost.App.RandomProvider.Next();
+                args.Result = OdkProjectsModule.Instance.ModuleHost.App.RandomProvider.Next();
             else if (name == "pi")
                 args.Result = Math.PI;
             else if (name == "now")

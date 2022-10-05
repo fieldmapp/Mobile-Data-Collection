@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using DLR_Data_App.Localizations;
-using DLR_Data_App.Services;
-using DLR_Data_App.ViewModels.CurrentProject;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DLR_Data_App.Views.CurrentProject
+namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditDataPage

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models
+namespace DlrDataApp.Modules.OdkProjects.Shared.Models
 {
     public class Options
     {

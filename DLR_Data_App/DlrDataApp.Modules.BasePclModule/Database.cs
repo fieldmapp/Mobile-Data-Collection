@@ -284,8 +284,8 @@ namespace DlrDataApp.Modules.Base.Shared
             }
             return propInfo.GetValue(element);
         }
-        public List<T> ReadWithChildren<T>(bool recursive = false) where T : class, new() => RunWithConnection(conn => ReadWithChildren<T>(conn, recursive));
-        public static List<T> ReadWithChildren<T>(SQLiteConnection conn, bool recursive = false) where T : class, new()
+        public List<T> ReadWithChildren<T>(bool recursive = true) where T : class, new() => RunWithConnection(conn => ReadWithChildren<T>(conn, recursive));
+        public static List<T> ReadWithChildren<T>(SQLiteConnection conn, bool recursive = true) where T : class, new()
         {
             var content = Read<T>(conn);
             return content.Select(element => GetWithChildren<T>(conn, recursive, element)).ToList();

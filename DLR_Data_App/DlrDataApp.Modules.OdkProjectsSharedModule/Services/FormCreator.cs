@@ -1,14 +1,14 @@
-﻿using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectForms;
-using DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel;
-using DlrDataApp.Modules.SharedModule;
-using DlrDataApp.Modules.SharedModule.Localization;
+﻿using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectForms;
+using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.Services
+namespace DlrDataApp.Modules.OdkProjects.Shared.Services
 {
     /// <summary>
     /// Class containing the parameters passed to a view creator.

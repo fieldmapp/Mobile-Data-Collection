@@ -9,7 +9,7 @@ using DLR_Data_App.ViewModels.ProjectList;
 using DLR_Data_App.Services;
 using DLR_Data_App.Localizations;
 
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.Views.ProjectList
+namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProjectListPage

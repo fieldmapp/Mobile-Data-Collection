@@ -1,7 +1,7 @@
 ﻿using SQLite;
 using SQLiteNetExtensions.Attributes;
 
-namespace DlrDataApp.Modules.OdkProjectsSharedModule.Models.ProjectModel
+namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel
 {
     public class ProjectFormMetadata
     {
