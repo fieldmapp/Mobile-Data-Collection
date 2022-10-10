@@ -46,14 +46,14 @@ namespace DLR_Data_App.Views
 
             ListViewMenu.ItemsSource = MenuItems;
 
-            ListViewMenu.ItemTapped += async (sender, e) =>
-            {
-                if (e.Item == null)
-                    return;
-
-                var id = ((HomeMenuItem)e.Item).Id;
-                await App.CurrentMainPage.NavigateToPage(id);
-            };
+            //ListViewMenu.ItemTapped += async (sender, e) =>
+            //{
+            //    if (e.Item == null)
+            //        return;
+            //
+            //    var id = ((HomeMenuItem)e.Item).Id;
+            //    await App.CurrentMainPage.NavigateToPage(id);
+            //};
         }
     }
 }

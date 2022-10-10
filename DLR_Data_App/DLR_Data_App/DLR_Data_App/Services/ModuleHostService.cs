@@ -12,13 +12,9 @@ namespace DLR_Data_App.Services
     {
         List<ISharedModule> Modules;
         List<HomeMenuItem> MenuItems = new List<HomeMenuItem>();
-        MainPage MainPage;
-        MenuPage MenuPage;
-        public ModuleHostService(IApp app, MainPage mainPage, MenuPage menuPage, List<ISharedModule> modules)
+        public ModuleHostService(IApp app, List<ISharedModule> modules)
         {
             Modules = modules;
-            MainPage = mainPage;
-            MenuPage = menuPage;
             App = app;
 
             Initialize();
@@ -37,27 +33,5 @@ namespace DLR_Data_App.Services
         }
 
         public IApp App { get; }
-
-        public Guid AddToSidebar(string title, NavigationPage page)
-        {
-            var guid = Guid.NewGuid();
-            MenuPage.MenuItems.Add(new HomeMenuItem { Id = guid, Title = title, NavigationPage = page });
-            return guid;
-        }
-
-        public List<Guid> AddToSidebar(IEnumerable<KeyValuePair<string, NavigationPage>> items)
-        {
-            var result = new List<Guid>();
-            foreach (var item in items)
-            {
-                result.Add(AddToSidebar(item.Key, item.Value));
-            }
-            return result;
-        }
-
-        public void NavigateTo(Guid id)
-        {
-            _ = (Application.Current as App).MainPage.NavigateToPage(id);
-        }
     }
 }

@@ -49,7 +49,7 @@ namespace com.DLR.DLR_Data_App.Droid
             var fullPath = System.IO.Path.Combine(folderPath, dbName);
 
             LoadApplication(new App(folderPath, fullPath, new List<ISharedModule> { 
-                new DlrDataApp.Modules.Profiling.Shared.ProfilingModule()
+                //new DlrDataApp.Modules.Profiling.Shared.ProfilingModule()
             }));
             ReloadToolbar();
             EnsureAppPermission(Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage, Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation, Manifest.Permission.RecordAudio);
@@ -216,8 +216,8 @@ namespace com.DLR.DLR_Data_App.Droid
 
         bool BackButtonPress()
         {
-            var navigationPage = (Xamarin.Forms.Application.Current as App).NavigationPage;
-            var currentPage = navigationPage.CurrentPage;
+            var navigation = AppShell.Current.Navigation;
+            var currentPage = (Xamarin.Forms.Application.Current as App).CurrentPage;
             var mainPage = (Xamarin.Forms.Application.Current as App).MainPage;
 
             var currentPageType = currentPage.GetType();
@@ -229,10 +229,10 @@ namespace com.DLR.DLR_Data_App.Droid
                     || currentPageType.Overrides(typeof(MultiPage<Page>).GetMethod("OnBackButtonPressed", System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.IgnoreReturn | System.Reflection.BindingFlags.Instance)))
                 return currentPage.SendBackButtonPressed();
             }
-            if (navigationPage.Navigation.ModalStack.Count > 0)
-                navigationPage.Navigation.PopModalAsync();
-            else if (navigationPage.Navigation.NavigationStack.Count > 1)
-                navigationPage.Navigation.PopAsync();
+            if (navigation.ModalStack.Count > 0)
+                navigation.PopModalAsync();
+            else if (navigation.NavigationStack.Count > 1)
+                navigation.PopAsync();
             else
                 return mainPage.SendBackButtonPressed();
             return true;

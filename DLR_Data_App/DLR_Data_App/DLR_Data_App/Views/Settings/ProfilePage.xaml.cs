@@ -1,4 +1,5 @@
 ﻿using DLR_Data_App.Models;
+using DLR_Data_App.Views.Login;
 using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 
@@ -50,9 +51,9 @@ namespace DLR_Data_App.Views.Settings
             {
                 await DisplayAlert(SharedResources.removeaccount, SharedResources.successful, SharedResources.accept);
                 if (isActiveUser)
-                    _ = App.CurrentMainPage.NavigateToPage(App.CurrentMainPage.MenuPage.LogoutMenuItem.Id);
+                    _ = AppShell.Current.GoToAsync("//logout");
                 else
-                    _ =  Navigation.PopAsync();
+                    _ = Navigation.PopAsync();
             }
             else
             {

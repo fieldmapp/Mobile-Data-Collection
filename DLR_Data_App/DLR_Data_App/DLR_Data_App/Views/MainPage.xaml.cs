@@ -101,7 +101,7 @@ namespace DLR_Data_App.Views
 
         protected override bool OnBackButtonPressed()
         {
-            if ((App.Current as App).NavigationPage.Navigation.NavigationStack.Count == 1)
+            if (Shell.Current.Navigation.NavigationStack.Count == 1)
             {
                 if (!IsPresented)
                 {
@@ -122,7 +122,7 @@ namespace DLR_Data_App.Views
             }
             else
             {
-                return (App.Current as App).CurrentPage.SendBackButtonPressed();
+                return App.Current.CurrentPage.SendBackButtonPressed();
             }
         }
     }

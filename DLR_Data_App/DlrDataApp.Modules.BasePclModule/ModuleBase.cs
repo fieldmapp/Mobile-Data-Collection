@@ -17,7 +17,6 @@ namespace DlrDataApp.Modules.Base.Shared
 
         public IApp App => ModuleHost.App;
         public IUser CurrentUser => ModuleHost.App.CurrentUser;
-        public NavigationPage NavigationPage => ModuleHost.App.NavigationPage;
         public Page CurrentPage => ModuleHost.App.CurrentPage;
         public Database Database => ModuleHost.App.Database;
         public ThreadSafeRandom RandomProvider => ModuleHost.App.RandomProvider;

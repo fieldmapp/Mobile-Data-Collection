@@ -10,7 +10,6 @@ namespace DlrDataApp.Modules.Base.Shared
     {
         IModuleHost ModuleHost { get; }
         IUser CurrentUser { get; }
-        NavigationPage NavigationPage { get; }
         Page CurrentPage { get; }
         Database Database { get; }
         ThreadSafeRandom RandomProvider { get; }

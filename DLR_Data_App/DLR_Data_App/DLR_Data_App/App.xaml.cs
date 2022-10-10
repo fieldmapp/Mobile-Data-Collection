@@ -16,19 +16,17 @@ namespace DLR_Data_App
     public partial class App : IApp
     {
         public static string DatabaseLocation = string.Empty;
-        public static MainPage CurrentMainPage => Current.MainPage;
 
         public string FolderLocation { get; } = string.Empty;
         public ThreadSafeRandom RandomProvider { get; } = new ThreadSafeRandom();
         public IUser CurrentUser { get; internal set; }
         public Sensor Sensor { get; }
-        public NavigationPage NavigationPage => MainPage?.Detail as NavigationPage;
-        public Page CurrentPage => NavigationPage?.CurrentPage;
-        public new MainPage MainPage => base.MainPage as MainPage;
         public Database Database { get; }
         public static new App Current => Application.Current as App;
 
         public IModuleHost ModuleHost { private set; get; }
+
+        public Page CurrentPage => Shell.Current.CurrentPage;
 
         List<ISharedModule> Modules;
 
@@ -40,7 +38,6 @@ namespace DLR_Data_App
         /// <param name="storageProvider">Path to the local database</param>
         public App(string folderPath, string databaseLocation, List<ISharedModule> modules)
         {
-            Device.SetFlags(new[] { "Shapes_Experimental" });
             InitializeComponent();
 
             Modules = modules;
@@ -58,7 +55,7 @@ namespace DLR_Data_App
 
         public void AfterSplashScreenLoad()
         {
-            ModuleHost = new ModuleHostService(this, MainPage, MainPage.MenuPage, Modules);
+            ModuleHost = new ModuleHostService(this, Modules);
         }
 
         protected override void OnStart()

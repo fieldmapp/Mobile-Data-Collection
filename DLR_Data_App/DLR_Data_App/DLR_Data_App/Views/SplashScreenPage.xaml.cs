@@ -25,7 +25,7 @@ namespace DLR_Data_App.Views
 
             await CreateNeededRessources();
 
-            Application.Current.MainPage = new MainPage();
+            Application.Current.MainPage = new AppShell();
 
             App.Current.AfterSplashScreenLoad();
         }
