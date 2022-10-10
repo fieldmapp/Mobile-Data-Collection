@@ -31,16 +31,16 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <FlyoutItem Title="{res:Translate about}">
-        <ShellContent Route="about" ContentTemplate="{DataTemplate views:AboutPage}"/>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" x:Name="ModuleItems">
+        
     </FlyoutItem>
-    <FlyoutItem Title="{res:Translate sensortest}">
-        <ShellContent Route="sensors" ContentTemplate="{DataTemplate views:SensorTestPage}"/>
-    </FlyoutItem>
-    <FlyoutItem Title="{res:Translate settings}">
-        <ShellContent Route="settings" ContentTemplate="{DataTemplate settings:SettingsPage}"/>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="{res:Translate about}" Route="about" ContentTemplate="{DataTemplate views:AboutPage}"/>
+        <ShellContent Title="{res:Translate sensortest}" Route="sensors" ContentTemplate="{DataTemplate views:SensorTestPage}"/>
+        <ShellContent Title="{res:Translate settings}" Route="settings" ContentTemplate="{DataTemplate settings:SettingsPage}"/>
     </FlyoutItem>
     <FlyoutItem Title="{res:Translate logout}">
         <ShellContent Route="logout" ContentTemplate="{DataTemplate views:LogoutPage}"/>
     </FlyoutItem>
+
 </Shell>

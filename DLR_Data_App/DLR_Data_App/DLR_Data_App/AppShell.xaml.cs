@@ -13,13 +13,14 @@ namespace DLR_Data_App
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AppShell : Shell
     {
+        public new static AppShell Current => Shell.Current as AppShell;
         public AppShell()
         {
             InitializeComponent();
             SetTabBarIsVisible(this, false);
             BindingContext = this;
             Navigating += AppShell_Navigating;
-            //Items.Add(new FlyoutItem { Title = "Test", Items = { new ShellContent { Route = "test", ContentTemplate = new DataTemplate(typeof(Page)) } } });
+            //AppShell.Current.ModuleItems.Items.Add(new ShellContent { Route = "test", ContentTemplate = new DataTemplate(typeof(Page)) });
         }
 
         private void AppShell_Navigating(object sender, ShellNavigatingEventArgs e)
