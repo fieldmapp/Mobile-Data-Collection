@@ -31,7 +31,7 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" x:Name="ModuleItems">
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" x:Name="ModuleItems" x:FieldModifier="internal">
         
     </FlyoutItem>
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">

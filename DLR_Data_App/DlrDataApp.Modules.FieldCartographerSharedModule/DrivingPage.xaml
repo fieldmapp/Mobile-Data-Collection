@@ -4,8 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="DLR_Data_App.Views.DrivingPage"
-             xmlns:controls="clr-namespace:DLR_Data_App.Controls">
+             x:Class="DlrDataApp.Modules.FieldCartographer.Shared.DrivingPage"
+             xmlns:controls="clr-namespace:DlrDataApp.Modules.Base.Shared.Controls;assembly=DlrDataApp.Modules.Base.Shared">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="BackgroundColor">#CBE8BA</Color>

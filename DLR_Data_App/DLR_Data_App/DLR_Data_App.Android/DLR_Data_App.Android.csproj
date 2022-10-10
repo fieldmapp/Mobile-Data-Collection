@@ -84,6 +84,7 @@
     <Compile Include="AndroidAppCloser.cs" />
     <Compile Include="AndroidCameraProvider.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="AndroidMainActivityProvider.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenListener.cs" />
@@ -122,6 +123,14 @@
     <ProjectReference Include="..\..\DlrDataApp.Modules.BasePclModule\DlrDataApp.Modules.Base.Shared.csproj">
       <Project>{CF63E909-0792-4368-A206-001A76AB1CE8}</Project>
       <Name>DlrDataApp.Modules.Base.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DlrDataApp.Modules.FieldCartographer.Android\DlrDataApp.Modules.FieldCartographer.Android.csproj">
+      <Project>{60844982-82e4-45c1-82ce-633237dc0cee}</Project>
+      <Name>DlrDataApp.Modules.FieldCartographer.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DlrDataApp.Modules.FieldCartographerSharedModule\DlrDataApp.Modules.FieldCartographer.Shared.csproj">
+      <Project>{17671a2f-baab-4072-ba5d-637e9d83b199}</Project>
+      <Name>DlrDataApp.Modules.FieldCartographer.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\DlrDataApp.Modules.SharedAndroidModule\DlrDataApp.Modules.Base.Android.csproj">
       <Project>{3f04c52d-d155-47bb-aa8a-d01983f0b0d0}</Project>

@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DlrDataApp.Modules.VoiceRec
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FieldCartographer", "FieldCartographer", "{5BC105DB-E9D1-4A15-B205-37F3E02D3FA8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DlrDataApp.Modules.FieldCartographerSharedModule", "DlrDataApp.Modules.FieldCartographerSharedModule\DlrDataApp.Modules.FieldCartographerSharedModule.csproj", "{17671A2F-BAAB-4072-BA5D-637E9D83B199}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DlrDataApp.Modules.FieldCartographer.Shared", "DlrDataApp.Modules.FieldCartographerSharedModule\DlrDataApp.Modules.FieldCartographer.Shared.csproj", "{17671A2F-BAAB-4072-BA5D-637E9D83B199}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DlrDataApp.Modules.FieldCartographer.Android", "DlrDataApp.Modules.FieldCartographer.Android\DlrDataApp.Modules.FieldCartographer.Android.csproj", "{60844982-82E4-45C1-82CE-633237DC0CEE}"
 EndProject

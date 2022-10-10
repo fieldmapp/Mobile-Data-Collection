@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="AndroidStorageAccessProvider.cs" />
     <Compile Include="AndroidToast.cs" />
+    <Compile Include="IMainActivityProvider.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

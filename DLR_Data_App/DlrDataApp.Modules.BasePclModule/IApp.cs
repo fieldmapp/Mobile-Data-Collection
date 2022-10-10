@@ -15,5 +15,6 @@ namespace DlrDataApp.Modules.Base.Shared
         ThreadSafeRandom RandomProvider { get; }
         Sensor Sensor { get; }
         string FolderLocation { get; }
+        FlyoutItem FlyoutItem { get; }
     }
 }

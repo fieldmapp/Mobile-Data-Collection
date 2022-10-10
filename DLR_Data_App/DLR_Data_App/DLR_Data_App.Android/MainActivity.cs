@@ -50,6 +50,7 @@ namespace com.DLR.DLR_Data_App.Droid
 
             LoadApplication(new App(folderPath, fullPath, new List<ISharedModule> { 
                 //new DlrDataApp.Modules.Profiling.Shared.ProfilingModule()
+                new DlrDataApp.Modules.FieldCartographer.Shared.FieldCartographerModule()
             }));
             ReloadToolbar();
             EnsureAppPermission(Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage, Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation, Manifest.Permission.RecordAudio);

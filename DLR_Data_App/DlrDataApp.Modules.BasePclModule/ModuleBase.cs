@@ -7,14 +7,16 @@ using Xamarin.Forms;
 
 namespace DlrDataApp.Modules.Base.Shared
 {
-    public abstract class ModuleBase : ISharedModule
+    public abstract class ModuleBase<T> : ISharedModule where T : ModuleBase<T>
     {
         public event EventHandler<IModuleHost> Initializing = delegate { };
         public event EventHandler<IModuleHost> Initialized = delegate { };
         public event EventHandler<IModuleHost> PostInitialized = delegate { };
         public event EventHandler<IModuleHost> PostInitializing = delegate { };
-        public IModuleHost ModuleHost { get; private set; }
 
+        public static T Instance { get; private set; }
+        public IModuleHost ModuleHost { get; private set; }
+        
         public IApp App => ModuleHost.App;
         public IUser CurrentUser => ModuleHost.App.CurrentUser;
         public Page CurrentPage => ModuleHost.App.CurrentPage;
@@ -27,6 +29,7 @@ namespace DlrDataApp.Modules.Base.Shared
         {
             ModuleHost = moduleHost;
             Initializing(this, ModuleHost);
+            Instance = (T)this;
             await OnInitialize();
             Initialized(this, ModuleHost);
         }

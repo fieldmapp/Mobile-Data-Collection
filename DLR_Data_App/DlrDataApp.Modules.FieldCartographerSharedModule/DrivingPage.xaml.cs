@@ -1,8 +1,8 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
-using DLR_Data_App.Controls;
-using DLR_Data_App.Services;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +16,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Shapes;
 using Xamarin.Forms.Xaml;
 
-namespace DLR_Data_App.Views
+namespace DlrDataApp.Modules.FieldCartographer.Shared
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DrivingPage : ContentPage
@@ -66,6 +66,10 @@ namespace DLR_Data_App.Views
         readonly bool[] IsLaneStarted;
         readonly string LogFileIdentifier;
 
+        public DrivingPage() : this(MaxLaneCountPerSide)
+        {
+
+        }
 
         public DrivingPage(int laneCountPerSide = MaxLaneCountPerSide)
         {

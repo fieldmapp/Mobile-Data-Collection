@@ -11,16 +11,13 @@ using DlrDataApp.Modules.Profiling.Shared.Views.ProfilingList;
 
 namespace DlrDataApp.Modules.Profiling.Shared
 {
-    public class ProfilingModule : ModuleBase
+    public class ProfilingModule : ModuleBase<ProfilingModule>
     {
-        public static ProfilingModule Instance;
-
         public Guid CurrentProfilingPageGuid { private set; get; }
         public Guid ProfilingListPageGuid { private set; get; }
         public override Task OnInitialize()
         {
             ResourcesCollector.AddResource<ProfilingResources>();
-            Instance = this;
             CurrentProfilingPageGuid = ModuleHost.AddToSidebar(ProfilingResources.currentprofiling, new NavigationPage(new CurrentProfilingPage()));
             ProfilingListPageGuid = ModuleHost.AddToSidebar(ProfilingResources.profiling, new NavigationPage(new ProfilingListPage()));
 

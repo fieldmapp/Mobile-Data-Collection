@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -154,6 +155,11 @@ namespace DlrDataApp.Modules.Base.Shared
                     method.Invoke(view, null);
                 }
             }
+        }
+
+        public static string GetSafeIdentifier(this DateTime dateTime)
+        {
+            return dateTime.ToString("ddMMyyyyHHmmss", CultureInfo.InvariantCulture);
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DLR_Data_App.Services
+namespace DlrDataApp.Modules.FieldCartographer.Shared
 {
     public interface IUbloxCommunicator
     {

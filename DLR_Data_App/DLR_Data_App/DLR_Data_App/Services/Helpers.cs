@@ -265,10 +265,5 @@ namespace DLR_Data_App.Services
                 throw new ArgumentException("param must be in rang 0 to 9 (inclusive)", nameof(digit));
             return DigitToString[digit];
         }
-
-        public static string GetSafeIdentifier(this DateTime dateTime)
-        {
-            return dateTime.ToString("ddMMyyyyHHmmss", CultureInfo.InvariantCulture);
-        }
     }
 }

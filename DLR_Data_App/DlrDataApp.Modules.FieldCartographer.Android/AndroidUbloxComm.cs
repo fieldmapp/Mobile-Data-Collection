@@ -16,12 +16,14 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using com.DLR.DLR_Data_App.Droid;
-using DLR_Data_App.Services;
+using DlrDataApp.Modules.Base.Android;
 using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.FieldCartographer.Shared;
 using Hoho.Android.UsbSerial.Driver;
 using Hoho.Android.UsbSerial.Util;
 using Java.Util.Concurrent;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 [assembly: Xamarin.Forms.Dependency(typeof(AndroidUbloxComm))]
 namespace com.DLR.DLR_Data_App.Droid
@@ -29,8 +31,9 @@ namespace com.DLR.DLR_Data_App.Droid
     [BroadcastReceiver]
     class AndroidUbloxComm : IUbloxCommunicator
     {
+        static FormsAppCompatActivity MainActivity => DependencyService.Get<IMainActivityProvider>().MainActivity;
         public const int REQUEST_CODE = 6;
-        private static readonly string ACTION_USB_PERMISSION = MainActivity.Instance.PackageName + ".USB_PERMISSION";
+        private static readonly string ACTION_USB_PERMISSION = MainActivity.PackageName + ".USB_PERMISSION";
         public Task LoadTask { get; }
 
         UsbBroadcastReciever UsbReceiver;
@@ -48,11 +51,11 @@ namespace com.DLR.DLR_Data_App.Droid
         {
             // see https://github.com/851265601/Xamarin.Android_ListviewSelect/blob/master/GetUSBPermission for tutorial on xamarin usb host connection
             // see https://github.com/anotherlab/UsbSerialForAndroid/blob/master/UsbSerialExampleApp/SerialConsoleActivity.cs for tutorial on used serial usb lib
-            UsbManager = (UsbManager)MainActivity.Instance.ApplicationContext.GetSystemService(Context.UsbService);
+            UsbManager = (UsbManager)MainActivity.ApplicationContext.GetSystemService(Context.UsbService);
 
             UsbReceiver = new UsbBroadcastReciever(this);
             var filter = new IntentFilter(ACTION_USB_PERMISSION);
-            MainActivity.Instance.RegisterReceiver(UsbReceiver, filter);
+            MainActivity.RegisterReceiver(UsbReceiver, filter);
 
             var table = UsbSerialProber.DefaultProbeTable;
             const int ubloxVendorId = 5446;
@@ -73,7 +76,7 @@ namespace com.DLR.DLR_Data_App.Droid
             else
             {
                 var connection = UsbManager.OpenDevice(UbloxDriver.Device);
-                var intent = PendingIntent.GetBroadcast(MainActivity.Instance.ApplicationContext, REQUEST_CODE, new Intent(ACTION_USB_PERMISSION), PendingIntentFlags.UpdateCurrent);
+                var intent = PendingIntent.GetBroadcast(MainActivity.ApplicationContext, REQUEST_CODE, new Intent(ACTION_USB_PERMISSION), PendingIntentFlags.UpdateCurrent);
                 //todo: popup will be overwritten by other permissions popup (MainActivity.EnsureAppPermission)
                 UsbManager.RequestPermission(UbloxDriver.Device, intent);
             }

@@ -28,6 +28,8 @@ namespace DLR_Data_App
 
         public Page CurrentPage => Shell.Current.CurrentPage;
 
+        public FlyoutItem FlyoutItem => AppShell.Current.ModuleItems;
+
         List<ISharedModule> Modules;
 
         /// <summary>
