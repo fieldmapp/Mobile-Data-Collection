@@ -57,7 +57,7 @@ namespace DLR_Data_App
 
         public void AfterSplashScreenLoad()
         {
-            ModuleHost = new ModuleHostService(this, Modules);
+            ModuleHost = new ModuleHostService(this, Modules, new SharedMethodProvider());
         }
 
         protected override void OnStart()

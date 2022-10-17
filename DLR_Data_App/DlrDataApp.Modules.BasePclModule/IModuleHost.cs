@@ -9,6 +9,7 @@ namespace DlrDataApp.Modules.Base.Shared
     {
         List<Func<string, string>> RedirectionFuncs { get; }
         IApp App { get; }
+        ISharedMethodProvider SharedMethodProvider { get; }
         void AddNavigationValidityCheck(Func<string, string> redirectionFunc);
     }
 }

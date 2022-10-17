@@ -24,6 +24,7 @@ namespace DlrDataApp.Modules.Base.Shared
         public ThreadSafeRandom RandomProvider => ModuleHost.App.RandomProvider;
         public Sensor Sensor => ModuleHost.App.Sensor;
         public string FolderLocation => ModuleHost.App.FolderLocation;
+        public ISharedMethodProvider SharedMethodProvider => ModuleHost.SharedMethodProvider;
 
         public async Task Initialize(IModuleHost moduleHost)
         {
