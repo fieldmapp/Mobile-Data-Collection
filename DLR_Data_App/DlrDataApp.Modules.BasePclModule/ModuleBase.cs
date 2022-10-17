@@ -14,7 +14,13 @@ namespace DlrDataApp.Modules.Base.Shared
         public event EventHandler<IModuleHost> PostInitialized = delegate { };
         public event EventHandler<IModuleHost> PostInitializing = delegate { };
 
+        public ModuleBase(string moduleName, List<string> neededModules)
+        {
+            ModuleName = moduleName;
+        }
+
         public static T Instance { get; private set; }
+        public string ModuleName { get; }
         public IModuleHost ModuleHost { get; private set; }
         
         public IApp App => ModuleHost.App;
@@ -44,5 +50,10 @@ namespace DlrDataApp.Modules.Base.Shared
             PostInitialized(this, ModuleHost);
         }
         public virtual Task OnPostInitialize() => Task.CompletedTask;
+
+        protected void RegisterSharedMethod(string methodName, Func<object, object> method)
+        {
+            SharedMethodProvider.Register(ModuleName, methodName, method);
+        }
     }
 }

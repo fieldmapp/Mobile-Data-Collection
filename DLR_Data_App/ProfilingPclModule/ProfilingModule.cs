@@ -9,13 +9,14 @@ using Xamarin.Forms;
 using DlrDataApp.Modules.Profiling.Shared.Views;
 using DlrDataApp.Modules.Profiling.Shared.Views.ProfilingList;
 using DlrDataApp.Modules.Profiling.Shared.Models;
+using DLR_Data_App.Services;
 
 namespace DlrDataApp.Modules.Profiling.Shared
 {
     public class ProfilingModule : ModuleBase<ProfilingModule>
     {
-        public Guid CurrentProfilingPageGuid { private set; get; }
-        public Guid ProfilingListPageGuid { private set; get; }
+        public ProfilingModule() : base("Profiling", new List<string> { }) { }
+
         public override Task OnInitialize()
         {
             ResourcesCollector.AddResource<ProfilingResources>();
@@ -32,6 +33,27 @@ namespace DlrDataApp.Modules.Profiling.Shared
 
                 var currentProfiling = Database.FindWithChildren<ActiveProfilingInfo>(t => true, true)?.ActiveProfiling;
                 return currentProfiling == null ? "//profiling" : null;
+            });
+            RegisterSharedMethod("IsProfilingLoaded", (object input) =>
+            {
+                if (!(input is string profilingName))
+                    return false;
+                return ProfilingStorageManager.IsProfilingModuleLoaded(profilingName);
+            });
+            RegisterSharedMethod("RecentProfilingFinished", (object input) =>
+            {
+                if (!(input is string profilingName))
+                    return false;
+                const int MaxDaysSinceLastProfilingCompletion = 45;
+                const int MaxProjectsFilledPerProfiling = 10;
+
+                var lastAnsweredProfilingDate = ProfilingStorageManager.GetLastCompletedProfilingDate(profilingName);
+                if ((DateTime.UtcNow - lastAnsweredProfilingDate).TotalDays > MaxDaysSinceLastProfilingCompletion
+                    || ProfilingStorageManager.ProjectsFilledSinceLastProfilingCompletion > MaxProjectsFilledPerProfiling)
+                {
+                    return false;
+                }
+                return true;
             });
 
 
