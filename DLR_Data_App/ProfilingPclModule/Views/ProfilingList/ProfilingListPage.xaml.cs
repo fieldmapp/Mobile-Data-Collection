@@ -85,7 +85,7 @@ namespace DlrDataApp.Modules.Profiling.Shared.Views.ProfilingList
         /// </summary>
         private async void ProjectListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            await this.PushPage(new ProfilingDetailPage(Profilings[e.ItemIndex].ProfilingData));
+            await Shell.Current.Navigation.PushPage(new ProfilingDetailPage(Profilings[e.ItemIndex].ProfilingData));
         }
     }
 }

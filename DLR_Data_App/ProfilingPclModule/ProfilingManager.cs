@@ -17,7 +17,7 @@ namespace DlrDataApp.Modules.Profiling.Shared
     /// </summary>
     static class ProfilingManager
     {
-        static NavigationPage Navigation => ProfilingModule.Instance.ModuleHost.App.NavigationPage;
+        static INavigation Navigation => Shell.Current.Navigation;
         static ProfilingMenuItem CurrentProfiling;
 
         public static IQuestionContent GetNextQuestion(ProfilingMenuItem profilingType)

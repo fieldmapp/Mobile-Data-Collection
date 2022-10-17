@@ -29,15 +29,15 @@ namespace DlrDataApp.Modules.Base.Shared
         /// <param name="navElement">Navigation element with attached NavigationPage. When called from a page, its just "this".</param>
         /// <param name="page">New page that should be pushed to the navigation stack.</param>
         /// <param name="animated">Determines if the new page should appear in an animation.</param>
-        public static async Task PushPage(this NavigableElement navElement, Page page, bool animated = true)
+        public static async Task PushPage(this INavigation navigation, Page page, bool animated = true)
         {
             if (Device.RuntimePlatform == Device.Android)
             {
-                await navElement.Navigation.PushAsync(page, animated);
+                await navigation.PushAsync(page, animated);
             }
             else if (Device.RuntimePlatform == Device.iOS)
             {
-                await navElement.Navigation.PushModalAsync(page, animated);
+                await navigation.PushModalAsync(page, animated);
             }
         }
 

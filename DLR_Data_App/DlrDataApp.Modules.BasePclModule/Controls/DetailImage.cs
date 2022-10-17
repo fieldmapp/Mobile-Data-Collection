@@ -37,7 +37,7 @@ namespace DlrDataApp.Modules.Base.Shared.Controls
         {
             await Task.Delay(LongPressThreshold);
             if (LastPressGuid == pressGuid)
-                Device.BeginInvokeOnMainThread(() => _ = this.PushPage(new ImageDetailPage(Source)));
+                Device.BeginInvokeOnMainThread(() => _ = Shell.Current.Navigation.PushPage(new ImageDetailPage(Source)));
         }
 
         private void ReleasePicture(object sender, EventArgs e)

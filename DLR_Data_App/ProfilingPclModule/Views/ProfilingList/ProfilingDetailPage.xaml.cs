@@ -4,6 +4,7 @@ using DlrDataApp.Modules.Profiling.Shared.Models;
 using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Profiling.Shared.Localization;
 using DlrDataApp.Modules.Base.Shared.Localization;
+using Xamarin.Forms;
 
 namespace DlrDataApp.Modules.Profiling.Shared.Views.ProfilingList
 {
@@ -34,14 +35,15 @@ namespace DlrDataApp.Modules.Profiling.Shared.Views.ProfilingList
         /// <summary>
         /// Selects project as current active project.
         /// </summary>
-        private async void Btn_current_profiling_Clicked(object sender, EventArgs e)
+        private void Btn_current_profiling_Clicked(object sender, EventArgs e)
         {
 
             // Set project in database as current project
             Database.SetCurrentProfiling(InspectedProfiling);
 
             // Navigate to current project
-            ProfilingModule.Instance.ModuleHost.NavigateTo(ProfilingModule.Instance.CurrentProfilingPageGuid);
+
+            _ = Shell.Current.GoToAsync("profilingcurrent");
         }
 
         /// <summary>

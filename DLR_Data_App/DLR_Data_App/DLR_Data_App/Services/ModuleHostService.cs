@@ -10,8 +10,9 @@ namespace DLR_Data_App.Services
 {
     public class ModuleHostService : IModuleHost
     {
+        public List<Func<string, string>> RedirectionFuncs { get; private set; } = new List<Func<string, string>>();
+
         List<ISharedModule> Modules;
-        List<HomeMenuItem> MenuItems = new List<HomeMenuItem>();
         public ModuleHostService(IApp app, List<ISharedModule> modules)
         {
             Modules = modules;
@@ -30,6 +31,12 @@ namespace DLR_Data_App.Services
             {
                 module.PostInitialize();
             }
+        }
+
+        
+        public void AddNavigationValidityCheck(Func<string, string> redirectionFunc)
+        {
+            RedirectionFuncs.Add(redirectionFunc);
         }
 
         public IApp App { get; }

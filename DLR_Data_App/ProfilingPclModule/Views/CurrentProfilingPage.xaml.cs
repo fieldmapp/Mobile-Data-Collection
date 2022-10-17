@@ -26,6 +26,21 @@ namespace DlrDataApp.Modules.Profiling.Shared.Views
             ProfilingStorageManager.Initilize(ProfilingModule.Instance.ModuleHost.App.CurrentUser.Id.Value);
 
             MenuList.ItemsSource = ProfilingStorageManager.ProfilingMenuItems;
+            Shell.Current.Navigated += Current_Navigated;
+        }
+
+        private void Current_Navigated(object sender, ShellNavigatedEventArgs e)
+        {
+            if (e.Current.Location.OriginalString != "//profilingcurrent")
+                return;
+
+            var currentProfiling = Database.FindWithChildren<ActiveProfilingInfo>(t => true, true)?.ActiveProfiling;
+
+            if (CurrentProfilingId != currentProfiling.ProfilingId)
+            {
+                CurrentProfilingId = currentProfiling.ProfilingId;
+                ProfilingStorageManager.SetProfiling(currentProfiling);
+            }
         }
 
         /// Defining the Event for the click on an element in the ListView
@@ -33,26 +48,8 @@ namespace DlrDataApp.Modules.Profiling.Shared.Views
         {
             if (!(e.Item is ProfilingMenuItem selectedItem))
                 throw new NotImplementedException();
-            ProfilingMenuItem tapped = (ProfilingMenuItem)e.Item;
             //Navigate to the clicked element in the list
-            ProfilingManager.StartProfiling(tapped);
-        }
-
-        protected override void OnAppearing()
-        {
-            var currentProfiling = Database.FindWithChildren<ActiveProfilingInfo>(t => true, true)?.ActiveProfiling;
-            if (currentProfiling == null)
-            {
-                ProfilingModule.Instance.ModuleHost.NavigateTo(ProfilingModule.Instance.ProfilingListPageGuid);
-                return;
-            }
-
-            if (CurrentProfilingId != currentProfiling.ProfilingId)
-            {
-                CurrentProfilingId = currentProfiling.ProfilingId;
-                ProfilingStorageManager.SetProfiling(currentProfiling);
-            }
-            base.OnAppearing();
+            ProfilingManager.StartProfiling(selectedItem);
         }
 
         private void HintClicked(object sender, EventArgs e)
@@ -66,7 +63,7 @@ namespace DlrDataApp.Modules.Profiling.Shared.Views
                 ProfilingManager.GenerateEvaluationItem(i) :
                 new EvaluationItem(i.ChapterName, -1, -1, -1, -1)).ToList();
             
-            await this.PushPage(new EvaluationMainPage(evalItems));
+            await Shell.Current.Navigation.PushPage(new EvaluationMainPage(evalItems));
         }
 
         private async void ExportAnwersClicked(object sender, EventArgs e)
