@@ -476,10 +476,6 @@ Consent of the data subject means any freely given, specific, informed and unamb
   <data name="yes" xml:space="preserve">
     <value>Yes</value>
   </data>
-  <data name="profilingModuleMissing" xml:space="preserve">
-    <value>You are missing the profiling module {0} required for this project.</value>
-    <comment>0 - projectid of missing project</comment>
-  </data>
   <data name="orientationSensor" xml:space="preserve">
     <value>Orientation sensor</value>
   </data>

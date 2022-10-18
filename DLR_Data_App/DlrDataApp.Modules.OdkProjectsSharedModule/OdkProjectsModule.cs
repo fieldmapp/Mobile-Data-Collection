@@ -1,5 +1,6 @@
 ﻿using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Shared.Localization;
+using DlrDataApp.Modules.OdkProjects.Shared.Localization;
 using DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject;
 using DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList;
 using System;
@@ -10,17 +11,26 @@ using Xamarin.Forms;
 
 namespace DlrDataApp.Modules.OdkProjects.Shared
 {
-    class OdkProjectsModule : ModuleBase
+    class OdkProjectsModule : ModuleBase<OdkProjectsModule>
     {
-        public static OdkProjectsModule Instance;
-        public Guid CurrentProjectPageGuid { private set; get; }
-        public Guid ProjectListPageGuid { private set; get; }
+        public OdkProjectsModule() : base("Projects", new List<string>() { "Profiling" }) { }
         public override Task OnInitialize()
         {
-            Instance = this;
-            ResourcesCollector.AddResource<Localization.OdkProjectsResources>();
-            CurrentProjectPageGuid = ModuleHost.AddToSidebar(Localization.OdkProjectsResources.currentproject, new NavigationPage(new ProjectPage()));
-            ProjectListPageGuid = ModuleHost.AddToSidebar(Localization.OdkProjectsResources.projects, new NavigationPage(new ProjectListPage()));
+            // currently working on replacing the akward way in which projects (+ project results) are stored to make it compatible with Database class
+            ResourcesCollector.AddResource<OdkProjectsResources>();
+
+            ModuleHost.App.FlyoutItem.Items.Add(new ShellContent
+            {
+                Title = OdkProjectsResources.currentproject,
+                Route = "projectscurrent",
+                ContentTemplate = new DataTemplate(typeof(ProjectPage))
+            });
+            ModuleHost.App.FlyoutItem.Items.Add(new ShellContent
+            {
+                Title = OdkProjectsResources.projects,
+                Route = "projects",
+                ContentTemplate = new DataTemplate(typeof(ProjectListPage))
+            });
             return Task.CompletedTask;
         }
     }

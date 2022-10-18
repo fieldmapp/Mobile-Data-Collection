@@ -8,6 +8,7 @@ namespace DlrDataApp.Modules.Base.Shared
 {
     public interface ISharedModule
     {
+        string ModuleName { get; }
         Task Initialize(IModuleHost moduleHost);
         Task PostInitialize();
     }

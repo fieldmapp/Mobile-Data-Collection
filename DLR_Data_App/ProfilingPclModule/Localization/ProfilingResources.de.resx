@@ -174,9 +174,6 @@ Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen f√
   <data name="newprofiling" xml:space="preserve">
     <value>Neues Profiling</value>
   </data>
-  <data name="pleaseCompleteProfiling" xml:space="preserve">
-    <value>Bitte erst das Profiling abschlie√üen.</value>
-  </data>
   <data name="profiling" xml:space="preserve">
     <value>Profiling</value>
   </data>

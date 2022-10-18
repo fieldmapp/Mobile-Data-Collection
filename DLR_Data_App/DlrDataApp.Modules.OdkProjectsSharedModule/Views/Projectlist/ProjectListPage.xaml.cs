@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using DLR_Data_App.Models.ProjectModel;
-using DLR_Data_App.ViewModels.ProjectList;
 using DLR_Data_App.Services;
-using DLR_Data_App.Localizations;
+using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+using DlrDataApp.Modules.OdkProjects.Shared.ViewModels.ProjectList;
+using DlrDataApp.Modules.Base.Shared;
 
 namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
 {
@@ -68,9 +68,9 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
         /// <summary>
         /// Opens detail of project
         /// </summary>
-        private async void ProjectListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        private void ProjectListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            await this.PushPage(new ProjectDetailPage(_projectList[e.ItemIndex]));
+            _ = Shell.Current.Navigation.PushPage(new ProjectDetailPage(_projectList[e.ItemIndex]));
         }
     }
 }

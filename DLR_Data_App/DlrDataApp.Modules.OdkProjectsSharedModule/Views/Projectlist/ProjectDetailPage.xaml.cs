@@ -1,6 +1,9 @@
-﻿using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+﻿using DlrDataApp.Modules.Base.Shared.Localization;
+using DlrDataApp.Modules.OdkProjects.Shared.Localization;
+using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
 using DlrDataApp.Modules.OdkProjects.Shared.Services;
 using System;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
@@ -38,13 +41,13 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
         /// <summary>
         /// Selects project as current active project.
         /// </summary>
-        private async void Btn_current_project_Clicked(object sender, EventArgs e)
+        private void Btn_current_project_Clicked(object sender, EventArgs e)
         {
             // Set project in database as current project
             Database.SetCurrentProject(_workingProject);
 
             // Navigate to current project
-            await App.CurrentMainPage.NavigateFromMenu(MenuItemType.CurrentProject);
+            _ = Shell.Current.GoToAsync("//projectscurrent");
         }
 
         /// <summary>
@@ -52,7 +55,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
         /// </summary>
         private async void Btn_remove_project_Clicked(object sender, EventArgs e)
         {
-            var answer = await DisplayAlert(AppResources.removeproject, AppResources.removeprojectwarning, AppResources.okay, AppResources.cancel);
+            var answer = await DisplayAlert(OdkProjectsResources.removeproject, OdkProjectsResources.removeprojectwarning, SharedResources.okay, SharedResources.cancel);
             if (answer)
             {
                 Database.DeleteProject(_workingProject);

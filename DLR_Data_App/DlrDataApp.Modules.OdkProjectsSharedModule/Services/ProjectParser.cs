@@ -35,7 +35,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Services
         public async Task<bool> ParseZip(string zipFile, string unzipFolder)
         {
             // Extract zip archive
-            var status = await SharedModule.Helpers.UnzipFileAsync(zipFile, unzipFolder);
+            var status = await Base.Shared.Helpers.UnzipFileAsync(zipFile, unzipFolder);
             if (!status)
             {
                 return false;

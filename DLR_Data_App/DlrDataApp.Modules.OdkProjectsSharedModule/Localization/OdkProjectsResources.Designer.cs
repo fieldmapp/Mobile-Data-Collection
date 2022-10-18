@@ -19,7 +19,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Localization {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class OdkProjectsResources {
@@ -84,6 +84,24 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Localization {
         internal static string noactiveproject {
             get {
                 return ResourceManager.GetString("noactiveproject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please complete the profiling..
+        /// </summary>
+        internal static string pleaseCompleteProfiling {
+            get {
+                return ResourceManager.GetString("pleaseCompleteProfiling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are missing the profiling module {0} required for this project..
+        /// </summary>
+        internal static string profilingModuleMissing {
+            get {
+                return ResourceManager.GetString("profilingModuleMissing", resourceCulture);
             }
         }
         

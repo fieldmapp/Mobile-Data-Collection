@@ -174,9 +174,6 @@ Tap on one to answer the questions of it. For each category you see:
   <data name="newprofiling" xml:space="preserve">
     <value>New profiling</value>
   </data>
-  <data name="pleaseCompleteProfiling" xml:space="preserve">
-    <value>Please complete the profiling.</value>
-  </data>
   <data name="profiling" xml:space="preserve">
     <value>Profiling</value>
   </data>

@@ -2,6 +2,10 @@
 using Xamarin.Forms.Xaml;
 using DLR_Data_App.Services;
 using Xamarin.Essentials;
+using System.IO;
+using DlrDataApp.Modules.Base.Shared.Localization;
+using DlrDataApp.Modules.OdkProjects.Shared.Services;
+using DlrDataApp.Modules.OdkProjects.Shared.Localization;
 
 namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
 {
@@ -31,7 +35,6 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
                 {
                     _fileCopyPath = Path.Combine(OdkProjectsModule.Instance.ModuleHost.App.FolderLocation, "Data.zip");
                     using (var dataArray = await File.OpenReadAsync())
-                    using (var dataArray = File.GetStream())
                     {
                         System.IO.File.Delete(_fileCopyPath);
 
@@ -43,7 +46,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
                 }
                 else
                 {
-                    await DisplayAlert(AppResources.filepicker, AppResources.filetypeerror, AppResources.cancel);
+                    await DisplayAlert(SharedResources.filepicker, SharedResources.filetypeerror, SharedResources.cancel);
                 }
             }
         }
@@ -62,18 +65,18 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
 
                     if (result)
                     {
-                        await DisplayAlert(Localization.AppResources.projects, Localization.AppResources.projectSuccessfullyAdded, AppResources.okay);
+                        await DisplayAlert(OdkProjectsResources.projects, OdkProjectsResources.projectSuccessfullyAdded, SharedResources.okay);
                         await Navigation.PopModalAsync();
                     }
                     else
                     {
-                        await DisplayAlert(Localization.AppResources.projects, AppResources.failed, AppResources.okay);
+                        await DisplayAlert(OdkProjectsResources.projects, SharedResources.failed, SharedResources.okay);
                     }
                 }
             }
             else
             {
-                await DisplayAlert(Localization.AppResources.projects, AppResources.failed, AppResources.okay);
+                await DisplayAlert(OdkProjectsResources.projects, SharedResources.failed, SharedResources.okay);
             }
         }
 

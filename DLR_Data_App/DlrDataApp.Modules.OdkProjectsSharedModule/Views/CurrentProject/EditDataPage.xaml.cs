@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.OdkProjects.Shared.ViewModels.CurrentProject;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -26,7 +28,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
 
         private void DataList_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            _ = this.PushPage(new EditDataDetailPage(_viewModel.ProjectsData[e.ItemIndex]));
+            _ = Shell.Current.Navigation.PushPage(new EditDataDetailPage(_viewModel.ProjectsData[e.ItemIndex]));
         }
     }
 }

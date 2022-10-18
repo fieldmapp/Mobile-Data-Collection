@@ -65,23 +65,6 @@ namespace DLR_Data_App.Services
             return -1;
         }
 
-        /// <summary>
-        /// Returns elements from a sequence as long as a specified condition is false and one after that.
-        /// </summary>
-        /// <typeparam name="T">The type of the element of source.</typeparam>
-        /// <param name="list">A sequence to return elements from</param>
-        /// <param name="predicate">A function to test each element for a condition</param>
-        /// <returns>An <see cref="IEnumerable{T}"/> that contains the elements from the input sequence that occur before and including the element at which the test passes.</returns>
-        public static IEnumerable<T> TakeUntilIncluding<T>(this IEnumerable<T> list, Func<T, bool> predicate)
-        {
-            foreach (T el in list)
-            {
-                yield return el;
-                if (predicate(el))
-                    yield break;
-            }
-        }
-
         public static Vector3 ToEulerAngles(this Quaternion q)
         {
             // from https://stackoverflow.com/q/11492299

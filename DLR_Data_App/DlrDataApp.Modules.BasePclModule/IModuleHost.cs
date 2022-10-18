@@ -7,6 +7,7 @@ namespace DlrDataApp.Modules.Base.Shared
 {
     public interface IModuleHost
     {
+        List<ISharedModule> Modules { get; }
         List<Func<string, string>> RedirectionFuncs { get; }
         IApp App { get; }
         ISharedMethodProvider SharedMethodProvider { get; }

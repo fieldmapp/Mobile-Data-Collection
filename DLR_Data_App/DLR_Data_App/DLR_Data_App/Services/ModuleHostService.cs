@@ -12,7 +12,7 @@ namespace DLR_Data_App.Services
     {
         public List<Func<string, string>> RedirectionFuncs { get; private set; } = new List<Func<string, string>>();
 
-        List<ISharedModule> Modules;
+        public List<ISharedModule> Modules { get; }
         public ModuleHostService(IApp app, List<ISharedModule> modules, SharedMethodProvider methodProvider)
         {
             Modules = modules;

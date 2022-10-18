@@ -14,6 +14,8 @@ using DlrDataApp.Modules.OdkProjects.Shared.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using static DlrDataApp.Modules.OdkProjects.Shared.Services.Helpers;
+
 namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -44,7 +46,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
             {
                 DependencyService.Get<IToast>().LongAlert(OdkProjectsResources.noactiveproject);
 
-                OdkProjectsModule.Instance.ModuleHost.NavigateTo(OdkProjectsModule.Instance.ProjectListPageGuid);
+                _ = Shell.Current.GoToAsync("//projects");
                 return;
             }
 
@@ -69,23 +71,26 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
             if (string.IsNullOrWhiteSpace(project.ProfilingId))
                 return;
 
-            if (!ProfilingStorageManager.IsProfilingModuleLoaded(project.ProfilingId))
+            bool isModuleLoaded = OdkProjectsModule.Instance.CallSharedMethod<string, bool>("Profiling", 
+                "IsProfilingLoaded", project.ProfilingId);
+            if (!isModuleLoaded)
             {
-                var profilingList = await App.CurrentMainPage.NavigateFromMenu(MenuItemType.ProfilingList);
+                await Shell.Current.GoToAsync("//profilings");
 
-                await profilingList.DisplayAlert(SharedResources.error,
-                    string.Format(AppResources.profilingModuleMissing, project.ProfilingId),
+                _ = Shell.Current.DisplayAlert(SharedResources.error,
+                    string.Format(OdkProjectsResources.profilingModuleMissing, project.ProfilingId),
                     SharedResources.ok);
                 return;
             }
 
-            var lastAnsweredProfilingDate = ProfilingStorageManager.GetLastCompletedProfilingDate(project.ProfilingId);
-            if ((DateTime.UtcNow - lastAnsweredProfilingDate).TotalDays > MaxDaysSinceLastProfilingCompletion
-                || ProfilingStorageManager.ProjectsFilledSinceLastProfilingCompletion > MaxProjectsFilledPerProfiling)
-            {
-                DependencyService.Get<IToast>().LongAlert(AppResources.pleaseCompleteProfiling);
+            bool profilingRecentlyFinished = OdkProjectsModule.Instance.CallSharedMethod<string, bool>("Profiling",
+                "RecentProfilingFinished", project.ProfilingId);
 
-                await App.CurrentMainPage.NavigateFromMenu(MenuItemType.ProfilingList);
+            if (!profilingRecentlyFinished)
+            {
+                DependencyService.Get<IToast>().LongAlert(OdkProjectsResources.pleaseCompleteProfiling);
+
+                await Shell.Current.GoToAsync("//profilings");
             }
         }
 
@@ -106,7 +111,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
             }
             else
             {
-                var translatedProject = Helpers.TranslateProjectDetails(_workingProject);
+                var translatedProject = TranslateProjectDetails(_workingProject);
                 Title = translatedProject.Title;
 
                 foreach (var projectForm in _workingProject.FormList)
@@ -253,7 +258,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
         {
             if (await CheckActiveProject())
             {
-                await this.PushPage(new EditDataPage());
+                _ = Shell.Current.Navigation.PushPage(new EditDataPage());
             }
         }
 
@@ -278,7 +283,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
 
                 if (!string.IsNullOrWhiteSpace(_workingProject.ProfilingId))
                 {
-                    ProfilingStorageManager.ProjectsFilledSinceLastProfilingCompletion++;
+                    // ProfilingStorageManager.ProjectsFilledSinceLastProfilingCompletion++;
                     // TODO: next line currently crashes the app. disabling it will disable saving the ProjectsFilledSinceLastProfilingCompletion though
                     // ProfilingStorageManager.SaveCurrentAnswer();
                 }

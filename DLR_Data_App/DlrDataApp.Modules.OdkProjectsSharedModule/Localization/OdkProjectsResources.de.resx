@@ -126,6 +126,12 @@
   <data name="noactiveproject" xml:space="preserve">
     <value>Kein aktives Projekt. Bitte ein Projekt aus der Projektliste auswählen und als aktiv markieren.</value>
   </data>
+  <data name="pleaseCompleteProfiling" xml:space="preserve">
+    <value>Bitte erst das Profiling abschließen.</value>
+  </data>
+  <data name="profilingModuleMissing" xml:space="preserve">
+    <value>Das Profiling Modul {0} felt, wird aber für dieses Projekt benötigt.</value>
+  </data>
   <data name="projectdetails" xml:space="preserve">
     <value>Projektdetails</value>
   </data>

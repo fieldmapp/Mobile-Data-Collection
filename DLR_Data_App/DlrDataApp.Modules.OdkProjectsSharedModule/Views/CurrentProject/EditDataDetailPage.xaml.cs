@@ -9,6 +9,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectForms;
+
+using static DlrDataApp.Modules.OdkProjects.Shared.Services.Helpers;
+using DlrDataApp.Modules.Base.Shared.Localization;
+using DlrDataApp.Modules.OdkProjects.Shared.Localization;
+using DlrDataApp.Modules.OdkProjects.Shared.Services;
 
 namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
 {
@@ -31,7 +37,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
             if (_workingProject == null)
                 throw new Exception();
 
-            var translatedProject = Helpers.TranslateProjectDetails(_workingProject);
+            var translatedProject = TranslateProjectDetails(_workingProject);
             Title = translatedProject.Title;
 
             _id = Convert.ToInt32(projectData["Id"]);
@@ -46,7 +52,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
 
             if (_pages == null || _pages.Count == 0)
             {
-                (Application.Current as App).CurrentPage.DisplayAlert(AppResources.warning, AppResources.noactiveproject, AppResources.okay);
+                Shell.Current.DisplayAlert(SharedResources.warning, OdkProjectsResources.noactiveproject, SharedResources.okay);
             }
 
 
@@ -84,11 +90,11 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
             // Check if current project is set
             if (_workingProject == null)
             {
-                Title = AppResources.currentproject;
+                Title = OdkProjectsResources.currentproject;
             }
             else
             {
-                var translatedProject = Helpers.TranslateProjectDetails(_workingProject);
+                var translatedProject = TranslateProjectDetails(_workingProject);
                 Title = translatedProject.Title;
 
                 foreach (var projectForm in _workingProject.FormList)
@@ -123,7 +129,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
         {
             var lastRequiredElement = (FormElement)sender;
             lastRequiredElement.ValidContentChange -= LastRequiredElement_ValidContentChange;
-            DependencyService.Get<IToast>().ShortAlert(AppResources.pleaseSaveBeforeQuiting);
+            DependencyService.Get<IToast>().ShortAlert(SharedResources.pleaseSaveBeforeQuiting);
         }
 
         private void UnlockElement(FormElement element)
@@ -224,8 +230,8 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
 
             var success = Database.UpdateCustomValuesById(tableName, _id, elementNameList, elementValueList);
 
-            string message = success ? AppResources.successful : AppResources.failed;
-            await DisplayAlert(AppResources.save, message, AppResources.okay);
+            string message = success ? SharedResources.successful : SharedResources.failed;
+            await DisplayAlert(SharedResources.save, message, SharedResources.okay);
         }
     }
 }
