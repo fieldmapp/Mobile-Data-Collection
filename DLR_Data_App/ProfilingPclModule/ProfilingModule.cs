@@ -31,7 +31,7 @@ namespace DlrDataApp.Modules.Profiling.Shared
                 if (path != "//profilingcurrent")
                     return null;
 
-                var currentProfiling = Database.FindWithChildren<ActiveProfilingInfo>(t => true, true)?.ActiveProfiling;
+                var currentProfiling = Database.GetActiveElement<ProfilingData, ActiveProfilingInfo>();
                 return currentProfiling == null ? "//profiling" : null;
             });
             RegisterSharedMethod("IsProfilingLoaded", (object input) =>

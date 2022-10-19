@@ -34,7 +34,7 @@ namespace DlrDataApp.Modules.Profiling.Shared.Views
             if (e.Current.Location.OriginalString != "//profilingcurrent")
                 return;
 
-            var currentProfiling = Database.FindWithChildren<ActiveProfilingInfo>(t => true, true)?.ActiveProfiling;
+            var currentProfiling = Database.GetActiveElement<ProfilingData, ActiveProfilingInfo>();
 
             if (CurrentProfilingId != currentProfiling.ProfilingId)
             {

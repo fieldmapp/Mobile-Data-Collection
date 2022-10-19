@@ -206,58 +206,94 @@ namespace DlrDataApp.Modules.Base.Shared
             return resultDelete > 0;
         }
 
-        // <summary>
-        // Deletes all data from the database which are belonging to a specific project.
-        // </summary>
-        // <param name="project">Project of which all data should be deleted</param>
-        //public static void DeleteProject(Project project, SQLiteConnection conn)
+
+        public T GetActiveElement<T, U>(bool recursive = true)
+            where T : class
+            where U : class, IActiveElementInfo<T>, new()
+            => RunWithConnection(c => GetActiveElement<T, U>(recursive));
+
+        public T GetActiveElement<T, U>(SQLiteConnection conn, bool recursive = true)
+            where T : class
+            where U : class, IActiveElementInfo<T>, new()
+        {
+            var activeElementInfo = ReadWithChildren<U>(conn, recursive).FirstOrDefault() ?? new U();
+            return activeElementInfo.ActiveElement;
+        }
+
+        public bool SetActiveElement<T, U>(T element)
+            where T : class
+            where U : class, IActiveElementInfo<T>, new()
+            => RunWithConnection(c => SetActiveElement<T, U>(element));
+
+
+        public bool SetActiveElement<T, U>(SQLiteConnection conn, T element)
+            where T : class
+            where U : class, IActiveElementInfo<T>, new()
+        {
+            var previousActiveElementInfo = ReadWithChildren<U>(conn, true/*maybe false could be used here?*/).FirstOrDefault() ?? new U();
+            previousActiveElementInfo.ActiveElement = element;
+            return InsertOrUpdateWithChildren(previousActiveElementInfo, true);
+        }
+
+        //public static bool SetCurrentProfiling(this Database db, ProfilingData profiling)
         //{
-        //    var queryForms = "DELETE FROM ProjectForm WHERE Id=?";
-        //    var queryFormElementList = "DELETE FROM ProjectFormElementList WHERE ElementId=?";
-        //    var queryFormElements = "DELETE FROM ProjectFormElements WHERE Id=?";
-        //    //var queryFormMetadata = "DELETE FROM ProjectFormMetadata WHERE Id=?";
-        //    //var queryUserConnection = "DELETE FROM ProjectUserConnection WHERE ProjectId=?";
-        //
-        //    // remove all elements of a form
-        //    foreach (var form in project.FormList)
-        //    {
-        //        // remove elements
-        //        foreach (var element in form.ElementList)
-        //        {
-        //            conn.Execute(queryFormElements, element.Id);
-        //            conn.Execute(queryFormElementList, element.Id);
-        //        }
-        //
-        //        // remove metadata
-        //        // conn.Execute(queryFormMetadata, form.Metadata.Id);
-        //
-        //        // remove form
-        //        conn.Execute(queryForms, form.Id);
-        //    }
-        //
-        //    // remove connection between user and project
-        //    //conn.Execute(queryUserConnection, project.Id);
-        //
-        //    // remove project
-        //    conn.Delete(project);
+        //    var previousProfilingInfo = db.ReadWithChildren<ActiveProfilingInfo>().FirstOrDefault() ?? new ActiveProfilingInfo();
+        //    previousProfilingInfo.ActiveProfiling = profiling;
+        //    return db.InsertOrUpdateWithChildren(previousProfilingInfo, true);
         //}
 
-        //public static void DeleteProfiling(ProfilingData profiling, SQLiteConnection conn)
-        //{
-        //    conn.Delete(profiling);
-        //    conn.Execute($"DELETE FROM {nameof(ProfilingResult)} WHERE {nameof(ProfilingResult.ProfilingId)}={profiling.ProfilingId}");
-        //}
+            // <summary>
+            // Deletes all data from the database which are belonging to a specific project.
+            // </summary>
+            // <param name="project">Project of which all data should be deleted</param>
+            //public static void DeleteProject(Project project, SQLiteConnection conn)
+            //{
+            //    var queryForms = "DELETE FROM ProjectForm WHERE Id=?";
+            //    var queryFormElementList = "DELETE FROM ProjectFormElementList WHERE ElementId=?";
+            //    var queryFormElements = "DELETE FROM ProjectFormElements WHERE Id=?";
+            //    //var queryFormMetadata = "DELETE FROM ProjectFormMetadata WHERE Id=?";
+            //    //var queryUserConnection = "DELETE FROM ProjectUserConnection WHERE ProjectId=?";
+            //
+            //    // remove all elements of a form
+            //    foreach (var form in project.FormList)
+            //    {
+            //        // remove elements
+            //        foreach (var element in form.ElementList)
+            //        {
+            //            conn.Execute(queryFormElements, element.Id);
+            //            conn.Execute(queryFormElementList, element.Id);
+            //        }
+            //
+            //        // remove metadata
+            //        // conn.Execute(queryFormMetadata, form.Metadata.Id);
+            //
+            //        // remove form
+            //        conn.Execute(queryForms, form.Id);
+            //    }
+            //
+            //    // remove connection between user and project
+            //    //conn.Execute(queryUserConnection, project.Id);
+            //
+            //    // remove project
+            //    conn.Delete(project);
+            //}
 
-        //public static bool InsertProfiling(ref ProfilingData newProfiling, SQLiteConnection conn)
-        //{
-        //    var profilingList = ReadProfilings(conn);
-        //    var newProfilingId = newProfiling.ProfilingId;
-        //
-        //    if (profilingList.Any(p => p.ProfilingId == newProfilingId))
-        //        return false;
-        //
-        //    return Insert(ref newProfiling, conn);
-        //}
+            //public static void DeleteProfiling(ProfilingData profiling, SQLiteConnection conn)
+            //{
+            //    conn.Delete(profiling);
+            //    conn.Execute($"DELETE FROM {nameof(ProfilingResult)} WHERE {nameof(ProfilingResult.ProfilingId)}={profiling.ProfilingId}");
+            //}
+
+            //public static bool InsertProfiling(ref ProfilingData newProfiling, SQLiteConnection conn)
+            //{
+            //    var profilingList = ReadProfilings(conn);
+            //    var newProfilingId = newProfiling.ProfilingId;
+            //
+            //    if (profilingList.Any(p => p.ProfilingId == newProfilingId))
+            //        return false;
+            //
+            //    return Insert(ref newProfiling, conn);
+            //}
         public List<T> Read<T>() where T : new() => RunWithConnection(Read<T>);
 
         public static List<T> Read<T>(SQLiteConnection conn) where T : new()
