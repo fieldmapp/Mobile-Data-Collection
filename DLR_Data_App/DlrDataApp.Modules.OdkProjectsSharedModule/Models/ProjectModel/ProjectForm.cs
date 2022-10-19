@@ -17,11 +17,11 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel
 
         [ForeignKey(typeof(Project))]
         public int ProjectId { get; set; }
-        
-        [OneToMany(CascadeOperations = CascadeOperation.All)]
-        public List<ProjectFormElements> ElementList { get; set; }
 
         [OneToMany(CascadeOperations = CascadeOperation.All)]
-        public ProjectFormMetadata Metadata { get; set; }
+        public List<ProjectFormElements> ElementList { get; set; } = new List<ProjectFormElements>();
+
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        public ProjectFormMetadata Metadata { get; set; } = new ProjectFormMetadata();
     }
 }

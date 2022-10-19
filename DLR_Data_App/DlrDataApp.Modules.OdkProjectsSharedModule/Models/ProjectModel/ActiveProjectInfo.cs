@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using DlrDataApp.Modules.Base.Shared;
+using SQLite;
 using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
@@ -6,15 +7,15 @@ using System.Text;
 
 namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel
 {
-    class ActiveProjectInfo
+    class ActiveProjectInfo : IActiveElementInfo<Project>
     {
         [PrimaryKey, AutoIncrement]
         public int? Id { get; set; }
 
         [ForeignKey(typeof(Project))]
-        public int ActiveProjectId { get; set; }
+        public int ActiveElementId { get; set; }
 
         [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
-        public Project ActiveProject { get; set; }
+        public Project ActiveElement { get; set; }
     }
 }

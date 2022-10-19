@@ -24,7 +24,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.ViewModels.CurrentProject
         {
             Title = SharedResources.editdata;
 
-            _workingProject = OdkProjectsModule.Instance.Database.ReadWithChildren<ActiveProjectInfo>().FirstOrDefault()?.ActiveProject;
+            _workingProject = OdkProjectsModule.Instance.Database.GetActiveElement<Project, ActiveProjectInfo>();
             FormList = _workingProject.FormList;
 
             ElementList = new ObservableCollection<PreviewElement>();

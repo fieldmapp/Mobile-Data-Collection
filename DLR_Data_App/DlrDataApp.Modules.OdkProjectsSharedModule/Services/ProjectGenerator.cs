@@ -14,6 +14,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Services
     {
         Project _workingProject;
         private readonly string _zipFile;
+        Database Database => OdkProjectsModule.Instance.Database;
 
         public ProjectGenerator(string file)
         {
@@ -21,7 +22,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Services
         }
 
         /// <summary>
-        /// Starts the project generation process and runs all necessary functions: creating new project , extract zip, generate database tables, generate forms.
+        /// Starts the project generation process and runs all necessary functions: creating new project, extract zip, generate database tables, generate forms.
         /// </summary>
         public async Task<bool> GenerateProject()
         {
@@ -58,29 +59,20 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Services
         /// </summary>
         private bool GenerateDatabaseTable(SQLiteConnection dbConn)
         {
-            if (!Database.InsertProject(ref _workingProject, dbConn))
+            if (!Database.InsertOrUpdateWithChildren(_workingProject, dbConn))
                 return false;
 
-            // get created id from database and set it in workingProject
-            var projectList = Database.ReadProjects(dbConn);
-            foreach (var project in projectList)
-            {
-                if (project.Title == _workingProject.Title
-                  && project.Authors == _workingProject.Authors
-                  && project.Description == _workingProject.Description)
-                {
-                    _workingProject.Id = project.Id;
-                }
-            }
-
+            // TODO: somewhere ProjectUserConnection went missing. Reintroduce it!
             // combine project and user
-            var projectUserConnection = new ProjectUserConnection
-            {
-                ProjectId = _workingProject.Id,
-                UserId = App.CurrentUser.Id
-            };
+            //var projectUserConnection = new ProjectUserConnection
+            //{
+            //    ProjectId = _workingProject.Id,
+            //    UserId = App.CurrentUser.Id
+            //};
+            // 
+            // return Database.Insert(projectUserConnection, dbConn);
 
-            return Database.Insert(ref projectUserConnection, dbConn);
+            return true;
         }
 
     }

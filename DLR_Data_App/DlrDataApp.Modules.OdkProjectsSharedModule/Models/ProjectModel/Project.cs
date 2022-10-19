@@ -9,10 +9,6 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel
     /// </summary>
     public class Project
     {
-        public Project()
-        {
-            FormList = new List<ProjectForm>();
-        }
 
         [PrimaryKey, AutoIncrement]
         public int? Id { get; set; }
@@ -35,6 +31,6 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel
 
         // List of forms
         [OneToMany(CascadeOperations = CascadeOperation.All)]
-        public List<ProjectForm> FormList { get; set; }
+        public List<ProjectForm> FormList { get; set; } = new List<ProjectForm>();
     }
 }

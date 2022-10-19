@@ -21,7 +21,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.ViewModels.ProjectList
         public void UpdateProjects()
         {
             //var projectList = Database.ReadProjects();
-            var projectListTranslated = Services.Helpers.TranslateProjectDetails(Database.ReadProjects());
+            var projectListTranslated = Services.Helpers.TranslateProjectDetails(OdkProjectsModule.Instance.Database.ReadWithChildren<Project>());
 
             if (Projects == null) return;
 

@@ -47,7 +47,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
         /// <param name="e"></param>
         private void HandleModalPopping(object sender, ModalPoppingEventArgs e)
         {
-            _projectList = Database.ReadProjects();
+            _projectList = OdkProjectsModule.Instance.Database.ReadWithChildren<Project>();
             _viewModel.UpdateProjects();
 
             // remember to remove the event handler:
@@ -60,7 +60,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            _projectList = Database.ReadProjects();
+            _projectList = OdkProjectsModule.Instance.Database.ReadWithChildren<Project>();
 
             _viewModel.UpdateProjects();
         }

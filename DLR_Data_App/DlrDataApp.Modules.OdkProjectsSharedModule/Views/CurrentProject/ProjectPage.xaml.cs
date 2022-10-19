@@ -40,7 +40,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
 
         private async void ProjectPage_Appearing(object sender, EventArgs e)
         {
-            var newProject = OdkProjectsModule.Instance.Database.ReadWithChildren<ActiveProjectInfo>().FirstOrDefault()?.ActiveProject;
+            var newProject = OdkProjectsModule.Instance.Database.GetActiveElement<Project, ActiveProjectInfo>();
 
             if (newProject == null)
             {

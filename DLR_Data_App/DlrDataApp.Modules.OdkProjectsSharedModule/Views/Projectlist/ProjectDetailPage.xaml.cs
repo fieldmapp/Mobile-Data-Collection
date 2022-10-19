@@ -44,7 +44,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
         private void Btn_current_project_Clicked(object sender, EventArgs e)
         {
             // Set project in database as current project
-            Database.SetCurrentProject(_workingProject);
+            OdkProjectsModule.Instance.Database.SetActiveElement<Project, ActiveProjectInfo>(_workingProject);
 
             // Navigate to current project
             _ = Shell.Current.GoToAsync("//projectscurrent");
@@ -58,7 +58,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
             var answer = await DisplayAlert(OdkProjectsResources.removeproject, OdkProjectsResources.removeprojectwarning, SharedResources.okay, SharedResources.cancel);
             if (answer)
             {
-                Database.DeleteProject(_workingProject);
+                OdkProjectsModule.Instance.Database.Delete(_workingProject);
                 await Navigation.PopAsync();
             }
         }

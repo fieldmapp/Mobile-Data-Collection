@@ -23,7 +23,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
     {
         //TODO: Merge EditDataDetailPage and ProjectPage
 
-        private readonly Project _workingProject = OdkProjectsModule.Instance.Database.ReadWithChildren<ActiveProjectInfo>().FirstOrDefault()?.ActiveProject;
+        private readonly Project _workingProject = OdkProjectsModule.Instance.Database.GetActiveElement<Project, ActiveProjectInfo>();
         private int _id;
         private readonly Sensor _sensor = OdkProjectsModule.Instance.Sensor;
         private List<ContentPage> _pages;
