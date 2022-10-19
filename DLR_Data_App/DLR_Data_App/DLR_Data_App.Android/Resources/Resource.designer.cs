@@ -3517,6 +3517,7 @@ namespace com.DLR.DLR_Data_App.Droid
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.notification_template_icon_low_bg = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.notification_template_icon_low_bg;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.notification_tile_bg = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.notification_tile_bg;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.notify_panel_notification_icon_bg = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.test_xamarin_test = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.test_xamarin_test;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.tooltip_frame_dark = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.tooltip_frame_dark;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.tooltip_frame_light = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.tooltip_frame_light;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Id.action0 = global::com.DLR.DLR_Data_App.Droid.Resource.Id.action0;
@@ -17860,13 +17861,16 @@ namespace com.DLR.DLR_Data_App.Droid
 			public const int test_custom_background = 2131165612;
 			
 			// aapt resource value: 0x7F0701AD
-			public const int tooltip_frame_dark = 2131165613;
+			public const int test_xamarin_test = 2131165613;
 			
 			// aapt resource value: 0x7F0701AE
-			public const int tooltip_frame_light = 2131165614;
+			public const int tooltip_frame_dark = 2131165614;
 			
 			// aapt resource value: 0x7F0701AF
-			public const int xamarin_logo = 2131165615;
+			public const int tooltip_frame_light = 2131165615;
+			
+			// aapt resource value: 0x7F0701B0
+			public const int xamarin_logo = 2131165616;
 			
 			static Drawable()
 			{
