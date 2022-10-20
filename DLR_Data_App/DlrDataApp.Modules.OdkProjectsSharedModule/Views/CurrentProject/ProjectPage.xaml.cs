@@ -269,17 +269,10 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
         {
             if (await CheckActiveProject())
             {
-                var elementNameList = new List<string>();
-                var elementValueList = new List<string>();
-
-                foreach (var representation in _formElements.Select(e => e.GetRepresentation()))
-                {
-                    elementNameList.Add(representation.Key);
-                    elementValueList.Add(representation.Value);
-                }
-
-                var tableName = _workingProject.GetTableName();
-                var status = Database.InsertCustomValues(tableName, elementNameList, elementValueList);
+                var resultData = _formElements.Select(e => e.GetRepresentation()).ToDictionary(kv => kv.Key, kv => kv.Value);
+                var result = new ProjectResult { ProjectId = _workingProject.Id.Value, Data = resultData };
+                _workingProject.Results.Add(result);
+                var success = OdkProjectsModule.Instance.Database.InsertOrUpdateWithChildren(_workingProject);
 
                 if (!string.IsNullOrWhiteSpace(_workingProject.ProfilingId))
                 {
@@ -289,7 +282,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
                 }
 
                 string message;
-                if (status)
+                if (success)
                 {
                     message = SharedResources.successful;
                     foreach (var element in _formElements)

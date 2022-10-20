@@ -3500,9 +3500,45 @@ namespace com.DLR.DLR_Data_App.Droid
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.design_ic_visibility_off = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.design_ic_visibility_off;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.design_password_eye = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.design_password_eye;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.design_snackbar_background = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.design_snackbar_background;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.DoubleSlider_one_question1 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.DoubleSlider_one_question1;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.DoubleSlider_one_question2 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.DoubleSlider_one_question2;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.DoubleSlider_one_question3 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.DoubleSlider_one_question3;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.DoubleSlider_one_question4 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.DoubleSlider_one_question4;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.DoubleSlider_three_question1 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.DoubleSlider_three_question1;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.DoubleSlider_three_question2 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.DoubleSlider_three_question2;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.DoubleSlider_three_question3 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.DoubleSlider_three_question3;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.DoubleSlider_three_question4 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.DoubleSlider_three_question4;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.DoubleSlider_two_question1 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.DoubleSlider_two_question1;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.DoubleSlider_two_question2 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.DoubleSlider_two_question2;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.DoubleSlider_two_question3 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.DoubleSlider_two_question3;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.DoubleSlider_two_question4 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.DoubleSlider_two_question4;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ic_mtrl_chip_checked_black = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ic_mtrl_chip_checked_black;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ic_mtrl_chip_checked_circle = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ic_mtrl_chip_checked_circle;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ic_mtrl_chip_close_circle = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ic_mtrl_chip_close_circle;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_one_question1_picture1 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_one_question1_picture1;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_one_question1_picture2 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_one_question1_picture2;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_one_question1_picture3 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_one_question1_picture3;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_one_question1_picture4 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_one_question1_picture4;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_one_question2_picture1 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_one_question2_picture1;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_one_question2_picture2 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_one_question2_picture2;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_one_question2_picture3 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_one_question2_picture3;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_one_question2_picture4 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_one_question2_picture4;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_three_question5_picture1 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_three_question5_picture1;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_three_question5_picture2 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_three_question5_picture2;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_three_question5_picture3 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_three_question5_picture3;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_three_question5_picture4 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_three_question5_picture4;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_three_question6_picture1 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_three_question6_picture1;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_three_question6_picture2 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_three_question6_picture2;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_three_question6_picture3 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_three_question6_picture3;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_three_question6_picture4 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_three_question6_picture4;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_two_question3_picture1 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_two_question3_picture1;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_two_question3_picture2 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_two_question3_picture2;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_two_question3_picture3 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_two_question3_picture3;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_two_question3_picture4 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_two_question3_picture4;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_two_question4_picture1 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_two_question4_picture1;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_two_question4_picture2 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_two_question4_picture2;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_two_question4_picture3 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_two_question4_picture3;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.ImageChecker_two_question4_picture4 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.ImageChecker_two_question4_picture4;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.mtrl_tabs_default_indicator = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.mtrl_tabs_default_indicator;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.navigation_empty_icon = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.navigation_empty_icon;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.notification_action_background = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.notification_action_background;
@@ -3517,7 +3553,41 @@ namespace com.DLR.DLR_Data_App.Droid
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.notification_template_icon_low_bg = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.notification_template_icon_low_bg;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.notification_tile_bg = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.notification_tile_bg;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.notify_panel_notification_icon_bg = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
-			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.test_xamarin_test = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.test_xamarin_test;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Q3G2B1 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Q3G2B1;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Q3G2B2 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Q3G2B2;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Q3G2B3 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Q3G2B3;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Q3G2B4 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Q3G2B4;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Q3G3B1 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Q3G3B1;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Q3G3B2 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Q3G3B2;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Q3G3B3 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Q3G3B3;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Q3G3B4 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Q3G3B4;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.stadium_1_leafDevelopment = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.stadium_1_leafDevelopment;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.stadium_2_tillering = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.stadium_2_tillering;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.stadium_3_stemElongShootDev = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.stadium_3_stemElongShootDev;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.stadium_4_bootingMainShoot = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.stadium_4_bootingMainShoot;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.stadium_5_inflorEmergence = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.stadium_5_inflorEmergence;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.stadium_6_flowering = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.stadium_6_flowering;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.stadium_7_devFruit = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.stadium_7_devFruit;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.stadium_8_ripeningFruitAndSeed = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.stadium_8_ripeningFruitAndSeed;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.stadium_9_senescence = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.stadium_9_senescence;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_one_question1 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_one_question1;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_one_question2 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_one_question2;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_one_question3 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_one_question3;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_one_question4 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_one_question4;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_one_question5 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_one_question5;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_one_question6 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_one_question6;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_three_question1 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_three_question1;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_three_question2 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_three_question2;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_three_question3 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_three_question3;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_three_question4 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_three_question4;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_three_question5 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_three_question5;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_three_question6 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_three_question6;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_two_question1 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_two_question1;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_two_question2 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_two_question2;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_two_question3 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_two_question3;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_two_question4 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_two_question4;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_two_question5 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_two_question5;
+			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.Stadium_two_question6 = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.Stadium_two_question6;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.tooltip_frame_dark = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.tooltip_frame_dark;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Drawable.tooltip_frame_light = global::com.DLR.DLR_Data_App.Droid.Resource.Drawable.tooltip_frame_light;
 			global::DlrDataApp.Modules.Profiling.Android.Resource.Id.action0 = global::com.DLR.DLR_Data_App.Droid.Resource.Id.action0;
@@ -17861,16 +17931,13 @@ namespace com.DLR.DLR_Data_App.Droid
 			public const int test_custom_background = 2131165612;
 			
 			// aapt resource value: 0x7F0701AD
-			public const int test_xamarin_test = 2131165613;
+			public const int tooltip_frame_dark = 2131165613;
 			
 			// aapt resource value: 0x7F0701AE
-			public const int tooltip_frame_dark = 2131165614;
+			public const int tooltip_frame_light = 2131165614;
 			
 			// aapt resource value: 0x7F0701AF
-			public const int tooltip_frame_light = 2131165615;
-			
-			// aapt resource value: 0x7F0701B0
-			public const int xamarin_logo = 2131165616;
+			public const int xamarin_logo = 2131165615;
 			
 			static Drawable()
 			{

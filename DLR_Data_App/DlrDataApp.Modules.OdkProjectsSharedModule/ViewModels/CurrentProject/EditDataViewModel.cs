@@ -14,11 +14,10 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.ViewModels.CurrentProject
     {
         public List<ProjectForm> FormList { get; set; }
         public ObservableCollection<PreviewElement> ElementList { get; set; }
-        public TableData ProjectTableData { get; set; }
 
         private Project _workingProject;
 
-        public List<Dictionary<string, string>> ProjectsData { private set; get; }
+        public List<ProjectResult> ProjectsData { private set; get; }
 
         public EditDataViewModel()
         {
@@ -38,31 +37,18 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.ViewModels.CurrentProject
         public void GetDataFromDatabase()
         {
             // Get data from DB
-            ProjectTableData = Database.ReadCustomTable(ref _workingProject);
+            ProjectsData = _workingProject.Results;
             ElementList.Clear();
 
-            if (ProjectTableData == null)
-                return;
-
-            var savesCount = ProjectTableData.ValueList[0].Count;
-            ProjectsData = new List<Dictionary<string, string>>();
-
-            // add the amount of elements that are available in db
-            for (var i = 0; i < savesCount; i++)
+            foreach (var result in _workingProject.Results)
             {
-                Dictionary<string, string> saveData = new Dictionary<string, string>();
-                for (int j = 0; j < ProjectTableData.RowNameList.Count; j++)
+                var previewElement = new PreviewElement
                 {
-                    //if this throws an exception, its probably due to the bad way ProjectTableData is structured (prone to corruption)
-                    if (ProjectTableData.RowNameList[j] != "ProjectId")
-                        saveData.Add(ProjectTableData.RowNameList[j], ProjectTableData.ValueList[j][i]);
-                }
+                    Timestamp = result.Data["Timestamp"],
+                    Data = _workingProject.PreviewPattern.FormatWith(result.Data)
+                };
 
-                var previewElement = new PreviewElement();
-                previewElement.Timestamp = saveData["Timestamp"];
-                previewElement.Data = _workingProject.PreviewPattern.FormatWith(saveData);
-
-                ProjectsData.Add(saveData);
+                ProjectsData.Add(result);
                 ElementList.Add(previewElement);
             }
         }

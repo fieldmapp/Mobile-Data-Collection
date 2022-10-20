@@ -133,9 +133,9 @@ namespace DlrDataApp.Modules.Base.Shared
             return conn.InsertOrReplace(data) > 0;
         }
 
-        public bool InsertOrUpdateWithChildren<T>(T data, bool recursive = false) => RunWithConnection(c => InsertOrUpdateWithChildren(data, c, recursive));
+        public bool InsertOrUpdateWithChildren<T>(T data, bool recursive = true) => RunWithConnection(c => InsertOrUpdateWithChildren(data, c, recursive));
 
-        public static bool InsertOrUpdateWithChildren<T>(T data, SQLiteConnection conn, bool recursive = false)
+        public static bool InsertOrUpdateWithChildren<T>(T data, SQLiteConnection conn, bool recursive = true)
         {
             // if table doesn't exist create a new one
             conn.CreateTable<T>();
@@ -346,8 +346,8 @@ namespace DlrDataApp.Modules.Base.Shared
             var value = conn.Table<T>().FirstOrDefault(predicate);
             return value;
         }
-        public T FindWithChildren<T>(Func<T, bool> predicate, bool recursive = false) where T : class, new() => RunWithConnection(conn => FindWithChildren<T>(conn, predicate, recursive));
-        public static T FindWithChildren<T>(SQLiteConnection conn, Func<T, bool> predicate, bool recursive = false) where T : class, new()
+        public T FindWithChildren<T>(Func<T, bool> predicate, bool recursive = true) where T : class, new() => RunWithConnection(conn => FindWithChildren<T>(conn, predicate, recursive));
+        public static T FindWithChildren<T>(SQLiteConnection conn, Func<T, bool> predicate, bool recursive = true) where T : class, new()
         {
             var element = Find(conn, predicate);
             return GetWithChildren<T>(conn, recursive, element);

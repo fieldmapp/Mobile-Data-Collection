@@ -32,5 +32,9 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel
         // List of forms
         [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<ProjectForm> FormList { get; set; } = new List<ProjectForm>();
+
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        public List<ProjectResult> Results { get; set; } = new List<ProjectResult>();
+
     }
 }

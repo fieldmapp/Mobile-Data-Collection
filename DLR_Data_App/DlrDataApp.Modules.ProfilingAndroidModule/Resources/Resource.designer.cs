@@ -2979,67 +2979,277 @@ namespace DlrDataApp.Modules.Profiling.Android
 			public static int design_snackbar_background = 2131165281;
 			
 			// aapt resource value: 0x7F070062
-			public static int ic_mtrl_chip_checked_black = 2131165282;
+			public static int DoubleSlider_one_question1 = 2131165282;
 			
 			// aapt resource value: 0x7F070063
-			public static int ic_mtrl_chip_checked_circle = 2131165283;
+			public static int DoubleSlider_one_question2 = 2131165283;
 			
 			// aapt resource value: 0x7F070064
-			public static int ic_mtrl_chip_close_circle = 2131165284;
+			public static int DoubleSlider_one_question3 = 2131165284;
 			
 			// aapt resource value: 0x7F070065
-			public static int mtrl_snackbar_background = 2131165285;
+			public static int DoubleSlider_one_question4 = 2131165285;
 			
 			// aapt resource value: 0x7F070066
-			public static int mtrl_tabs_default_indicator = 2131165286;
+			public static int DoubleSlider_three_question1 = 2131165286;
 			
 			// aapt resource value: 0x7F070067
-			public static int navigation_empty_icon = 2131165287;
+			public static int DoubleSlider_three_question2 = 2131165287;
 			
 			// aapt resource value: 0x7F070068
-			public static int notification_action_background = 2131165288;
+			public static int DoubleSlider_three_question3 = 2131165288;
 			
 			// aapt resource value: 0x7F070069
-			public static int notification_bg = 2131165289;
+			public static int DoubleSlider_three_question4 = 2131165289;
 			
 			// aapt resource value: 0x7F07006A
-			public static int notification_bg_low = 2131165290;
+			public static int DoubleSlider_two_question1 = 2131165290;
 			
 			// aapt resource value: 0x7F07006B
-			public static int notification_bg_low_normal = 2131165291;
+			public static int DoubleSlider_two_question2 = 2131165291;
 			
 			// aapt resource value: 0x7F07006C
-			public static int notification_bg_low_pressed = 2131165292;
+			public static int DoubleSlider_two_question3 = 2131165292;
 			
 			// aapt resource value: 0x7F07006D
-			public static int notification_bg_normal = 2131165293;
+			public static int DoubleSlider_two_question4 = 2131165293;
 			
 			// aapt resource value: 0x7F07006E
-			public static int notification_bg_normal_pressed = 2131165294;
+			public static int ic_mtrl_chip_checked_black = 2131165294;
 			
 			// aapt resource value: 0x7F07006F
-			public static int notification_icon_background = 2131165295;
+			public static int ic_mtrl_chip_checked_circle = 2131165295;
 			
 			// aapt resource value: 0x7F070070
-			public static int notification_template_icon_bg = 2131165296;
+			public static int ic_mtrl_chip_close_circle = 2131165296;
 			
 			// aapt resource value: 0x7F070071
-			public static int notification_template_icon_low_bg = 2131165297;
+			public static int ImageChecker_one_question1_picture1 = 2131165297;
 			
 			// aapt resource value: 0x7F070072
-			public static int notification_tile_bg = 2131165298;
+			public static int ImageChecker_one_question1_picture2 = 2131165298;
 			
 			// aapt resource value: 0x7F070073
-			public static int notify_panel_notification_icon_bg = 2131165299;
+			public static int ImageChecker_one_question1_picture3 = 2131165299;
 			
 			// aapt resource value: 0x7F070074
-			public static int test_xamarin_test = 2131165300;
+			public static int ImageChecker_one_question1_picture4 = 2131165300;
 			
 			// aapt resource value: 0x7F070075
-			public static int tooltip_frame_dark = 2131165301;
+			public static int ImageChecker_one_question2_picture1 = 2131165301;
 			
 			// aapt resource value: 0x7F070076
-			public static int tooltip_frame_light = 2131165302;
+			public static int ImageChecker_one_question2_picture2 = 2131165302;
+			
+			// aapt resource value: 0x7F070077
+			public static int ImageChecker_one_question2_picture3 = 2131165303;
+			
+			// aapt resource value: 0x7F070078
+			public static int ImageChecker_one_question2_picture4 = 2131165304;
+			
+			// aapt resource value: 0x7F070079
+			public static int ImageChecker_three_question5_picture1 = 2131165305;
+			
+			// aapt resource value: 0x7F07007A
+			public static int ImageChecker_three_question5_picture2 = 2131165306;
+			
+			// aapt resource value: 0x7F07007B
+			public static int ImageChecker_three_question5_picture3 = 2131165307;
+			
+			// aapt resource value: 0x7F07007C
+			public static int ImageChecker_three_question5_picture4 = 2131165308;
+			
+			// aapt resource value: 0x7F07007D
+			public static int ImageChecker_three_question6_picture1 = 2131165309;
+			
+			// aapt resource value: 0x7F07007E
+			public static int ImageChecker_three_question6_picture2 = 2131165310;
+			
+			// aapt resource value: 0x7F07007F
+			public static int ImageChecker_three_question6_picture3 = 2131165311;
+			
+			// aapt resource value: 0x7F070080
+			public static int ImageChecker_three_question6_picture4 = 2131165312;
+			
+			// aapt resource value: 0x7F070081
+			public static int ImageChecker_two_question3_picture1 = 2131165313;
+			
+			// aapt resource value: 0x7F070082
+			public static int ImageChecker_two_question3_picture2 = 2131165314;
+			
+			// aapt resource value: 0x7F070083
+			public static int ImageChecker_two_question3_picture3 = 2131165315;
+			
+			// aapt resource value: 0x7F070084
+			public static int ImageChecker_two_question3_picture4 = 2131165316;
+			
+			// aapt resource value: 0x7F070085
+			public static int ImageChecker_two_question4_picture1 = 2131165317;
+			
+			// aapt resource value: 0x7F070086
+			public static int ImageChecker_two_question4_picture2 = 2131165318;
+			
+			// aapt resource value: 0x7F070087
+			public static int ImageChecker_two_question4_picture3 = 2131165319;
+			
+			// aapt resource value: 0x7F070088
+			public static int ImageChecker_two_question4_picture4 = 2131165320;
+			
+			// aapt resource value: 0x7F070089
+			public static int mtrl_snackbar_background = 2131165321;
+			
+			// aapt resource value: 0x7F07008A
+			public static int mtrl_tabs_default_indicator = 2131165322;
+			
+			// aapt resource value: 0x7F07008B
+			public static int navigation_empty_icon = 2131165323;
+			
+			// aapt resource value: 0x7F07008C
+			public static int notification_action_background = 2131165324;
+			
+			// aapt resource value: 0x7F07008D
+			public static int notification_bg = 2131165325;
+			
+			// aapt resource value: 0x7F07008E
+			public static int notification_bg_low = 2131165326;
+			
+			// aapt resource value: 0x7F07008F
+			public static int notification_bg_low_normal = 2131165327;
+			
+			// aapt resource value: 0x7F070090
+			public static int notification_bg_low_pressed = 2131165328;
+			
+			// aapt resource value: 0x7F070091
+			public static int notification_bg_normal = 2131165329;
+			
+			// aapt resource value: 0x7F070092
+			public static int notification_bg_normal_pressed = 2131165330;
+			
+			// aapt resource value: 0x7F070093
+			public static int notification_icon_background = 2131165331;
+			
+			// aapt resource value: 0x7F070094
+			public static int notification_template_icon_bg = 2131165332;
+			
+			// aapt resource value: 0x7F070095
+			public static int notification_template_icon_low_bg = 2131165333;
+			
+			// aapt resource value: 0x7F070096
+			public static int notification_tile_bg = 2131165334;
+			
+			// aapt resource value: 0x7F070097
+			public static int notify_panel_notification_icon_bg = 2131165335;
+			
+			// aapt resource value: 0x7F070098
+			public static int Q3G2B1 = 2131165336;
+			
+			// aapt resource value: 0x7F070099
+			public static int Q3G2B2 = 2131165337;
+			
+			// aapt resource value: 0x7F07009A
+			public static int Q3G2B3 = 2131165338;
+			
+			// aapt resource value: 0x7F07009B
+			public static int Q3G2B4 = 2131165339;
+			
+			// aapt resource value: 0x7F07009C
+			public static int Q3G3B1 = 2131165340;
+			
+			// aapt resource value: 0x7F07009D
+			public static int Q3G3B2 = 2131165341;
+			
+			// aapt resource value: 0x7F07009E
+			public static int Q3G3B3 = 2131165342;
+			
+			// aapt resource value: 0x7F07009F
+			public static int Q3G3B4 = 2131165343;
+			
+			// aapt resource value: 0x7F0700A0
+			public static int stadium_1_leafDevelopment = 2131165344;
+			
+			// aapt resource value: 0x7F0700A1
+			public static int stadium_2_tillering = 2131165345;
+			
+			// aapt resource value: 0x7F0700A2
+			public static int stadium_3_stemElongShootDev = 2131165346;
+			
+			// aapt resource value: 0x7F0700A3
+			public static int stadium_4_bootingMainShoot = 2131165347;
+			
+			// aapt resource value: 0x7F0700A4
+			public static int stadium_5_inflorEmergence = 2131165348;
+			
+			// aapt resource value: 0x7F0700A5
+			public static int stadium_6_flowering = 2131165349;
+			
+			// aapt resource value: 0x7F0700A6
+			public static int stadium_7_devFruit = 2131165350;
+			
+			// aapt resource value: 0x7F0700A7
+			public static int stadium_8_ripeningFruitAndSeed = 2131165351;
+			
+			// aapt resource value: 0x7F0700A8
+			public static int stadium_9_senescence = 2131165352;
+			
+			// aapt resource value: 0x7F0700A9
+			public static int Stadium_one_question1 = 2131165353;
+			
+			// aapt resource value: 0x7F0700AA
+			public static int Stadium_one_question2 = 2131165354;
+			
+			// aapt resource value: 0x7F0700AB
+			public static int Stadium_one_question3 = 2131165355;
+			
+			// aapt resource value: 0x7F0700AC
+			public static int Stadium_one_question4 = 2131165356;
+			
+			// aapt resource value: 0x7F0700AD
+			public static int Stadium_one_question5 = 2131165357;
+			
+			// aapt resource value: 0x7F0700AE
+			public static int Stadium_one_question6 = 2131165358;
+			
+			// aapt resource value: 0x7F0700AF
+			public static int Stadium_three_question1 = 2131165359;
+			
+			// aapt resource value: 0x7F0700B0
+			public static int Stadium_three_question2 = 2131165360;
+			
+			// aapt resource value: 0x7F0700B1
+			public static int Stadium_three_question3 = 2131165361;
+			
+			// aapt resource value: 0x7F0700B2
+			public static int Stadium_three_question4 = 2131165362;
+			
+			// aapt resource value: 0x7F0700B3
+			public static int Stadium_three_question5 = 2131165363;
+			
+			// aapt resource value: 0x7F0700B4
+			public static int Stadium_three_question6 = 2131165364;
+			
+			// aapt resource value: 0x7F0700B5
+			public static int Stadium_two_question1 = 2131165365;
+			
+			// aapt resource value: 0x7F0700B6
+			public static int Stadium_two_question2 = 2131165366;
+			
+			// aapt resource value: 0x7F0700B7
+			public static int Stadium_two_question3 = 2131165367;
+			
+			// aapt resource value: 0x7F0700B8
+			public static int Stadium_two_question4 = 2131165368;
+			
+			// aapt resource value: 0x7F0700B9
+			public static int Stadium_two_question5 = 2131165369;
+			
+			// aapt resource value: 0x7F0700BA
+			public static int Stadium_two_question6 = 2131165370;
+			
+			// aapt resource value: 0x7F0700BB
+			public static int tooltip_frame_dark = 2131165371;
+			
+			// aapt resource value: 0x7F0700BC
+			public static int tooltip_frame_light = 2131165372;
 			
 			static Drawable()
 			{

@@ -24,23 +24,22 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
         //TODO: Merge EditDataDetailPage and ProjectPage
 
         private readonly Project _workingProject = OdkProjectsModule.Instance.Database.GetActiveElement<Project, ActiveProjectInfo>();
-        private int _id;
         private readonly Sensor _sensor = OdkProjectsModule.Instance.Sensor;
         private List<ContentPage> _pages;
         HashSet<FormElement> UnlockedElements;
         private IReadOnlyList<FormElement> _formElements;
+        private ProjectResult _initialResult;
 
-        public EditDataDetailPage(Dictionary<string, string> projectData)
+        public EditDataDetailPage(ProjectResult result)
         {
             InitializeComponent();
 
             if (_workingProject == null)
                 throw new Exception();
 
+            _initialResult = result;
             var translatedProject = TranslateProjectDetails(_workingProject);
             Title = translatedProject.Title;
-
-            _id = Convert.ToInt32(projectData["Id"]);
 
             UnlockedElements = new HashSet<FormElement>();
             Children.Clear();
@@ -59,7 +58,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
             FormElement lastSetRequiredElement = null;
             foreach (var element in _formElements)
             {
-                var updatedSomething = element.LoadContentFromProjectData(projectData);
+                var updatedSomething = element.LoadContentFromProjectData(_initialResult.Data);
                 if (updatedSomething && element.Data.Required)
                     lastSetRequiredElement = element;
             }
@@ -217,18 +216,10 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
 
         private async void SaveClicked(object sender, EventArgs _)
         {
-            var tableName = _workingProject.GetTableName();
 
-            var elementNameList = new List<string>();
-            var elementValueList = new List<string>();
+            _initialResult.Data = _formElements.Select(e => e.GetRepresentation()).ToDictionary(kv => kv.Key, kv => kv.Value);
 
-            foreach (var representation in _formElements.Select(e => e.GetRepresentation()))
-            {
-                elementNameList.Add(representation.Key);
-                elementValueList.Add(representation.Value);
-            }
-
-            var success = Database.UpdateCustomValuesById(tableName, _id, elementNameList, elementValueList);
+            var success = OdkProjectsModule.Instance.Database.InsertOrUpdateWithChildren(_initialResult);
 
             string message = success ? SharedResources.successful : SharedResources.failed;
             await DisplayAlert(SharedResources.save, message, SharedResources.okay);

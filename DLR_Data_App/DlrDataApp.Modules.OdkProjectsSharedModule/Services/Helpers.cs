@@ -62,15 +62,12 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Services
 
         public static Project GetCurrentProject(this Database db)
         {
-            var activeProjectInfo = db.ReadWithChildren<ActiveProjectInfo>().FirstOrDefault();
-            return activeProjectInfo?.ActiveProject;
+            return db.GetActiveElement<Project, ActiveProjectInfo>();
         }
 
         public static bool SetCurrentProject(this Database db, Project project)
         {
-            var previousProjectInfo = db.ReadWithChildren<ActiveProjectInfo>().FirstOrDefault() ?? new ActiveProjectInfo();
-            previousProjectInfo.ActiveProject = project;
-            return db.InsertOrUpdateWithChildren(previousProjectInfo, true);
+            return db.SetActiveElement<Project, ActiveProjectInfo>(project);
         }
     }
 }
