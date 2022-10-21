@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DlrDataApp.Modules.VoiceRecognitionDefinitionModule
+namespace DlrDataApp.Modules.SpeechRecognition.Definition
 {
-    public class VoiceRecognitionPartialResult
+    public class SpeechRecognitionPartialResult
     {
         public string PartialResult;
 
-        public VoiceRecognitionPartialResult(string partialResult)
+        public SpeechRecognitionPartialResult(string partialResult)
         {
             PartialResult = partialResult;
         }

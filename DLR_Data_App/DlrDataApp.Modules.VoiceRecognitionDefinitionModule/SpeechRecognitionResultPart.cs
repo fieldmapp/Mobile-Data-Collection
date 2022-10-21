@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DlrDataApp.Modules.VoiceRecognitionDefinitionModule
+namespace DlrDataApp.Modules.SpeechRecognition.Definition
 {
-    public class VoiceRecognitionResultPart
+    public class SpeechRecognitionResultPart
     {
         public float Confidence;
         public float End;
         public float Start;
         public string Word;
 
-        public VoiceRecognitionResultPart(string word, float start, float end, float confidence)
+        public SpeechRecognitionResultPart(string word, float start, float end, float confidence)
         {
             Confidence = confidence;
             End = end;

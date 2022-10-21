@@ -1,17 +1,15 @@
-﻿using DLR_Data_App.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace DlrDataApp.Modules.VoiceRecognitionDefinitionModule
+namespace DlrDataApp.Modules.SpeechRecognition.Definition
 {
     public interface ISpeechRecognizer
     {
-        event EventHandler<VoiceRecognitionPartialResult> PartialResultRecognized;
-        event EventHandler<VoiceRecognitionResult> ResultRecognized;
-        void Start();
-        void Stop();
-        Task LoadTask { get; }
+        event EventHandler<SpeechRecognitionPartialResult> PartialResultRecognized;
+        event EventHandler<SpeechRecognitionResult> ResultRecognized;
+
+        bool StartListening();
+        bool StopListening();
     }
 }

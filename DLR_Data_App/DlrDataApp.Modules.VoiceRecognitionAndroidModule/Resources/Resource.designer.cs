@@ -8,9 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("DlrDataApp.Modules.VoiceRecognitionAndroidModule.Resource", IsApplication=false)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("DlrDataApp.Modules.SpeechRecognition.Android.Resource", IsApplication=false)]
 
-namespace DlrDataApp.Modules.VoiceRecognitionAndroidModule
+namespace DlrDataApp.Modules.SpeechRecognition.Android
 {
 	
 	

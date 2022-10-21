@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="DlrDataApp.Modules.VoiceRecognitionSharedModule.VoiceRecognitionDemoPage">
+             x:Class="DlrDataApp.Modules.SpeechRecognition.Shared.SpeechRecognitionDemoPage">
     <ContentPage.Content>
         <ScrollView Grid.ColumnSpan="3" Grid.Row="1">
             <Label HorizontalOptions="CenterAndExpand"

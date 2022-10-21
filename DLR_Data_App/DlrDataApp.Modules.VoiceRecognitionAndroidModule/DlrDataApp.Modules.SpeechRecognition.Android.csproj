@@ -10,8 +10,8 @@
     <TemplateGuid>{9ef11e43-1701-4396-8835-8392d57abb70}</TemplateGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DlrDataApp.Modules.VoiceRecognitionAndroidModule</RootNamespace>
-    <AssemblyName>DlrDataApp.Modules.VoiceRecognitionAndroidModule</AssemblyName>
+    <RootNamespace>DlrDataApp.Modules.SpeechRecognition.Android</RootNamespace>
+    <AssemblyName>DlrDataApp.Modules.SpeechRecognition.Android</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <Deterministic>True</Deterministic>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidSpeechRecognizer.cs" />
+    <Compile Include="AndroidSpeechRecognizerProvider.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,15 +74,19 @@
     </ProjectReference>
     <ProjectReference Include="..\DlrDataApp.Modules.BasePclModule\DlrDataApp.Modules.Base.Shared.csproj">
       <Project>{CF63E909-0792-4368-A206-001A76AB1CE8}</Project>
-      <Name>DlrDataApp.Modules.SharedModule</Name>
+      <Name>DlrDataApp.Modules.Base.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DlrDataApp.Modules.VoiceRecognitionDefinitionModule\DlrDataApp.Modules.VoiceRecognitionDefinitionModule.csproj">
+    <ProjectReference Include="..\DlrDataApp.Modules.SharedAndroidModule\DlrDataApp.Modules.Base.Android.csproj">
+      <Project>{3F04C52D-D155-47BB-AA8A-D01983F0B0D0}</Project>
+      <Name>DlrDataApp.Modules.Base.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DlrDataApp.Modules.VoiceRecognitionDefinitionModule\DlrDataApp.Modules.SpeechRecognition.Definition.csproj">
       <Project>{069D0BFC-AB34-4CF2-8540-17563BED0C0F}</Project>
-      <Name>DlrDataApp.Modules.VoiceRecognitionDefinitionModule</Name>
+      <Name>DlrDataApp.Modules.SpeechRecognition.Definition</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DlrDataApp.Modules.VoiceRecognitionSharedModule\DlrDataApp.Modules.VoiceRecognitionSharedModule.csproj">
+    <ProjectReference Include="..\DlrDataApp.Modules.VoiceRecognitionSharedModule\DlrDataApp.Modules.SpeechRecognition.Shared.csproj">
       <Project>{82caf3f3-0b24-43ed-bf0e-1a8048f621b5}</Project>
-      <Name>DlrDataApp.Modules.VoiceRecognitionSharedModule</Name>
+      <Name>DlrDataApp.Modules.SpeechRecognition.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
