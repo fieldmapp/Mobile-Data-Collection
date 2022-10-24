@@ -1,4 +1,5 @@
-﻿using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+﻿using DLR_Data_App.Controls;
+using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
 using DlrDataApp.Modules.OdkProjects.Shared.Services;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,10 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectForms
         {
             ValidRange = OdkDataExtractor.GetRangeFromJsonString(data.Range, DateTime.Parse);
         }
-        static Color SetColor => (Color)App.Current.Resources["TextPrimary"];
-        static Color SetColorNight => (Color)App.Current.Resources["TextPrimaryNight"];
-        static Color UnsetColor = (Color)App.Current.Resources["TextSecondary"];
-        static Color UnsetColorNight = (Color)App.Current.Resources["TextSecondaryNight"];
+        static Color SetColor => (Color)OdkProjectsModule.Instance.App.Resources["TextPrimary"];
+        static Color SetColorNight => (Color)OdkProjectsModule.Instance.App.Resources["TextPrimaryNight"];
+        static Color UnsetColor = (Color)OdkProjectsModule.Instance.App.Resources["TextSecondary"];
+        static Color UnsetColorNight = (Color)OdkProjectsModule.Instance.App.Resources["TextSecondaryNight"];
         public DatePicker DatePicker;
         public TimePicker TimePicker;
         bool _isSet;

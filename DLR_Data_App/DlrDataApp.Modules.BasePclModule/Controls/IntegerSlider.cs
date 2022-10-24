@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace DLR_Data_App.Controls
+namespace DlrDataApp.Modules.Base.Shared.Controls
 {
     public class IntegerSlider : Slider
     {

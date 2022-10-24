@@ -1,6 +1,7 @@
-﻿using DLR_Data_App.Controls;
-using DLR_Data_App.Localizations;
-using DLR_Data_App.Services;
+﻿using DLR_Data_App.Services;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.Controls;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,13 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DLR_Data_App.Views
+using static DlrDataApp.Modules.Base.Shared.Helpers;
+
+namespace DlrDataApp.Modules.FieldCartographer.Shared
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DrivingConfigurationPage : ContentPage
     {
-        const string BoldMarker = "*";
-
         public class DrivingPageConfigurationDTO
         {
             public DrivingPageConfigurationDTO()
@@ -204,53 +205,6 @@ namespace DLR_Data_App.Views
             Name = "Standard"
         };
 
-        public static FormattedString StringWithAnnotationsToFormattedString(string annotatedInput)
-        {
-            if (string.IsNullOrWhiteSpace(annotatedInput))
-                return new FormattedString();
-
-            annotatedInput = annotatedInput.Replace("\\n", Environment.NewLine);
-            var markerIndices = annotatedInput.AllIndicesOf(BoldMarker);
-            int prevPartEndIndex = 0;
-            var result = new FormattedString();
-
-            bool bold = false;
-            foreach (var markerIndex in markerIndices.Concat(new int[] { annotatedInput.Length }))
-            {
-                var part = annotatedInput.Substring(prevPartEndIndex, markerIndex - prevPartEndIndex);
-                if (!string.IsNullOrWhiteSpace(part))
-                {
-                    var span = new Span { Text = part };
-                    if (bold)
-                        span.FontAttributes = FontAttributes.Bold;
-
-                    result.Spans.Add(span);
-                }
-
-                bold = !bold;
-                prevPartEndIndex = markerIndex + 1;
-            }
-
-            return result;
-        }
-
-        public static string FormattedStringToAnnotatedString(FormattedString formattedString)
-        {
-            if (formattedString == null)
-                return string.Empty;
-
-            StringBuilder builder = new StringBuilder();
-            foreach (var span in formattedString.Spans)
-            {
-                if (span.FontAttributes.HasFlag(FontAttributes.Bold))
-                    builder.Append('*');
-                builder.Append(span.Text);
-                if (span.FontAttributes.HasFlag(FontAttributes.Bold))
-                    builder.Append('*');
-            }
-            return builder.ToString().Replace(Environment.NewLine, "\\n");
-        }
-
         public List<FormattedButton> KeywordButtons;
         public List<Label> CauseIdLabels;
         public Action Save { get; set; }
@@ -294,7 +248,7 @@ namespace DLR_Data_App.Views
 
             string newCauseId = await DisplayPromptAsync("Ursachen-ID angeben", 
                 "ID der neuen Minderertragsursache festlegen. Wird keine ID eingegeben, bleibt die Schaltfläche verborgen.", 
-                accept:AppResources.ok, cancel:AppResources.cancel);
+                accept:SharedResources.ok, cancel:SharedResources.cancel);
             if (newCauseId == null)
                 return;
             if (string.IsNullOrWhiteSpace(newCauseId))
@@ -308,7 +262,7 @@ namespace DLR_Data_App.Views
             if (CauseIdLabels.Where(l => l != CauseIdLabels[causeIndex]).Any(l => l.Text == newCauseId))
             {
                 if (!await DisplayAlert("Warnung", "Es gibt bereits eine Minderertragsursache mit dieser ID. Trotzdem fortfahren?",
-                    accept: AppResources.yes, cancel: AppResources.cancel))
+                    accept: SharedResources.yes, cancel: SharedResources.cancel))
                     return;
             }
 
@@ -337,7 +291,7 @@ namespace DLR_Data_App.Views
                         "Diese müssen als Teilwort in der angegebenen Ursache enthalten sein. " +
                         "Durch das Auslassen von Angaben wird die Spracherkennung deaktiviert.",
                         initialValue: newCause,
-                        accept: AppResources.ok, cancel: AppResources.cancel);
+                        accept: SharedResources.ok, cancel: SharedResources.cancel);
                     if (voiceRecogKeywordInput == null)
                         return;
                     if (!Regex.IsMatch(voiceRecogKeywordInput, @"^[a-zA-Z, ]*$"))
@@ -345,7 +299,7 @@ namespace DLR_Data_App.Views
                         if (!await DisplayAlert("Warnung", 
                             "Schlüsselwörter der Spracherkennung können nur aus lateinischen Buchstaben bestehen. " +
                             "Trotzdem fortfahren?",
-                            accept: AppResources.yes, cancel: "Korrigieren"))
+                            accept: SharedResources.yes, cancel: "Korrigieren"))
                             return;
                     }
                 }
@@ -375,7 +329,7 @@ namespace DLR_Data_App.Views
         {
             Configuration.CopyProperties(Input);
             var c = new DrivingPageConfigurationDTO(Input);
-            Database.Update(ref c);
+            FieldCartographerModule.Instance.Database.Update(c);
             Input.Id = c.Id;
             Save?.Invoke();
             Navigation.PopModalAsync();

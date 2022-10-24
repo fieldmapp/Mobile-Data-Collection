@@ -1,6 +1,4 @@
-﻿using DLR_Data_App.Controls;
-using DLR_Data_App.Models.Profiling;
-using DLR_Data_App.Services;
+﻿using DlrDataApp.Modules.Base.Shared.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,9 +8,9 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using static DLR_Data_App.Views.DrivingConfigurationPage;
+using static DlrDataApp.Modules.FieldCartographer.Shared.DrivingConfigurationPage;
 
-namespace DLR_Data_App.Views.DrivingView
+namespace DlrDataApp.Modules.FieldCartographer.Shared
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DrivingConfigurationSelectionPage : ContentPage
@@ -32,12 +30,12 @@ namespace DLR_Data_App.Views.DrivingView
 
         public DrivingConfigurationSelectionPage()
         {
-            var configurations = Database.ReadAll<DrivingPageConfigurationDTO>().Select(c => c.DrivingPageConfiguration).ToList();
+            var configurations = FieldCartographerModule.Instance.Database.Read<DrivingPageConfigurationDTO>().Select(c => c.DrivingPageConfiguration).ToList();
             if (configurations.Count == 0)
             {
                 configurations = new List<DrivingPageConfiguration>() { DefaultConfiguration };
                 var dto = new DrivingPageConfigurationDTO(DefaultConfiguration);
-                Database.Update(ref dto);
+                FieldCartographerModule.Instance.Database.Update(dto);
                 DefaultConfiguration.Id = dto.Id;
             }
             DisplayedItems = new ObservableCollection<DrivingConfigurationDisplay>(

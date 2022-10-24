@@ -19,7 +19,7 @@ namespace DLR_Data_App.Views.Settings
         
         public AppSettings ()
         {
-            InitializeComponent ();
+            InitializeComponent();
             _elementList = new List<string> { SharedResources.privacypolicy, SharedResources.removedatabase, SharedResources.exportdatabase};
             
             AppSettingsList.ItemsSource = _elementList;
@@ -35,11 +35,11 @@ namespace DLR_Data_App.Views.Settings
             {
                 case 0:
                     // Show privacy policy
-                    await DisplayAlert(SharedResources.privacypolicy, SharedResources.privacytext1, SharedResources.okay);
+                    await Shell.Current.DisplayAlert(SharedResources.privacypolicy, SharedResources.privacytext1, SharedResources.okay);
                     break;
                 case 1:
                     // Remove Database
-                    answer = await DisplayAlert(SharedResources.removedatabase, SharedResources.removedatabasewarning, SharedResources.accept, SharedResources.cancel);
+                    answer = await Shell.Current.DisplayAlert(SharedResources.removedatabase, SharedResources.removedatabasewarning, SharedResources.accept, SharedResources.cancel);
                     if(answer)
                     {
                         // TODO
@@ -64,11 +64,11 @@ namespace DLR_Data_App.Views.Settings
                     try
                     {
                         await ExportData();
-                        await DisplayAlert(SharedResources.save, SharedResources.exporttorootwithtimestampsuccessful, SharedResources.okay);
+                        await Shell.Current.DisplayAlert(SharedResources.save, SharedResources.exporttorootwithtimestampsuccessful, SharedResources.okay);
                     }
                     catch (Exception exception)
                     {
-                        await DisplayAlert(SharedResources.error, exception.ToString(), SharedResources.ok);
+                        await Shell.Current.DisplayAlert(SharedResources.error, exception.ToString(), SharedResources.ok);
                     }
                     break;
             }

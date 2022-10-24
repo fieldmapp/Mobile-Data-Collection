@@ -47,24 +47,6 @@ namespace DLR_Data_App.Services
 
             return sBuilder.ToString();
         }
-        
-        /// <summary>
-        /// Extension Method providing the IndexOf method for <see cref="IReadOnlyList{T}"/>.
-        /// </summary>
-        /// <typeparam name="T">Type of <see cref="IReadOnlyList{T}"/></typeparam>
-        /// <param name="list">List in which the given element will be searched for</param>
-        /// <param name="element">Element which wil be looked for</param>
-        /// <returns>Index of element in list or (if the element is not in list) -1.</returns>
-        public static int IndexOf<T>(this IReadOnlyList<T> list, T element)
-        {
-            var listCount = list.Count;
-            for (int i = 0; i < listCount; i++)
-            {
-                if (list[i].Equals(element))
-                    return i;
-            }
-            return -1;
-        }
 
         public static Vector3 ToEulerAngles(this Quaternion q)
         {

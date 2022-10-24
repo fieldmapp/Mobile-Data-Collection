@@ -1,10 +1,10 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
-using DLR_Data_App.Services.TouchGesture;
-using DLR_Data_App.Services.VoiceControl;
 using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Shared.Controls;
+using DlrDataApp.Modules.Base.Shared.TouchGesture;
+using DlrDataApp.Modules.SpeechRecognition.Definition;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Shapes;
 using Xamarin.Forms.Xaml;
-using static DLR_Data_App.Services.VoiceControl.VoiceCommandCompiler;
+using static DlrDataApp.Modules.FieldCartographer.Shared.VoiceCommandCompiler;
 
 namespace DlrDataApp.Modules.FieldCartographer.Shared
 {
@@ -65,17 +65,6 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         readonly bool[] IsLaneStarted;
         readonly string LogFileIdentifier;
 
-        public DrivingPage() : this(MaxLaneCountPerSide)
-        {
-
-        }
-
-        [OnSplashScreenLoad]
-        static void OnSplashScreenLoad()
-        {
-            DependencyService.Get<ISpeechRecognizer>().Start();
-        }
-
         public DrivingConfigurationPage.DrivingPageConfiguration Configuration { get; set; }
         public DrivingPage(DrivingConfigurationPage.DrivingPageConfiguration configuration)
         {
@@ -89,7 +78,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             IsLaneTypeEntered = new bool[TotalLaneCount];
             IsLaneStarted = new bool[TotalLaneCount];
 
-            LogFileIdentifier = "drivingView_" + App.CurrentUser.Username + "_" + LaneCountPerSide + "_" + configuration.LaneWidth + "_" + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
+            LogFileIdentifier = "drivingView_" + FieldCartographerModule.Instance.CurrentUser.Username + "_" + LaneCountPerSide + "_" + configuration.LaneWidth + "_" + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
 
             InitializeComponent();
             WriteUsingCsvWriter(csvWriter => csvWriter.WriteHeader<InteractionInfo>());
@@ -154,7 +143,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             speechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
         }
 
-        private void SpeechRecognizer_ResultRecognized(object sender, Models.VoiceRecognitionResult e)
+        private void SpeechRecognizer_ResultRecognized(object sender, SpeechRecognitionResult e)
         {
             var command = VoiceCommandCompiler.Compile(e.Parts.Select(p => p.Word).ToList());
 

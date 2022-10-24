@@ -1,8 +1,3 @@
-<<<<<<<< HEAD:DLR_Data_App/DlrDataApp.Modules.BasePclModule/Controls/InlinePicker.xaml.cs
-﻿//Main contributors: Maximilian Enderling, Maya Koehnen
-========
-﻿using DlrDataApp.Modules.Profiling.Shared.Models;
->>>>>>>> master:DLR_Data_App/DlrDataApp.Modules.BasePclModule/Controls/InlinePicker.cs
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +22,7 @@ namespace DlrDataApp.Modules.Base.Shared.Controls
 
         private void ListView_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(ListView.ItemsSource) && IndicateScrollable)
+            if (e.PropertyName == nameof(ItemsSource) && IndicateScrollable)
                 Task.Run(IndicateScroll);
         }
 

@@ -5,14 +5,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DrivingConfigurationPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CsvHelper" Version="29.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DlrDataApp.Modules.BasePclModule\DlrDataApp.Modules.Base.Shared.csproj" />
+    <ProjectReference Include="..\DlrDataApp.Modules.VoiceRecognitionDefinitionModule\DlrDataApp.Modules.SpeechRecognition.Definition.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="DrivingConfigurationPage.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="DrivingConfigurationSelectionPage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
     <Compile Update="DrivingPage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>

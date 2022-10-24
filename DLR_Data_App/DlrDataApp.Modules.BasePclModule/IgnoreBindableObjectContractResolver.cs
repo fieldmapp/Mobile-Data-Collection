@@ -1,11 +1,12 @@
-﻿using DLR_Data_App.Views;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using Xamarin.Forms;
+
+using static DlrDataApp.Modules.Base.Shared.Helpers;
 
 namespace DlrDataApp.Modules.Base.Shared
 {
@@ -16,12 +17,12 @@ namespace DlrDataApp.Modules.Base.Shared
 
         public override FormattedString ReadJson(JsonReader reader, Type objectType, FormattedString existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            return DrivingConfigurationPage.StringWithAnnotationsToFormattedString((string)reader.Value);
+            return StringWithAnnotationsToFormattedString((string)reader.Value);
         }
 
         public override void WriteJson(JsonWriter writer, FormattedString value, JsonSerializer serializer)
         {
-            writer.WriteValue(DrivingConfigurationPage.FormattedStringToAnnotatedString(value));
+            writer.WriteValue(FormattedStringToAnnotatedString(value));
         }
     }
     /// <summary>

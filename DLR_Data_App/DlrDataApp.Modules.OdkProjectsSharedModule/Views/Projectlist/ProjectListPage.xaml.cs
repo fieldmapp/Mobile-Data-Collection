@@ -12,7 +12,7 @@ using DlrDataApp.Modules.Base.Shared;
 namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProjectListPage
+    public partial class ProjectListPage : ContentPage
     {
         private List<Project> _projectList;
         private NewProjectPage _newProjectPage;

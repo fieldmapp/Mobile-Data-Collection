@@ -62,9 +62,6 @@ namespace com.DLR.DLR_Data_App.Droid
                 }
             });
 
-            var usbDeviceAttachedFilter = new IntentFilter(UsbManager.ActionUsbDeviceAttached);
-            RegisterReceiver((DependencyService.Get<IUbloxCommunicator>() as AndroidUbloxComm).UsbDeviceAttachedListener, usbDeviceAttachedFilter);
-
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
             TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;

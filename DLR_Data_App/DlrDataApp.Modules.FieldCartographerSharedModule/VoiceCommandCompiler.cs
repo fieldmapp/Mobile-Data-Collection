@@ -1,4 +1,4 @@
-﻿using DLR_Data_App.Views;
+﻿using DlrDataApp.Modules.Base.Shared;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using Xamarin.Forms.Xaml;
 
-namespace DLR_Data_App.Services.VoiceControl
+namespace DlrDataApp.Modules.FieldCartographer.Shared
 {
     public static class VoiceCommandCompiler
     {

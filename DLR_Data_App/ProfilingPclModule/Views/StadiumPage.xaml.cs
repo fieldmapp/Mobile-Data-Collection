@@ -80,8 +80,8 @@ namespace DlrDataApp.Modules.Profiling.Shared.Views
             PlantCollection = new ObservableCollection<Plant>(question.Plants);
             Picture.BindingContext = this;
             QuestionText.BindingContext = this;
-            StadiumInlinePicker.ItemSource = StadiumCollection;
-            PlantInlinePicker.ItemSource = PlantCollection;
+            StadiumInlinePicker.ItemsSource = StadiumCollection;
+            PlantInlinePicker.ItemsSource = PlantCollection;
             Header = string.Format(ProfilingResources.questionEntryFormat, answersGiven + 1, answersNeeded, question.InternId);
             HeaderText.BindingContext = this;
             PageFinished += StadiumPage_PageFinished;

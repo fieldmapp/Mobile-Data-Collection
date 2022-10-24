@@ -59,9 +59,6 @@
     <EmbeddedResource Update="Views\CurrentProject\EditDataDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\DrivingConfigurationPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\DistanceMeasuringDemoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -86,9 +83,6 @@
     <EmbeddedResource Update="Views\DrivingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-	  <EmbeddedResource Update="Views\DrivingView\DrivingConfigurationSelectionPage.xaml">
-		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-	  </EmbeddedResource>
     <EmbeddedResource Update="Views\LicensesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -116,8 +110,5 @@
     <EmbeddedResource Update="Views\VoiceRecognitionDemoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\TouchGesture\" />
   </ItemGroup>
 </Project>

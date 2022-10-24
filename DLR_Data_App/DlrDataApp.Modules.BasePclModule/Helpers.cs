@@ -292,5 +292,75 @@ namespace DlrDataApp.Modules.Base.Shared
                     yield break;
             }
         }
+
+
+        public const string BoldMarker = "*";
+
+        public static FormattedString StringWithAnnotationsToFormattedString(string annotatedInput)
+        {
+
+            if (string.IsNullOrWhiteSpace(annotatedInput))
+                return new FormattedString();
+
+            annotatedInput = annotatedInput.Replace("\\n", Environment.NewLine);
+            var markerIndices = annotatedInput.AllIndicesOf(BoldMarker);
+            int prevPartEndIndex = 0;
+            var result = new FormattedString();
+
+            bool bold = false;
+            foreach (var markerIndex in markerIndices.Concat(new int[] { annotatedInput.Length }))
+            {
+                var part = annotatedInput.Substring(prevPartEndIndex, markerIndex - prevPartEndIndex);
+                if (!string.IsNullOrWhiteSpace(part))
+                {
+                    var span = new Span { Text = part };
+                    if (bold)
+                        span.FontAttributes = FontAttributes.Bold;
+
+                    result.Spans.Add(span);
+                }
+
+                bold = !bold;
+                prevPartEndIndex = markerIndex + 1;
+            }
+
+            return result;
+        }
+
+        public static string FormattedStringToAnnotatedString(FormattedString formattedString)
+        {
+            if (formattedString == null)
+                return string.Empty;
+
+            StringBuilder builder = new StringBuilder();
+            foreach (var span in formattedString.Spans)
+            {
+                if (span.FontAttributes.HasFlag(FontAttributes.Bold))
+                    builder.Append('*');
+                builder.Append(span.Text);
+                if (span.FontAttributes.HasFlag(FontAttributes.Bold))
+                    builder.Append('*');
+            }
+            return builder.ToString().Replace(Environment.NewLine, "\\n");
+        }
+
+
+        /// <summary>
+        /// Extension Method providing the IndexOf method for <see cref="IReadOnlyList{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of <see cref="IReadOnlyList{T}"/></typeparam>
+        /// <param name="list">List in which the given element will be searched for</param>
+        /// <param name="element">Element which wil be looked for</param>
+        /// <returns>Index of element in list or (if the element is not in list) -1.</returns>
+        public static int IndexOf<T>(this IReadOnlyList<T> list, T element)
+        {
+            var listCount = list.Count;
+            for (int i = 0; i < listCount; i++)
+            {
+                if (list[i].Equals(element))
+                    return i;
+            }
+            return -1;
+        }
     }
 }

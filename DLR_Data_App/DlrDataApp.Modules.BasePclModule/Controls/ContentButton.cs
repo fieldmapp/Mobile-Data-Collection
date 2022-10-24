@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
-using static DLR_Data_App.Services.Helpers;
+using static DlrDataApp.Modules.Base.Shared.Helpers;
 
 namespace DlrDataApp.Modules.Base.Shared.Controls
 {

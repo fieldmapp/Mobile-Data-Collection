@@ -1,4 +1,4 @@
-﻿namespace DLR_Data_App.Services.TouchGesture
+﻿namespace DlrDataApp.Modules.Base.Shared.TouchGesture
 {
     public enum TouchActionType
     {

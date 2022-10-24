@@ -6,11 +6,12 @@ using System.IO;
 using DlrDataApp.Modules.Base.Shared.Localization;
 using DlrDataApp.Modules.OdkProjects.Shared.Services;
 using DlrDataApp.Modules.OdkProjects.Shared.Localization;
+using Xamarin.Forms;
 
 namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewProjectPage
+    public partial class NewProjectPage : ContentPage
     {
         private FileResult File { get; set; }
         string _fileCopyPath;

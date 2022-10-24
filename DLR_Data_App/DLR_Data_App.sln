@@ -43,7 +43,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DlrDataApp.Modules.FieldCar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DlrDataApp.Modules.FieldCartographer.Android", "DlrDataApp.Modules.FieldCartographer.Android\DlrDataApp.Modules.FieldCartographer.Android.csproj", "{60844982-82E4-45C1-82CE-633237DC0CEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DlrDataApp.Modules.OdProjects.Android", "DlrDataApp.Modules.OdProjects.Android\DlrDataApp.Modules.OdProjects.Android.csproj", "{81E490AE-C947-441F-AF42-ED7D338261C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DlrDataApp.Modules.OdkProjects.Android", "DlrDataApp.Modules.OdProjects.Android\DlrDataApp.Modules.OdkProjects.Android.csproj", "{81E490AE-C947-441F-AF42-ED7D338261C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

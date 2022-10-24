@@ -56,6 +56,8 @@ namespace com.DLR.DLR_Data_App.Droid
         public AndroidUbloxComm()
         {
             UsbDeviceAttachedListener = new UsbAttachedListener(OnUsbDeviceAttached);
+            var usbDeviceAttachedFilter = new IntentFilter(UsbManager.ActionUsbDeviceAttached);
+            MainActivity.RegisterReceiver(UsbDeviceAttachedListener, usbDeviceAttachedFilter);
             LoadTask = Initialize();
         }
 
