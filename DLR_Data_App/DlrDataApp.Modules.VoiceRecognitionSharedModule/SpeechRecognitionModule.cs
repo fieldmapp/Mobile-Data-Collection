@@ -15,10 +15,11 @@ namespace DlrDataApp.Modules.SpeechRecognition.Shared
         public override Task OnInitialize()
         {
             var speechRecognizer = DependencyService.Get<ISpeechRecognizerProvider>();
+            DependencyService.Get<ISpeechRecognitionPlatformDependencyLoader>().LoadLibraries();
             ModuleHost.App.FlyoutItem.Items.Add(new ShellContent
             {
                 Title = "Spracherkennung-Demo",
-                Route = "profilingcurrent",
+                Route = "speechrecognition_test",
                 ContentTemplate = new DataTemplate(typeof(SpeechRecognitionDemoPage))
             });
 

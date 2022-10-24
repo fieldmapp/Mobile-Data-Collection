@@ -38,9 +38,6 @@ namespace com.DLR.DLR_Data_App.Droid
 
             Xamarin.Essentials.Platform.Init(Application);
 
-            // TODO
-            //JavaSystem.LoadLibrary("vosk_jni");
-
             base.OnCreate(savedInstanceState);
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
@@ -49,7 +46,8 @@ namespace com.DLR.DLR_Data_App.Droid
             var fullPath = System.IO.Path.Combine(folderPath, dbName);
 
             LoadApplication(new App(folderPath, fullPath, new List<ISharedModule> { 
-                new DlrDataApp.Modules.Profiling.Shared.ProfilingModule()
+                new DlrDataApp.Modules.Profiling.Shared.ProfilingModule(),
+                new DlrDataApp.Modules.SpeechRecognition.Shared.SpeechRecognitionModule()
             }));
             ReloadToolbar();
             EnsureAppPermission(Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage, Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation, Manifest.Permission.RecordAudio);

@@ -134,6 +134,14 @@
       <Project>{3f04c52d-d155-47bb-aa8a-d01983f0b0d0}</Project>
       <Name>DlrDataApp.Modules.Base.Android</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\DlrDataApp.Modules.VoiceRecognitionAndroidModule\DlrDataApp.Modules.SpeechRecognition.Android.csproj">
+      <Project>{e2ea4a6d-25de-49fc-80ba-eb134ca7a3eb}</Project>
+      <Name>DlrDataApp.Modules.SpeechRecognition.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DlrDataApp.Modules.VoiceRecognitionSharedModule\DlrDataApp.Modules.SpeechRecognition.Shared.csproj">
+      <Project>{82caf3f3-0b24-43ed-bf0e-1a8048f621b5}</Project>
+      <Name>DlrDataApp.Modules.SpeechRecognition.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ProfilingPclModule\DlrDataApp.Modules.Profiling.Shared.csproj">
       <Project>{431ba8e5-6ff1-42a1-9468-f34fa8e4573a}</Project>
       <Name>DlrDataApp.Modules.Profiling.Shared</Name>

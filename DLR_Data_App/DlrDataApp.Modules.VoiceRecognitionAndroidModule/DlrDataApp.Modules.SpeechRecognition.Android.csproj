@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndroidSpeechRecognitionPlatformDependencyLoader.cs" />
     <Compile Include="AndroidSpeechRecognizer.cs" />
     <Compile Include="AndroidSpeechRecognizerProvider.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
