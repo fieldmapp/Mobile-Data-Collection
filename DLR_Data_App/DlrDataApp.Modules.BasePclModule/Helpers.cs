@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace DlrDataApp.Modules.Base.Shared
@@ -161,6 +162,117 @@ namespace DlrDataApp.Modules.Base.Shared
         {
             return dateTime.ToString("ddMMyyyyHHmmss", CultureInfo.InvariantCulture);
         }
+
+        public static List<int> AllIndicesOf(this string str, string value)
+        {
+            // taken from https://stackoverflow.com/a/2641383/8512719
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentException("the string to find may not be empty", "value");
+            List<int> indexes = new List<int>();
+            for (int index = 0; ; index += value.Length)
+            {
+                index = str.IndexOf(value, index);
+                if (index == -1)
+                    return indexes;
+                indexes.Add(index);
+            }
+        }
+
+        /// <summary>
+        /// Extension for 'Object' that copies the properties to a destination object. Taken from https://stackoverflow.com/a/8724150
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="destination">The destination.</param>
+        public static void CopyProperties(this object source, object destination)
+        {
+            // If any this null throw an exception
+            if (source == null || destination == null)
+                throw new Exception("Source or/and Destination Objects are null");
+            // Getting the Types of the objects
+            Type typeDest = destination.GetType();
+            Type typeSrc = source.GetType();
+
+            // Iterate the Properties of the source instance and  
+            // populate them from their desination counterparts  
+            PropertyInfo[] srcProps = typeSrc.GetProperties();
+            foreach (PropertyInfo srcProp in srcProps)
+            {
+                if (!srcProp.CanRead)
+                {
+                    continue;
+                }
+                PropertyInfo targetProperty = typeDest.GetProperty(srcProp.Name);
+                if (targetProperty == null)
+                {
+                    continue;
+                }
+                if (!targetProperty.CanWrite)
+                {
+                    continue;
+                }
+                if (targetProperty.GetSetMethod(true) != null || targetProperty.GetSetMethod(true).IsPrivate)
+                {
+                    continue;
+                }
+                if ((targetProperty.GetSetMethod().Attributes & MethodAttributes.Static) != 0)
+                {
+                    continue;
+                }
+                if (!targetProperty.PropertyType.IsAssignableFrom(srcProp.PropertyType))
+                {
+                    continue;
+                }
+                // Passed all tests, lets set the value
+                targetProperty.SetValue(destination, srcProp.GetValue(source, null), null);
+            }
+        }
+
+        /// <summary>
+        /// Taken from  https://stackoverflow.com/a/60297754
+        /// </summary>
+        public static void PerformClick(this Button sourceButton)
+        {
+
+            // Check parameters
+            if (sourceButton == null)
+                throw new ArgumentNullException(nameof(sourceButton));
+
+            // 1.) Raise the Click-event
+#if !NETSTANDARD
+            sourceButton.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent));
+#else
+            sourceButton.RaiseEventViaReflection(nameof(sourceButton.Clicked), EventArgs.Empty);
+#endif
+
+            // 2.) Execute the command, if bound and can be executed
+            ICommand boundCommand = sourceButton.Command;
+            if (boundCommand != null)
+            {
+                object parameter = sourceButton.CommandParameter;
+                if (boundCommand.CanExecute(parameter) == true)
+                    boundCommand.Execute(parameter);
+            }
+        }
+
+#if NETSTANDARD
+        /// <summary>
+        /// Taken from https://stackoverflow.com/a/60297754
+        /// </summary>
+        public static void RaiseEventViaReflection<TEventArgs>(this object source, string eventName, TEventArgs eventArgs) where TEventArgs : EventArgs
+        {
+            var eventDelegate = (MulticastDelegate)source.GetType().GetField(eventName, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(source);
+            if (eventDelegate == null)
+                return;
+            foreach (var handler in eventDelegate.GetInvocationList())
+            {
+#if !(NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0)
+                handler.Method?.Invoke(handler.Target, new object[] { source, eventArgs });
+#else
+               handler.GetMethodInfo()?.Invoke(handler.Target, new object[] { source, eventArgs });
+#endif
+            }
+        }
+#endif
 
 
 

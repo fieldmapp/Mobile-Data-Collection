@@ -387,7 +387,7 @@ Consent of the data subject means any freely given, specific, informed and unamb
     <value>Do you want to remove your profile and collected data?</value>
   </data>
   <data name="removedatabase" xml:space="preserve">
-    <value>Remove Database</value>
+    <value>Reset (of the whole system)</value>
   </data>
   <data name="removedatabasewarning" xml:space="preserve">
     <value>Do you want to remove the database?</value>
@@ -501,7 +501,7 @@ Consent of the data subject means any freely given, specific, informed and unamb
     <value>Accuracy</value>
   </data>
   <data name="exporttorootwithtimestampsuccessful" xml:space="preserve">
-    <value>Successfully exported into root directory with name Fieldmapp_Database_TIMESTAMP.</value>
+    <value>Successfully exported into root directory with name Fieldmapp_Export_TIMESTAMP.</value>
   </data>
   <data name="drivingview" xml:space="preserve">
     <value>Driving view</value>
@@ -512,11 +512,8 @@ Consent of the data subject means any freely given, specific, informed and unamb
   <data name="profilingdetails" xml:space="preserve">
     <value>Profiling details</value>
   </data>
-  <data name="drivingvieweasy" xml:space="preserve">
-    <value>Driving View Easy</value>
-  </data>
-  <data name="drivingviewhard" xml:space="preserve">
-    <value>Driving View Hard</value>
+  <data name="lowYieldCartograph" xml:space="preserve">
+    <value>Low Yield Cartography</value>
   </data>
   <data name="current" xml:space="preserve">
     <value>Current</value>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DLR_Data_App.Views.DrivingConfigurationPage"
+             x:Name="This"
+             xmlns:Controls="clr-namespace:DLR_Data_App.Controls">
+    <ContentPage.BindingContext>
+        <x:Reference Name="This" />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Konfigurationsname" VerticalOptions="Center" Style="{DynamicResource TitleStyle}"/>
+                    <Entry Text="{Binding Configuration.Name}" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                
+                <BoxView HeightRequest="1" VerticalOptions="Fill" BackgroundColor="{AppThemeBinding Light={StaticResource Divider}, Dark={StaticResource DividerNight}}" Margin="0, 10, 0, 10"/>
+                
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Bearbeitungsbreite (in Metern)" VerticalOptions="Center" Style="{DynamicResource TitleStyle}"/>
+                    <Entry Keyboard="Numeric" Text="{Binding Configuration.LaneWidth}" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <Label Style="{DynamicResource CaptionStyle}" Text="Welche Arbeitsbreite wird genutzt?" HorizontalOptions="Center" FontSize="Micro"/>
+
+                <BoxView HeightRequest="1" VerticalOptions="Fill" BackgroundColor="{AppThemeBinding Light={StaticResource Divider}, Dark={StaticResource DividerNight}}" Margin="0, 10, 0, 10"/>
+
+                <Label Style="{DynamicResource TitleStyle}" Text="Auswahl Minderertragsursachen" HorizontalOptions="Center" />
+                <Label Style="{DynamicResource CaptionStyle}" Text="Welche Minderertragstypen können aktuell während der Bewirtschaftung erkannt werden? Es können bis zu neun Ursachen festgelegt werden." HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="Micro"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center">
+                        <Label>ID:</Label>
+                        <Label x:Name="Cause1IdLabel" Text="{Binding Configuration.Cause1Id, Mode=TwoWay}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center">
+                        <Label>ID:</Label>
+                        <Label x:Name="Cause2IdLabel" Text="{Binding Configuration.Cause2Id, Mode=TwoWay}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center">
+                        <Label>ID:</Label>
+                        <Label x:Name="Cause3IdLabel" Text="{Binding Configuration.Cause3Id, Mode=TwoWay}"/>
+                    </StackLayout>
+                    <StackLayout Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Center">
+                        <Label>ID:</Label>
+                        <Label x:Name="Cause4IdLabel" Text="{Binding Configuration.Cause4Id, Mode=TwoWay}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center">
+                        <Label>ID:</Label>
+                        <Label x:Name="Cause5IdLabel" Text="{Binding Configuration.Cause5Id, Mode=TwoWay}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="2" HorizontalOptions="Center">
+                        <Label>ID:</Label>
+                        <Label x:Name="Cause6IdLabel" Text="{Binding Configuration.Cause6Id, Mode=TwoWay}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="0" HorizontalOptions="Center">
+                        <Label>ID:</Label>
+                        <Label x:Name="Cause7IdLabel" Text="{Binding Configuration.Cause7Id, Mode=TwoWay}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="1" HorizontalOptions="Center">
+                        <Label>ID:</Label>
+                        <Label x:Name="Cause8IdLabel" Text="{Binding Configuration.Cause8Id, Mode=TwoWay}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="2" HorizontalOptions="Center">
+                        <Label>ID:</Label>
+                        <Label x:Name="Cause9IdLabel" Text="{Binding Configuration.Cause9Id, Mode=TwoWay}"/>
+                    </StackLayout>
+                    <Controls:FormattedButton x:Name="Button1" Grid.Row="1" Grid.Column="0" FormattedText="{Binding Configuration.Cause1, Mode=TwoWay}" FontSize="Small" Clicked="CauseButton_Clicked"/>
+                    <Controls:FormattedButton x:Name="Button2" Grid.Row="1" Grid.Column="1" FormattedText="{Binding Configuration.Cause2, Mode=TwoWay}" FontSize="Small" Clicked="CauseButton_Clicked"/>
+                    <Controls:FormattedButton x:Name="Button3" Grid.Row="1" Grid.Column="2" FormattedText="{Binding Configuration.Cause3, Mode=TwoWay}" FontSize="Small" Clicked="CauseButton_Clicked"/>
+                    <Controls:FormattedButton x:Name="Button4" Grid.Row="3" Grid.Column="0" FormattedText="{Binding Configuration.Cause4, Mode=TwoWay}" FontSize="Small" Clicked="CauseButton_Clicked"/>
+                    <Controls:FormattedButton x:Name="Button5" Grid.Row="3" Grid.Column="1" FormattedText="{Binding Configuration.Cause5, Mode=TwoWay}" FontSize="Small" Clicked="CauseButton_Clicked"/>
+                    <Controls:FormattedButton x:Name="Button6" Grid.Row="3" Grid.Column="2" FormattedText="{Binding Configuration.Cause6, Mode=TwoWay}" FontSize="Small" Clicked="CauseButton_Clicked"/>
+                    <Controls:FormattedButton x:Name="Button7" Grid.Row="5" Grid.Column="0" FormattedText="{Binding Configuration.Cause7, Mode=TwoWay}" FontSize="Small" Clicked="CauseButton_Clicked"/>
+                    <Controls:FormattedButton x:Name="Button8" Grid.Row="5" Grid.Column="1" FormattedText="{Binding Configuration.Cause8, Mode=TwoWay}" FontSize="Small" Clicked="CauseButton_Clicked"/>
+                    <Controls:FormattedButton x:Name="Button9" Grid.Row="5" Grid.Column="2" FormattedText="{Binding Configuration.Cause9, Mode=TwoWay}" FontSize="Small" Clicked="CauseButton_Clicked"/>
+                </Grid>
+
+                <BoxView HeightRequest="1" VerticalOptions="Fill" BackgroundColor="{AppThemeBinding Light={StaticResource Divider}, Dark={StaticResource DividerNight}}" Margin="0, 10, 0, 10"/>
+
+                <Label Style="{DynamicResource TitleStyle}" Text="Anzahl der Zonen"  HorizontalOptions="Center"/>
+                <Label Style="{DynamicResource CaptionStyle}" Text="In wie viele (parallel zur Fahrspur verlaufende) Zonen kann die Bearbeitungsbreite sinnvoll unterteilt werden, sodass die Kartierung neben dem zu erwartenden Arbeitsaufwand machbar bleibt?" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="Micro"/>
+                <Controls:IntegerSlider x:Name="LaneCountSlider" Maximum="3" Minimum="1" Value="{Binding Configuration.LaneCount, Mode=OneTime}" IntegerValue="{Binding Configuration.LaneCount, Mode=OneWayToSource}"/>
+                <Label BindingContext="{x:Reference LaneCountSlider}" Text="{Binding Value, Mode=OneWay}" HorizontalOptions="Center"/>
+
+                <BoxView HeightRequest="1" VerticalOptions="Fill" BackgroundColor="{AppThemeBinding Light={StaticResource Divider}, Dark={StaticResource DividerNight}}" Margin="0, 10, 0, 10"/>
+
+                <Button Text="Speichern" Clicked="SaveButton_Clicked" HorizontalOptions="Center"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

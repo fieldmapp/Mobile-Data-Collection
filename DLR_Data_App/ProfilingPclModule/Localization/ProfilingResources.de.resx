@@ -124,7 +124,7 @@
     <value> mit den korrekten Lösungen übereingestimmt.</value>
   </data>
   <data name="completeSelectionToAdvance" xml:space="preserve">
-    <value>Bitte verfollständigen Sie Ihre Auswahl um fortzufahren.</value>
+    <value>Bitte vervollständigen Sie Ihre Auswahl um fortzufahren.</value>
   </data>
   <data name="currentprofiling" xml:space="preserve">
     <value>Aktuelles Profiling</value>

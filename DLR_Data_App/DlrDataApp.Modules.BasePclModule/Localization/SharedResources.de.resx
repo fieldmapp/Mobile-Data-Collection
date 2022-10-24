@@ -187,7 +187,7 @@
     <value>Bitte wählen Sie ein Datum und eine Zeit aus, in der Sie den Datensatz suchen. Es werden alle Datensätze in einer Liste dargestellt, wobei der zur Zeit passende Eintrag ausgewählt ist. Wählen Sie einen Eintrag zum Bearbeiten durch antippen aus.</value>
   </data>
   <data name="exportdatabase" xml:space="preserve">
-    <value>Datenbank als JSON exportieren</value>
+    <value>Datenbank exportieren</value>
   </data>
   <data name="failed" xml:space="preserve">
     <value>Fehlgeschlagen</value>
@@ -366,7 +366,7 @@ Einwilligung ist jede von der betroffenen Person freiwillig für den bestimmten 
     <value>Wollen Sie ihr Profil und alle gesammelten Daten löschen?</value>
   </data>
   <data name="removedatabase" xml:space="preserve">
-    <value>Datenbank löschen</value>
+    <value>Zurücksetzen (des gesamten Systems)</value>
   </data>
   <data name="removedatabasewarning" xml:space="preserve">
     <value>Wollen Sie die Datenbank löschen?</value>
@@ -504,7 +504,7 @@ Einwilligung ist jede von der betroffenen Person freiwillig für den bestimmten 
     <value>Genauigkeit</value>
   </data>
   <data name="exporttorootwithtimestampsuccessful" xml:space="preserve">
-    <value>Erfolgreich ins Wurzelverzeichnis mit Namen Fieldmapp_Database_ZEITSTEMPEL exportiert.</value>
+    <value>Erfolgreich ins Wurzelverzeichnis mit Namen Fieldmapp_Export_ZEITSTEMPEL exportiert.</value>
   </data>
   <data name="drivingview" xml:space="preserve">
     <value>Fahransicht</value>
@@ -515,10 +515,7 @@ Einwilligung ist jede von der betroffenen Person freiwillig für den bestimmten 
   <data name="profilingdetails" xml:space="preserve">
     <value>Profilingdetails</value>
   </data>
-  <data name="drivingvieweasy" xml:space="preserve">
-    <value>Fahransicht einfach</value>
-  </data>
-  <data name="drivingviewhard" xml:space="preserve">
-    <value>Fahransicht schwer</value>
+  <data name="lowYieldCartograph" xml:space="preserve">
+    <value>Minderertragskartierung</value>
   </data>
 </root>

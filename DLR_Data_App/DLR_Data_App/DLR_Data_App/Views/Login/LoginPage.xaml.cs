@@ -33,7 +33,7 @@ namespace DLR_Data_App.Views.Login
         {
             UserList = Database.Read<User>().Select(u => new UserDisplay { Name = u.Username }).ToList();
             InitializeComponent();
-            UserPicker.ItemSource = UserList;
+            UserPicker.ItemsSource = UserList;
             BindingContext = _viewModel;
         }
 

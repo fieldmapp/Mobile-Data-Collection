@@ -7,6 +7,6 @@
              x:Class="DlrDataApp.Modules.Base.Shared.Controls.FormattedButton"
              xmlns:controls="clr-namespace:DlrDataApp.Modules.Base.Shared.Controls">
     <controls:ContentButton.Content>
-        <Label x:Name="ButtonTextLabel" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" BackgroundColor="Transparent"/>
+        <Label x:Name="ButtonTextLabel" HorizontalOptions="Center" VerticalOptions="Center" InputTransparent="True" HorizontalTextAlignment="Center" BackgroundColor="Transparent"/>
     </controls:ContentButton.Content>
 </controls:ContentButton>

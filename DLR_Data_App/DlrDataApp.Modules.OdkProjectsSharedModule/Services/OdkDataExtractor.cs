@@ -276,7 +276,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Services
                     languageCode = key;
                     break;
                 }
-                if (languageCode == null)
+                if (string.IsNullOrWhiteSpace(languageCode))
                 {
                     //just pick first available translation
                     var languagesEnumerator = languageObjects.GetEnumerator();

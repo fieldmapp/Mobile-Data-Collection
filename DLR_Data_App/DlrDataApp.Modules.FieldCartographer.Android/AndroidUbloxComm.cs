@@ -31,6 +31,19 @@ namespace com.DLR.DLR_Data_App.Droid
     [BroadcastReceiver]
     class AndroidUbloxComm : IUbloxCommunicator
     {
+        public class UsbAttachedListener : BroadcastReceiver
+        {
+            Action<Context, Intent> Callback;
+            public UsbAttachedListener(Action<Context, Intent> callback)
+            {
+                Callback = callback;
+            }
+            public override void OnReceive(Context context, Intent intent)
+            {
+                Callback?.Invoke(context, intent);
+            }
+        }
+
         static FormsAppCompatActivity MainActivity => DependencyService.Get<IMainActivityProvider>().MainActivity;
         public const int REQUEST_CODE = 6;
         private static readonly string ACTION_USB_PERMISSION = MainActivity.PackageName + ".USB_PERMISSION";
@@ -42,10 +55,24 @@ namespace com.DLR.DLR_Data_App.Droid
 
         public AndroidUbloxComm()
         {
+            UsbDeviceAttachedListener = new UsbAttachedListener(OnUsbDeviceAttached);
             LoadTask = Initialize();
         }
 
+        public UsbAttachedListener UsbDeviceAttachedListener { get; }
 
+
+        const int UbloxVendorId = 5446;
+        const int UbloxSensorProductId = 425;
+
+        void OnUsbDeviceAttached(Context context, Intent intent)
+        {
+            var connectedDevice = (UsbDevice)intent.Extras.Get(UsbManager.ExtraDevice);
+            if (connectedDevice.VendorId != UbloxVendorId || connectedDevice.ProductId != UbloxSensorProductId)
+                return;
+
+            Initialize();
+        }
 
         public Task Initialize()
         {
@@ -58,9 +85,7 @@ namespace com.DLR.DLR_Data_App.Droid
             MainActivity.RegisterReceiver(UsbReceiver, filter);
 
             var table = UsbSerialProber.DefaultProbeTable;
-            const int ubloxVendorId = 5446;
-            const int ubloxSensorProductId = 425;
-            table.AddProduct(ubloxVendorId, ubloxSensorProductId, Java.Lang.Class.FromType(typeof(CdcAcmSerialDriver)));
+            table.AddProduct(UbloxVendorId, UbloxSensorProductId, Java.Lang.Class.FromType(typeof(CdcAcmSerialDriver)));
             var prober = new UsbSerialProber(table);
             var drivers = prober.FindAllDrivers(UsbManager);
             var driversList = drivers.ToList();
@@ -115,13 +140,12 @@ namespace com.DLR.DLR_Data_App.Droid
 
             string LogFileIdentifier;
 
-            FileStream LogFileStream;
             public void OnHasUsbPermission()
             {
                 SerialPort = AndroidUbloxComm.UbloxDriver.Ports.Single();
                 SerialIOManager = new SerialInputOutputManager(SerialPort)
                 {
-                    BaudRate = 38400,
+                    BaudRate = 115200,
                     DataBits = 8,
                     StopBits = StopBits.One,
                     Parity = Parity.None
@@ -141,7 +165,12 @@ namespace com.DLR.DLR_Data_App.Droid
                         logFileStream.Write(b.Data);
                     }
                 };
-                SerialIOManager.Open(AndroidUbloxComm.UsbManager);
+                try
+                {
+                    SerialIOManager.Open(AndroidUbloxComm.UsbManager);
+                }
+                catch (Exception) { }
+                
                 WriteData(UbloxConfigurationMessageGenerator.StardardUbloxConfiguration());
             }
 
@@ -174,6 +203,12 @@ namespace com.DLR.DLR_Data_App.Droid
                 byte[] rateValue = new[] { rate };
                 byte[] falseValue = new byte[] { 0 };
                 byte[] trueValue = new byte[] { 0xFF };
+
+                // see https://content.u-blox.com/sites/default/files/documents/u-blox-F9-HPG-1.32_InterfaceDescription_UBX-22008968.pdf 6.9.18
+                const int measurementRate = 0x30210001;
+                const int measurementFrequency = 20;
+                const short measurementDurationMs = 1000/measurementFrequency;
+                byte[] measurementRateValue = GetAsLittleEndian(BitConverter.GetBytes(measurementDurationMs)).ToArray();
 
 #pragma warning disable CS0219 // Variable ist zugewiesen, der Wert wird jedoch niemals verwendet
                 // Stationary RTK Reference Station ARP
@@ -208,6 +243,7 @@ namespace com.DLR.DLR_Data_App.Droid
 #pragma warning restore CS0219 // Variable ist zugewiesen, der Wert wird jedoch niemals verwendet
 
                 return SetConfigurationItems(
+                    GenerateConfigurationItem(measurementRate, measurementRateValue),
                     GenerateConfigurationItem(type1005UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type1074UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type1077UsbOutputRate, rateValue),

@@ -1,198 +1,198 @@
 {
-    "title": "Feldbezeichnung",
-    "controls": [
-        {
-            "name": "fieldname",
-            "label": {
-                "0": "Feldname",
-                "1": "Field name"
-            },
-            "hint": {
-                "0": "Geben Sie die Bezeichnung des Feldes unter Nennung des bewirtschaftenden Betriebes an, durch den der Feldname festgelegt wurde.",
-                "1": "Please provide the name of the field. Further add the name of the agricultural company that assigned the name."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "",
-            "constraint": "",
-            "invalidText": {
-                "0": "",
-                "1": ""
-            },
-            "calculate": "",
-            "length": false,
-            "metadata": {
-            },
-            "type": "inputText"
-        },
-        {
-            "name": "fieldnumber",
-            "label": {
-                "0": "Feldnummer",
-                "1": "Field number"
-            },
-            "hint": {
-                "0": "Geben Sie die Nummer des Feldes an, die durch den bewirtschaftenden Betrieb vergeben wurde.",
-                "1": "Please specify the number of the field assigned by the farmer or the campaign manager."
-            },
-            "defaultValue": "0",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "",
-            "constraint": "",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "range": false,
-            "appearance": "Textbox",
-            "kind": "Integer",
-            "selectRange": {
-                "min": "1",
-                "max": "10"
-            },
-            "selectStep": "1",
-            "sliderTicks": true,
-            "metadata": {
-            },
-            "type": "inputNumeric"
-        },
-        {
-            "name": "additionalPhoto1",
-            "label": {
-                "0": "Zusätzliches Foto 1",
-                "1": "Additional photo 1"
-            },
-            "hint": {
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-            },
-            "relevance": "",
-            "constraint": "",
-            "invalidText": {
-            },
-            "calculate": "",
-            "kind": "New Image",
-            "metadata": {
-            },
-            "type": "inputMedia"
-        },
-        {
-            "name": "additionalPhoto2",
-            "label": {
-                "0": "Zusätzliches Foto 2",
-                "1": "Additional photo 2"
-            },
-            "hint": {
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-            },
-            "relevance": "${additionalPhoto1}!=''",
-            "constraint": "",
-            "invalidText": {
-            },
-            "calculate": "",
-            "kind": "New Image",
-            "metadata": {
-            },
-            "type": "inputMedia"
-        },
-        {
-            "name": "additionalPhoto3",
-            "label": {
-                "0": "Zusätzliches Foto 3",
-                "1": "Additional photo 3"
-            },
-            "hint": {
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-            },
-            "relevance": "${additionalPhoto2}!=''",
-            "constraint": "",
-            "invalidText": {
-            },
-            "calculate": "",
-            "kind": "New Image",
-            "metadata": {
-            },
-            "type": "inputMedia"
-        },
-        {
-            "name": "additionalPhoto4",
-            "label": {
-                "0": "Zusätzliches Foto 4",
-                "1": "Additional photo 4"
-            },
-            "hint": {
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-            },
-            "relevance": "${additionalPhoto3}!=''",
-            "constraint": "",
-            "invalidText": {
-            },
-            "calculate": "",
-            "kind": "New Image",
-            "metadata": {
-            },
-            "type": "inputMedia"
-        },
-        {
-            "name": "additionalPhoto5",
-            "label": {
-                "0": "Zusätzliches Foto 5",
-                "1": "Additional photo 5"
-            },
-            "hint": {
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-            },
-            "relevance": "${additionalPhoto4}!=''",
-            "constraint": "",
-            "invalidText": {
-            },
-            "calculate": "",
-            "kind": "New Image",
-            "metadata": {
-            },
-            "type": "inputMedia"
-        }
-    ],
-    "metadata": {
-        "version": 2,
-        "activeLanguages": {
-            "0": "German",
-            "1": "English",
-            "_counter": 1,
-            "_display": "0"
-        },
-        "optionsPresets": [
-        ],
-        "htitle": null,
-        "instance_name": "",
-        "public_key": "",
-        "submission_url": ""
+  "title": "Feldbezeichnung",
+  "controls": [
+    {
+      "name": "fieldname",
+      "label": {
+        "0": "Feldname",
+        "1": "Field name"
+      },
+      "hint": {
+        "0": "Geben Sie die Bezeichnung des Feldes unter Nennung des bewirtschaftenden Betriebes an, durch den der Feldname festgelegt wurde.",
+        "1": "Please provide the name of the field. Further add the name of the agricultural company that assigned the name."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+        "0": "",
+        "1": ""
+      },
+      "calculate": "",
+      "length": false,
+      "metadata": {
+      },
+      "type": "inputText"
+    },
+    {
+      "name": "fieldnumber",
+      "label": {
+        "0": "Feldnummer",
+        "1": "Field number"
+      },
+      "hint": {
+        "0": "Geben Sie die Nummer des Feldes an, die durch den bewirtschaftenden Betrieb vergeben wurde.",
+        "1": "Please specify the number of the field assigned by the farmer or the campaign manager."
+      },
+      "defaultValue": "0",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "range": false,
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "10"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
+      "metadata": {
+      },
+      "type": "inputNumeric"
+    },
+    {
+      "name": "additionalPhoto1",
+      "label": {
+        "0": "Foto vom Feld",
+        "1": "photography of the field"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "kind": "New Image",
+      "metadata": {
+      },
+      "type": "inputMedia"
+    },
+    {
+      "name": "additionalPhoto2",
+      "label": {
+        "0": "Weiteres Foto (Nr. 2)",
+        "1": "Additional photo (No. 2)"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${additionalPhoto1}!=''",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "kind": "New Image",
+      "metadata": {
+      },
+      "type": "inputMedia"
+    },
+    {
+      "name": "additionalPhoto3",
+      "label": {
+        "0": "Weiteres Foto (Nr. 3)",
+        "1": "Additional photo (No. 3)"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${additionalPhoto2}!=''",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "kind": "New Image",
+      "metadata": {
+      },
+      "type": "inputMedia"
+    },
+    {
+      "name": "additionalPhoto4",
+      "label": {
+        "0": "Weiteres Foto (Nr. 4)",
+        "1": "Additional photo (No. 4)"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${additionalPhoto3}!=''",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "kind": "New Image",
+      "metadata": {
+      },
+      "type": "inputMedia"
+    },
+    {
+      "name": "additionalPhoto5",
+      "label": {
+        "0": "Weiteres Foto (Nr. 5)",
+        "1": "Additional photo (No. 5)"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${additionalPhoto4}!=''",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "kind": "New Image",
+      "metadata": {
+      },
+      "type": "inputMedia"
     }
+  ],
+  "metadata": {
+    "version": 2,
+    "activeLanguages": {
+      "0": "German",
+      "1": "English",
+      "_counter": 1,
+      "_display": "0"
+    },
+    "optionsPresets": [
+    ],
+    "htitle": null,
+    "instance_name": "",
+    "public_key": "",
+    "submission_url": ""
+  }
 }

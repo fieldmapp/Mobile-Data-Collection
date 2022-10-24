@@ -14,7 +14,9 @@
                   ItemTapped="AppSettingsList_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding}"/>
+                    <ViewCell>
+                        <Label Text="{Binding}" VerticalOptions="Center" Padding="10,0,0,0"/>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

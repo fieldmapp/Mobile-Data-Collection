@@ -1,215 +1,238 @@
 {
-    "title": "Aussaat",
-    "controls": [{
-            "name": "dateSowing",
-            "label": {
-                "0": "Datum",
-                "1": "Date"
-            },
-            "hint": {
-                "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum der Aussaat aus und bestätigen Sie Ihre Auswahl mit Tippen auf [OK].",
-                "1": "A calendar appears, if you click on the date 01.01.1970. Select the sowing time of the currently grown crop in the calendar and confirm your selection by clicking on [OKAY]."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "",
-            "constraint": ".<now()",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "range": false,
-            "kind": "Full Date",
-            "metadata": {},
-            "type": "inputDate"
-        }, {
-            "name": "dateSowingStart",
-            "label": {
-                "0": "Zeitfenster Beginn",
-                "1": "Time frame begin"
-            },
-            "hint": {
-                "0": "Bitte geben Sie das Anfangsdatum des Zeitraums ein, innerhalb dessen die Aussaat stattgefunden hat.",
-                "1": "Please enter the start date of the time span, in which the crop was seeded."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {},
-            "relevance": "${dateSowing}=0",
-            "constraint": "",
-            "calculate": "",
-            "range": false,
-            "invalidText": {},
-            "kind": "Full Date",
-            "metadata": {},
-            "type": "inputDate"
-        }, {
-            "name": "dateSowingEnd",
-            "label": {
-                "0": "Zeitfenster Ende",
-                "1": "Time frame end"
-            },
-            "hint": {
-                "0": "Bitte geben Sie das Endedatum des Zeitraums ein, innerhalb dessen die Aussaat stattgefunden hat.",
-                "1": "Please enter the end date of the time span, in which the crop was seeded."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {},
-            "relevance": "${dateSowing}=0",
-            "constraint": "",
-            "calculate": "",
-            "range": false,
-            "invalidText": {},
-            "kind": "Full Date",
-            "metadata": {},
-            "type": "inputDate"
-        }, {
-            "name": "directionPlantRows",
-            "label": {
-                "0": "Ausrichtung der Pflanzenreihen{compass}",
-                "1": "Alignment of plant rows{compass}"
-            },
-            "hint": {
-                "0": "Die Orientierung der Pflanzreihen wird aus dem geräteinternen Kompass ausgelesen, wenn sie auf „Speichern“ klicken. Damit der Kompass korrekt arbeitet, richten Sie die Längskante des Tablets entlang einer Pflanzreihe aus und halten das Display des Tablets gleichzeitig im 45° Winkel vor sich.",
-                "1": "The angle of the orientation of the planting rows is extracted from the tablet internal compass if you press „Save“. That the measurement is carried out in proper way by the device, please align the long edge of the tablet along a planting row while holding the tablet's display in front of you at a 45° angle."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": true,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "",
-            "constraint": "",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "appearance": null,
-            "kind": null,
-            "metadata": {},
-            "type": "inputNumeric"
-        }, {
-            "name": "distancePlantRows",
-            "label": {
-                "0": "Pflanzenreihenabstand in cm (horizontaler Abstand)",
-                "1": "Distance betweent plant rows (horizontal distance)"
-            },
-            "hint": {
-                "0": "Messen (oder schätzen) Sie den geringsten Abstand zweier benachbarter Pflanzreihen und tragen Sie diesen als Zentimeterwert in die dafür vorgesehene Spalte ein.",
-                "1": "Measure (or estimate) the smallest distance between two neighboring planting rows in centimeters and enter the value."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": false,
-            "requiredText": {
-                "1": ""
-            },
-            "relevance": "",
-            "constraint": "",
-            "invalidText": {
-                "1": ""
-            },
-            "calculate": "",
-            "range": {
-                "min": "0",
-                "max": "",
-                "minInclusive": true,
-                "maxInclusive": false
-            },
-            "appearance": "Textbox",
-            "kind": "Decimal",
-            "metadata": {},
-            "type": "inputNumeric"
-        }, {
-            "name": "amoutSowing",
-            "label": {
-                "0": "Anzahl der Pflanzen",
-                "1": "Seed rate"
-            },
-            "hint": {
-                "0": "Bitte wählen sie sich ein Teilstück bekannter Länge einer Pflanzreihe aus. Zählen Sie auf diesem Teilstück alle Pflanzen und tragen Sie den Wert hier ein.",
-                "1": "Please select a section of known length of a planting row. Count all plants on this section and enter the value here."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": true,
-            "requiredText": {},
-            "relevance": "",
-            "constraint": "",
-            "invalidText": {},
-            "calculate": "",
-            "range": {
-                "min": "0",
-                "max": "",
-                "minInclusive": true,
-                "maxInclusive": false
-            },
-            "appearance": "Textbox",
-            "kind": "Integer",
-            "selectRange": {
-                "min": "1",
-                "max": "10"
-            },
-            "selectStep": "1",
-            "sliderTicks": true,
-            "metadata": {},
-            "type": "inputNumeric"
-        }, {
-            "name": "lengthPlantRow",
-            "label": {
-                "0": "auf cm Pflanzenreihe",
-                "1": "per cm plant row"
-            },
-            "hint": {
-                "0": "Messen (oder schätzen) Sie nun die Länge des Teilstücks der Pflanzreihe, auf dem Sie die Anzahl der Pflanzen bestimmt haben und tragen Sie die Länge ein.",
-                "1": "Measure (or estimate) the length of the planting row segment for which you determined the number of plants. Enter the value in centimeters here."
-            },
-            "defaultValue": "",
-            "readOnly": false,
-            "required": true,
-            "requiredText": {},
-            "relevance": "",
-            "constraint": "",
-            "invalidText": {},
-            "calculate": "",
-            "range": {
-                "min": "0",
-                "max": "",
-                "minInclusive": true,
-                "maxInclusive": false
-            },
-            "appearance": "Textbox",
-            "kind": "Integer",
-            "selectRange": {
-                "min": "1",
-                "max": "10"
-            },
-            "selectStep": "1",
-            "sliderTicks": true,
-            "metadata": {},
-            "type": "inputNumeric"
-        }
-    ],
-    "metadata": {
-        "version": 2,
-        "activeLanguages": {
-            "0": "German",
-            "1": "English",
-            "_counter": 1,
-            "_display": "0"
-        },
-        "optionsPresets": [],
-        "htitle": "Schäden",
-        "instance_name": "",
-        "public_key": "",
-        "submission_url": ""
+  "title": "Aussaat",
+  "controls": [
+    {
+      "name": "dateSowing",
+      "label": {
+        "0": "Datum",
+        "1": "Date"
+      },
+      "hint": {
+        "0": "Durch Tippen auf das Datum erscheint ein Kalender. Wählen Sie aus diesem das Datum der Aussaat aus und bestätigen Sie Ihre Auswahl mit Tippen auf [OK].",
+        "1": "A calendar appears, if you click on the date. Select the sowing time of the currently grown crop in the calendar and confirm your selection by clicking on [OKAY]."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "",
+      "constraint": ".<now()",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "range": false,
+      "kind": "Full Date",
+      "metadata": {
+      },
+      "type": "inputDate"
+    },
+    {
+      "name": "dateSowingStart",
+      "label": {
+        "0": "Zeitfenster Beginn",
+        "1": "Time frame begin"
+      },
+      "hint": {
+        "0": "Bitte geben Sie das Anfangsdatum des Zeitraums ein, innerhalb dessen die Aussaat stattgefunden hat.",
+        "1": "Please enter the start date of the time span, in which the crop was seeded."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${dateSowing}=0",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "range": false,
+      "kind": "Full Date",
+      "metadata": {
+      },
+      "type": "inputDate"
+    },
+    {
+      "name": "dateSowingEnd",
+      "label": {
+        "0": "Zeitfenster Ende",
+        "1": "Time frame end"
+      },
+      "hint": {
+        "0": "Bitte geben Sie das Endedatum des Zeitraums ein, innerhalb dessen die Aussaat stattgefunden hat.",
+        "1": "Please enter the end date of the time span, in which the crop was seeded."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${dateSowing}=0",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "range": false,
+      "kind": "Full Date",
+      "metadata": {
+      },
+      "type": "inputDate"
+    },
+    {
+      "name": "directionPlantRows",
+      "label": {
+        "0": "Ausrichtung der Pflanzenreihen{compass}",
+        "1": "Alignment of plant rows{compass}"
+      },
+      "hint": {
+        "0": "Die Orientierung der Pflanzreihen wird aus dem geräteinternen Kompass ausgelesen, wenn sie auf „Speichern“ klicken. Damit der Kompass korrekt arbeitet, richten Sie die Längskante des Tablets entlang einer (repräsentativen) Pflanzreihe aus und warten dann ca. 5 sec bis sich der Kompass eingestellt hat, bevor Sie „Speicher“ anklicken.",
+        "1": "The angle of the orientation of the planting rows is extracted from the tablet internal compass if you press „Save“. To carry out the measurement in proper way, please align the long edge of the tablet along a (representative) planting row while waiting approx. 5 sec for the compass to adjust before clicking on “Save”."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "appearance": null,
+      "kind": null,
+      "metadata": {
+      },
+      "type": "inputNumeric"
+    },
+    {
+      "name": "distancePlantRows",
+      "label": {
+        "0": "Pflanzenreihenabstand in cm (horizontaler Abstand)",
+        "1": "Distance betweent plant rows (horizontal distance)"
+      },
+      "hint": {
+        "0": "Messen (oder schätzen) Sie den Abstand zweier benachbarter Pflanzreihen (z.B. vom linken Rand der einen Reihe zum linken Rand der benachbarten Reihe). Tragen Sie den ermittelten Wert als Zentimeterwert in die dafür vorgesehene Spalte ein. \n \nHinweis: Ggf. können Sie die Längskante Ihres Tablets zum Abmessen verwenden. Hier finden Sie einige Längenangaben zur Orientierung: \n \n20 cm (z.B. Amazon Fire HD 8, Lenovo Tab M8), \n21 cm (z.B. Lenovo Tab A7), \n24 cm (z.B. Acepad A145, Huawei Mate Pad T10s, Huawei MediaPad T5, Samsung Galaxy Tab Active 2 bzw. 3), \n25 cm (z.B. Apple iPad Air 3, Apple iPad Pro 11“, Lenovo Tab M10, Microsoft Surface Go 2, MEDION E10713, Samsung Galaxy Tab A8), \n26 cm (z.B. Apple iPad Air 4, Lenovo Tab P11, MEDION E10420, Samsung Galaxy Tab S7 bzw. S8), \n28 cm (z.B. Apple iPad Pro 12,9“) und \n29 cm (z.B. Microsoft Surface Pro 7, Samsung Galaxy Tab S7+).",
+        "1": "Measure (or estimate) the distance between two neighboring planting rows in centimeters (e.g., from the left edge of one row to the left edge of the neighboring row) and enter the value. \n \nNote: If necessary, you can use the long edge of your tablet to measure. Here you will find some length information for orientation: \n \n20 cm (e.g., Amazon Fire HD 8, Lenovo Tab M8), \n21 cm (e.g., Lenovo Tab A7), \n24 cm (e.g., Acepad A145, Huawei Mate Pad T10s, Huawei MediaPad T5, Samsung Galaxy Tab Active 2 bzw. 3), \n25 cm (e.g., Apple iPad Air 3, Apple iPad Pro 11“, Lenovo Tab M10, Microsoft Surface Go 2, MEDION E10713, Samsung Galaxy Tab A8), \n26 cm (e.g., Apple iPad Air 4, Lenovo Tab P11, MEDION E10420, Samsung Galaxy Tab S7 bzw. S8), \n28 cm (e.g., Apple iPad Pro 12,9“) und \n29 cm (e.g., Microsoft Surface Pro 7, Samsung Galaxy Tab S7+)."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+        "1": ""
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+        "1": ""
+      },
+      "calculate": "",
+      "range": {
+        "min": "0",
+        "max": "",
+        "minInclusive": true,
+        "maxInclusive": false
+      },
+      "appearance": "Textbox",
+      "kind": "Decimal",
+      "metadata": {
+      },
+      "type": "inputNumeric"
+    },
+    {
+      "name": "amoutSowing",
+      "label": {
+        "0": "Anzahl der Pflanzen",
+        "1": "Seed rate"
+      },
+      "hint": {
+        "0": "Bitte wählen sie sich ein Teilstück bekannter Länge einer Pflanzreihe aus. Zählen Sie auf diesem Teilstück alle Pflanzen bzw. Getreidehalme und tragen Sie den Wert hier ein. \n \nHinweis: Ggf. können Sie die Längskante Ihres Tablets zum Abmessen verwenden. Hier finden Sie einige Längenangaben zur Orientierung: \n \n20 cm (z.B. Amazon Fire HD 8, Lenovo Tab M8), \n21 cm (z.B. Lenovo Tab A7), \n24 cm (z.B. Acepad A145, Huawei Mate Pad T10s, Huawei MediaPad T5, Samsung Galaxy Tab Active 2 bzw. 3), \n25 cm (z.B. Apple iPad Air 3, Apple iPad Pro 11“, Lenovo Tab M10, Microsoft Surface Go 2, MEDION E10713, Samsung Galaxy Tab A8), \n26 cm (z.B. Apple iPad Air 4, Lenovo Tab P11, MEDION E10420, Samsung Galaxy Tab S7 bzw. S8), \n28 cm (z.B. Apple iPad Pro 12,9“) und \n29 cm (z.B. Microsoft Surface Pro 7, Samsung Galaxy Tab S7+).",
+        "1": "Please select a section of known length of a planting row. Count all plants or stalks (in case of cereals) on this section and enter the value here. \n \nNote: If necessary, you can use the long edge of your tablet to measure. Here you will find some length information for orientation: \n \n20 cm (e.g., Amazon Fire HD 8, Lenovo Tab M8), \n21 cm (e.g., Lenovo Tab A7), \n24 cm (e.g., Acepad A145, Huawei Mate Pad T10s, Huawei MediaPad T5, Samsung Galaxy Tab Active 2 bzw. 3), \n25 cm (e.g., Apple iPad Air 3, Apple iPad Pro 11“, Lenovo Tab M10, Microsoft Surface Go 2, MEDION E10713, Samsung Galaxy Tab A8), \n26 cm (e.g., Apple iPad Air 4, Lenovo Tab P11, MEDION E10420, Samsung Galaxy Tab S7 bzw. S8), \n28 cm (e.g., Apple iPad Pro 12,9“) und \n29 cm (e.g., Microsoft Surface Pro 7, Samsung Galaxy Tab S7+)."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": {
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "range": {
+        "min": "0",
+        "max": "",
+        "minInclusive": true,
+        "maxInclusive": false
+      },
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "10"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
+      "metadata": {
+      },
+      "type": "inputNumeric"
+    },
+    {
+      "name": "lengthPlantRow",
+      "label": {
+        "0": "auf cm Pflanzenreihe",
+        "1": "per cm plant row"
+      },
+      "hint": {
+        "0": "Messen (oder schätzen) Sie nun die Länge des Teilstücks der Pflanzreihe, auf dem Sie die Anzahl der Pflanzen bestimmt haben und tragen Sie die Länge ein. \n \nHinweis: Ggf. können Sie die Längskante Ihres Tablets zum Abmessen verwenden. Hier finden Sie einige Längenangaben zur Orientierung: \n \n20 cm (z.B. Amazon Fire HD 8, Lenovo Tab M8), \n21 cm (z.B. Lenovo Tab A7), \n24 cm (z.B. Acepad A145, Huawei Mate Pad T10s, Huawei MediaPad T5, Samsung Galaxy Tab Active 2 bzw. 3), \n25 cm (z.B. Apple iPad Air 3, Apple iPad Pro 11“, Lenovo Tab M10, Microsoft Surface Go 2, MEDION E10713, Samsung Galaxy Tab A8), \n26 cm (z.B. Apple iPad Air 4, Lenovo Tab P11, MEDION E10420, Samsung Galaxy Tab S7 bzw. S8), \n28 cm (z.B. Apple iPad Pro 12,9“) und \n29 cm (z.B. Microsoft Surface Pro 7, Samsung Galaxy Tab S7+).",
+        "1": "Measure (or estimate) the length of the planting row segment for which you determined the number of plants. Enter the value in centimeters here. \n \nNote: If necessary, you can use the long edge of your tablet to measure. Here you will find some length information for orientation: \n \n20 cm (e.g., Amazon Fire HD 8, Lenovo Tab M8), \n21 cm (e.g., Lenovo Tab A7), \n24 cm (e.g., Acepad A145, Huawei Mate Pad T10s, Huawei MediaPad T5, Samsung Galaxy Tab Active 2 bzw. 3), \n25 cm (e.g., Apple iPad Air 3, Apple iPad Pro 11“, Lenovo Tab M10, Microsoft Surface Go 2, MEDION E10713, Samsung Galaxy Tab A8), \n26 cm (e.g., Apple iPad Air 4, Lenovo Tab P11, MEDION E10420, Samsung Galaxy Tab S7 bzw. S8), \n28 cm (e.g., Apple iPad Pro 12,9“) und \n29 cm (e.g., Microsoft Surface Pro 7, Samsung Galaxy Tab S7+)."
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": {
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "range": {
+        "min": "0",
+        "max": "",
+        "minInclusive": true,
+        "maxInclusive": false
+      },
+      "appearance": "Textbox",
+      "kind": "Integer",
+      "selectRange": {
+        "min": "1",
+        "max": "10"
+      },
+      "selectStep": "1",
+      "sliderTicks": true,
+      "metadata": {
+      },
+      "type": "inputNumeric"
     }
+  ],
+  "metadata": {
+    "version": 2,
+    "activeLanguages": {
+      "0": "German",
+      "1": "English",
+      "_counter": 1,
+      "_display": "0"
+    },
+    "optionsPresets": [
+    ],
+    "htitle": "Schäden",
+    "instance_name": "",
+    "public_key": "",
+    "submission_url": ""
+  }
 }

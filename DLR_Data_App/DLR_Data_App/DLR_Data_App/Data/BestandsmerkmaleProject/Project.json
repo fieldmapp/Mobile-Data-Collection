@@ -1,0 +1,17 @@
+{
+  "Project": {
+    "0": "Kartierung von Bestandsmerkmalen"
+  },
+  "Author": {
+    "0": "Stefan Dobers (1), Maximilian Enderling (2) & Sina C. Truckenbrodt (3) | 1 - Hochschule Neubrandenburg, Pflanzenbau | 2 - Deutsches Zentrum für Luft- und Raumfahrt e.V. (DLR) Jena, Institut für Datenwissenschaften, Arbeitsgruppe Bürgerwissenschaften | 3 - Friedrich-Schiller-Universität Jena, Institut für Geographie, Abteilung Fernerkundung"
+  },
+  "Description": {
+    "0": "Projekt zur Aufnahme von Bestandsmerkmalen pflanzenbaulich genutzter Flächen."
+  },
+  "Secret": null,
+  "Languages": {
+    "0": "German"
+  },
+  "ProfilingId": "",
+  "PreviewPattern": "{dataType}"
+}

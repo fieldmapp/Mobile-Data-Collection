@@ -16,7 +16,9 @@
                         <DataTemplate>
                             <ViewCell>
                                 <Frame BorderColor="{Binding BackgroundColor}" Padding="0" CornerRadius="0" BackgroundColor="{Binding BackgroundColor}">
-                                    <Frame BorderColor="{Binding BackgroundColor}" Margin="1" CornerRadius="0" BackgroundColor="White" Padding="0">
+                                    <Frame BorderColor="{Binding BackgroundColor}"
+                                           Margin="1" CornerRadius="0" 
+                                           BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundNight}}" Padding="0">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>

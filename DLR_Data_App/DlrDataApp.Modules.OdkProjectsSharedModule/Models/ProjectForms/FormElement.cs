@@ -24,7 +24,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectForms
             Project = project;
             DisplayAlertFunc = displayAlertFunc;
             Grid = grid;
-            Frame = new Frame { CornerRadius = 10, BorderColor = Color.DarkSeaGreen, Content = Grid, IsVisible = false };
+            Frame = new Frame { CornerRadius = 10, BorderColor = Color.DarkSeaGreen, Content = Grid, IsVisible = false, BackgroundColor=Color.Transparent };
             Data = data;
             ShouldBeShownExpression = string.IsNullOrWhiteSpace(data.Relevance) ? null : OdkDataExtractor.GetBooleanExpression(data.Relevance);
             if (!string.IsNullOrWhiteSpace(data.Constraint))

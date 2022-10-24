@@ -4,14 +4,80 @@
              x:Class="DLR_Data_App.App">
     <Application.Resources>
         <ResourceDictionary>
-            <!--Global Styles-->
-            <Color x:Key="NavigationPrimary">#F5F5F5</Color>
-            <Color x:Key="FontPrimary">#000000</Color>
-            <Color x:Key="BackgroundColor">#FFFFFF</Color>
+            <Color x:Key="TextPrimary">#DE000000</Color>
+            <Color x:Key="TextPrimaryNight">#fff</Color>
+            <Color x:Key="TextSecondary">#99000000</Color>
+            <Color x:Key="TextSecondaryNight">#B3ffffff</Color>
+            <Color x:Key="TextDisabled">#61000000</Color>
+            <Color x:Key="TextDisabledNight">#80ffffff</Color>
+            <Color x:Key="ButtonActive">#8A000000</Color>
+            <Color x:Key="ButtonActiveNight">#fff</Color>
+            <Color x:Key="ButtonBorder">#000</Color>
+            <Color x:Key="ButtonBorderNight">#434343</Color>
+            <Color x:Key="ButtonHover">#0A000000</Color>
+            <Color x:Key="ButtonHoverNight">#04ffffff</Color>
+            <Color x:Key="ButtonSelected">#04000000</Color>
+            <Color x:Key="ButtonSelectedNight">#29ffffff</Color>
+            <Color x:Key="ButtonDisabled">#42000000</Color>
+            <Color x:Key="ButtonDisabledNight">#4Dffffff</Color>
+            <Color x:Key="ButtonDisabledBackground">#1F000000</Color>
+            <Color x:Key="ButtonDisabledBackgroundNight">#1Fffffff</Color>
+            <Color x:Key="Background">#fff</Color>
+            <Color x:Key="BackgroundNight">#121212</Color>
+            <Color x:Key="BackgroundPaper">#fff</Color>
+            <Color x:Key="BackgroundPaperNight">#121212</Color>
+            <Color x:Key="Divider">#1F000000</Color>
+            <Color x:Key="DividerNight">#1Fffffff</Color>
+            <Color x:Key="AccentPrimary">#FF8FBC8F</Color>
+
+
+
             <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <Setter Property="BarTextColor" Value="{StaticResource FontPrimary}" />
-                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}" />
+                <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource Divider}, Dark={StaticResource DividerNight}}"/>
+                <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryNight}}"/>
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundNight}}"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryNight}}"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryNight}}"/>
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundNight}}"/>
+                <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource ButtonBorder}, Dark={StaticResource ButtonBorderNight}}"/>
+                <Setter Property="CornerRadius" Value="4"/>
+                <Setter Property="BorderWidth" Value="1"/>
+            </Style>
+            <Style TargetType="TabbedPage" ApplyToDerivedTypes="True">
+                <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource Divider}, Dark={StaticResource DividerNight}}"/>
+                <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryNight}}"/>
+            </Style>
+            <Style TargetType="TextCell" CanCascade="True" ApplyToDerivedTypes="True">
+                <!-- wont work, see https://github.com/xamarin/Xamarin.Forms/issues/8755 -->
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryNight}}"/>
+            </Style>
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundNight}}"/>
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryNight}}"/>
+                <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource TextSecondary}, Dark={StaticResource TextSecondaryNight}}"/>
+            </Style>
+            <Style TargetType="DatePicker" ApplyToDerivedTypes="True">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryNight}}"/>
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundNight}}"/>
+            </Style>
+            <Style TargetType="Picker">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryNight}}"/>
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundNight}}"/>
+                <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource TextSecondary}, Dark={StaticResource TextSecondaryNight}}"/>
+            </Style>
+            <Style TargetType="Slider" ApplyToDerivedTypes="True">
+                <Setter Property="MaximumTrackColor" Value="{AppThemeBinding Light={StaticResource ButtonBorder}, Dark={StaticResource Background}}"/>
+                <Setter Property="MinimumTrackColor" Value="{StaticResource AccentPrimary}"/>
+            </Style>
+            <Style TargetType="ListView" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundNight}}"/>
+                <Setter Property="SeparatorColor" Value="{AppThemeBinding Light={StaticResource Divider}, Dark={StaticResource DividerNight}}"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

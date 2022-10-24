@@ -24,7 +24,7 @@ using DlrDataApp.Modules.Base.Shared;
 namespace com.DLR.DLR_Data_App.Droid
 {
     [MetaData(UsbManager.ActionUsbDeviceAttached, Resource = "@xml/device_filter")]
-    [Activity(Label = "FieldMApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.FullUser)]
+    [Activity(Label = "FieldMApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode, ScreenOrientation = ScreenOrientation.FullUser)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IScreenStateListener
     {
         public static MainActivity Instance { get; private set; }
@@ -61,6 +61,10 @@ namespace com.DLR.DLR_Data_App.Droid
                     ReloadToolbar();
                 }
             });
+
+            var usbDeviceAttachedFilter = new IntentFilter(UsbManager.ActionUsbDeviceAttached);
+            RegisterReceiver((DependencyService.Get<IUbloxCommunicator>() as AndroidUbloxComm).UsbDeviceAttachedListener, usbDeviceAttachedFilter);
+
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
             TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;

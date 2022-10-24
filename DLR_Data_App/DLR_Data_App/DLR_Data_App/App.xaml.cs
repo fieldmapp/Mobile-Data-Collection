@@ -51,8 +51,6 @@ namespace DLR_Data_App
 
             base.MainPage = new LoginPage();
 
-            // TODO
-            //var a = DependencyService.Get<IUbloxCommunicator>();
         }
 
         public void AfterSplashScreenLoad()

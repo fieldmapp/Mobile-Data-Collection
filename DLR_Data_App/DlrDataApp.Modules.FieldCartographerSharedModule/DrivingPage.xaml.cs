@@ -1,11 +1,14 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
+using DLR_Data_App.Services.TouchGesture;
+using DLR_Data_App.Services.VoiceControl;
 using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Shared.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -15,6 +18,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Shapes;
 using Xamarin.Forms.Xaml;
+using static DLR_Data_App.Services.VoiceControl.VoiceCommandCompiler;
 
 namespace DlrDataApp.Modules.FieldCartographer.Shared
 {
@@ -27,28 +31,23 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             Medium,
             High
         }
-        enum DamageCause
-        {
-            SandLens,
-            Compaction,
-            Headland,
-            Dome,
-            Slope,
-            ForrestEdge,
-            DryStress,
-            WatterLogging,
-            MouseEating
-        }
         public const int MaxLaneCountPerSide = 3;
         public const int MaxTotalLaneCount = 2 * MaxLaneCountPerSide + 1;
 
         readonly static Brush CompletedInfoBrush = Brush.Green;
         readonly static Brush ActiveForInputBrush = Brush.Orange;
-        readonly static Color InactiveButtonColor = Color.WhiteSmoke;
-        readonly static Brush InactiveButtonBrush = new SolidColorBrush(InactiveButtonColor);
-        readonly static Color ActiveButtonColor = Color.FromHex("#629C44");
-        readonly static Brush ActiveButtonBrush = new SolidColorBrush(ActiveButtonColor);
 
+        Color InactiveButtonColor => (Color)Resources["InactiveButtonColor"];
+        Brush InactiveButtonBrush => new SolidColorBrush(InactiveButtonColor);
+        
+        Color InactiveButtonColorNight => (Color)Resources["InactiveButtonColorNight"];
+        Brush InactiveButtonBrushNight => new SolidColorBrush(InactiveButtonColorNight);
+
+        Color ActiveButtonColor => (Color)Resources["ActiveColor"];
+        Brush ActiveButtonBrush => new SolidColorBrush(ActiveButtonColor);
+        
+        Color ActiveButtonColorNight => (Color)Resources["ActiveColorNight"];
+        Brush ActiveButtonBrushNight => new SolidColorBrush(ActiveButtonColorNight);
 
         readonly int LaneCountPerSide;
         readonly int TotalLaneCount;
@@ -71,10 +70,18 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 
         }
 
-        public DrivingPage(int laneCountPerSide = MaxLaneCountPerSide)
+        [OnSplashScreenLoad]
+        static void OnSplashScreenLoad()
         {
-            LaneCountPerSide = laneCountPerSide;
-            TotalLaneCount = 2 * LaneCountPerSide + 1;
+            DependencyService.Get<ISpeechRecognizer>().Start();
+        }
+
+        public DrivingConfigurationPage.DrivingPageConfiguration Configuration { get; set; }
+        public DrivingPage(DrivingConfigurationPage.DrivingPageConfiguration configuration)
+        {
+            Configuration = configuration;
+            LaneCountPerSide = Configuration.LaneCount;
+            TotalLaneCount = 2 * LaneCountPerSide;
 
             IsLaneActive = new bool[TotalLaneCount];
             IsLaneSelectedForInput = new bool[TotalLaneCount];
@@ -82,23 +89,10 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             IsLaneTypeEntered = new bool[TotalLaneCount];
             IsLaneStarted = new bool[TotalLaneCount];
 
-            LogFileIdentifier = "drivingView" + laneCountPerSide + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
+            LogFileIdentifier = "drivingView_" + App.CurrentUser.Username + "_" + LaneCountPerSide + "_" + configuration.LaneWidth + "_" + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
 
             InitializeComponent();
             WriteUsingCsvWriter(csvWriter => csvWriter.WriteHeader<InteractionInfo>());
-
-            var centerLaneStartTapRecognizer = new TapGestureRecognizer();
-            centerLaneStartTapRecognizer.Tapped += CenterLaneStartTapRecognizer_Tapped;
-            ArrowStartCenterShape.GestureRecognizers.Add(centerLaneStartTapRecognizer);
-
-            var centerLaneEndTapRecognizer = new TapGestureRecognizer();
-            centerLaneEndTapRecognizer.Tapped += CenterLaneEndTapRecognizer_Tapped;
-            ArrowEndCenterShape.GestureRecognizers.Add(centerLaneEndTapRecognizer);
-
-            CenterLaneMiddleButton.Clicked += (a, b) => CenterButtonClicked(0);
-
-            TypeLaneBackgrounds.Add(CenterLaneTypeBackground);
-            CauseLaneBackgrounds.Add(CenterLaneCauseBackground);
 
             CancelButton.Clicked += (a,b) => ResetToInitialState();
 
@@ -112,56 +106,140 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 TypeHighButton
             };
 
-            CauseSandLensButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.SandLens);
-            CauseCompactionButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.Compaction);
-            CauseHeadlandButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.Headland);
-            CauseDomeButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.Dome);
-            CauseSlopeButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.Slope);
-            CauseForrestEdgeButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.ForrestEdge);
-            CauseDryStressButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.DryStress);
-            CauseWatterLoggingButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.WatterLogging);
-            CauseMouseEatingButton.Clicked += (a, b) => DamageCauseButtonClicked(DamageCause.MouseEating);
             DamageCauseButtons = new List<FormattedButton>
             {
-                CauseSandLensButton,
-                CauseCompactionButton,
-                CauseHeadlandButton,
-                CauseDomeButton,
-                CauseSlopeButton,
-                CauseForrestEdgeButton,
-                CauseDryStressButton,
-                CauseWatterLoggingButton,
-                CauseMouseEatingButton
+                Cause1Button,
+                Cause2Button,
+                Cause3Button,
+                Cause4Button,
+                Cause5Button,
+                Cause6Button,
+                Cause7Button,
+                Cause8Button,
+                Cause9Button
             };
+            var damageCauseIds = new List<string>
+            {
+                configuration.Cause1Id,
+                configuration.Cause2Id,
+                configuration.Cause3Id,
+                configuration.Cause4Id,
+                configuration.Cause5Id,
+                configuration.Cause6Id,
+                configuration.Cause7Id,
+                configuration.Cause8Id,
+                configuration.Cause9Id
+            };
+
+            for (int i = 0; i < damageCauseIds.Count; i++)
+            {
+                var damageCauseId = damageCauseIds[i];
+                if (string.IsNullOrWhiteSpace(damageCauseId))
+                    DamageCauseButtons[i].IsVisible = false;
+                else
+                    DamageCauseButtons[i].Clicked += (a, b) => DamageCauseButtonClicked(damageCauseId);
+            }
 
             AddSideLanesToLayout();
             ResetToInitialState();
+
+            foreach (var child in RelativeLayout.Children)
+            {
+                var touchEffect = new TouchEffect { Capture = false };
+                touchEffect.TouchAction += TouchEffect_TouchAction;
+                child.Effects.Add(touchEffect);
+            }
+
+            var speechRecognizer = DependencyService.Get<ISpeechRecognizer>();
+            speechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
         }
 
-        private void CenterLaneEndTapRecognizer_Tapped(object sender, EventArgs e)
+        private void SpeechRecognizer_ResultRecognized(object sender, Models.VoiceRecognitionResult e)
         {
-            EndButtonClicked(0);
+            var command = VoiceCommandCompiler.Compile(e.Parts.Select(p => p.Word).ToList());
+
+            if (command is InvalidAction)
+                return;
+            if (command is CancelAction)
+            {
+                ResetToInitialState();
+                return;
+            }
+            if (command is StartZonesAction startZonesAction)
+            {
+                foreach (var laneIndex in startZonesAction.LaneIndices)
+                {
+                    BeginZone(laneIndex);
+                }
+                return;
+            }
+            if (command is EndZonesAction endZonesAction)
+            {
+                foreach (var laneIndex in endZonesAction.LaneIndices)
+                {
+                    EndZone(laneIndex);
+                }
+                return;
+            }
+            if (command is SetZonesDetailAction setZonesDetailAction)
+            {
+                if (setZonesDetailAction.DamageCause != KeywordSymbol.invalid)
+                {
+                    SetDamageCauses(setZonesDetailAction.LaneIndices, keywordSymbolToCause[setZonesDetailAction.DamageCause]);
+                }
+                if (setZonesDetailAction.DamageType != KeywordSymbol.invalid)
+                {
+                    SetDamageType(setZonesDetailAction.LaneIndices, keywordSymbolToDamageType[setZonesDetailAction.DamageType]);
+                }
+                if (setZonesDetailAction.ShouldEndZone)
+                {
+                    foreach (var laneIndex in setZonesDetailAction.LaneIndices)
+                    {
+                        EndZone(laneIndex);
+                    }
+                }
+                return;
+            }
         }
 
-        private void CenterLaneStartTapRecognizer_Tapped(object sender, EventArgs e)
+        Dictionary<KeywordSymbol, string> keywordSymbolToCause = new Dictionary<KeywordSymbol, string>
         {
-            BeginButtonClicked(0);
+            { KeywordSymbol.maus, "GameMouseDamage" },
+            { KeywordSymbol.kuppe, "Dome" },
+            { KeywordSymbol.nass, "WaterLogging" },
+            { KeywordSymbol.sand, "SandLens" },
+            { KeywordSymbol.trocken, "DryStress" },
+            { KeywordSymbol.verdichtung, "Compaction" },
+            { KeywordSymbol.waldrand, "ForestEdge" },
+            { KeywordSymbol.wende, "Headland" },
+            { KeywordSymbol.wild, "GameMouseDamage" }
+        };
+        Dictionary<KeywordSymbol, DamageType> keywordSymbolToDamageType = new Dictionary<KeywordSymbol, DamageType>
+        {
+            { KeywordSymbol.gering, DamageType.Low },
+            { KeywordSymbol.mittel, DamageType.Medium },
+            { KeywordSymbol.hoch, DamageType.High }
+        };
+
+        private void TouchEffect_TouchAction(object sender, TouchActionEventArgs args)
+        {
+            if (sender is Button button)
+                button.PerformClick();
+            if (sender is FormattedButton formattedButton)
+                formattedButton.OnTap();
         }
 
         private void ResetToInitialState()
         {
-            PushInteractionToLog(new[] { new InteractionInfo(DateTime.Now, -1, "canceled") });
+            PushInteractionToLog(new[] { new InteractionInfo(DateTime.UtcNow, -1, "canceled") });
             foreach (var button in LaneBeginButtons)
             {
-                button.BackgroundColor = ActiveButtonColor;
+                SetActiveIndicator(button, true);
             }
             foreach (var formattedButton in DamageCauseButtons.AsEnumerable<View>().Union(DamageTypeButtons).Union(LaneEndButtons).Union(LaneMiddleButtons))
             {
-                formattedButton.BackgroundColor = InactiveButtonColor;
+                SetActiveIndicator(formattedButton, false);
             }
-            CenterLaneMiddleButton.BackgroundColor = InactiveButtonColor;
-            ArrowStartCenterShape.Fill = ActiveButtonBrush;
-            ArrowEndCenterShape.Fill = InactiveButtonBrush;
             foreach (var boxView in TypeLaneBackgrounds.Union(CauseLaneBackgrounds))
             {
                 boxView.Background = Brush.Transparent;
@@ -178,7 +256,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 
         private void AddSideLanesToLayout()
         {
-            const double laneWidthFactor = 0.047;
+            double laneWidthFactor = 0.047 * 3 / Configuration.LaneCount;
 
             const double leftMostBorderXFactor = 0.015;
             const double rightMostBorderXFactor = 0.983;
@@ -187,15 +265,15 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             const double borderYFactor = 0.054;
             const double borderHeightFactor = 0.842;
 
-            const double buttonWidthFactor = 0.032;
-            const double leftMostButtonXFactor = leftMostBorderXFactor + (laneWidthFactor - buttonWidthFactor) / 2.0;
-            const double rightMostButtonXFactor = rightMostBorderXFactor - laneWidthFactor + (laneWidthFactor - buttonWidthFactor) / 2.0;
-            const double startButtonYFactor = 0.062;
-            const double middleButtonYFactor = 0.459;
-            const double endButtonYFactor = 0.825;
-            const double buttonHeightFactor = 0.062;
+            double buttonWidthFactor = 0.043 * 3 / Configuration.LaneCount;
+            double leftMostButtonXFactor = leftMostBorderXFactor + (laneWidthFactor - buttonWidthFactor) / 2.0;
+            double rightMostButtonXFactor = rightMostBorderXFactor - laneWidthFactor + (laneWidthFactor - buttonWidthFactor) / 2.0;
+            const double startButtonYFactor = 0.058;
+            const double middleButtonYFactor = 0.455;
+            const double endButtonYFactor = 0.821;
+            const double buttonHeightFactor = 0.070;
 
-            const double laneBackgroundWidthFactor = laneWidthFactor - innerBorderWidthFactor;
+            double laneBackgroundWidthFactor = laneWidthFactor - innerBorderWidthFactor;
 
             for (int i = 0; i < LaneCountPerSide; i++)
             {
@@ -217,7 +295,8 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                     yConstraint: Constraint.RelativeToView(CenterLaneCauseBackground, (l, v) => v.Y),
                     heightConstraint: Constraint.RelativeToView(CenterLaneCauseBackground, (l, v) => v.Height));
 
-                var laneBorder = new BoxView { Color = Color.Black };
+                var laneBorder = new BoxView();
+                laneBorder.SetAppThemeColor(BoxView.ColorProperty, (Color)Resources["BorderColor"], (Color)Resources["BorderColorNight"]);
                 var borderXFactor = leftMostBorderXFactor + (LaneCountPerSide - i) * laneWidthFactor;
                 RelativeLayout.Children.Add(laneBorder,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * borderXFactor),
@@ -225,12 +304,16 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                     yConstraint: Constraint.RelativeToParent(p => p.Height * borderYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * borderHeightFactor));
 
-                int laneIndex = i + 1;
-                string buttonText = laneIndex.ToString();
+                int laneIndex = i;
+                string buttonText = (laneIndex + 1).ToString();
                 var buttonXFactor = leftMostButtonXFactor + (LaneCountPerSide - i - 1) * laneWidthFactor;
-                var topButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var topButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneBeginButtons.Add(topButton);
-                topButton.Clicked += (a, b) => BeginButtonClicked(laneIndex);
+                var swipeGesture = new SwipeGestureRecognizer { Direction = SwipeDirection.Right | SwipeDirection.Left | SwipeDirection.Down | SwipeDirection.Up };
+                swipeGesture.Swiped += SwipeGesture_Swiped;
+                topButton.GestureRecognizers.Add(swipeGesture);
+                
+                topButton.Clicked += (a, b) => BeginZone(laneIndex);
                 topButton.FontSize = Device.GetNamedSize(NamedSize.Small, topButton);
                 RelativeLayout.Children.Add(topButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
@@ -238,9 +321,9 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                     yConstraint: Constraint.RelativeToParent(p => p.Height * startButtonYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
 
-                var middleButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var middleButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneMiddleButtons.Add(middleButton);
-                middleButton.Clicked += (a, b) => CenterButtonClicked(laneIndex);
+                middleButton.Clicked += (a, b) => ActivateLaneForDetailInput(laneIndex);
                 middleButton.FontSize = Device.GetNamedSize(NamedSize.Small, middleButton);
                 RelativeLayout.Children.Add(middleButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
@@ -248,9 +331,9 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                     yConstraint: Constraint.RelativeToParent(p => p.Height * middleButtonYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
 
-                var endButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var endButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneEndButtons.Add(endButton);
-                endButton.Clicked += (a, b) => EndButtonClicked(laneIndex);
+                endButton.Clicked += (a, b) => EndZone(laneIndex);
                 endButton.FontSize = Device.GetNamedSize(NamedSize.Small, endButton);
                 RelativeLayout.Children.Add(endButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
@@ -259,7 +342,8 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
 
             }
-            var leftMostLaneBorder = new BoxView { Color = Color.Black };
+            var leftMostLaneBorder = new BoxView();
+            leftMostLaneBorder.SetAppThemeColor(BoxView.ColorProperty, (Color)Resources["BorderColor"], (Color)Resources["BorderColorNight"]);
             RelativeLayout.Children.Add(leftMostLaneBorder,
                 xConstraint: Constraint.RelativeToParent(p => p.Width * leftMostBorderXFactor),
                 widthConstraint: Constraint.RelativeToParent(p => p.Width * outerMostBorderWidthFactor),
@@ -270,7 +354,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             {
                 double laneBackgroundXFactor = rightMostBorderXFactor - (LaneCountPerSide - i) * laneWidthFactor + innerBorderWidthFactor;
 
-                var laneTopBackground = new BoxView { Background = Brush.Transparent };
+                var laneTopBackground = new BoxView { Background = Brush.Transparent, BackgroundColor = Color.Transparent, Color = Color.Transparent };
                 TypeLaneBackgrounds.Add(laneTopBackground);
                 RelativeLayout.Children.Add(laneTopBackground,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * laneBackgroundXFactor),
@@ -287,7 +371,8 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                     heightConstraint: Constraint.RelativeToView(CenterLaneCauseBackground, (l, v) => v.Height));
 
 
-                var laneBorder = new BoxView { Color = Color.Black };
+                var laneBorder = new BoxView();
+                laneBorder.SetAppThemeColor(BoxView.ColorProperty, (Color)Resources["BorderColor"], (Color)Resources["BorderColorNight"]);
                 var borderXFactor = rightMostBorderXFactor - (LaneCountPerSide - i) * laneWidthFactor;
                 RelativeLayout.Children.Add(laneBorder,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * borderXFactor),
@@ -295,12 +380,12 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                     yConstraint: Constraint.RelativeToParent(p => p.Height * borderYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * borderHeightFactor));
 
-                int laneIndex = i + 1 + LaneCountPerSide;
-                string buttonText = laneIndex.ToString();
+                int laneIndex = i + LaneCountPerSide;
+                string buttonText = (laneIndex + 1).ToString();
                 var buttonXFactor = rightMostButtonXFactor - (LaneCountPerSide - i - 1) * laneWidthFactor;
-                var topButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var topButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneBeginButtons.Add(topButton);
-                topButton.Clicked += (a, b) => BeginButtonClicked(laneIndex);
+                topButton.Clicked += (a, b) => BeginZone(laneIndex);
                 topButton.FontSize = Device.GetNamedSize(NamedSize.Small, topButton);
                 RelativeLayout.Children.Add(topButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
@@ -308,9 +393,9 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                     yConstraint: Constraint.RelativeToParent(p => p.Height * startButtonYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
 
-                var middleButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var middleButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneMiddleButtons.Add(middleButton);
-                middleButton.Clicked += (a, b) => CenterButtonClicked(laneIndex);
+                middleButton.Clicked += (a, b) => ActivateLaneForDetailInput(laneIndex);
                 middleButton.FontSize = Device.GetNamedSize(NamedSize.Small, middleButton);
                 RelativeLayout.Children.Add(middleButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
@@ -318,9 +403,9 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                     yConstraint: Constraint.RelativeToParent(p => p.Height * middleButtonYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
 
-                var endButton = new Button { Text = buttonText, TextColor = Color.Black, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), BorderWidth = 0 };
+                var endButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName]};
                 LaneEndButtons.Add(endButton);
-                endButton.Clicked += (a, b) => EndButtonClicked(laneIndex);
+                endButton.Clicked += (a, b) => EndZone(laneIndex);
                 endButton.FontSize = Device.GetNamedSize(NamedSize.Small, endButton);
                 RelativeLayout.Children.Add(endButton,
                     xConstraint: Constraint.RelativeToParent(p => p.Width * buttonXFactor),
@@ -328,7 +413,8 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                     yConstraint: Constraint.RelativeToParent(p => p.Height * endButtonYFactor),
                     heightConstraint: Constraint.RelativeToParent(p => p.Height * buttonHeightFactor));
             }
-            var rightMostLaneBorder = new BoxView { Color = Color.Black };
+            var rightMostLaneBorder = new BoxView();
+            rightMostLaneBorder.SetAppThemeColor(BoxView.ColorProperty, (Color)Resources["BorderColor"], (Color)Resources["BorderColorNight"]);
             RelativeLayout.Children.Add(rightMostLaneBorder,
                 xConstraint: Constraint.RelativeToParent(p => p.Width * rightMostBorderXFactor),
                 widthConstraint: Constraint.RelativeToParent(p => p.Width * outerMostBorderWidthFactor),
@@ -336,24 +422,21 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 heightConstraint: Constraint.RelativeToParent(p => p.Height * borderHeightFactor));
         }
 
-        private void BeginButtonClicked(int laneIndex)
+        private void SwipeGesture_Swiped(object sender, SwipedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BeginZone(int laneIndex)
         {
             if (!IsLaneActive[laneIndex])
             {
-                PushInteractionToLog(new[] { new InteractionInfo(DateTime.Now, laneIndex, "open") });
+                PushInteractionToLog(new[] { new InteractionInfo(DateTime.UtcNow, laneIndex, "open") });
 
-                if (laneIndex == 0)
-                {
-                    ArrowStartCenterShape.Fill = InactiveButtonBrush;
-                    ArrowEndCenterShape.Fill = ActiveButtonBrush;
-                }
-                else
-                {
-                    LaneBeginButtons[laneIndex - 1].BackgroundColor = InactiveButtonColor;
-                    LaneEndButtons[laneIndex - 1].BackgroundColor = ActiveButtonColor;
-                }
-                var middleButton = GetMiddleButtonWithIndex(laneIndex);
-                middleButton.BackgroundColor = ActiveButtonColor;
+                SetActiveIndicator(LaneBeginButtons[laneIndex], false);
+                SetActiveIndicator(LaneEndButtons[laneIndex], true);
+                var middleButton = LaneMiddleButtons[laneIndex];
+                SetActiveIndicator(middleButton, true);
                 IsLaneStarted[laneIndex] = true;
                 IsLaneActive[laneIndex] = true;
                 IsLaneCauseEntered[laneIndex] = false;
@@ -366,7 +449,15 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             }
         }
 
-        View GetMiddleButtonWithIndex(int index) => (index == 0 ? (View)CenterLaneMiddleButton : LaneMiddleButtons[index - 1]);
+        void SetActiveIndicator(View view, bool active)
+        {
+            if (view is Button button)
+                button.SetAppThemeColor(BackgroundColorProperty, active ? ActiveButtonColor : InactiveButtonColor, active ? ActiveButtonColorNight : InactiveButtonColorNight);
+            else if (view is FormattedButton formattedButton)
+                formattedButton.SetAppThemeColor(BackgroundColorProperty, active ? ActiveButtonColor : InactiveButtonColor, active ? ActiveButtonColorNight : InactiveButtonColorNight);
+            else if (view is Xamarin.Forms.Shapes.Path shape)
+                shape.SetOnAppTheme(Shape.FillProperty, active ? ActiveButtonBrush : InactiveButtonBrush, active ? ActiveButtonBrushNight : InactiveButtonBrushNight);
+        }
 
         public class InteractionInfo
         {
@@ -399,7 +490,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             WriteUsingCsvWriter(csvWriter => csvWriter.WriteRecords(interactionInfo));
         }
 
-        private void CenterButtonClicked(int laneIndex)
+        private void ActivateLaneForDetailInput(int laneIndex)
         {
             if (IsLaneStarted[laneIndex] && !IsLaneSelectedForInput[laneIndex])
             {
@@ -410,26 +501,18 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 if (!IsLaneTypeEntered[laneIndex])
                     TypeLaneBackgrounds[laneIndex].Background = ActiveForInputBrush;
                 IsLaneSelectedForInput[laneIndex] = true;
-                GetMiddleButtonWithIndex(laneIndex).BackgroundColor = InactiveButtonColor;
+                SetActiveIndicator(LaneMiddleButtons[laneIndex], false);
             }
         }
 
-        private void EndButtonClicked(int laneIndex)
+        private void EndZone(int laneIndex)
         {
             if (IsLaneActive[laneIndex])
             {
-                PushInteractionToLog(new[] { new InteractionInfo(DateTime.Now, laneIndex, "close") });
+                PushInteractionToLog(new[] { new InteractionInfo(DateTime.UtcNow, laneIndex, "close") });
 
-                if (laneIndex == 0)
-                {
-                    ArrowStartCenterShape.Fill = ActiveButtonBrush;
-                    ArrowEndCenterShape.Fill = InactiveButtonBrush;
-                }
-                else
-                {
-                    LaneBeginButtons[laneIndex - 1].BackgroundColor = ActiveButtonColor;
-                    LaneEndButtons[laneIndex - 1].BackgroundColor = InactiveButtonColor;
-                }
+                SetActiveIndicator(LaneBeginButtons[laneIndex], true);
+                SetActiveIndicator(LaneEndButtons[laneIndex], false);
                 IsLaneActive[laneIndex] = false;
             }
         }
@@ -438,53 +521,74 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         {
             foreach (var button in DamageCauseButtons.Union(DamageTypeButtons))
             {
-                button.BackgroundColor = active ? ActiveButtonColor : InactiveButtonColor;
+                SetActiveIndicator(button, active);
             }
+        }
+
+        void SetDamageType(List<int> laneIndices, DamageType type)
+        {
+            var now = DateTime.UtcNow;
+            var interactionInfos = new List<InteractionInfo>();
+            foreach (var laneIndex in laneIndices)
+            {
+                IsLaneTypeEntered[laneIndex] = true;
+                if (!IsLaneCauseEntered[laneIndex])
+                    CauseLaneBackgrounds[laneIndex].Background = Brush.Transparent;
+                TypeLaneBackgrounds[laneIndex].Background = CompletedInfoBrush;
+                SetActiveIndicator(LaneMiddleButtons[laneIndex], true);
+                interactionInfos.Add(new InteractionInfo(now, laneIndex, "damage=" + type.ToString()));
+            }
+
+            if (interactionInfos.Any())
+                PushInteractionToLog(interactionInfos);
         }
 
         void DamageTypeButtonClicked(DamageType type)
         {
             ShowTypeAndCauseButtonsActiveStatus(false);
-            var now = DateTime.UtcNow;
-            var interactionInfos = new List<InteractionInfo>();
+            var laneIndices = new List<int>();
             for (int i = 0; i < TotalLaneCount; i++)
             {
                 if (IsLaneSelectedForInput[i])
                 {
-
                     IsLaneSelectedForInput[i] = false;
-                    IsLaneTypeEntered[i] = true;
-                    if (!IsLaneCauseEntered[i])
-                        CauseLaneBackgrounds[i].Background = Brush.Transparent;
-                    TypeLaneBackgrounds[i].Background = CompletedInfoBrush;
-                    GetMiddleButtonWithIndex(i).BackgroundColor = ActiveButtonColor;
-                    interactionInfos.Add(new InteractionInfo(now, i, "damage=" + type.ToString()));
+                    laneIndices.Add(i);
                 }
             }
+            SetDamageType(laneIndices, type);
+        }
+
+        void SetDamageCauses(List<int> laneIndices, string cause)
+        {
+            var now = DateTime.UtcNow;
+            var interactionInfos = new List<InteractionInfo>();
+            foreach (var laneIndex in laneIndices)
+            {
+                IsLaneSelectedForInput[laneIndex] = false;
+                IsLaneCauseEntered[laneIndex] = true;
+                if (!IsLaneTypeEntered[laneIndex])
+                    TypeLaneBackgrounds[laneIndex].Background = Brush.Transparent;
+                CauseLaneBackgrounds[laneIndex].Background = CompletedInfoBrush;
+                SetActiveIndicator(LaneMiddleButtons[laneIndex], true);
+                interactionInfos.Add(new InteractionInfo(now, laneIndex, "cause=" + cause));
+            }
+
             if (interactionInfos.Any())
                 PushInteractionToLog(interactionInfos);
         }
-
-        void DamageCauseButtonClicked(DamageCause cause)
+        void DamageCauseButtonClicked(string cause)
         {
             ShowTypeAndCauseButtonsActiveStatus(false);
-            var now = DateTime.UtcNow;
-            var interactionInfos = new List<InteractionInfo>();
+            var laneIndices = new List<int>();
             for (int i = 0; i < TotalLaneCount; i++)
             {
                 if (IsLaneSelectedForInput[i])
                 {
                     IsLaneSelectedForInput[i] = false;
-                    IsLaneCauseEntered[i] = true;
-                    if (!IsLaneTypeEntered[i])
-                        TypeLaneBackgrounds[i].Background = Brush.Transparent;
-                    CauseLaneBackgrounds[i].Background = CompletedInfoBrush;
-                    GetMiddleButtonWithIndex(i).BackgroundColor = ActiveButtonColor;
-                    interactionInfos.Add(new InteractionInfo(now, i, "cause=" + cause.ToString()));
+                    laneIndices.Add(i);
                 }
             }
-            if (interactionInfos.Any())
-                PushInteractionToLog(interactionInfos);
+            SetDamageCauses(laneIndices, cause);
         }
     }
 }

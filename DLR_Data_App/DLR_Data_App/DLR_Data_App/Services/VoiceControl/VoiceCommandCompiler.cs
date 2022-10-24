@@ -187,7 +187,7 @@ namespace DLR_Data_App.Services.VoiceControl
                 List<int> result = new List<int>();
                 while (IsNumber(acc.Peek()))
                 {
-                    var laneIndex = acc.Next().ToNumber();
+                    var laneIndex = acc.Next().ToNumber() - 1;
                     if (!result.Contains(laneIndex))
                         result.Add(laneIndex);
                 }

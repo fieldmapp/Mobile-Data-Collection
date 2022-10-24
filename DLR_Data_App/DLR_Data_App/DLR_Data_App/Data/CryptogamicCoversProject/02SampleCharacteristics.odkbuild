@@ -1,0 +1,542 @@
+{
+  "title": "Sample characteristics",
+  "controls": [
+    {
+      "name": "class",
+      "label": {
+        "0": "Class"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": {
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "light cyanobacterial"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "dark cyanobacterial"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "lichen-dominated"
+          },
+          "cascade": [
+          ],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "moss-dominated"
+          },
+          "cascade": [
+          ],
+          "val": "3"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "growthform",
+      "label": {
+        "0": "Growthform (of the dominant organism)"
+      },
+      "hint": {
+        "0": ""
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": true,
+      "requiredText": {
+      },
+      "relevance": "",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Bryophyte"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Lichen"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "Cyanobacteria"
+          },
+          "cascade": [
+          ],
+          "val": "2"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "bryophyte",
+      "label": {
+        "0": "Bryophyte"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${growthform}=0",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "± dendroid, mostly with creeping rhizome and erect shoots"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "relatively large and essentially plagiotropic shoots in deep mat"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "bud-like (gemma)"
+          },
+          "cascade": [
+          ],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "cushion of ± erect, densely arranged shoots"
+          },
+          "cascade": [
+          ],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "turf from ± loosely growing, erect shoots"
+          },
+          "cascade": [
+          ],
+          "val": "4"
+        },
+        {
+          "text": {
+            "0": "thalloid, forming rosettes or ± branched bands"
+          },
+          "cascade": [
+          ],
+          "val": "5"
+        },
+        {
+          "text": {
+            "0": "± thin mat of small, creeping shoots"
+          },
+          "cascade": [
+          ],
+          "val": "6"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "lichen",
+      "label": {
+        "0": "Lichen"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${growthform}=1",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "Crustose"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "Foliose"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "Fruticose"
+          },
+          "cascade": [
+          ],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "Filamentous lichens"
+          },
+          "cascade": [
+          ],
+          "val": "3"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "crustose",
+      "label": {
+        "0": "Crustose"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${lichen}=0",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "external crust thallus of Baeomyces-type (with stipitate fruitbodies)"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "external crust, crustose lichens with thallus clearly developed on the substrate"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "crustose lichens with petiolated, pin-like fruitbodies (e.g., Calicium)"
+          },
+          "cascade": [
+          ],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "internal crust, crustose lichens whose thallus mainly develop in the substrate"
+          },
+          "cascade": [
+          ],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "leprose lichen"
+          },
+          "cascade": [
+          ],
+          "val": "4"
+        },
+        {
+          "text": {
+            "0": "crustose lichens with radiating growth and rudimentary marginal lobes"
+          },
+          "cascade": [
+          ],
+          "val": "5"
+        },
+        {
+          "text": {
+            "0": "squamulose lichen (e.g., Toninia)"
+          },
+          "cascade": [
+          ],
+          "val": "6"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "foliose",
+      "label": {
+        "0": "Foliose"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${lichen}=1",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "foliose lichens, usually attached at many locations of the substrate"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "navel lichens, mostly ± centrally attached with navel"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "fruticose",
+      "label": {
+        "0": "Fruticose"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${lichen}=2",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "shrubby lichens, hanging ascending, thallus band-like, flattened in section"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "fruticose lichens of Cladonia-type"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        },
+        {
+          "text": {
+            "0": "beard lichen, hanging to ascending, thallus mostly round to oval in section"
+          },
+          "cascade": [
+          ],
+          "val": "2"
+        },
+        {
+          "text": {
+            "0": "fruticose lichen of Cetraria-type"
+          },
+          "cascade": [
+          ],
+          "val": "3"
+        },
+        {
+          "text": {
+            "0": "fruticose lichen of Cladina-type"
+          },
+          "cascade": [
+          ],
+          "val": "4"
+        },
+        {
+          "text": {
+            "0": "fruticose lichens without detailed specification"
+          },
+          "cascade": [
+          ],
+          "val": "5"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "filamentous_lichens",
+      "label": {
+        "0": "Filamentous lichens"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${lichen}=3",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "filamentous lichens"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    },
+    {
+      "name": "cyanobacteria",
+      "label": {
+        "0": "Cyanobacteria"
+      },
+      "hint": {
+      },
+      "defaultValue": "",
+      "readOnly": false,
+      "required": false,
+      "requiredText": {
+      },
+      "relevance": "${growthform}=2",
+      "constraint": "",
+      "invalidText": {
+      },
+      "calculate": "",
+      "options": [
+        {
+          "text": {
+            "0": "light"
+          },
+          "cascade": [
+          ],
+          "val": "0"
+        },
+        {
+          "text": {
+            "0": "dark"
+          },
+          "cascade": [
+          ],
+          "val": "1"
+        }
+      ],
+      "cascading": false,
+      "other": false,
+      "appearance": "Default",
+      "metadata": {
+      },
+      "type": "inputSelectOne"
+    }
+  ],
+  "metadata": {
+    "version": 2,
+    "activeLanguages": {
+      "0": "English",
+      "_counter": 0,
+      "_display": "0"
+    },
+    "optionsPresets": [
+    ],
+    "htitle": null,
+    "instance_name": "",
+    "public_key": "",
+    "submission_url": ""
+  }
+}

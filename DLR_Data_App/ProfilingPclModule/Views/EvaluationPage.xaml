@@ -8,14 +8,6 @@
              x:Class="DlrDataApp.Modules.Profiling.Shared.Views.EvaluationPage"
              xmlns:res="clr-namespace:DlrDataApp.Modules.Base.Shared.Localization;assembly=DlrDataApp.Modules.Base.Shared"
              Title="{res:Translate profiling}">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Color x:Key="Button">Transparent</Color>
-            <Color x:Key="Selection">DarkSeaGreen</Color>
-            <Color x:Key="TextColor">Gray</Color>
-            <Color x:Key="LightTextColor">#999999</Color>
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
     <ContentPage.Content>
         <StackLayout Padding="20" HorizontalOptions="CenterAndExpand">

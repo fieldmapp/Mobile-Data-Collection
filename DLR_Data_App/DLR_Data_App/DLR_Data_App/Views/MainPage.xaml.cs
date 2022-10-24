@@ -32,11 +32,9 @@ namespace DLR_Data_App.Views
                 { MenuItemType.ProfilingList, new NavigationPage(new ProfilingListPage()) },
                 { MenuItemType.CurrentProfiling, new NavigationPage(new CurrentProfilingPage()) },
                 { MenuItemType.Sensortest, new NavigationPage(new SensorTestPage()) },
+                { MenuItemType.LowYieldCartograph, new NavigationPage(new DrivingConfigurationSelectionPage()) },
                 { MenuItemType.Settings, new NavigationPage(new SettingsPage()) },
-                { MenuItemType.About, new NavigationPage(new AboutPage()) },
-                { MenuItemType.VoiceRecognitionDemo, new NavigationPage(new VoiceRecognitionDemoPage()) },
-                { MenuItemType.DrivingEasy, new NavigationPage(new DrivingPage(1)) },
-                { MenuItemType.DrivingHard, new NavigationPage(new DrivingPage(3)) }
+                { MenuItemType.About, new NavigationPage(new AboutPage()) }
             };
             */
         }
@@ -50,8 +48,8 @@ namespace DLR_Data_App.Views
             
             Flyout = MenuPage;
 
-            Detail = MenuPage.AboutMenuItem.NavigationPage;
-            
+            Detail = _menuPages[MenuItemType.LowYieldCartograph];
+
             FlyoutLayoutBehavior = FlyoutLayoutBehavior.Popover;
 
             Appearing += MainPage_Appearing;
