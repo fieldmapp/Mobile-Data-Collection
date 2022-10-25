@@ -4,6 +4,7 @@ using DlrDataApp.Modules.Base.Shared;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DLR_Data_App.Services
@@ -19,18 +20,18 @@ namespace DLR_Data_App.Services
             App = app;
             SharedMethodProvider = methodProvider;
 
-            Initialize();
+            Initialize().Wait();
         }
 
-        private void Initialize()
+        private async Task Initialize()
         {
             foreach (var module in Modules)
             {
-                module.Initialize(this);
+                await module.Initialize(this);
             }
             foreach (var module in Modules)
             {
-                module.PostInitialize();
+                await module.PostInitialize();
             }
         }
 
