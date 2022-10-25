@@ -45,10 +45,24 @@ namespace com.DLR.DLR_Data_App.Droid
             var folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             var fullPath = System.IO.Path.Combine(folderPath, dbName);
 
-            LoadApplication(new App(folderPath, fullPath, new List<ISharedModule> { 
-                new DlrDataApp.Modules.Profiling.Shared.ProfilingModule(),
-                new DlrDataApp.Modules.SpeechRecognition.Shared.SpeechRecognitionModule()
-            }));
+
+            var modules = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(a =>
+                {
+                    try
+                    {
+                      return a.GetTypes();
+                    }
+                    catch (System.Reflection.ReflectionTypeLoadException e)
+                    {
+                        return e.Types.Where(t => t != null);
+                    }
+                })
+                .Where(t => t.GetInterfaces().Contains(typeof(ISharedModule)) && t.IsClass && !t.IsAbstract)
+                .Select(t => (ISharedModule)Activator.CreateInstance(t))
+                .ToList();
+
+            LoadApplication(new App(folderPath, fullPath, modules));
             ReloadToolbar();
             EnsureAppPermission(Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage, Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation, Manifest.Permission.RecordAudio);
 
