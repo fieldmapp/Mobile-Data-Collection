@@ -210,7 +210,7 @@ namespace DlrDataApp.Modules.Base.Shared
         public T GetActiveElement<T, U>(bool recursive = true)
             where T : class
             where U : class, IActiveElementInfo<T>, new()
-            => RunWithConnection(c => GetActiveElement<T, U>(recursive));
+            => RunWithConnection(c => GetActiveElement<T, U>(c, recursive));
 
         public T GetActiveElement<T, U>(SQLiteConnection conn, bool recursive = true)
             where T : class
@@ -223,7 +223,7 @@ namespace DlrDataApp.Modules.Base.Shared
         public bool SetActiveElement<T, U>(T element)
             where T : class
             where U : class, IActiveElementInfo<T>, new()
-            => RunWithConnection(c => SetActiveElement<T, U>(element));
+            => RunWithConnection(c => SetActiveElement<T, U>(c, element));
 
 
         public bool SetActiveElement<T, U>(SQLiteConnection conn, T element)
