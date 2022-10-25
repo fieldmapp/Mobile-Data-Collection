@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace DlrDataApp.Modules.OdkProjects.Shared
 {
-    class OdkProjectsModule : ModuleBase<OdkProjectsModule>
+    public class OdkProjectsModule : ModuleBase<OdkProjectsModule>
     {
         public OdkProjectsModule() : base("Projects", new List<string>() { "Profiling" }) { }
         public override Task OnInitialize()
