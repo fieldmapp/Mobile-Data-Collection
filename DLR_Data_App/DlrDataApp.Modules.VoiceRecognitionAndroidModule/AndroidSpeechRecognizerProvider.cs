@@ -59,12 +59,12 @@ namespace DlrDataApp.Modules.SpeechRecognition.Android
             KaldiRecognizer kaldiRecognizer;
             if (acceptedWords == null)
             {
-                string lang = $"[{'"'}{string.Join(' ', acceptedWords.Where(k => k != "[unk]"))}{'"'}, {'"'}[unk]{'"'}]";
-                kaldiRecognizer = new KaldiRecognizer(Model, sampleRate, lang);
+                kaldiRecognizer = new KaldiRecognizer(Model, sampleRate);
             }
             else
             {
-                kaldiRecognizer = new KaldiRecognizer(Model, sampleRate);
+                string lang = $"[{'"'}{string.Join(' ', acceptedWords.Where(k => k != "[unk]"))}{'"'}, {'"'}[unk]{'"'}]";
+                kaldiRecognizer = new KaldiRecognizer(Model, sampleRate, lang);
             }
             var speechService = new SpeechService(kaldiRecognizer, sampleRate);
             var speechRecognizer = new AndroidSpeechRecognizer(speechService);
