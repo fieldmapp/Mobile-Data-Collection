@@ -32,6 +32,14 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <RelativeLayout x:Name="RelativeLayout">
+            <Frame BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundColorNight}}"
+                   BorderColor="{AppThemeBinding Light={StaticResource BorderColor}, Dark={StaticResource BorderBrushNight}}"
+                   CornerRadius="0"
+                   RelativeLayout.XConstraint="{ConstraintExpression Type=Constant, Constant=-5}"
+                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=10}"
+                   RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=-5}"
+                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=10}"/>
+            
             <Frame x:Name="BackgroundBox"
                    BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundColorNight}}"
                    BorderColor="{AppThemeBinding Light={StaticResource BorderColor}, Dark={StaticResource BorderBrushNight}}" 
@@ -149,7 +157,12 @@
                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=CauseBackground, Property=Y, Factor=1}"
                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=CauseBackground, Property=Height, Factor=1}"/>
 
-            <controls:FormattedButton x:Name="Cause1Button"
+            <FlexLayout x:Name="ButtonLayout" Padding="0" Margin="0" Wrap="Wrap" JustifyContent="SpaceEvenly"
+                                              RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.282}"
+                                              RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.451}"
+                                              RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.503}"
+                                              RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.256}"/>
+            <!--<controls:FormattedButton x:Name="Cause1Button"
                                       Padding="0" Margin="0" FontSize="Small" BackgroundColor="{StaticResource Key=InactiveButtonColor}"
                                       FormattedText="{Binding Configuration.Cause1}"
                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.272}"
@@ -213,7 +226,7 @@
                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.591}"
                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.151}"
                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.677}"
-                                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.075}"/>
+                                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.075}"/>-->
 
 
 
