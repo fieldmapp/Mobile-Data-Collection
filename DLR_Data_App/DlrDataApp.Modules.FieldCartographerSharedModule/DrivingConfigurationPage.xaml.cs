@@ -398,7 +398,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         {
             Configuration.CopyProperties(Input);
             var c = new DrivingPageConfigurationDTO(Input);
-            FieldCartographerModule.Instance.Database.Update(c);
+            FieldCartographerModule.Instance.Database.InsertOrUpdate(c);
             Input.Id = c.Id;
             Save?.Invoke();
             Navigation.PopModalAsync();

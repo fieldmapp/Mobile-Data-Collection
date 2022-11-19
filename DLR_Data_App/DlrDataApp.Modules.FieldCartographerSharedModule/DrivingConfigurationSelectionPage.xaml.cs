@@ -35,7 +35,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             {
                 configurations = new List<DrivingPageConfiguration>() { DefaultConfiguration };
                 var dto = new DrivingPageConfigurationDTO(DefaultConfiguration);
-                FieldCartographerModule.Instance.Database.Update(dto);
+                FieldCartographerModule.Instance.Database.InsertOrUpdate(dto);
                 DefaultConfiguration.Id = dto.Id;
             }
             DisplayedItems = new ObservableCollection<DrivingConfigurationDisplay>(
