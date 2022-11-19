@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Widget;
-using DLR_Data_App.Services;
 using DlrDataApp.Modules.Base.Android;
+using DlrDataApp.Modules.Base.Shared.DependencyServices;
 
 // see https://stackoverflow.com/a/44126899
 

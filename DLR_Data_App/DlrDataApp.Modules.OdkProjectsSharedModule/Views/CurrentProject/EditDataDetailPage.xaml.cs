@@ -1,5 +1,4 @@
-﻿using DLR_Data_App.Services;
-using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+﻿using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
 using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Shared.Services;
 using System;
@@ -15,6 +14,7 @@ using static DlrDataApp.Modules.OdkProjects.Shared.Services.Helpers;
 using DlrDataApp.Modules.Base.Shared.Localization;
 using DlrDataApp.Modules.OdkProjects.Shared.Localization;
 using DlrDataApp.Modules.OdkProjects.Shared.Services;
+using DlrDataApp.Modules.Base.Shared.DependencyServices;
 
 namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
 {

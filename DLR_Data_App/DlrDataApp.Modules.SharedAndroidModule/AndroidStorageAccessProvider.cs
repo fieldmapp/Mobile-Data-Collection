@@ -12,8 +12,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Xamarin.Forms;
-using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Android;
+using DlrDataApp.Modules.Base.Shared.DependencyServices;
 
 [assembly: Dependency(typeof(AndroidStorageAccessProvider))]
 namespace DlrDataApp.Modules.Base.Android

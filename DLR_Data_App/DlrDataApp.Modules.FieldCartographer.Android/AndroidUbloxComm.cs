@@ -18,6 +18,7 @@ using Android.Widget;
 using com.DLR.DLR_Data_App.Droid;
 using DlrDataApp.Modules.Base.Android;
 using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.DependencyServices;
 using DlrDataApp.Modules.FieldCartographer.Shared;
 using Hoho.Android.UsbSerial.Driver;
 using Hoho.Android.UsbSerial.Util;

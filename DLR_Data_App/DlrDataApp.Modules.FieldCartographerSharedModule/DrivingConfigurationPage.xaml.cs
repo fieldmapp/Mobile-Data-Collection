@@ -1,6 +1,6 @@
-﻿using DLR_Data_App.Services;
-using DlrDataApp.Modules.Base.Shared;
+﻿using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Shared.Controls;
+using DlrDataApp.Modules.Base.Shared.DependencyServices;
 using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Collections.Generic;

@@ -19,6 +19,7 @@ using Xamarin.Forms;
 using AndroidX.AppCompat.Widget;
 using static com.DLR.DLR_Data_App.Droid.ScreenListener;
 using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.DependencyServices;
 
 [assembly: UsesFeature("android.hardware.usb.host")]
 namespace com.DLR.DLR_Data_App.Droid

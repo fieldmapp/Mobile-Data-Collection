@@ -1,5 +1,6 @@
 ﻿//Main contributors: Henning Woydt
 using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.DependencyServices;
 using DlrDataApp.Modules.Profiling.Shared.Models;
 using Newtonsoft.Json;
 using System;

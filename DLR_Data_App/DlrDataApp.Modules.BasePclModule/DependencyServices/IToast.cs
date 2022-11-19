@@ -4,8 +4,12 @@ using System.Text;
 
 // see https://stackoverflow.com/a/44126899
 
-namespace DLR_Data_App.Services
+namespace DlrDataApp.Modules.Base.Shared.DependencyServices
 {
+    /// <summary>
+    /// Provides methods to display text on the Toast.
+    /// TODO: Port to Snackbar.
+    /// </summary>
     public interface IToast
     {
         void LongAlert(string message);

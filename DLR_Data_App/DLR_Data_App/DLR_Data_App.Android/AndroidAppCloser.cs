@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using com.DLR.DLR_Data_App.Droid;
-using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.DependencyServices;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(AndroidAppCloser))]

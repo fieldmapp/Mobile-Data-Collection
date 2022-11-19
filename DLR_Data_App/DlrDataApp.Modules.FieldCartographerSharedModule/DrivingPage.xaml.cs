@@ -3,6 +3,7 @@ using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Shared.Controls;
+using DlrDataApp.Modules.Base.Shared.DependencyServices;
 using DlrDataApp.Modules.Base.Shared.TouchGesture;
 using DlrDataApp.Modules.SpeechRecognition.Definition;
 using System;

@@ -1,6 +1,5 @@
 ﻿using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
 using DlrDataApp.Modules.OdkProjects.Shared.Services;
-using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Collections.Generic;
@@ -9,6 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.IO;
 using DlrDataApp.Modules.Base.Shared.Controls;
+using DlrDataApp.Modules.Base.Shared.DependencyServices;
 
 namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectForms
 {

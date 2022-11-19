@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DlrDataApp.Modules.Base.Shared.DependencyServices;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
