@@ -258,7 +258,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
         {
             if (await CheckActiveProject())
             {
-                _ = Shell.Current.Navigation.PushPage(new EditDataPage());
+                _ = Shell.Current.Navigation.PushAsync(new EditDataPage());
             }
         }
 

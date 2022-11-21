@@ -28,7 +28,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
 
         private void DataList_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            _ = Shell.Current.Navigation.PushPage(new EditDataDetailPage(_viewModel.ProjectsData[e.ItemIndex]));
+            _ = Shell.Current.Navigation.PushAsync(new EditDataDetailPage(_viewModel.ProjectsData[e.ItemIndex]));
         }
     }
 }

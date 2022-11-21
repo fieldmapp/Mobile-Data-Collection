@@ -7,7 +7,7 @@ using SQLite;
 using SQLiteNetExtensions.Extensions;
 using SQLiteNetExtensions.Extensions.TextBlob;
 
-namespace DlrDataApp.Modules.Base.Shared
+namespace DlrDataApp.Modules.Base.Shared.Services
 {
     /// <summary>
     /// Provides Database access. Uses <see cref="SQLiteNetExtensions"/> to allow usage of foreign keys.
@@ -68,16 +68,16 @@ namespace DlrDataApp.Modules.Base.Shared
         /// Use <see cref="CommitChanges(string, SQLiteConnection)"/> to save everything done from this point.
         /// </summary>
         /// <param name="conn">An active <see cref="SQLiteConnection"/></param>
-        /// <returns><see cref="String"/> which representates the transaction point.</returns>
+        /// <returns><see cref="string"/> which representates the transaction point.</returns>
         public static string SaveTransactionPoint(SQLiteConnection conn)
         {
             return conn.SaveTransactionPoint();
         }
 
         /// <summary>
-        /// Undoes everything done from transaction represented by given <see cref="String"/> transactionPointName on given <see cref="SQLiteConnection"/> conn.
+        /// Undoes everything done from transaction represented by given <see cref="string"/> transactionPointName on given <see cref="SQLiteConnection"/> conn.
         /// </summary>
-        /// <param name="transactionPointName"><see cref="String"/> which representates the transaction point</param>
+        /// <param name="transactionPointName"><see cref="string"/> which representates the transaction point</param>
         /// <param name="conn">Active <see cref="SQLiteConnection"/></param>
         public static void RollbackChanges(string transactionPointName, SQLiteConnection conn)
         {
@@ -85,9 +85,9 @@ namespace DlrDataApp.Modules.Base.Shared
         }
 
         /// <summary>
-        /// Saves everything done from transaction represented by given <see cref="String"/> transactionPointName on given <see cref="SQLiteConnection"/> conn.
+        /// Saves everything done from transaction represented by given <see cref="string"/> transactionPointName on given <see cref="SQLiteConnection"/> conn.
         /// </summary>
-        /// <param name="transactionPointName"><see cref="String"/> which representates the transaction point</param>
+        /// <param name="transactionPointName"><see cref="string"/> which representates the transaction point</param>
         /// <param name="conn">Active <see cref="SQLiteConnection"/></param>
         public static void CommitChanges(string transactionPointName, SQLiteConnection conn)
         {
@@ -217,7 +217,7 @@ namespace DlrDataApp.Modules.Base.Shared
         {
             conn.CreateTable<T>();
             int resultDelete;
-            
+
             resultDelete = conn.Delete(data);
 
             return resultDelete > 0;
@@ -352,7 +352,7 @@ namespace DlrDataApp.Modules.Base.Shared
         public static List<T> ReadWithChildren<T>(SQLiteConnection conn, bool recursive = true) where T : class, new()
         {
             var content = Read<T>(conn);
-            return content.Select(element => GetWithChildren<T>(conn, recursive, element)).ToList();
+            return content.Select(element => GetWithChildren(conn, recursive, element)).ToList();
         }
 
         private static T GetWithChildren<T>(SQLiteConnection conn, bool recursive, T element) where T : class, new()
@@ -399,7 +399,7 @@ namespace DlrDataApp.Modules.Base.Shared
         /// <param name="predicate">Predicate which selects the correct object</param>
         /// <param name="recursive">Indicates if recursive children will be included in this process</param>
         /// <returns>List of all objects</returns>
-        public T FindWithChildren<T>(Func<T, bool> predicate, bool recursive = true) where T : class, new() => RunWithConnection(conn => FindWithChildren<T>(conn, predicate, recursive));
+        public T FindWithChildren<T>(Func<T, bool> predicate, bool recursive = true) where T : class, new() => RunWithConnection(conn => FindWithChildren(conn, predicate, recursive));
 
         /// <summary>
         /// Returns an object from the database, based on a condition. 
@@ -414,7 +414,7 @@ namespace DlrDataApp.Modules.Base.Shared
         public static T FindWithChildren<T>(SQLiteConnection conn, Func<T, bool> predicate, bool recursive = true) where T : class, new()
         {
             var element = Find(conn, predicate);
-            return GetWithChildren<T>(conn, recursive, element);
+            return GetWithChildren(conn, recursive, element);
         }
 
         /// <summary>

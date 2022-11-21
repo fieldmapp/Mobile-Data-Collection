@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using DlrDataApp.Modules.Base.Shared.Localization;
+using DlrDataApp.Modules.Base.Shared.Services;
 
 namespace DlrDataApp.Modules.Profiling.Shared.Views
 {
@@ -63,7 +64,7 @@ namespace DlrDataApp.Modules.Profiling.Shared.Views
                 ProfilingManager.GenerateEvaluationItem(i) :
                 new EvaluationItem(i.ChapterName, -1, -1, -1, -1)).ToList();
             
-            await Shell.Current.Navigation.PushPage(new EvaluationMainPage(evalItems));
+            await Shell.Current.Navigation.PushAsync(new EvaluationMainPage(evalItems));
         }
 
         private async void ExportAnwersClicked(object sender, EventArgs e)

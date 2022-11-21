@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using static DlrDataApp.Modules.Base.Shared.Helpers;
+using static DlrDataApp.Modules.Base.Shared.Services.FormattedStringSerializerHelper;
 
 namespace DlrDataApp.Modules.FieldCartographer.Shared
 {

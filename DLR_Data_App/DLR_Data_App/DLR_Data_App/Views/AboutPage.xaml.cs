@@ -15,7 +15,7 @@ namespace DLR_Data_App.Views
         
         private async void LicenseButton_OnClicked(object sender, EventArgs e)
         {
-            await Shell.Current.Navigation.PushPage(new LicensesPage());
+            await Shell.Current.Navigation.PushAsync(new LicensesPage());
         }
     }
 }

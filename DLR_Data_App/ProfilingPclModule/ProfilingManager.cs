@@ -37,7 +37,7 @@ namespace DlrDataApp.Modules.Profiling.Shared
                     return;
                 CurrentProfiling = selectedProfiling;
             }
-            _ = Navigation.PushPage(new LoadingPage(), false);
+            _ = Navigation.PushAsync(new LoadingPage(), false);
             if (CurrentProfiling.IntrospectionQuestion.All(q => ProfilingStorageManager.DoesAnswersExists("Introspection", q)))
             {
                 ShowEvaluationPage();
@@ -58,7 +58,7 @@ namespace DlrDataApp.Modules.Profiling.Shared
             }
             var newPage = (IProfilingPage)Activator.CreateInstance(CurrentProfiling.ProfilingPageType, new object[] { question, CurrentProfiling.AnswersGiven, CurrentProfiling.AnswersNeeded });
             newPage.PageFinished += NewPage_PageFinished;
-            _ = Navigation.PushPage(newPage as ContentPage);
+            _ = Navigation.PushAsync(newPage as ContentPage);
         }
 
         private static void NewPage_PageFinished(object sender, PageResult e)
@@ -105,7 +105,7 @@ namespace DlrDataApp.Modules.Profiling.Shared
             }
             var introspectionPage = new IntrospectionPage(newIntrospectionQuestion);
             introspectionPage.PageFinished += IntrospectionPage_PageFinished;
-            _ = Navigation.PushPage(introspectionPage);
+            _ = Navigation.PushAsync(introspectionPage);
         }
 
         private static void IntrospectionPage_PageFinished(object sender, PageResult e)
@@ -129,7 +129,7 @@ namespace DlrDataApp.Modules.Profiling.Shared
             var evalItem = GenerateEvaluationItem(CurrentProfiling);
             var evaluationPage = new EvaluationPage(evalItem);
             evaluationPage.PageFinished += EvaluationPage_PageFinished;
-            _ = Navigation.PushPage(evaluationPage);
+            _ = Navigation.PushAsync(evaluationPage);
             CurrentProfiling = null;
             ProfilingStorageManager.SaveCurrentAnswer();
             ProfilingStorageManager.CreateCSV();

@@ -1,10 +1,10 @@
 ﻿using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
-using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DlrDataApp.Modules.Base.Shared.Services;
 
 namespace DlrDataApp.Modules.OdkProjects.Shared.Services
 {

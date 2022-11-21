@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using Xamarin.Forms;
 
-using static DlrDataApp.Modules.Base.Shared.Helpers;
+using static DlrDataApp.Modules.Base.Shared.Services.FormattedStringSerializerHelper;
 
 namespace DlrDataApp.Modules.Base.Shared
 {
@@ -26,7 +26,8 @@ namespace DlrDataApp.Modules.Base.Shared
         }
     }
     /// <summary>
-    /// Child of <see cref="DefaultContractResolver"/> which, when used, will prevent the serialization of elements where declaring type is a <see cref="BindableObject"/>.
+    /// Child of <see cref="DefaultContractResolver"/> which, when used, 
+    /// will prevent the serialization of elements where declaring type is a <see cref="BindableObject"/>.
     /// </summary>
     class IgnoreBindableObjectContractResolver : DefaultContractResolver
     {

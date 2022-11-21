@@ -1,10 +1,10 @@
 ﻿using System;
 using Xamarin.Forms.Xaml;
 using DlrDataApp.Modules.Profiling.Shared.Models;
-using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Profiling.Shared.Localization;
 using DlrDataApp.Modules.Base.Shared.Localization;
 using Xamarin.Forms;
+using DlrDataApp.Modules.Base.Shared.Services;
 
 namespace DlrDataApp.Modules.Profiling.Shared.Views.ProfilingList
 {

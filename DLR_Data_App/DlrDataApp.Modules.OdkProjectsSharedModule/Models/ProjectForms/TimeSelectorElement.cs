@@ -1,4 +1,4 @@
-﻿using DLR_Data_App.Controls;
+﻿using DlrDataApp.Modules.Base.Shared.Controls;
 using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
 using DlrDataApp.Modules.OdkProjects.Shared.Services;
 using System;

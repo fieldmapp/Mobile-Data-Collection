@@ -5,7 +5,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using com.DLR.DLR_Data_App.Droid;
-using DLR_Data_App.Controls;
+using DlrDataApp.Modules.Base.Shared.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;

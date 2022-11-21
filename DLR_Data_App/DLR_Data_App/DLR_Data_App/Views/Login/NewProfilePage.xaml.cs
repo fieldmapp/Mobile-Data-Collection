@@ -1,7 +1,7 @@
 ﻿using DLR_Data_App.Models;
 using DLR_Data_App.Services;
-using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Shared.Localization;
+using DlrDataApp.Modules.Base.Shared.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;

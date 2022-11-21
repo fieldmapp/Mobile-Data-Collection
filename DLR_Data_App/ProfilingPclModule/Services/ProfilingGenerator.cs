@@ -1,8 +1,8 @@
 ﻿using DlrDataApp.Modules.Profiling.Shared;
 using DlrDataApp.Modules.Profiling.Shared.Models;
-using DlrDataApp.Modules.Base.Shared;
 using System.IO;
 using System.Threading.Tasks;
+using DlrDataApp.Modules.Base.Shared.Services;
 
 namespace DLR_Data_App.Services
 {

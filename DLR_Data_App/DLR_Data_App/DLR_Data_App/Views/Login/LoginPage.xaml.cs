@@ -5,9 +5,9 @@ using Xamarin.Forms.Xaml;
 using System.Collections.Generic;
 using System.Linq;
 using DlrDataApp.Modules.Base.Shared.Controls;
-using DlrDataApp.Modules.Base.Shared;
 using DLR_Data_App.Models;
 using DlrDataApp.Modules.Base.Shared.Localization;
+using DlrDataApp.Modules.Base.Shared.Services;
 
 namespace DLR_Data_App.Views.Login
 {
