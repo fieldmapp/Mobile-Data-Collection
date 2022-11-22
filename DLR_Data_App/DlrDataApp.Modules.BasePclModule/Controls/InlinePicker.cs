@@ -7,6 +7,9 @@ using Xamarin.Forms;
 
 namespace DlrDataApp.Modules.Base.Shared.Controls
 {
+    /// <summary>
+    /// List with a fixed size which can still be scrolled and be used to select one item.
+    /// </summary>
     public class InlinePicker : ListView
     {
         static readonly Color SelectedColor = Color.DarkSeaGreen;
@@ -46,6 +49,10 @@ namespace DlrDataApp.Modules.Base.Shared.Controls
                 selected.BackgroundColor = SelectedColor;
         }
 
+
+        /// <summary>
+        /// Unselects all items.
+        /// </summary>
         public void Reset()
         {
             foreach (var item in ItemsSource.OfType<IInlinePickerElement>())

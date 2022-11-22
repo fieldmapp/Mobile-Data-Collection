@@ -4,18 +4,21 @@ using Xamarin.Essentials;
 
 namespace DlrDataApp.Modules.Base.Shared.Services
 {
+    /// <summary>
+    /// Wrapper around Sensor access.
+    /// </summary>
     public class Sensor
     {
         private readonly SensorSpeed _uiSensorSpeed = SensorSpeed.UI;
         private readonly SensorSpeed _fastSensorSpeed = SensorSpeed.Fastest;
 
-        public Sensors.Accelerometer Accelerometer;
-        public Sensors.Barometer Barometer;
-        public Sensors.Compass Compass;
-        public Sensors.Gps Gps;
-        public Sensors.Gyroscope Gyroscope;
-        public Sensors.Magnetometer Magnetometer;
-        public Sensors.OrientationSensor OrientationSensor;
+        public Sensors.Accelerometer Accelerometer { get; }
+        public Sensors.Barometer Barometer { get; }
+        public Sensors.Compass Compass { get; }
+        public Sensors.Gps Gps { get; }
+        public Sensors.Gyroscope Gyroscope { get; }
+        public Sensors.Magnetometer Magnetometer { get; }
+        public Sensors.OrientationSensor OrientationSensor { get; }
 
         /// <summary>
         /// Checks for preference changes before opening the page.

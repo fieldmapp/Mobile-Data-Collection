@@ -5,6 +5,9 @@ using Xamarin.Forms;
 
 namespace DlrDataApp.Modules.Base.Shared.Controls
 {
+    /// <summary>
+    /// <see cref="DatePicker"/> which may be closed with either "ok" or "cancel"
+    /// </summary>
     public class OKCancelDatePicker : DatePicker
     {
         public enum CloseType

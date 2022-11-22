@@ -5,8 +5,14 @@ using Xamarin.Forms;
 
 namespace DlrDataApp.Modules.Base.Shared.Controls
 {
+    /// <summary>
+    /// A <see cref="Slider"/> which steps are integers in a predefined range
+    /// </summary>
     public class IntegerSlider : Slider
     {
+        /// <summary>
+        /// Currently selected value
+        /// </summary>
         public int IntegerValue
         {
             get { return (int)GetValue(IntegerValueProperty); }

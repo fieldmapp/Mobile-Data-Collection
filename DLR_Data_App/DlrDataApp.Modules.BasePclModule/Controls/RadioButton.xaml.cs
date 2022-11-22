@@ -9,10 +9,10 @@ using Xamarin.Forms.Xaml;
 namespace DlrDataApp.Modules.Base.Shared.Controls
 {
     /// <summary>  
-    /// View which represents a RadioButton.
+    /// View which represents a RadioButton. Consider using <see cref="Xamarin.Forms.RadioButton"/> instead.
     /// </summary>  
     [XamlCompilation(XamlCompilationOptions.Compile)]
-
+    [Obsolete("Use Xamarin.Forms.RadioButton instead")]
     public partial class RadioButton : ContentView
     {
         public RadioButton()

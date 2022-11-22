@@ -9,6 +9,9 @@ using Xamarin.Forms.Xaml;
 
 namespace DlrDataApp.Modules.Base.Shared.Controls
 {
+    /// <summary>
+    /// A <see cref="ContentButton"/> which text is a <see cref="FormattedString"/>
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FormattedButton : ContentButton
     {
