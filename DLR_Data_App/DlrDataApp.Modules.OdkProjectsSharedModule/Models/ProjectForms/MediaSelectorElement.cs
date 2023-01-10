@@ -16,7 +16,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectForms
     {
         public const string ImageFolderName = "img_rec";
         public const string DateToFileFormat = "yyyyMMdd_HHmmss";
-        public static string MediaPath => Path.Combine(OdkProjectsModule.Instance.App.FolderLocation, ImageFolderName);
+        public static string MediaPath => Path.Combine(OdkProjectsModule.Instance.App.MediaPath, ImageFolderName);
         public DataHolder DataHolder;
         public MediaSelectorElement(Grid grid, ProjectFormElements data, string type, Func<string, string, string, Task> displayAlertFunc, Project project) : base(grid, data, type, displayAlertFunc, project) { }
 

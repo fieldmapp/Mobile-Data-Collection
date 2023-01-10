@@ -9,6 +9,7 @@ using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Shared.Services;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.IO;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace DLR_Data_App
@@ -29,6 +30,8 @@ namespace DLR_Data_App
         public Page CurrentPage => Shell.Current.CurrentPage;
 
         public FlyoutItem FlyoutItem => AppShell.Current.ModuleItems;
+
+        public string MediaPath => Path.Combine(FolderLocation, "media");
 
         List<ISharedModule> Modules;
 

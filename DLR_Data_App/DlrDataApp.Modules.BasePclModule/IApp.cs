@@ -47,6 +47,12 @@ namespace DlrDataApp.Modules.Base.Shared
         string FolderLocation { get; }
 
         /// <summary>
+        /// The absolute path of the media directory. The media directory will be included when the user exports the database.
+        /// </summary>
+        string MediaPath { get; }
+
+
+        /// <summary>
         /// Item to which the modules should append their navigation items to
         /// </summary>
         FlyoutItem FlyoutItem { get; }

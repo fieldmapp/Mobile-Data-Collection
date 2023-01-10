@@ -139,15 +139,6 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             KeywordSymbol.number5, KeywordSymbol.number6, KeywordSymbol.number7, KeywordSymbol.number8, KeywordSymbol.number9
         };
 
-        // TODO
-        readonly static List<KeywordSymbol> ExcludedNumberSymbols = NumberSymbols.Skip(0/* TODO DrivingPage.MaxTotalLaneCount*/).ToList();
-
-        public readonly static List<string> KeywordStrings =
-            KeywordStringToSymbol
-            .Where(kv => !ExcludedNumberSymbols.Contains(kv.Value))
-            .Select(kv => kv.Key)
-            .ToList();
-
         public static VoiceAction Compile(List<string> recognizedKeywords) => Parse(Scan(recognizedKeywords));
              
         static List<KeywordSymbol> Scan(List<string> recognizedKeywords) => recognizedKeywords.Select(k => KeywordStringToSymbol[k]).ToList();
