@@ -188,7 +188,7 @@ namespace DlrDataApp.Modules.Base.Shared
         /// <returns>ISO 8601 timestamp.</returns>
         public static string GetSafeIdentifier(this DateTime dateTime)
         {
-            return dateTime.ToString("s");
+            return dateTime.ToString("s").Replace(":", "_");
         }
 
         /// <summary>
