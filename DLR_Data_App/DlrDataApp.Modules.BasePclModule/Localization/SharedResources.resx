@@ -1,0 +1,521 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="about" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="about1" xml:space="preserve">
+    <value>The app was developed by the German Aerospace Center (DLR e.V.) in Co-operation with the Friedrich Schiller University Jena and University of Applied Sciences Stralsund.</value>
+  </data>
+  <data name="about2" xml:space="preserve">
+    <value>It is written in C# and Xamarin and shares the same code on different plattforms.</value>
+  </data>
+  <data name="aboutButton" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
+  <data name="accelerometer" xml:space="preserve">
+    <value>Accelerometer</value>
+  </data>
+  <data name="accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="altitude" xml:space="preserve">
+    <value>Altitude</value>
+  </data>
+  <data name="appclosewarning" xml:space="preserve">
+    <value>Next tap will close the app.</value>
+  </data>
+  <data name="authors" xml:space="preserve">
+    <value>Authors</value>
+  </data>
+  <data name="autologin" xml:space="preserve">
+    <value>Autologin</value>
+  </data>
+  <data name="back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="barometer" xml:space="preserve">
+    <value>Barometer</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="compass" xml:space="preserve">
+    <value>Compass</value>
+  </data>
+  <data name="corruptentry" xml:space="preserve">
+    <value>Entry corrupt</value>
+  </data>
+  <data name="decline" xml:space="preserve">
+    <value>Decline</value>
+  </data>
+  <data name="degrees" xml:space="preserve">
+    <value>Degrees</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="direction" xml:space="preserve">
+    <value>Direction</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="editdata" xml:space="preserve">
+    <value>Edit data</value>
+  </data>
+  <data name="edithelp" xml:space="preserve">
+    <value>Please select a date and time to select your dataset you want to edit. In the following list all datasets are listed, while the matching dataset to the time is selected. Tip on the dataset of your choise to edit it.</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="exportdatabase" xml:space="preserve">
+    <value>Export database</value>
+  </data>
+  <data name="failed" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="filepicker" xml:space="preserve">
+    <value>Select File</value>
+  </data>
+  <data name="filetypeerror" xml:space="preserve">
+    <value>File is not of correct type.</value>
+  </data>
+  <data name="general" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="gps" xml:space="preserve">
+    <value>GPS</value>
+  </data>
+  <data name="gyroscope" xml:space="preserve">
+    <value>Gyroscope</value>
+  </data>
+  <data name="help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="holdImageToEnlarge" xml:space="preserve">
+    <value>Hold image to enlarge it</value>
+  </data>
+  <data name="latitude" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="licenses" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="longitude" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="magnetometer" xml:space="preserve">
+    <value>Magnetometer</value>
+  </data>
+  <data name="max" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="min" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="newaccount" xml:space="preserve">
+    <value>New Account</value>
+  </data>
+  <data name="newaccountwarning" xml:space="preserve">
+    <value>Creating a new profile will delete the existing profile</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="noauthor" xml:space="preserve">
+    <value>No author</value>
+  </data>
+  <data name="nodescription" xml:space="preserve">
+    <value>No description</value>
+  </data>
+  <data name="nohint" xml:space="preserve">
+    <value>No help available</value>
+  </data>
+  <data name="notitle" xml:space="preserve">
+    <value>No title</value>
+  </data>
+  <data name="nouserfound" xml:space="preserve">
+    <value>Profile not found</value>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="okay" xml:space="preserve">
+    <value>Okay</value>
+  </data>
+  <data name="pleaseMakeSelection" xml:space="preserve">
+    <value>Please make a selection</value>
+  </data>
+  <data name="pleaseSaveBeforeQuiting" xml:space="preserve">
+    <value>Please save your answers before closing this page</value>
+  </data>
+  <data name="pressure" xml:space="preserve">
+    <value>Pressure</value>
+  </data>
+  <data name="privacypolicy" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="privacytext1" xml:space="preserve">
+    <value>DLR takes the protection of personal data very seriously. We want you to know when we store data, which types of data are stored and how it is used. As an incorporated entity under German civil law, we are subject to the provisions of the EU General Data Protection Regulation (GDPR), the Federal Data Protection Act (BDSG) and the Telemedia Act (TMG). We have taken technical and organisational measures to ensure our compliance and the compliance of external service providers with the data protection regulation.
+
+I. Name and address of the controller
+
+The controller in the meaning of the General Data Protection Regulation, other national data protection laws in the Member States and related data protection regulations is:
+
+Deutsches Zentrum für Luft- und Raumfahrt e. V. (DLR)
+Linder Höhe
+51147 Cologne
+
+Telephone: +49 2203 601-0
+Email: datenschutz@dlr.de
+WWW: https://www.dlr.de
+
+ 
+
+II. Name and address of the data protection officer
+
+The controller’s appointed data protection officer is:
+
+Uwe Gorschütz, Deutsches Zentrum für Luft- und Raumfahrt e. V., Linder Höhe, 51147 Cologne
+Email: datenschutz@dlr.de
+
+ 
+
+III. Definition of terms
+
+Among others, we use the following terms in this Privacy Policy, set out in the General Data Protection Regulation and the Federal Data Protection Act:
+
+1. Personal data
+
+Personal data refers to any information relating to an identified or identifiable natural person (hereinafter: ‘data subject’). An identifiable natural person is one who can be identified – directly or indirectly – in particular by reference to an identifier such as a name, an identification number, location data, an online identifier or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural or social identity of that natural person.
+
+2. Data subject
+
+A data subject is any identified or identifiable natural person whose personal data is processed by the controller.
+
+3. Processing
+
+Processing is any operation or set of operations performed on personal data or on sets of personal data – whether or not by automated means – such as collection, recording, organisation, structuring, storage, adaptation or alteration, retrieval, consultation, use, disclosure by transmission, dissemination or otherwise making available, alignment or combination, restriction, deletion or destruction.
+
+4. Restriction of processing
+
+Restriction of processing means the marking of stored personal data with the aim of limiting its processing in the future.
+
+5. Profiling
+
+Profiling means any form of automated processing of personal data consisting of the use of personal data to evaluate certain personal aspects relating to a natural person, in particular to analyse or predict aspects concerning that natural person’s performance at work, economic situation, health, personal preferences, interests, reliability, behaviour, location or movements.
+
+6. Pseudonymisation
+
+Pseudonymisation means the processing of personal data in such a manner that the personal data can no longer be attributed to a specific data subject without the use of additional information, provided that such additional information is kept separately and is subject to technical and organisational measures to ensure that the personal data are not attributed to an identified or identifiable natural person.
+
+7. Controller or data processing controller
+
+Controller or data processing controller means the natural or legal person, public authority, agency or other body which, alone or jointly with others, determines the purposes and means of the processing of personal data; where the purposes and means of such processing are determined by Union or Member State law, the controller or the specific criteria for its nomination may be provided for by Union or Member State law.
+
+8. Processor
+
+Processor means a natural or legal person, public authority, agency or other body that processes personal data on behalf of the controller.
+
+9. Recipient
+
+Recipient means a natural or legal person, public authority, agency or another body, to which the personal data are disclosed, whether a third party or not. However, public authorities that may receive personal data in the framework of a particular inquiry in accordance with Union or Member State law shall not be regarded as recipients.
+
+10. Third party
+
+Third party means a natural or legal person, public authority, agency or body other than the data subject, controller, processor and persons who, under the direct authority of the controller or processor, are authorised to process personal data.
+
+11.Consent
+
+Consent of the data subject means any freely given, specific, informed and unambiguous indication of the data subject’s wishes by which he or she, by a statement or by a clear affirmative action, signifies agreement to the processing of personal data relating to him or her.</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="profiles" xml:space="preserve">
+    <value>Profiles</value>
+  </data>
+  <data name="rememberlogin" xml:space="preserve">
+    <value>Remember login</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="removeaccount" xml:space="preserve">
+    <value>Remove Account</value>
+  </data>
+  <data name="removeaccountfailure" xml:space="preserve">
+    <value>Removing profile from database failed. You will return to the login page.</value>
+  </data>
+  <data name="removeaccountwarning" xml:space="preserve">
+    <value>Do you want to remove your profile and collected data?</value>
+  </data>
+  <data name="removedatabase" xml:space="preserve">
+    <value>Reset (of the whole system)</value>
+  </data>
+  <data name="removedatabasewarning" xml:space="preserve">
+    <value>Do you want to remove the database?</value>
+  </data>
+  <data name="reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="results" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="saveddata" xml:space="preserve">
+    <value>Saved data</value>
+  </data>
+  <data name="selectdate" xml:space="preserve">
+    <value>Select date</value>
+  </data>
+  <data name="selectedDateIsInFuture" xml:space="preserve">
+    <value>Your selected date lies in the future and is thus invalid.</value>
+  </data>
+  <data name="selectform" xml:space="preserve">
+    <value>Select Form</value>
+  </data>
+  <data name="selecttime" xml:space="preserve">
+    <value>Select time</value>
+  </data>
+  <data name="sensors" xml:space="preserve">
+    <value>Sensors</value>
+  </data>
+  <data name="sensortest" xml:space="preserve">
+    <value>Sensor Test</value>
+  </data>
+  <data name="setascurrentproject" xml:space="preserve">
+    <value>Set as current project</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="signin" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="skip" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="successful" xml:space="preserve">
+    <value>Successful</value>
+  </data>
+  <data name="tapOnBarForInfo" xml:space="preserve">
+    <value>Tap on a bar for more informations</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="updateaccountfailure" xml:space="preserve">
+    <value>Unable to save changes on profile.</value>
+  </data>
+  <data name="useralreadyexists" xml:space="preserve">
+    <value>User already exists</value>
+  </data>
+  <data name="warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="wrongentry" xml:space="preserve">
+    <value>Wrong entry</value>
+  </data>
+  <data name="zippicker" xml:space="preserve">
+    <value>Choose Zip Archive</value>
+  </data>
+  <data name="select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="fileselected" xml:space="preserve">
+    <value>File selected</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="orientationSensor" xml:space="preserve">
+    <value>Orientation sensor</value>
+  </data>
+  <data name="movement" xml:space="preserve">
+    <value>Movement</value>
+  </data>
+  <data name="calibrationpleasehold" xml:space="preserve">
+    <value>Calibration. Please hold the device still</value>
+  </data>
+  <data name="finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="voicerecognition" xml:space="preserve">
+    <value>Voice recognition</value>
+  </data>
+  <data name="ready" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="accuracy" xml:space="preserve">
+    <value>Accuracy</value>
+  </data>
+  <data name="exporttorootwithtimestampsuccessful" xml:space="preserve">
+    <value>Successfully exported into root directory with name Fieldmapp_Export_TIMESTAMP.</value>
+  </data>
+  <data name="drivingview" xml:space="preserve">
+    <value>Driving view</value>
+  </data>
+  <data name="answersExportedToRoot" xml:space="preserve">
+    <value>Successfully exported into root directory with name dlr_answers_TIMESTAMP.</value>
+  </data>
+  <data name="profilingdetails" xml:space="preserve">
+    <value>Profiling details</value>
+  </data>
+  <data name="lowYieldCartograph" xml:space="preserve">
+    <value>Low Yield Cartography</value>
+  </data>
+  <data name="current" xml:space="preserve">
+    <value>Current</value>
+  </data>
+</root>

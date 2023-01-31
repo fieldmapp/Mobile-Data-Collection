@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Main contributors: Maximilian Enderling-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DlrDataApp.Modules.Base.Shared.Controls.ImageDetailPage"
+             xmlns:controls="clr-namespace:DlrDataApp.Modules.Base.Shared.Controls">
+    <ContentPage.Content>
+        <Grid Padding="20">
+            <controls:ImageInspectionContainer>
+                <controls:ImageInspectionContainer.Content>
+                    <Image x:Name="Image" />
+                </controls:ImageInspectionContainer.Content>
+            </controls:ImageInspectionContainer>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

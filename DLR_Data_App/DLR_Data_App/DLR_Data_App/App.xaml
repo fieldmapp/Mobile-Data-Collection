@@ -24,8 +24,8 @@
             <Color x:Key="ButtonDisabledBackgroundNight">#1Fffffff</Color>
             <Color x:Key="Background">#fff</Color>
             <Color x:Key="BackgroundNight">#121212</Color>
-            <Color x:Key="BackgroundPaper">#fff</Color>
-            <Color x:Key="BackgroundPaperNight">#121212</Color>
+            <Color x:Key="BackgroundPaper">#E5E5E5</Color>
+            <Color x:Key="BackgroundPaperNight">#262626</Color>
             <Color x:Key="Divider">#1F000000</Color>
             <Color x:Key="DividerNight">#1Fffffff</Color>
             <Color x:Key="AccentPrimary">#FF8FBC8F</Color>
@@ -48,7 +48,7 @@
                 <Setter Property="BorderWidth" Value="1"/>
             </Style>
             <Style TargetType="TabbedPage" ApplyToDerivedTypes="True">
-                <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource Divider}, Dark={StaticResource DividerNight}}"/>
+                <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource BackgroundPaper}, Dark={StaticResource BackgroundPaperNight}}"/>
                 <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource TextPrimary}, Dark={StaticResource TextPrimaryNight}}"/>
             </Style>
             <Style TargetType="TextCell" CanCascade="True" ApplyToDerivedTypes="True">

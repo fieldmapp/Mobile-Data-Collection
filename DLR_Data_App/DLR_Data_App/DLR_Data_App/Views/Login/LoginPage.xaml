@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             xmlns:res="clr-namespace:DlrDataApp.Modules.Base.Shared.Localization;assembly=DlrDataApp.Modules.Base.Shared"
              x:Class="DLR_Data_App.Views.Login.LoginPage" 
              BackgroundImageSource="Background_Login.png"
-             xmlns:controls="clr-namespace:DLR_Data_App.Controls">
+             xmlns:controls="clr-namespace:DlrDataApp.Modules.Base.Shared.Controls;assembly=DlrDataApp.Modules.Base.Shared">
 
     <ContentPage.Content>
         <StackLayout>

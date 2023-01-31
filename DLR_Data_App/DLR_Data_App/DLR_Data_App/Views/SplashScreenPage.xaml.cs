@@ -1,21 +1,10 @@
-﻿using DLR_Data_App.Localizations;
-using DLR_Data_App.Models;
-using DLR_Data_App.Services;
-using DLR_Data_App.Views.CurrentProject;
-using DLR_Data_App.Views.Login;
-using DLR_Data_App.Views.ProjectList;
-using DLR_Data_App.Views.Settings;
-using DLR_Data_App.Views.Profiling;
+﻿using DLR_Data_App.Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using DLR_Data_App.Views.ProfilingList;
-using System.Runtime.CompilerServices;
 using System.Reflection;
 
 namespace DLR_Data_App.Views
@@ -35,7 +24,10 @@ namespace DLR_Data_App.Views
             Appearing -= SplashScreenPage_Appearing;
 
             await CreateNeededRessources();
-            Application.Current.MainPage = new MainPage();
+
+            Application.Current.MainPage = new AppShell();
+
+            App.Current.AfterSplashScreenLoad();
         }
 
         Task CreateNeededRessources()

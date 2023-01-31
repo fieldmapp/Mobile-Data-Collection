@@ -5,40 +5,60 @@ using DLR_Data_App.Services;
 using Xamarin.Forms;
 using System;
 using DLR_Data_App.Views;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.Services;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.IO;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace DLR_Data_App
 {
-    public partial class App
+    public partial class App : IApp
     {
         public static string DatabaseLocation = string.Empty;
-        public static string FolderLocation = string.Empty;
-        public static ThreadSafeRandom RandomProvider = new ThreadSafeRandom();
-        public static Views.MainPage CurrentMainPage => (Current.MainPage as Views.MainPage);
-        public static User CurrentUser;
-        public NavigationPage Navigation => (MainPage as FlyoutPage)?.Detail as NavigationPage;
-        public IStorageProvider StorageProvider;
-        public Page CurrentPage => Navigation?.CurrentPage;
-        public new MainPage MainPage => base.MainPage as MainPage;
-        
+
+        public string FolderLocation { get; } = string.Empty;
+        public ThreadSafeRandom RandomProvider { get; } = new ThreadSafeRandom();
+        public IUser CurrentUser { get; internal set; }
+        public Sensor Sensor { get; }
+        public Database Database { get; }
+        public static new App Current => Application.Current as App;
+
+        public IModuleHost ModuleHost { private set; get; }
+
+        public Page CurrentPage => Shell.Current.CurrentPage;
+
+        public FlyoutItem FlyoutItem => AppShell.Current.ModuleItems;
+
+        public string MediaPath => Path.Combine(FolderLocation, "media");
+
+        List<ISharedModule> Modules;
+
         /// <summary>
         /// Constructor with database support
         /// </summary>
         /// <param name="folderPath">Path to the location of stored files in the filesystem</param>
         /// <param name="databaseLocation"></param>
         /// <param name="storageProvider">Path to the local database</param>
-        public App(string folderPath, string databaseLocation, IStorageProvider storageProvider)
+        public App(string folderPath, string databaseLocation, List<ISharedModule> modules)
         {
             InitializeComponent();
-            
-            StorageProvider = storageProvider;
-            
+
+            Modules = modules;
             FolderLocation = folderPath;
             DatabaseLocation = databaseLocation;
-            
+            Sensor = new Sensor();
+            Database = new Database(databaseLocation);
+
+
             base.MainPage = new LoginPage();
 
-            var ubloxCommService = DependencyService.Get<IUbloxCommunicator>();
+        }
+
+        public void AfterSplashScreenLoad()
+        {
+            ModuleHost = new ModuleHostService(this, Modules, new SharedMethodProvider());
         }
 
         protected override void OnStart()

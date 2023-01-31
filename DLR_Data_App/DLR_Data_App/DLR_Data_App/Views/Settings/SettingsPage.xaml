@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DLR_Data_App.Views.Settings.SettingsPage"
              xmlns:local="clr-namespace:DLR_Data_App.Views.Settings"
-             xmlns:res="clr-namespace:DLR_Data_App.Localizations"
+             xmlns:res="clr-namespace:DlrDataApp.Modules.Base.Shared.Localization;assembly=DlrDataApp.Modules.Base.Shared"
              xmlns:vm="clr-namespace:DLR_Data_App.ViewModels.Settings"
             Title="{Binding Title}">
 

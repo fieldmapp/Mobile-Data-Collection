@@ -1,4 +1,5 @@
-﻿using DLR_Data_App.Localizations;
+﻿using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -10,7 +11,7 @@ namespace DLR_Data_App.ViewModels
     {
         public AboutViewModel()
         {
-            Title = AppResources.about;
+            Title = SharedResources.about;
 
             OpenWebCommand = new Command(() => Browser.OpenAsync(new Uri("https://www.dlr.de/dlr/desktopdefault.aspx/tabid-10002/")));
         }

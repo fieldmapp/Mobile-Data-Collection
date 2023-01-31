@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject.EditDataPage"
+             Title="{Binding Title}">
+
+    <ContentPage.Content>
+        <ListView x:Name="DataList"
+                      HorizontalOptions="CenterAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="true"
+                      CachingStrategy="RecycleElement"
+                      ItemTapped="DataList_OnItemTapped"
+                      SelectionMode="None"
+                      ItemsSource="{Binding ElementList}"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Timestamp}" 
+                                       LineBreakMode="NoWrap" 
+                                       Style="{DynamicResource ListItemTextStyle}" 
+                                       FontSize="16" />
+                            <Label Text="{Binding Data}" 
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemDetailTextStyle}"
+                                       FontSize="13" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

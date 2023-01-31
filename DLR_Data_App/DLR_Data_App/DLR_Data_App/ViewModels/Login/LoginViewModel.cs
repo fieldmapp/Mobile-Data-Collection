@@ -2,6 +2,7 @@
 using System.Linq;
 using DLR_Data_App.Models;
 using DLR_Data_App.Services;
+using DlrDataApp.Modules.Base.Shared;
 
 namespace DLR_Data_App.ViewModels.Login
 {
@@ -18,8 +19,8 @@ namespace DLR_Data_App.ViewModels.Login
                 return false;
             }
             
-            var user = Database.ReadUsers().FirstOrDefault(u => u.Username == checkUsername);
-            App.CurrentUser = user;
+            var user = (App.Current as App).Database.Read<User>().FirstOrDefault(u => u.Username == checkUsername);
+            (App.Current as App).CurrentUser = user;
             return user != null;
         }
     }

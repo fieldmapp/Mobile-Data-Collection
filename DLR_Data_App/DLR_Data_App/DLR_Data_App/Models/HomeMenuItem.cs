@@ -1,4 +1,7 @@
-﻿namespace DLR_Data_App.Models
+﻿using System;
+using Xamarin.Forms;
+
+namespace DLR_Data_App.Models
 {
     public enum MenuItemType
     {
@@ -10,14 +13,17 @@
         Logout,
         ProfilingList,
         CurrentProfiling,
+        DistanceMeasuringDemo,
         VoiceRecognitionDemo,
         DrivingEasy,
-        LowYieldCartograph
+        DrivingHard
     }
     public class HomeMenuItem
     {
-        public MenuItemType Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Title { get; set; }
+
+        public NavigationPage NavigationPage { get; set; }
     }
 }

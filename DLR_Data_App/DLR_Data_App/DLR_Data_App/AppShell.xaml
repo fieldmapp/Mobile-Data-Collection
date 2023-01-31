@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:app="clr-namespace:DLR_Data_App"
+       Title="Shell"
+       x:Class="DLR_Data_App.AppShell"
+       xmlns:views="clr-namespace:DLR_Data_App.Views"
+       xmlns:res="clr-namespace:DlrDataApp.Modules.Base.Shared.Localization;assembly=DlrDataApp.Modules.Base.Shared"
+       xmlns:settings="clr-namespace:DLR_Data_App.Views.Settings">
+
+    <!-- 
+       Styles and Resources 
+   -->
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="NavigationPrimary">#91CA47</Color>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" x:Name="ModuleItems" x:FieldModifier="internal">
+        
+    </FlyoutItem>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="{res:Translate about}" Route="about" ContentTemplate="{DataTemplate views:AboutPage}"/>
+        <ShellContent Title="{res:Translate sensortest}" Route="sensors" ContentTemplate="{DataTemplate views:SensorTestPage}"/>
+        <ShellContent Title="{res:Translate settings}" Route="settings" ContentTemplate="{DataTemplate settings:SettingsPage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="{res:Translate logout}">
+        <ShellContent Route="logout" ContentTemplate="{DataTemplate views:LogoutPage}"/>
+    </FlyoutItem>
+
+</Shell>
