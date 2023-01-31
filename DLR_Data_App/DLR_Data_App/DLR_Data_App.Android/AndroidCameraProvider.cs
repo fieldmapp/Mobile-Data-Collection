@@ -11,6 +11,7 @@ using Android.Graphics;
 using Android.Provider;
 using Android.Widget;
 using DLR_Data_App.Services;
+using DlrDataApp.Modules.Base.Shared.DependencyServices;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(com.DLR.DLR_Data_App.Droid.AndroidCameraProvider))]

@@ -18,6 +18,8 @@ using Java.Lang;
 using Xamarin.Forms;
 using AndroidX.AppCompat.Widget;
 using static com.DLR.DLR_Data_App.Droid.ScreenListener;
+using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.DependencyServices;
 
 [assembly: UsesFeature("android.hardware.usb.host")]
 namespace com.DLR.DLR_Data_App.Droid
@@ -37,8 +39,6 @@ namespace com.DLR.DLR_Data_App.Droid
 
             Xamarin.Essentials.Platform.Init(Application);
 
-            JavaSystem.LoadLibrary("vosk_jni");
-
             base.OnCreate(savedInstanceState);
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
@@ -46,8 +46,24 @@ namespace com.DLR.DLR_Data_App.Droid
             var folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             var fullPath = System.IO.Path.Combine(folderPath, dbName);
 
-            var storageProvider = new JsonStorageProvider(new AndroidStorageAccessProvider());
-            LoadApplication(new App(folderPath, fullPath, storageProvider));
+
+            var modules = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(a =>
+                {
+                    try
+                    {
+                      return a.GetTypes();
+                    }
+                    catch (System.Reflection.ReflectionTypeLoadException e)
+                    {
+                        return e.Types.Where(t => t != null);
+                    }
+                })
+                .Where(t => t.GetInterfaces().Contains(typeof(ISharedModule)) && t.IsClass && !t.IsAbstract)
+                .Select(t => (ISharedModule)Activator.CreateInstance(t))
+                .ToList();
+
+            LoadApplication(new App(folderPath, fullPath, modules));
             ReloadToolbar();
             EnsureAppPermission(Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage, Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation, Manifest.Permission.RecordAudio);
 
@@ -60,9 +76,6 @@ namespace com.DLR.DLR_Data_App.Droid
                     ReloadToolbar();
                 }
             });
-
-            var usbDeviceAttachedFilter = new IntentFilter(UsbManager.ActionUsbDeviceAttached);
-            RegisterReceiver((DependencyService.Get<IUbloxCommunicator>() as AndroidUbloxComm).UsbDeviceAttachedListener, usbDeviceAttachedFilter);
 
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
@@ -217,8 +230,8 @@ namespace com.DLR.DLR_Data_App.Droid
 
         bool BackButtonPress()
         {
-            var navigationPage = (Xamarin.Forms.Application.Current as App).Navigation;
-            var currentPage = navigationPage.CurrentPage;
+            var navigation = AppShell.Current.Navigation;
+            var currentPage = (Xamarin.Forms.Application.Current as App).CurrentPage;
             var mainPage = (Xamarin.Forms.Application.Current as App).MainPage;
 
             var currentPageType = currentPage.GetType();
@@ -230,10 +243,10 @@ namespace com.DLR.DLR_Data_App.Droid
                     || currentPageType.Overrides(typeof(MultiPage<Page>).GetMethod("OnBackButtonPressed", System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.IgnoreReturn | System.Reflection.BindingFlags.Instance)))
                 return currentPage.SendBackButtonPressed();
             }
-            if (navigationPage.Navigation.ModalStack.Count > 0)
-                navigationPage.Navigation.PopModalAsync();
-            else if (navigationPage.Navigation.NavigationStack.Count > 1)
-                navigationPage.Navigation.PopAsync();
+            if (navigation.ModalStack.Count > 0)
+                navigation.PopModalAsync();
+            else if (navigation.NavigationStack.Count > 1)
+                navigation.PopAsync();
             else
                 return mainPage.SendBackButtonPressed();
             return true;
@@ -249,6 +262,7 @@ namespace com.DLR.DLR_Data_App.Droid
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
+            // TODO ?
             if (requestCode == AndroidCameraProvider.REQUEST_CODE)
             {
                 var cameraProvider = (AndroidCameraProvider)DependencyService.Get<ICameraProvider>();

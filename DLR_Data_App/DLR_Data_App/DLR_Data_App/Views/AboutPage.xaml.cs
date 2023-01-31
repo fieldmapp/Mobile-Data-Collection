@@ -1,5 +1,4 @@
-﻿using DLR_Data_App.Localizations;
-using DLR_Data_App.Services;
+﻿using DlrDataApp.Modules.Base.Shared;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,7 +15,7 @@ namespace DLR_Data_App.Views
         
         private async void LicenseButton_OnClicked(object sender, EventArgs e)
         {
-            await this.PushPage(new LicensesPage());
+            await Shell.Current.Navigation.PushAsync(new LicensesPage());
         }
     }
 }

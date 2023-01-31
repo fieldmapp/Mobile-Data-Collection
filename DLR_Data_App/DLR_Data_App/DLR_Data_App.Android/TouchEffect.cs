@@ -6,9 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 using Android.Views;
-using DLR_Data_App.Services.TouchGesture;
-using DLR_Data_App.Services;
-
+using DlrDataApp.Modules.Base.Shared.TouchGesture;
 
 [assembly: ResolutionGroupName("FieldMApp")]
 [assembly: ExportEffect(typeof(com.DLR.DLR_Data_App.Droid.TouchEffect), "TouchEffect")]
@@ -23,7 +21,7 @@ namespace com.DLR.DLR_Data_App.Droid
     {
         Android.Views.View view;
         Element formsElement;
-        global::DLR_Data_App.Services.TouchGesture.TouchEffect libTouchEffect;
+        DlrDataApp.Modules.Base.Shared.TouchGesture.TouchEffect libTouchEffect;
         bool capture;
         Func<double, double> fromPixels;
         int[] twoIntArray = new int[2];
@@ -40,9 +38,9 @@ namespace com.DLR.DLR_Data_App.Droid
             view = Control == null ? Container : Control;
 
             // Get access to the TouchEffect class in the .NET Standard library
-            global::DLR_Data_App.Services.TouchGesture.TouchEffect touchEffect =
-                (global::DLR_Data_App.Services.TouchGesture.TouchEffect)Element.Effects.
-                    FirstOrDefault(e => e is global::DLR_Data_App.Services.TouchGesture.TouchEffect);
+            DlrDataApp.Modules.Base.Shared.TouchGesture.TouchEffect touchEffect =
+                (global::DlrDataApp.Modules.Base.Shared.TouchGesture.TouchEffect)Element.Effects.
+                    FirstOrDefault(e => e is global::DlrDataApp.Modules.Base.Shared.TouchGesture.TouchEffect);
 
             if (touchEffect != null && view != null)
             {

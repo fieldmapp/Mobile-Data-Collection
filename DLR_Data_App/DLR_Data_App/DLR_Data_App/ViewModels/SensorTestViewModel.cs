@@ -1,4 +1,5 @@
-﻿using DLR_Data_App.Localizations;
+﻿using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.Base.Shared.Localization;
 
 namespace DLR_Data_App.ViewModels
 {
@@ -6,7 +7,7 @@ namespace DLR_Data_App.ViewModels
     {
         public SensorTestViewModel()
         {
-            Title = AppResources.sensortest;
+            Title = SharedResources.sensortest;
         }
     }
 }

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject.ProjectPage"
+             xmlns:localizations="clr-namespace:DlrDataApp.Modules.Base.Shared.Localization;assembly=DlrDataApp.Modules.Base.Shared"
+             Title="{Binding Title}"
+             SelectedTabColor="Blue">
+    
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="{localizations:Translate edit}" Clicked="EditClicked" />
+        <ToolbarItem Text="{localizations:Translate save}" Clicked="SaveClicked"/>
+    </TabbedPage.ToolbarItems>
+
+    
+</TabbedPage>

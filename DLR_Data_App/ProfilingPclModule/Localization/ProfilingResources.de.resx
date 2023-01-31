@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="answersCorrectAveragePart1" xml:space="preserve">
+    <value>Ihre Antworten haben im Mittel zu </value>
+  </data>
+  <data name="answersCorrectAveragePart2" xml:space="preserve">
+    <value> mit den korrekten Lösungen übereingestimmt.</value>
+  </data>
+  <data name="completeSelectionToAdvance" xml:space="preserve">
+    <value>Bitte vervollständigen Sie Ihre Auswahl um fortzufahren.</value>
+  </data>
+  <data name="currentprofiling" xml:space="preserve">
+    <value>Aktuelles Profiling</value>
+  </data>
+  <data name="deleteSavedAnswersProfiling" xml:space="preserve">
+    <value>Gespeicherte Antworten löschen</value>
+  </data>
+  <data name="easyWithColon" xml:space="preserve">
+    <value>Einfach:</value>
+  </data>
+  <data name="evaluation" xml:space="preserve">
+    <value>Auswertung</value>
+  </data>
+  <data name="exportAnswersProfiling" xml:space="preserve">
+    <value>Antworten exportieren</value>
+  </data>
+  <data name="hardWithColon" xml:space="preserve">
+    <value>Schwer:</value>
+  </data>
+  <data name="hint" xml:space="preserve">
+    <value>Hinweis</value>
+  </data>
+  <data name="hintProfilingListPage" xml:space="preserve">
+    <value>Hier sehen Sie alle verfügbaren Kategorien des Quiz.
+Klicken Sie auf eine Kategorie, um Fragen in dieser zu beantworten. Sie sehen für jede Kategorie:
+- wieviele Fragen Sie bereits beantwortet haben (links)
+- wieviele Fragen Sie mindestens beantworten müssen, um die Kategorie abzuschließen (rechts)</value>
+  </data>
+  <data name="introspection0" xml:space="preserve">
+    <value>trifft zu</value>
+  </data>
+  <data name="introspection1" xml:space="preserve">
+    <value>trifft eher zu</value>
+  </data>
+  <data name="introspection2" xml:space="preserve">
+    <value>trifft teilweise zu</value>
+  </data>
+  <data name="introspection3" xml:space="preserve">
+    <value>trifft eher nicht zu</value>
+  </data>
+  <data name="introspection4" xml:space="preserve">
+    <value>trifft nicht zu</value>
+  </data>
+  <data name="moderateWithColon" xml:space="preserve">
+    <value>Mittel:</value>
+  </data>
+  <data name="newprofiling" xml:space="preserve">
+    <value>Neues Profiling</value>
+  </data>
+  <data name="profiling" xml:space="preserve">
+    <value>Profiling</value>
+  </data>
+  <data name="profilingResultsDifferentDifficulties" xml:space="preserve">
+    <value>Hier sehen Sie Ihre Ergebnisse in den verschiedenen Schwierigkeitskategorien der Fragen</value>
+  </data>
+  <data name="profilingSuccessfullyAdded" xml:space="preserve">
+    <value>Profiling wurde erfolgreich geladen.</value>
+  </data>
+  <data name="questionEntryFormat" xml:space="preserve">
+    <value>Frage {0}/{1} ID {2}</value>
+  </data>
+  <data name="removeprofiling" xml:space="preserve">
+    <value>Profiling löschen</value>
+  </data>
+  <data name="removeprofilingwarning" xml:space="preserve">
+    <value>Wollen Sie das Profiling löschen?</value>
+  </data>
+  <data name="selectionCorrectQuestion" xml:space="preserve">
+    <value>Ist Ihre Auswahl so in Ordnung?</value>
+  </data>
+  <data name="setascurrentprofiling" xml:space="preserve">
+    <value>Als aktuelles Profiling auswählen</value>
+  </data>
+  <data name="tapForMorInfo" xml:space="preserve">
+    <value>Klicken Sie für mehr Informationen</value>
+  </data>
+</root>

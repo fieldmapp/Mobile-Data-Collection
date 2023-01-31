@@ -4,7 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using DLR_Data_App.Services;
-using DLR_Data_App.Services.Sensors;
+using DlrDataApp.Modules.Base.Shared.Services;
+using DlrDataApp.Modules.Base.Shared.Services.Sensors;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,7 +20,7 @@ namespace DLR_Data_App.Views
         {
             InitializeComponent();
 
-            _sensor = Sensor.Instance;
+            _sensor = App.Current.Sensor;
         }
 
         protected override void OnAppearing()
