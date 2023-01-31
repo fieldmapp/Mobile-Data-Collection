@@ -124,23 +124,24 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 
             float[] causesPerRow = { 1, 2, 3, 2, 3, 3, 3, 3, 3 };
             DamageCauseButtons = new List<FormattedButton>();
-            var visibleButtons = damageCauseIds.Count(i => !string.IsNullOrWhiteSpace(i));
+            var visibleButtonCount = damageCauseIds.Count(i => !string.IsNullOrWhiteSpace(i));
             for (int i = 0; i < damageCauseIds.Count; i++)
             {
-                var formattedButton = new FormattedButton { FormattedText = new FormattedString(), Padding = new Thickness(5, 0), Margin=new Thickness(0, 5)};
-                formattedButton.FormattedText = damageCauseFormattedStrings[i];
+                var formattedButton = new FormattedButton 
+                { 
+                    FormattedText = damageCauseFormattedStrings[i], 
+                    Padding = new Thickness(5, 0), 
+                    Margin = new Thickness(0, 5)
+                };
                 DamageCauseButtons.Add(formattedButton);
                 ButtonLayout.Children.Add(formattedButton);
-                FlexLayout.SetBasis(formattedButton, new FlexBasis(1 / causesPerRow[visibleButtons] - 0.01f, true));
-            }
+                FlexLayout.SetBasis(formattedButton, new FlexBasis(1 / causesPerRow[visibleButtonCount - 1] - 0.01f, true));
 
-            for (int i = 0; i < damageCauseIds.Count; i++)
-            {
                 var damageCauseId = damageCauseIds[i];
                 if (string.IsNullOrWhiteSpace(damageCauseId))
-                    DamageCauseButtons[i].IsVisible = false;
+                    formattedButton.IsVisible = false;
                 else
-                    DamageCauseButtons[i].Clicked += (a, b) => DamageCauseButtonClicked(damageCauseId);
+                    formattedButton.Clicked += (a, b) => DamageCauseButtonClicked(damageCauseId);
             }
 
             AddSideLanesToLayout();
@@ -153,13 +154,13 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 child.Effects.Add(touchEffect);
             }
 
-            var speechRecognizer = DependencyService.Get<ISpeechRecognizer>();
-            speechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
+            FieldCartographerModule.Instance.SpeechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
+            FieldCartographerModule.Instance.SpeechRecognizer.StartListening();
         }
 
         private void SpeechRecognizer_ResultRecognized(object sender, SpeechRecognitionResult e)
         {
-            var command = VoiceCommandCompiler.Compile(e.Parts.Select(p => p.Word).ToList());
+            var command = Compile(e.Parts.Select(p => p.Word).ToList());
 
             if (command is InvalidAction)
                 return;

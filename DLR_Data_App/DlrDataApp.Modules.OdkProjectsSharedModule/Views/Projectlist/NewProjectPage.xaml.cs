@@ -1,6 +1,5 @@
 ﻿using System;
 using Xamarin.Forms.Xaml;
-using DLR_Data_App.Services;
 using Xamarin.Essentials;
 using System.IO;
 using DlrDataApp.Modules.Base.Shared.Localization;

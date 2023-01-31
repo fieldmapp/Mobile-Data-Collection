@@ -1,5 +1,4 @@
-﻿using DLR_Data_App.Services;
-using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
+﻿using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
 using DlrDataApp.Modules.OdkProjects.Shared.Services;
 using DlrDataApp.Modules.Base.Shared.Localization;
 using System;

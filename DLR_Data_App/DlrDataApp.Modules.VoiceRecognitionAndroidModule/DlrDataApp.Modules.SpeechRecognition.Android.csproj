@@ -50,6 +50,7 @@
     <Compile Include="AndroidSpeechRecognitionPlatformDependencyLoader.cs" />
     <Compile Include="AndroidSpeechRecognizer.cs" />
     <Compile Include="AndroidSpeechRecognizerProvider.cs" />
+    <Compile Include="Helpers.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

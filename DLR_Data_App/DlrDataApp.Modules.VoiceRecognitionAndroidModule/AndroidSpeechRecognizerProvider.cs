@@ -44,11 +44,8 @@ namespace DlrDataApp.Modules.SpeechRecognition.Android
             {
                 var mainContext = DependencyService.Get<IMainActivityProvider>().MainActivity;
                 var assets = mainContext.Assets;
-                using (var modelZipStream = assets.Open(VoskModelFileName))
-                {
-                    await Helpers.UnzipFileAsync(modelZipStream, targetDir);
-                    using (File.Create(finishedIndicatorFilePath)) { }
-                }
+                Helpers.UnzipAssets(VoskModelFileName, targetDir);
+                using (File.Create(finishedIndicatorFilePath)) { }
             }
             Model = new Model(targetDir);
         }
