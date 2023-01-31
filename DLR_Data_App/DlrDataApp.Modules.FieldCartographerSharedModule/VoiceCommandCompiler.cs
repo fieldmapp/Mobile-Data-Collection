@@ -42,7 +42,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         public static bool IsDamageCause(this KeywordSymbol symbol) => DamageCauses.Contains(symbol);
 
 
-        readonly static Dictionary<string, KeywordSymbol> KeywordStringToSymbol = new Dictionary<string, KeywordSymbol>
+        public static Dictionary<string, KeywordSymbol> KeywordStringToSymbol = new Dictionary<string, KeywordSymbol>
         {
             { "anfang", KeywordSymbol.anfang },
             { "start", KeywordSymbol.anfang },

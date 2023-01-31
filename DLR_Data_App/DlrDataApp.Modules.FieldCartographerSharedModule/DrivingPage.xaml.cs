@@ -154,13 +154,13 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 child.Effects.Add(touchEffect);
             }
 
-            var speechRecognizer = DependencyService.Get<ISpeechRecognizer>();
-            speechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
+            FieldCartographerModule.Instance.SpeechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
+            FieldCartographerModule.Instance.SpeechRecognizer.StartListening();
         }
 
         private void SpeechRecognizer_ResultRecognized(object sender, SpeechRecognitionResult e)
         {
-            var command = VoiceCommandCompiler.Compile(e.Parts.Select(p => p.Word).ToList());
+            var command = Compile(e.Parts.Select(p => p.Word).ToList());
 
             if (command is InvalidAction)
                 return;
