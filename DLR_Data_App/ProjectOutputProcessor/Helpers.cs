@@ -10,8 +10,8 @@ namespace FieldCartographerProcessor
     {
         public static DateTime FromGPST(this DateTime gpst)
         {
-
-            // Table from https://confluence.qps.nl/qinsy/latest/en/utc-to-gps-time-correction-32245263.html
+            // Table from https://www.nist.gov/pml/time-and-frequency-division/time-realization/leap-seconds
+            // (see "Leap Seconds Inserted into the UTC Time Scale", we add 1 second in the list below)
             // Requires updates when UTC leap seconds are announced
             List<DateTime> leapSecondDays = new List<DateTime>
             {
