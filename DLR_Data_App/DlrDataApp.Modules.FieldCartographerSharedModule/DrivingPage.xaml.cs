@@ -66,8 +66,8 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         readonly bool[] IsLaneStarted;
         readonly string LogFileIdentifier;
 
-        public DrivingConfigurationPage.DrivingPageConfiguration Configuration { get; set; }
-        public DrivingPage(DrivingConfigurationPage.DrivingPageConfiguration configuration)
+        public DrivingPageConfiguration Configuration { get; set; }
+        public DrivingPage(DrivingPageConfiguration configuration)
         {
             Configuration = configuration;
             LaneCountPerSide = Configuration.LaneCount;

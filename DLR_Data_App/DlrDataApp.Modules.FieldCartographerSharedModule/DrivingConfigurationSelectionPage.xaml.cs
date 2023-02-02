@@ -1,5 +1,4 @@
-﻿using DlrDataApp.Modules.Base.Shared.Controls;
-using DlrDataApp.Modules.Base.Shared.Localization;
+﻿using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,17 +15,6 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DrivingConfigurationSelectionPage : ContentPage
     {
-        public class DrivingConfigurationDisplay : BindableObject, IInlinePickerElement
-        {
-            public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(DrivingConfigurationPage), Color.Transparent, BindingMode.OneWay);
-            public Color BackgroundColor
-            {
-                get => (Color)GetValue(BackgroundColorProperty);
-                set => SetValue(BackgroundColorProperty, value);
-            }
-            public DrivingPageConfiguration Configuration { get; set; }
-        }
-
         public ObservableCollection<DrivingConfigurationDisplay> DisplayedItems { get; set; }
 
         public DrivingConfigurationSelectionPage()
@@ -34,10 +22,10 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             var configurations = FieldCartographerModule.Instance.Database.Read<DrivingPageConfigurationDTO>().Select(c => c.DrivingPageConfiguration).ToList();
             if (configurations.Count == 0)
             {
-                configurations = new List<DrivingPageConfiguration>() { DefaultConfiguration };
-                var dto = new DrivingPageConfigurationDTO(DefaultConfiguration);
+                configurations = new List<DrivingPageConfiguration>() { DrivingPageConfiguration.DefaultConfiguration };
+                var dto = new DrivingPageConfigurationDTO(DrivingPageConfiguration.DefaultConfiguration);
                 FieldCartographerModule.Instance.Database.InsertOrUpdate(dto);
-                DefaultConfiguration.Id = dto.Id;
+                DrivingPageConfiguration.DefaultConfiguration.Id = dto.Id;
             }
             DisplayedItems = new ObservableCollection<DrivingConfigurationDisplay>(
                 configurations.Select(c => new DrivingConfigurationDisplay { Configuration = c }));
