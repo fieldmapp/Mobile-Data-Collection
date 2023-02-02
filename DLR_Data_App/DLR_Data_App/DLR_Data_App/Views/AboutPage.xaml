@@ -36,7 +36,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="Fieldmapp" FontAttributes="Bold" FontSize="22" />
+                                <Span Text="FieldMApp" FontAttributes="Bold" FontSize="22" />
                                 <Span Text=" " />
                                 <Span Text="1.0" ForegroundColor="{StaticResource LightTextColor}" />
                             </FormattedString.Spans>

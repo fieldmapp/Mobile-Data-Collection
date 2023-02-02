@@ -121,7 +121,7 @@
     <value>Über uns</value>
   </data>
   <data name="about1" xml:space="preserve">
-    <value>Diese App wurde vom Deutschen Zentrum für Luft- und Raumfahrt (DLR e.V.) in Kooperation mit der Friedrich Schiller Universität Jena und Hochschule Stralsund entwickelt.</value>
+    <value>Diese App wurde vom Deutschen Zentrum für Luft- und Raumfahrt (DLR e.V.) in Kooperation mit der Friedrich-Schiller-Universität Jena und der Hochschule Stralsund entwickelt.</value>
   </data>
   <data name="about2" xml:space="preserve">
     <value>Die App wurde in C# mit Xamarin entwickelt und verwendet auf unterschiedlichen Plattformen gemeinsamen Quellcode.</value>
