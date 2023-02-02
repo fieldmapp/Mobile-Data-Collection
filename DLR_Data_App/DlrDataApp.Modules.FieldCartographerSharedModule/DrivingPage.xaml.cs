@@ -66,6 +66,35 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         readonly bool[] IsLaneStarted;
         readonly string LogFileIdentifier;
 
+        bool _shouldMicrophoneBeRecording = false;
+        bool ShouldMicrophoneBeRecording
+        {
+            get => _shouldMicrophoneBeRecording;
+            set
+            {
+                if (value != _shouldMicrophoneBeRecording)
+                {
+                    if (value)
+                        FieldCartographerModule.Instance.SpeechRecognizer.StartListening();
+                    else
+                        FieldCartographerModule.Instance.SpeechRecognizer.StopListening();
+                }
+                _shouldMicrophoneBeRecording = value;
+            }
+        }
+
+        protected override void OnAppearing()
+        {
+            if (ShouldMicrophoneBeRecording)
+                FieldCartographerModule.Instance.SpeechRecognizer.StartListening();
+
+        }
+
+        protected override void OnDisappearing()
+        {
+            FieldCartographerModule.Instance.SpeechRecognizer.StopListening();
+        }
+
         public DrivingPageConfiguration Configuration { get; set; }
         public DrivingPage(DrivingPageConfiguration configuration)
         {
@@ -154,8 +183,17 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 child.Effects.Add(touchEffect);
             }
 
+
             FieldCartographerModule.Instance.SpeechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
-            FieldCartographerModule.Instance.SpeechRecognizer.StartListening();
+        }
+
+        private void MicButton_Clicked(object sender, EventArgs e)
+        {
+            ShouldMicrophoneBeRecording = !ShouldMicrophoneBeRecording;
+            if (ShouldMicrophoneBeRecording)
+                MicButton.Background = Brush.Green;
+            else
+                MicButton.Background = Brush.Gray;
         }
 
         private void SpeechRecognizer_ResultRecognized(object sender, SpeechRecognitionResult e)
