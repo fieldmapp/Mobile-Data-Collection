@@ -1,4 +1,5 @@
 ﻿using DlrDataApp.Modules.Base.Shared.Controls;
+using DlrDataApp.Modules.Base.Shared.Localization;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -48,6 +49,12 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             var selectedConfiguration = (ConfigurationPicker.SelectedItem as DrivingConfigurationDisplay)?.Configuration;
             if (selectedConfiguration == null)
                 return;
+
+            if (selectedConfiguration.GetCauses().All(c => string.IsNullOrWhiteSpace(c.Id)))
+            {
+                Shell.Current.DisplayAlert(SharedResources.error, "Die gewählte Konfiguration enthält keine Minderertragsursache. Bitte die KONFIGURATION ANPASSEN durch das ergänzen mindestens einer Minderertragsursache oder eine andere Konfiguration auswählen.", SharedResources.ok);
+                return;
+            }
 
             var newPage = new DrivingPage(selectedConfiguration);
             Navigation.PushAsync(newPage);
