@@ -7,30 +7,6 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 {
     public class DrivingPageConfiguration : BindableObject
     {
-        public static readonly DrivingPageConfiguration DefaultConfiguration = new DrivingPageConfiguration
-        {
-            Cause1 = StringWithAnnotationsToFormattedString("*Sand*linse"),
-            Cause1Id = "SandLens",
-            Cause2 = StringWithAnnotationsToFormattedString("*Verdichtung*"),
-            Cause2Id = "Compaction",
-            Cause3 = StringWithAnnotationsToFormattedString("Vorge*wende*"),
-            Cause3Id = "Headland",
-            Cause4 = StringWithAnnotationsToFormattedString("*Kuppe*"),
-            Cause4Id = "Dome",
-            Cause5 = StringWithAnnotationsToFormattedString("*Hang*"),
-            Cause5Id = "Slope",
-            Cause6 = StringWithAnnotationsToFormattedString("*Wald*rand"),
-            Cause6Id = "ForestEdge",
-            Cause7 = StringWithAnnotationsToFormattedString("*Trocken*stress"),
-            Cause7Id = "DryStress",
-            Cause8 = StringWithAnnotationsToFormattedString("*Nass*stelle"),
-            Cause8Id = "WaterLogging",
-            Cause9 = StringWithAnnotationsToFormattedString("*Mäuse*fraß\\n*Wild*schaden"),
-            Cause9Id = "GameMouseDamage",
-            LaneCount = 3,
-            Name = "Standard"
-        };
-
         public int? Id { get; set; }
         public static BindableProperty Cause1Property = BindableProperty.Create(nameof(Cause1), typeof(FormattedString), typeof(DrivingPageConfiguration), default(FormattedString));
         public static BindableProperty Cause2Property = BindableProperty.Create(nameof(Cause2), typeof(FormattedString), typeof(DrivingPageConfiguration), default(FormattedString));
@@ -53,6 +29,37 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         public static BindableProperty NameProperty = BindableProperty.Create(nameof(Name), typeof(string), typeof(DrivingPageConfiguration), default(string));
         public static BindableProperty LaneCountProperty = BindableProperty.Create(nameof(LaneCount), typeof(int), typeof(DrivingPageConfiguration), default(int));
         public static BindableProperty LaneWidthProperty = BindableProperty.Create(nameof(LaneWidth), typeof(string), typeof(DrivingPageConfiguration), default(string));
+
+
+        static DrivingPageConfiguration()
+        {
+            DefaultConfiguration = new DrivingPageConfiguration
+            {
+                Cause1 = StringWithAnnotationsToFormattedString("*Sand*linse"),
+                Cause1Id = "SandLens",
+                Cause2 = StringWithAnnotationsToFormattedString("*Verdichtung*"),
+                Cause2Id = "Compaction",
+                Cause3 = StringWithAnnotationsToFormattedString("Vorge*wende*"),
+                Cause3Id = "Headland",
+                Cause4 = StringWithAnnotationsToFormattedString("*Kuppe*"),
+                Cause4Id = "Dome",
+                Cause5 = StringWithAnnotationsToFormattedString("*Hang*"),
+                Cause5Id = "Slope",
+                Cause6 = StringWithAnnotationsToFormattedString("*Wald*rand"),
+                Cause6Id = "ForestEdge",
+                Cause7 = StringWithAnnotationsToFormattedString("*Trocken*stress"),
+                Cause7Id = "DryStress",
+                Cause8 = StringWithAnnotationsToFormattedString("*Nass*stelle"),
+                Cause8Id = "WaterLogging",
+                Cause9 = StringWithAnnotationsToFormattedString("*Mäuse*fraß\\n*Wild*schaden"),
+                Cause9Id = "GameMouseDamage",
+                LaneCount = 3,
+                Name = "Standard"
+            };
+        }
+
+        public static DrivingPageConfiguration DefaultConfiguration { get; }
+
         public string LaneWidth
         {
             get { return (string)GetValue(LaneWidthProperty); }
