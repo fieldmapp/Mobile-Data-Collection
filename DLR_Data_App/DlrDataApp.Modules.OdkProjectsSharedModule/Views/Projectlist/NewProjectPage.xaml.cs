@@ -33,6 +33,8 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList
             {
                 if (File.FileName.EndsWith(".zip"))
                 {
+                    LblZipPath.Text = File.FileName;
+
                     _fileCopyPath = Path.Combine(OdkProjectsModule.Instance.ModuleHost.App.FolderLocation, "Data.zip");
                     using (var dataArray = await File.OpenReadAsync())
                     {

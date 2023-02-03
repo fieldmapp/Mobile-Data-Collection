@@ -32,6 +32,8 @@ namespace DlrDataApp.Modules.Profiling.Shared.Views.ProfilingList
             {
                 if (SelectedFile.FileName.EndsWith(".zip"))
                 {
+                    LblZipPath.Text = SelectedFile.FileName;
+
                     _fileCopyPath = Path.Combine(ProfilingModule.Instance.ModuleHost.App.FolderLocation, "Data.zip");
                     using (var dataArray = await SelectedFile.OpenReadAsync())
                     {
