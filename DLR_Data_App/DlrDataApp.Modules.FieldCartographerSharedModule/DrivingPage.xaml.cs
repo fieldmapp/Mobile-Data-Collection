@@ -361,9 +361,6 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 var buttonXFactor = leftMostButtonXFactor + (LaneCountPerSide - i - 1) * laneWidthFactor;
                 var topButton = new Button { Text = buttonText, FontAttributes = FontAttributes.Bold, Padding = new Thickness(0), Margin = new Thickness(0), Style = (Style)Application.Current.Resources[typeof(Button).FullName] };
                 LaneBeginButtons.Add(topButton);
-                var swipeGesture = new SwipeGestureRecognizer { Direction = SwipeDirection.Right | SwipeDirection.Left | SwipeDirection.Down | SwipeDirection.Up };
-                swipeGesture.Swiped += SwipeGesture_Swiped;
-                topButton.GestureRecognizers.Add(swipeGesture);
                 
                 topButton.Clicked += (a, b) => BeginZone(laneIndex);
                 topButton.FontSize = Device.GetNamedSize(NamedSize.Small, topButton);
@@ -472,11 +469,6 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 widthConstraint: Constraint.RelativeToParent(p => p.Width * outerMostBorderWidthFactor),
                 yConstraint: Constraint.RelativeToParent(p => p.Height * borderYFactor),
                 heightConstraint: Constraint.RelativeToParent(p => p.Height * borderHeightFactor));
-        }
-
-        private void SwipeGesture_Swiped(object sender, SwipedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private void BeginZone(int laneIndex)
