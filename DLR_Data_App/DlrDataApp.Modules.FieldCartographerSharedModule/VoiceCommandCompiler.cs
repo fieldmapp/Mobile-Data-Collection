@@ -107,6 +107,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             public KeywordSymbol DamageCause = KeywordSymbol.invalid;
             public KeywordSymbol DamageType = KeywordSymbol.invalid;
             public bool ShouldEndZone;
+            public bool ShouldStartZone;
             public override string ToString()
             {
                 string result = base.ToString();
@@ -115,6 +116,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 if (DamageType != KeywordSymbol.invalid)
                     result += " type: " + KeywordStringToSymbol.First(kv => kv.Value == DamageType).Key;
                 result += $"; end zone: {ShouldEndZone.ToString(CultureInfo.InvariantCulture)}";
+                result += $"; start zone: {ShouldStartZone.ToString(CultureInfo.InvariantCulture)}";
                 return result;
             }
         }
@@ -188,7 +190,9 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             var accessor = new SymbolStreamAccessor(symbols);
             var firstSymbol = accessor.Peek();
 
-            if (firstSymbol == KeywordSymbol.anfang || firstSymbol == KeywordSymbol.ende)
+            if (firstSymbol == KeywordSymbol.anfang || firstSymbol == KeywordSymbol.ende ||
+                (symbols.Count == 2 &&
+                    (symbols[1] == KeywordSymbol.anfang || symbols[1] == KeywordSymbol.ende )))
             {
                 ZonesAction action = firstSymbol == KeywordSymbol.anfang ? (ZonesAction)new StartZonesAction() : new EndZonesAction();
                 accessor.Next();
@@ -215,9 +219,15 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 tryReadOneLineDetail();
                 tryReadOneLineDetail();
                 
+
                 if (accessor.Peek() == KeywordSymbol.ende)
                 {
                     action.ShouldEndZone = true;
+                    accessor.Next();
+                }
+                if (accessor.Peek() == KeywordSymbol.anfang)
+                {
+                    action.ShouldStartZone = true;
                     accessor.Next();
                 }
 

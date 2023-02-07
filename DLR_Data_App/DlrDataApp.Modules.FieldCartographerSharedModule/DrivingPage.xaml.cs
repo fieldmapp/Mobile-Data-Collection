@@ -242,6 +242,13 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                         EndZone(laneIndex);
                     }
                 }
+                if (setZonesDetailAction.ShouldStartZone)
+                {
+                    foreach (var laneIndex in setZonesDetailAction.LaneIndices)
+                    {
+                        BeginZone(laneIndex);
+                    }
+                }
                 return;
             }
         }
