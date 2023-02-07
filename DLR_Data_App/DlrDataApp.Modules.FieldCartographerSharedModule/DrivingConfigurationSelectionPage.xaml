@@ -13,7 +13,10 @@
                          VerticalOptions="CenterAndExpand"
                          Padding="40,0,40,0">
             <Label HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{DynamicResource TitleStyle}" FontSize="Title">Minderertragsflächenkartierung</Label>
-            <Label HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{DynamicResource SubtitleStyle}" FontSize="Medium" Margin="0, 10, 0, 10">Bitte stellen Sie vor dem Bearbeitungsbeginn die Optionen zur Kartierung der Eigenschaften der Minderertragsflächen so ein, dass diese zur aktuellen Feld- und Bewirtschaftungssituation passen. Berücksichtigen Sie dabei die folgenden Fragen:</Label>
+            <Label HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{DynamicResource SubtitleStyle}" FontSize="Medium" Margin="0, 10, 0, 10">Bitte stellen Sie vor dem Bearbeitungsbeginn die Optionen zur Kartierung der Eigenschaften der Minderertragsflächen so ein, dass diese zur aktuellen Feld- und Bewirtschaftungssituation passen. Berücksichtigen Sie dabei die folgenden Fragen:
+            Welche Minderertragstypen können aktuell während der Bewirtschaftung erkannt werden?
+
+Welche Arbeitsbreite wird genutzt? In wie viele (parallel zur Fahrspur verlaufende) Zonen kann diese sinnvoll unterteilt werden, sodass die Kartierung neben dem zu erwartenden Arbeitsaufwand machbar bleibt?</Label>
             <Label HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{DynamicResource SubtitleStyle}" FontSize="Medium" Margin="0, 10, 0, 50">Wählen Sie dafür eine der vordefinierten Konfigurationen, wie „Standard“ aus, oder erstellen Sie Ihre eigene Konfiguration. Tippen Sie dafür auf „NEUE KONFIGURATION ERSTELLEN“ oder „KONFIGURATION ANPASSEN“.</Label>
 
             <Frame BorderColor="Black" Padding="2" VerticalOptions="Start">
