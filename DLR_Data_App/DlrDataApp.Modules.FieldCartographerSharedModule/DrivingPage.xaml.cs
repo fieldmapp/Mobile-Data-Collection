@@ -64,6 +64,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         readonly bool[] IsLaneCauseEntered;
         readonly bool[] IsLaneTypeEntered;
         readonly bool[] IsLaneStarted;
+        readonly bool[] IsLaneInInitialState;
         readonly string LogFileIdentifier;
 
         bool _shouldMicrophoneBeRecording = false;
@@ -107,6 +108,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             IsLaneCauseEntered = new bool[TotalLaneCount];
             IsLaneTypeEntered = new bool[TotalLaneCount];
             IsLaneStarted = new bool[TotalLaneCount];
+            IsLaneInInitialState = Enumerable.Repeat(true, TotalLaneCount).ToArray();
 
             LogFileIdentifier = "drivingView_" + FieldCartographerModule.Instance.CurrentUser.Username + "_" + LaneCountPerSide + "_" + configuration.LaneWidth + "_" + configuration.GpsAntennaToInputLocationOffset + "_" + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
 
@@ -227,11 +229,11 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             {
                 if (setZonesDetailAction.DamageCause != KeywordSymbol.invalid)
                 {
-                    SetDamageCauses(setZonesDetailAction.LaneIndices, keywordSymbolToCause[setZonesDetailAction.DamageCause]);
+                    SetDamageCauses(setZonesDetailAction.LaneIndices.Where(i => !IsLaneInInitialState[i]).ToList(), keywordSymbolToCause[setZonesDetailAction.DamageCause]);
                 }
                 if (setZonesDetailAction.DamageType != KeywordSymbol.invalid)
                 {
-                    SetDamageType(setZonesDetailAction.LaneIndices, keywordSymbolToDamageType[setZonesDetailAction.DamageType]);
+                    SetDamageType(setZonesDetailAction.LaneIndices.Where(i => !IsLaneInInitialState[i]).ToList(), keywordSymbolToDamageType[setZonesDetailAction.DamageType]);
                 }
                 if (setZonesDetailAction.ShouldEndZone)
                 {
@@ -293,6 +295,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 IsLaneCauseEntered[i] = false;
                 IsLaneTypeEntered[i] = false;
                 IsLaneStarted[i] = false;
+                IsLaneInInitialState[i] = true;
             }
         }
 
@@ -471,6 +474,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 
         private void BeginZone(int laneIndex)
         {
+            IsLaneInInitialState[laneIndex] = false;
             if (!IsLaneActive[laneIndex])
             {
                 PushInteractionToLog(new[] { new InteractionInfo(DateTime.UtcNow, laneIndex, "open") });
