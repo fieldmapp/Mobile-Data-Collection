@@ -28,6 +28,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         public static BindableProperty Cause9IdProperty = BindableProperty.Create(nameof(Cause9Id), typeof(string), typeof(DrivingPageConfiguration), default(string));
         public static BindableProperty NameProperty = BindableProperty.Create(nameof(Name), typeof(string), typeof(DrivingPageConfiguration), default(string));
         public static BindableProperty LaneCountProperty = BindableProperty.Create(nameof(LaneCount), typeof(int), typeof(DrivingPageConfiguration), default(int));
+        public static BindableProperty GpsAntennaToInputLocationOffsetProperty = BindableProperty.Create(nameof(GpsAntennaToInputLocationOffset), typeof(string), typeof(DrivingPageConfiguration), default(string));
         public static BindableProperty LaneWidthProperty = BindableProperty.Create(nameof(LaneWidth), typeof(string), typeof(DrivingPageConfiguration), default(string));
 
 
@@ -64,6 +65,12 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         {
             get { return (string)GetValue(LaneWidthProperty); }
             set { SetValue(LaneWidthProperty, value); }
+        }
+
+        public string GpsAntennaToInputLocationOffset
+        {
+            get { return (string)GetValue(GpsAntennaToInputLocationOffsetProperty); }
+            set { SetValue(GpsAntennaToInputLocationOffsetProperty, value); }
         }
 
         public FormattedString Cause1

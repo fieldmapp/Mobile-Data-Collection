@@ -25,6 +25,15 @@
 
                 <BoxView HeightRequest="1" VerticalOptions="Fill" BackgroundColor="{AppThemeBinding Light={StaticResource Divider}, Dark={StaticResource DividerNight}}" Margin="0, 20, 0, 20"/>
 
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Versatz (in Metern)" VerticalOptions="Center" Style="{DynamicResource TitleStyle}"/>
+                    <Entry Keyboard="Numeric" Text="{Binding Configuration.GpsAntennaToInputLocationOffset}" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <Label Style="{DynamicResource CaptionStyle}" Text="Wie viel Meter entlang der Fahrtrichtung liegen zwischen Antenne und Punkt der Datenaufnahme?" HorizontalOptions="Center" FontSize="Caption"/>
+
+                <BoxView HeightRequest="1" VerticalOptions="Fill" BackgroundColor="{AppThemeBinding Light={StaticResource Divider}, Dark={StaticResource DividerNight}}" Margin="0, 20, 0, 20"/>
+
+
                 <Label Style="{DynamicResource TitleStyle}" Text="Auswahl Minderertragsursachen" HorizontalOptions="Center" />
                 <Label Style="{DynamicResource CaptionStyle}" Text="Welche Minderertragstypen können aktuell während der Bewirtschaftung erkannt werden? Es können bis zu neun Ursachen festgelegt werden." HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="Caption"/>
                 <Grid>

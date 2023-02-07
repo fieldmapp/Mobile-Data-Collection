@@ -108,7 +108,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             IsLaneTypeEntered = new bool[TotalLaneCount];
             IsLaneStarted = new bool[TotalLaneCount];
 
-            LogFileIdentifier = "drivingView_" + FieldCartographerModule.Instance.CurrentUser.Username + "_" + LaneCountPerSide + "_" + configuration.LaneWidth + "_" + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
+            LogFileIdentifier = "drivingView_" + FieldCartographerModule.Instance.CurrentUser.Username + "_" + LaneCountPerSide + "_" + configuration.LaneWidth + "_" + configuration.GpsAntennaToInputLocationOffset + "_" + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
 
             InitializeComponent();
             WriteUsingCsvWriter(csvWriter => csvWriter.WriteComment(JsonTranslator.GetJson(configuration).Replace("\n", "").Replace("\r", "")));
