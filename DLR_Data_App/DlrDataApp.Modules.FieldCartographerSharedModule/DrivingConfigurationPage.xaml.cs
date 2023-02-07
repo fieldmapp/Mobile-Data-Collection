@@ -176,7 +176,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 
                 annotatedString = newCause;
                 var voiceRecogKeywords = voiceRecogKeywordInput.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var keyword in voiceRecogKeywords)
+                foreach (var keyword in voiceRecogKeywords.Select(k => k.Trim()))
                 {
                     var substrPos = annotatedString.ToLower().IndexOf(keyword.ToLower());
                     if (substrPos == -1)
