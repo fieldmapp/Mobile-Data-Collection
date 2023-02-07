@@ -11,7 +11,7 @@
                          VerticalOptions="CenterAndExpand"
                          Padding="40,0,40,0">
 
-                <Image Source="icon" HeightRequest="100"/>
+                <Image Source="icon_full" HeightRequest="180" Margin="10"/>
 
                 <Label Text="{res:Translate newaccount}"
                        FontSize="Large"
