@@ -46,7 +46,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         {
             { "anfang", KeywordSymbol.anfang },
             { "start", KeywordSymbol.anfang },
-            { "stop", KeywordSymbol.ende },
+            { "stopp", KeywordSymbol.ende },
             { "abbrechen", KeywordSymbol.abbrechen },
             { "gering", KeywordSymbol.gering },
             { "mittel", KeywordSymbol.mittel },
