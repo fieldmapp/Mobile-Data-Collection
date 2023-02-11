@@ -190,9 +190,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             var accessor = new SymbolStreamAccessor(symbols);
             var firstSymbol = accessor.Peek();
 
-            if (firstSymbol == KeywordSymbol.anfang || firstSymbol == KeywordSymbol.ende ||
-                (symbols.Count == 2 &&
-                    (symbols[1] == KeywordSymbol.anfang || symbols[1] == KeywordSymbol.ende )))
+            if (firstSymbol == KeywordSymbol.anfang || firstSymbol == KeywordSymbol.ende)
             {
                 ZonesAction action = firstSymbol == KeywordSymbol.anfang ? (ZonesAction)new StartZonesAction() : new EndZonesAction();
                 accessor.Next();
@@ -231,9 +229,10 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                     accessor.Next();
                 }
 
+
                 if (accessor.Next() != KeywordSymbol.endOfStream
                     || action.LaneIndices.Count == 0
-                    || (action.DamageCause == KeywordSymbol.invalid && action.DamageType == KeywordSymbol.invalid))
+                    || (action.DamageCause == KeywordSymbol.invalid && action.DamageType == KeywordSymbol.invalid && !action.ShouldEndZone && !action.ShouldStartZone))
                     return new InvalidAction();
 
                 return action;
