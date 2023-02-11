@@ -17,8 +17,6 @@ if os.path.isdir('frames'):
 os.makedirs('frames')
 
 
-#ctypes.windll.user32.SetProcessDPIAware()
-
 TARGET_FRAMERATE = 100
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 800
