@@ -223,7 +223,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                     action.ShouldEndZone = true;
                     accessor.Next();
                 }
-                if (accessor.Peek() == KeywordSymbol.anfang)
+                else if (accessor.Peek() == KeywordSymbol.anfang)
                 {
                     action.ShouldStartZone = true;
                     accessor.Next();
