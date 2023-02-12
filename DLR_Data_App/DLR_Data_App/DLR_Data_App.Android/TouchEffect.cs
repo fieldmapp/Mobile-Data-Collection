@@ -162,6 +162,7 @@ namespace com.DLR.DLR_Data_App.Droid
         void CheckForBoundaryHop(int id, Point pointerLocation)
         {
             TouchEffect touchEffectHit = null;
+            double viewArea = double.PositiveInfinity;
 
             foreach (Android.Views.View view in viewDictionary.Keys)
             {
@@ -176,8 +177,9 @@ namespace com.DLR.DLR_Data_App.Droid
                 }
                 Rectangle viewRect = new Rectangle(twoIntArray[0], twoIntArray[1], view.Width, view.Height);
 
-                if (viewRect.Contains(pointerLocation))
+                if (viewRect.Contains(pointerLocation) && viewRect.Width * viewRect.Height < viewArea)
                 {
+                    viewArea = viewRect.Width * viewRect.Height;
                     touchEffectHit = viewDictionary[view];
                 }
             }

@@ -84,16 +84,31 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             }
         }
 
+
+        List<(View view, TouchEffect effect)> ActiveTouchEffects = new List<(View view, TouchEffect effect)>();
         protected override void OnAppearing()
         {
             if (ShouldMicrophoneBeRecording)
                 FieldCartographerModule.Instance.SpeechRecognizer.StartListening();
 
+            foreach (var child in GetNestedChildren(RelativeLayout))
+            {
+                var touchEffect = new TouchEffect { Capture = false };
+                touchEffect.TouchAction += TouchEffect_TouchAction;
+                child.Effects.Add(touchEffect);
+                ActiveTouchEffects.Add((child, touchEffect));
+            }
         }
 
         protected override void OnDisappearing()
         {
             FieldCartographerModule.Instance.SpeechRecognizer.StopListening();
+            foreach ((View view, TouchEffect effect) in ActiveTouchEffects)
+            {
+                view.Effects.Remove(effect);
+                effect.TouchAction -= TouchEffect_TouchAction;
+            }
+            ActiveTouchEffects = new List<(View view, TouchEffect effect)>();
         }
 
         public DrivingPageConfiguration Configuration { get; set; }
@@ -177,14 +192,6 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 
             AddSideLanesToLayout();
             ResetToInitialState();
-
-            foreach (var child in GetNestedChildren(RelativeLayout))
-            {
-                var touchEffect = new TouchEffect { Capture = false };
-                touchEffect.TouchAction += TouchEffect_TouchAction;
-                child.Effects.Add(touchEffect);
-            }
-
 
             FieldCartographerModule.Instance.SpeechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
         }
