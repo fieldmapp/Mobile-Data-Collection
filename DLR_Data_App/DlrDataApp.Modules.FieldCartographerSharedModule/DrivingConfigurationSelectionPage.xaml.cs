@@ -40,7 +40,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 
             if (selectedConfiguration.GetCauses().All(c => string.IsNullOrWhiteSpace(c.Id)))
             {
-                Shell.Current.DisplayAlert(SharedResources.error, "Die gewählte Konfiguration enthält keine Minderertragsursache. Bitte die KONFIGURATION ANPASSEN durch das ergänzen mindestens einer Minderertragsursache oder eine andere Konfiguration auswählen.", SharedResources.ok);
+                Shell.Current.DisplayAlert(SharedResources.error, "Die gewählte Konfiguration enthält keine Minderertragsursache. Bitte die KONFIGURATION ANPASSEN durch das Ergänzen mindestens einer Minderertragsursache oder eine andere Konfiguration auswählen.", SharedResources.ok);
                 return;
             }
 
