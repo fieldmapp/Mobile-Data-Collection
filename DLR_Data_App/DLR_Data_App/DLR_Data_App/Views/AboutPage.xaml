@@ -23,13 +23,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout Orientation="Horizontal" Padding="0,40,0,40" HorizontalOptions="Center" VerticalOptions="Center">
-                <Image Source="dlr_logo.png" VerticalOptions="End" HeightRequest="150" />
-                <Image Source="fsu_logo.png" VerticalOptions="End" HeightRequest="150" />
-                <Image Source="host_logo.png" VerticalOptions="End" HeightRequest="150" />
-            </StackLayout>
-        </StackLayout>
+        <Grid BackgroundColor="{StaticResource Accent}" Padding="0,40,0,40" HorizontalOptions="Fill" VerticalOptions="Center">
+            <Image Source="dlr_logo.png" Grid.Column="0" HeightRequest="150" />
+            <Image Source="fsu_logo.png" Grid.Column="1" HeightRequest="150" />
+            <Image Source="host_logo.png" Grid.Column="2" HeightRequest="150" />
+        </Grid>
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
                 <Label FontSize="22">
