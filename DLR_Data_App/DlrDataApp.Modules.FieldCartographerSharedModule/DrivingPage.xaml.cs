@@ -178,7 +178,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             AddSideLanesToLayout();
             ResetToInitialState();
 
-            foreach (var child in RelativeLayout.Children)
+            foreach (var child in GetNestedChildren(RelativeLayout))
             {
                 var touchEffect = new TouchEffect { Capture = false };
                 touchEffect.TouchAction += TouchEffect_TouchAction;
@@ -187,6 +187,23 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 
 
             FieldCartographerModule.Instance.SpeechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
+        }
+
+        IEnumerable<View> GetNestedChildren(View view)
+        {
+            // i think we cant simplify to use Layout here because the specific layouts dont overrwrite the Layout.Children property (they just hide it using the new keyword)
+            if (view is RelativeLayout relaiveLayout)
+            {
+                foreach (var child in relaiveLayout.Children.SelectMany(c => GetNestedChildren(c)))
+                    yield return child;
+            }
+            else if (view is FlexLayout flexLayout)
+            {
+                foreach (var child in flexLayout.Children.SelectMany(c => GetNestedChildren(c)))
+                    yield return child;
+            }
+            else
+                yield return view;
         }
 
         private void MicButton_Clicked(object sender, EventArgs e)
