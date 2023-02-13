@@ -141,8 +141,17 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             KeywordSymbol.number5, KeywordSymbol.number6, KeywordSymbol.number7, KeywordSymbol.number8, KeywordSymbol.number9
         };
 
-        public static VoiceAction Compile(List<string> recognizedKeywords) => Parse(Scan(recognizedKeywords));
-             
+        public static VoiceAction Compile(List<string> recognizedKeywords)
+        {
+            try
+            {
+                return Parse(Scan(recognizedKeywords));
+            }
+            catch (Exception)
+            {
+                return new InvalidAction();
+            }
+        }    
         static List<KeywordSymbol> Scan(List<string> recognizedKeywords) => recognizedKeywords.Select(k => KeywordStringToSymbol[k]).ToList();
 
         class SymbolStreamAccessor
