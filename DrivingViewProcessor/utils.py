@@ -17,7 +17,7 @@ def gpst_leapseconds(gpst_sec: pd.Series) -> int:
     https://raw.githubusercontent.com/tomojitakasu/RTKLIB/rtklib_2.4.3/doc/manual_2.4.2.pdf page 131, 31
     astro py epoch https://docs.astropy.org/en/stable/time/index.html#time-from-epoch-formats
     TAI = UTC + LS
-    GPS_LS = LS + 19 , GPS since 1980, 19 UTC had 19 LS since then
+    GPS_LS = LS - 19 , GPS since 1980, UTC had 19 LS since then
     UTC = GPS - GPS_LS
     GPST = UTC + GPS_LS
     """
