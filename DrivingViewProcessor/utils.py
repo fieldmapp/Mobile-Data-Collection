@@ -12,7 +12,7 @@ def gpst_to_utc(gpst_seconds: pd.Series) -> int:
 def gpst_leapseconds(gpst_sec: pd.Series) -> int:
     """
     The GPS time scale began on January 6, 1980.  At that time, the UTC timescale had undergone 19 leap second events (TAI-UTC).
-    so we need to 19s substract 19s from the GPST time to get the correct UTC-Timestamp.
+    so we need to substract 19s from the current TAI-UTC LS to get the correct UTC-Timestamp from the provided GPST.
 
     https://raw.githubusercontent.com/tomojitakasu/RTKLIB/rtklib_2.4.3/doc/manual_2.4.2.pdf page 131, 31
     astro py epoch https://docs.astropy.org/en/stable/time/index.html#time-from-epoch-formats
