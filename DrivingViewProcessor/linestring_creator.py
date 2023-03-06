@@ -1,16 +1,18 @@
 import pandas as pd
 import argparse
-import geopandas as gpd
 import shapely as shp
-from utils import read_ublox_pos, read_interaction, add_time_col, gpst_leapseconds, Field
+from driving_view_processor.core import Field
+from driving_view_processor.utils import read_ublox_pos, read_interaction
+from driving_view_processor.io import prepare_and_merge, write_f
+
 
 parser = argparse.ArgumentParser(description='Read and Process interaction und ublox data.')
 parser.add_argument("--pos", type=str, nargs=1)
 parser.add_argument("--ilog", type=str, nargs=1)
 parser.add_argument("--filename", type=str, nargs=1)
+parser.add_argument("--outdir", type=str, nargs=1)
 
-_merge_rcol = "UTC_corrected"
-_merge_lcol = "UTC_Seconds"
+merge_col = "UTC_Seconds"
 _position_time = "GPST_Seconds"
 # https://epsg.io/3043
 _base_epsg = 4326
@@ -26,49 +28,28 @@ _lane_config = {
 }
 _lane_width = 6
 
-
-def write_f(field: Field,
-            file_prefix: str,
-            output_name: str,
-            no_shift: bool,
-            geom_type: shp.Geometry):
-    with open(f"{file_prefix}_{output_name}", 'w') as f:
-        out = field.to_gpd(no_shift=no_shift, geom_type=geom_type)
-        f.write(out.to_json())
-
-
-def prepare_and_merge(pos_df: pd.DataFrame, int_df: pd.DataFrame, ) -> gpd.GeoDataFrame:
-    add_time_col(time_func=gpst_leapseconds,
-                 df=pos_df,
-                 col_name=_merge_rcol,
-                 base_col=_position_time)
-    interactions_df = int_df.sort_values(by=_merge_lcol)  # only needed for the test data set
-    # merge interactions_df and position
-    interactions_df = pd.merge_asof(interactions_df, pos_df, left_on=_merge_lcol, right_on=_merge_rcol)
-    geometry = gpd.points_from_xy(interactions_df["long_deg"], interactions_df['lat_deg'], crs=f"EPSG:{_base_epsg}")
-    geometry = geometry.to_crs(crs=f"EPSG:{_calc_epsg}")
-    return gpd.GeoDataFrame(data=interactions_df, geometry=geometry)
-
-
 _exec_config = {
-    "drive_line": lambda field, f_name: write_f(field=field, file_prefix="drive_line", no_shift=True, geom_type=shp.LineString, output_name=f_name),
-    "drive_points": lambda field, f_name: write_f(field=field, file_prefix="drive_points", no_shift=True, geom_type=shp.Point, output_name=f_name),
-    "drive_polygon": lambda field, f_name: write_f(field=field, file_prefix="drive_polygon", no_shift=True, geom_type=shp.Polygon, output_name=f_name),
-    "lane_polygon": lambda field, f_name: write_f(field=field, file_prefix="polygon", no_shift=False, geom_type=shp.Polygon, output_name=f_name),
-    "lane_line": lambda field, f_name: write_f(field=field, file_prefix="line", no_shift=False, geom_type=shp.LineString, output_name=f_name),
-    "lane_points": lambda field, f_name: write_f(field=field, file_prefix="points", no_shift=False, geom_type=shp.Point, output_name=f_name),
+    "drive_line": lambda field, f_name, out_f: write_f(field=field, file_prefix="drive_line", no_shift=True, geom_type=shp.LineString, output_name=f_name, out_folder=out_f),
+    "drive_points": lambda field, f_name, out_f: write_f(field=field, file_prefix="drive_points", no_shift=True, geom_type=shp.Point, output_name=f_name, out_folder=out_f),
+    "drive_polygon": lambda field, f_name, out_f: write_f(field=field, file_prefix="drive_polygon", no_shift=True, geom_type=shp.Polygon, output_name=f_name, out_folder=out_f),
+    "lane_polygon": lambda field, f_name, out_f: write_f(field=field, file_prefix="polygon", no_shift=False, geom_type=shp.Polygon, output_name=f_name, out_folder=out_f),
+    "lane_line": lambda field, f_name, out_f: write_f(field=field, file_prefix="line", no_shift=False, geom_type=shp.LineString, output_name=f_name, out_folder=out_f),
+    "lane_points": lambda field, f_name, out_f: write_f(field=field, file_prefix="points", no_shift=False, geom_type=shp.Point, output_name=f_name, out_folder=out_f),
 }
 
 
-def main(positions_df: pd.DataFrame, interactions_df: pd.DataFrame, f_name: str, exec_list: [str]):
-    merged = prepare_and_merge(positions_df, interactions_df)
+def main(positions_df: pd.DataFrame, interactions_df: pd.DataFrame, f_name: str, output_dir: str, exec_list: [str]):
+    merged = prepare_and_merge(pos_df=positions_df, interaction_df=interactions_df,
+                               merge_col=merge_col, pos_tim_col=_position_time,
+                               base_epsg=_base_epsg, calc_epsg=_calc_epsg)
     # collect all lanes
     field = Field.from_gpd(df=merged,
                            target_epsg=_base_epsg,
                            lane_config=_lane_config,
                            lane_width=_lane_width)
     for e in exec_list:
-        _exec_config[e](field, f_name)
+        if e in _exec_config:
+            _exec_config[e](field, f_name, output_dir)
 
 
 if __name__ == "__main__":
@@ -76,4 +57,5 @@ if __name__ == "__main__":
     positions = read_ublox_pos(args.pos[0])
     interactions = read_interaction(args.ilog[0])
     file_name = args.filename[0]
-    main(positions, interactions, file_name, ["lane_polygon"])
+    output_folder = args.outdir[0]
+    main(positions, interactions, file_name, output_folder, ["lane_polygon"])
