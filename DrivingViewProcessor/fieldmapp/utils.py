@@ -33,28 +33,10 @@ def gpst_leapseconds(gpst_sec: pd.Series) -> int:
     return t_final.unix
 
 
-def read_ublox_pos(path: str) -> pd.DataFrame:
-    header = ['GPST', 'lat_deg', 'long_deg', 'height_m', 'Q', 'ns', 'sdn_m', 'sde_m', 'sdu_m', 'sdne_m', 'sdeu_m',
-              'sdun_m', 'age_s', 'ratio']
-
-    positions = pd.read_csv(filepath_or_buffer=path, delimiter=r"\s\s+", comment='%', header=None, names=header,
-                            parse_dates=['GPST'],
-                            date_parser=lambda x: pd.to_datetime(x, format="%Y/%m/%d %H:%M:%S.%f"),
-                            engine='python')
-    positions['GPST_Seconds'] = positions['GPST'].astype('int64') // 1e9
-    return positions
-
-
 def add_time_col(time_func, df: pd.DataFrame, col_name: str, base_col: str):
     if base_col not in df.columns:
         raise NameError(f"Column name {base_col} does not exist in the provided df!")
     df[col_name] = time_func(df[base_col])
-
-
-def read_interaction(path: str) -> pd.DataFrame:
-    interactions = pd.read_csv(path, parse_dates=['UtcDateTime'])
-    interactions['UTC_Seconds'] = interactions['UtcDateTime'].astype('int64') // 1e9
-    return interactions
 
 
 def meters_to_degrees(meters, latitude):

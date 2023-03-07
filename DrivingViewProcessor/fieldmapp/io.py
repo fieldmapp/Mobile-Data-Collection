@@ -14,6 +14,7 @@ def write_f(field: Field,
     with open(f"{out_folder}/{file_prefix}_{output_name}", 'w') as f:
         out = field.to_gpd(no_shift=no_shift, geom_type=geom_type)
         f.write(out.to_json())
+        return f"{out_folder}/{file_prefix}_{output_name}"
 
 
 def prepare_and_merge(pos_df: pd.DataFrame,
@@ -33,3 +34,21 @@ def prepare_and_merge(pos_df: pd.DataFrame,
     geometry = gpd.points_from_xy(interactions_df["long_deg"], interactions_df['lat_deg'], crs=f"EPSG:{base_epsg}")
     geometry = geometry.to_crs(crs=f"EPSG:{calc_epsg}")
     return gpd.GeoDataFrame(data=interactions_df, geometry=geometry)
+
+
+def read_interaction(path: str) -> pd.DataFrame:
+    interactions = pd.read_csv(path, parse_dates=['UtcDateTime'])
+    interactions['UTC_Seconds'] = interactions['UtcDateTime'].astype('int64') // 1e9
+    return interactions
+
+
+def read_ublox_pos(path: str) -> pd.DataFrame:
+    header = ['GPST', 'lat_deg', 'long_deg', 'height_m', 'Q', 'ns', 'sdn_m', 'sde_m', 'sdu_m', 'sdne_m', 'sdeu_m',
+              'sdun_m', 'age_s', 'ratio']
+
+    positions = pd.read_csv(filepath_or_buffer=path, delimiter=r"\s\s+", comment='%', header=None, names=header,
+                            parse_dates=['GPST'],
+                            date_parser=lambda x: pd.to_datetime(x, format="%Y/%m/%d %H:%M:%S.%f"),
+                            engine='python')
+    positions['GPST_Seconds'] = positions['GPST'].astype('int64') // 1e9
+    return positions
