@@ -15,34 +15,12 @@ class DvpExecTypes(Enum):
 
 
 _exec_config = {
-    DvpExecTypes.DRIVE_LINE: lambda field, f_name, out_f: write_f(field=field,
-                                                                  file_prefix=DvpExecTypes.DRIVE_LINE.value,
-                                                                  no_shift=True,
-                                                                  geom_type=shp.LineString, output_name=f_name,
-                                                                  out_folder=out_f),
-    DvpExecTypes.DRIVE_POINT: lambda field, f_name, out_f: write_f(field=field,
-                                                                   file_prefix=DvpExecTypes.DRIVE_POINT.value,
-                                                                   no_shift=True,
-                                                                   geom_type=shp.Point, output_name=f_name,
-                                                                   out_folder=out_f),
-    DvpExecTypes.DRIVE_POLY: lambda field, f_name, out_f: write_f(field=field,
-                                                                  file_prefix=DvpExecTypes.DRIVE_POLY.value,
-                                                                  no_shift=True,
-                                                                  geom_type=shp.Polygon, output_name=f_name,
-                                                                  out_folder=out_f),
-    DvpExecTypes.LANE_POLY: lambda field, f_name, out_f: write_f(field=field, file_prefix=DvpExecTypes.LANE_POLY.value,
-                                                                 no_shift=False,
-                                                                 geom_type=shp.Polygon, output_name=f_name,
-                                                                 out_folder=out_f),
-    DvpExecTypes.LANE_LINE: lambda field, f_name, out_f: write_f(field=field, file_prefix=DvpExecTypes.LANE_LINE.value,
-                                                                 no_shift=False,
-                                                                 geom_type=shp.LineString, output_name=f_name,
-                                                                 out_folder=out_f),
-    DvpExecTypes.LANE_POINT: lambda field, f_name, out_f: write_f(field=field,
-                                                                  file_prefix=DvpExecTypes.LANE_POINT.value,
-                                                                  no_shift=False,
-                                                                  geom_type=shp.Point, output_name=f_name,
-                                                                  out_folder=out_f),
+    DvpExecTypes.DRIVE_LINE: lambda field: field.to_gpd(no_shift=True, geom_type=shp.LineString),
+    DvpExecTypes.DRIVE_POINT: lambda field: field.to_gpd(no_shift=True, geom_type=shp.Point),
+    DvpExecTypes.DRIVE_POLY: lambda field: field.to_gpd(no_shift=True, geom_type=shp.Polygon),
+    DvpExecTypes.LANE_POLY: lambda field: field.to_gpd(no_shift=False, geom_type=shp.Polygon),
+    DvpExecTypes.LANE_LINE: lambda field: field.to_gpd(no_shift=False, geom_type=shp.LineString),
+    DvpExecTypes.LANE_POINT: lambda field: field.to_gpd(no_shift=False, geom_type=shp.Point)
 }
 
 
@@ -54,9 +32,7 @@ def run_dvp(positions_file: str,
             calc_epsg: int,
             lane_config: dict,
             lane_width: float,
-            f_name: str,
-            output_dir: str,
-            exec_list: List[DvpExecTypes]) -> List[str]:
+            exec_list: List[DvpExecTypes]) -> dict:
     # read files
     positions = read_ublox_pos(positions_file)
     interactions = read_interaction(interactions_file)
@@ -70,12 +46,44 @@ def run_dvp(positions_file: str,
                            lane_config=lane_config,
                            lane_width=lane_width)
     # exec write to geojson
-    finished_list = []
+    finished = {}
     for e in exec_list:
         if e not in _exec_config.keys():
             raise NameError(f"Config name {e} not available as execution config!")
-        finished_list.append(_exec_config[e](field, f_name, output_dir))
+        finished[e] = _exec_config[e](field).to_json()
+    return finished
 
+
+def run_dvp_to_file(
+            positions_file: str,
+            interactions_file: str,
+            merge_col: str,
+            pos_time: str,
+            base_epsg: int,
+            calc_epsg: int,
+            lane_config: dict,
+            lane_width: float,
+            f_name: str,
+            output_dir: str,
+            exec_list: List[DvpExecTypes]) -> List[str]:
+
+    features = run_dvp(
+            positions_file=positions_file,
+            interactions_file=interactions_file,
+            lane_width=lane_width,
+            lane_config=lane_config,
+            base_epsg=base_epsg,
+            calc_epsg=calc_epsg,
+            pos_time=pos_time,
+            merge_col=merge_col,
+            exec_list=exec_list)
+    # exec write to geojson
+    finished_list = []
+    for k, v in features.items():
+        finished_list.append(write_f(feature=v,
+                                     output_name=f_name,
+                                     out_folder=output_dir,
+                                     file_prefix=k.value))
     for i in finished_list:
         print(f"wrote file: {i}")
     return finished_list

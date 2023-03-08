@@ -1,5 +1,5 @@
 import argparse
-from fieldmapp.run import run_dvp, DvpExecTypes
+from fieldmapp.run import run_dvp_to_file, DvpExecTypes
 
 
 parser = argparse.ArgumentParser(description='Read and Process interaction und ublox data.')
@@ -20,8 +20,9 @@ _lane_config = {
     3: 18,
     4: -6,
     5: -12,
-    6: -18,
+    6: -18
 }
+
 _lane_width = 6
 
 if __name__ == "__main__":
@@ -30,8 +31,9 @@ if __name__ == "__main__":
     interactions = args.ilog[0]
     file_name = args.filename[0]
     output_folder = args.outdir[0]
-    run_dvp(positions_df=positions,
-            interactions_df=interactions,
+    run_dvp_to_file(
+            positions_file=positions,
+            interactions_file=interactions,
             merge_col=_merge_col,
             pos_time=_position_time,
             calc_epsg=_calc_epsg,

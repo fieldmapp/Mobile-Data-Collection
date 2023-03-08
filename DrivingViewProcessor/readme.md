@@ -7,9 +7,10 @@
 - build the package with setuptools `python setup.py bdist_wheel`
   - This will create a wheel distribution. The wheel distribution contains a compiled
     version of your package that can be installed on any platform.
-- Upload your package to the GitLab Package Registry using the twine utility by
+- **Optional** Upload your package to the GitLab Package Registry using the twine utility by
   running `python3 twine upload --repository gitlab dist/*` This will upload the distributions 
-  to the GitLab Package Registry
+  to the GitLab Package Registry --> This is optional because normally a new package is registered autom. through the 
+  gitlab CI
   - remember to create `.pypirc` in your home folder with a content like this ex.:
   ```ini
     [distutils]

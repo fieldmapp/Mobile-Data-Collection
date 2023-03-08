@@ -1,19 +1,14 @@
 import pandas as pd
 import geopandas as gpd
-import shapely as shp
-from .core import Field
 from .utils import add_time_col, gpst_leapseconds
 
 
-def write_f(field: Field,
+def write_f(feature: str,
             file_prefix: str,
             output_name: str,
-            out_folder: str,
-            no_shift: bool,
-            geom_type: shp.Geometry):
+            out_folder: str):
     with open(f"{out_folder}/{file_prefix}_{output_name}", 'w') as f:
-        out = field.to_gpd(no_shift=no_shift, geom_type=geom_type)
-        f.write(out.to_json())
+        f.write(feature)
         return f"{out_folder}/{file_prefix}_{output_name}"
 
 
