@@ -225,56 +225,61 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         private void SpeechRecognizer_ResultRecognized(object sender, SpeechRecognitionResult e)
         {
             var command = Compile(e.Parts.Select(p => p.Word).ToList());
-
-            if (command is InvalidAction)
-                return;
-            if (command is CancelAction)
-            {
-                ResetToInitialState();
-                return;
-            }
-            if (command is StartZonesAction startZonesAction)
-            {
-                foreach (var laneIndex in startZonesAction.LaneIndices)
+            try {
+                if (command is InvalidAction)
+                    return;
+                if (command is CancelAction)
                 {
-                    BeginZone(laneIndex);
+                    ResetToInitialState();
+                    return;
                 }
-                return;
-            }
-            if (command is EndZonesAction endZonesAction)
-            {
-                foreach (var laneIndex in endZonesAction.LaneIndices)
+                if (command is StartZonesAction startZonesAction)
                 {
-                    EndZone(laneIndex);
-                }
-                return;
-            }
-            if (command is SetZonesDetailAction setZonesDetailAction)
-            {
-                if (setZonesDetailAction.DamageCause != KeywordSymbol.invalid)
-                {
-                    SetDamageCauses(setZonesDetailAction.LaneIndices.Where(i => !IsLaneInInitialState[i]).ToList(), keywordSymbolToCause[setZonesDetailAction.DamageCause]);
-                }
-                if (setZonesDetailAction.DamageType != KeywordSymbol.invalid)
-                {
-                    SetDamageType(setZonesDetailAction.LaneIndices.Where(i => !IsLaneInInitialState[i]).ToList(), keywordSymbolToDamageType[setZonesDetailAction.DamageType]);
-                }
-                if (setZonesDetailAction.ShouldEndZone)
-                {
-                    foreach (var laneIndex in setZonesDetailAction.LaneIndices)
-                    {
-                        EndZone(laneIndex);
-                    }
-                }
-                if (setZonesDetailAction.ShouldStartZone)
-                {
-                    foreach (var laneIndex in setZonesDetailAction.LaneIndices)
+                    foreach (var laneIndex in startZonesAction.LaneIndices)
                     {
                         BeginZone(laneIndex);
                     }
+                    return;
                 }
-                return;
+                if (command is EndZonesAction endZonesAction)
+                {
+                    foreach (var laneIndex in endZonesAction.LaneIndices)
+                    {
+                        EndZone(laneIndex);
+                    }
+                    return;
+                }
+                if (command is SetZonesDetailAction setZonesDetailAction)
+                {
+                    if (setZonesDetailAction.DamageCause != KeywordSymbol.invalid)
+                    {
+                        SetDamageCauses(setZonesDetailAction.LaneIndices.Where(i => !IsLaneInInitialState[i]).ToList(), keywordSymbolToCause[setZonesDetailAction.DamageCause]);
+                    }
+                    if (setZonesDetailAction.DamageType != KeywordSymbol.invalid)
+                    {
+                        SetDamageType(setZonesDetailAction.LaneIndices.Where(i => !IsLaneInInitialState[i]).ToList(), keywordSymbolToDamageType[setZonesDetailAction.DamageType]);
+                    }
+                    if (setZonesDetailAction.ShouldEndZone)
+                    {
+                        foreach (var laneIndex in setZonesDetailAction.LaneIndices)
+                        {
+                            EndZone(laneIndex);
+                        }
+                    }
+                    if (setZonesDetailAction.ShouldStartZone)
+                    {
+                        foreach (var laneIndex in setZonesDetailAction.LaneIndices)
+                        {
+                            BeginZone(laneIndex);
+                        }
+                    }
+                    return;
+                }
+            } catch (Exception ex) {
+                Debug.WriteLine("Something went wrong", ex);
+                DependencyService.Get<IToast>().ShortAlert("Die Eingabe konnte nicht verstanden werden.");
             }
+           
         }
 
         Dictionary<KeywordSymbol, string> keywordSymbolToCause = new Dictionary<KeywordSymbol, string>
