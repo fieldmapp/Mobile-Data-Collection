@@ -21,7 +21,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel
         [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<ProjectFormElements> ElementList { get; set; } = new List<ProjectFormElements>();
 
-        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        [OneToOne(CascadeOperations = CascadeOperation.All)]
         public ProjectFormMetadata Metadata { get; set; } = new ProjectFormMetadata();
     }
 }
