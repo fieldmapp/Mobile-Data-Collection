@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 using SQLiteNetExtensions.Extensions;
 using SQLiteNetExtensions.Extensions.TextBlob;
 
@@ -161,10 +162,25 @@ namespace DlrDataApp.Modules.Base.Shared.Services
         public static bool InsertOrUpdateWithChildren<T>(T data, SQLiteConnection conn, bool recursive = true)
         {
             // if table doesn't exist create a new one
-            conn.CreateTable<T>();
+            CreateNeededTables(typeof(T), conn, recursive);
 
             conn.InsertOrReplaceWithChildren(data, recursive);
             return true;
+        }
+
+        private static void CreateNeededTables(Type objectType, SQLiteConnection conn, bool recursive = true)
+        {
+            conn.CreateTable(objectType);
+            var relatedTypes = objectType.GetProperties().Where(p => p.IsDefined(typeof(RelationshipAttribute), false)).Select(p => p.PropertyType).Where(p => p.IsClass);
+            foreach (var relatedType in relatedTypes)
+            {
+                var typeToInstantiate = relatedType;
+                if (relatedType.IsGenericType && relatedType.GetGenericTypeDefinition() == typeof(List<>))
+                    typeToInstantiate = relatedType.GetGenericArguments()[0];
+                conn.CreateTable(typeToInstantiate);
+                if (recursive)
+                    CreateNeededTables(typeToInstantiate, conn, recursive);
+            }
         }
 
 
