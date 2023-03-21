@@ -141,7 +141,7 @@ namespace com.DLR.DLR_Data_App.Droid
                 }
             }
 
-            string LogFileIdentifier;
+            string LogFilePath;
 
             public void OnHasUsbPermission()
             {
@@ -154,7 +154,8 @@ namespace com.DLR.DLR_Data_App.Droid
                     Parity = Parity.None
                 };
 
-                LogFileIdentifier = "ublox" + (DateTime.UtcNow + TimeSpan.FromSeconds(18)).GetSafeIdentifier() + ".txt";
+                var logFileIdentifier = "ublox" + (DateTime.UtcNow + TimeSpan.FromSeconds(18)).GetSafeIdentifier() + ".txt";
+                LogFilePath = Path.Combine("fieldmapp", logFileIdentifier);
 
                 SerialIOManager.DataReceived += (a, b) =>
                 {
@@ -163,7 +164,7 @@ namespace com.DLR.DLR_Data_App.Droid
 
                     if (b.Data[0] == UbloxConfigurationMessageGenerator.UbloxPreamble0 && b.Data[1] == UbloxConfigurationMessageGenerator.UbloxPreamble1)
                         return;
-                    using (var logFileStream = DependencyService.Get<IStorageAccessProvider>().OpenFileAppendExternal(LogFileIdentifier))
+                    using (var logFileStream = DependencyService.Get<IStorageAccessProvider>().OpenFileAppendExternal(LogFilePath))
                     {
                         logFileStream.Write(b.Data);
                     }
