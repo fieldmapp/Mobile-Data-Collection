@@ -98,7 +98,7 @@ namespace DLR_Data_App.Views.Settings
             var targetDatabasePath = Path.Combine(baseTempOutputPath, "database.sqlite");
 
             using (var internalFileStream = storageAccessProvider.OpenFileRead(databasePath))
-            using (var externalFileStream = storageAccessProvider.OpenFileRead(targetDatabasePath))
+            using (var externalFileStream = storageAccessProvider.OpenFileWrite(targetDatabasePath))
             {
                 await internalFileStream.CopyToAsync(externalFileStream);
             }
