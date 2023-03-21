@@ -34,10 +34,17 @@ namespace DlrDataApp.Modules.Base.Android
 
         public FileStream OpenFileRead(string path) => File.Exists(path) ? File.OpenRead(path) : null;
 
-        public FileStream OpenFileWrite(string path) => File.OpenWrite(path);
+        public FileStream OpenFileWrite(string path)
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            return File.Create(path);
+        }
 
-        public FileStream OpenFileAppend(string path) => File.Exists(path) ? File.Open(path, FileMode.Append, FileAccess.Write) : File.Create(path);
-
+        public FileStream OpenFileAppend(string path)
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            return File.Exists(path) ? File.Open(path, FileMode.Append, FileAccess.Write) : File.Create(path);
+        }
         public FileStream OpenFileWriteExternal(string path)
         {
             // prevent compilation when targeting android 30 or above because android:requestLegacyExternalStorage would be ignored, breaking this code
