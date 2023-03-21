@@ -65,7 +65,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         readonly bool[] IsLaneTypeEntered;
         readonly bool[] IsLaneStarted;
         readonly bool[] IsLaneInInitialState;
-        readonly string LogFileIdentifier;
+        readonly string LogFilePath;
 
         bool _shouldMicrophoneBeRecording = false;
         bool ShouldMicrophoneBeRecording
@@ -125,7 +125,9 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             IsLaneStarted = new bool[TotalLaneCount];
             IsLaneInInitialState = Enumerable.Repeat(true, TotalLaneCount).ToArray();
 
-            LogFileIdentifier = "drivingView_" + FieldCartographerModule.Instance.CurrentUser.Username + "_" + LaneCountPerSide + "_" + configuration.LaneWidth + "_" + configuration.GpsAntennaToInputLocationOffset + "_" + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
+            var outputDir = "fieldmapp";
+            var logFileIdentifier = "drivingView_" + FieldCartographerModule.Instance.CurrentUser.Username + "_" + LaneCountPerSide + "_" + configuration.LaneWidth + "_" + configuration.GpsAntennaToInputLocationOffset + "_" + DateTime.UtcNow.GetSafeIdentifier() + ".txt";
+            LogFilePath = System.IO.Path.Combine(outputDir, logFileIdentifier);
 
             InitializeComponent();
             WriteUsingCsvWriter(csvWriter => csvWriter.WriteComment(JsonTranslator.GetJson(configuration).Replace("\n", "").Replace("\r", "")));
@@ -553,7 +555,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 
         public void WriteUsingCsvWriter(Action<CsvWriter> writerAction)
         {
-            using (var logFileStream = DependencyService.Get<IStorageAccessProvider>().OpenFileAppendExternal(LogFileIdentifier))
+            using (var logFileStream = DependencyService.Get<IStorageAccessProvider>().OpenFileAppendExternal(LogFilePath))
             using (var writer = new StreamWriter(logFileStream))
             using (var csv = new CsvWriter(writer, new CsvConfiguration(CultureInfo.InvariantCulture) { HasHeaderRecord = false }))
             {
