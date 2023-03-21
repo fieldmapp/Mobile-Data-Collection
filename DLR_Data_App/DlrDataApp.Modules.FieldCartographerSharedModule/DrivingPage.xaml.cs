@@ -225,7 +225,8 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         private void SpeechRecognizer_ResultRecognized(object sender, SpeechRecognitionResult e)
         {
             var command = Compile(e.Parts.Select(p => p.Word).ToList());
-            try {
+            try 
+            {
                 if (command is InvalidAction)
                     return;
                 if (command is CancelAction)
@@ -285,6 +286,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         Dictionary<KeywordSymbol, string> keywordSymbolToCause = new Dictionary<KeywordSymbol, string>
         {
             { KeywordSymbol.maus, "GameMouseDamage" },
+            { KeywordSymbol.wild, "GameMouseDamage" },
             { KeywordSymbol.kuppe, "Dome" },
             { KeywordSymbol.nass, "WaterLogging" },
             { KeywordSymbol.sand, "SandLens" },
@@ -292,7 +294,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             { KeywordSymbol.verdichtung, "Compaction" },
             { KeywordSymbol.waldrand, "ForestEdge" },
             { KeywordSymbol.wende, "Headland" },
-            { KeywordSymbol.wild, "GameMouseDamage" }
+            { KeywordSymbol.hang, "Slope" },
         };
         Dictionary<KeywordSymbol, DamageType> keywordSymbolToDamageType = new Dictionary<KeywordSymbol, DamageType>
         {
