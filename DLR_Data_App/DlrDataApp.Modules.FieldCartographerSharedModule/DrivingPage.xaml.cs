@@ -133,6 +133,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             WriteUsingCsvWriter(csvWriter => {
                 csvWriter.WriteComment(JsonTranslator.GetJson(configuration).Replace("\n", "").Replace("\r", "") + Environment.NewLine);
                 csvWriter.WriteHeader<InteractionInfo>();
+                csvWriter.NextRecord();
             } );
 
             CancelButton.Clicked += (a,b) => ResetToInitialState();
