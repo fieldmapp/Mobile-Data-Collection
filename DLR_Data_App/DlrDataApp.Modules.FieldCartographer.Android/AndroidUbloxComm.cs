@@ -177,7 +177,7 @@ namespace com.DLR.DLR_Data_App.Droid
                             var utcString = messageSplit[1];
                             var dateString = messageSplit[9];
                             AndroidUbloxComm.LatestReceivedNMEADate = new DateTime(
-                                int.Parse(dateString[4..6]),
+                                2000 + int.Parse(dateString[4..6]),
                                 int.Parse(dateString[2..4]),
                                 int.Parse(dateString[..2]),
                                 int.Parse(utcString[..2]),
