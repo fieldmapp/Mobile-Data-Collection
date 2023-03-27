@@ -44,6 +44,12 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(selectedConfiguration.LaneWidth))
+            {
+                Shell.Current.DisplayAlert(SharedResources.error, "Die Bearbeitungsbreite wurde noch nicht angegeben. Bitte die KONFIGURATION ANPASSEN durch das Ergänzen der Bearbeitungsbreite oder eine andere Konfiguration auswählen.", SharedResources.ok);
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(selectedConfiguration.GpsAntennaToInputLocationOffset))
             {
                 Shell.Current.DisplayAlert(SharedResources.error, "Der Versatz zwischen dem Lotfußpunkt der Antenne und dem Referenzpunkt für die Datenaufnahme wurde noch nicht angegeben. Bitte die KONFIGURATION ANPASSEN durch das Ergänzen des Versatzes oder eine andere Konfiguration auswählen. Sollte es keinen Versatz geben, bitte „0“ eintragen.", SharedResources.ok);
