@@ -6,5 +6,6 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 {
     public interface IUbloxCommunicator
     {
+        DateTime LatestReceivedNMEADate { get; }
     }
 }

@@ -130,8 +130,10 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             LogFilePath = System.IO.Path.Combine(outputDir, logFileIdentifier);
 
             InitializeComponent();
-            WriteUsingCsvWriter(csvWriter => csvWriter.WriteComment(JsonTranslator.GetJson(configuration).Replace("\n", "").Replace("\r", "")));
-            WriteUsingCsvWriter(csvWriter => csvWriter.WriteHeader<InteractionInfo>());
+            WriteUsingCsvWriter(csvWriter => {
+                csvWriter.WriteComment(JsonTranslator.GetJson(configuration).Replace("\n", "").Replace("\r", "") + Environment.NewLine);
+                csvWriter.WriteHeader<InteractionInfo>();
+            } );
 
             CancelButton.Clicked += (a,b) => ResetToInitialState();
 
@@ -544,6 +546,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 UtcDateTime = utcDateTime;
                 LaneIndex = laneIndex;
                 Action = action;
+                NmeaReceivedUtcDateTime = DependencyService.Get<IUbloxCommunicator>().LatestReceivedNMEADate;
             }
             [Index(0)]
             public DateTime UtcDateTime { get; set; }
@@ -551,6 +554,8 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             public int LaneIndex { get; set; }
             [Index(2)]
             public string Action { get; set; }
+            [Index(3)]
+            public DateTime NmeaReceivedUtcDateTime { get; set; }
         }
 
         public void WriteUsingCsvWriter(Action<CsvWriter> writerAction)

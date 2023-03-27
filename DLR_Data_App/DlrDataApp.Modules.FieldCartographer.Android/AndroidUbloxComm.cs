@@ -64,6 +64,7 @@ namespace com.DLR.DLR_Data_App.Droid
 
         public UsbAttachedListener UsbDeviceAttachedListener { get; }
 
+        public DateTime LatestReceivedNMEADate { get; set; } = DateTime.MinValue;
 
         const int UbloxVendorId = 5446;
         const int UbloxSensorProductId = 425;
@@ -164,6 +165,30 @@ namespace com.DLR.DLR_Data_App.Droid
 
                     if (b.Data[0] == UbloxConfigurationMessageGenerator.UbloxPreamble0 && b.Data[1] == UbloxConfigurationMessageGenerator.UbloxPreamble1)
                         return;
+                    if (b.Data[0] == '$')
+                    {
+                        // NMEA always begins with $
+                        var utfMessage = Encoding.UTF8.GetString(b.Data);
+                        if (utfMessage.StartsWith("$GNRMC"))
+                        {
+                            // https://de.wikipedia.org/wiki/NMEA_0183#Recommended_Minimum_Sentence_C_(RMC)
+
+                            var messageSplit = utfMessage.Split(',');
+                            var utcString = messageSplit[1];
+                            var dateString = messageSplit[9];
+                            AndroidUbloxComm.LatestReceivedNMEADate = new DateTime(
+                                int.Parse(dateString[4..6]),
+                                int.Parse(dateString[2..4]),
+                                int.Parse(dateString[..2]),
+                                int.Parse(utcString[..2]),
+                                int.Parse(utcString[2..4]),
+                                int.Parse(utcString[4..6]),
+                                int.Parse(utcString[7..]));
+                        }
+
+                        return;
+                    }
+
                     using (var logFileStream = DependencyService.Get<IStorageAccessProvider>().OpenFileAppendExternal(LogFilePath))
                     {
                         logFileStream.Write(b.Data);
@@ -260,7 +285,7 @@ namespace com.DLR.DLR_Data_App.Droid
                     GenerateConfigurationItem(type1230UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type4072_0UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type4072_1UsbOutputRate, rateValue),
-                    GenerateConfigurationItem(usbOutputProtocolNmea, falseValue)
+                    GenerateConfigurationItem(usbOutputProtocolNmea, trueValue)
                     );
             }
 
