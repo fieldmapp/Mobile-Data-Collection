@@ -90,7 +90,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
             {
                 DependencyService.Get<IToast>().LongAlert(OdkProjectsResources.pleaseCompleteProfiling);
 
-                await Shell.Current.GoToAsync("//profilings");
+                await Shell.Current.GoToAsync("//profiling");
             }
         }
 
