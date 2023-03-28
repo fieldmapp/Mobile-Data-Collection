@@ -63,6 +63,6 @@ def calc_parallel_c(a: tuple, b: tuple, distance: float):
 
 
 def construct_parallel_polygon(a: tuple, b: tuple, height: float) -> shp.Polygon:
-    c, d = calc_parallel_c(a, b, -1 * height)
+    c, d = calc_parallel_c(a, b, height)
     polygon = shp.Polygon([a, c, d, b])
     return polygon

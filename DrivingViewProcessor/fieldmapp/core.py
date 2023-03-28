@@ -3,6 +3,7 @@ from .utils import calc_parallel_c, construct_parallel_polygon
 import pandas as pd
 import geopandas as gpd
 import shapely.geometry as shp
+from shapely import Geometry
 
 
 class LaneDetail:
@@ -49,12 +50,14 @@ class LaneSegment:
         return self.damage is not None or self.cause is not None
 
     def to_dict(self, **kwargs) -> dict:
-        shift = kwargs.get("shift_by", None)
+        shift = kwargs.get("shift_by", 0)
         geom_type = kwargs.get("geom_type", shp.Point)
-        geom = self.get_open_close_as_points()
+        geom: Geometry
 
         if shift is not None:
             geom = self.get_shifted_segment(shift_by=shift)
+        else:
+            geom = self.get_open_close_as_points()
 
         if geom_type is shp.Point or geom_type is shp.MultiPoint:
             geom = geom.boundary if type(geom) is shp.LineString else shp.MultiPoint(geom)
@@ -62,8 +65,10 @@ class LaneSegment:
             geom = shp.LineString(geom)
         if geom_type is shp.Polygon:
             geom = geom if type(geom) is shp.LineString else shp.LineString(geom)
+            factor = 1 if shift < 0 else -1
+            factor = 0.5 if shift == 0 else factor
             geom = construct_parallel_polygon((geom.xy[0][0], geom.xy[1][0]),
-                                              (geom.xy[0][1], geom.xy[1][1]), self.width)
+                                              (geom.xy[0][1], geom.xy[1][1]), factor*self.width)
         res = {
             "start": self.start.utc_time,
             "lane": self.lane,
@@ -123,7 +128,7 @@ class Lane:
     def to_gpd(self, no_shift: bool, **kwargs) -> gpd.GeoDataFrame:
         geom_type = kwargs.get("geom_type", shp.Point)
         i: LaneSegment
-        rows = [i.to_dict(shift_by=None if no_shift else self.lane_shift,
+        rows = [i.to_dict(shift_by=0 if no_shift else self.lane_shift,
                           geom_type=geom_type) for i in self.segments]
         df = gpd.GeoDataFrame(rows, crs=self.crs)
         return df
