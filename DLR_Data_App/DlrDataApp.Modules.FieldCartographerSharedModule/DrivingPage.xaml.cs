@@ -230,6 +230,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         private void SpeechRecognizer_ResultRecognized(object sender, SpeechRecognitionResult e)
         {
             var command = Compile(e.Parts.Select(p => p.Word).ToList());
+            DependencyService.Get<IToast>().ShortAlert(e.Result);
             try 
             {
                 if (command is InvalidAction)
