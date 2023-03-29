@@ -18,7 +18,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel
         [JsonIgnore]
         public string DataJson { get; set; }
 
-        [TextBlob(nameof(Data))]
+        [TextBlob(nameof(DataJson))]
         public Dictionary<string, string> Data { get; set; }
     }
 }
