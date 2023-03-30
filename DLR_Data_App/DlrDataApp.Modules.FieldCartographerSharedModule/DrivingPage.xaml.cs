@@ -91,6 +91,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             if (ShouldMicrophoneBeRecording)
                 FieldCartographerModule.Instance.SpeechRecognizer.StartListening();
 
+            FieldCartographerModule.Instance.SpeechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
             foreach (var child in GetNestedChildren(RelativeLayout))
             {
                 var touchEffect = new TouchEffect { Capture = false };
@@ -102,6 +103,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 
         protected override void OnDisappearing()
         {
+            FieldCartographerModule.Instance.SpeechRecognizer.ResultRecognized -= SpeechRecognizer_ResultRecognized;
             FieldCartographerModule.Instance.SpeechRecognizer.StopListening();
             foreach ((View view, TouchEffect effect) in ActiveTouchEffects)
             {
