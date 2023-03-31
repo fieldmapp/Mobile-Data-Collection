@@ -18,8 +18,8 @@
 Welche Minderertragstypen können aktuell während der Bewirtschaftung erkannt werden?
 Welche Arbeitsbreite wird genutzt?
 In wie viele (parallel zur Fahrspur verlaufende) Zonen kann diese sinnvoll unterteilt werden, sodass die Kartierung neben dem zu erwartenden Arbeitsaufwand machbar bleibt?</Label>
-            <Label HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{DynamicResource SubtitleStyle}" FontSize="Medium"  TextColor="Red">Nur Fett geschriebene Worte sind Sprachbefehle.</Label>
             <Label HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{DynamicResource SubtitleStyle}" FontSize="Medium" Margin="0, 10, 0, 30">Wählen Sie dafür eine der vordefinierten Konfigurationen, wie „Standard“ aus, oder erstellen Sie Ihre eigene Konfiguration. Tippen Sie dafür auf „NEUE KONFIGURATION ERSTELLEN“ oder „KONFIGURATION ANPASSEN“.</Label>
+            <Label HorizontalOptions="Center" HorizontalTextAlignment="Center" Style="{DynamicResource SubtitleStyle}" FontSize="Medium"  TextColor="Red">Nur Fett geschriebene Worte sind Sprachbefehle.</Label>
             
             <Frame BorderColor="Black" Padding="2" VerticalOptions="Start">
                     <controls:InlinePicker x:Name="ConfigurationPicker" ItemsSource="{Binding DisplayedItems}">
