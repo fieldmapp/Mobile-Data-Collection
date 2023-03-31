@@ -48,7 +48,6 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.ViewModels.CurrentProject
                     Data = _workingProject.PreviewPattern.FormatWith(result.Data)
                 };
 
-                ProjectsData.Add(result);
                 ElementList.Add(previewElement);
             }
         }
