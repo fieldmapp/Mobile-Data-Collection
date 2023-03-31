@@ -1,14 +1,16 @@
 ﻿using DlrDataApp.Modules.Base.Shared;
+using DlrDataApp.Modules.FieldCartographer.Shared.VoiceActions;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static DlrDataApp.Modules.Base.Shared.Services.FormattedStringSerializerHelper;
 
 namespace DlrDataApp.Modules.FieldCartographer.Shared
 {
-    public static class VoiceCommandCompiler
+    public static partial class VoiceCommandCompiler
     {
         public enum KeywordSymbol
         {
@@ -20,12 +22,12 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             number0, number1, number2, number3, number4, number5, number6, number7, number8, number9,
             unk, endOfStream
         }
-        static KeywordSymbol[] DamageTypes = new[] { KeywordSymbol.gering, KeywordSymbol.mittel, KeywordSymbol.hoch };
-        static KeywordSymbol[] DamageCauses = new[]
-        {
-            KeywordSymbol.hang, KeywordSymbol.nass, KeywordSymbol.maus, KeywordSymbol.wild, KeywordSymbol.trocken, KeywordSymbol.sand, KeywordSymbol.kuppe,
-            KeywordSymbol.ton, KeywordSymbol.verdichtung, KeywordSymbol.wende, KeywordSymbol.waldrand
-        };
+        static KeywordSymbol[] DamageTypes;
+        static KeywordSymbol[] DamageCauses;
+        public static Dictionary<string, KeywordSymbol> KeywordStringToSymbol;
+        public static Dictionary<string, List<string>> IdToVoiceCommands;
+        public static Dictionary<string, FormattedString> IdToFormattedString;
+        readonly static KeywordSymbol[] NumberSymbols;
 
         public static bool IsNumber(this KeywordSymbol symbol) => NumberSymbols.Contains(symbol);
         public static int ToNumber(this KeywordSymbol symbol) => NumberSymbols.IndexOf(symbol);
@@ -42,104 +44,81 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         public static bool IsDamageCause(this KeywordSymbol symbol) => DamageCauses.Contains(symbol);
 
 
-        public static Dictionary<string, KeywordSymbol> KeywordStringToSymbol = new Dictionary<string, KeywordSymbol>
+        static VoiceCommandCompiler()
         {
-            { "anfang", KeywordSymbol.anfang },
-            { "start", KeywordSymbol.anfang },
-            { "stopp", KeywordSymbol.ende },
-            { "abbrechen", KeywordSymbol.abbrechen },
-            { "gering", KeywordSymbol.gering },
-            { "mittel", KeywordSymbol.mittel },
-            { "hoch", KeywordSymbol.hoch },
-            { "hang", KeywordSymbol.hang },
-            { "nass", KeywordSymbol.nass },
-            { "nässe", KeywordSymbol.nass },
-            { "maus", KeywordSymbol.maus },
-            { "mäuse", KeywordSymbol.maus },
-            { "wild", KeywordSymbol.wild },
-            { "trocken", KeywordSymbol.trocken },
-            { "sand", KeywordSymbol.sand },
-            { "kuppe", KeywordSymbol.kuppe },
-            { "ton", KeywordSymbol.ton },
-            { "verdichtung", KeywordSymbol.verdichtung },
-            { "wald", KeywordSymbol.waldrand },
-            { "wende", KeywordSymbol.wende },
-            { "zone", KeywordSymbol.zone },
-            { "spur", KeywordSymbol.number0 },
-            { "[unk]", KeywordSymbol.unk },
-            { "null", KeywordSymbol.number0 },
-            { "eins", KeywordSymbol.number1 },
-            { "zwei", KeywordSymbol.number2 },
-            { "drei", KeywordSymbol.number3 },
-            { "vier", KeywordSymbol.number4 },
-            { "fünf", KeywordSymbol.number5 },
-            { "sechs", KeywordSymbol.number6 },
-            { "sieben", KeywordSymbol.number7 },
-            { "acht", KeywordSymbol.number8 },
-            { "neun", KeywordSymbol.number9 }
-        };
+            KeywordStringToSymbol = new Dictionary<string, KeywordSymbol>
+            {
+                { "anfang", KeywordSymbol.anfang },
+                { "start", KeywordSymbol.anfang },
+                { "stopp", KeywordSymbol.ende },
+                { "abbrechen", KeywordSymbol.abbrechen },
+                { "gering", KeywordSymbol.gering },
+                { "mittel", KeywordSymbol.mittel },
+                { "hoch", KeywordSymbol.hoch },
 
-        public abstract class VoiceAction { }
-        public abstract class ZonesAction : VoiceAction 
-        { 
-            public List<int> LaneIndices = new List<int>();
-            public override string ToString()
-            {
-                return '{' + string.Join(", ", LaneIndices.Select(i => i.ToString())) + '}'; 
-            }
-        }
-        public class StartZonesAction : ZonesAction 
-        {
-            public override string ToString()
-            {
-                return "start " + base.ToString();
-            }
-        }
-        public class EndZonesAction : ZonesAction 
-        {
-            public override string ToString()
-            {
-                return "end " + base.ToString();
-            }
-        }
-        public class SetZonesDetailAction : ZonesAction 
-        {
-            public KeywordSymbol DamageCause = KeywordSymbol.invalid;
-            public KeywordSymbol DamageType = KeywordSymbol.invalid;
-            public bool ShouldEndZone;
-            public bool ShouldStartZone;
-            public override string ToString()
-            {
-                string result = base.ToString();
-                if (DamageCause != KeywordSymbol.invalid)
-                    result += " cause: " + KeywordStringToSymbol.First(kv => kv.Value == DamageCause).Key;
-                if (DamageType != KeywordSymbol.invalid)
-                    result += " type: " + KeywordStringToSymbol.First(kv => kv.Value == DamageType).Key;
-                result += $"; end zone: {ShouldEndZone.ToString(CultureInfo.InvariantCulture)}";
-                result += $"; start zone: {ShouldStartZone.ToString(CultureInfo.InvariantCulture)}";
-                return result;
-            }
-        }
-        public class CancelAction : VoiceAction 
-        {
-            public override string ToString()
-            {
-                return "cancel";
-            }
-        }
-        public class InvalidAction : VoiceAction 
-        {
-            public override string ToString()
-            {
-                return "invalid";
-            }
-        }
+                { "hang", KeywordSymbol.hang },
+                { "nass", KeywordSymbol.nass },
+                { "nässe", KeywordSymbol.nass },
+                { "maus", KeywordSymbol.maus },
+                { "mäuse", KeywordSymbol.maus },
+                { "wild", KeywordSymbol.wild },
+                { "trocken", KeywordSymbol.trocken },
+                { "sand", KeywordSymbol.sand },
+                { "kuppe", KeywordSymbol.kuppe },
+                { "ton", KeywordSymbol.ton },
+                { "verdichtung", KeywordSymbol.verdichtung },
+                { "wald", KeywordSymbol.waldrand },
+                { "wende", KeywordSymbol.wende },
 
-        readonly static KeywordSymbol[] NumberSymbols = new[]
-        {
-            KeywordSymbol.number0, KeywordSymbol.number1, KeywordSymbol.number2, KeywordSymbol.number3, KeywordSymbol.number4, 
-            KeywordSymbol.number5, KeywordSymbol.number6, KeywordSymbol.number7, KeywordSymbol.number8, KeywordSymbol.number9
-        };
+                { "zone", KeywordSymbol.zone },
+                { "[unk]", KeywordSymbol.unk },
+                { "spur", KeywordSymbol.number0 },
+                { "null", KeywordSymbol.number0 },
+                { "eins", KeywordSymbol.number1 },
+                { "zwei", KeywordSymbol.number2 },
+                { "drei", KeywordSymbol.number3 },
+                { "vier", KeywordSymbol.number4 },
+                { "fünf", KeywordSymbol.number5 },
+                { "sechs", KeywordSymbol.number6 },
+                { "sieben", KeywordSymbol.number7 },
+                { "acht", KeywordSymbol.number8 },
+                { "neun", KeywordSymbol.number9 }
+            };
+            IdToVoiceCommands = new Dictionary<string, List<string>>
+            {
+                { "SandLens", new List<string>{ "sand" } },
+                { "Compaction", new List<string>{ "verdichtung" } },
+                { "Headland", new List<string>{ "wende" } },
+                { "Dome", new List<string>{ "kuppe" } },
+                { "Slope", new List<string>{ "hang" } },
+                { "ForestEdge", new List<string>{ "wald" } },
+                { "DryStress", new List<string>{ "trocken" } },
+                { "WaterLogging", new List<string>{ "nass", "nässe" } },
+                { "GameMouseDamage", new List<string>{ "maus", "mäuse", "wild" } },
+                { "Clay", new List<string>{ "ton" } }
+            };
+            IdToFormattedString = new Dictionary<string, FormattedString>
+            {
+                { "SandLens", StringWithAnnotationsToFormattedString("*Sand*linse") },
+                { "Compaction", StringWithAnnotationsToFormattedString("*Verdichtung*") },
+                { "Headland", StringWithAnnotationsToFormattedString("Vorge*wende*") },
+                { "Dome", StringWithAnnotationsToFormattedString("*Kuppe*") },
+                { "Slope", StringWithAnnotationsToFormattedString("*Hang*") },
+                { "ForestEdge", StringWithAnnotationsToFormattedString("*Wald*rand") },
+                { "DryStress", StringWithAnnotationsToFormattedString("*Trocken*stress") },
+                { "WaterLogging", StringWithAnnotationsToFormattedString("*Nass*stelle") },
+                { "GameMouseDamage", StringWithAnnotationsToFormattedString("*Mäuse*fraß\\n*Wild*schaden") },
+                { "Clay", StringWithAnnotationsToFormattedString("*Ton*") }
+            };
+            NumberSymbols = new[]
+            {
+                KeywordSymbol.number0, KeywordSymbol.number1, KeywordSymbol.number2, KeywordSymbol.number3, KeywordSymbol.number4,
+                KeywordSymbol.number5, KeywordSymbol.number6, KeywordSymbol.number7, KeywordSymbol.number8, KeywordSymbol.number9
+            };
+
+            DamageTypes = new[] { KeywordSymbol.gering, KeywordSymbol.mittel, KeywordSymbol.hoch };
+            DamageTypes = IdToVoiceCommands.SelectMany(kv => kv.Value).Select(v => KeywordStringToSymbol[v]).Distinct().ToArray();
+        }
 
         public static VoiceAction Compile(List<string> recognizedKeywords)
         {
@@ -151,7 +130,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             {
                 return new InvalidAction();
             }
-        }    
+        }
         static List<KeywordSymbol> Scan(List<string> recognizedKeywords) => recognizedKeywords.Select(k => KeywordStringToSymbol[k]).ToList();
 
         class SymbolStreamAccessor

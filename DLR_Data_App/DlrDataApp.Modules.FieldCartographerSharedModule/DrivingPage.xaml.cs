@@ -5,6 +5,7 @@ using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Shared.Controls;
 using DlrDataApp.Modules.Base.Shared.DependencyServices;
 using DlrDataApp.Modules.Base.Shared.TouchGesture;
+using DlrDataApp.Modules.FieldCartographer.Shared.VoiceActions;
 using DlrDataApp.Modules.SpeechRecognition.Definition;
 using System;
 using System.Collections.Generic;
