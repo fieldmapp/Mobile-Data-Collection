@@ -30,7 +30,7 @@ namespace DLR_Data_App.Views
             App.Current.AfterSplashScreenLoad();
         }
 
-        Task CreateNeededRessources()
+        async Task CreateNeededRessources()
         {
             //altered from https://stackoverflow.com/a/28791265/8512719#
 
@@ -40,12 +40,15 @@ namespace DLR_Data_App.Views
                 .Select(m => new Task(() => m.Invoke(null, null)))
                 .ToList();
 
+            // HACK: sleep to wait for the SplashScreenPage to visually appear
+            await Task.Delay(300);
+
             foreach (var task in tasksToDo)
             {
                 task.Start();
             }
 
-            return Task.WhenAll(tasksToDo);
+            await Task.WhenAll(tasksToDo);
         }
     }
 }
