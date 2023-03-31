@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static DlrDataApp.Modules.Base.Shared.Helpers;
 using static DlrDataApp.Modules.Base.Shared.Services.FormattedStringSerializerHelper;
 
 namespace DlrDataApp.Modules.FieldCartographer.Shared
@@ -16,7 +17,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         {
             invalid,
             anfang, ende, abbrechen,
-            gering, mittel, hoch, 
+            gering, mittel, hoch,
             hang, nass, maus, wild, trocken, sand, kuppe, ton, verdichtung, wende, waldrand,
             zone,
             number0, number1, number2, number3, number4, number5, number6, number7, number8, number9,
@@ -24,10 +25,12 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         }
         static KeywordSymbol[] DamageTypes;
         static KeywordSymbol[] DamageCauses;
-        public static Dictionary<string, KeywordSymbol> KeywordStringToSymbol;
-        public static Dictionary<string, List<string>> IdToVoiceCommands;
-        public static Dictionary<string, FormattedString> IdToFormattedString;
         readonly static KeywordSymbol[] NumberSymbols;
+        public static Dictionary<string, KeywordSymbol> KeywordStringToSymbol;
+        public static Dictionary<string, List<string>> CauseIdToVoiceCommands;
+        public static Dictionary<string, string> VoiceCommandToCauseId;
+        public static Dictionary<string, FormattedString> IdToFormattedString;
+        public static Dictionary<KeywordSymbol, string> KeywordSymbolToCauseId;
 
         public static bool IsNumber(this KeywordSymbol symbol) => NumberSymbols.Contains(symbol);
         public static int ToNumber(this KeywordSymbol symbol) => NumberSymbols.IndexOf(symbol);
@@ -84,19 +87,26 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 { "acht", KeywordSymbol.number8 },
                 { "neun", KeywordSymbol.number9 }
             };
-            IdToVoiceCommands = new Dictionary<string, List<string>>
+
+            VoiceCommandToCauseId = new Dictionary<string, string>
             {
-                { "SandLens", new List<string>{ "sand" } },
-                { "Compaction", new List<string>{ "verdichtung" } },
-                { "Headland", new List<string>{ "wende" } },
-                { "Dome", new List<string>{ "kuppe" } },
-                { "Slope", new List<string>{ "hang" } },
-                { "ForestEdge", new List<string>{ "wald" } },
-                { "DryStress", new List<string>{ "trocken" } },
-                { "WaterLogging", new List<string>{ "nass", "nässe" } },
-                { "GameMouseDamage", new List<string>{ "maus", "mäuse", "wild" } },
-                { "Clay", new List<string>{ "ton" } }
+                { "sand", "SandLens" },
+                { "verdichtung", "Compaction" },
+                { "wende", "Headland" },
+                { "kuppe", "Dome" },
+                { "hang", "Slope"},
+                { "wald", "ForestEdge" },
+                { "trocken", "DryStress" },
+                { "nass", "WaterLogging" },
+                { "nässe", "WaterLogging" },
+                { "maus", "GameMouseDamage" },
+                { "mäuse", "GameMouseDamage" },
+                { "wild", "GameMouseDamage" },
+                { "ton", "Clay" }
             };
+
+            CauseIdToVoiceCommands = VoiceCommandToCauseId.ReverseDictionary();
+
             IdToFormattedString = new Dictionary<string, FormattedString>
             {
                 { "SandLens", StringWithAnnotationsToFormattedString("*Sand*linse") },
@@ -116,8 +126,21 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 KeywordSymbol.number5, KeywordSymbol.number6, KeywordSymbol.number7, KeywordSymbol.number8, KeywordSymbol.number9
             };
 
+            DamageCauses = VoiceCommandToCauseId.Select(kv => KeywordStringToSymbol[kv.Key]).ToArray();
             DamageTypes = new[] { KeywordSymbol.gering, KeywordSymbol.mittel, KeywordSymbol.hoch };
-            DamageTypes = IdToVoiceCommands.SelectMany(kv => kv.Value).Select(v => KeywordStringToSymbol[v]).Distinct().ToArray();
+            KeywordSymbolToCauseId = VoiceCommandToCauseId.ToDictionaryAllowDuplicates(kv => KeywordStringToSymbol[kv.Key], kv => kv.Value);
+        }
+
+        public static List<string> GetAcceptedWordsSpeechRecognizer(IEnumerable<string> causeIds)
+        {
+            var words = KeywordStringToSymbol.Select(kv => kv.Key).Where(k => !VoiceCommandToCauseId.Keys.Contains(k)).ToList();
+            foreach (var causeId in causeIds)
+            {
+                if (CauseIdToVoiceCommands.TryGetValue(causeId, out var VoiceCommands))
+                    words.AddRange(VoiceCommands);
+            }
+
+            return words;
         }
 
         public static VoiceAction Compile(List<string> recognizedKeywords)
@@ -204,7 +227,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 action.LaneIndices = GetLaneIndexList(accessor);
                 tryReadOneLineDetail();
                 tryReadOneLineDetail();
-                
+
 
                 if (accessor.Peek() == KeywordSymbol.ende)
                 {

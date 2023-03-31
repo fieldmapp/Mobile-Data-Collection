@@ -202,7 +202,8 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 
             AddSideLanesToLayout();
             ResetToInitialState();
-            SpeechRecognizer = DependencyService.Get<ISpeechRecognizerProvider>().Initialize(KeywordStringToSymbol.Keys.ToList());
+            
+            SpeechRecognizer = DependencyService.Get<ISpeechRecognizerProvider>().Initialize(GetAcceptedWordsSpeechRecognizer(configuration.GetCauses().Select(c => c.Id)));
             SpeechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
         }
 
@@ -265,7 +266,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 {
                     if (setZonesDetailAction.DamageCause != KeywordSymbol.invalid)
                     {
-                        SetDamageCauses(setZonesDetailAction.LaneIndices.Where(i => !IsLaneInInitialState[i]).ToList(), keywordSymbolToCause[setZonesDetailAction.DamageCause]);
+                        SetDamageCauses(setZonesDetailAction.LaneIndices.Where(i => !IsLaneInInitialState[i]).ToList(), KeywordSymbolToCauseId[setZonesDetailAction.DamageCause]);
                     }
                     if (setZonesDetailAction.DamageType != KeywordSymbol.invalid)
                     {
@@ -293,20 +294,6 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             }
            
         }
-
-        Dictionary<KeywordSymbol, string> keywordSymbolToCause = new Dictionary<KeywordSymbol, string>
-        {
-            { KeywordSymbol.maus, "GameMouseDamage" },
-            { KeywordSymbol.wild, "GameMouseDamage" },
-            { KeywordSymbol.kuppe, "Dome" },
-            { KeywordSymbol.nass, "WaterLogging" },
-            { KeywordSymbol.sand, "SandLens" },
-            { KeywordSymbol.trocken, "DryStress" },
-            { KeywordSymbol.verdichtung, "Compaction" },
-            { KeywordSymbol.waldrand, "ForestEdge" },
-            { KeywordSymbol.wende, "Headland" },
-            { KeywordSymbol.hang, "Slope" },
-        };
         Dictionary<KeywordSymbol, DamageType> keywordSymbolToDamageType = new Dictionary<KeywordSymbol, DamageType>
         {
             { KeywordSymbol.gering, DamageType.Low },
