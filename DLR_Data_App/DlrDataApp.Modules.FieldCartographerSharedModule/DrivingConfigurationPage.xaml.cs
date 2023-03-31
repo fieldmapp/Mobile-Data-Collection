@@ -13,6 +13,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using static DlrDataApp.Modules.Base.Shared.Services.FormattedStringSerializerHelper;
+using static DlrDataApp.Modules.FieldCartographer.Shared.VoiceCommandCompiler;
 
 namespace DlrDataApp.Modules.FieldCartographer.Shared
 {
@@ -63,16 +64,19 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             var button = (FormattedButton)sender;
             CauseBeingChangedIndex = KeywordButtons.IndexOf(button);
 
-            KnownCauses = FieldCartographerModule.Instance.Database.Read<DrivingPageConfigurationDTO>()
+            KnownCauses = IdToFormattedString.Select(kv => (Id: kv.Key, FormattedString: kv.Value)).ToList();
+
+            KnownCauses.AddRange(FieldCartographerModule.Instance.Database.Read<DrivingPageConfigurationDTO>()
                 .Select(dto => dto.DrivingPageConfiguration)
                 .SelectMany(c => c.GetCauses())
                 .GroupBy(c => c.Id)
                 .Select(g => g.First())
-                .Where(x => !string.IsNullOrWhiteSpace(x.Id))
-                .ToList();
+                .Where(x => !string.IsNullOrWhiteSpace(x.Id) && !KnownCauses.Any(c => c.Id == x.Id))
+                .ToList());
             HelperPicker.Items.Clear();
             HelperPicker.Items.Add("Schaltfläche verstecken");
-            foreach (var item in KnownCauses.Select(c => c.cause.ToString()))
+            var voiceCommands = IdToFormattedString.Select(kv => (Id: kv.Key, FormattedString: kv.Value));
+            foreach (var item in KnownCauses.Select(c => c.cause.ToString() + (IdToFormattedString.ContainsKey(c.Id) ? " (Sprachbefehl)" : "")))
             {
                 HelperPicker.Items.Add(item);
             }
@@ -119,13 +123,17 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             if (selectedIndex == -1)
                 return;
 
+
             if (selectedIndex == 0)
             {
+                // "Schaltfläche verstecken" was selected
                 setCause(new FormattedString());
                 setCauseId("");
                 OnPropertyChanged(nameof(Configuration));
                 return;
             }
+
+            // shift to make selectedIndex match index of KnownCauses
             selectedIndex--;
             if (selectedIndex < KnownCauses.Count)
             {
@@ -135,6 +143,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 return;
             }
 
+            // "Neu erstellen" was selected
             string newCause = null;
             while (string.IsNullOrWhiteSpace(newCause))
             {
@@ -148,49 +157,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 }
             }
 
-            string annotatedString = null;
-            while (annotatedString == null)
-            {
-                string voiceRecogKeywordInput = null;
-                while (string.IsNullOrWhiteSpace(voiceRecogKeywordInput))
-                {
-                    voiceRecogKeywordInput = await DisplayPromptAsync("Spracherkennung anpassen",
-                        "Neue Schlüsselworte für die Spracherkennung angeben. " +
-                        "Wenn mehrere Schlüsselworte gewünscht sind, diese bitte durch Komma (,) getrennt auflisten. " +
-                        "Diese müssen als Teilwort in der angegebenen Ursache enthalten sein. " +
-                        "Zudem darf ein Schlüsselwort nicht in anderen vorkommen. " +
-                        "Durch das Auslassen von Angaben wird die Spracherkennung deaktiviert.",
-                        initialValue: newCause,
-                        accept: SharedResources.ok, cancel: SharedResources.cancel);
-                    if (voiceRecogKeywordInput == null)
-                        return;
-                    if (!Regex.IsMatch(voiceRecogKeywordInput, @"^[a-zA-Z, ]*$"))
-                    {
-                        if (!await DisplayAlert("Warnung",
-                            "Schlüsselwörter der Spracherkennung können nur aus lateinischen Buchstaben bestehen. " +
-                            "Trotzdem fortfahren?",
-                            accept: SharedResources.yes, cancel: "Korrigieren"))
-                            voiceRecogKeywordInput = null;
-                    }
-                }
-
-                annotatedString = newCause;
-                var voiceRecogKeywords = voiceRecogKeywordInput.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var keyword in voiceRecogKeywords.Select(k => k.Trim()))
-                {
-                    var substrPos = annotatedString.ToLower().IndexOf(keyword.ToLower());
-                    if (substrPos == -1)
-                    {
-                        DependencyService.Get<IToast>().LongAlert("Die Schlüsselwörter müssen Teile der Minderertragsursache sein.");
-                        annotatedString = null;
-                        voiceRecogKeywordInput = null;
-                        break;
-                    }
-                    annotatedString = annotatedString.Substring(0, substrPos) + BoldMarker + annotatedString.Substring(substrPos, keyword.Length) + BoldMarker + annotatedString.Substring(substrPos + keyword.Length);
-                }
-            }
-
-            setCause(StringWithAnnotationsToFormattedString(annotatedString));
+            setCause(StringWithAnnotationsToFormattedString(newCause));
             setCauseId(Guid.NewGuid().ToString());
             OnPropertyChanged(nameof(Configuration));
         }

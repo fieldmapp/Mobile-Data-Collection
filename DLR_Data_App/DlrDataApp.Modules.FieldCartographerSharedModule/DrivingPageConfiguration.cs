@@ -2,6 +2,7 @@
 
 using static DlrDataApp.Modules.Base.Shared.Services.FormattedStringSerializerHelper;
 using Xamarin.Forms;
+using static DlrDataApp.Modules.FieldCartographer.Shared.VoiceCommandCompiler;
 
 namespace DlrDataApp.Modules.FieldCartographer.Shared
 {
@@ -36,23 +37,23 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         {
             DefaultConfiguration = new DrivingPageConfiguration
             {
-                Cause1 = StringWithAnnotationsToFormattedString("*Sand*linse"),
+                Cause1 = IdToFormattedString["SandLens"],
                 Cause1Id = "SandLens",
-                Cause2 = StringWithAnnotationsToFormattedString("*Verdichtung*"),
+                Cause2 = IdToFormattedString["Compaction"],
                 Cause2Id = "Compaction",
-                Cause3 = StringWithAnnotationsToFormattedString("Vorge*wende*"),
+                Cause3 = IdToFormattedString["Headland"],
                 Cause3Id = "Headland",
-                Cause4 = StringWithAnnotationsToFormattedString("*Kuppe*"),
+                Cause4 = IdToFormattedString["Dome"],
                 Cause4Id = "Dome",
-                Cause5 = StringWithAnnotationsToFormattedString("*Hang*"),
+                Cause5 = IdToFormattedString["Slope"],
                 Cause5Id = "Slope",
-                Cause6 = StringWithAnnotationsToFormattedString("*Wald*rand"),
+                Cause6 = IdToFormattedString["ForestEdge"],
                 Cause6Id = "ForestEdge",
-                Cause7 = StringWithAnnotationsToFormattedString("*Trocken*stress"),
+                Cause7 = IdToFormattedString["DryStress"],
                 Cause7Id = "DryStress",
-                Cause8 = StringWithAnnotationsToFormattedString("*Nass*stelle"),
+                Cause8 = IdToFormattedString["WaterLogging"],
                 Cause8Id = "WaterLogging",
-                Cause9 = StringWithAnnotationsToFormattedString("*Mäuse*fraß\\n*Wild*schaden"),
+                Cause9 = IdToFormattedString["GameMouseDamage"],
                 Cause9Id = "GameMouseDamage",
                 LaneCount = 3,
                 Name = "Standard"

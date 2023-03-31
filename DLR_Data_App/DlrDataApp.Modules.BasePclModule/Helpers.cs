@@ -389,5 +389,36 @@ namespace DlrDataApp.Modules.Base.Shared
                 }
             }
         }
+
+        /// <summary>
+        /// Reverses an given input dictionary.
+        /// </summary>
+        public static Dictionary<K, List<V>> ReverseDictionary<K, V>(this Dictionary<V, K> input)
+        {
+            return input.GroupBy(p => p.Value)
+                .ToDictionary(g => g.Key, g => g.Select(pp => pp.Key).ToList());
+        }
+
+        public static Dictionary<TKey, TElement> ToDictionaryAllowDuplicates<TSource, TKey, TElement>(
+            this IEnumerable<TSource> source,
+            Func<TSource, TKey> keySelector,
+            Func<TSource, TElement> elementSelector,
+            IEqualityComparer<TKey> comparer = null)
+        {
+            // taken from https://stackoverflow.com/a/22508992
+            var dictionary = new Dictionary<TKey, TElement>(comparer);
+
+            if (source == null)
+            {
+                return dictionary;
+            }
+
+            foreach (TSource element in source)
+            {
+                dictionary[keySelector(element)] = elementSelector(element);
+            }
+
+            return dictionary;
+        }
     }
 }

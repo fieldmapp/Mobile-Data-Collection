@@ -11,18 +11,10 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
     {
         public FieldCartographerModule() : base("FieldCartographer", new List<string> { "SpeechRecognition" }) { }
 
-
-        public ISpeechRecognizer SpeechRecognizer;
         public override Task OnInitialize()
         {
             ModuleHost.App.FlyoutItem.Items.Add(new ShellContent { Title = "Fahrtansicht", Route = "fieldcartographer", ContentTemplate = new DataTemplate(typeof(DrivingConfigurationSelectionPage)) });
             DependencyService.Get<IUbloxCommunicator>();
-            return Task.CompletedTask;
-        }
-
-        public override Task OnPostInitialize()
-        {
-            SpeechRecognizer = DependencyService.Get<ISpeechRecognizerProvider>().Initialize(VoiceCommandCompiler.KeywordStringToSymbol.Keys.ToList());
             return Task.CompletedTask;
         }
     }

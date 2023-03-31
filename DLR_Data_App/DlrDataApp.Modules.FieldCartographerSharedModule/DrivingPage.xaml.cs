@@ -5,6 +5,7 @@ using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Shared.Controls;
 using DlrDataApp.Modules.Base.Shared.DependencyServices;
 using DlrDataApp.Modules.Base.Shared.TouchGesture;
+using DlrDataApp.Modules.FieldCartographer.Shared.VoiceActions;
 using DlrDataApp.Modules.SpeechRecognition.Definition;
 using System;
 using System.Collections.Generic;
@@ -76,9 +77,9 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 if (value != _shouldMicrophoneBeRecording)
                 {
                     if (value)
-                        FieldCartographerModule.Instance.SpeechRecognizer.StartListening();
+                        SpeechRecognizer.StartListening();
                     else
-                        FieldCartographerModule.Instance.SpeechRecognizer.StopListening();
+                        SpeechRecognizer.StopListening();
                 }
                 _shouldMicrophoneBeRecording = value;
             }
@@ -89,8 +90,9 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         protected override void OnAppearing()
         {
             if (ShouldMicrophoneBeRecording)
-                FieldCartographerModule.Instance.SpeechRecognizer.StartListening();
+                SpeechRecognizer.StartListening();
 
+            SpeechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
             foreach (var child in GetNestedChildren(RelativeLayout))
             {
                 var touchEffect = new TouchEffect { Capture = false };
@@ -102,7 +104,8 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 
         protected override void OnDisappearing()
         {
-            FieldCartographerModule.Instance.SpeechRecognizer.StopListening();
+            SpeechRecognizer.ResultRecognized -= SpeechRecognizer_ResultRecognized;
+            SpeechRecognizer.StopListening();
             foreach ((View view, TouchEffect effect) in ActiveTouchEffects)
             {
                 view.Effects.Remove(effect);
@@ -110,6 +113,8 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             }
             ActiveTouchEffects = new List<(View view, TouchEffect effect)>();
         }
+
+        ISpeechRecognizer SpeechRecognizer;
 
         public DrivingPageConfiguration Configuration { get; set; }
         public DrivingPage(DrivingPageConfiguration configuration)
@@ -197,8 +202,9 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 
             AddSideLanesToLayout();
             ResetToInitialState();
-
-            FieldCartographerModule.Instance.SpeechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
+            
+            SpeechRecognizer = DependencyService.Get<ISpeechRecognizerProvider>().Initialize(GetAcceptedWordsSpeechRecognizer(configuration.GetCauses().Select(c => c.Id)));
+            SpeechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
         }
 
         IEnumerable<View> GetNestedChildren(View view)
@@ -230,6 +236,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         private void SpeechRecognizer_ResultRecognized(object sender, SpeechRecognitionResult e)
         {
             var command = Compile(e.Parts.Select(p => p.Word).ToList());
+            DependencyService.Get<IToast>().ShortAlert(e.Result);
             try 
             {
                 if (command is InvalidAction)
@@ -259,7 +266,7 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 {
                     if (setZonesDetailAction.DamageCause != KeywordSymbol.invalid)
                     {
-                        SetDamageCauses(setZonesDetailAction.LaneIndices.Where(i => !IsLaneInInitialState[i]).ToList(), keywordSymbolToCause[setZonesDetailAction.DamageCause]);
+                        SetDamageCauses(setZonesDetailAction.LaneIndices.Where(i => !IsLaneInInitialState[i]).ToList(), KeywordSymbolToCauseId[setZonesDetailAction.DamageCause]);
                     }
                     if (setZonesDetailAction.DamageType != KeywordSymbol.invalid)
                     {
@@ -287,20 +294,6 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             }
            
         }
-
-        Dictionary<KeywordSymbol, string> keywordSymbolToCause = new Dictionary<KeywordSymbol, string>
-        {
-            { KeywordSymbol.maus, "GameMouseDamage" },
-            { KeywordSymbol.wild, "GameMouseDamage" },
-            { KeywordSymbol.kuppe, "Dome" },
-            { KeywordSymbol.nass, "WaterLogging" },
-            { KeywordSymbol.sand, "SandLens" },
-            { KeywordSymbol.trocken, "DryStress" },
-            { KeywordSymbol.verdichtung, "Compaction" },
-            { KeywordSymbol.waldrand, "ForestEdge" },
-            { KeywordSymbol.wende, "Headland" },
-            { KeywordSymbol.hang, "Slope" },
-        };
         Dictionary<KeywordSymbol, DamageType> keywordSymbolToDamageType = new Dictionary<KeywordSymbol, DamageType>
         {
             { KeywordSymbol.gering, DamageType.Low },
