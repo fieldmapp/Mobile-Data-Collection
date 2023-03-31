@@ -76,9 +76,9 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
                 if (value != _shouldMicrophoneBeRecording)
                 {
                     if (value)
-                        FieldCartographerModule.Instance.SpeechRecognizer.StartListening();
+                        SpeechRecognizer.StartListening();
                     else
-                        FieldCartographerModule.Instance.SpeechRecognizer.StopListening();
+                        SpeechRecognizer.StopListening();
                 }
                 _shouldMicrophoneBeRecording = value;
             }
@@ -89,9 +89,9 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
         protected override void OnAppearing()
         {
             if (ShouldMicrophoneBeRecording)
-                FieldCartographerModule.Instance.SpeechRecognizer.StartListening();
+                SpeechRecognizer.StartListening();
 
-            FieldCartographerModule.Instance.SpeechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
+            SpeechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
             foreach (var child in GetNestedChildren(RelativeLayout))
             {
                 var touchEffect = new TouchEffect { Capture = false };
@@ -103,8 +103,8 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 
         protected override void OnDisappearing()
         {
-            FieldCartographerModule.Instance.SpeechRecognizer.ResultRecognized -= SpeechRecognizer_ResultRecognized;
-            FieldCartographerModule.Instance.SpeechRecognizer.StopListening();
+            SpeechRecognizer.ResultRecognized -= SpeechRecognizer_ResultRecognized;
+            SpeechRecognizer.StopListening();
             foreach ((View view, TouchEffect effect) in ActiveTouchEffects)
             {
                 view.Effects.Remove(effect);
@@ -112,6 +112,8 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
             }
             ActiveTouchEffects = new List<(View view, TouchEffect effect)>();
         }
+
+        ISpeechRecognizer SpeechRecognizer;
 
         public DrivingPageConfiguration Configuration { get; set; }
         public DrivingPage(DrivingPageConfiguration configuration)
@@ -199,8 +201,8 @@ namespace DlrDataApp.Modules.FieldCartographer.Shared
 
             AddSideLanesToLayout();
             ResetToInitialState();
-
-            FieldCartographerModule.Instance.SpeechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
+            SpeechRecognizer = DependencyService.Get<ISpeechRecognizerProvider>().Initialize(KeywordStringToSymbol.Keys.ToList());
+            SpeechRecognizer.ResultRecognized += SpeechRecognizer_ResultRecognized;
         }
 
         IEnumerable<View> GetNestedChildren(View view)
