@@ -1,6 +1,7 @@
 ﻿using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Shared.Localization;
 using DlrDataApp.Modules.OdkProjects.Shared.Localization;
+using DlrDataApp.Modules.OdkProjects.Shared.Models.ProjectModel;
 using DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject;
 using DlrDataApp.Modules.OdkProjects.Shared.Views.ProjectList;
 using System;
@@ -24,6 +25,14 @@ namespace DlrDataApp.Modules.OdkProjects.Shared
                 Title = OdkProjectsResources.currentproject,
                 Route = "projectscurrent",
                 ContentTemplate = new DataTemplate(typeof(ProjectPage))
+            });
+            ModuleHost.AddNavigationValidityCheck(path =>
+            {
+                if (path != "//projectscurrent")
+                    return null;
+
+                var currentProfiling = Database.GetActiveElement<Project, ActiveProjectInfo>();
+                return currentProfiling == null ? "//projects" : null;
             });
             ModuleHost.App.FlyoutItem.Items.Add(new ShellContent
             {
