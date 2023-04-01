@@ -20,6 +20,7 @@ using AndroidX.AppCompat.Widget;
 using static com.DLR.DLR_Data_App.Droid.ScreenListener;
 using DlrDataApp.Modules.Base.Shared;
 using DlrDataApp.Modules.Base.Shared.DependencyServices;
+using Android.Runtime;
 
 [assembly: UsesFeature("android.hardware.usb.host")]
 namespace com.DLR.DLR_Data_App.Droid
@@ -31,11 +32,21 @@ namespace com.DLR.DLR_Data_App.Droid
         public static MainActivity Instance { get; private set; }
 
         ScreenListener ScreenListener;
+        List<string> NeededPermissions;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             Instance = this;
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+
+            NeededPermissions = new List<string>
+            {
+                Manifest.Permission.ReadExternalStorage, 
+                Manifest.Permission.WriteExternalStorage, 
+                Manifest.Permission.AccessCoarseLocation, 
+                Manifest.Permission.AccessFineLocation, 
+                Manifest.Permission.RecordAudio 
+            };
 
             Xamarin.Essentials.Platform.Init(Application);
 
@@ -65,8 +76,7 @@ namespace com.DLR.DLR_Data_App.Droid
 
             LoadApplication(new App(folderPath, fullPath, modules));
             ReloadToolbar();
-            EnsureAppPermission(Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage, Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation, Manifest.Permission.RecordAudio);
-
+            
             ScreenListener = new ScreenListener(this);
 
             MessagingCenter.Subscribe<object, bool>(this, "ReloadToolbar", (sender, reload) =>
@@ -184,10 +194,10 @@ namespace com.DLR.DLR_Data_App.Droid
             }
         }
 
-        public void EnsureAppPermission(params string[] perms)
+        public void RequestNeededAppPermission()
         {
             List<string> neededPerms = new List<string>();
-            foreach (var perm in perms)
+            foreach (var perm in NeededPermissions)
             {
                 if (base.PackageManager.CheckPermission(perm, base.PackageName) != Permission.Granted)
                 {
@@ -258,6 +268,10 @@ namespace com.DLR.DLR_Data_App.Droid
                 base.OnBackPressed();
             else
                 BackButtonPress();
+        }
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
+        {
+            RequestNeededAppPermission();
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
