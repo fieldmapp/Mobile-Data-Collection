@@ -41,7 +41,7 @@ namespace DLR_Data_App.Views
                 .ToList();
 
             // HACK: sleep to wait for the SplashScreenPage to visually appear
-            await Task.Delay(300);
+            await Task.Delay(500);
 
             foreach (var task in tasksToDo)
             {
