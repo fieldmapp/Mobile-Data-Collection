@@ -171,7 +171,9 @@ namespace DlrDataApp.Modules.Base.Shared.Services
         private static void CreateNeededTables(Type objectType, SQLiteConnection conn, bool recursive = true)
         {
             conn.CreateTable(objectType);
-            var relatedTypes = objectType.GetProperties().Where(p => p.IsDefined(typeof(RelationshipAttribute), false)).Select(p => p.PropertyType).Where(p => p.IsClass);
+            var relatedTypes = objectType.GetProperties()
+                .Where(p => p.IsDefined(typeof(RelationshipAttribute), false) && !p.IsDefined(typeof(TextBlobAttribute), false))
+                .Select(p => p.PropertyType).Where(p => p.IsClass);
             foreach (var relatedType in relatedTypes)
             {
                 var typeToInstantiate = relatedType;

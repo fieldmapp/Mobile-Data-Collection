@@ -75,7 +75,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
                 "IsProfilingLoaded", project.ProfilingId);
             if (!isModuleLoaded)
             {
-                await Shell.Current.GoToAsync("//profilings");
+                await Shell.Current.GoToAsync("//profiling");
 
                 _ = Shell.Current.DisplayAlert(SharedResources.error,
                     string.Format(OdkProjectsResources.profilingModuleMissing, project.ProfilingId),
@@ -90,7 +90,7 @@ namespace DlrDataApp.Modules.OdkProjects.Shared.Views.CurrentProject
             {
                 DependencyService.Get<IToast>().LongAlert(OdkProjectsResources.pleaseCompleteProfiling);
 
-                await Shell.Current.GoToAsync("//profilings");
+                await Shell.Current.GoToAsync("//profiling");
             }
         }
 

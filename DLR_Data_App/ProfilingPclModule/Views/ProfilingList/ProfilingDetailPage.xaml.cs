@@ -43,7 +43,7 @@ namespace DlrDataApp.Modules.Profiling.Shared.Views.ProfilingList
 
             // Navigate to current project
 
-            _ = Shell.Current.GoToAsync("profilingcurrent");
+            _ = Shell.Current.GoToAsync("//profilingcurrent");
         }
 
         /// <summary>
