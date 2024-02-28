@@ -176,14 +176,35 @@ namespace com.DLR.DLR_Data_App.Droid
                             var messageSplit = utfMessage.Split(',');
                             var utcString = messageSplit[1];
                             var dateString = messageSplit[9];
-                            AndroidUbloxComm.LatestReceivedNMEADate = new DateTime(
-                                2000 + int.Parse(dateString[4..6]),
-                                int.Parse(dateString[2..4]),
-                                int.Parse(dateString[..2]),
-                                int.Parse(utcString[..2]),
-                                int.Parse(utcString[2..4]),
-                                int.Parse(utcString[4..6]),
-                                int.Parse(utcString[7..]));
+
+                            bool successfulParsed = int.TryParse(dateString[4..6], out int year) &&
+                                int.TryParse(dateString[2..4], out int month) &&
+                                int.TryParse(dateString[..2], out int day) &&
+                                int.TryParse(utcString[..2], out int hour) &&
+                                int.TryParse(utcString[2..4], out int minute) &&
+                                int.TryParse(utcString[4..6], out int second) &&
+                                int.TryParse(utcString[7..], out int ms);
+                            
+                            if (successfulParsed) {
+                                   AndroidUbloxComm.LatestReceivedNMEADate = new DateTime(
+                                        2000 + year,
+                                        month,
+                                        day,
+                                        hour,
+                                        minute,
+                                        second,
+                                        ms);
+                            }
+
+
+                            // AndroidUbloxComm.LatestReceivedNMEADate = new DateTime(
+                            //     2000 + int.Parse(dateString[4..6]),
+                            //     int.Parse(dateString[2..4]),
+                            //     int.Parse(dateString[..2]),
+                            //     int.Parse(utcString[..2]),
+                            //     int.Parse(utcString[2..4]),
+                            //     int.Parse(utcString[4..6]),
+                            //     int.Parse(utcString[7..]));
                         }
 
                         return;
@@ -244,19 +265,15 @@ namespace com.DLR.DLR_Data_App.Droid
                 const int type1005UsbOutputRate = 0x209102c0;
 
                 // GPS  (1077 is the best to use.  Setting up uBlox with RTKLIB? – use this)
-                const int type1074UsbOutputRate = 0x20910361;
                 const int type1077UsbOutputRate = 0x209102cf;
 
                 // GLONASS  (and 1087 would be the one to use here)
-                const int type1084UsbOutputRate = 0x20910366;
                 const int type1087UsbOutputRate = 0x209102d4;
 
                 // Galileo
-                const int type1094UsbOutputRate = 0x2091036b;
                 const int type1097UsbOutputRate = 0x2091031b;
 
                 // BeiDou
-                const int type1124UsbOutputRate = 0x20910370;
                 const int type1127UsbOutputRate = 0x209102d9;
 
                 // GLONASS L1 and L2 Code-Phase Biases
@@ -274,13 +291,9 @@ namespace com.DLR.DLR_Data_App.Droid
                 return SetConfigurationItems(
                     GenerateConfigurationItem(measurementRate, measurementRateValue),
                     GenerateConfigurationItem(type1005UsbOutputRate, rateValue),
-                    GenerateConfigurationItem(type1074UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type1077UsbOutputRate, rateValue),
-                    GenerateConfigurationItem(type1084UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type1087UsbOutputRate, rateValue),
-                    GenerateConfigurationItem(type1094UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type1097UsbOutputRate, rateValue),
-                    GenerateConfigurationItem(type1124UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type1127UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type1230UsbOutputRate, rateValue),
                     GenerateConfigurationItem(type4072_0UsbOutputRate, rateValue),
